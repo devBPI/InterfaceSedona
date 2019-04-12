@@ -1,0 +1,17 @@
+version: '2'
+
+services:
+
+  app:
+    depends_on:
+      - db
+    networks:
+      - default
+
+  db:
+    image: registry.sedona.fr/images/mariadb:10.2
+    networks:
+      - default
+
+networks:
+  default: {}

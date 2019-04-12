@@ -1,0 +1,54 @@
+version: '2'
+services:
+  app:
+    image: registry.sedona.fr/images/php:7-fpm
+    user: '$UID'
+    networks:
+      - default
+      - systemd_public
+    environment:
+      - COMPOSER_HOME
+      - POSTGRES_HOST
+      - POSTGRES_DB
+      - POSTGRES_USER
+      - POSTGRES_PASSWORD
+      - MAILER_HOST
+      - MAILER_PORT
+      - MAILER_USER
+      - MAILER_PASSWORD
+      - SYMFONY_SECRET
+      - PROJECT_HOSTNAME
+      - PROJECT_SCHEME
+      - PROJECT_BASEPATH
+      - PROJECT_ENVIRONMENT
+    volumes:
+      - ./:/var/www/html/
+      - $COMPOSER_LOCAL_HOME:$COMPOSER_HOME
+
+  web:
+    image: registry.sedona.fr/images/httpd:24
+    networks:
+      - default
+      - systemd_public
+    labels:
+      traefik.enable: true
+      traefik.frontend.rule: "Host: $PROJECT_HOSTNAME"
+      traefik.frontend.entryPoints: http,https
+      traefik.docker.network: "systemd_public"
+    volumes:
+      - ./:/var/www/html/
+      - .deploy/dev/web/:/usr/local/apache2/conf.d/
+
+  db:
+    image: registry.sedona.fr/images/postgres:9.6
+    ports:
+      - "15432:5432"
+    environment:
+      - POSTGRES_HOST
+      - POSTGRES_DB
+      - POSTGRES_USER
+      - POSTGRES_PASSWORD
+
+networks:
+  systemd_public:
+    external: true
