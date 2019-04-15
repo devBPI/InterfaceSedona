@@ -1,9 +1,7 @@
 /.docker
 /.env
-/app/config/parameters.yml
+/.idea
 /build/
-!/var/data/import/.gitkeep
-/var/data/import/*
 /bin/*
 /var/*
 !/var/cache
@@ -17,15 +15,19 @@
 !var/sessions/.gitkeep
 !var/SymfonyRequirements.php
 /vendor/
-/web/bundles/
-/web/assets/
-/web/css
-/web/js
-!/web/media/.gitkeep
-/web/media/*
+/public/bundles/
+/public/assets/
+/public/css
+/public/js
 /phpunit.xml
 /composer.phar
 /package_info.json
 /web/media/import_file
 .deploy/dev/mysql/
 
+
+###> symfony/framework-bundle ###
+/.env.local
+/.env.local.php
+/.env.*.local
+###< symfony/framework-bundle ###
