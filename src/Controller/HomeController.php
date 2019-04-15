@@ -15,4 +15,14 @@ class HomeController extends AbstractController
     {
         return $this->render('home/default.html.twig', []);
     }
+
+    /**
+     * @Route("/auto-formation", name="home_autoformation")
+     * @Route("/presse", name="home_presse")
+     * @Route("/cinema", name="home_cinema")
+     */
+    public function thematicAction(Request $request)
+    {
+        return $this->render('home/thematic.html.twig', []);
+    }
 }
