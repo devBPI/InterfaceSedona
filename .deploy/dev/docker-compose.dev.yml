@@ -12,15 +12,13 @@ services:
       - POSTGRES_DB
       - POSTGRES_USER
       - POSTGRES_PASSWORD
-      - MAILER_HOST
-      - MAILER_PORT
-      - MAILER_USER
-      - MAILER_PASSWORD
-      - SYMFONY_SECRET
+      - MAILER_URL
       - PROJECT_HOSTNAME
       - PROJECT_SCHEME
       - PROJECT_BASEPATH
       - PROJECT_ENVIRONMENT
+      - APP_ENV
+      - APP_SECRET
     volumes:
       - ./:/var/www/html/
       - $COMPOSER_LOCAL_HOME:$COMPOSER_HOME

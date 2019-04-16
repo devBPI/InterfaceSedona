@@ -29,11 +29,7 @@ services:
       POSTGRES_USER: root
       POSTGRES_PASSWORD: Welcome09
       POSTGRES_DB: catalogue
-      MAILER_HOST: mailer
-      MAILER_PORT: 1025
-      MAILER_USER:
-      MAILER_PASSWORD:
-      SYMFONY_SECRET: e48b3d6c5a3249fbdd674a637801928e3141a1bc
+      MAILER_URL: smtp://mailer:1025
       PROJECT_HOSTNAME: bpi-catalogue.dev.sedona.fr
       PROJECT_SCHEME: https
       PROJECT_BASEPATH: /
