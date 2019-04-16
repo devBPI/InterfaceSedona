@@ -1,5 +1,5 @@
 {
-    "name": "bpi/catalogue",
+    "name": "bpi/bpi-catalogue",
     "version": "0.0.1-dev",
     "description": "Site Web Catalogue de la PBI",
     "type": "project",
