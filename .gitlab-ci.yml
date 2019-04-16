@@ -1,0 +1,143 @@
+stages:
+  - quality
+  - build
+  - publish
+  - deploy
+
+variables:
+  RANCHER_CLI_VERSION: "v0.6.10"
+  STACK_NAME: "bpi-catalogue"
+  SENSIO_INSIGHT_PROJECT_ID: ""
+  MAVEN_DOCKER_IMAGE: "registry.sedona.fr/images/maven:3.5-gitlab-ci"
+
+cache:
+  key: "$CI_PIPELINE_ID-$CI_COMMIT_REF_NAME"
+  untracked: false
+  paths:
+    - build/
+    - gl-code-quality-report.json
+
+quality:sonar:
+  stage: quality
+  image: $MAVEN_DOCKER_IMAGE
+  script:
+    - sed -i -E "s/sonar.projectVersion=[^)]+/sonar.projectVersion=$CI_COMMIT_REF_NAME/g" sonar-project.properties
+    - 'sonar-scanner'
+
+#quality:insight:
+#  stage: quality
+#  image: "registry.sedona.fr/images/php-fpm:56"
+#  script:
+#    - apt-get install -y -qq jq
+#    - export PR_ID=$(curl -s "https://git.sedona.fr/api/v4/projects/${CI_PROJECT_ID}/merge_requests?private_token=${USER_TOKEN}&state=opened" | jq -r ".[]|select(.sha == \"$CI_COMMIT_SHA\")|.iid")
+#    - echo $PR_ID
+#    - >
+#        if [[ ! -z "$PR_ID" ]] ; then
+#            wget https://github.com/bdemalglaive/insight/raw/master/build/insight.phar
+#            php insight.phar diff ${SENSIO_INSIGHT_PROJECT_ID} --user-uuid=${SENSIO_INSIGHT_USER_UUID} --api-token=${SENSIO_INSIGHT_USER_TOKEN} --format=md --reference-base=$(git rev-parse master) --reference-head=$(git rev-parse HEAD) > gl-code-quality-report.json
+#            export LAST_NOTES_ID=$(curl -s "https://git.sedona.fr/api/v4/projects/${CI_PROJECT_ID}/merge_requests/${PR_ID}/notes?private_token=LkssJDBWsn4TuspWeQty&state=opened" | jq -r ".[]|select(.author.id == 106)|.id")
+#            [ -z "${LAST_NOTES_ID}" ] && curl -i -X POST -H 'Content-Type: application/json' -d '@gl-code-quality-report.json' "https://git.sedona.fr/api/v4/projects/${CI_PROJECT_ID}/merge_requests/${PR_ID}/notes?private_token=${USER_TOKEN}" || curl -i -X PUT -H 'Content-Type: application/json' -d '@gl-code-quality-report.json' "https://git.sedona.fr/api/v4/projects/${CI_PROJECT_ID}/merge_requests/${PR_ID}/notes/${LAST_NOTES_ID}?private_token=${USER_TOKEN}"
+#        fi
+#  artifacts:
+#    paths: [gl-code-quality-report.json]
+
+build:package:
+ stage: build
+ image: registry.sedona.fr/images/php:7
+ only:
+    - master
+    - tags
+ cache:
+    key: "$CI_PIPELINE_ID-$CI_COMMIT_REF_SLUG"
+    untracked: true
+    policy: push
+    paths:
+     - build/
+ artifacts:
+    untracked: false
+    expire_in: 10 mins
+    paths:
+     - build/
+ script:
+    - make default clean
+
+build:image:
+  stage: build
+  image: docker:latest
+  before_script:
+    - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN registry.sedona.fr
+    - apk update
+    - apk add make
+  script:
+    - APP_IMAGE_TAG=$(make show-var-DOCKER_TAG)
+    - DB_IMAGE_TAG=${APP_IMAGE_TAG/\/site/\/db}
+    - make image
+    - docker build -t $DB_IMAGE_TAG -f .deploy/db.Dockerfile .deploy
+  only:
+    - master
+
+
+publish:image:
+  stage: publish
+  before_script:
+    - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN registry.sedona.fr
+    - apk update
+    - apk add make
+  script:
+    - APP_IMAGE_TAG=$(make show-var-DOCKER_TAG)
+    - DB_IMAGE_TAG=${APP_IMAGE_TAG/\/site/\/db}
+    - docker push $APP_IMAGE_TAG
+    - docker push $DB_IMAGE_TAG
+    - docker rmi -f $APP_IMAGE_TAG $DB_IMAGE_TAG
+  dependencies:
+    - build:image
+  only:
+    - master
+
+
+publish:package:
+ stage: publish
+ image: $MAVEN_DOCKER_IMAGE
+ only:
+    - master
+    - tags
+ cache:
+    key: "$CI_PIPELINE_ID-$CI_COMMIT_REF_SLUG"
+    untracked: true
+    policy: pull
+    paths:
+     - build/
+ dependencies:
+    - build:package
+ script:
+    - apt-get -q update
+    - apt-get -q install make
+    - GROUP_ID=$(make show-var-GROUP_ID)
+    - ARTIFACT_ID=$(make show-var-ARTIFACT_ID)
+    - VERSION=$(make show-var-VERSION)
+    - FILE_NAME=$(make show-var-PACKAGE_NAME)
+    - NEXUS_ID=$([ -z "${CI_COMMIT_TAG}" ] && echo "sedona-nexus-php-snapshots" || echo "sedona-nexus-php-releases")
+    - NEXUS_URL=$([ -z "${CI_COMMIT_TAG}" ] && echo "php-snapshots" || echo "php-releases")
+    - mvn deploy:deploy-file -Durl=https://nexus.cicd.sedona.fr/repository/${NEXUS_URL} -DrepositoryId=${NEXUS_ID} -Dfile=build/${FILE_NAME} -DgroupId=${GROUP_ID} -DartifactId=${ARTIFACT_ID} -Dversion=${VERSION} -Dpackaging=tgz
+
+deploy:rancher_dev:
+  stage: deploy
+  image:
+    name: "rancher/cli:$RANCHER_CLI_VERSION"
+    entrypoint: ["/bin/sh", "-c"]
+  only:
+    - master
+  when: manual
+  environment:
+    name: dev-rancher
+    url: https://e-salon.dev.sedona.fr
+  script:
+    - set -x
+    - STACK=$(rancher stacks ls | grep $STACK_NAME)
+    - echo "$STACK_NAME // $STACK"
+    - >
+        if test -z "$STACK" ; then
+            rancher up --stack $STACK_NAME -d --confirm-upgrade --force-recreate --pull --file .deploy/rancher/docker-compose.yml --rancher-file .deploy/rancher/rancher-compose.yml
+        else
+            rancher up --stack $STACK_NAME -d --confirm-upgrade --force-recreate --pull --file .deploy/rancher/docker-compose.yml --rancher-file .deploy/rancher/rancher-compose.yml app
+        fi

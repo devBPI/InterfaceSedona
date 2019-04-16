@@ -1,0 +1,53 @@
+version: '2'
+services:
+  db:
+    image: registry.sedona.fr/bpi/catalogue/bpi-catalogue/db:latest
+    networks:
+    - default
+    labels:
+      io.rancher.container.hostname_override: container_name
+    environment:
+      POSTGRES_HOST: db
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: Welcome09
+      POSTGRES_DB: catalogue
+    volumes:
+    - db_data:/var/lib/mysql
+
+  app:
+    image: registry.sedona.fr/bpi/catalogue/bpi-catalogue/site:latest
+    depends_on:
+    - db
+    networks:
+    - default
+    labels:
+      balance: https
+      io.rancher.container.hostname_override: container_name
+      io.rancher.container.pull_image: always
+    environment:
+      POSTGRES_HOST: db
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: Welcome09
+      POSTGRES_DB: catalogue
+      MAILER_HOST: mailer
+      MAILER_PORT: 1025
+      MAILER_USER:
+      MAILER_PASSWORD:
+      SYMFONY_SECRET: e48b3d6c5a3249fbdd674a637801928e3141a1bc
+      PROJECT_HOSTNAME: bpi-catalogue.dev.sedona.fr
+      PROJECT_SCHEME: https
+      PROJECT_BASEPATH: /
+      PROJECT_ENVIRONMENT: PROD
+
+  smtp:
+    image: mailhog/mailhog:latest
+    networks:
+    - default
+    labels:
+      balance: http
+      io.rancher.container.hostname_override: container_name
+
+volumes:
+  db_data:
+    driver: rancher-nfs
+

@@ -14,7 +14,7 @@ ARTIFACT_ID = $(PROJECT_NAME)-$(MODULE_NAME)
 VERSION = $(subst -dev,-SNAPSHOT,${COMPOSER_PROJECT_VERSION})
 # Output
 PACKAGE_NAME ?= ${ARTIFACT_ID}.${VERSION}.tgz
-DOCKER_TAG ?= registry.sedona.fr/saintgobain/esalon/e-salon-back-office/site:latest
+DOCKER_TAG ?= registry.sedona.fr/bpi/catalogue/bpi-catalogue/site:latest
 
 APP_ENV ?= prod
 NOW = $(shell date +"%Y%m%d-%H%M%S")
@@ -113,9 +113,6 @@ $(BUILD_DIR):
 
 package_info.json:
 	echo "{\"date_version\":\"${NOW}\",\"tag\":\"${CI_COMMIT_TAG}\",\"project_url\":\"${CI_PROJECT_URL}\", \"sha\":\"${CI_COMMIT_SHA}\"}" | tee package_info.json
-
-app/config/parameters.yml:
-	cp -n app/config/parameters.yml.dist app/config/parameters.yml
 
 ################################################################################
 ## Docker Compose commands (for development)
