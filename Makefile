@@ -114,6 +114,9 @@ $(BUILD_DIR):
 package_info.json:
 	echo "{\"date_version\":\"${NOW}\",\"tag\":\"${CI_COMMIT_TAG}\",\"project_url\":\"${CI_PROJECT_URL}\", \"sha\":\"${CI_COMMIT_SHA}\"}" | tee package_info.json
 
+.env:
+	cp -n .env.dist .env
+
 ################################################################################
 ## Docker Compose commands (for development)
 ################################################################################

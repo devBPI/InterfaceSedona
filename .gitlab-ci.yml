@@ -59,7 +59,7 @@ build:package:
     paths:
      - build/
  script:
-    - make default clean
+    - make .env default clean
 
 build:image:
   stage: build
@@ -116,9 +116,9 @@ publish:package:
     - ARTIFACT_ID=$(make show-var-ARTIFACT_ID)
     - VERSION=$(make show-var-VERSION)
     - FILE_NAME=$(make show-var-PACKAGE_NAME)
-    - NEXUS_ID=$([ -z "${CI_COMMIT_TAG}" ] && echo "sedona-nexus-php-snapshots" || echo "sedona-nexus-php-releases")
+    - NEXUS_ID=$([ -z "${CI_COMMIT_TAG}" ] && echo "sedona-php-snapshots" || echo "sedona-php-releases")
     - NEXUS_URL=$([ -z "${CI_COMMIT_TAG}" ] && echo "php-snapshots" || echo "php-releases")
-    - mvn deploy:deploy-file -Durl=https://nexus.cicd.sedona.fr/repository/${NEXUS_URL} -DrepositoryId=${NEXUS_ID} -Dfile=build/${FILE_NAME} -DgroupId=${GROUP_ID} -DartifactId=${ARTIFACT_ID} -Dversion=${VERSION} -Dpackaging=tgz
+    - mvn deploy:deploy-file -Durl=https://repo.cicd.sedona.fr/artifactory/${NEXUS_URL} -DrepositoryId=${NEXUS_ID} -Dfile=build/${FILE_NAME} -DgroupId=${GROUP_ID} -DartifactId=${ARTIFACT_ID} -Dversion=${VERSION} -Dpackaging=tgz
 
 deploy:rancher_dev:
   stage: deploy
@@ -130,7 +130,7 @@ deploy:rancher_dev:
   when: manual
   environment:
     name: dev-rancher
-    url: https://e-salon.dev.sedona.fr
+    url: https://bpi-catalogue.dev.sedona.fr
   script:
     - set -x
     - STACK=$(rancher stacks ls | grep $STACK_NAME)
