@@ -118,7 +118,7 @@ publish:package:
     - FILE_NAME=$(make show-var-PACKAGE_NAME)
     - NEXUS_ID=$([ -z "${CI_COMMIT_TAG}" ] && echo "sedona-php-snapshot" || echo "sedona-php-release")
     - NEXUS_URL=$([ -z "${CI_COMMIT_TAG}" ] && echo "php-snapshot" || echo "php-release")
-    - mvn deploy:deploy-file -X -Durl=https://repo.cicd.sedona.fr/artifactory/${NEXUS_URL} -DrepositoryId=${NEXUS_ID} -Dfile=build/${FILE_NAME} -DgroupId=${GROUP_ID} -DartifactId=${ARTIFACT_ID} -Dversion=${version} -Dpackaging=tgz
+    #- mvn deploy:deploy-file -X -Durl=https://repo.cicd.sedona.fr/artifactory/${NEXUS_URL} -DrepositoryId=${NEXUS_ID} -Dfile=build/${FILE_NAME} -DgroupId=${GROUP_ID} -DartifactId=${ARTIFACT_ID} -Dversion=${version} -Dpackaging=tgz
 
 deploy:rancher_dev:
   stage: deploy
