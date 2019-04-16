@@ -1,3 +1,13 @@
 {% extends 'base.html.twig' %}
 
-{% block body %}Home principal{% endblock %}
+{% block body %}
+    <h1>Home principal</h1>
+    <ul>
+        <li><a href="{{ path('home_autoformation') }}">auto-formation</a></li>
+        <li><a href="{{ path('home_cinema') }}">cinema</a></li>
+        <li><a href="{{ path('home_presse') }}">presse</a></li>
+    </ul>
+
+    <div><a href="{{ path('search') }}">Receherche</a></div>
+
+{% endblock %}

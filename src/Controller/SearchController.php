@@ -19,7 +19,7 @@ class SearchController extends AbstractController
     }
 
     /**
-     * @Route("/recherche-avancer", name="search")
+     * @Route("/recherche-avancer", name="search_advanced")
      */
     public function advancedSearchAction(Request $request)
     {
@@ -27,27 +27,11 @@ class SearchController extends AbstractController
     }
 
     /**
-     * @Route("/autocompletion", name="autocompletion")
+     * @Route("/autocompletion", name="search_autocompletion")
      */
     public function autocompletionAction(Request $request)
     {
         return $this->render('search/autocompletion.html.twig', []);
-    }
-
-    /**
-     * @Route("/notice-bibliographique", name="bibliographic-record")
-     */
-    public function bibliographicRecordAction(Request $request)
-    {
-        return $this->render('search/bibliographic-record.html.twig', []);
-    }
-
-    /**
-     * @Route("/notice-autorite", name="authority-record")
-     */
-    public function authorityRecordAction(Request $request)
-    {
-        return $this->render('search/authority-record.html.twig', []);
     }
 
 }

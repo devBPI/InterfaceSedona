@@ -1,3 +1,9 @@
 {% extends 'base.html.twig' %}
 
-{% block body %}Résultat de rechcehe{% endblock %}
+{% block body %}
+    <h1>Résultat de rechcehe</h1>
+    <ul>
+        <li><a href="{{ path('record_bibliographic') }}">notice bibliographique</a></li>
+        <li><a href="{{ path('record_authority') }}">notice autorite</a></li>
+    </ul>
+{% endblock %}

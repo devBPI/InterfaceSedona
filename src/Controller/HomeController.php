@@ -17,9 +17,9 @@ class HomeController extends AbstractController
     }
 
     /**
-     * @Route("/auto-formation", name="home_autoformation")
-     * @Route("/presse", name="home_presse")
-     * @Route("/cinema", name="home_cinema")
+     * @Route("/accueille/auto-formation", name="home_autoformation")
+     * @Route("/accueille/presse", name="home_presse")
+     * @Route("/accueille/cinema", name="home_cinema")
      */
     public function thematicAction(Request $request)
     {
