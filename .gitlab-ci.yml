@@ -8,7 +8,7 @@ variables:
   RANCHER_CLI_VERSION: "v0.6.10"
   STACK_NAME: "bpi-catalogue"
   SENSIO_INSIGHT_PROJECT_ID: ""
-  MAVEN_DOCKER_IMAGE: "registry.sedona.fr/images/maven:3.5-gitlab-ci"
+  MAVEN_DOCKER_IMAGE: "registry.sedona.fr/images/maven:latest-gitlab-ci"
 
 cache:
   key: "$CI_PIPELINE_ID-$CI_COMMIT_REF_NAME"
@@ -116,9 +116,9 @@ publish:package:
     - ARTIFACT_ID=$(make show-var-ARTIFACT_ID)
     - VERSION=$(make show-var-VERSION)
     - FILE_NAME=$(make show-var-PACKAGE_NAME)
-    - NEXUS_ID=$([ -z "${CI_COMMIT_TAG}" ] && echo "sedona-php-snapshots" || echo "sedona-php-releases")
-    - NEXUS_URL=$([ -z "${CI_COMMIT_TAG}" ] && echo "php-snapshots" || echo "php-releases")
-    - mvn deploy:deploy-file -Durl=https://repo.cicd.sedona.fr/artifactory/${NEXUS_URL} -DrepositoryId=${NEXUS_ID} -Dfile=build/${FILE_NAME} -DgroupId=${GROUP_ID} -DartifactId=${ARTIFACT_ID} -Dversion=${VERSION} -Dpackaging=tgz
+    - NEXUS_ID=$([ -z "${CI_COMMIT_TAG}" ] && echo "sedona-php-snapshot" || echo "sedona-php-release")
+    - NEXUS_URL=$([ -z "${CI_COMMIT_TAG}" ] && echo "php-snapshot" || echo "php-release")
+    - mvn deploy:deploy-file -X -Durl=https://repo.cicd.sedona.fr/artifactory/${NEXUS_URL} -DrepositoryId=${NEXUS_ID} -Dfile=build/${FILE_NAME} -DgroupId=${GROUP_ID} -DartifactId=${ARTIFACT_ID} -Dversion=${version} -Dpackaging=tgz
 
 deploy:rancher_dev:
   stage: deploy
