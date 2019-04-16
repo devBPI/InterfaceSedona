@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>notice-autorite</h1>
+
+<ul>
+    <li><a href="{{ path('user_list_add') }}">ajouter un document dans sa sélection</a></li>
+    <li><a href="{{ path('record_export') }}">Exporter</a></li>
+    <li><a href="{{ path('record_print') }}">Imprimer</a></li>
+    <li><a href="{{ path('record_share') }}">Partage</a></li>
+    <li><a href="{{ path('other_service') }}">Aide</a></li>
+    <li><a href="{{ path('user_suggestion') }}">Sugestion</a></li>
+</ul>
+
+{% endblock %}

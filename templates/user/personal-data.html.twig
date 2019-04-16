@@ -3,4 +3,9 @@
 {% block body %}
 
     <h1>Données personnelles</h1>
+
+    <ul>
+        <li><a href="{{ path('user_list_edit') }}">Editer une liste</a></li>
+        <li><a href="{{ path('user_list_remove') }}">Supprimer une liste</a></li>
+    </ul>
 {% endblock %}
