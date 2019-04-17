@@ -4,3 +4,10 @@
 #index:
 #    path: /
 #    defaults: { _controller: 'App\Controller\DefaultController::index' }
+
+home:
+  path: /
+  defaults:
+    _controller: FrameworkBundle:Redirect:urlRedirect
+    path: "/%locale%"
+    permanent: true
