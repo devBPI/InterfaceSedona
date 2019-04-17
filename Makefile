@@ -14,7 +14,7 @@ ARTIFACT_ID = $(PROJECT_NAME)-$(MODULE_NAME)
 VERSION = $(subst -dev,-SNAPSHOT,${COMPOSER_PROJECT_VERSION})
 # Output
 PACKAGE_NAME ?= ${ARTIFACT_ID}.${VERSION}.tgz
-DOCKER_TAG ?= registry.sedona.fr/saintgobain/esalon/e-salon-back-office/site:latest
+DOCKER_TAG ?= registry.sedona.fr/bpi/catalogue/bpi-catalogue/site:latest
 
 APP_ENV ?= prod
 NOW = $(shell date +"%Y%m%d-%H%M%S")
@@ -28,11 +28,6 @@ FIG := $(shell which docker-compose 2> /dev/null)
 PROJECT_IMAGE_NAME := $(subst -,/,$(COMPOSER_PROJECT_NAME))
 PHP_IMAGE_NAME := $(shell awk 'NR==1{print $$2}' Dockerfile )
 
-IN_DOCKER = $(shell expr `cat /proc/1/sched | head -n 1 | grep -cE 'init|systemd'` = 0)
-
-#
-TAR_CAN_EXCLUDE_VCS = $(shell expr `tar --version | grep ^tar | sed 's/^.* //g'` \>= 1.28)
-
 # PHP
 PHP_BIN ?= $(shell which php 2> /dev/null || echo 'php')
 # Composer options
@@ -43,15 +38,8 @@ CINSTALL_OPTIONS ?= --no-interaction --prefer-dist
 PHPSTAN_LEVEL ?= 5
 
 # Symfony options
-SF_VERSION := $(shell expr `grep '"symfony/symfony"' composer.json | cut -d':' -f2 | grep -oe "[[:digit:]].[[:digit:]]" | cut -d. -f1`)
-ifeq "$(SF_VERSION)" "2"
-CONSOLE := $(PHP_BIN) app/console
-VAR_DIR = $(CURDIR)/app
-else
 CONSOLE := $(PHP_BIN) bin/console
 VAR_DIR = $(CURDIR)/var
-endif
-
 CACHE_DIR = $(VAR_DIR)/cache
 LOG_DIR = $(VAR_DIR)/logs
 
@@ -81,6 +69,7 @@ show-vars:
 .PHONY: show-vars
 
 show-var-%:
+	@printf "$*\n"
 	@printf "${$*}\n"
 .PHONY: show-var-%
 
@@ -114,8 +103,8 @@ $(BUILD_DIR):
 package_info.json:
 	echo "{\"date_version\":\"${NOW}\",\"tag\":\"${CI_COMMIT_TAG}\",\"project_url\":\"${CI_PROJECT_URL}\", \"sha\":\"${CI_COMMIT_SHA}\"}" | tee package_info.json
 
-app/config/parameters.yml:
-	cp -n app/config/parameters.yml.dist app/config/parameters.yml
+.env:
+	cp -n .env.dist .env
 
 ################################################################################
 ## Docker Compose commands (for development)

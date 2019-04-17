@@ -1,0 +1,19 @@
+php_version: 7.1.2
+
+exclude_patterns:
+    - .deploy*
+    - .dockerignore*
+    - .env*
+    - .package-ignore
+    - .git*
+
+global_exclude_dirs:
+    - .deploy
+    - .gitlab
+    - features
+    - Fixtures
+    - test
+    - tests
+    - Tests
+    - var
+
