@@ -1,13 +1,12 @@
-version: '2'
+version: '3.5'
 services:
   app:
     image: registry.sedona.fr/images/php:7-fpm
-    user: '$UID'
+    user: '$UID:$UID'
     networks:
       - default
-      - systemd_public
     environment:
-      - COMPOSER_HOME
+      - COMPOSER_HOME=$COMPOSER_CONTAINER_HOME
       - POSTGRES_HOST
       - POSTGRES_DB
       - POSTGRES_USER
@@ -21,18 +20,18 @@ services:
       - APP_SECRET
     volumes:
       - ./:/var/www/html/
-      - $COMPOSER_LOCAL_HOME:$COMPOSER_HOME
+      - $COMPOSER_LOCAL_HOME:$COMPOSER_CONTAINER_HOME
 
   web:
     image: registry.sedona.fr/images/httpd:24
     networks:
       - default
-      - systemd_public
+      - public
     labels:
       traefik.enable: true
       traefik.frontend.rule: "Host: $PROJECT_HOSTNAME"
       traefik.frontend.entryPoints: http,https
-      traefik.docker.network: "systemd_public"
+      traefik.docker.network: "$PUBLIC_NETWORK"
     volumes:
       - ./:/var/www/html/
       - .deploy/dev/web/:/usr/local/apache2/conf.d/
@@ -48,5 +47,6 @@ services:
       - POSTGRES_PASSWORD
 
 networks:
-  systemd_public:
+  public:
     external: true
+    name: "$PUBLIC_NETWORK"

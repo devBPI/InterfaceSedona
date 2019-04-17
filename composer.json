@@ -1,10 +1,11 @@
 {
     "name": "bpi/bpi-catalogue",
-    "version": "0.0.1-dev",
+    "version": "0.1.0-dev",
     "description": "Site Web Catalogue de la PBI",
     "type": "project",
     "license": "proprietary",
     "require": {
+        "roave/security-advisories": "dev-master",
         "php": "^7.0.8",
         "ext-ctype": "*",
         "ext-iconv": "*",
