@@ -1,15 +1,45 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>notice-autorite</h1>
+	<h1>Fiche d'autorité</h1>
 
-<ul>
-    <li><a href="{{ path('user_list_add') }}">ajouter un document dans sa sélection</a></li>
-    <li><a href="{{ path('record_export') }}">Exporter</a></li>
-    <li><a href="{{ path('record_print') }}">Imprimer</a></li>
-    <li><a href="{{ path('record_share') }}">Partage</a></li>
-    <li><a href="{{ path('other_service') }}">Aide</a></li>
-    <li><a href="{{ path('user_suggestion') }}">Sugestion</a></li>
-</ul>
+	<div>
+		<button>Retour aux résultats</button>
+
+		<nav aria-label="pagination">
+			<ul>
+				<li>
+					<a href="#"><< Document précédent</a>
+				</li>
+				<li>
+					<a href="#">6 sur 55 <span class="sr-only">documents</span></a>
+				</li>
+				<li>
+					<a href="#">Document suivant >></a>
+				</li>
+			</ul>
+		</nav>
+	</div>
+
+	<hr>
+
+	<div>
+		<div>
+			<img src="https://via.placeholder.com/310x270" />
+		</div>
+		<div>
+			<h1>Guy de Maupassant (1850 - 1893)</h1>
+			
+		</div>
+	</div>
+
+	<ul>
+		<li><a href="{{ path('user_list_add') }}">ajouter un document dans sa sélection</a></li>
+		<li><a href="{{ path('record_export') }}">Exporter</a></li>
+		<li><a href="{{ path('record_print') }}">Imprimer</a></li>
+		<li><a href="{{ path('record_share') }}">Partage</a></li>
+		<li><a href="{{ path('other_service') }}">Aide</a></li>
+		<li><a href="{{ path('user_suggestion') }}">Sugestion</a></li>
+	</ul>
 
 {% endblock %}

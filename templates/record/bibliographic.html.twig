@@ -1,7 +1,99 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>notice-bibliographique</h1>
+	<h1>Notice Bibliographique</h1>
+
+	<div>
+		<button>Retour aux résultats</button>
+		<p>Résultat de <a href="##">*insert info*</a></p>
+
+		<nav aria-label="pagination">
+			<ul>
+				<li>
+					<a href="#"><< Document précédent</a>
+				</li>
+				<li>
+					<a href="#">6 sur 55 <span class="sr-only">documents</span></a>
+				</li>
+				<li>
+					<a href="#">Document suivant >></a>
+				</li>
+			</ul>
+		</nav>
+	</div>
+
+	<hr>
+
+	<div>
+		<h1>Résultat de recherche</h1>
+		<p>par Guy de Maupassant (1850 - 1893)</p>
+
+		<a href="##">Découvrir l'auteur</a>
+
+		<a href="##">Du même auteur</a>
+
+		<span>*Insert icone livre*</span>
+	</div>
+
+	<hr>
+
+	<div>
+		<h2>Résumé</h2>
+		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quibusdam praesentium voluptatibus voluptate perferendis repudiandae eligendi maxime illo unde eum. Aliquam cumque atque architecto, quia officia sit eveniet neque explicabo. Dolorum?Ad, sint cupiditate aliquam quam consequatur soluta doloribus dignissimos, repellendus dicta ex voluptatem repellat, ut debitis quaerat. Nostrum, eius. Quia odit tempore veritatis, non reiciendis iste, laudantium ratione inventore harum.</p>
+	</div>
+
+	<hr>
+
+	<div>
+		<img src="https://via.placeholder.com/200x200" />
+
+		<ul>
+			<li>
+				<p><span>Auteur : </span> Guy de Maupassant (1850 - 1893)</p>
+			</li>
+			<li>
+				<p><span>Thèmes : </span><a href="#">amour</a>, <a href="#">gloire</a>, <a href="##">beauté</a></p>
+			</li>
+			<li>
+				<p><span>Sujets : </span>Satire d'une société d'argent minée par les scandales politiques</p>
+			</li>
+			<li>
+				<p><span>editeur : </span>Ollendorf</p>
+			</li>
+			<li>
+				<p><span>Date de publication : </span>1885</p>
+			</li>
+			<li>
+				<p><span>Langue(s) : </span>Français</p>
+			</li>
+			<li>
+				<p><span>Description : </span>Bel-Ami est un oeuvre inscrite dans le mouvement du naturalisme.</p>
+			</li>
+			<li>
+				<p><span>Titre en relation / Collection : </span>Une vie (1883) - Bel-Ami (1885) - Pierre et Jean (1888)</p>
+			</li>
+			<li>
+				<p><span>ISBN : </span>978-2-12345-678-9</p>
+			</li>
+			<li>
+				<p><span>Indice : </span>A459862-12</p>
+			</li>
+		</ul>
+	</div>
+
+	<hr>
+
+	<div>
+		<p><span>*insert icon map*</span> Niveau 3 - Littérature francophone 7.156 MAUP</p>
+	</div>
+
+	<div>
+		<h3>Sur le même thème</h3>
+
+		<p>*Insert carousel*</p>
+
+		<a href="#">Voir tout (XX)</a>
+	</div>
 
     <ul>
         <li><a href="{{ path('user_list_add') }}">ajouter un document dans sa sélection</a></li>
