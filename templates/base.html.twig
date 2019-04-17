@@ -1,14 +1,91 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
-    </head>
-    <body>
-        <a href="{{ path('home') }}"><img src="{{ asset('images/favicon_SiteInstitutionnel.gif') }}"/></a>
-        <a href="{{ path('user_personal_data') }}">Mes données personnelle</a>
-        {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
-    </body>
+	<head>
+		<meta charset="UTF-8">
+		<title>{% block title %}Welcome!{% endblock %}</title>
+		{% block stylesheets %}{% endblock %}
+	</head>
+	<body>
+		
+		<div id="menu-evitement">
+			<ul>
+				<li><a href="#contenu-site">Aller au contenu</a></li>
+				<li><a href="#bloc-menu">Aller au menu général</a></li>
+				<li><a href="#form-search">Aller à la recherche</a></li>
+			</ul>
+		</div>
+		
+		<header role="banner">
+						
+			<div>
+				<ul>
+					<li><a href="#" aria-label="English version" lang="en">EN</a></li>
+					<li><a href="#" aria-label="Espagnol version" lang="es">ES</a></li>
+					<li>FR</li>
+				</ul>
+			</div>
+
+			<div>
+				<ul>
+					<li><a href="#">La Bpi</a></li>
+					<li><a href="#">Balises</a></li>
+					<li><a href="#">Professionnels</a></li>
+					<li><a href="#">Cinéma du réel</a></li>
+				</ul>
+			</div>
+
+			<div>
+				<a href="{{ path('user_personal_data') }}">Mon compte</a>
+			</div>
+			
+			<div>
+				<a href="{{ path('home') }}" title="Aller à l'accueil du site"><img src="{{ asset('images/bpi-logo.png') }}"/></a>
+			</div>
+
+			<button data-target="#bloc-menu">Icone Burger</button>
+		
+			<div id="bloc-menu">
+				<nav role="navigation" aria-label="menu principal">
+					<ul>
+						<li><a href="#">Accueil</a></li>
+						<li><a href="#">Calatogue</a></li>
+						<li><a href="#">Agenda</a></li>
+						<li><a href="#">La Bibliothèque</a></li>
+						<li><a href="#">Informations pratiques</a></li>
+						<li><a href="#">Presse / Partenariats</a></li>
+					</ul>
+				</nav>
+			</div>
+		</header>
+
+		<main id="contenu-site">
+			{% block body %}{% endblock %}
+		</main>
+
+		<footer role="contentinfo">
+			<ul>
+				<li><a href="#">Presse et partenariats</a></li>
+				<li><a href="#">Emploi & stages</a></li>
+				<li><a href="#">Marchés publics</a></li>
+				<li><a href="#">Mentions légales</a></li>
+				<li><a href="#">Aide et accessibilité</a></li>
+				<li><a href="#">Contacts</a></li>
+			</ul>
+
+			<div>
+				<img src="https://via.placeholder.com/140x60" />
+				<a href="#">Le mensuel de la Bpi</a>
+			</div>
+			<div>
+				<img src="https://via.placeholder.com/140x60" />
+				<a href="#">L'actualité de la Bpi</a>
+			</div>
+			<div>
+				<img src="https://via.placeholder.com/140x60" />
+				<a href="#">Le magazine de la Bpi</a>
+			</div>
+		</footer>
+		
+		{% block javascripts %}{% endblock %}
+	</body>
 </html>
