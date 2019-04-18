@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ app.request.getLocale() }}">
+<html>
 	<head>
 		<meta charset="UTF-8">
 		<title>{% block title %}Welcome!{% endblock %}</title>
@@ -19,15 +19,9 @@
 						
 			<div>
 				<ul>
-					{% for locale in ['en','es','fr'] -%}
-						<li>
-							{%- if locale == app.request.getLocale() -%}
-								{{ locale|upper }}
-							{%- else -%}
-								<a href="{{ path(app.request.attributes.get('_route'),{'_locale': locale}) }}" aria-label="{{ ('header.locale.aria.'~locale)|trans }}" lang="{{ locale|lower }}">{{ locale|upper }}</a>
-							{%- endif -%}
-						</li>
-					{% endfor -%}
+					<li><a href="#" aria-label="English version" lang="en">EN</a></li>
+					<li><a href="#" aria-label="Espagnol version" lang="es">ES</a></li>
+					<li>FR</li>
 				</ul>
 			</div>
 
