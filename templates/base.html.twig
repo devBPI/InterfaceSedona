@@ -58,9 +58,14 @@
 			</div>
 		</header>
 
+		<hr><hr><hr>
+
 		<main id="contenu-site">
+			{% include "common/toolbar.html.twig" %}
 			{% block body %}{% endblock %}
 		</main>
+
+		<hr><hr><hr>
 
 		<footer role="contentinfo">
 			<ul>

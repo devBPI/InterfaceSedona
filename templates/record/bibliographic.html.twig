@@ -1,6 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
+
 	<h1>Notice Bibliographique</h1>
 
 	<div>
@@ -25,8 +26,8 @@
 	<hr>
 
 	<div>
-		<h1>Résultat de recherche</h1>
-		<p>par Guy de Maupassant (1850 - 1893)</p>
+		<h1 lang="fr">Résultat de recherche</h1>
+		<p lang="fr">par Guy de Maupassant (1850 - 1893)</p>
 
 		<a href="##">Découvrir l'auteur</a>
 
@@ -39,7 +40,7 @@
 
 	<div>
 		<h2>Résumé</h2>
-		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quibusdam praesentium voluptatibus voluptate perferendis repudiandae eligendi maxime illo unde eum. Aliquam cumque atque architecto, quia officia sit eveniet neque explicabo. Dolorum?Ad, sint cupiditate aliquam quam consequatur soluta doloribus dignissimos, repellendus dicta ex voluptatem repellat, ut debitis quaerat. Nostrum, eius. Quia odit tempore veritatis, non reiciendis iste, laudantium ratione inventore harum.</p>
+		<p lang="fr">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quibusdam praesentium voluptatibus voluptate perferendis repudiandae eligendi maxime illo unde eum. Aliquam cumque atque architecto, quia officia sit eveniet neque explicabo. Dolorum?Ad, sint cupiditate aliquam quam consequatur soluta doloribus dignissimos, repellendus dicta ex voluptatem repellat, ut debitis quaerat. Nostrum, eius. Quia odit tempore veritatis, non reiciendis iste, laudantium ratione inventore harum.</p>
 	</div>
 
 	<hr>
@@ -94,15 +95,6 @@
 
 		<a href="#">Voir tout (XX)</a>
 	</div>
-
-    <ul>
-        <li><a href="{{ path('user_list_add') }}">ajouter un document dans sa sélection</a></li>
-        <li><a href="{{ path('record_export') }}">Exporter</a></li>
-        <li><a href="{{ path('record_print') }}">Imprimer</a></li>
-        <li><a href="{{ path('record_share') }}">Partage</a></li>
-        <li><a href="{{ path('other_service') }}">Aide</a></li>
-        <li><a href="{{ path('user_suggestion') }}">Sugestion</a></li>
-    </ul>
 
 
 {% endblock %}

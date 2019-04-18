@@ -1,5 +1,5 @@
 header:
-  local:
+  locale:
     aria:
       en: English version
       es: Espagnol version

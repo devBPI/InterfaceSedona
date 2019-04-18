@@ -13,36 +13,18 @@
 			<h3><a href="##">Aliquam quaerat harum, fugit expedita, illo similique alias incidunt cum quisquam corporis molestias!</a></h3>
 			<img src="https://via.placeholder.com/210x230" />
 		</div>
-		<div>
-			<h3><a href="##">Aliquam quaerat harum, fugit expedita, illo similique alias incidunt cum quisquam corporis molestias!</a></h3>
-			<img src="https://via.placeholder.com/210x230" />
-			<ul>
-				<li><a href="#">Niveau 1</a></li>
-				<li><a href="#">Niveau 2</a></li>
-				<li><a href="#">Niveau 3</a></li>
-				<li><a href="#">Niveau 4</a></li>
-			</ul>
-		</div>
-		<div>
-			<h3><a href="##">Aliquam quaerat harum, fugit expedita, illo similique alias incidunt cum quisquam corporis molestias!</a></h3>
-			<img src="https://via.placeholder.com/210x230" />
-			<ul>
-				<li><a href="#">Niveau 1</a></li>
-				<li><a href="#">Niveau 2</a></li>
-				<li><a href="#">Niveau 3</a></li>
-				<li><a href="#">Niveau 4</a></li>
-			</ul>
-		</div>
-		<div>
-			<h3><a href="##">Aliquam quaerat harum, fugit expedita, illo similique alias incidunt cum quisquam corporis molestias!</a></h3>
-			<img src="https://via.placeholder.com/210x230" />
-			<ul>
-				<li><a href="#">Niveau 1</a></li>
-				<li><a href="#">Niveau 2</a></li>
-				<li><a href="#">Niveau 3</a></li>
-				<li><a href="#">Niveau 4</a></li>
-			</ul>
-		</div>
+		{% for i in 0..2 %}
+			<div>
+				<h3><a href="##" lang="fr">Aliquam quaerat harum, fugit expedita, illo similique alias incidunt cum quisquam corporis molestias!</a></h3>
+				<img src="https://via.placeholder.com/210x230" />
+				<ul>
+					<li><a href="#" lang="fr">Niveau 1</a></li>
+					<li><a href="#" lang="fr">Niveau 2</a></li>
+					<li><a href="#" lang="fr">Niveau 3</a></li>
+					<li><a href="#" lang="fr">Niveau 4</a></li>
+				</ul>
+			</div>
+		{% endfor %}
 	</div>
 
     <ul>
