@@ -1,0 +1,17 @@
+<ul>
+    {% if toolbar is defined and toolbar == 'document' %}
+        <li><a href="{{ path('user_list_add') }}">ajouter un document dans sa sélection</a></li>
+        <li><a href="{{ path('record_export') }}">Exporter</a></li>
+    {% else %}
+        <li><p>ajouter un document dans sa sélection</p></li>
+        <li><p>Exporter</p></li>
+    {% endif %}
+    {% if toolbar is defined %}
+        <li><a href="{{ path('record_print') }}">Imprimer</a></li>
+    {% else %}
+        <li><p>Imprimer</p></li>
+    {% endif %}
+    <li><a href="{{ path('record_share') }}">Partage</a></li>
+    <li><a href="{{ path('other_service') }}">Aide</a></li>
+    <li><a href="{{ path('user_suggestion') }}">Sugestion</a></li>
+</ul>

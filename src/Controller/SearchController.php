@@ -15,7 +15,7 @@ class SearchController extends AbstractController
      */
     public function indexAction(Request $request)
     {
-        return $this->render('search/index.html.twig', []);
+        return $this->render('search/index.html.twig', ['toolbar'=> 'search']);
     }
 
     /**
