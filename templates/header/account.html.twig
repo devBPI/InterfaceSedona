@@ -1,0 +1,12 @@
+{# Quand on est pas connecté #}
+<a href="{{ path('user_personal_data') }}">Mon compte</a>
+{# Quand on est connecté #}
+<div class="dropdown">
+	<button type="button" id="dropdown-compte" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+	Bienvenue, *Insert Prénom Nom*
+	</button>
+	<div class="dropdown-menu" aria-labelledby="dropdown-compte">
+		<a href="#" class="dropdown-item">Se deconnecter</a>
+		<a href="#" class="dropdown-item">Mon compte</a>
+	</div>
+</div>

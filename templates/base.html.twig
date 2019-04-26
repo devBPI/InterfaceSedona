@@ -8,87 +8,100 @@
 	<body>
 		
 		<div id="menu-evitement">
-			<ul>
-				<li><a href="#contenu-site">Aller au contenu</a></li>
-				<li><a href="#bloc-menu">Aller au menu général</a></li>
-				<li><a href="#form-search">Aller à la recherche</a></li>
-			</ul>
+			{% include "common/navbar-evitement.html.twig" %}
 		</div>
 		
 		<header role="banner">
-						
-			<div>
-				<ul>
-					<li><a href="#" aria-label="English version" lang="en">EN</a></li>
-					<li><a href="#" aria-label="Espagnol version" lang="es">ES</a></li>
-					<li>FR</li>
-				</ul>
+			
+			<div id="menu-langue">
+				{% include "header/navbar-langues.html.twig" %}
 			</div>
 
-			<div>
-				<ul>
-					<li><a href="#">La Bpi</a></li>
-					<li><a href="#">Balises</a></li>
-					<li><a href="#">Professionnels</a></li>
-					<li><a href="#">Cinéma du réel</a></li>
-				</ul>
+			<div id="menu-secondaire">
+				{% include "header/navbar-secondaire.html.twig" %}
 			</div>
 
-			<div>
-				<a href="{{ path('user_personal_data') }}">Mon compte</a>
+			<div id="mon-compte">
+				{% include "header/account.html.twig" %}
 			</div>
 			
 			<div>
-				<a href="{{ path('home') }}" title="Aller à l'accueil du site"><img src="{{ asset('images/bpi-logo.png') }}"/></a>
+				<a href="{{ path('home') }}" title="Aller à l'accueil du site">
+					<img src="{{ asset('images/bpi-logo.png') }}" alt="Logo de la Bibliothèque Publique d'Information" />
+				</a>
 			</div>
 
-			<button data-target="#bloc-menu">Icone Burger</button>
+			<button type="button" data-target="#bloc-menu" aria-controls="bloc-menu" title="Menu principal" aria-expanded="false" >*Insert incone menu burger*</button>
 		
 			<div id="bloc-menu">
-				<nav role="navigation" aria-label="menu principal">
-					<ul>
-						<li><a href="#">Accueil</a></li>
-						<li><a href="#">Calatogue</a></li>
-						<li><a href="#">Agenda</a></li>
-						<li><a href="#">La Bibliothèque</a></li>
-						<li><a href="#">Informations pratiques</a></li>
-						<li><a href="#">Presse / Partenariats</a></li>
-					</ul>
-				</nav>
+				{% include "header/navbar-principal.html.twig" %}
 			</div>
-		</header>
+		</header>	
 
-		<hr><hr><hr>
-
-		<main id="contenu-site">
+		<main role="main" id="contenu-site">
+			{% include "common/breadcrumb.html.twig" %}
 			{% include "common/toolbar.html.twig" %}
 			{% block body %}{% endblock %}
 		</main>
 
-		<hr><hr><hr>
-
 		<footer role="contentinfo">
-			<ul>
-				<li><a href="#">Presse et partenariats</a></li>
-				<li><a href="#">Emploi & stages</a></li>
-				<li><a href="#">Marchés publics</a></li>
-				<li><a href="#">Mentions légales</a></li>
-				<li><a href="#">Aide et accessibilité</a></li>
-				<li><a href="#">Contacts</a></li>
-			</ul>
+			<div>
+				<div>
 
-			<div>
-				<img src="https://via.placeholder.com/140x60" />
-				<a href="#">Le mensuel de la Bpi</a>
+					<div>
+						<div id="menu-plans-sites">
+							{% include "footer/navbar-sitemap.html.twig" %}
+						</div>
+					</div>
+
+					<div>
+						<div id="menu-credit">
+							{% include "footer/navbar-credits.html.twig" %}
+						</div>
+					</div>
+
+					<div>
+						<div>
+							<img src="https://via.placeholder.com/140x60" />
+							<a href="#">Le mensuel de la Bpi</a>
+						</div>
+						<div>
+							<img src="https://via.placeholder.com/140x60" />
+							<a href="#">L'actualité de la Bpi</a>
+						</div>
+						<div>
+							<img src="https://via.placeholder.com/140x60" />
+							<a href="#">Le magazine de la Bpi</a>
+						</div>
+					</div>
+
+				</div>
+
+				<div>
+
+					<div>
+						<div id="partenaires">
+							{% include "footer/partenaires.html.twig" %}
+						</div>
+					</div>
+
+					<div>
+
+						<div>
+							<a href="https://www.eurekoi.org/" title="Aller sur le site d'Eurèkoi - nouvelle fenêtre" target="_blank">
+								<img src="https://via.placeholder.com/50x50" alt="Logo d'Eurèkoi" />
+							</a>
+						</div>
+
+						<div id="reseaux-sociaux">
+							{% include "footer/socials-medias.html.twig" %}
+						</div>
+
+					</div>
+
+				</div>
 			</div>
-			<div>
-				<img src="https://via.placeholder.com/140x60" />
-				<a href="#">L'actualité de la Bpi</a>
-			</div>
-			<div>
-				<img src="https://via.placeholder.com/140x60" />
-				<a href="#">Le magazine de la Bpi</a>
-			</div>
+
 		</footer>
 		
 		{% block javascripts %}{% endblock %}

@@ -1,1 +1,47 @@
-Contenu de la lightbox de suggestion
+<div>
+	<div>
+		<button type="button" aria-label="Fermer cette fenêtre"><i>*insert icone croix*</i></button>
+	</div>
+
+	<form>
+		<h3>Suggestion</h3>
+		<div class="form-group">
+			<label for="suggest-title">Titre <span>*</span></label>
+			<input type="text" class="form-control" id="suggest-title" required>
+		</div>
+		<div class="form-group">
+			<label for="suggest-author">Auteur</label>
+			<input type="text" class="form-control" id="suggest-author">
+		</div>
+		<div class="form-group">
+			<label for="suggest-type-document">Type de document</label>
+			   <select class="form-control" id="suggest-type-document">
+					<option>Type de documents 1</option>
+					<option>Type de documents 2</option>
+					<option>Type de documents 3</option>
+				</select>
+		</div>
+		<div class="form-group">
+			<label for="suggest-editor">Editeur</label>
+			<input type="text" class="form-control" id="suggest-editor">
+		</div>
+
+		<h3>Coordonnées</h3>
+
+		<div class="form-group">
+			<label for="suggest-last-name">Nom</label>
+			<input type="text" class="form-control" id="suggest-last-name">
+		</div>
+		<div class="form-group">
+			<label for="suggest-first-name">Prénom</label>
+			<input type="text" class="form-control" id="suggest-first-name">
+		</div>
+		<div class="form-group">
+			<label for="suggest-email">Courriel</label>
+			<input type="text" class="form-control" id="suggest-email">
+		</div>
+
+		<button type="button" aria-label="Fermer cette fenêtre">Annuler</button>
+		<button type="submit">Submit</button>
+	</form>
+</div>

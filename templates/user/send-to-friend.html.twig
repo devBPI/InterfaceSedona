@@ -1,1 +1,36 @@
-Contenu de la lightbox d'envoie a un amis
+<div role="dialog" aria-modal="true" aria-labelledby="modal-send-friend">
+	<div>
+		<button type="button" aria-label="Fermer cette fenêtre"><i>*insert icone croix*</i></button>
+	</div>
+
+	<form>
+		<h3 id="modal-send-friend">Envoyer cette page à un ami</h3>
+
+		<div class="form-group">
+			<label for="send-expeditor">Expéditeur <span>*</span></label>
+			<input type="text" class="form-control" id="send-expeditor" required>
+		</div>
+
+		<div class="form-group">
+			<label for="send-recipient">Destinataire <span>*</span></label>
+			<input type="text" class="form-control" id="send-recipient" required>
+		</div>
+
+		<div class="form-group">
+			<label for="send-title">Titre <span>*</span></label>
+			<input type="text" class="form-control" id="send-title" required>
+		</div>
+
+		<div class="form-group">
+			<label for="send-text">Texte <span>*</span></label>
+			<textarea class="form-control" id="send-text" rows="3" required></textarea>
+		</div>
+
+		<div>
+			<i>*Insert captcha*</i>	
+		</div>
+
+		<button type="button" aria-label="Fermer cette fenêtre">Annuler</button>
+		<button type="submit">Submit</button>
+	</form>
+</div>

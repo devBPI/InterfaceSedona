@@ -6,23 +6,179 @@
 		<h1>Résultat de recherche</h1>
 		<p>Essayez avec l'orthographe <a href="##">Guy de Maupassand</a></p>
 
-		<div>
-			<button>Sujet lié *Insert caret*</button>
-			<div>
-				<ul>
-					<li><a href="##">Sujet lié 1</a></li>
-					<li><a href="##">Sujet lié 2</a></li>
-					<li><a href="##">Sujet lié 3</a></li>
-				</ul>
+		<div class="dropdown">
+			<button type="button" id="dropdown-sujets" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Sujet lié <i>*insert caret*</i></button>
+			<div class="dropdown-menu" aria-labelledby="dropdown-sujets">
+				{% for i in 1..3 %}
+					<a href="#" class="dropdown-item">Sujet lié {{ i }}</a>
+				{% endfor %}
 			</div>
 		</div>
 
-		<a href="##">Du même auteur</a>
+		<div class="dropdown">
+			<button type="button" id="dropdown-recherche" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+			Relancer la recherche dans <i>*insert caret*</i>
+			</button>
+			<div class="dropdown-menu" aria-labelledby="dropdown-recherche">
+				{% for i in 1..9 %}
+					<a href="#" class="dropdown-item"><img src="https://via.placeholder.com/30x30" /> Liens vers nomDuSite {{ i }}</a>
+				{% endfor %}
+			</div>
+		</div>
 	</div>
 
-	 <ul>
-			<li><a href="{{ path('record_bibliographic') }}">notice bibliographique</a></li>
-			<li><a href="{{ path('record_authority') }}">notice autorite</a></li>
-	 </ul>
+	<hr>
+	
+	<div>
+		<p>Recherche avancée :</p>
+		<ul>
+			<li><a href="##" lang="fr">Titre <i>*insert icone croix*</i></a></li>
+			<li><a href="##" lang="fr">Français et homme <i>*insert icone croix*</i></a></li>
+			<li><a href="##" lang="fr">Littérature <i>*insert icone croix*</i></a></li>
+		</ul>
+	</div>
+
+	<hr>
+
+	<div>
+		<div>
+			<img src="https://via.placeholder.com/100x90" />
+		</div>
+		<div>
+			<h1>Guy de Maupassant <span>(1850 - 1893)</span></h1>
+			<ul>
+				<li>Pays : <span lang="fr">France</span></li>
+				<li>Langue : <span lang="fr">française</span></li>
+				<li>Domaines : <span lang="fr">littérature</span></li>
+			</ul>
+			<a href="##">Voir toutes les informations</a>
+		</div>
+	</div>
+
+	<hr>
+
+	<a href="##">Voir les notices d'autorité <span>(4)</span></a>
+
+	<hr>
+
+	<div>
+		<div>
+			<hr>
+
+			<div>
+				<input type="checkbox">
+				<h3>Documents en rayon : <span>55</span></h3>
+				<a href="#">Voir tout</a>
+				<div class="dropdown">
+					<button type="button" id="dropdown-trie-rayon" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					Trier par <i>*insert caret*</i>
+					</button>
+					<div class="dropdown-menu" aria-labelledby="dropdown-trie-rayon">
+						<a href="#" class="dropdown-item">Ordre ASC</a>
+						<a href="#" class="dropdown-item">Ordre DESC</a>
+					</div>
+				</div>
+			</div>
+
+			<hr>
+
+			<div>
+				{% for i in 1..6 %}
+				<div>
+					<p><input type="checkbox"> {{ i }}</p>
+					<div>
+						<div>
+							<img src="https://via.placeholder.com/110x110" />
+						</div>
+						<div>
+							<p><i>*insert icone type*</i> Bel Ami</p>
+							<p>par Guy de Maupassant (1850 - 1893)</p>
+							<p>01/02/2016 - résumé</p>
+							<p>Résultat de (Base de donnée)</p>
+							<p><i>*insert icone map*</i> Disponible</p>
+							<p>Niv.3 - Langues et litt. - Litt. francophone - 7.156 MAUP</p>
+						</div>
+					</div>
+				</div>
+				{% endfor %}
+			</div>
+		</div>
+
+		<div>
+			<hr>
+
+			<div>
+				<input type="checkbox">
+				<h3>Documents en ligne : <span>888</span></h3>
+				<a href="#">Voir tout</a>
+				<div class="dropdown">
+					<button type="button" id="dropdown-trie-rayon" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					Trier par <i>*insert caret*</i>
+					</button>
+					<div class="dropdown-menu" aria-labelledby="dropdown-trie-rayon">
+						<a href="#" class="dropdown-item">Ordre ASC</a>
+						<a href="#" class="dropdown-item">Ordre DESC</a>
+					</div>
+				</div>
+			</div>
+
+			<hr>
+
+			<div>
+				{% for i in 1..6 %}
+				<div>
+					<p><input type="checkbox"> {{ i }}</p>
+					<div>
+						<div>
+							<img src="https://via.placeholder.com/110x110" />
+						</div>
+						<div>
+							<p><i>*insert icone type*</i> Boule de suif</p>
+							<p>par Guy de Maupassant (1850 - 1893)</p>
+							<p>01/02/2016 - résumé</p>
+							<p>Résultat de (Base de donnée)</p>
+							<p><a href="#">Accéder à un nomDuDocument</a></p>
+						</div>
+					</div>
+				</div>
+				{% endfor %}
+			</div>
+		</div>
+	</div>
+
+	<hr>
+
+	<div>
+		<div>
+			<nav aria-label="Pagination">
+				<ul>
+					<li>
+						<a href="#" aria-label="Première page"><<</a>
+					</li>
+					<li>
+						<a href="#" aria-label="Page précédente"><</a>
+					</li>
+					<li>
+						<input type="text"> sur 55
+					</li>
+					<li>
+						<a href="#" aria-label="Page Suivante">></a>
+					</li>
+					<li>
+						<a href="#" aria-label="Dernière page">>></a>
+					</li>
+				</ul>
+			</nav>
+		</div>
+		<div>
+			
+		</div>
+	</div>
+
+
+	<ul>
+		<li><a href="{{ path('record_bibliographic') }}">notice bibliographique</a></li>
+		<li><a href="{{ path('record_authority') }}">notice autorite</a></li>
+	</ul>
 	
 {% endblock %}
