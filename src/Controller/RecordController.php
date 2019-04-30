@@ -15,7 +15,7 @@ class RecordController extends AbstractController
      */
     public function bibliographicRecordAction(Request $request)
     {
-        return $this->render('record/bibliographic.html.twig', []);
+        return $this->render('record/bibliographic.html.twig', ['toolbar'=> 'document']);
     }
 
     /**
@@ -23,7 +23,7 @@ class RecordController extends AbstractController
      */
     public function authorityRecordAction(Request $request)
     {
-        return $this->render('record/authority.html.twig', []);
+        return $this->render('record/authority.html.twig', ['toolbar'=> 'document']);
     }
 
     /**

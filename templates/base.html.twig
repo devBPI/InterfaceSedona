@@ -1,14 +1,127 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
-    </head>
-    <body>
-        <a href="{{ path('home') }}"><img src="{{ asset('images/favicon_SiteInstitutionnel.gif') }}"/></a>
-        <a href="{{ path('user_personal_data') }}">Mes données personnelle</a>
-        {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
-    </body>
+	<head>
+		<meta charset="UTF-8">
+		<title>{% block title %}Welcome!{% endblock %}</title>
+		{% block stylesheets %}{% endblock %}
+	</head>
+	<body>
+		
+		<div id="menu-evitement">
+			{% include "common/navbar-evitement.html.twig" %}
+		</div>
+		
+		<header role="banner">
+			<div>
+				<div>
+					<div id="menu-langue">
+						{% include "header/navbar-langues.html.twig" %}
+					</div>
+
+					<div id="menu-secondaire">
+						{% include "header/navbar-secondaire.html.twig" %}
+					</div>
+
+					<div id="mon-compte">
+						{% include "header/account.html.twig" %}
+					</div>
+				</div>
+
+				<div>
+					<div>
+						<a href="{{ path('home') }}" title="Aller à l'accueil du site">
+							<img src="{{ asset('images/bpi-logo.png') }}" alt="Logo de la Bibliothèque Publique d'Information" />
+						</a>
+					</div>
+
+					<button type="button" data-toggle="collapse" data-target="#navbar-principale" aria-controls="navbar-principale" title="Menu principal" aria-expanded="false" class="navbar-toggler">*Insert icone menu burger*</button>
+				</div>
+			
+				<div id="bloc-menu">
+					{% include "header/navbar-principal.html.twig" %}
+				</div>
+			</div>
+		</header>	
+
+		<main role="main" id="contenu-site">
+			<div>
+				{% include "common/breadcrumb.html.twig" %}
+				{% include "search/search.html.twig" %}
+				{% include "common/toolbar.html.twig" %}
+				{% block body %}{% endblock %}
+			</div>
+		</main>
+
+		<footer role="contentinfo">
+			<div>
+				<div>
+
+					<div>
+						<div id="menu-plans-sites">
+							{% include "footer/navbar-sitemap.html.twig" %}
+						</div>
+					</div>
+
+					<div>
+						<div id="menu-credit">
+							{% include "footer/navbar-credits.html.twig" %}
+						</div>
+					</div>
+
+					<div>
+						<div>
+							<a href="#">
+								<img src="https://via.placeholder.com/140x60" />
+								<span>Le mensuel de la Bpi</span>
+							</a>
+						</div>
+						<div>
+							<a href="#">
+								<img src="https://via.placeholder.com/140x60" />
+								<span>L'actualité de la Bpi</span>
+							</a>
+						</div>
+						<div>
+							<a href="#">
+								<img src="https://via.placeholder.com/140x60" />
+								<span>Le magazine de la Bpi</span>
+							</a>
+						</div>
+					</div>
+
+				</div>
+
+				<div>
+
+					<div>
+						<div id="partenaires">
+							{% include "footer/partenaires.html.twig" %}
+						</div>
+					</div>
+
+					<div>
+
+						<div>
+							<a href="https://www.eurekoi.org/" title="Aller sur le site d'Eurèkoi - nouvelle fenêtre" target="_blank">
+								<img src="https://via.placeholder.com/50x50" alt="Logo d'Eurèkoi" />
+							</a>
+						</div>
+
+						<div id="reseaux-sociaux">
+							{% include "footer/socials-medias.html.twig" %}
+						</div>
+
+					</div>
+
+				</div>
+
+				<div>
+					<p>© Copyright XXX</p>
+				</div>
+			</div>
+
+		</footer>
+		
+		{% block javascripts %}{% endblock %}
+	</body>
 </html>

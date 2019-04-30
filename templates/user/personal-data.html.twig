@@ -1,11 +1,41 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-
-    <h1>Données personnelles</h1>
-
     <ul>
         <li><a href="{{ path('user_list_edit') }}">Editer une liste</a></li>
         <li><a href="{{ path('user_list_remove') }}">Supprimer une liste</a></li>
     </ul>
+
+    <div>
+    	<nav>
+    		<ul>
+    			<li><a href="#" title="Lien actif">Données personnelles</a></li>
+    			<li><a href="#" target="_blank" title="Nouvelle fenêtre">La Bpi</a></li>
+    			<li><a href="#" target="_blank" title="Nouvelle fenêtre">Catalogue</a></li>
+    			<li><a href="#" target="_blank" title="Nouvelle fenêtre">Balises</a></li>
+    			<li><a href="#" target="_blank" title="Nouvelle fenêtre">Professionnels</a></li>
+    		</ul>
+    	</nav>
+    </div>
+
+    <h1><i>*Insert icone coeur*</i> Ma sélection</h1>
+
+	<div>
+		<div>
+			<div class="form-check">
+				<input class="form-check-input" type="checkbox" value="" id="tout-selectionner">
+				<label class="form-check-label" for="tout-selectionner">Tout sélectionner</label>
+			</div>
+			<a href="#">Annuler la sélection</a>
+
+			<div>
+				<p>Listes sélectionnées <span>(123)</span></p>
+				<p>Documents sélectionnés <span>(123)</span></p>
+			</div>
+
+			
+		</div>
+	</div>
+	
+
 {% endblock %}

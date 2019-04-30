@@ -72,5 +72,9 @@
             "allow-contrib": false,
             "require": "3.4.*"
         }
+    },
+    "require-dev": {
+        "symfony/profiler-pack": "^1.0",
+        "symfony/var-dumper": "3.4.*"
     }
 }

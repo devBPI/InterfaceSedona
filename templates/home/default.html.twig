@@ -1,13 +1,42 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Home principal</h1>
-    <ul>
-        <li><a href="{{ path('home_autoformation') }}">auto-formation</a></li>
-        <li><a href="{{ path('home_cinema') }}">cinema</a></li>
-        <li><a href="{{ path('home_presse') }}">presse</a></li>
-    </ul>
+	<h1 class="sr-only">Accueil - Catalogue de la BPI</h1>
 
-    <div><a href="{{ path('search') }}">Receherche</a></div>
+	<div>*Insert carousel*</div>
+	
+	<h2>Découvrir les parcours</h2>
+	
+	<div>
+		<div>
+			<div>
+				<img src="https://via.placeholder.com/310x265" />
+				<h3><a href="{{ path('home_autoformation') }}">Autoformation</a></h3>
+				<p lang="fr">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rerum ipsa reiciendis reprehenderit enim fugiat, quod repudiandae maiores, quibusdam fuga at sapiente dolores repellat deserunt veritatis velit modi pariatur nulla deleniti.</p>
+			</div>
+		</div>
+
+		<div>
+			<div>
+				<img src="https://via.placeholder.com/310x265" />
+				<h3><a href="{{ path('home_cinema') }}">Cinéma</a></h3>
+				<p lang="fr">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rerum ipsa reiciendis reprehenderit enim fugiat, quod repudiandae maiores, quibusdam fuga at sapiente dolores repellat deserunt veritatis velit modi pariatur nulla deleniti.</p>
+			</div>
+		</div>
+
+		<div>
+			<div>
+				<img src="https://via.placeholder.com/310x265" />
+				<h3><a href="{{ path('home_presse') }}">Presse</a></h3>
+				<p lang="fr">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rerum ipsa reiciendis reprehenderit enim fugiat, quod repudiandae maiores, quibusdam fuga at sapiente dolores repellat deserunt veritatis velit modi pariatur nulla deleniti.</p>
+			</div>
+		</div>
+	</div>
+
+	{#
+	<div>
+		<a href="{{ path('search') }}">Recherche</a>
+	</div>
+	#}
 
 {% endblock %}
