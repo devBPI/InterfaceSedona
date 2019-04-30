@@ -2,49 +2,47 @@
 
 {% block body %}
 
-	<h1 lang="fr">Fiche d'autorité</h1>
-
+	{# Fiche d'autorité #}
 	<div>
-		<button>Retour aux résultats</button>
+		<div>
+			<a href="##">Retour aux résultats</a>
 
-		<nav aria-label="pagination">
-			<ul>
-				<li>
-					<a href="#"><< Document précédent</a>
-				</li>
-				<li>
-					<a href="#">6 sur 55 <span class="sr-only">documents</span></a>
-				</li>
-				<li>
-					<a href="#">Document suivant >></a>
-				</li>
-			</ul>
-		</nav>
+			<nav aria-label="pagination">
+				<ul>
+					<li>
+						<a href="#"><< Document précédent</a>
+					</li>
+					<li>
+						<a href="#">6 sur 55 <span class="sr-only">documents</span></a>
+					</li>
+					<li>
+						<a href="#">Document suivant >></a>
+					</li>
+				</ul>
+			</nav>
+		</div>
 	</div>
-
-	<hr>
 
 	<div>
 		<div>
 			<img src="https://via.placeholder.com/310x270" />
 		</div>
 		<div>
-			<h1>Guy de Maupassant (1850 - 1893)</h1>
+			<h1 lang="fr">Guy de Maupassant (1850 - 1893)</h1>
 			<ul>
-				<li><span>Pays : </span>France</li>
-				<li><span>Naissance : </span>5 aout 1850 - Tourville-sur-Arques (Seine-Inférieure)</li>
-				<li><span>Mort : </span>6 juillet 1893 (à 42 ans) Paris</li>
-				<li><span>Sexe : </span>masculin</li>
+				<li>Pays : <span lang="fr">France</span></li>
+				<li>Naissance : <span lang="fr">5 aout 1850 - Tourville-sur-Arques (Seine-Inférieure)</span></li>
+				<li>Mort : <span lang="fr">6 juillet 1893 (à 42 ans) Paris</span></li>
+				<li>Sexe : <span lang="fr">masculin</span></li>
 			</ul>
 			<ul>
-				<li><span>Activité principale : </span>écrivain</li>
-				<li><span>Domaines : </span>littérature</li>
-				<li><span>Langue : </span>française</li>
+				<li>Activité principale : <span lang="fr">écrivain</span></li>
+				<li>Domaines : <span lang="fr">littérature</span></li>
+				<li>Langue : <span lang="fr">française</span></li>
 			</ul>
-			<hr>
 		</div>
 		<div>
-			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus magnam ducimus sed, asperiores possimus qui eum officia quisquam ipsam, consectetur voluptatem nisi sit quis! Vitae, labore? Autem hic cupiditate iure.</span>
+			<p lang="fr">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus magnam ducimus sed, asperiores possimus qui eum officia quisquam ipsam, consectetur voluptatem nisi sit quis! Vitae, labore? Autem hic cupiditate iure.
 			Repellat, veritatis! Eos perferendis soluta et temporibus ullam adipisci veniam quia vel explicabo odio pariatur in sunt illo voluptatibus maiores consequatur, quod, cum voluptates accusantium facilis magnam laudantium omnis. Id?
 			Aliquam ad atque quia quos, eius dolores quas odit voluptates obcaecati. Voluptatum autem quaerat repellat praesentium quas dolor est, blanditiis iusto quos, qui totam provident earum, dolores, tempore velit voluptas.
 			Exercitationem minima quam quisquam dolores incidunt laborum, placeat reprehenderit porro consequatur magnam excepturi nam nulla dicta consectetur necessitatibus et quidem ex blanditiis quo. Suscipit animi laudantium dicta eum, reprehenderit eaque.
@@ -57,29 +55,20 @@
 		</div>
 	</div>
 
-	<hr>
-
 	<div>
 		<a href="#carousel-auteur">Auteur</a>
 		<a href="#carousel-sujets">Sujets</a>
 	</div>
-
-	<hr>
 
 	<div id="carousel-auteur">
 		<h3>Auteur</h3>
 		<p>*Insert carousel*</p>
 	</div>
 
-	<hr>
-
 	<div id="carousel-sujets">
 		<h3>Sujets</h3>
 		<p>*Insert carousel*</p>
 	</div>
-
-	<hr>
-	<hr>
 	
 	<div>
 		<h3>Feuilletage d'index</h3>
@@ -87,25 +76,25 @@
 	</div>
 
 	<div>
-		<p class="sr-only">*Insert explication du component*</p>
-		<a href="#fin-feuilletage" class="sr-only">Aller à la fin du feuilletage d'index</a>
-		<a href="#index-courant" class="sr-only">Aller sur l'index active</a>
+		<p tabindex="0" class="sr-only sr-only-focusable">*Insert explication du component*</p>
+		<a href="#fin-feuilletage" class="sr-only sr-only-focusable">Aller à la fin du feuilletage d'index</a>
+		<a href="#index-courant" class="sr-only sr-only-focusable">Aller sur l'index active</a>
 		<div>
-			<button>5 <span class="sr-only">index</span> précédents</button>
+			<button type="button">5 <span class="sr-only">index</span> précédents</button>
 			<ul>
-				<li><a href="">index 1</a></li>
-				<li><a href="">index 2</a></li>
-				<li><a href="">index 3</a></li>
-				<li><a href="">index 4</a></li>
-				<li><a href="">index 5</a></li>
-				<li>index 6 - Active</li>
-				<li><a href="">index 7</a></li>
-				<li><a href="">index 8</a></li>
-				<li><a href="">index 9</a></li>
-				<li><a href="">index 10</a></li>
-				<li><a href="">index 11</a></li>
+				<li><a href="##">index 1</a></li>
+				<li><a href="##">index 2</a></li>
+				<li><a href="##">index 3</a></li>
+				<li><a href="##">index 4</a></li>
+				<li><a href="##">index 5</a></li>
+				<li><span id="index-courant" aria-current="page">index 6 - Active</span></li>
+				<li><a href="##">index 7</a></li>
+				<li><a href="##">index 8</a></li>
+				<li><a href="##">index 9</a></li>
+				<li><a href="##">index 10</a></li>
+				<li><a href="##">index 11</a></li>
 			</ul>
-			<button>5 <span class="sr-only">index</span> suivants</button>
+			<button type="button">5 <span class="sr-only">index</span> suivants</button>
 		</div>
 	</div>
 

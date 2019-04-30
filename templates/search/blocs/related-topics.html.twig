@@ -1,0 +1,8 @@
+<div class="dropdown">
+	<button type="button" id="dropdown-sujets" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Sujet lié <i>*insert caret*</i></button>
+	<div class="dropdown-menu" aria-labelledby="dropdown-sujets">
+		{% for i in 1..3 %}
+			<a href="#" class="dropdown-item">Sujet lié {{ i }}</a>
+		{% endfor %}
+	</div>
+</div>
