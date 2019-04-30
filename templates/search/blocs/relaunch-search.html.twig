@@ -1,0 +1,10 @@
+<div class="dropdown">
+	<button type="button" id="dropdown-recherche" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+	Relancer la recherche dans <i>*insert caret*</i>
+	</button>
+	<div class="dropdown-menu" aria-labelledby="dropdown-recherche">
+		{% for i in 1..9 %}
+			<a href="#" class="dropdown-item"><img src="https://via.placeholder.com/30x30" /> Liens vers nomDuSite {{ i }}</a>
+		{% endfor %}
+	</div>
+</div>

@@ -3,31 +3,18 @@
 {% block body %}
 
 	<div>
-		<h1>Résultat de recherche</h1>
-		<p>Essayez avec l'orthographe <a href="##">Guy de Maupassand</a></p>
+		{# Résultat de recherche #}
 
-		<div class="dropdown">
-			<button type="button" id="dropdown-sujets" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Sujet lié <i>*insert caret*</i></button>
-			<div class="dropdown-menu" aria-labelledby="dropdown-sujets">
-				{% for i in 1..3 %}
-					<a href="#" class="dropdown-item">Sujet lié {{ i }}</a>
-				{% endfor %}
-			</div>
+		<p>Essayez avec l'orthographe <a href="##">*Insert recherche corrigé*</a></p>
+
+		<div>
+			{% include "search/blocs/related-topics.html.twig" %}
 		</div>
 
-		<div class="dropdown">
-			<button type="button" id="dropdown-recherche" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-			Relancer la recherche dans <i>*insert caret*</i>
-			</button>
-			<div class="dropdown-menu" aria-labelledby="dropdown-recherche">
-				{% for i in 1..9 %}
-					<a href="#" class="dropdown-item"><img src="https://via.placeholder.com/30x30" /> Liens vers nomDuSite {{ i }}</a>
-				{% endfor %}
-			</div>
+		<div>
+			{% include "search/blocs/relaunch-search.html.twig" %}
 		</div>
 	</div>
-
-	<hr>
 	
 	<div>
 		<p>Recherche avancée :</p>
@@ -36,9 +23,11 @@
 			<li><a href="##" lang="fr">Français et homme <i>*insert icone croix*</i></a></li>
 			<li><a href="##" lang="fr">Littérature <i>*insert icone croix*</i></a></li>
 		</ul>
-	</div>
 
-	<hr>
+		<button type="button" data-target="modal-search-advanced">Affiner</button>
+		{% include "search/advanced-search.html.twig" %}
+		
+	</div>
 
 	<div>
 		<div>

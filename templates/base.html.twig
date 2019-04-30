@@ -12,36 +12,44 @@
 		</div>
 		
 		<header role="banner">
-			
-			<div id="menu-langue">
-				{% include "header/navbar-langues.html.twig" %}
-			</div>
-
-			<div id="menu-secondaire">
-				{% include "header/navbar-secondaire.html.twig" %}
-			</div>
-
-			<div id="mon-compte">
-				{% include "header/account.html.twig" %}
-			</div>
-			
 			<div>
-				<a href="{{ path('home') }}" title="Aller à l'accueil du site">
-					<img src="{{ asset('images/bpi-logo.png') }}" alt="Logo de la Bibliothèque Publique d'Information" />
-				</a>
-			</div>
+				<div>
+					<div id="menu-langue">
+						{% include "header/navbar-langues.html.twig" %}
+					</div>
 
-			<button type="button" data-target="#bloc-menu" aria-controls="bloc-menu" title="Menu principal" aria-expanded="false" >*Insert incone menu burger*</button>
-		
-			<div id="bloc-menu">
-				{% include "header/navbar-principal.html.twig" %}
+					<div id="menu-secondaire">
+						{% include "header/navbar-secondaire.html.twig" %}
+					</div>
+
+					<div id="mon-compte">
+						{% include "header/account.html.twig" %}
+					</div>
+				</div>
+
+				<div>
+					<div>
+						<a href="{{ path('home') }}" title="Aller à l'accueil du site">
+							<img src="{{ asset('images/bpi-logo.png') }}" alt="Logo de la Bibliothèque Publique d'Information" />
+						</a>
+					</div>
+
+					<button type="button" data-toggle="collapse" data-target="#navbar-principale" aria-controls="navbar-principale" title="Menu principal" aria-expanded="false" class="navbar-toggler">*Insert icone menu burger*</button>
+				</div>
+			
+				<div id="bloc-menu">
+					{% include "header/navbar-principal.html.twig" %}
+				</div>
 			</div>
 		</header>	
 
 		<main role="main" id="contenu-site">
-			{% include "common/breadcrumb.html.twig" %}
-			{% include "common/toolbar.html.twig" %}
-			{% block body %}{% endblock %}
+			<div>
+				{% include "common/breadcrumb.html.twig" %}
+				{% include "search/search.html.twig" %}
+				{% include "common/toolbar.html.twig" %}
+				{% block body %}{% endblock %}
+			</div>
 		</main>
 
 		<footer role="contentinfo">
@@ -62,16 +70,22 @@
 
 					<div>
 						<div>
-							<img src="https://via.placeholder.com/140x60" />
-							<a href="#">Le mensuel de la Bpi</a>
+							<a href="#">
+								<img src="https://via.placeholder.com/140x60" />
+								<span>Le mensuel de la Bpi</span>
+							</a>
 						</div>
 						<div>
-							<img src="https://via.placeholder.com/140x60" />
-							<a href="#">L'actualité de la Bpi</a>
+							<a href="#">
+								<img src="https://via.placeholder.com/140x60" />
+								<span>L'actualité de la Bpi</span>
+							</a>
 						</div>
 						<div>
-							<img src="https://via.placeholder.com/140x60" />
-							<a href="#">Le magazine de la Bpi</a>
+							<a href="#">
+								<img src="https://via.placeholder.com/140x60" />
+								<span>Le magazine de la Bpi</span>
+							</a>
 						</div>
 					</div>
 
@@ -99,6 +113,10 @@
 
 					</div>
 
+				</div>
+
+				<div>
+					<p>© Copyright XXX</p>
 				</div>
 			</div>
 
