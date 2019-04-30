@@ -85,7 +85,9 @@ publish:image:
     - apk add make
   script:
     - APP_IMAGE_TAG=$(make show-var-DOCKER_TAG)
+    - echo APP_IMAGE_TAG
     - DB_IMAGE_TAG=${APP_IMAGE_TAG/\/site/\/db}
+    - echo DB_IMAGE_TAG
     - docker push $APP_IMAGE_TAG
     - docker push $DB_IMAGE_TAG
     - docker rmi -f $APP_IMAGE_TAG $DB_IMAGE_TAG
