@@ -70,9 +70,7 @@ build:image:
     - apk add make
   script:
     - APP_IMAGE_TAG=$(make show-var-DOCKER_TAG)
-    - echo $APP_IMAGE_TAG
     - DB_IMAGE_TAG=${APP_IMAGE_TAG/\/site/\/db}
-    - echo $DB_IMAGE_TAG
     - make image
     - docker build -t $DB_IMAGE_TAG -f .deploy/db.Dockerfile .deploy
   only:
