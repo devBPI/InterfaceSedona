@@ -69,7 +69,6 @@ show-vars:
 .PHONY: show-vars
 
 show-var-%:
-	@printf "$*\n"
 	@printf "${$*}\n"
 .PHONY: show-var-%
 
