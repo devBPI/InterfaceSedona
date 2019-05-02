@@ -74,7 +74,7 @@ build:image:
     - DB_IMAGE_TAG=${APP_IMAGE_TAG/\/site/\/db}
     - echo $DB_IMAGE_TAG
     - make image
-    - docker build -t $DB_IMAGE_TAG -f .deploy/db.Dockerfile .deploy
+    - docker build -t $APP_IMAGE_TAG -f .deploy/db.Dockerfile .deploy
   only:
     - master
 
