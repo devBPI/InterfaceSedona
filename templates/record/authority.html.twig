@@ -1,19 +1,21 @@
 {% extends 'base.html.twig' %}
 
+{% block title %}Fiche d'autorité{% endblock %}
+
 {% block body %}
 
-	{# Fiche d'autorité #}
 	<div>
 		<div>
 			<a href="##">Retour aux résultats</a>
-
+		</div>
+		<div>
 			<nav aria-label="pagination">
 				<ul>
 					<li>
 						<a href="#"><< Document précédent</a>
 					</li>
 					<li>
-						<a href="#">6 sur 55 <span class="sr-only">documents</span></a>
+						<a href="#">6 <span>sur 55 </span><span class="sr-only">documents</span></a>
 					</li>
 					<li>
 						<a href="#">Document suivant >></a>
@@ -55,47 +57,57 @@
 		</div>
 	</div>
 
-	<div>
-		<a href="#carousel-auteur">Auteur</a>
-		<a href="#carousel-sujets">Sujets</a>
-	</div>
+	<section>
 
-	<div id="carousel-auteur">
-		<h3>Auteur</h3>
-		<p>*Insert carousel*</p>
-	</div>
-
-	<div id="carousel-sujets">
-		<h3>Sujets</h3>
-		<p>*Insert carousel*</p>
-	</div>
-	
-	<div>
-		<h3>Feuilletage d'index</h3>
-		<a href="##">Voir la liste complète <span>(PDF)</span></a>
-	</div>
-
-	<div>
-		<p tabindex="0" class="sr-only sr-only-focusable">*Insert explication du component*</p>
-		<a href="#fin-feuilletage" class="sr-only sr-only-focusable">Aller à la fin du feuilletage d'index</a>
-		<a href="#index-courant" class="sr-only sr-only-focusable">Aller sur l'index active</a>
 		<div>
-			<button type="button">5 <span class="sr-only">index</span> précédents</button>
 			<ul>
-				<li><a href="##">index 1</a></li>
-				<li><a href="##">index 2</a></li>
-				<li><a href="##">index 3</a></li>
-				<li><a href="##">index 4</a></li>
-				<li><a href="##">index 5</a></li>
-				<li><span id="index-courant" aria-current="page">index 6 - Active</span></li>
-				<li><a href="##">index 7</a></li>
-				<li><a href="##">index 8</a></li>
-				<li><a href="##">index 9</a></li>
-				<li><a href="##">index 10</a></li>
-				<li><a href="##">index 11</a></li>
+				<li><a href="#carousel-auteur">Auteur</a></li>
+				<li><a href="#carousel-sujets">Sujets</a></li>
 			</ul>
-			<button type="button">5 <span class="sr-only">index</span> suivants</button>
 		</div>
-	</div>
+
+		<div id="carousel-auteur">
+			<h3>Auteur</h3>
+			<p>*Insert carousel*</p>
+		</div>
+
+		<div id="carousel-sujets">
+			<h3>Sujets</h3>
+			<p>*Insert carousel*</p>
+		</div>
+
+	</section>
+
+	<section>
+	
+		<div>
+			<h3>Feuilletage d'index</h3>
+			<a href="##">Voir la liste complète <span>(PDF)</span></a>
+		</div>
+
+		<div>
+			<p tabindex="0" class="sr-only sr-only-focusable">*Insert explication du component*</p>
+			<a href="#fin-feuilletage" class="sr-only sr-only-focusable">Aller à la fin du feuilletage d'index</a>
+			<a href="#index-courant" class="sr-only sr-only-focusable">Aller sur l'index active</a>
+			<div>
+				<button type="button">5 <span class="sr-only">index</span> précédents</button>
+				<ul>
+					<li><a href="##">index 1</a></li>
+					<li><a href="##">index 2</a></li>
+					<li><a href="##">index 3</a></li>
+					<li><a href="##">index 4</a></li>
+					<li><a href="##">index 5</a></li>
+					<li><span id="index-courant" aria-current="page">index 6 - Active</span></li>
+					<li><a href="##">index 7</a></li>
+					<li><a href="##">index 8</a></li>
+					<li><a href="##">index 9</a></li>
+					<li><a href="##">index 10</a></li>
+					<li><a href="##">index 11</a></li>
+				</ul>
+				<button type="button">5 <span class="sr-only">index</span> suivants</button>
+			</div>
+		</div>
+
+	</section>
 
 {% endblock %}

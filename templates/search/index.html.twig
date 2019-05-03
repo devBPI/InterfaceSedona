@@ -1,9 +1,11 @@
 {% extends 'base.html.twig' %}
 
+{% block title %}Résultat de recherche{% endblock %}
+
 {% block body %}
 
 	<div>
-		{# Résultat de recherche #}
+		{# Page résultat de recherche #}
 
 		<p>Essayez avec l'orthographe <a href="##">*Insert recherche corrigé*</a></p>
 
@@ -17,16 +19,21 @@
 	</div>
 	
 	<div>
-		<p>Recherche avancée :</p>
-		<ul>
-			<li><a href="##" lang="fr">Titre <i>*insert icone croix*</i></a></li>
-			<li><a href="##" lang="fr">Français et homme <i>*insert icone croix*</i></a></li>
-			<li><a href="##" lang="fr">Littérature <i>*insert icone croix*</i></a></li>
-		</ul>
+		<div>
+			<p>Recherche avancée :</p>
+			<ul>
+				<li><a href="##" lang="fr">Titre <i>*insert icone croix*</i></a></li>
+				<li><a href="##" lang="fr">Français et homme <i>*insert icone croix*</i></a></li>
+				<li><a href="##" lang="fr">Littérature <i>*insert icone croix*</i></a></li>
+			</ul>
 
-		<button type="button" data-target="modal-search-advanced">Affiner</button>
-		{% include "search/advanced-search.html.twig" %}
-		
+		</div>
+
+		<div>
+			<button type="button" data-target="modal-search-advanced">Affiner</button>
+			{# Include modale des filtres - Affiner #}
+			{% include "search/advanced-search.html.twig" %}
+		</div>
 	</div>
 
 	<div>
@@ -44,23 +51,18 @@
 		</div>
 	</div>
 
-	<hr>
-
 	<a href="##">Voir les notices d'autorité <span>(4)</span></a>
-
-	<hr>
 
 	<div>
 		<div>
-			<hr>
 
 			<div>
 				<input type="checkbox">
 				<h3>Documents en rayon : <span>55</span></h3>
-				<a href="#">Voir tout</a>
+				<a href="#">Voir tout <span class="sr-only">les documents en rayons</span></a>
 				<div class="dropdown">
 					<button type="button" id="dropdown-trie-rayon" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-					Trier par <i>*insert caret*</i>
+					Trier par <i aria-hidden="true">*insert caret*</i>
 					</button>
 					<div class="dropdown-menu" aria-labelledby="dropdown-trie-rayon">
 						<a href="#" class="dropdown-item">Ordre ASC</a>
@@ -68,8 +70,6 @@
 					</div>
 				</div>
 			</div>
-
-			<hr>
 
 			<div>
 				{% for i in 1..6 %}
@@ -94,15 +94,14 @@
 		</div>
 
 		<div>
-			<hr>
 
 			<div>
 				<input type="checkbox">
 				<h3>Documents en ligne : <span>888</span></h3>
-				<a href="#">Voir tout</a>
+				<a href="#">Voir tout <span class="sr-only">les documents en ligne</span></a>
 				<div class="dropdown">
 					<button type="button" id="dropdown-trie-rayon" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-					Trier par <i>*insert caret*</i>
+					Trier par <i aria-hidden="true">*insert caret*</i>
 					</button>
 					<div class="dropdown-menu" aria-labelledby="dropdown-trie-rayon">
 						<a href="#" class="dropdown-item">Ordre ASC</a>
@@ -110,8 +109,6 @@
 					</div>
 				</div>
 			</div>
-
-			<hr>
 
 			<div>
 				{% for i in 1..6 %}
@@ -135,8 +132,6 @@
 		</div>
 	</div>
 
-	<hr>
-
 	<div>
 		<div>
 			<nav aria-label="Pagination">
@@ -148,7 +143,7 @@
 						<a href="#" aria-label="Page précédente"><</a>
 					</li>
 					<li>
-						<input type="text"> sur 55
+						<input type="text"> sur 55 <span class="sr-only">pages</span>
 					</li>
 					<li>
 						<a href="#" aria-label="Page Suivante">></a>
