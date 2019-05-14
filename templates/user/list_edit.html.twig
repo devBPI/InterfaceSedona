@@ -1,11 +1,30 @@
-<div role="dialog" aria-modal="true" aria-labelledby="modal-send-friend">
-	<div>
-		<button type="button" aria-label="Fermer cette fenêtre"><i>*insert icone croix*</i></button>
+<div role="dialog" tabindex="-1" aria-modal="true" aria-labelledby="modal-list-edit">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<form role="form">
+				<div class="modal-header">
+					<h4 id="modal-list-edit">Modification de la liste</h4>
+					<button type="button" aria-label="Fermer cette fenêtre"><i>*insert icone croix*</i></button>
+				</div>
+			
+				<div class="modal-body">
+					<div class="form-group">
+						<label for="send-expeditor">Titre <span>*</span></label>
+						<input type="text" class="form-control" id="send-expeditor">
+					</div>
+
+					<div>
+						<i>*Insert captcha*</i>	
+					</div>
+
+					<small>* champs obligatoires</small>
+				</div>
+
+				<div class="modal-footer">
+					<button type="button" aria-label="Fermer cette fenêtre">Annuler</button>
+					<button type="submit">Valider<span class="sr-only"> la modification de la liste</span></button>
+				</div>
+			</form>
+		</div>
 	</div>
-
-	<form>
-		<h3 id="modal-send-friend">Envoyer cette page à un ami</h3>
-
-
-	</form>
 </div>
