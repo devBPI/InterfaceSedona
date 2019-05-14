@@ -135,9 +135,4 @@ deploy:rancher_dev:
     - set -x
     - STACK=$(rancher stacks ls | grep $STACK_NAME)
     - echo "$STACK_NAME // $STACK"
-    - >
-        if test -z "$STACK" ; then
-            rancher up --stack $STACK_NAME -d --confirm-upgrade --force-recreate --pull --file .deploy/rancher/docker-compose.yml --rancher-file .deploy/rancher/rancher-compose.yml
-        else
-            rancher up --stack $STACK_NAME -d --confirm-upgrade --force-recreate --pull --file .deploy/rancher/docker-compose.yml --rancher-file .deploy/rancher/rancher-compose.yml app
-        fi
+    - rancher up --stack $STACK_NAME -d --confirm-upgrade --force-recreate --pull --file .deploy/rancher/docker-compose.yml --rancher-file .deploy/rancher/rancher-compose.yml app
