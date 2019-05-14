@@ -1,14 +1,21 @@
 <div role="dialog" aria-modal="true" aria-labelledby="modal-list-remove">
-	<div>
-		<button type="button" aria-label="Fermer cette fenêtre"><i>*insert icone croix*</i></button>
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<form role="form">
+				<div class="modal-header">
+					<h4 id="modal-list-remove">Liste "*Insert nom de la liste*"</h4>
+					<button type="button" aria-label="Fermer cette fenêtre"><i>*insert icone croix*</i></button>
+				</div>
+
+				<div class="modal-body">
+					<p>Voulez-vous vraiment supprimer cette liste ?</p>
+				</div>
+
+				<div class="modal-footer">
+					<button type="button" aria-label="Fermer cette fenêtre">Annuler</button>
+					<button type="submit">Confirmer<span class="sr-only"> la suppréssion de la liste "*Insert nom de la liste*"</span></button>			
+				</div>
+			</form>
+		</div>
 	</div>
-
-	<form>
-		<h3 id="modal-list-remove">Liste "*Insert nom de la liste*"</h3>
-
-		<p>Voulez-vous vraiment supprimer cette liste ?</p>
-
-		<button type="button" aria-label="Fermer cette fenêtre">Annuler</button>
-		<button type="submit">Confirmer</button>
-	</form>
 </div>
