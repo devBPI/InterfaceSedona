@@ -26,14 +26,12 @@ class CarouselItem
     /**
      * @var string
      * @JMS\Type("string")
-     * @JMS\SerializedName("image-path")
      */
     private $imagePath;
 
     /**
      * @var string
      * @JMS\Type("string")
-     * @JMS\SerializedName("photo-credit")
      */
     private $photoCredit;
 
