@@ -2,11 +2,13 @@
 
 namespace App\Service\Provider;
 
+use App\Model\Carousel;
+use App\Model\CarouselItem;
 use App\Service\APIClient\CatalogClient;
 use App\Service\ImageService;
 use GuzzleHttp\Psr7\Response;
-use Symfony\Component\Serializer\Serializer;
-use Symfony\Component\Serializer\SerializerInterface;
+use JMS\Serializer\Serializer;
+use JMS\Serializer\SerializerInterface;
 
 /**
  * Class AbstractProvider
@@ -44,15 +46,14 @@ abstract class AbstractProvider implements ApiProvider
      * @param array $groups
      * @return object
      */
-    protected function hydrateFromResponse(string $endpoint, array $groups = [])
+    protected function hydrateFromResponse(string $endpoint)
     {
-        $jsonResponse = $this->arrayFromResponse($endpoint);
+        $response = $this->arrayFromResponse($endpoint);
 
         return $this->serializer->deserialize(
-            $jsonResponse->getBody()->getContents(),
+            $response->getBody()->getContents(),
             $this->modelName,
-            'xml',
-            ['xml_root_node_name' => 'carousel']
+            'xml'
         );
     }
 

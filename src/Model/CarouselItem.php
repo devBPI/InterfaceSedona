@@ -2,6 +2,7 @@
 
 namespace App\Model;
 
+use JMS\Serializer\Annotation as JMS;
 
 /**
  * Class CarouselItem
@@ -9,33 +10,36 @@ namespace App\Model;
  */
 class CarouselItem
 {
-    /**
-     * @var array
-     */
-    private $element;
 
     /**
      * @var string
+     * @JMS\Type("string")
      */
     private $title;
 
     /**
      * @var string
+     * @JMS\Type("string")
      */
     private $description;
 
     /**
      * @var string
+     * @JMS\Type("string")
+     * @JMS\SerializedName("image-path")
      */
     private $imagePath;
 
     /**
      * @var string
+     * @JMS\Type("string")
+     * @JMS\SerializedName("photo-credit")
      */
     private $photoCredit;
 
     /**
      * @var string
+     * @JMS\Type("string")
      */
     private $link;
 
@@ -130,25 +134,6 @@ class CarouselItem
     public function setLink($link): self
     {
         $this->link = $link;
-
-        return $this;
-    }
-
-    /**
-     * @return array
-     */
-    public function getElement(): array
-    {
-        return $this->element;
-    }
-
-    /**
-     * @param array $element
-     * @return self
-     */
-    public function setElement($element): self
-    {
-        $this->element = $element;
 
         return $this;
     }

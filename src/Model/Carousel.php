@@ -2,6 +2,7 @@
 
 namespace App\Model;
 
+use JMS\Serializer\Annotation as JMS;
 
 /**
  * Class Carousel
@@ -10,7 +11,9 @@ namespace App\Model;
 class Carousel
 {
     /**
-     * @var CarouselItem[]
+     * @var array
+     * @JMS\Type("array<App\Model\CarouselItem>")
+     * @JMS\XmlList(entry="element")
      */
     private $elements = [];
 
@@ -23,18 +26,10 @@ class Carousel
     }
 
     /**
-     * @param CarouselItem $element
-     */
-    public function addElement(CarouselItem $element)
-    {
-        $this->elements[] = $element;
-    }
-
-    /**
      * @param array $elements
      * @return self
      */
-    public function setElements(array $elements=[]): self
+    public function setElements(array $elements = []): self
     {
         $this->elements = $elements;
 

@@ -13,7 +13,6 @@ class CarouselProvider extends AbstractProvider
 {
     protected $modelName = Carousel::class;
 
-
     /**
      * @return mixed
      */
