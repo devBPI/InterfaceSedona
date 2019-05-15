@@ -6,6 +6,15 @@
 	<h1 class="sr-only">Accueil - Catalogue de la BPI</h1>
 
 	<div>*Insert carousel*</div>
+	{{ dump(carousel) }}
+	{% for item in carousel %}
+		{{ dump(item) }}
+			{#<img src="{{ carousel.imagePath }}">#}
+			{#<div>#}
+				{#<h3><a href="{{ path('home_autoformation') }}">Autoformation</a></h3>#}
+				{#{{ carousel.description }}#}
+			{#</div>#}
+	{% endfor %}
 	
 	<h2>Découvrir les parcours</h2>
 	

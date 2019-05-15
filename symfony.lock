@@ -59,6 +59,15 @@
     "monolog/monolog": {
         "version": "1.24.0"
     },
+    "phpdocumentor/reflection-common": {
+        "version": "1.0.1"
+    },
+    "phpdocumentor/reflection-docblock": {
+        "version": "4.3.1"
+    },
+    "phpdocumentor/type-resolver": {
+        "version": "0.4.0"
+    },
     "psr/cache": {
         "version": "1.0.1"
     },
@@ -234,6 +243,9 @@
     "symfony/property-access": {
         "version": "v3.4.24"
     },
+    "symfony/property-info": {
+        "version": "v3.4.27"
+    },
     "symfony/routing": {
         "version": "3.3",
         "recipe": {
@@ -263,6 +275,12 @@
         "files": [
             "config/packages/security.yaml"
         ]
+    },
+    "symfony/serializer": {
+        "version": "v3.4.27"
+    },
+    "symfony/serializer-pack": {
+        "version": "v1.0.2"
     },
     "symfony/stopwatch": {
         "version": "v3.4.24"
@@ -351,5 +369,8 @@
     },
     "twig/twig": {
         "version": "v2.7.4"
+    },
+    "webmozart/assert": {
+        "version": "1.4.0"
     }
 }
