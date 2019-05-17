@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace App\Service\Provider;
 
@@ -16,16 +17,24 @@ class CarouselProvider extends AbstractProvider
     /**
      * @return mixed
      */
-    public function getHomeList()
+    public function getHomeList(): Carousel
+    {
+        return $this->getListByThematic('general');
+    }
+
+    /**
+     * @param string $theme
+     * @return mixed
+     */
+    public function getListByThematic(string $theme): Carousel
     {
         /** @var $carousel Carousel */
-        $carousel = $this->hydrateFromResponse('/carousel/general');
+        $carousel = $this->hydrateFromResponse('/carousel/'.$theme);
 
-//        foreach ($carousel->getElements() as $carouselItem) {
-//            dump($carouselItem);
-////            /** @var $carouselItem CarouselItem */
-////            $carouselItem->setImagePath($this->saveLocalImage($carouselItem->getImagePath(),'carousel-home' ));
-//        }
+        foreach ($carousel->getElements() as $carouselItem) {
+            /** @var $carouselItem CarouselItem */
+            $carouselItem->setImagePath($this->saveLocalImage($carouselItem->getImagePath(),'carousel-'.$theme ));
+        }
 
         return $carousel;
     }

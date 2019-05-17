@@ -1,14 +1,14 @@
 <?php
+declare(strict_types=1);
 
 namespace App\Service\Provider;
 
-use App\Model\Carousel;
-use App\Model\CarouselItem;
 use App\Service\APIClient\CatalogClient;
 use App\Service\ImageService;
 use GuzzleHttp\Psr7\Response;
 use JMS\Serializer\Serializer;
 use JMS\Serializer\SerializerInterface;
+use Symfony\Component\Debug\Exception\ContextErrorException;
 
 /**
  * Class AbstractProvider
@@ -43,7 +43,6 @@ abstract class AbstractProvider implements ApiProvider
 
     /**
      * @param string $endpoint
-     * @param array $groups
      * @return object
      */
     protected function hydrateFromResponse(string $endpoint)
@@ -74,6 +73,12 @@ abstract class AbstractProvider implements ApiProvider
      */
     protected function saveLocalImage(string $url, string $folderName): string
     {
-        return $this->imageService->getLocalPath($url, $folderName);
+        try {
+            return $this->imageService->getLocalPath($url, $folderName);
+        } catch (ContextErrorException $exception) {
+            // Log error
+        }
+
+        return $url;
     }
 }

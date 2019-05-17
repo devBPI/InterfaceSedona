@@ -1,12 +1,18 @@
 <?php
+declare(strict_types=1);
 
 namespace App\Controller;
 
 use App\Service\Provider\CarouselProvider;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
+/**
+ * Class HomeController
+ * @package App\Controller
+ */
 class HomeController extends AbstractController
 {
     /**
@@ -26,30 +32,27 @@ class HomeController extends AbstractController
      * @Route("", name="home")
      * @Route("/", name="home2")
      */
-    public function indexAction(Request $request)
+    public function indexAction(): Response
     {
-        try {
-            $param = [
-                'carousel' => $this->carouselProvider->getHomeList()
-            ];
-        } catch (\Exception $exception) {
-            $param = [
-                'error' => $exception->getMessage()
-            ];
-        }
-
-        dump($param);
-
-        return $this->render('home/default.html.twig', $param);
+        return $this->render('home/default.html.twig', [
+            'carousel' => $this->carouselProvider->getHomeList()
+        ]);
     }
 
     /**
-     * @Route("/accueille/auto-formation", name="home_autoformation")
-     * @Route("/accueille/presse", name="home_presse")
-     * @Route("/accueille/cinema", name="home_cinema")
+     * @Route("/accueil/autoformation", name="home_autoformation")
+     * @Route("/accueil/presse", name="home_presse")
+     * @Route("/accueil/cinema", name="home_cinema")
+     *
+     * @param Request $request
+     * @return Response
      */
-    public function thematicAction(Request $request)
+    public function thematicAction(Request $request): Response
     {
-        return $this->render('home/thematic.html.twig', []);
+        $theme = substr($request->getPathInfo(), strrpos($request->getPathInfo(), '/') + 1);
+        return $this->render('home/thematic.html.twig', [
+            'title' => $theme,
+            'carousel' => $this->carouselProvider->getListByThematic($theme)
+        ]);
     }
 }

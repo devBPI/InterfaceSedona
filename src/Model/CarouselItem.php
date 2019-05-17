@@ -10,7 +10,6 @@ use JMS\Serializer\Annotation as JMS;
  */
 class CarouselItem
 {
-
     /**
      * @var string
      * @JMS\Type("string")

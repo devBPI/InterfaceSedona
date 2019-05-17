@@ -1,9 +1,14 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-	<h1>*Insert nom de la thématique*</h1>
+	<h1>{{ title }}</h1>
 
 	<div>*Insert carousel*</div>
+    {% for item in carousel.elements %}
+		<pre>
+			{{ dump(item) }}
+		</pre>
+    {% endfor %}
 
 	<h2>Les thèmes les plus consultés</h2>
 	
