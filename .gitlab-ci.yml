@@ -132,8 +132,4 @@ deploy:rancher_dev:
     name: dev-rancher
     url: https://bpi-catalogue.dev.sedona.fr
   script:
-    - set -x
-    - echo 'STACK_NAME > $STACK_NAME'
-    - STACK=$(rancher stacks ls | grep $STACK_NAME)
-    - echo 'STACK > $STACK'
     - rancher up --stack $STACK_NAME -d --confirm-upgrade --force-recreate --pull --file .deploy/rancher/docker-compose.yml --rancher-file .deploy/rancher/rancher-compose.yml app
