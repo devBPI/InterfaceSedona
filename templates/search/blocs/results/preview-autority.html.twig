@@ -1,0 +1,24 @@
+<!-- Début - Bloc 11 Aperçu d'une autorité -->
+
+<div>
+	<div>
+		<img src="https://via.placeholder.com/100x90" />
+	</div>
+	<div>
+		<a href="#" title="Voir la notice d'autorité de *Insert nom* - nouvelle fenêtre"></a>
+		<h1 lang="fr">*Insert Name identité* <span>(*Insert date debut-fin*)</span></h1>
+		<ul>
+			<li>Pays : <span lang="fr">France</span></li>
+			<li>Langue : <span lang="fr">française</span></li>
+			<li>Domaines : <span lang="fr">littérature</span></li>
+		</ul>
+	</div>
+</div>
+
+<div>
+	<button type="button" data-toggle="collapse" data-target="#related-notices" aria-expanded="false" aria-controls="related-notices">Voir les notices d'autorité</button>
+	{# Include collapse notices d'autorité - Affiche les 5 notices d'autorité les plus pertinentes #}
+	{% include "search/blocs/related-notices.html.twig" %}
+</div>
+
+<!-- Fin - Bloc 11 Aperçu d'une autorité -->
