@@ -5,129 +5,15 @@
 {% block body %}
 
 	<div>
-		<div>
-			<a href="##">Retour aux résultats</a>
-		</div>
-		<div>
-			<p>Résultat de <a href="##">*insert info*</a></p>
-		</div>
-		<div>
-			<nav aria-label="pagination">
-				<ul>
-					<li>
-						<a href="#"><< Document précédent</a>
-					</li>
-					<li>
-						<a href="#">6 sur 55 <span class="sr-only">documents</span></a>
-					</li>
-					<li>
-						<a href="#">Document suivant >></a>
-					</li>
-				</ul>
-			</nav>
-		</div>
+		{% include "record/bibliographic/results-navigation.html.twig" %}
 	</div>
 
 	<div>
-		<div>
-			<h1 lang="fr">*Titre du document*</h1>
-			<p lang="fr">par *Auteur du document*</p>
-		</div>
-		<div>
-			<a href="##">Découvrir l'auteur</a>
-		</div>
-		<div>
-			<a href="##">Du même auteur</a>
-		</div>
-		<div>
-			<div>
-				<span aria-hidden="true">*Insert icone livre*</span>
-				<p>Livre</p>
-			</div>
-		</div>
+		{% include "record/bibliographic/result-informations.html.twig" %}
 	</div>
 
 	<div>
-		<div>
-			<h2>Résumé</h2>
-			<p lang="fr">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quibusdam praesentium voluptatibus voluptate perferendis repudiandae eligendi maxime illo unde eum. Aliquam cumque atque architecto, quia officia sit eveniet neque explicabo. Dolorum?Ad, sint cupiditate aliquam quam consequatur soluta doloribus dignissimos, repellendus dicta ex voluptatem repellat, ut debitis quaerat. Nostrum, eius. Quia odit tempore veritatis, non reiciendis iste, laudantium ratione inventore harum.</p>
-		</div>
-	</div>
-
-	<div>
-		<div>
-			<img src="https://via.placeholder.com/200x200" />
-		</div>
-		<div>
-			<ul>
-				<li>
-					<p>Auteur : <span lang="fr">Guy de Maupassant (1850 - 1893)</span></p>
-				</li>
-				<li>
-					<p>Thèmes : <a href="#">amour</a>, <a href="#">gloire</a>, <a href="##">beauté</a></p>
-				</li>
-				<li>
-					<p>Sujets : <span lang="fr">Satire d'une société d'argent minée par les scandales politiques</span></p>
-				</li>
-				<li>
-					<p>editeur : <span lang="fr">Ollendorf</span></p>
-				</li>
-				<li>
-					<p>Date de publication : <span lang="fr">1885</span></p>
-				</li>
-				<li>
-					<p>Langue(s) : <span lang="fr">Français</span></p>
-				</li>
-				<li>
-					<p>Description : <span lang="fr">Bel-Ami est un oeuvre inscrite dans le mouvement du naturalisme.</span></p>
-				</li>
-				<li>
-					<p>Titre en relation / Collection : <span lang="fr">Une vie (1883) - Bel-Ami (1885) - Pierre et Jean (1888)</span></p>
-				</li>
-				<li>
-					<p>ISBN : <span lang="fr">978-2-12345-678-9</span></p>
-				</li>
-				<li>
-					<p>Indice : <span lang="fr">A459862-12</span></p>
-				</li>
-			</ul>
-		</div>
-	</div>
-
-	<div>
-		<div>
-			{# Pour les documents en rayon dispo ou indispo #}
-			<div lang="fr"><span>Disponible / Indisponible</span> 7.156 MAUP</div>
-			<p lang="fr" lang="fr">Niveau 3</p>
-
-			{# Pour les documents en ligne consultable #}
-			<a href="##" lang="fr">Accéder à *Insert nom du document*</a>
-
-			{# Pour les documents en ligne non consultable #}
-			<div lang="fr">Consultable à la Bpi</div>
-		</div>
-	</div>
-
-	<div>
-		<h3>Sur le même thème</h3>
-
-		<div class="carousel-documents-lies js-carousel-documents-lies">
-			{% for i in 1..5 %}
-				<div class="carousel-documents-lies__item">
-					<a href="##" title="Nom document lié {{ i }}">
-						<div>
-							<img src="https://via.placeholder.com/160x160">
-						</div>
-						<div>
-							<p>Nom document lié {{ i }}</p>
-							<p>Auteur document lié {{ i }}</p>
-						</div>
-					</a>
-				</div>
-			{% endfor %}
-		</div>
-
-		<a href="#" title="Voir tout les documents liés">Voir tout (XX)</a>
+		{% include "record/bibliographic/related-documents.html.twig" %}
 	</div>
 
 
