@@ -6,6 +6,7 @@ namespace App\Service\APIClient;
 use App\Model\ErrorApiResponse;
 use App\Model\Exception\ApiException;
 use App\Model\Exception\ErrorAccessApiException;
+use App\Model\Exception\NoResultException;
 use EightPoints\Bundle\GuzzleBundle\Log\Logger;
 use EightPoints\Bundle\GuzzleBundle\Log\LoggerInterface;
 use EightPoints\Bundle\GuzzleBundle\Middleware\LogMiddleware;
@@ -124,6 +125,9 @@ class CatalogClient
         switch ($exception->getCode()) {
             case 403:
                 throw new AccessDeniedException('Access Denied', $exception);
+                break;
+            case 404:
+                throw new NoResultException();
                 break;
             case 400:
             case 500:

@@ -37,6 +37,9 @@
 	</div>
 
 	<div>
+        {% for author in objSearch.authors %}
+            {{ dump(author) }}
+        {% endfor %}
 		<div>
 			<img src="https://via.placeholder.com/100x90" />
 		</div>
@@ -72,6 +75,11 @@
 			</div>
 
 			<div>
+				{{ dump(objSearch.notices) }}
+                {% for notice in objSearch.notices %}
+                    {{ dump(notice) }}
+                {% endfor %}
+
 				{% for i in 1..6 %}
 				<div>
 					<p><input type="checkbox"> {{ i }}</p>
@@ -85,7 +93,7 @@
 							<p>01/02/2016 - résumé</p>
 							<p>Résultat de (Base de donnée)</p>
 							<p><i>*insert icone map*</i> Disponible</p>
-							<p>Niv.3 - Langues et litt. - Litt. francophone - 7.156 MAUP</p>
+							<p>Niv.3 - Langue et litt. - Litt. francophone - 7.156 MAUP</p>
 						</div>
 					</div>
 				</div>
@@ -111,6 +119,25 @@
 			</div>
 
 			<div>
+				{{ dump(objSearch.onlineNotices) }}
+				{% for i, notice in objSearch.onlineNotices %}
+					<div>
+						<p><input type="checkbox"> {{ i }}</p>
+						<div>
+							<div>
+								<img src="https://via.placeholder.com/110x110" />
+							</div>
+							<div>
+								<p><i>{{ notice.type }}</i> {{ notice.title }}</p>
+								<p>par {{ notice.author }}</p>
+								<p>01/02/2016 - {{ notice.resume }}</p>
+								<p>Résultat de (Base de donnée)</p>
+								<p><a href="#">Accéder à un nomDuDocument</a></p>
+							</div>
+						</div>
+					</div>
+                {% endfor %}
+
 				{% for i in 1..6 %}
 				<div>
 					<p><input type="checkbox"> {{ i }}</p>

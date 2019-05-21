@@ -11,29 +11,18 @@ use JMS\Serializer\Annotation as JMS;
 class Carousel
 {
     /**
-     * @var array
+     * @var array|CarouselItem[]
      * @JMS\Type("array<App\Model\CarouselItem>")
      * @JMS\XmlList(entry="element")
      */
     private $elements = [];
 
     /**
-     * @return array
+     * @return array|CarouselItem[]
      */
     public function getElements(): array
     {
         return $this->elements;
-    }
-
-    /**
-     * @param array $elements
-     * @return self
-     */
-    public function setElements(array $elements = []): self
-    {
-        $this->elements = $elements;
-
-        return $this;
     }
 
 }

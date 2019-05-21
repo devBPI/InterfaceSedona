@@ -4,8 +4,8 @@ namespace App\Model\Exception;
 
 
 /**
- * Class ApiException
+ * Class NoResultException
  * @package App\Model\Exception
  */
-class ApiException extends \DomainException
+class NoResultException extends \DomainException
 {}

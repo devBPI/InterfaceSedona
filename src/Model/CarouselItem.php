@@ -49,17 +49,6 @@ class CarouselItem
     }
 
     /**
-     * @param string $title
-     * @return self
-     */
-    public function setTitle($title): self
-    {
-        $this->title = $title;
-
-        return $this;
-    }
-
-    /**
      * @return string
      */
     public function getDescription(): string
@@ -68,22 +57,27 @@ class CarouselItem
     }
 
     /**
-     * @param string $description
-     * @return self
-     */
-    public function setDescription($description): self
-    {
-        $this->description = $description;
-
-        return $this;
-    }
-
-    /**
      * @return string
      */
     public function getImagePath(): string
     {
         return $this->imagePath;
+    }
+
+    /**
+     * @return string
+     */
+    public function getPhotoCredit(): string
+    {
+        return $this->photoCredit;
+    }
+
+    /**
+     * @return string
+     */
+    public function getLink(): string
+    {
+        return $this->link;
     }
 
     /**
@@ -96,43 +90,4 @@ class CarouselItem
 
         return $this;
     }
-
-    /**
-     * @return string
-     */
-    public function getPhotoCredit(): string
-    {
-        return $this->photoCredit;
-    }
-
-    /**
-     * @param string $photoCredit
-     * @return self
-     */
-    public function setPhotoCredit($photoCredit): self
-    {
-        $this->photoCredit = $photoCredit;
-
-        return $this;
-    }
-
-    /**
-     * @return string
-     */
-    public function getLink(): string
-    {
-        return $this->link;
-    }
-
-    /**
-     * @param string $link
-     * @return self
-     */
-    public function setLink($link): self
-    {
-        $this->link = $link;
-
-        return $this;
-    }
-
 }

@@ -28,7 +28,7 @@ class ErrorApiResponse
     /**
      * @return string
      */
-    public function getMessage(): string
+    public function getMessage(): ?string
     {
         return $this->message;
     }

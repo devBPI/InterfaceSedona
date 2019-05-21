@@ -43,26 +43,29 @@ abstract class AbstractProvider implements ApiProvider
 
     /**
      * @param string $endpoint
+     * @param array $queries
+     * @param string|null $model
      * @return object
      */
-    protected function hydrateFromResponse(string $endpoint)
+    protected function hydrateFromResponse(string $endpoint, array $queries = [], string $model = null)
     {
-        $response = $this->arrayFromResponse($endpoint);
+        $response = $this->arrayFromResponse($endpoint, $queries);
 
         return $this->serializer->deserialize(
             $response->getBody()->getContents(),
-            $this->modelName,
+            $model ?? $this->modelName,
             'xml'
         );
     }
 
     /**
      * @param string $endpoint
+     * @param array $queries
      * @return Response
      */
-    protected function arrayFromResponse(string $endpoint): Response
+    protected function arrayFromResponse(string $endpoint, array $queries = []): Response
     {
-        return $this->api->get($endpoint);
+        return $this->api->get($endpoint, $queries);
     }
 
 
