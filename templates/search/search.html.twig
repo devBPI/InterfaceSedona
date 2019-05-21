@@ -1,10 +1,8 @@
-<form action="#" role="search">
+<form role="search">
 	<div class="sr-only" id="autocompletion-infos" tabindex="0">*Insert texte explicatif pour l'auto-completion*</div>
 	<div role="combobox" aria-expanded="false" aria-owns="autocompletion-list" aria-haspopup="listbox" id="search-banner"> 
 		<div class="input-group">
-			<label for="search-input" id="search-label"> 
-				Rechercher 
-			</label> 
+			<label for="search-input" id="search-label">Rechercher</label> 
 			<input type="text" aria-autocomplete="list" aria-controls="autocompletion-list" id="search-input" placeholder="Rechercher">
 			<div class="input-group-append">
 				<button type="button">
@@ -14,6 +12,8 @@
 					<i aria-hidden="true">*insert icone loupe*</i>
 					<span src="sr-only">Valider la recherche</span>
 				</button>
+				<button type="button" data-target="modal-search-advanced" aria-label="Rercherche Avancée - ouverture formulaire">Recherche Avancée</button>
+				{% include "search/modal/advanced-search.html.twig" %}
 			</div>
 		</div>
 	</div> 
@@ -21,5 +21,4 @@
 		<span class="sr-only" aria-live="assertive" tabindex="0">*Insert nombre de résultats* options affichées</span>
 		{% include "search/autocompletion.html.twig" %}
 	</ul>
-
 </form> 

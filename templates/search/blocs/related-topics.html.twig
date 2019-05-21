@@ -1,8 +1,12 @@
+<!-- Début - Bloc 8 Sujets Liés -->
+
 <div class="dropdown">
-	<button type="button" id="dropdown-sujets" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Sujet lié <i>*insert caret*</i></button>
+	<button type="button" id="dropdown-sujets" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Sujet lié <i aria-hidden="true">*insert caret*</i></button>
 	<div class="dropdown-menu" aria-labelledby="dropdown-sujets">
 		{% for i in 1..3 %}
-			<a href="#" class="dropdown-item">Sujet lié {{ i }}</a>
+			<a href="#" class="dropdown-item" lang="fr">Sujet lié {{ i }}</a>
 		{% endfor %}
 	</div>
 </div>
+
+<!-- Fin - Bloc 8 Sujets Liés -->

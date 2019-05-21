@@ -1,10 +1,14 @@
+<!-- Début - Bloc 9 Relance de la recherche -->
+
 <div class="dropdown">
 	<button type="button" id="dropdown-recherche" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-	Relancer la recherche dans <i>*insert caret*</i>
+	Relancer la recherche dans <i aria-hidden="true">*insert caret*</i>
 	</button>
 	<div class="dropdown-menu" aria-labelledby="dropdown-recherche">
 		{% for i in 1..9 %}
-			<a href="#" class="dropdown-item"><img src="https://via.placeholder.com/30x30" /> Liens vers nomDuSite {{ i }}</a>
+			<a href="#" class="dropdown-item" lang="fr"><img src="https://via.placeholder.com/30x30" aria-hidden="true"/> Liens vers *Insert nom du site* {{ i }}</a>
 		{% endfor %}
 	</div>
 </div>
+
+<!-- Fin - Bloc 9 Relance de la recherche -->
