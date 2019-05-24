@@ -64,6 +64,8 @@ build:package:
 build:image:
   stage: build
   image: docker:latest
+  only:
+    - master
   before_script:
     - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN registry.sedona.fr
     - apk update
@@ -73,12 +75,14 @@ build:image:
     - DB_IMAGE_TAG=${APP_IMAGE_TAG/\/site/\/db}
     - make image
     - docker build -t $DB_IMAGE_TAG -f .deploy/db.Dockerfile .deploy
-  only:
-    - master
 
 
 publish:image:
   stage: publish
+  only:
+    - master
+  dependencies:
+    - build:image
   before_script:
     - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN registry.sedona.fr
     - apk update
@@ -89,10 +93,6 @@ publish:image:
     - docker push $APP_IMAGE_TAG
     - docker push $DB_IMAGE_TAG
     - docker rmi -f $APP_IMAGE_TAG $DB_IMAGE_TAG
-  dependencies:
-    - build:image
-  only:
-    - master
 
 
 publish:package:
