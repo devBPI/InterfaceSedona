@@ -232,7 +232,7 @@ security-check:
 .PHONY: security-check
 
 behat-w3c:
-	vendor/bin/behat -f progress features/w3c/*
+	vendor/bin/behat -f progress features/w3c/
 .PHONY: behat-ce
 
 tests: unit-tests code-analysis security-check

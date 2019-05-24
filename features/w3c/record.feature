@@ -3,7 +3,7 @@ Feature:
 
 
   Scenario: Sur la page notice bibliographique, j'ai aucune erreur HTML
-    When I am on "/notice-bibliographique"
+    When I am on "/fr/notice-bibliographique"
     Then the response status code should be 200
 
     When I check source code on W3C validation service
@@ -11,7 +11,7 @@ Feature:
 
 
   Scenario: Sur la page notice autorite, j'ai aucune erreur HTML
-    When I am on "/notice-autorite"
+    When I am on "/fr/notice-autorite"
     Then the response status code should be 200
 
     When I check source code on W3C validation service

@@ -57,7 +57,7 @@ quality:w3c:
     paths:
       - build/
   script:
-    - make .env default behat-w3c
+    - make .env c-install behat-w3c
 
 build:package:
  stage: build
