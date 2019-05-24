@@ -79,6 +79,26 @@ class SearchResult
     }
 
     /**
+     * @return Author|null
+     */
+    public function getMainAuthor(): ?Author
+    {
+        if (count($this->authors) === 0) {
+            return null;
+        }
+
+        return $this->authors[0];
+    }
+
+    /**
+     * @return Author[]
+     */
+    public function getOtherAuthors(): array
+    {
+        return array_slice($this->authors, 1);
+    }
+
+    /**
      * @param ListAuthors $authors
      * @return self
      */

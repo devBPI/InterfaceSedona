@@ -37,24 +37,15 @@
 	</div>
 
 	<div>
-        {% for author in objSearch.authors %}
-            {{ dump(author) }}
-        {% endfor %}
-		<div>
-			<img src="https://via.placeholder.com/100x90" />
-		</div>
-		<div>
-			<h1>Guy de Maupassant <span>(1850 - 1893)</span></h1>
-			<ul>
-				<li>Pays : <span lang="fr">France</span></li>
-				<li>Langue : <span lang="fr">française</span></li>
-				<li>Domaines : <span lang="fr">littérature</span></li>
-			</ul>
-			<a href="##">Voir toutes les informations</a>
-		</div>
+		{% include 'search/blocs/author.html.twig' with {'author': objSearch.mainAuthor} %}
 	</div>
 
 	<a href="##">Voir les notices d'autorité <span>(4)</span></a>
+	<div class="hidden">
+		{% for author in objSearch.otherAuthors %}
+			{% include 'search/blocs/author.html.twig' with {'author': author} %}
+		{% endfor %}
+	</div>
 
 	<div>
 		<div>
@@ -75,9 +66,8 @@
 			</div>
 
 			<div>
-				{{ dump(objSearch.notices) }}
-                {% for notice in objSearch.notices %}
-                    {{ dump(notice) }}
+                {% for index, notice in objSearch.notices %}
+                    {% include('search/blocs/notice.html.twig') %}
                 {% endfor %}
 
 				{% for i in 1..6 %}
@@ -119,23 +109,8 @@
 			</div>
 
 			<div>
-				{{ dump(objSearch.onlineNotices) }}
-				{% for i, notice in objSearch.onlineNotices %}
-					<div>
-						<p><input type="checkbox"> {{ i }}</p>
-						<div>
-							<div>
-								<img src="https://via.placeholder.com/110x110" />
-							</div>
-							<div>
-								<p><i>{{ notice.type }}</i> {{ notice.title }}</p>
-								<p>par {{ notice.author }}</p>
-								<p>01/02/2016 - {{ notice.resume }}</p>
-								<p>Résultat de (Base de donnée)</p>
-								<p><a href="#">Accéder à un nomDuDocument</a></p>
-							</div>
-						</div>
-					</div>
+				{% for index, notice in objSearch.onlineNotices %}
+                    {% include('search/blocs/notice-online.html.twig') %}
                 {% endfor %}
 
 				{% for i in 1..6 %}

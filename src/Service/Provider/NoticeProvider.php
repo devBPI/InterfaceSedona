@@ -3,8 +3,10 @@ declare(strict_types=1);
 
 namespace App\Service\Provider;
 
+use App\Model\Exception\NoResultException;
 use App\Model\ListNotices;
 use App\Model\ListOnlineNotices;
+use App\Model\Notice;
 
 /**
  * Class NoticeProvider
@@ -20,9 +22,16 @@ class NoticeProvider extends AbstractProvider
      */
     public function getListBySearch(string $query): ListNotices
     {
-        return $this->hydrateFromResponse('/search/notices', [
+        /** @var ListNotices $notices */
+        $notices = $this->hydrateFromResponse('/search/notices', [
             'criters' => $this->formatQuery($query)
         ]);
+
+        foreach ($notices->getNoticesList() as $notice) {
+            $this->getImagesForNotice($notice);
+        }
+
+        return $notices;
     }
 
     /**
@@ -31,11 +40,18 @@ class NoticeProvider extends AbstractProvider
      */
     public function getListOnlineBySearch(string $query): ListOnlineNotices
     {
-        return $this->hydrateFromResponse(
+        /** @var ListOnlineNotices $notices */
+        $notices = $this->hydrateFromResponse(
             '/search/notices-online',
             ['criters' => $this->formatQuery($query)],
             ListOnlineNotices::class
         );
+
+        foreach ($notices->getNoticesList() as $notice) {
+            $this->getImagesForNotice($notice);
+        }
+
+        return $notices;
     }
 
     /**
@@ -53,5 +69,36 @@ class NoticeProvider extends AbstractProvider
     <general>$query</general>
 </search-criterias>
 EOF;
+    }
+
+    /**
+     * @param Notice $notice
+     */
+    private function getImagesForNotice(Notice $notice): void
+    {
+        if (!empty($notice->getIsbn())) {
+
+            $notice
+                ->setThumbnail($this->getImageAndSaveLocal('vignette', 'notice-thumbnail', $notice->getIsbn()))
+                ->setCover($this->getImageAndSaveLocal('couverture', 'notice-cover', $notice->getIsbn()))
+            ;
+        }
+    }
+
+    /**
+     * @param string $category
+     * @param string $folderName
+     * @param string $isbn
+     * @return string
+     */
+    private function getImageAndSaveLocal(string $category, string $folderName, string $isbn): string
+    {
+        try {
+            $content = $this->arrayFromResponse('/electre/'.$category.'/'.$isbn)->getBody()->getContents();
+
+            return $this->saveLocalImageFromContent($content, $folderName, $isbn.'.jpeg');
+        } catch (NoResultException $exception) {
+            return '';
+        }
     }
 }

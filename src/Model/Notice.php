@@ -10,6 +10,8 @@ use JMS\Serializer\Annotation as JMS;
  */
 class Notice
 {
+    private const SEPARATOR = ' ; ';
+
     /**
      * @var string
      * @JMS\Type("string")
@@ -40,6 +42,14 @@ class Notice
     /**
      * @var array
      * @JMS\Type("array<string>")
+     * @JMS\SerializedName("titresAnalytiques")
+     * @JMS\XmlList("titreAnalytique")
+     */
+    private $analyticalTitles;
+
+    /**
+     * @var array
+     * @JMS\Type("array<string>")
      * @JMS\SerializedName("auteurs")
      * @JMS\XmlList("auteur")
      */
@@ -48,10 +58,46 @@ class Notice
     /**
      * @var array
      * @JMS\Type("array<string>")
+     * @JMS\SerializedName("realisateurs")
+     * @JMS\XmlList("realisateur")
+     */
+    private $directors;
+
+    /**
+     * @var array
+     * @JMS\Type("array<string>")
+     * @JMS\SerializedName("datesTextuelles")
+     * @JMS\XmlList("dateTextuelle")
+     */
+    private $dates;
+
+    /**
+     * @var array
+     * @JMS\Type("array<string>")
      * @JMS\SerializedName("resumes")
      * @JMS\XmlList("resume")
      */
     private $resume;
+
+    /**
+     * @var array|NoticeAvailable[]
+     * @JMS\Type("array<App\Model\NoticeAvailable>")
+     * @JMS\SerializedName("exemplaires")
+     * @JMS\XmlList("exemplaire")
+     */
+    private $copies = [];
+
+    /**
+     * @var string
+     * @JMS\Exclude()
+     */
+    private $thumbnail;
+
+    /**
+     * @var string
+     * @JMS\Exclude()
+     */
+    private $cover;
 
     /**
      * @return string
@@ -64,7 +110,7 @@ class Notice
     /**
      * @return string
      */
-    public function getIsbn(): string
+    public function getIsbn(): ?string
     {
         return $this->isbn;
     }
@@ -80,33 +126,90 @@ class Notice
     /**
      * @return string|null
      */
-    public function getTitle(): ?string
+    public function getFrontTitle(): string
     {
-        if (count($this->titles) === 0) {
-            return null;
-        }
-
-        return $this->titles[0];
-    }
-
-    /**
-     * @return string|null
-     */
-    public function getAuthor(): ?string
-    {
-        if (count($this->authors) === 0) {
-            return null;
-        }
-
-        return $this->authors[0];
+        return implode(self::SEPARATOR, $this->titles);
     }
 
     /**
      * @return string
      */
-    public function getResume(): string
+    public function getFrontAnalyticalTitle(): string
     {
-        return implode('<br>', $this->resume);
+        return implode(self::SEPARATOR, $this->analyticalTitles);
     }
 
+    /**
+     * @return string|null
+     */
+    public function getFrontAuthor(): string
+    {
+        return implode(self::SEPARATOR, array_merge($this->authors, $this->directors));
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getFrontDate(): string
+    {
+        if ($this->type === 'Revue') {
+            return max($this->dates);
+        }
+
+        return implode(self::SEPARATOR, $this->dates);
+    }
+
+    /**
+     * @return string
+     */
+    public function getFrontResume(): string
+    {
+        return implode('. ', $this->resume);
+    }
+
+    /**
+     * @return NoticeAvailable[]|array
+     */
+    public function getCopies(): array
+    {
+        return $this->copies;
+    }
+
+    /**
+     * @return string
+     */
+    public function getThumbnail(): ?string
+    {
+        return $this->thumbnail;
+    }
+
+    /**
+     * @param string $thumbnail
+     * @return $this
+     */
+    public function setThumbnail(string $thumbnail): self
+    {
+        $this->thumbnail = $thumbnail;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCover(): ?string
+    {
+        return $this->cover;
+    }
+
+    /**
+     * @param string $cover
+     * @return self
+     */
+    public function setCover(string $cover): self
+    {
+        $this->cover = $cover;
+
+        return $this;
+    }
 }

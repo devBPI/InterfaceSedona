@@ -37,4 +37,4 @@ services:
     - '@eight_points_guzzle.logger'
 
   App\Service\ImageService:
-    arguments: ['%kernel.project_dir%/public/images/']
+    arguments: ['%kernel.project_dir%/public/']

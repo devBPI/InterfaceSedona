@@ -16,6 +16,8 @@
 !var/SymfonyRequirements.php
 /vendor/
 /public/bundles/
+/public/imported_images/*
+!/public/imported_images/.gitkeep
 /public/assets/
 /public/css
 /public/js

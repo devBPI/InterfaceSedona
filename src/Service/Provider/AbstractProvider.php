@@ -74,14 +74,31 @@ abstract class AbstractProvider implements ApiProvider
      * @param string $folderName
      * @return string
      */
-    protected function saveLocalImage(string $url, string $folderName): string
+    protected function saveLocalImageFromUrl(string $url, string $folderName): string
     {
         try {
-            return $this->imageService->getLocalPath($url, $folderName);
+            return $this->imageService->getLocalPath(file_get_contents($url), $folderName, $this->imageService->extractPathFromUrl($url));
         } catch (ContextErrorException $exception) {
             // Log error
         }
 
         return $url;
+    }
+
+    /**
+     * @param string $content
+     * @param string $folderName
+     * @param string $fileName
+     * @return string
+     */
+    protected function saveLocalImageFromContent(string $content, string $folderName, string $fileName): string
+    {
+        try {
+            return $this->imageService->getLocalPath($content, $folderName, $fileName);
+        } catch (ContextErrorException $exception) {
+            // Log error
+        }
+
+        return '';
     }
 }

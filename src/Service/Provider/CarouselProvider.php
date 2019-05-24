@@ -33,7 +33,7 @@ class CarouselProvider extends AbstractProvider
 
         foreach ($carousel->getElements() as $carouselItem) {
             /** @var $carouselItem CarouselItem */
-            $carouselItem->setImagePath($this->saveLocalImage($carouselItem->getImagePath(),'carousel-'.$theme ));
+            $carouselItem->setImagePath($this->saveLocalImageFromUrl($carouselItem->getImagePath(),'carousel-'.$theme ));
         }
 
         return $carousel;

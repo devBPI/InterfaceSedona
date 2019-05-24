@@ -1,0 +1,6 @@
+{% if copy.available %}
+    <p><i>*insert icone map*</i> {{ copy.availability }}</p>
+    <p>{{ copy.location }} - {{ copy.category }}</p>
+{% else %}
+    <p><i>*insert icone map*</i> Indisponible</p>
+{% endif %}

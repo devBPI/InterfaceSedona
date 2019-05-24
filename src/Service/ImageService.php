@@ -11,11 +11,10 @@ use Symfony\Component\Filesystem\Filesystem;
  */
 final class ImageService
 {
+    private const PARENT_FOLDER = 'imported_images';
+
     /** @var string */
     private $imageDir;
-
-    /** @var Filesystem */
-    private $fs;
 
     /**
      * ImageService constructor.
@@ -24,24 +23,26 @@ final class ImageService
     public function __construct(string $imageDir)
     {
         $this->imageDir = $imageDir;
-        $this->fs = new Filesystem();
     }
 
     /**
-     * @param string $url
+     * @param string $content
      * @param string $folderName
+     * @param string $fileName
      * @return string
      */
-    public function getLocalPath(string $url, string $folderName): string
+    public function getLocalPath(string $content, string $folderName, string $fileName): string
     {
-        $localPath = $this->imageDir.$folderName.$this->extractPathFromUrl($url);
+        $folderPath = self::PARENT_FOLDER.DIRECTORY_SEPARATOR.$folderName;
+        $localFilePath = $folderPath.DIRECTORY_SEPARATOR.$fileName;
 
-        if (!$this->fs->exists($localPath)) {
-            $this->createFolderIfNotExist($this->imageDir.$folderName);
-            $this->saveLocalImage($url, $localPath);
+        $fs = new Filesystem();
+        if (!$fs->exists($this->imageDir.$localFilePath)) {
+            $this->createFolderIfNotExist($folderPath);
+            $this->saveLocalImage($content, $localFilePath);
         }
 
-        return $localPath;
+        return $localFilePath;
     }
 
     /**
@@ -49,7 +50,7 @@ final class ImageService
      * @param string $url
      * @return string
      */
-    private function extractPathFromUrl(string $url): string
+    public function extractPathFromUrl(string $url): string
     {
         return parse_url($url, PHP_URL_PATH);
     }
@@ -60,20 +61,21 @@ final class ImageService
      */
     private function createFolderIfNotExist(string $folderPath): void
     {
-        if (!$this->fs->exists($folderPath)) {
-            $this->fs->mkdir($folderPath);
+        $fs = new Filesystem();
+        if (!$fs->exists($this->imageDir.$folderPath)) {
+            $fs->mkdir($this->imageDir.$folderPath);
         }
     }
 
     /**
-     * Save file in local from url
+     * Save file in local from content
      *
-     * @param string $url
+     * @param string $content
      * @param string $localPath
-     * @return string
      */
-    private function saveLocalImage(string $url, string $localPath): string
+    private function saveLocalImage(string $content, string $localPath): void
     {
-        $this->fs->dumpFile($localPath, file_get_contents($url));
+        $fs = new Filesystem();
+        $fs->dumpFile($this->imageDir.$localPath, $content);
     }
 }
