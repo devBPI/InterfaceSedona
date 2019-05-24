@@ -15,6 +15,7 @@ cache:
   untracked: false
   paths:
     - build/
+    - htmlpage/
     - gl-code-quality-report.json
 
 quality:sonar:
@@ -28,7 +29,7 @@ quality:insight:
   stage: quality
   image: "registry.sedona.fr/images/php:7-fpm"
   script:
-    - apt-get install -y -qq jq
+    - apt-get install -y -qq jq wget
     - export PR_ID=$(curl -s "https://git.sedona.fr/api/v4/projects/${CI_PROJECT_ID}/merge_requests?private_token=${USER_TOKEN}&state=opened" | jq -r ".[]|select(.sha == \"$CI_COMMIT_SHA\")|.iid")
     - echo $PR_ID
     - >
