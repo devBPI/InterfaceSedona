@@ -26,7 +26,7 @@ quality:sonar:
 
 quality:insight:
   stage: quality
-  image: "registry.sedona.fr/images/php-fpm:56"
+  image: "registry.sedona.fr/images/php:7-fpm"
   script:
     - apt-get install -y -qq jq
     - export PR_ID=$(curl -s "https://git.sedona.fr/api/v4/projects/${CI_PROJECT_ID}/merge_requests?private_token=${USER_TOKEN}&state=opened" | jq -r ".[]|select(.sha == \"$CI_COMMIT_SHA\")|.iid")
@@ -40,6 +40,23 @@ quality:insight:
         fi
   artifacts:
     paths: [gl-code-quality-report.json]
+
+quality:w3c:
+  stage: quality
+  image: registry.sedona.fr/images/php:7
+  cache:
+    key: "$CI_PIPELINE_ID-$CI_COMMIT_REF_SLUG"
+    untracked: true
+    policy: push
+    paths:
+      - htmlpage/
+  artifacts:
+    untracked: false
+    expire_in: 10 mins
+    paths:
+      - build/
+  script:
+    - make .env default behat-w3c
 
 build:package:
  stage: build

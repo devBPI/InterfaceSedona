@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "8fa02900440a06806787486d20ee76b2",
+    "content-hash": "14040829c855250e976e729295150055",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -5928,52 +5928,6 @@
             "time": "2017-02-14T19:40:03+00:00"
         },
         {
-            "name": "essentialdots/mink-w3c-context",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/nstojiljkovic/mink-w3c-context.git",
-                "reference": "c7b27f0d5b65eba656be4ce26add3c6eab119762"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/nstojiljkovic/mink-w3c-context/zipball/c7b27f0d5b65eba656be4ce26add3c6eab119762",
-                "reference": "c7b27f0d5b65eba656be4ce26add3c6eab119762",
-                "shasum": ""
-            },
-            "require": {
-                "behat/behat": ">=2.4",
-                "behat/mink": ">=1.4",
-                "behat/mink-extension": ">=1.2",
-                "php": ">=5.3"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-0": {
-                    "EssentialDots\\MinkW3CContext": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Essential Dots d.o.o. Belgrade"
-                }
-            ],
-            "description": "W3C validation context for Mink",
-            "homepage": "http://www.essentialdots.com",
-            "keywords": [
-                "BDD",
-                "Behat",
-                "Context",
-                "Mink",
-                "W3C"
-            ],
-            "time": "2015-08-07T09:42:27+00:00"
-        },
-        {
             "name": "instaclick/php-webdriver",
             "version": "1.4.5",
             "source": {
@@ -6367,8 +6321,7 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
-        "roave/security-advisories": 20,
-        "essentialdots/mink-w3c-context": 20
+        "roave/security-advisories": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,

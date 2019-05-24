@@ -87,9 +87,6 @@
             "config/packages/eight_points_guzzle.yaml"
         ]
     },
-    "essentialdots/mink-w3c-context": {
-        "version": "dev-master"
-    },
     "fig/link-util": {
         "version": "1.0.0"
     },
