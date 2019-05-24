@@ -75,6 +75,11 @@
         }
     },
     "require-dev": {
+        "behat/mink-browserkit-driver": "^1.3",
+        "behat/mink-extension": "^2.3",
+        "behat/mink-selenium2-driver": "^1.3",
+        "behat/symfony2-extension": "^2.1",
+        "essentialdots/mink-w3c-context": "dev-master",
         "symfony/profiler-pack": "^1.0",
         "symfony/var-dumper": "3.4.*"
     }
