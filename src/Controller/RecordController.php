@@ -3,7 +3,6 @@
 
 namespace App\Controller;
 
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -12,8 +11,7 @@ class RecordController extends AbstractController
 {
 
     /**
-     * @Route("/notice-bibliographique", name="record_bibliographic")
-     * @Method()thod("GET")
+     * @Route("/notice-bibliographique", methods={"GET","HEAD"}, name="record_bibliographic")
      */
     public function bibliographicRecordAction(Request $request)
     {
@@ -21,8 +19,7 @@ class RecordController extends AbstractController
     }
 
     /**
-     * @Route("/notice-autorite", name="record_authority")
-     * @Method("GET")
+     * @Route("/notice-autorite", methods={"GET","HEAD"}, name="record_authority")
      */
     public function authorityRecordAction(Request $request)
     {
@@ -30,8 +27,7 @@ class RecordController extends AbstractController
     }
 
     /**
-     * @Route("/partager", name="record_share")
-     * @Method("GET")
+     * @Route("/partager", methods={"GET","HEAD"}, name="record_share")
      */
     public function shareAction(Request $request)
     {
@@ -39,8 +35,7 @@ class RecordController extends AbstractController
     }
 
     /**
-     * @Route("/impression", name="record_print")
-     * @Method("GET")
+     * @Route("/impression", methods={"GET","HEAD"}, name="record_print")
      */
     public function printAction(Request $request)
     {
@@ -48,8 +43,7 @@ class RecordController extends AbstractController
     }
 
     /**
-     * @Route("/exporter", name="record_export")
-     * @Method("GET")
+     * @Route("/exporter", methods={"GET","HEAD"}, name="record_export")
      */
     public function exportAction(Request $request)
     {

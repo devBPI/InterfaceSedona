@@ -3,7 +3,6 @@
 
 namespace App\Controller;
 
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -11,8 +10,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class UserController extends AbstractController
 {
     /**
-     * @Route("/donnees-personnelles", name="user_personal_data")
-     * @Method("GET")
+     * @Route("/donnees-personnelles", methods={"GET","HEAD"}, name="user_personal_data")
      */
     public function personalDataAction(Request $request)
     {
@@ -20,8 +18,7 @@ class UserController extends AbstractController
     }
 
     /**
-     * @Route("/suggestion", name="user_suggestion")
-     * @Method("GET")
+     * @Route("/suggestion", methods={"GET","HEAD"}, name="user_suggestion")
      */
     public function suggestionAction(Request $request)
     {
@@ -29,8 +26,7 @@ class UserController extends AbstractController
     }
 
     /**
-     * @Route("/envoyer-a-un-amis", name="user_send_to_friend")
-     * @Method("GET")
+     * @Route("/envoyer-a-un-amis", methods={"GET","HEAD"}, name="user_send_to_friend")
      */
     public function sendToFriendAction(Request $request)
     {
@@ -38,8 +34,7 @@ class UserController extends AbstractController
     }
 
     /**
-     * @Route("/list/cree", name="user_list_add")
-     * @Method("GET")
+     * @Route("/list/cree", methods={"GET","HEAD"}, name="user_list_add")
      */
     public function addListAction(Request $request)
     {
@@ -47,8 +42,7 @@ class UserController extends AbstractController
     }
 
     /**
-     * @Route("/list/modifier", name="user_list_edit")
-     * @Method("GET")
+     * @Route("/list/modifier", methods={"GET","HEAD"}, name="user_list_edit")
      */
     public function editListAction(Request $request)
     {
@@ -56,8 +50,7 @@ class UserController extends AbstractController
     }
 
     /**
-     * @Route("/list/supprimer", name="user_list_remove")
-     * @Method("GET")
+     * @Route("/list/supprimer", methods={"GET","HEAD"}, name="user_list_remove")
      */
     public function removeListAction(Request $request)
     {

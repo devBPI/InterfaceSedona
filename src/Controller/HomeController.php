@@ -2,7 +2,6 @@
 
 namespace App\Controller;
 
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -10,9 +9,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class HomeController extends AbstractController
 {
     /**
-     * @Route("", name="home")
-     * @Route("/", name="home2")
-     * @Method("GET")
+     * @Route("", methods={"GET","HEAD"}, name="home")
+     * @Route("/", methods={"GET","HEAD"}, name="home2")
      */
     public function indexAction(Request $request)
     {
@@ -20,10 +18,9 @@ class HomeController extends AbstractController
     }
 
     /**
-     * @Route("/accueille/auto-formation", name="home_autoformation")
-     * @Route("/accueille/presse", name="home_presse")
-     * @Route("/accueille/cinema", name="home_cinema")
-     * @Method("GET")
+     * @Route("/accueille/auto-formation", methods={"GET","HEAD"}, name="home_autoformation")
+     * @Route("/accueille/presse", methods={"GET","HEAD"}, name="home_presse")
+     * @Route("/accueille/cinema", methods={"GET","HEAD"}, name="home_cinema")
      */
     public function thematicAction(Request $request)
     {

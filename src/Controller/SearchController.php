@@ -3,8 +3,6 @@
 
 namespace App\Controller;
 
-
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -12,8 +10,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class SearchController extends AbstractController
 {
     /**
-     * @Route("/recherche", name="search")
-     * @Method("GET")
+     * @Route("/recherche", methods={"GET","HEAD"}, name="search")
      */
     public function indexAction(Request $request)
     {
@@ -21,8 +18,7 @@ class SearchController extends AbstractController
     }
 
     /**
-     * @Route("/recherche-avancer", name="search_advanced")
-     * @Method("GET")
+     * @Route("/recherche-avancer", methods={"GET","HEAD"}, name="search_advanced")
      */
     public function advancedSearchAction(Request $request)
     {
@@ -30,8 +26,7 @@ class SearchController extends AbstractController
     }
 
     /**
-     * @Route("/autocompletion", name="search_autocompletion")
-     * @Method("GET")
+     * @Route("/autocompletion", methods={"GET","HEAD"}, name="search_autocompletion")
      */
     public function autocompletionAction(Request $request)
     {
