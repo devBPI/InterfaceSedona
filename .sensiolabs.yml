@@ -6,6 +6,7 @@ exclude_patterns:
     - .env*
     - .package-ignore
     - .git*
+    - public/index.php
 
 global_exclude_dirs:
     - .deploy
@@ -16,5 +17,4 @@ global_exclude_dirs:
     - tests
     - Tests
     - var
-    - public/index.php
 
