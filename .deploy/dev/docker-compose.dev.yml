@@ -36,6 +36,22 @@ services:
       - ./:/var/www/html/
       - .deploy/dev/web/:/usr/local/apache2/conf.d/
 
+  encore:
+    image: node:10-alpine
+    user: "$UID:$UID"
+    volumes:
+      - .:/app
+    working_dir: /app
+    depends_on:
+    - app
+    command: ["yarn", "dev-server"]
+    environment:
+      PATH: "./node_modules/.bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+    labels:
+      traefik.enable: false
+    networks:
+    - default
+
   db:
     image: registry.sedona.fr/images/postgres:9.6
     ports:
