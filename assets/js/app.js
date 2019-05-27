@@ -6,10 +6,20 @@
  */
 
 // any CSS you require will output into a single css file (app.css in this case)
-require('../css/app.css');
+// require('../css/app.css');
 
 // Need jQuery? Install it with "yarn add jquery", then uncomment to require it.
-// const $ = require('jquery');
+const $ = require('jquery');
+
+const routes = require('../../public/js/fos_js_routes.json');
+import Routing from '../../vendor/friendsofsymfony/jsrouting-bundle/Resources/public/js/router.min.js';
+
+Routing.setRoutingData(routes);
 
 console.log('Hello Webpack Encore! Edit me in assets/js/app.js');
 
+$('[data-toggle="autocomplete"]').on('keyup', function () {
+    // $.ajax()
+    console.log(Routing.generate('search_autocompletion'));
+    console.log($(this).val());
+});

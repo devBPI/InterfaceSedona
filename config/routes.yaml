@@ -11,3 +11,6 @@ home:
     _controller: FrameworkBundle:Redirect:urlRedirect
     path: "/%locale%"
     permanent: true
+
+fos_js_routing:
+  resource: "@FOSJsRoutingBundle/Resources/config/routing/routing.xml"

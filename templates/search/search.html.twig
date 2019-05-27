@@ -6,7 +6,7 @@
             <label for="search-input" id="search-label">
                 Rechercher
             </label>
-            <input type="text" name="search" aria-autocomplete="list" aria-controls="autocompletion-list"
+            <input type="text" name="search" aria-autocomplete="list" aria-controls="autocompletion-list" data-toggle="autocomplete"
                    id="search-input" placeholder="Rechercher" {% if objSearch is defined and objSearch.query %}value="{{ objSearch.query }}"{% endif %}>
             <div class="input-group-append">
                 <button type="button">

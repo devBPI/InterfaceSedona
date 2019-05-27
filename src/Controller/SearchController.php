@@ -75,7 +75,7 @@ class SearchController extends AbstractController
     }
 
     /**
-     * @Route("/autocompletion", name="search_autocompletion")
+     * @Route("/autocompletion", name="search_autocompletion", options={"expose"=true})
      * @param Request $request
      * @return \Symfony\Component\HttpFoundation\Response
      */
