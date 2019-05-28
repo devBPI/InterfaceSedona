@@ -22,7 +22,7 @@ class UserController extends AbstractController
      */
     public function suggestionAction(Request $request)
     {
-        return $this->render('user/suggestion.html.twig', []);
+        return $this->render('user/modal/suggestion.html.twig', []);
     }
 
     /**
@@ -30,7 +30,7 @@ class UserController extends AbstractController
      */
     public function sendToFriendAction(Request $request)
     {
-        return $this->render('user/send-to-friend.html.twig', []);
+        return $this->render('user/modal/send-to-friend.html.twig', []);
     }
 
     /**
@@ -38,7 +38,7 @@ class UserController extends AbstractController
      */
     public function addListAction(Request $request)
     {
-        return $this->render('user/list_add.html.twig', []);
+        return $this->render('user/modal/list_add.html.twig', []);
     }
 
     /**
@@ -46,7 +46,7 @@ class UserController extends AbstractController
      */
     public function editListAction(Request $request)
     {
-        return $this->render('user/list_edit.html.twig', []);
+        return $this->render('user/modal/list_edit.html.twig', []);
     }
 
     /**
@@ -54,7 +54,7 @@ class UserController extends AbstractController
      */
     public function removeListAction(Request $request)
     {
-        return $this->render('user/list_remove.html.twig', []);
+        return $this->render('user/modal/list_remove.html.twig', []);
     }
 
 }
