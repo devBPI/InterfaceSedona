@@ -11,7 +11,7 @@ class OtherController extends AbstractController
 {
 
     /**
-     * @Route("/service", name="other_service")
+     * @Route("/service", methods={"GET","HEAD"}, name="other_service")
      */
     public function bibliographicRecordAction(Request $request)
     {

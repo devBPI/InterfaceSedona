@@ -11,7 +11,7 @@ class RecordController extends AbstractController
 {
 
     /**
-     * @Route("/notice-bibliographique", name="record_bibliographic")
+     * @Route("/notice-bibliographique", methods={"GET","HEAD"}, name="record_bibliographic")
      */
     public function bibliographicRecordAction(Request $request)
     {
@@ -19,7 +19,7 @@ class RecordController extends AbstractController
     }
 
     /**
-     * @Route("/notice-autorite", name="record_authority")
+     * @Route("/notice-autorite", methods={"GET","HEAD"}, name="record_authority")
      */
     public function authorityRecordAction(Request $request)
     {
@@ -27,7 +27,7 @@ class RecordController extends AbstractController
     }
 
     /**
-     * @Route("/partager", name="record_share")
+     * @Route("/partager", methods={"GET","HEAD"}, name="record_share")
      */
     public function shareAction(Request $request)
     {
@@ -35,7 +35,7 @@ class RecordController extends AbstractController
     }
 
     /**
-     * @Route("/impression", name="record_print")
+     * @Route("/impression", methods={"GET","HEAD"}, name="record_print")
      */
     public function printAction(Request $request)
     {
@@ -43,7 +43,7 @@ class RecordController extends AbstractController
     }
 
     /**
-     * @Route("/exporter", name="record_export")
+     * @Route("/exporter", methods={"GET","HEAD"}, name="record_export")
      */
     public function exportAction(Request $request)
     {

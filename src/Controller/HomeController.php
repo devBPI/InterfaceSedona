@@ -9,8 +9,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class HomeController extends AbstractController
 {
     /**
-     * @Route("", name="home")
-     * @Route("/", name="home2")
+     * @Route("", methods={"GET","HEAD"}, name="home")
+     * @Route("/", methods={"GET","HEAD"}, name="home2")
      */
     public function indexAction(Request $request)
     {
@@ -18,9 +18,9 @@ class HomeController extends AbstractController
     }
 
     /**
-     * @Route("/accueille/auto-formation", name="home_autoformation")
-     * @Route("/accueille/presse", name="home_presse")
-     * @Route("/accueille/cinema", name="home_cinema")
+     * @Route("/accueille/auto-formation", methods={"GET","HEAD"}, name="home_autoformation")
+     * @Route("/accueille/presse", methods={"GET","HEAD"}, name="home_presse")
+     * @Route("/accueille/cinema", methods={"GET","HEAD"}, name="home_cinema")
      */
     public function thematicAction(Request $request)
     {

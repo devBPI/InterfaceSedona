@@ -1,0 +1,44 @@
+<!-- Début - Bloc 26 Historique des recherches -->
+
+<div>
+	<h2 id="search-label"><i>*Insert icone horloge*</i> Mon historique</h2>
+
+	<div>
+		<div>
+			<div class="form-check">
+				<input class="form-check-input" type="checkbox" id="historique-select-all">
+				<label class="form-check-label" for="historique-select-all" aria-label="Sélectionner tout la liste d'historiques">Tout sélectionner</label>
+			</div>
+			<a href="#">Annuler la sélection</a>
+		</div>
+		<div>
+			<a href="#" aria-label="Supprimer la sélection">Supprimer <i aria-hidden="hidden">*Insert icone croix*</i></a>
+		</div>
+	</div>
+
+	<div>
+		<table class="table" cellspacing="0" role="table" aria-label="nom-de-la-liste" aria-describedby="search-label">
+			<thead>
+				<tr>
+					<th></th>
+					<th scope="col" tabindex="0" role="button" aria-sort="ascending/descending/none" aria-label="Nom de la recherche : activer pour trier par ordre ascendant/descendant">Nom de la recherche <i aria-hidden="true">*Insert icone carets*</i></th>
+					<th scope="col" tabindex="0" role="button" aria-sort="ascending/descending/none" aria-label="Recherché le : activer pour trier par ordre ascendant/descendant">Recherché le <i aria-hidden="true">*Insert icone carets*</i></th>
+					<th></th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for i in 1..5 %}
+					<tr>
+						<td><input type="checkbox" aria-label="Sélection la ligne"></td>
+						<td>*Insert informations sur la recherche*</td>
+						<td>*Insert date JJ/MM/AAAA à HH:MM*</td>
+						<td>
+							<a href="#">*<i aria-hidden="true">Insert icone loupe*</i><span class="sr-only">Relancer la recherche</span></a>
+						</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	</div>
+</div>
+<!-- Fin - Bloc 26 Historique des recherches -->

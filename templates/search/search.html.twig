@@ -10,15 +10,17 @@
 				</button>
 				<button type="button">
 					<i aria-hidden="true">*insert icone loupe*</i>
-					<span src="sr-only">Valider la recherche</span>
+					<span class="sr-only">Valider la recherche</span>
 				</button>
 				<button type="button" data-target="modal-search-advanced" aria-label="Rercherche Avancée - ouverture formulaire">Recherche Avancée</button>
-				{% include "search/modal/advanced-search.html.twig" %}
 			</div>
 		</div>
 	</div> 
 	<ul aria-labelledby="search-label" aria-describedby="autocompletion-infos" role="listbox" id="autocompletion-list" class="listbox">
-		<span class="sr-only" aria-live="assertive" tabindex="0">*Insert nombre de résultats* options affichées</span>
+		<li class="sr-only" aria-live="assertive" tabindex="0">*Insert nombre de résultats* options affichées</li>
 		{% include "search/autocompletion.html.twig" %}
 	</ul>
-</form> 
+</form>
+<!-- Début - Modal Recherche Avancée -->
+{% include "search/modal/advanced-search.html.twig" %}
+<!-- Fin - Modal Recherche Avancée -->

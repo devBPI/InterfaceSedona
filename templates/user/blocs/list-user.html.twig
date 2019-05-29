@@ -1,0 +1,42 @@
+<!-- Début - Bloc 25 Liste des documents présents dans Ma sélection -->
+
+<div>
+	<div>
+		{% for i in 1..3 %}
+
+			<div>
+				<p id="liste-{{ i }}"><input type="checkbox" aria-label="Sélectionner la liste : *Insert nom de la liste*"> *Insert nom de la liste*</p>
+				<a href="{{ path('user_list_edit') }}"><span class="sr-only sr-only-focusable">Changer le nom de la liste</span><i aria-hidden="true">*Insert icone pen*</i></a>
+			</div>
+
+			<table class="table" role="table" cellspacing="0" aria-label="*Insert nom de la liste*" aria-describedby="liste-{{ i }}">
+				<thead>
+					<tr>
+						<th></th>
+						<th scope="col" tabindex="0" role="button" aria-sort="ascending/descending/none" aria-label="Titre : activer pour trier par ordre ascendant/descendant">Titre <i aria-hidden="true">*Insert icone carets*</i></th>
+						<th scope="col" tabindex="0" role="button" aria-sort="ascending/descending/none" aria-label="Auteur: activer pour trier par ordre ascendant/descendant">Auteur <i aria-hidden="true">*Insert icone carets*</i></th>
+						<th scope="col" tabindex="0" role="button" aria-sort="ascending/descending/none" aria-label="Type : activer pour trier par ordre ascendant/descendant">Type <i aria-hidden="true">*Insert icone carets*</i></th>
+						<th scope="col" tabindex="0" role="button" aria-sort="ascending/descending/none" aria-label="Ajoutée le : activer pour trier par ordre ascendant/descendant">Ajoutée le <i aria-hidden="true">*Insert icone carets*</i></th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for i in 1..3 %}
+						<tr>
+							<td><input type="checkbox" aria-label="Sélectionner toute la ligne"></td>
+							<td>*Insert title*</td>
+							<td>*Insert auteur*</td>
+							<td>*Insert icone type*</td>
+							<td>*Insert date*</td>
+						</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+
+		{% endfor %}
+	</div>
+
+	<div>
+		<button type="button"><i>*Insert icone +*</i> Créer une nouvelle liste</button>
+	</div>
+</div>
+<!-- Fin - Bloc 25 Liste des documents présents dans Ma sélection -->

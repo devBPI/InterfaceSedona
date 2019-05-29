@@ -1,20 +1,20 @@
 <!-- Début - Bloc 5 Accès rapide -->
 
 <div>
-	{# Bloc avec un lien sur le titre (car pas de liens sous l'image) #}
+	<!-- Bloc avec un lien sur le titre (car pas de liens sous l'image) -->
 	<div>
-		<a href="##" aria-label="Les thèmes les plus consultés, *Insert nom du thème*"></a>
+		<a href="#" aria-label="Les thèmes les plus consultés, *Insert nom du thème*"></a>
 		<h3>*Insert nom du thème*</h3>
-		<img src="https://via.placeholder.com/210x230" />
+		<img src="https://via.placeholder.com/210x230" alt="Image thème" />
 	</div>
 </div>
 
-{# Bloc avec des liens sous l'image, donc pas de lien sur le titre #}
+<!-- Bloc avec des liens sous l'image, donc pas de lien sur le titre -->
 {% for i in 0..2 %}
 	<div>
 		<div>
 			<h3>*Insert nom du thème*</h3>
-			<img src="https://via.placeholder.com/210x230" />
+			<img src="https://via.placeholder.com/210x230" alt="Image parcours" />
 			<ul>
 				<li><a href="#" lang="fr">Niveau 1</a></li>
 				<li><a href="#" lang="fr">Niveau 2</a></li>
@@ -24,5 +24,4 @@
 		</div>
 	</div>
 {% endfor %}
-
 <!-- Fin - Bloc 5 Accès rapide -->
