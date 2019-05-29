@@ -15,7 +15,7 @@ Feature:
 
 
   Scenario: Sur la page d'accueil Thématique, j'ai aucune erreur HTML
-    When I am on "/fr/accueille/auto-formation"
+    When I am on "/fr/accueil/auto-formation"
     Then the response status code should be 200
 
     When I check source code on W3C validation service

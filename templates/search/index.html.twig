@@ -9,7 +9,6 @@
 			{% include "search/blocs/search-corrector.html.twig" %}
 		</div>
 		
-
 		<div>
 			{% include "search/blocs/related-topics.html.twig" %}
 		</div>
@@ -78,4 +77,7 @@
 		<li><a href="{{ path('record_authority') }}">notice autorite</a></li>
 	</ul>
 	#}
+
+	<!-- Include modal formulaire pour être prevenu du retour du document en rayon -->
+	{% include "search/modal/notified-form.html.twig" %}
 {% endblock %}

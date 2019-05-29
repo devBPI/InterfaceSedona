@@ -18,9 +18,9 @@ class HomeController extends AbstractController
     }
 
     /**
-     * @Route("/accueille/auto-formation", methods={"GET","HEAD"}, name="home_autoformation")
-     * @Route("/accueille/presse", methods={"GET","HEAD"}, name="home_presse")
-     * @Route("/accueille/cinema", methods={"GET","HEAD"}, name="home_cinema")
+     * @Route("/accueil/auto-formation", methods={"GET","HEAD"}, name="home_autoformation")
+     * @Route("/accueil/presse", methods={"GET","HEAD"}, name="home_presse")
+     * @Route("/accueil/cinema", methods={"GET","HEAD"}, name="home_cinema")
      */
     public function thematicAction(Request $request)
     {
