@@ -26,7 +26,7 @@ class UserController extends AbstractController
     }
 
     /**
-     * @Route("/envoyer-a-un-amis", methods={"GET","HEAD"}, name="user_send_to_friend")
+     * @Route("/envoyer-a-un-ami", methods={"GET","HEAD"}, name="user_send_to_friend")
      */
     public function sendToFriendAction(Request $request)
     {

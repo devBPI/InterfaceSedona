@@ -18,11 +18,11 @@ class SearchController extends AbstractController
     }
 
     /**
-     * @Route("/recherche-avancer", methods={"GET","HEAD"}, name="search_advanced")
+     * @Route("/recherche-avance", methods={"GET","HEAD"}, name="search_advanced")
      */
     public function advancedSearchAction(Request $request)
     {
-        return $this->render('search/advanced-search.html.twig', []);
+        return $this->render('search/modal/advanced-search.html.twig', []);
     }
 
     /**
