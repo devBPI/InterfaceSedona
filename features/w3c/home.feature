@@ -6,7 +6,7 @@ Feature:
   Controle W3C des page de la Home
 
 
-  Scenario: Sur la page d'aceuille j'ai aucune erreur HTML
+  Scenario: Sur la page d'accueil, j'ai aucune erreur HTML
     When I am on "/fr"
     Then the response status code should be 200
 
@@ -14,7 +14,7 @@ Feature:
     Then I should see 0 W3C validation errors
 
 
-  Scenario: Sur la page d'aceuille Tenamtique j'ai aucune erreur HTML
+  Scenario: Sur la page d'accueil Thématique, j'ai aucune erreur HTML
     When I am on "/fr/accueille/auto-formation"
     Then the response status code should be 200
 
