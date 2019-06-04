@@ -2,23 +2,44 @@
 
 <h3>Sur le même thème</h3>
 
-<p>*Insert carousel*</p>
-
-{# <div class="carousel-documents-lies js-carousel-documents-lies">
-	{% for i in 1..5 %}
-		<div class="carousel-documents-lies__item">
-			<a href="#" title="Nom document lié {{ i }}">
-				<div>
-					<img src="https://via.placeholder.com/160x160" alt="image carousel">
+<div>
+	<div class="carousel flickity-enabled is-draggable" tabindex="0">
+		<div class="flickity-viewport">
+			<div class="flickity-slider">
+				<div class="carousel-cell is-selected">
+					<a href="#" aria-label="*Insert titre* *Insert auteur*">
+						<div>
+							<img src="https://via.placeholder.com/150x200" alt="Image *Insert titre*">
+						</div>
+						<div>
+							<p>*Insert Titre*</p>
+							<p>*Insert auteur*</p>
+						</div>
+					</a>
 				</div>
-				<div>
-					<p>Nom document lié {{ i }}</p>
-					<p>Auteur document lié {{ i }}</p>
+				<div class="carousel-cell">
+					<a href="#" aria-label="*Insert titre* *Insert auteur*">
+						<div>
+							<img src="https://via.placeholder.com/150x200" alt="Image *Insert titre*">
+						</div>
+						<div>
+							<p>*Insert Titre*</p>
+							<p>*Insert auteur*</p>
+						</div>
+					</a>
 				</div>
-			</a>
+			</div>
 		</div>
-	{% endfor %}
-</div> #}
+		<!-- Customisation des boutons de navigation possible avec Flickity, DOM supposé. 
+		Informations : page de pagination, pas d'auto-play -->
+		<button class="flickity-button flickity-prev-next-button previous" type="button" aria-label="Element précédent">
+			<i aria-hidden="true">*Insert icône chevron gauche*</i>
+		</button>
+		<button class="flickity-button flickity-prev-next-button next" type="button" aria-label="Element suivant">
+			<i aria-hidden="true">*Insert icône chevron droit*</i>
+		</button>
+	</div>
+</div>
 
 <a href="#" aria-label="Voir tout les documents liés">Voir tout (XX)</a>
 
