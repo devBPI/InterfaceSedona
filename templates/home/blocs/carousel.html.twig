@@ -1,10 +1,10 @@
-<!-- Début - Bloc 1 diaporama nouveautés et/ou articles __ DOM supposé avec Flickity -->
+<!-- Début - Bloc 1 diaporama nouveautés et/ou articles __ DOM supposé -->
 
-<div class="carousel flickity-enabled is-draggable" tabindex="0">
+<div class="carousel flickity-enabled is-draggable" tabindex="0" aria-label="Carousel d'actualités">
 	<div class="flickity-viewport">
 		<div class="flickity-slider">
 			<div class="carousel-cell is-selected">
-				<a href="#" aria-label="*Insert titre* *Insert auteur*">
+				<a href="#" aria-label="Actualité 1 sur 24, *Insert titre* *Insert auteur*" lang="fr">
 					<div>
 						<img src="https://via.placeholder.com/150x200" alt="Image *Insert titre*">
 					</div>
@@ -13,7 +13,7 @@
 				</a>
 			</div>
 			<div class="carousel-cell">
-				<a href="#" aria-label="*Insert titre* *Insert auteur*">
+				<a href="#" aria-label="Actualité 2 sur 24, *Insert titre* *Insert auteur*" lang="fr">
 					<div>
 						<img src="https://via.placeholder.com/150x200" alt="Image *Insert titre*">
 					</div>
@@ -23,11 +23,14 @@
 			</div>
 		</div>
 	</div>
-	<ol class="flickity-page-dots">
-		<li class="dot is-selected" aria-label="Page dot 1" aria-current="step"></li>
-		<li class="dot" aria-label="Page dot 2"></li>
-		<li class="dot" aria-label="Page dot 3"></li>
-	</ol>
+	<!-- Customisation des boutons : DOM supposé. 
+	Informations : pagination, auto-play, défilement infini, limite d'éléments à 24 -->
+	<div class="button-group">
+		<button class="button is-selected" aria-label="Page 1 sur X"></button>
+		<button class="button" aria-label="Page 2 sur X"></button>
+		<button class="button" aria-label="Page 3 sur X"></button>
+		<button class="button" aria-label="Page 4 sur X"></button>
+	</div>
 </div>
 <button type="button" aria-label="Mettre en pause le carousel"><i aria-hidden="true">*Insert icone play*</i></button>
 

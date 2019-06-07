@@ -3,7 +3,7 @@
 {% block title %}Accueil{% endblock %}
 
 {% block body %}
-	<h1 class="d-none">Accueil - Catalogue de la BPI</h1>
+	<h1>Accueil - Catalogue de la BPI</h1>
 
 	{% include "home/blocs/carousel.html.twig" %}
 	
@@ -12,17 +12,5 @@
 	<div>
 		{% include "home/blocs/preview-thematic.html.twig" %}
 	</div>
-
-	{#
-	<ul>
-		<li><a href="{{ path('home_autoformation') }}">Auto-formation</a></li>
-		<li><a href="{{ path('home_cinema') }}">Cinema</a></li>
-		<li><a href="{{ path('home_presse') }}">Presse</a></li>
-	</ul>
-
-	<div>
-		<a href="{{ path('search') }}">Recherche</a>
-	</div>
-	#}
 
 {% endblock %}
