@@ -71,7 +71,7 @@
 									<label for="adv-search-bdd-all" aria-label="Recherche dans toutes les bases de données">Tout</label>
 								</div>
 							</div>
-							<ul>
+							<ul role="group" aria-label="recherche dans">
 								{% for i in 1..3 %}
 									<li>
 										<input type="checkbox" class="form-control" id="adv-search-bdd-{{ i }}">
@@ -86,7 +86,7 @@
 					<div>
 						<div>
 							<p>Date de parution</p>
-							<div>
+							<div role="group" aria-label="date de parution">
 								<div class="form-check form-check-inline">
 									<input class="form-check-input" type="radio" id="adv-search-label-date" value="Date">
 									<label class="form-check-label" for="adv-search-label-date">Date</label>
@@ -114,7 +114,7 @@
 								<button type="button" id="adv-search-langage" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" aria-label="Sélectionner les langues">
 								Français <i aria-hidden="true">*insert caret*</i>
 								</button>
-								<div class="dropdown-menu" aria-labelledby="adv-search-langage">
+								<div class="dropdown-menu" aria-labelledby="adv-search-langage" role="group" aria-label="langue(s)">
 									<a href="#" class="dropdown-item">*Insert autres langues*</a>
 								</div>
 							</div>
@@ -122,8 +122,8 @@
 					</div>
 
 					<div>
-						<button type="button" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="adv-search-type" data-target="#adv-search-type"><i aria-hidden="true">*Insert icone caret*</i> Type de document</button>
-						<div class="collapse" id="adv-search-type">
+						<button type="button" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="adv-search-type" data-target="#adv-search-type"><i aria-hidden="true">*Insert icone caret*</i> Type de documents</button>
+						<div class="collapse" id="adv-search-type" role="group" aria-label="type de documents">
 							{% for i in 1..3 %}
 								<div class="form-check">
 									<input type="checkbox" class="form-check-input" id="type-documents-{{ i }}">
@@ -134,8 +134,8 @@
 					</div>
 
 					<div>
-						<button type="button" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="adv-search-support" data-target="#adv-search-support"><i aria-hidden="true">*Insert icone caret*</i> Support</button>
-						<div class="collapse" id="adv-search-support">
+						<button type="button" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="adv-search-support" data-target="#adv-search-support"><i aria-hidden="true">*Insert icone caret*</i> Supports</button>
+						<div class="collapse" id="adv-search-support" role="group" aria-label="supports">
 							{% for i in 1..3 %}
 								<div class="form-check">
 									<input type="checkbox" class="form-check-input" id="support-documents-{{ i }}">
@@ -146,8 +146,8 @@
 					</div>
 
 					<div>
-						<button type="button" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="adv-search-theme" data-target="#adv-search-theme"><i aria-hidden="true">*Insert icone caret*</i> Thème</button>
-						<div class="collapse" id="adv-search-theme">
+						<button type="button" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="adv-search-theme" data-target="#adv-search-theme"><i aria-hidden="true">*Insert icone caret*</i> Thèmes</button>
+						<div class="collapse" id="adv-search-theme" role="group" aria-label="thèmes">
 							{% for i in 1..3 %}
 								<div class="form-check">
 									<input type="checkbox" class="form-check-input" id="theme-documents-{{ i }}">
@@ -159,7 +159,7 @@
 
 					<div>
 						<button type="button" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="adv-search-geo" data-target="#adv-search-geo"><i aria-hidden="true">*Insert icone caret*</i> Couverture géographique</button>
-						<div class="collapse" id="adv-search-geo">
+						<div class="collapse" id="adv-search-geo" role="group" aria-label="couverture géographique">
 							{% for i in 1..3 %}
 								<div class="form-check">
 									<input type="checkbox" class="form-check-input" id="geo-documents-{{ i }}">
@@ -171,7 +171,7 @@
 
 					<div>
 						<button type="button" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="adv-search-music" data-target="#adv-search-music"><i aria-hidden="true">*Insert icone caret*</i> Genre musical</button>
-						<div class="collapse" id="adv-search-music">
+						<div class="collapse" id="adv-search-music" role="group" aria-label="genre musical">
 							{% for i in 1..3 %}
 								<div class="form-check">
 									<input type="checkbox" class="form-check-input" id="music-documents-{{ i }}">
