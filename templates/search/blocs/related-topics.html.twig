@@ -2,11 +2,13 @@
 
 <div class="dropdown">
 	<button type="button" id="dropdown-sujets" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Sujet lié <i aria-hidden="true">*insert caret*</i></button>
-	<div class="dropdown-menu" aria-labelledby="dropdown-sujets">
+	<ul class="dropdown-menu" aria-labelledby="dropdown-sujets">
 		{% for i in 1..3 %}
-			<a href="#" class="dropdown-item" lang="fr">Sujet lié {{ i }}</a>
+			<li>
+				<a href="#" class="dropdown-item" lang="fr">Sujet lié {{ i }}</a>
+			</li>
 		{% endfor %}
-	</div>
+	</ul>
 </div>
 
 <!-- Fin - Bloc 8 Sujets Liés -->

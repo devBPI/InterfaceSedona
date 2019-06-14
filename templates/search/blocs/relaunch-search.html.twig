@@ -4,10 +4,12 @@
 	<button type="button" id="dropdown-recherche" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 	Relancer la recherche dans <i aria-hidden="true">*insert caret*</i>
 	</button>
-	<div class="dropdown-menu" aria-labelledby="dropdown-recherche">
+	<ul class="dropdown-menu" aria-labelledby="dropdown-recherche">
 		{% for i in 1..9 %}
-			<a href="#" class="dropdown-item" lang="fr" id="rec-{{ i }}" aria-labelledby="dropdown-recherche rec-{{ i }}"><img src="https://via.placeholder.com/30x30" aria-hidden="true" alt="Logo *Insert nom du site*"/> Liens vers *Insert nom du site* {{ i }}</a>
+			<li>
+				<a href="#" class="dropdown-item" lang="fr" id="rec-{{ i }}" aria-labelledby="dropdown-recherche rec-{{ i }}"><img src="https://via.placeholder.com/30x30" alt=""/> Liens vers *Insert nom du site* {{ i }}</a>
+			</li>
 		{% endfor %}
-	</div>
+	</ul>
 </div>
 <!-- Fin - Bloc 9 Relance de la recherche -->

@@ -10,22 +10,22 @@
 				<div class="modal-body">
 					<div>
 						<button type="button" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="rfn-search-available" data-target="#rfn-search-available"><i aria-hidden="true">*Insert icone caret*</i> Disponibilité</button>
-						<div class="collapse" id="rfn-search-available">
-							<a href="#">Supprimer le filtre<span class="sr-only"> : Disponibilité</span></a>
+						<div class="collapse" id="rfn-search-available" role="group" aria-label="disponibilité">
+							<button>Supprimer le filtre<span class="sr-only"> : Disponibilité</span></button>
 							<p>*Insert content Disponibilité*</p>
 						</div>
 					</div>
 					<div>
 						<button type="button" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="rfn-search-theme" data-target="#rfn-search-theme"><i aria-hidden="true">*Insert icone caret*</i> Thèmes</button>
-						<div class="collapse" id="rfn-search-theme">
-							<a href="#">Supprimer le filtre<span class="sr-only"> : Thèmes</span></a>
-							<p>*Insert content Disponibilité*</p>
+						<div class="collapse" id="rfn-search-theme" role="group" aria-label="thèmes">
+							<button>Supprimer le filtre<span class="sr-only"> : Thèmes</span></button>
+							<p>*Insert content Thèmes*</p>
 						</div>
 					</div>
 					<div>
 						<button type="button" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="rfn-search-type" data-target="#rfn-search-type"><i aria-hidden="true">*Insert icone caret*</i> Type de document <span>(12)</span></button>
-						<div class="collapse" id="rfn-search-type">
-							<a href="#">Supprimer le filtre<span class="sr-only"> : Type de document</span></a>
+						<div class="collapse" id="rfn-search-type" role="group" aria-label="type de document">
+							<button>Supprimer le filtre<span class="sr-only"> : Type de document</span></button>
 							{% for i in 1..9 %}
 								<div class="form-check">
 									<input type="checkbox" class="form-check-input" id="rfn-type-documents-{{ i }}">
@@ -36,37 +36,37 @@
 					</div>
 					<div>
 						<button type="button" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="rfn-search-author" data-target="#rfn-search-author"><i aria-hidden="true">*Insert icone caret*</i> Auteur(s)</button>
-						<div class="collapse" id="rfn-search-author">
-							<a href="#">Supprimer le filtre<span class="sr-only"> : Auteur(s)</span></a>
-							<p>*Insert content Disponibilité*</p>
+						<div class="collapse" id="rfn-search-author" role="group" aria-label="auteur(s)">
+							<button>Supprimer le filtre<span class="sr-only"> : Auteur(s)</span></button>
+							<p>*Insert content Auteurs*</p>
 						</div>
 					</div>
 					<div>
 						<button type="button" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="rfn-search-bdd" data-target="#rfn-search-bdd"><i aria-hidden="true">*Insert icone caret*</i> Bases de recherche</button>
-						<div class="collapse" id="rfn-search-bdd">
-							<a href="#">Supprimer le filtre<span class="sr-only"> : Base de recherche</span></a>
-							<p>*Insert content Disponibilité*</p>
+						<div class="collapse" id="rfn-search-bdd" role="group" aria-label="base de recherche">
+							<button>Supprimer le filtre<span class="sr-only"> : Base de recherche</span></button>
+							<p>*Insert content BDD*</p>
 						</div>
 					</div>
 					<div>
 						<button type="button" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="rfn-search-langue" data-target="#rfn-search-langue"><i aria-hidden="true">*Insert icone caret*</i> Langue(s)</button>
-						<div class="collapse" id="rfn-search-langue">
-							<a href="#">Supprimer le filtre<span class="sr-only"> : Langue(s)</span></a>
-							<p>*Insert content Disponibilité*</p>
+						<div class="collapse" id="rfn-search-langue" role="group" aria-label="langue(s)">
+							<button>Supprimer le filtre<span class="sr-only"> : Langue(s)</span></button>
+							<p>*Insert content langues*</p>
 						</div>
 					</div>
 					<div>
 						<button type="button" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="rfn-search-date" data-target="#rfn-search-date">Date</button>
-						<div class="collapse" id="rfn-search-date">
-							<a href="#">Supprimer le filtre<span class="sr-only"> : Date</span></a>
-							<p>*Insert content Disponibilité*</p>
+						<div class="collapse" id="rfn-search-date" role="group" aria-label="date">
+							<button>Supprimer le filtre<span class="sr-only"> : Date</span></button>
+							<p>*Insert content Date*</p>
 						</div>
 					</div>
 					<div>
 						<button type="button" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="rfn-search-subject" data-target="#rfn-search-subject"><i aria-hidden="true">*Insert icone caret*</i> Sujets</button>
-						<div class="collapse" id="rfn-search-subject">
-							<a href="#">Supprimer le filtre<span class="sr-only"> : Sujets</span></a>
-							<p>*Insert content Disponibilité*</p>
+						<div class="collapse" id="rfn-search-subject" role="group" aria-label="sujets">
+							<button>Supprimer le filtre<span class="sr-only"> : Sujets</span></button>
+							<p>*Insert content Sujets*</p>
 						</div>
 					</div>
 				</div>
