@@ -1,32 +1,33 @@
 <!-- Début - Bloc 26 Historique des recherches -->
 
 <div>
-	<h2 id="historic-search-label"><i aria-hidden="true">*Insert icone horloge*</i> Mon historique</h2>
+	<h2><i aria-hidden="true">*Insert icone horloge*</i> Mon historique</h2>
 
 	<div>
-		<p class="sr-only sr-only-focusable" tabindex="0">Texte explicatif, précisions sur "sélection d'au moins un document permet de supprimer ces documents" et "il est nécessaire de revenir sur la barre des tâches en haut de la liste pour effectuer cette opération".</p>
+		<p class="sr-only">Texte explicatif, précisions sur "sélection d'au moins un document permet de supprimer ces documents" et "il est nécessaire de revenir sur la barre des tâches en haut de la liste pour effectuer cette opération".</p>
 		<div>
 			<div class="form-check">
 				<input class="form-check-input" type="checkbox" id="historique-select-all">
 				<label class="form-check-label" for="historique-select-all" aria-label="Sélectionner toute la liste d'historique">Tout sélectionner</label>
 			</div>
-			<a href="#">Annuler la sélection</a>
+			<button>Annuler la sélection</button>
 		</div>
 		<div>
-			<a href="#" aria-label="Supprimer la sélection">Supprimer <i aria-hidden="true">*Insert icone croix*</i></a>
+			<button>Supprimer <span class="sr-only">la sélection</span><i aria-hidden="true">*Insert icone croix*</i></button>
 		</div>
 	</div>
 
 	<div>
-		<table class="table" role="table" aria-label="nom-de-la-liste" aria-describedby="historic-search-label">
+		<table class="table">
+			<caption>Mon historique</caption>
 			<thead>
 				<tr>
 					<th></th>
-					<th scope="col" aria-sort="none" role="columnheader">
-						<button role="button" aria-label="Nom de la recherche : activer pour trier par ordre ascendant/descendant">Nom de la recherche <i aria-hidden="true">*Insert icone carets*</i></button>
+					<th scope="col" aria-sort="none">
+						<button type="button" aria-label="Nom de la recherche : activer pour trier par ordre ascendant/descendant">Nom de la recherche <i>*Insert icone carets*</i></button>
 					</th>
-					<th scope="col" aria-sort="none" role="columnheader">
-						<button role="button" aria-label="Recherché le : activer pour trier par ordre ascendant/descendant">Recherché le <i aria-hidden="true">*Insert icone carets*</i></button>
+					<th scope="col" aria-sort="none">
+						<button type="button" aria-label="Recherché le : activer pour trier par ordre ascendant/descendant">Recherché le <i>*Insert icone carets*</i></button>
 					</th>
 					<th></th>
 				</tr>
@@ -36,11 +37,11 @@
 					<tr>
 						<td><input type="checkbox" aria-label="Sélectionnez la ligne : *Insert informations sur la recherche*"></td>
 						<td>
-							<p lang="fr">*Insert informations sur la recherche*</p>
+							<p>*Insert informations sur la recherche*</p>
 						</td>
 						<td>*Insert date JJ/MM/AAAA à HH:MM*</td>
 						<td>
-							<a href="#" aria-label="Relancer la recherche *Insert informations sur la recherche*">*<i aria-hidden="true">*Insert icone loupe*</i></a>
+							<a href="#" role="button"><span class="sr-only">Relancer la recherche *Insert informations sur la recherche*</span><i aria-hidden="true">*Insert icone loupe*</i></a>
 						</td>
 					</tr>
 				{% endfor %}
