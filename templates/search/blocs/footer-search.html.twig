@@ -25,12 +25,16 @@
 
 	<div>
 		<div class="dropdown">
-			<button type="button" id="dropdown-number-items" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" aria-label="Sélectionner le nombre de résultat par colonne">
+			<button type="button" id="dropdown-number-items" data-toggle="dropdown" aria-haspopup="listbox" aria-expanded="false" aria-label="Sélectionner le nombre de résultat par colonne">
 			*Insert number* résultat par colonne <i aria-hidden="true">*insert caret*</i>
 			</button>
-			<div class="dropdown-menu" aria-labelledby="dropdown-number-items">
-				<a href="#" class="dropdown-item">*Insert number* résultat par colonne</a>
-				<a href="#" class="dropdown-item">*Insert number* résultat par colonne</a>
+			<div class="dropdown-menu" aria-labelledby="dropdown-number-items" role="listbox" tabindex="-1">
+				<li class="dropdown-item" role="option">
+					<a href="#">*Insert number* résultat par colonne</a>
+				</li>
+				<li class="dropdown-item" role="option">
+					<a href="#">*Insert number* résultat par colonne</a>
+				</li>
 			</div>
 		</div>
 	</div>

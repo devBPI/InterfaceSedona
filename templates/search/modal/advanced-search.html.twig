@@ -20,13 +20,17 @@
 								</div>
 								<div>
 									<div class="dropdown">
-										<button type="button" id="adv-search-dpdw-critere" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+										<button type="button" id="adv-search-dpdw-critere" data-toggle="dropdown" aria-haspopup="listbox" aria-expanded="false">
 										*Insert critères de recherche* <i aria-hidden="true">*insert icone caret*</i>
 										</button>
-										<div class="dropdown-menu" aria-labelledby="adv-search-dpdw-critere">
-											<a href="#" class="dropdown-item">*Insert autres critères*</a>
-											<a href="#" class="dropdown-item">*Insert autres critères*</a>	
-										</div>
+										<ul class="dropdown-menu" aria-labelledby="adv-search-dpdw-critere" role="listbox" tabindex="-1">
+											<li class="dropdown-item" role="option">
+												<a href="#">*Insert autres critères*</a>
+											</li>
+											<li class="dropdown-item" role="option">
+												<a href="#">*Insert autres critères*</a>
+											</li>	
+										</ul>
 									</div>
 								</div>
 							</div>
@@ -34,12 +38,17 @@
 							<div>
 								<div>
 									<div class="dropdown">
-										<button type="button" id="adv-search-condition-1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+										<button type="button" id="adv-search-condition-1" data-toggle="dropdown" aria-haspopup="listbox" aria-expanded="false">
 										Et <i aria-hidden="true">*insert caret*</i>
 										</button>
-										<div class="dropdown-menu" aria-labelledby="adv-search-condition-1">
-											<a href="#" class="dropdown-item">Ou</a>
-										</div>
+										<ul class="dropdown-menu" aria-labelledby="adv-search-condition-1" role="listbox" tabindex="-1">
+											<li class="dropdown-item" role="option" aria-selected="true">
+												<a href="#">Et</a>
+											</li>
+											<li class="dropdown-item" role="option">
+												<a href="#">Ou</a>
+											</li>
+										</ul>
 									</div>
 								</div>
 								<div>
@@ -48,13 +57,17 @@
 								</div>
 								<div>
 									<div class="dropdown">
-										<button type="button" id="adv-search-condition-2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+										<button type="button" id="adv-search-condition-2" data-toggle="dropdown" aria-haspopup="listbox" aria-expanded="false">
 										*Critère de recherche* <i aria-hidden="true">*insert caret*</i>
 										</button>
-										<div class="dropdown-menu" aria-labelledby="adv-search-condition-2">
-											<a href="#" class="dropdown-item">*Insert autres critères*</a>
-											<a href="#" class="dropdown-item">*Insert autres critères*</a>	
-										</div>
+										<ul class="dropdown-menu" aria-labelledby="adv-search-condition-2" role="listbox" tabindex="-1">
+											<li class="dropdown-item" role="option">
+												<a href="#">*Insert autres critères*</a>
+											</li>
+											<li class="dropdown-item" role="option">
+												<a href="#">*Insert autres critères*</a>
+											</li>	
+										</ul>
 									</div>
 								</div>
 								<div>
@@ -111,12 +124,14 @@
 						<div>
 							<p>Langue</p>
 							<div class="dropdown">
-								<button type="button" id="adv-search-langage" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" aria-label="Sélectionner les langues">
+								<button type="button" id="adv-search-langage" data-toggle="dropdown" aria-haspopup="listbox" aria-expanded="false" aria-label="Sélectionner les langues">
 								Français <i aria-hidden="true">*insert caret*</i>
 								</button>
-								<div class="dropdown-menu" aria-labelledby="adv-search-langage" role="group" aria-label="langue(s)">
-									<a href="#" class="dropdown-item">*Insert autres langues*</a>
-								</div>
+								<ul class="dropdown-menu" aria-labelledby="adv-search-langage" role="listbox" tabindex="-1">
+									<li class="dropdown-item" role="option">
+										<a href="#">*Insert autres langues*</a>
+									</li>
+								</ul>
 							</div>
 						</div>
 					</div>

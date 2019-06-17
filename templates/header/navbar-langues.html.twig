@@ -1,10 +1,21 @@
 <div class="dropdown" aria-label="Menu-langue">
-	<button type="button" id="dropdown-langues" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="visible-xs">
+	<span class="sr-only">Choix d'une langue</span>
+	<button type="button" id="dropdown-langues" data-toggle="dropdown" aria-haspopup="listbox" aria-expanded="false" class="visible-xs">
 	*Insert Current Lang*
 	</button>
-	<ul class="dropdown-menu" aria-labelledby="dropdown-langues">
-		<li class="dropdown-item"><a href="#" aria-label="English version" lang="en">EN</a></li>
-		<li class="dropdown-item"><a href="#" aria-label="Espagnol version" lang="es">ES</a></li>
-		<li class="dropdown-item">FR</li>
+	<ul class="dropdown-menu" aria-labelledby="dropdown-langues" role="listbox" tabindex="-1">
+		<li class="dropdown-item" role="option">
+			<a href="#" aria-label="English version" lang="en">
+				<abbr title="English version">EN</abbr>
+			</a>
+		</li>
+		<li class="dropdown-item" role="option">
+			<a href="#" aria-label="Espagnol version" lang="es">
+				<abbr title="Versión español">EN</abbr>
+			</a>
+		</li>
+		<li class="dropdown-item" role="option" aria-selected="true">
+			<abbr title="Version française">FR</abbr>
+		</li>
 	</ul>
 </div>

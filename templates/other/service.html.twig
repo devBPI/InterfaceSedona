@@ -12,19 +12,29 @@
 	
 		<ul class="nav nav-pills">
 			<li class="nav-item">
-				<a class="nav-link dropdown-toggle active" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Généralités</a>
-				<div class="dropdown-menu">
-					<a class="dropdown-item" href="#premiers-pas">Premiers pas</a>
-					<a class="dropdown-item" href="#deuxieme-pas">Deuxième pas</a>
-					<a class="dropdown-item" href="#troisieme-pas">Troisième pas</a>
-				</div>
+				<a class="nav-link dropdown-toggle active" data-toggle="dropdown" href="#" role="button" aria-haspopup="listbox" aria-expanded="false">Généralités</a>
+				<ul class="dropdown-menu" role="listbox" tabindex="-1">
+					<li class="dropdown-item" role="option">
+						<a href="#premiers-pas">Premiers pas</a>
+					</li>
+					<li class="dropdown-item" role="option">
+						<a href="#deuxieme-pas">Deuxième pas</a>
+					</li>
+					<li class="dropdown-item" role="option">
+						<a href="#troisieme-pas">Troisième pas</a>
+					</li>
+				</ul>
 			</li>
 			<li class="nav-item dropdown">
-				<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Item 02</a>
-				<div class="dropdown-menu">
-					<a class="dropdown-item" href="#">Lien 1</a>
-					<a class="dropdown-item" href="#">Lien 2</a>
-				</div>
+				<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="listbox" aria-expanded="false">Item 02</a>
+				<ul class="dropdown-menu" role="listbox" tabindex="-1">
+					<li class="dropdown-item" role="option">
+						<a href="#">Lien 1</a>
+					</li>
+					<li class="dropdown-item" role="option">
+						<a href="#">Lien 2</a>
+					</li>
+				</ul>
 			</li>
 			<li class="nav-item">
 				<a class="nav-link" href="#">Item 03</a>
