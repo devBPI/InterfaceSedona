@@ -3,15 +3,15 @@
 	<ul>
 		{% if toolbar is defined and toolbar == 'document' %}
 			<li>
-				<a href="{{ path('user_list_add') }}" title="Ajouter à ma sélection - ouverture formulaire">
+				<a href="{{ path('user_list_add') }}" role="button">
 					<i aria-hidden="true">*Insert icone coeur*</i>
-					<span>Ma sélection</span>
+					<span><span class="sr-only">Ajouter à </span>Ma sélection</span>
 				</a>
 			</li>
 			<li>
-				<a href="{{ path('record_export') }}" title="Exporter la page - ouverture formulaire">
+				<a href="{{ path('record_export') }}" role="button">
 					<i aria-hidden="true">*Insert icone fichier*</i>
-					<span>Exporter</span>
+					<span>Exporter<span class="sr-only"> la sélection</span></span>
 				</a>
 			</li>
 		{% else %}
@@ -30,7 +30,7 @@
 		{% endif %}
 		{% if toolbar is defined %}
 			<li>
-				<a href="{{ path('record_print') }}" title="Imprimer - ouverture formulaire">
+				<a href="{{ path('record_print') }}" role="button">
 					<i aria-hidden="true">*Insert icone imprimante*</i>
 					<span>Imprimer</span>
 				</a>
@@ -44,26 +44,26 @@
 			</li>
 		{% endif %}
 		<li>
-			<a href="{{ path('record_share') }}" title="Partager - ouverture formulaire">
+			<a href="{{ path('record_share') }}" role="button">
 				<i aria-hidden="true">*Insert icone partage*</i>
 				<span>Partager</span>
 			</a>
 		</li>
 		<li>
-			<a href="{{ path('other_service') }}" title="Aide - nouvelle fenêtre">
+			<a href="{{ path('other_service') }}" target="_blank" title="Aide - nouvelle fenêtre">
 				<i aria-hidden="true">*Insert icone interrogation*</i>
 				<span>Aide</span>
 			</a>
 		</li>
 		<li>
-			<a href="{{ path('user_suggestion') }}" title="Suggestion d'achats - ouverture formulaire">
+			<a href="{{ path('user_suggestion') }}" role="button">
 				<i aria-hidden="true">*Insert icone livre*</i>
-				<span>Suggestion</span>
+				<span>Suggestion d'achats</span>
 			</a>
 		</li>
 		<li>
 			{# Path to user/modal/report-error.html.twig #}
-			<a href="#" title="Signaler une erreur - ouverture formulaire">
+			<a href="#" role="button">
 				<i aria-hidden="true">*Insert icone enveloppe*</i>
 				<span>Signaler une erreur</span>
 			</a>
