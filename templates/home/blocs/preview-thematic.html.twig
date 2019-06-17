@@ -2,11 +2,11 @@
 
 {% for home in ['autoformation','presse','cinema'] %}
 	<div>
-		<div>
-			<a href="{{ path('home_'~home) }}" lang="fr"><span class="sr-only">Découvrir les parcours : {{ home }}</span></a>
+		<div lang="fr">
+			<a href="{{ path('home_'~home) }}"><span class="sr-only">Découvrir les parcours : {{ home }}</span></a>
 			<img src="https://via.placeholder.com/310x265" alt="" />
-			<h3 lang="fr">{{ home }}</h3>
-			<p lang="fr">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rerum ipsa reiciendis reprehenderit enim fugiat, quod repudiandae maiores, quibusdam fuga at sapiente dolores repellat deserunt veritatis velit modi pariatur nulla deleniti.</p>
+			<h3>{{ home }}</h3>
+			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rerum ipsa reiciendis reprehenderit enim fugiat, quod repudiandae maiores, quibusdam fuga at sapiente dolores repellat deserunt veritatis velit modi pariatur nulla deleniti.</p>
 		</div>
 	</div>
 {% endfor %}
