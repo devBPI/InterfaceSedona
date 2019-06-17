@@ -1,10 +1,13 @@
 <!-- Début - Bloc 13 Notices simples en 2 colonnes -->
 
 <div>
-	<p><input type="checkbox" aria-label="{{ i }} Sélectionner *Insert titre*"> {{ i }}</p>
+	<div>
+		<input type="checkbox" id="result-doc-online-{{ i }}">
+		<label for="result-doc-online-{{ i }}"><span class="sr-only">Résultat numéro </span> {{ i }}<span class="sr-only">, sélectionner *Insert titre*</span></label>
+	</div>
 	<div>
 		<div>
-			<img src="https://via.placeholder.com/110x110" alt=""/>
+			<img src="https://via.placeholder.com/110x110" alt="" />
 		</div>
 		<div>
 			<a href="#" lang="fr" aria-label="*Insert titre* - nouvelle fenêtre"><i>*insert icone type*</i> *Insert titre*</a>
