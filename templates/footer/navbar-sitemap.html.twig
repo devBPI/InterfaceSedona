@@ -1,31 +1,33 @@
-<div>
-	<button type="button" data-toggle="collapse" data-target="menu-bpi" aria-expanded="false" aria-controls="menu-bpi">La Bpi</button>
-	<button type="button" data-toggle="collapse" data-target="menu-balises" aria-expanded="false" aria-controls="menu-balises">Balises</button>
-	<button type="button" data-toggle="collapse" data-target="menu-professionnels" aria-expanded="false" aria-controls="menu-professionnels">Professionnels</button>
-</div>
-<div class="collapse" id="menu-bpi">
-	<ul>
-		<li><a href="#" target="_blank" title="Catalogue - Nouvelle fenêtre">Catalogue</a></li>
-		<li><a href="#" target="_blank" title="Agenda - Nouvelle fenêtre">Agenda</a></li>
-		<li><a href="#" target="_blank" title="La Bibliothèque - Nouvelle fenêtre">La Bibliothèque</a></li>
-		<li><a href="#" target="_blank" title="Informations pratiques - Nouvelle fenêtre">Informations pratiques</a></li>
-		<li><a href="#" target="_blank" title="Presse / Partenariats - Nouvelle fenêtre">Presse / Partenariats</a></li>
-	</ul>
-</div>
-<div class="collapse" id="menu-balises">
-	<ul>
-		<li><a href="#" target="_blank" title="WebTV / WebRadio - Nouvelle fenêtre">WebTV / WebRadio</a></li>
-		<li><a href="#" target="_blank" title="Exploration - Nouvelle fenêtre">Exploration</a></li>
-		<li><a href="#" target="_blank" title="Mon webmagazine - Nouvelle fenêtre">Mon webmagazine</a></li>
-		<li><a href="#" target="_blank" title="Qui sommes-nous ? - Nouvelle fenêtre">Qui sommes-nous ?</a></li>
-	</ul>
-</div>
-<div class="collapse" id="menu-professionnels">
-	<ul>
-		<li><a href="#" target="_blank" title="Collestions et services - Nouvelle fenêtre">Collections et services</a></li>
-		<li><a href="#" target="_blank" title="Cohésion sociale - Nouvelle fenêtre">Cohésion sociale</a></li>
-		<li><a href="#" target="_blank" title="Etudes - Nouvelle fenêtre">Etudes</a></li>
-		<li><a href="#" target="_blank" title="Métier - Nouvelle fenêtre">Métier</a></li>
-		<li><a href="#" target="_blank" title="International - Nouvelle fenêtre">International</a></li>
-	</ul>
+<div id="accordion">
+	<button type="button" id="btn-bpi" data-toggle="collapse" data-target="#menu-bpi" aria-expanded="false" aria-controls="menu-bpi">La Bpi</button>
+	<div class="collapse" id="menu-bpi" data-parent="#accordion" aria-labelledby="btn-bpi">
+		<ul>
+			<li><a href="#" target="_blank" title="Catalogue - Nouvelle fenêtre">Catalogue</a></li>
+			<li><a href="#" target="_blank" title="Agenda - Nouvelle fenêtre">Agenda</a></li>
+			<li><a href="#" target="_blank" title="La Bibliothèque - Nouvelle fenêtre">La Bibliothèque</a></li>
+			<li><a href="#" target="_blank" title="Informations pratiques - Nouvelle fenêtre">Informations pratiques</a></li>
+			<li><a href="#" target="_blank" title="Presse / Partenariats - Nouvelle fenêtre">Presse / Partenariats</a></li>
+		</ul>
+	</div>
+
+	<button type="button" id="btn-balises" data-toggle="collapse" data-target="#menu-balises" aria-expanded="false" aria-controls="menu-balises">Balises</button>
+	<div class="collapse" id="menu-balises" data-parent="#accordion" aria-labelledby="btn-balises">
+		<ul>
+			<li><a href="#" target="_blank" title="WebTV / WebRadio - Nouvelle fenêtre">WebTV / WebRadio</a></li>
+			<li><a href="#" target="_blank" title="Exploration - Nouvelle fenêtre">Exploration</a></li>
+			<li><a href="#" target="_blank" title="Mon webmagazine - Nouvelle fenêtre">Mon webmagazine</a></li>
+			<li><a href="#" target="_blank" title="Qui sommes-nous ? - Nouvelle fenêtre">Qui sommes-nous ?</a></li>
+		</ul>
+	</div>
+
+	<button type="button" id="btn-professionnels" data-toggle="collapse" data-target="#menu-professionnels" aria-expanded="false" aria-controls="menu-professionnels">Professionnels</button>
+	<div class="collapse" id="menu-professionnels" data-parent="#accordion" aria-labelledby="btn-professionnels">
+		<ul>
+			<li><a href="#" target="_blank" title="Collections et services - Nouvelle fenêtre">Collections et services</a></li>
+			<li><a href="#" target="_blank" title="Cohésion sociale - Nouvelle fenêtre">Cohésion sociale</a></li>
+			<li><a href="#" target="_blank" title="Etudes - Nouvelle fenêtre">Etudes</a></li>
+			<li><a href="#" target="_blank" title="Métier - Nouvelle fenêtre">Métier</a></li>
+			<li><a href="#" target="_blank" title="International - Nouvelle fenêtre">International</a></li>
+		</ul>
+	</div>
 </div>
