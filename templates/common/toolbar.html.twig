@@ -4,26 +4,26 @@
 		{% if toolbar is defined and toolbar == 'document' %}
 			<li>
 				<a href="{{ path('user_list_add') }}" role="button">
-					<i aria-hidden="true">*Insert icone coeur*</i>
+					<img src="https://via.placeholder.com/15x15" alt="" class="icone-coeur"/>
 					<span><span class="sr-only">Ajouter à </span>Ma sélection</span>
 				</a>
 			</li>
 			<li>
 				<a href="{{ path('record_export') }}" role="button">
-					<i aria-hidden="true">*Insert icone fichier*</i>
+					<img src="https://via.placeholder.com/15x15" alt="" class="icone-fichier"/>
 					<span>Exporter<span class="sr-only"> la sélection</span></span>
 				</a>
 			</li>
 		{% else %}
 			<li>
 				<p>
-					<i aria-hidden="true">*Insert icone coeur*</i>
+					<img src="https://via.placeholder.com/15x15" alt="" class="icone-coeur"/>
 					<span>Ma sélection</span>
 				</p>
 			</li>
 			<li>
 				<p>
-					<i aria-hidden="true">*Insert icone fichier*</i>
+					<img src="https://via.placeholder.com/15x15" alt="" class="icone-fichier"/>
 					<span>Exporter</span>
 				</p>
 			</li>
@@ -31,40 +31,40 @@
 		{% if toolbar is defined %}
 			<li>
 				<a href="{{ path('record_print') }}" role="button">
-					<i aria-hidden="true">*Insert icone imprimante*</i>
+					<img src="https://via.placeholder.com/15x15" alt="" class="icone-imprimante"/>
 					<span>Imprimer</span>
 				</a>
 			</li>
 		{% else %}
 			<li>
 				<p>
-					<i aria-hidden="true">*Insert icone imprimante*</i>
+					<img src="https://via.placeholder.com/15x15" alt="" class="icone-imprimante"/>
 					<span>Imprimer</span>
 				</p>
 			</li>
 		{% endif %}
 		<li>
 			<a href="{{ path('record_share') }}" role="button">
-				<i aria-hidden="true">*Insert icone partage*</i>
+				<img src="https://via.placeholder.com/15x15" alt="" class="icone-partage"/>
 				<span>Partager</span>
 			</a>
 		</li>
 		<li>
 			<a href="{{ path('other_service') }}" target="_blank" title="Aide - nouvelle fenêtre">
-				<i aria-hidden="true">*Insert icone interrogation*</i>
+				<img src="https://via.placeholder.com/15x15" alt="" class="icone-interrogation"/>
 				<span>Aide</span>
 			</a>
 		</li>
 		<li>
 			<a href="{{ path('user_suggestion') }}" role="button">
-				<i aria-hidden="true">*Insert icone livre*</i>
+				<img src="https://via.placeholder.com/15x15" alt="" class="icone-livre"/>
 				<span>Suggestion d'achats</span>
 			</a>
 		</li>
 		<li>
 			{# Path to user/modal/report-error.html.twig #}
 			<a href="#" role="button">
-				<i aria-hidden="true">*Insert icone enveloppe*</i>
+				<img src="https://via.placeholder.com/15x15" alt="" class="icone-enveloppe"/>
 				<span>Signaler une erreur</span>
 			</a>
 		</li>
