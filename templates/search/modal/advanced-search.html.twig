@@ -1,32 +1,36 @@
 <div role="dialog" aria-modal="true" aria-labelledby="modal-search-advanced">
-	<div class="modal-dialog" role="document">
+	<div class="modal-dialog">
 		<div class="modal-content">
 			<form>
 				<div class="modal-header">
-					<h4 id="modal-search-advanced">Recherche avancée</h4>
-					<button type="button" aria-label="Fermer cette fenêtre"><i>*insert icone croix*</i></button>
+					<h1 id="modal-search-advanced">Recherche avancée</h1>
+					<button type="button" aria-label="Fermer cette fenêtre"><span aria-hidden="true">X</span></button>
 				</div>
 
 				<div class="modal-body">
-					<p tabindex="0">Pour rechercher une expression exacte, mettez les mots entre "guillements".</p>
+					<p tabindex="0">Pour rechercher une expression exacte, mettez les mots entre "guillemets".</p>
 
 					<div>
 
 						<div>
 							<div>
 								<div>
-									<label for="adv-search-txt-1">Recherche</label>
+									<label for="adv-search-txt-1">Rechercher par mots clés</label>
 									<input type="text" id="adv-search-txt-1">
 								</div>
 								<div>
 									<div class="dropdown">
-										<button type="button" id="adv-search-dpdw-critere" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-										*Insert critères de recherche* <i aria-hidden="true">*insert icone caret*</i>
+										<button type="button" id="adv-search-dpdw-critere" data-toggle="dropdown" aria-haspopup="listbox" aria-expanded="false">
+										*Insert critères de recherche* <img src="https://via.placeholder.com/15x15" alt="" class="icone-caret"/>
 										</button>
-										<div class="dropdown-menu" aria-labelledby="adv-search-dpdw-critere">
-											<a href="#" class="dropdown-item">*Insert autres critères*</a>
-											<a href="#" class="dropdown-item">*Insert autres critères*</a>	
-										</div>
+										<ul class="dropdown-menu" aria-labelledby="adv-search-dpdw-critere" role="listbox" tabindex="-1">
+											<li class="dropdown-item" role="option">
+												<a href="#">*Insert autres critères*</a>
+											</li>
+											<li class="dropdown-item" role="option">
+												<a href="#">*Insert autres critères*</a>
+											</li>	
+										</ul>
 									</div>
 								</div>
 							</div>
@@ -34,31 +38,40 @@
 							<div>
 								<div>
 									<div class="dropdown">
-										<button type="button" id="adv-search-condition-1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-										Et <i aria-hidden="true">*insert caret*</i>
+										<button type="button" id="adv-search-condition-1" data-toggle="dropdown" aria-haspopup="listbox" aria-expanded="false">
+										Et <img src="https://via.placeholder.com/15x15" alt="" class="icone-caret"/>
 										</button>
-										<div class="dropdown-menu" aria-labelledby="adv-search-condition-1">
-											<a href="#" class="dropdown-item">Ou</a>
-										</div>
+										<ul class="dropdown-menu" aria-labelledby="adv-search-condition-1" role="listbox" tabindex="-1">
+											<li class="dropdown-item" role="option" aria-selected="true">
+												<a href="#">Et</a>
+											</li>
+											<li class="dropdown-item" role="option">
+												<a href="#">Ou</a>
+											</li>
+										</ul>
 									</div>
 								</div>
 								<div>
-									<label for="adv-search-txt-2">Recherche</label>
+									<label for="adv-search-txt-2">Rechercher par mots clés</label>
 									<input type="text" id="adv-search-txt-2">
 								</div>
 								<div>
 									<div class="dropdown">
-										<button type="button" id="adv-search-condition-2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-										*Critère de recherche* <i aria-hidden="true">*insert caret*</i>
+										<button type="button" id="adv-search-condition-2" data-toggle="dropdown" aria-haspopup="listbox" aria-expanded="false">
+										*Critère de recherche* <img src="https://via.placeholder.com/15x15" alt="" class="icone-caret"/>
 										</button>
-										<div class="dropdown-menu" aria-labelledby="adv-search-condition-2">
-											<a href="#" class="dropdown-item">*Insert autres critères*</a>
-											<a href="#" class="dropdown-item">*Insert autres critères*</a>	
-										</div>
+										<ul class="dropdown-menu" aria-labelledby="adv-search-condition-2" role="listbox" tabindex="-1">
+											<li class="dropdown-item" role="option">
+												<a href="#">*Insert autres critères*</a>
+											</li>
+											<li class="dropdown-item" role="option">
+												<a href="#">*Insert autres critères*</a>
+											</li>	
+										</ul>
 									</div>
 								</div>
 								<div>
-									<button type="button"><i aria-hidden="true">*Insert icone +*</i><span class="sr-only">Ajouter un champs de recherche</span></button>
+									<button type="button"><img src="https://via.placeholder.com/15x15" alt="" class="icone-plus"/><span class="sr-only">Ajouter un champs de recherche</span></button>
 								</div>
 							</div>
 						</div>
@@ -71,7 +84,7 @@
 									<label for="adv-search-bdd-all" aria-label="Recherche dans toutes les bases de données">Tout</label>
 								</div>
 							</div>
-							<ul>
+							<ul role="group" aria-label="recherche dans">
 								{% for i in 1..3 %}
 									<li>
 										<input type="checkbox" class="form-control" id="adv-search-bdd-{{ i }}">
@@ -86,7 +99,7 @@
 					<div>
 						<div>
 							<p>Date de parution</p>
-							<div>
+							<div role="group" aria-label="date de parution">
 								<div class="form-check form-check-inline">
 									<input class="form-check-input" type="radio" id="adv-search-label-date" value="Date">
 									<label class="form-check-label" for="adv-search-label-date">Date</label>
@@ -111,19 +124,21 @@
 						<div>
 							<p>Langue</p>
 							<div class="dropdown">
-								<button type="button" id="adv-search-langage" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" aria-label="Sélectionner les langues">
-								Français <i aria-hidden="true">*insert caret*</i>
+								<button type="button" id="adv-search-langage" data-toggle="dropdown" aria-haspopup="listbox" aria-expanded="false" aria-label="Sélectionner les langues">
+								Français <img src="https://via.placeholder.com/15x15" alt="" class="icone-caret"/>
 								</button>
-								<div class="dropdown-menu" aria-labelledby="adv-search-langage">
-									<a href="#" class="dropdown-item">*Insert autres langues*</a>
-								</div>
+								<ul class="dropdown-menu" aria-labelledby="adv-search-langage" role="listbox" tabindex="-1">
+									<li class="dropdown-item" role="option">
+										<a href="#">*Insert autres langues*</a>
+									</li>
+								</ul>
 							</div>
 						</div>
 					</div>
 
 					<div>
-						<button type="button" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="adv-search-type" data-target="#adv-search-type"><i aria-hidden="true">*Insert icone caret*</i> Type de document</button>
-						<div class="collapse" id="adv-search-type">
+						<button type="button" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="adv-search-type" data-target="#adv-search-type"><img src="https://via.placeholder.com/15x15" alt="" class="icone-caret"/> Type de documents</button>
+						<div class="collapse" id="adv-search-type" role="group" aria-label="type de documents">
 							{% for i in 1..3 %}
 								<div class="form-check">
 									<input type="checkbox" class="form-check-input" id="type-documents-{{ i }}">
@@ -134,8 +149,8 @@
 					</div>
 
 					<div>
-						<button type="button" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="adv-search-support" data-target="#adv-search-support"><i aria-hidden="true">*Insert icone caret*</i> Support</button>
-						<div class="collapse" id="adv-search-support">
+						<button type="button" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="adv-search-support" data-target="#adv-search-support"><img src="https://via.placeholder.com/15x15" alt="" class="icone-caret"/> Supports</button>
+						<div class="collapse" id="adv-search-support" role="group" aria-label="supports">
 							{% for i in 1..3 %}
 								<div class="form-check">
 									<input type="checkbox" class="form-check-input" id="support-documents-{{ i }}">
@@ -146,8 +161,8 @@
 					</div>
 
 					<div>
-						<button type="button" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="adv-search-theme" data-target="#adv-search-theme"><i aria-hidden="true">*Insert icone caret*</i> Thème</button>
-						<div class="collapse" id="adv-search-theme">
+						<button type="button" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="adv-search-theme" data-target="#adv-search-theme"><img src="https://via.placeholder.com/15x15" alt="" class="icone-caret"/> Thèmes</button>
+						<div class="collapse" id="adv-search-theme" role="group" aria-label="thèmes">
 							{% for i in 1..3 %}
 								<div class="form-check">
 									<input type="checkbox" class="form-check-input" id="theme-documents-{{ i }}">
@@ -158,8 +173,8 @@
 					</div>
 
 					<div>
-						<button type="button" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="adv-search-geo" data-target="#adv-search-geo"><i aria-hidden="true">*Insert icone caret*</i> Couverture géographique</button>
-						<div class="collapse" id="adv-search-geo">
+						<button type="button" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="adv-search-geo" data-target="#adv-search-geo"><img src="https://via.placeholder.com/15x15" alt="" class="icone-caret"/> Couverture géographique</button>
+						<div class="collapse" id="adv-search-geo" role="group" aria-label="couverture géographique">
 							{% for i in 1..3 %}
 								<div class="form-check">
 									<input type="checkbox" class="form-check-input" id="geo-documents-{{ i }}">
@@ -170,8 +185,8 @@
 					</div>
 
 					<div>
-						<button type="button" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="adv-search-music" data-target="#adv-search-music"><i aria-hidden="true">*Insert icone caret*</i> Genre musical</button>
-						<div class="collapse" id="adv-search-music">
+						<button type="button" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="adv-search-music" data-target="#adv-search-music"><img src="https://via.placeholder.com/15x15" alt="" class="icone-caret"/> Genre musical</button>
+						<div class="collapse" id="adv-search-music" role="group" aria-label="genre musical">
 							{% for i in 1..3 %}
 								<div class="form-check">
 									<input type="checkbox" class="form-check-input" id="music-documents-{{ i }}">
@@ -185,7 +200,7 @@
 				
 				<div class="modal-footer">
 					<button type="button" aria-label="Effacer mes critères de recherche">Effacer ma recherche</button>
-					<button type="submit" aria-label="Lancer ma recherche">Rechercher <i aria-hidden="true">*Insert icone loupe*</i></button>
+					<button type="submit" aria-label="Lancer ma recherche">Rechercher <img src="https://via.placeholder.com/15x15" alt="" class="icone-loupe"/></button>
 				</div>
 			</form>
 		</div>

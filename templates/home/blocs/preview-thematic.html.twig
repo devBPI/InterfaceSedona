@@ -1,12 +1,14 @@
 <!-- Début - Bloc 2 Découvrir les parcours -->
+
 {% for home in ['autoformation','presse','cinema'] %}
 	<div>
-		<div>
-			<a href="{{ path('home_'~home) }}" aria-label="Découvrir les parcours : *Insert titre parcours {{ home }}*"></a>
-			<img src="https://via.placeholder.com/310x265" alt="Image parcours" />
-			<h3>*Insert titre parcours {{ home }}*</h3>
-			<p lang="fr">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rerum ipsa reiciendis reprehenderit enim fugiat, quod repudiandae maiores, quibusdam fuga at sapiente dolores repellat deserunt veritatis velit modi pariatur nulla deleniti.</p>
+		<div lang="fr">
+			<a href="{{ path('home_'~home) }}"><span class="sr-only">Découvrir les parcours : {{ home }}</span></a>
+			<img src="https://via.placeholder.com/310x265" alt="" />
+			<h3>{{ home }}</h3>
+			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rerum ipsa reiciendis reprehenderit enim fugiat, quod repudiandae maiores, quibusdam fuga at sapiente dolores repellat deserunt veritatis velit modi pariatur nulla deleniti.</p>
 		</div>
 	</div>
 {% endfor %}
+
 <!-- Fin - Bloc 2 Découvrir les parcours -->

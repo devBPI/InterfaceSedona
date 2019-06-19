@@ -2,22 +2,22 @@
 
 <div>
 	<div>
-		<nav aria-label="Pagination">
+		<nav aria-label="Pagination" role="navigation">
 			<ul>
 				<li>
-					<a href="#" aria-label="Première page"><i aria-hidden="true">*Insert icône chevron double right*</i></a>
+					<a href="#"><img src="https://via.placeholder.com/15x15" alt="" class="icone-chevron-double"/><span class="sr-only">Première page</span></a>
 				</li>
 				<li>
-					<a href="#" aria-label="Page précédente"><i aria-hidden="true">*Insert icône chevron right*</i></a>
+					<a href="#"><img src="https://via.placeholder.com/15x15" alt="" class="icone-chevron"/><span class="sr-only">Page précédente</span></a>
 				</li>
 				<li>
-					<input type="text" aria-label="XX sur 55 pages"> sur 55
+					<input type="text" aria-label="Saisir un numéro de page à consulter sur 55 pages"> sur 55
 				</li>
 				<li>
-					<a href="#" aria-label="Page Suivante"><i aria-hidden="true">*Insert icône chevron left*</i></a>
+					<a href="#"><img src="https://via.placeholder.com/15x15" alt="" class="icone-chevron-double"/><span class="sr-only">Page Suivante</span></a>
 				</li>
 				<li>
-					<a href="#" aria-label="Dernière page"><i aria-hidden="true">*Insert icône chevron double left*</i></a>
+					<a href="#"><img src="https://via.placeholder.com/15x15" alt="" class="icone-chevron"/><span class="sr-only">Dernière page</span></a>
 				</li>
 			</ul>
 		</nav>
@@ -25,13 +25,17 @@
 
 	<div>
 		<div class="dropdown">
-			<button type="button" id="dropdown-number-items" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" aria-label="Sélectionner le nombre de résultat par colonne">
-			*Insert number* résultat par colonne <i aria-hidden="true">*insert caret*</i>
+			<button type="button" id="dropdown-number-items" data-toggle="dropdown" aria-haspopup="listbox" aria-expanded="false" aria-label="Sélectionner le nombre de résultat par colonne">
+			*Insert number* résultat par colonne <img src="https://via.placeholder.com/15x15" alt="" class="icone-caret"/>
 			</button>
-			<div class="dropdown-menu" aria-labelledby="dropdown-number-items">
-				<a href="#" class="dropdown-item">*Insert number* résultat par colonne</a>
-				<a href="#" class="dropdown-item">*Insert number* résultat par colonne</a>
-			</div>
+			<ul class="dropdown-menu" aria-labelledby="dropdown-number-items" role="listbox" tabindex="-1">
+				<li class="dropdown-item" role="option">
+					<a href="#">*Insert number* résultat par colonne</a>
+				</li>
+				<li class="dropdown-item" role="option">
+					<a href="#">*Insert number* résultat par colonne</a>
+				</li>
+			</ul>
 		</div>
 	</div>
 </div>
