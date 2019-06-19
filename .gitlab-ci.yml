@@ -53,7 +53,7 @@ quality:w3c:
       - htmlpage/
   artifacts:
     untracked: false
-    expire_in: 10 mins
+    expire_in: 30 mins
     paths:
       - build/
   script:
@@ -73,7 +73,7 @@ build:package:
      - build/
  artifacts:
     untracked: false
-    expire_in: 10 mins
+    expire_in: 30 mins
     paths:
      - build/
  script:
