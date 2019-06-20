@@ -50,7 +50,7 @@ services:
     labels:
       traefik.enable: false
     networks:
-    - default
+      - default
 
   db:
     image: registry.sedona.fr/images/postgres:9.6
