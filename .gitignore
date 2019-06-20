@@ -34,6 +34,10 @@
 /.env.*.local
 ###< symfony/framework-bundle ###
 
+###> behat/symfony2-extension ###
+behat.yml
+###< behat/symfony2-extension ###
+
 ###> symfony/webpack-encore-bundle ###
 /node_modules/
 /public/build/

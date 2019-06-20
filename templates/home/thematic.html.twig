@@ -3,50 +3,13 @@
 {% block body %}
 	<h1>{{ title }}</h1>
 
-	<div>*Insert carousel*</div>
-    {% for item in carousel.elements %}
-		<pre>
-			{{ dump(item) }}
-		</pre>
-    {% endfor %}
+	{% include "home/blocs/carousel.html.twig" %}
 
 	<h2>Les thèmes les plus consultés</h2>
 	
 	<div>
-
-		<div>
-			{# Bloc avec un lien sur le titre (car pas de liens sous l'image) #}
-			<div>
-				<h3>
-					<a href="##">Aliquam quaerat harum, fugit expedita molestias !</a>
-				</h3>
-				<img src="https://via.placeholder.com/210x230" />
-			</div>
-		</div>
-
-		{# Bloc avec des liens sous l'image, donc pas de lien sur le titre #}
-		{% for i in 0..2 %}
-			<div>
-				<div>
-					<h3>Aliquam quaerat harum, fugit expedita !</h3>
-					<img src="https://via.placeholder.com/210x230" />
-					<ul>
-						<li><a href="#" lang="fr">Niveau 1</a></li>
-						<li><a href="#" lang="fr">Niveau 2</a></li>
-						<li><a href="#" lang="fr">Niveau 3</a></li>
-						<li><a href="#" lang="fr">Niveau 4</a></li>
-					</ul>
-				</div>
-			</div>
-		{% endfor %}
-		
+		{% include "home/blocs/preview-thematic-links.html.twig" %}
 	</div>
-
-	<ul>
-		<li><a href="{{ path('home_autoformation') }}">Auto-formation</a></li>
-		<li><a href="{{ path('home_cinema') }}">Cinema</a></li>
-		<li><a href="{{ path('home_presse') }}">Presse</a></li>
-	</ul>
 
 	<div><a href="{{ path('search') }}">Recherche</a></div>
 

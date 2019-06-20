@@ -6,6 +6,8 @@ exclude_patterns:
     - .env*
     - .package-ignore
     - .git*
+    - public/index*
+    - config/bootstrap*
 
 global_exclude_dirs:
     - .deploy

@@ -5,9 +5,9 @@
 {% block body %}
 
 	<div>
-		{# Page résultat de recherche #}
-
-		<p>Essayez avec l'orthographe <a href="##">*Insert recherche corrigé*</a></p>
+		<div>
+			{% include "search/blocs/search-corrector.html.twig" %}
+		</div>
 
 		<div>
 			{% include "search/blocs/related-topics.html.twig" %}
@@ -17,154 +17,69 @@
 			{% include "search/blocs/relaunch-search.html.twig" %}
 		</div>
 	</div>
-	
+
 	<div>
 		<div>
-			<p>Recherche avancée :</p>
-			<ul>
-				<li><a href="##" lang="fr">Titre <i>*insert icone croix*</i></a></li>
-				<li><a href="##" lang="fr">Français et homme <i>*insert icone croix*</i></a></li>
-				<li><a href="##" lang="fr">Littérature <i>*insert icone croix*</i></a></li>
-			</ul>
-
+			{% include "search/blocs/filters-search.html.twig" %}
 		</div>
 
 		<div>
-			<button type="button" data-target="modal-search-advanced">Affiner</button>
-			{# Include modale des filtres - Affiner #}
-			{% include "search/advanced-search.html.twig" %}
+			<button type="button" data-target="modal-refine-search">Affiner<span class="sr-only"> la recherche</span></button>
+			<!-- Include modal des filtres - Affiner -->
+			{% include "search/modal/refine-search.html.twig" %}
 		</div>
 	</div>
 
 	<div>
-		{% include 'search/blocs/author.html.twig' with {'author': objSearch.mainAuthor} %}
-	</div>
-
-	<a href="##">Voir les notices d'autorité <span>(4)</span></a>
-	<div class="hidden">
-		{% for author in objSearch.otherAuthors %}
-			{% include 'search/blocs/author.html.twig' with {'author': author} %}
-		{% endfor %}
+		{% include "search/blocs/results/preview-authority.html.twig" %}
 	</div>
 
 	<div>
 		<div>
 
 			<div>
-				<input type="checkbox">
-				<h3>Documents en rayon : <span>55</span></h3>
-				<a href="#">Voir tout <span class="sr-only">les documents en rayons</span></a>
-				<div class="dropdown">
-					<button type="button" id="dropdown-trie-rayon" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-					Trier par <i aria-hidden="true">*insert caret*</i>
-					</button>
-					<div class="dropdown-menu" aria-labelledby="dropdown-trie-rayon">
-						<a href="#" class="dropdown-item">Ordre ASC</a>
-						<a href="#" class="dropdown-item">Ordre DESC</a>
-					</div>
-				</div>
+				{# Include header - Documents en rayon #}
+				{% include "search/blocs/results/header-docs-rayon.html.twig" %}
 			</div>
 
 			<div>
                 {% for index, notice in objSearch.notices %}
+					{# Include résultat - Documents en rayon #}
+					{% include "search/blocs/results/docs-rayon.html.twig" %}
                     {% include('search/blocs/notice.html.twig') %}
                 {% endfor %}
-
-				{% for i in 1..6 %}
-				<div>
-					<p><input type="checkbox"> {{ i }}</p>
-					<div>
-						<div>
-							<img src="https://via.placeholder.com/110x110" />
-						</div>
-						<div>
-							<p><i>*insert icone type*</i> Bel Ami</p>
-							<p>par Guy de Maupassant (1850 - 1893)</p>
-							<p>01/02/2016 - résumé</p>
-							<p>Résultat de (Base de donnée)</p>
-							<p><i>*insert icone map*</i> Disponible</p>
-							<p>Niv.3 - Langue et litt. - Litt. francophone - 7.156 MAUP</p>
-						</div>
-					</div>
-				</div>
-				{% endfor %}
 			</div>
 		</div>
 
 		<div>
 
 			<div>
-				<input type="checkbox">
-				<h3>Documents en ligne : <span>888</span></h3>
-				<a href="#">Voir tout <span class="sr-only">les documents en ligne</span></a>
-				<div class="dropdown">
-					<button type="button" id="dropdown-trie-rayon" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-					Trier par <i aria-hidden="true">*insert caret*</i>
-					</button>
-					<div class="dropdown-menu" aria-labelledby="dropdown-trie-rayon">
-						<a href="#" class="dropdown-item">Ordre ASC</a>
-						<a href="#" class="dropdown-item">Ordre DESC</a>
-					</div>
-				</div>
+				{# Include header - Documents en ligne #}
+				{% include "search/blocs/results/header-docs-online.html.twig" %}
 			</div>
 
 			<div>
-				{% for index, notice in objSearch.onlineNotices %}
+                {% for index, notice in objSearch.onlineNotices %}
+					{# Include résultat - Documents en ligne #}
+					{% include "search/blocs/results/docs-online.html.twig" %}
                     {% include('search/blocs/notice-online.html.twig') %}
                 {% endfor %}
-
-				{% for i in 1..6 %}
-				<div>
-					<p><input type="checkbox"> {{ i }}</p>
-					<div>
-						<div>
-							<img src="https://via.placeholder.com/110x110" />
-						</div>
-						<div>
-							<p><i>*insert icone type*</i> Boule de suif</p>
-							<p>par Guy de Maupassant (1850 - 1893)</p>
-							<p>01/02/2016 - résumé</p>
-							<p>Résultat de (Base de donnée)</p>
-							<p><a href="#">Accéder à un nomDuDocument</a></p>
-						</div>
-					</div>
-				</div>
-				{% endfor %}
 			</div>
 		</div>
 	</div>
 
 	<div>
-		<div>
-			<nav aria-label="Pagination">
-				<ul>
-					<li>
-						<a href="#" aria-label="Première page"><<</a>
-					</li>
-					<li>
-						<a href="#" aria-label="Page précédente"><</a>
-					</li>
-					<li>
-						<input type="text"> sur 55 <span class="sr-only">pages</span>
-					</li>
-					<li>
-						<a href="#" aria-label="Page Suivante">></a>
-					</li>
-					<li>
-						<a href="#" aria-label="Dernière page">>></a>
-					</li>
-				</ul>
-			</nav>
-		</div>
-		<div>
-			
-		</div>
+		{# Include Pagination + Nombre item #}
+		{% include "search/blocs/footer-search.html.twig" %}
 	</div>
 
-
+	{#
 	<ul>
 		<li><a href="{{ path('record_bibliographic') }}">notice bibliographique</a></li>
 		<li><a href="{{ path('record_authority') }}">notice autorite</a></li>
 	</ul>
-	
+	#}
+
+	<!-- Include modal formulaire pour être prevenu du retour du document en rayon -->
+	{% include "search/modal/notified-form.html.twig" %}
 {% endblock %}

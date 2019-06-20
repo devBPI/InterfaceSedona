@@ -38,7 +38,7 @@ class SearchController extends AbstractController
     }
 
     /**
-     * @Route("/recherche", name="search")
+     * @Route("/recherche", methods={"GET","HEAD"}, name="search")
      * @param Request $request
      * @return \Symfony\Component\HttpFoundation\Response
      */
@@ -65,17 +65,17 @@ class SearchController extends AbstractController
     }
 
     /**
-     * @Route("/recherche-avancer", name="search_advanced")
+     * @Route("/recherche-avance", methods={"GET","HEAD"}, name="search_advanced")
      * @param Request $request
      * @return \Symfony\Component\HttpFoundation\Response
      */
     public function advancedSearchAction(Request $request)
     {
-        return $this->render('search/advanced-search.html.twig', []);
+        return $this->render('search/modal/advanced-search.html.twig', []);
     }
 
     /**
-     * @Route("/autocompletion", name="search_autocompletion", options={"expose"=true})
+     * @Route("/autocompletion", methods={"GET","HEAD"}, name="search_autocompletion")
      * @param Request $request
      * @return \Symfony\Component\HttpFoundation\Response
      */

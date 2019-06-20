@@ -29,8 +29,8 @@ class HomeController extends AbstractController
         $this->carouselProvider = $carouselProvider;
     }
     /**
-     * @Route("", name="home")
-     * @Route("/", name="home2")
+     * @Route("", methods={"GET","HEAD"}, name="home")
+     * @Route("/", methods={"GET","HEAD"}, name="home2")
      */
     public function indexAction(): Response
     {
@@ -40,9 +40,9 @@ class HomeController extends AbstractController
     }
 
     /**
-     * @Route("/accueil/autoformation", name="home_autoformation")
-     * @Route("/accueil/presse", name="home_presse")
-     * @Route("/accueil/cinema", name="home_cinema")
+     * @Route("/accueil/autoformation", methods={"GET","HEAD"}, name="home_autoformation")
+     * @Route("/accueil/presse", methods={"GET","HEAD"}, name="home_presse")
+     * @Route("/accueil/cinema", methods={"GET","HEAD"}, name="home_cinema")
      *
      * @param Request $request
      * @return Response
