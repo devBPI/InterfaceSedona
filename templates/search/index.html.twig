@@ -46,7 +46,6 @@
                 {% for index, notice in objSearch.notices %}
 					{# Include résultat - Documents en rayon #}
 					{% include "search/blocs/results/docs-rayon.html.twig" %}
-                    {% include('search/blocs/notice.html.twig') %}
                 {% endfor %}
 			</div>
 		</div>
@@ -62,7 +61,6 @@
                 {% for index, notice in objSearch.onlineNotices %}
 					{# Include résultat - Documents en ligne #}
 					{% include "search/blocs/results/docs-online.html.twig" %}
-                    {% include('search/blocs/notice-online.html.twig') %}
                 {% endfor %}
 			</div>
 		</div>
