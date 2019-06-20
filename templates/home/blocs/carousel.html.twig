@@ -2,26 +2,29 @@
 
 <div class="carousel flickity-enabled is-draggable" tabindex="0" aria-label="Carousel d'actualités">
 	<div class="flickity-viewport">
-		<div class="flickity-slider">
-			<div class="carousel-cell is-selected">
-				<a href="#" aria-label="Actualité 1 sur 24, *Insert titre* *Insert auteur*" lang="fr">
-					<div>
-						<img src="https://via.placeholder.com/150x200" alt="">
-					</div>
-					<p>*Insert Titre*</p>
-					<p>*Insert auteur*</p>
-				</a>
-			</div>
-			<div class="carousel-cell">
-				<a href="#" aria-label="Actualité 2 sur 24, *Insert titre* *Insert auteur*" lang="fr">
-					<div>
-						<img src="https://via.placeholder.com/150x200" alt="">
-					</div>
-					<p>*Insert Titre*</p>
-					<p>*Insert auteur*</p>
-				</a>
-			</div>
-		</div>
+		{% for item in carousel.elements %}
+            {{ dump(item) }}
+            <div class="flickity-slider">
+                <div class="carousel-cell is-selected">
+                    <a href="#" aria-label="Actualité 1 sur 24, *Insert titre* *Insert auteur*" lang="fr">
+                        <div>
+                            <img src="https://via.placeholder.com/150x200" alt="">
+                        </div>
+                        <p>*Insert Titre*</p>
+                        <p>*Insert auteur*</p>
+                    </a>
+                </div>
+                <div class="carousel-cell">
+                    <a href="#" aria-label="Actualité 2 sur 24, *Insert titre* *Insert auteur*" lang="fr">
+                        <div>
+                            <img src="https://via.placeholder.com/150x200" alt="">
+                        </div>
+                        <p>*Insert Titre*</p>
+                        <p>*Insert auteur*</p>
+                    </a>
+                </div>
+            </div>
+        {% endfor %}
 	</div>
 	<!-- Customisation des boutons : DOM supposé. 
 	Informations : pagination, auto-play, défilement infini, limite d'éléments à 24 -->

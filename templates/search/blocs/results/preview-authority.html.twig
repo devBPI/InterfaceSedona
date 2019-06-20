@@ -1,6 +1,7 @@
 <!-- Début - Bloc 11 Aperçu d'une autorité -->
 
 <div>
+    {% include 'search/blocs/author.html.twig' with {'author': objSearch.mainAuthor} %}
 	<div>
 		<img src="https://via.placeholder.com/100x90" alt="" />
 	</div>
@@ -20,6 +21,9 @@
 	<button type="button" data-toggle="collapse" data-target="#related-notices" aria-expanded="false" aria-controls="related-notices">Voir plus</button>
 	{# Include collapse notices d'autorité - Affiche les 5 notices d'autorité les plus pertinentes #}
 	{% include "search/blocs/related-notices.html.twig" %}
+    {% for author in objSearch.otherAuthors %}
+        {% include 'search/blocs/author.html.twig' with {'author': author} %}
+    {% endfor %}
 </div>
 
 <!-- Fin - Bloc 11 Aperçu d'une autorité -->
