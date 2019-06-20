@@ -5,6 +5,12 @@ header:
       es: Espagnol version
       fr: Version française
 
+page:
+  home:
+    page_title: Accueil
+    title: Accueil - Catalogue de la BPI
+    thematic: Découvrir les parcours
+
 bloc:
   carousel:
     title: Carousel d'actualités
