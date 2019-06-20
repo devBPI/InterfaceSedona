@@ -43,14 +43,14 @@ services:
       - .:/app
     working_dir: /app
     depends_on:
-    - app
+      - app
     command: ["yarn", "dev-server"]
     environment:
       PATH: "./node_modules/.bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
     labels:
       traefik.enable: false
     networks:
-    - default
+      - default
 
   db:
     image: registry.sedona.fr/images/postgres:9.6
