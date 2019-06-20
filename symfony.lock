@@ -231,6 +231,9 @@
             "config/bootstrap.php"
         ]
     },
+    "symfony/contracts": {
+        "version": "v1.1.5"
+    },
     "symfony/css-selector": {
         "version": "v3.4.27"
     },
