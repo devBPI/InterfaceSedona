@@ -1,0 +1,22 @@
+default:
+    suites:
+        default:
+            contexts:
+                - FeatureContext:
+                    kernel: '@kernel'
+
+    extensions:
+        Behat\Symfony2Extension:
+            kernel:
+                bootstrap: features/bootstrap/bootstrap.php
+                class: App\Kernel
+                env: test
+        Behat\MinkExtension:
+            sessions:
+                browserkit_driver:
+                    symfony2: ~
+                javascript_driver:
+                     selenium2: ~
+            default_session: browserkit_driver
+            javascript_session: javascript_driver
+            browser_name: chrome

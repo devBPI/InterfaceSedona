@@ -1,28 +1,29 @@
-<form action="{{ path('search') }}" role="search" method="post">
-    <div class="sr-only" id="autocompletion-infos" tabindex="0">*Insert texte explicatif pour l'auto-completion*</div>
-    <div role="combobox" aria-expanded="false" aria-owns="autocompletion-list" aria-haspopup="listbox"
-         id="search-banner">
-        <div class="input-group">
-            <label for="search-input" id="search-label">
-                Rechercher
-            </label>
-            <input type="text" name="search" aria-autocomplete="list" aria-controls="autocompletion-list" data-toggle="autocomplete"
-                   id="search-input" placeholder="Rechercher" {% if objSearch is defined and objSearch.query %}value="{{ objSearch.query }}"{% endif %}>
-            <div class="input-group-append">
-                <button type="button">
-                    Tout les mots <i aria-hidden="true">*insert icone caret*</i>
-                </button>
-                <button type="button">
-                    <i aria-hidden="true">*insert icone loupe*</i>
-                    <span src="sr-only">Valider la recherche</span>
-                </button>
-            </div>
-        </div>
-    </div>
-    <ul aria-labelledby="search-label" aria-describedby="autocompletion-infos" role="listbox" id="autocompletion-list"
-        class="listbox">
-        <span class="sr-only" aria-live="assertive" tabindex="0">*Insert nombre de résultats* options affichées</span>
-        {% include "search/autocompletion.html.twig" %}
-    </ul>
-
-</form> 
+<form action="{{ path('search') }}" method="post" role="search" id="form-search">
+	<div class="sr-only" id="autocompletion-infos">*Insert texte explicatif pour l'auto-completion*</div>
+	<div role="combobox" aria-expanded="false" aria-owns="autocompletion-list" aria-haspopup="listbox" id="search-banner">
+		<div class="input-group">
+			<label for="search-input" id="search-label">Rechercher</label>
+			<input type="text" aria-autocomplete="list" aria-controls="autocompletion-list" id="search-input" placeholder="Rechercher" aria-label="Saisir un mot clé"
+                   data-toggle="autocomplete" name="search" {% if objSearch is defined and objSearch.query %}value="{{ objSearch.query }}"{% endif %} />
+			<div class="input-group-append">
+				<button type="button">
+					Tout les mots <img src="https://via.placeholder.com/15x15" alt="" class="icone-caret"/>
+				</button>
+				<button type="button">
+					<img src="https://via.placeholder.com/15x15" alt="" class="icone-loupe"/>
+					<span class="sr-only">Valider la recherche</span>
+				</button>
+				<button type="button" data-target="modal-search-advanced" aria-label="Rercherche Avancée - ouverture formulaire">Recherche Avancée</button>
+			</div>
+		</div>
+	</div>
+	<div aria-labelledby="search-label" aria-describedby="autocompletion-infos" id="autocompletion-list">
+		<p class="sr-only" aria-live="assertive">*Insert nombre de résultats* options affichées</p>
+		<ul role="listbox" class="listbox">
+			{% include "search/autocompletion.html.twig" %}
+		</ul>
+	</div>
+</form>
+<!-- Début - Modal Recherche Avancée -->
+{% include "search/modal/advanced-search.html.twig" %}
+<!-- Fin - Modal Recherche Avancée -->

@@ -3,130 +3,31 @@
 {% block title %}Ma sélection{% endblock %}
 
 {% block body %}
-	<ul>
-		<li><a href="{{ path('user_list_edit') }}">Editer une liste</a></li>
-		<li><a href="{{ path('user_list_remove') }}">Supprimer une liste</a></li>
-	</ul>
 
 	<div>
 		<nav>
 			<ul>
 				<li><a href="#" title="Lien actif">Données personnelles</a></li>
-				<li><a href="#" target="_blank" title="Nouvelle fenêtre">La Bpi</a></li>
-				<li><a href="#" target="_blank" title="Nouvelle fenêtre">Catalogue</a></li>
-				<li><a href="#" target="_blank" title="Nouvelle fenêtre">Balises</a></li>
-				<li><a href="#" target="_blank" title="Nouvelle fenêtre">Professionnels</a></li>
+				<li><a href="#" target="_blank" title="La BPI - Nouvelle fenêtre">La Bpi</a></li>
+				<li><a href="#" target="_blank" title="Catalogue - Nouvelle fenêtre">Catalogue</a></li>
+				<li><a href="#" target="_blank" title="Balises - Nouvelle fenêtre">Balises</a></li>
+				<li><a href="#" target="_blank" title="Professionnels - Nouvelle fenêtre">Professionnels</a></li>
 			</ul>
 		</nav>
 	</div>
 
-	<h1><i>*Insert icone coeur*</i> Ma sélection</h1>
+	<h1><img src="https://via.placeholder.com/15x15" alt="" class="icone-coeur"/> Ma sélection</h1>
 
-	<section>
+	<div>
+		{% include "user/blocs/banner-tools.html.twig" %}
+	</div>
 
-		<div>
-			<div>
-				<div class="form-check">
-					<input class="form-check-input" type="checkbox" value="" id="account-tout-selectionner">
-					<label class="form-check-label" for="account-tout-selectionner">Tout sélectionner</label>
-				</div>
-				<a href="#">Annuler la sélection</a>
+	<div>
+		{% include "user/blocs/list-user.html.twig" %}
+	</div>
 
-				<div>
-					<p>Listes sélectionnées <span>(123)</span></p>
-					<p>Documents sélectionnés <span>(123)</span></p>
-				</div>
-
-				<div>
-					<a href="#">Ajouter à <i aria-hidden="true">*insert icone caret*</i></a>
-					<a href="#">Monter <i aria-hidden="true">*insert icone caret*</i></a>
-					<a href="#">Descendre <i aria-hidden="true">*insert icone caret*</i></a>
-					<a href="#">Supprimer <i aria-hidden="true">*insert icone croix*</i></a>
-				</div>
-			</div>
-		</div>
-
-
-		<div>
-			{% for i in 1..3 %}
-
-				<div>
-					<p id="liste-{{ i }}"><input type="checkbox"> *Insert nom de la liste*</p>
-					<a href="{{ path('user_list_edit') }}"><span class="sr-only sr-only-focusable">Changer le nom de la liste</span><i aria-hidden="true">*Insert icone pen*</i></a>
-				</div>
-
-				<table class="table" role="table" cellspacing="0" aria-label="*Insert nom de la liste*" aria-describedby="liste-{{ i }}">
-					<thead>
-						<tr>
-							<th></th>
-							<th scope="col" tabindex="0" role="button" aria-sort="ascending/descending/none" aria-label="Titre : activer pour trier par ordre ascendant/descendant">Titre <i aria-hidden="true">*Insert icone carets*</i></th>
-							<th scope="col" tabindex="0" role="button" aria-sort="ascending/descending/none" aria-label="Auteur: activer pour trier par ordre ascendant/descendant">Auteur <i aria-hidden="true">*Insert icone carets*</i></th>
-							<th scope="col" tabindex="0" role="button" aria-sort="ascending/descending/none" aria-label="Type : activer pour trier par ordre ascendant/descendant">Type <i aria-hidden="true">*Insert icone carets*</i></th>
-							<th scope="col" tabindex="0" role="button" aria-sort="ascending/descending/none" aria-label="Ajoutée le : activer pour trier par ordre ascendant/descendant">Ajoutée le <i aria-hidden="true">*Insert icone carets*</i></th>
-						</tr>
-					</thead>
-					<tbody>
-						{% for i in 1..3 %}
-							<tr>
-								<td><input type="checkbox"></td>
-								<td>*Insert title*</td>
-								<td>*Insert auteur*</td>
-								<td>*Insert icone type*</td>
-								<td>*Insert date*</td>
-							</tr>
-						{% endfor %}
-					</tbody>
-				</table>
-
-			{% endfor %}
-		</div>
-
-		<div>
-			<button type="button"><i aria-hidden="true">*Insert icone +*</i> Créer une nouvelle liste</button>
-		</div>
-
-	</section>
-
-	<section>
-		<h2 id="search-label"><i aria-hidden="true">*Insert icone horloge*</i> Mon historique</h2>
-
-		<div>
-			<div>
-				<div class="form-check">
-					<input class="form-check-input" type="checkbox" value="" id="historique-tout-selectionner">
-					<label class="form-check-label" for="historique-tout-selectionner">Tout sélectionner</label>
-				</div>
-				<a href="##">Annuler la sélection</a>
-			</div>
-			<div>
-				<a href="##">Supprimer <i aria-hidden="hidden">*Insert icone croix*</i></a>
-			</div>
-		</div>
-
-		<div>
-			<table class="table" cellspacing="0" role="table" aria-label="nom-de-la-liste" aria-describedby="search-label">
-				<thead>
-					<tr>
-						<th></th>
-						<th scope="col" tabindex="0" role="button" aria-sort="ascending/descending/none" aria-label="Nom de la recherche : activer pour trier par ordre ascendant/descendant">Nom de la recherche <i aria-hidden="true">*Insert icone carets*</i></th>
-						<th scope="col" tabindex="0" role="button" aria-sort="ascending/descending/none" aria-label="Recherché le : activer pour trier par ordre ascendant/descendant">Recherché le <i aria-hidden="true">*Insert icone carets*</i></th>
-						<th></th>
-					</tr>
-				</thead>
-				<tbody>
-					{% for i in 1..5 %}
-						<tr>
-							<td><input type="checkbox"></td>
-							<td>*Insert informations sur la recherche*</td>
-							<td>*Insert date JJ/MM/AAAA à HH:MM*</td>
-							<td>
-								<a href="##">*<i aria-hidden="true">Insert icone loupe*</i><span class="sr-only">Relancer la recherche</span></a>
-							</td>
-						</tr>
-					{% endfor %}
-				</tbody>
-			</table>
-		</div>
-	</section>
+	<div>
+		{% include "user/blocs/historic-search.html.twig" %}
+	</div>
 	
 {% endblock %}

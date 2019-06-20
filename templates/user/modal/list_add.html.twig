@@ -1,13 +1,16 @@
-<div role="dialog" tabindex="-1" aria-modal="true" aria-labelledby="modal-list-edit">
-	<div class="modal-dialog" role="document">
+<div role="dialog" aria-modal="true" aria-labelledby="modal-list-add">
+	<div class="modal-dialog">
 		<div class="modal-content">
-			<form role="form">
+			<form>
 				<div class="modal-header">
-					<h4 id="modal-list-edit">Modification de la liste</h4>
-					<button type="button" aria-label="Fermer cette fenêtre"><i>*insert icone croix*</i></button>
+					<h1 id="modal-list-add">Création d'une liste</h1>
+					<button type="button" aria-label="Fermer cette fenêtre"><span aria-hidden="true">X</span></button>
 				</div>
-			
+
 				<div class="modal-body">
+
+					<small>* champs obligatoires</small>
+					
 					<div class="form-group">
 						<label for="send-expeditor">Titre <span>*</span></label>
 						<input type="text" class="form-control" id="send-expeditor">
@@ -16,13 +19,11 @@
 					<div>
 						<i>*Insert captcha*</i>	
 					</div>
-
-					<small>* champs obligatoires</small>
 				</div>
 
 				<div class="modal-footer">
 					<button type="button" aria-label="Fermer cette fenêtre">Annuler</button>
-					<button type="submit">Valider<span class="sr-only"> la modification de la liste</span></button>
+					<button type="submit">Valider<span class="sr-only"> la création de la liste</span></button>
 				</div>
 			</form>
 		</div>

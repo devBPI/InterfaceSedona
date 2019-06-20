@@ -1,70 +1,73 @@
+<!-- Début - Barre utilitaires -->
 <div class="toolbar">
 	<ul>
 		{% if toolbar is defined and toolbar == 'document' %}
 			<li>
-				<a href="{{ path('user_list_add') }}" title="Ajouter à ma sélection - ouverture formulaire">
-					<i aria-hidden="true">*Insert icone coeur*</i>
-					<span>Ma sélection</span>
+				<a href="{{ path('user_list_add') }}" role="button">
+					<img src="https://via.placeholder.com/15x15" alt="" class="icone-coeur"/>
+					<span><span class="sr-only">Ajouter à </span>Ma sélection</span>
 				</a>
 			</li>
 			<li>
-				<a href="{{ path('record_export') }}" title="Exporter la page - ouverture formulaire">
-					<i aria-hidden="true">*Insert icone fichier*</i>
-					<span>Exporter</span>
+				<a href="{{ path('record_export') }}" role="button">
+					<img src="https://via.placeholder.com/15x15" alt="" class="icone-fichier"/>
+					<span>Exporter<span class="sr-only"> la sélection</span></span>
 				</a>
 			</li>
 		{% else %}
 			<li>
 				<p>
-					<i aria-hidden="true">*Insert icone coeur*</i>
+					<img src="https://via.placeholder.com/15x15" alt="" class="icone-coeur"/>
 					<span>Ma sélection</span>
 				</p>
 			</li>
 			<li>
 				<p>
-					<i aria-hidden="true">*Insert icone fichier*</i>
+					<img src="https://via.placeholder.com/15x15" alt="" class="icone-fichier"/>
 					<span>Exporter</span>
 				</p>
 			</li>
 		{% endif %}
 		{% if toolbar is defined %}
 			<li>
-				<a href="{{ path('record_print') }}" title="Imprimer - ouverture formulaire">
-					<i aria-hidden="true">*Insert icone imprimante*</i>
+				<a href="{{ path('record_print') }}" role="button">
+					<img src="https://via.placeholder.com/15x15" alt="" class="icone-imprimante"/>
 					<span>Imprimer</span>
 				</a>
 			</li>
 		{% else %}
 			<li>
 				<p>
-					<i aria-hidden="true">*Insert icone imprimante*</i>
+					<img src="https://via.placeholder.com/15x15" alt="" class="icone-imprimante"/>
 					<span>Imprimer</span>
 				</p>
 			</li>
 		{% endif %}
 		<li>
-			<a href="{{ path('record_share') }}" title="Partager - ouverture formulaire">
-				<i aria-hidden="true">*Insert icone partage*</i>
+			<a href="{{ path('record_share') }}" role="button">
+				<img src="https://via.placeholder.com/15x15" alt="" class="icone-partage"/>
 				<span>Partager</span>
 			</a>
 		</li>
 		<li>
-			<a href="{{ path('other_service') }}" title="Aide - nouvelle fenêtre">
-				<i aria-hidden="true">*Insert icone interrogation*</i>
+			<a href="{{ path('other_service') }}" target="_blank" title="Aide - nouvelle fenêtre">
+				<img src="https://via.placeholder.com/15x15" alt="" class="icone-interrogation"/>
 				<span>Aide</span>
 			</a>
 		</li>
 		<li>
-			<a href="{{ path('user_suggestion') }}" title="Suggestion d'achats - ouverture formulaire">
-				<i aria-hidden="true">*Insert icone livre*</i>
-				<span>Suggestion</span>
+			<a href="{{ path('user_suggestion') }}" role="button">
+				<img src="https://via.placeholder.com/15x15" alt="" class="icone-livre"/>
+				<span>Suggestion d'achats</span>
 			</a>
 		</li>
 		<li>
-			<a href="##" title="Signaler une erreur - ouverture formulaire">
-				<i aria-hidden="true">*Insert icone enveloppe*</i>
+			{# Path to user/modal/report-error.html.twig #}
+			<a href="#" role="button">
+				<img src="https://via.placeholder.com/15x15" alt="" class="icone-enveloppe"/>
 				<span>Signaler une erreur</span>
 			</a>
 		</li>
 	</ul>
 </div>
+<!-- Fin - Barre utilitaires -->

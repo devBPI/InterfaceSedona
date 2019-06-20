@@ -32,6 +32,10 @@
 						{% include "header/navbar-secondaire.html.twig" %}
 					</div>
 
+					<div id="menu-user">
+						{% include "header/navbar-user.html.twig" %}
+					</div>
+
 					<div id="mon-compte">
 						{% include "header/account.html.twig" %}
 					</div>
@@ -39,12 +43,12 @@
 
 				<div>
 					<div>
-						<a href="{{ path('home') }}" title="Aller à l'accueil du site">
-							<img src="{{ asset('images/bpi-logo.png') }}" alt="Logo de la Bibliothèque Publique d'Information" />
+						<a href="{{ path('home') }}" title="Aller à l'accueil du catalogue Bibliothèque Publique d'Information Centre Pompidou">
+							<img src="{{ asset('images/bpi-logo.png') }}" alt="Bibliothèque Publique d'Information Centre Pompidou" />
 						</a>
 					</div>
 
-					<button type="button" data-toggle="collapse" data-target="#navbar-principale" aria-controls="navbar-principale" title="Menu principal" aria-expanded="false" class="navbar-toggler">*Insert icone menu burger*</button>
+					<button type="button" data-toggle="collapse" data-target="#navbar-principale" aria-controls="navbar-principale" title="Consulter le menu principal" aria-expanded="false" class="navbar-toggler">*Insert icone menu burger*</button>
 				</div>
 			
 				<div id="bloc-menu">
@@ -79,24 +83,26 @@
 					</div>
 
 					<div>
-						<div>
-							<a href="#">
-								<img src="https://via.placeholder.com/140x60" />
-								<span>Le mensuel de la Bpi</span>
-							</a>
-						</div>
-						<div>
-							<a href="#">
-								<img src="https://via.placeholder.com/140x60" />
-								<span>L'actualité de la Bpi</span>
-							</a>
-						</div>
-						<div>
-							<a href="#">
-								<img src="https://via.placeholder.com/140x60" />
-								<span>Le magazine de la Bpi</span>
-							</a>
-						</div>
+						<ul>
+							<li>
+								<a href="#">
+									<img src="https://via.placeholder.com/140x60" alt="" />
+									<span>Le mensuel de la Bpi</span>
+								</a>
+							</li>
+							<li>
+								<a href="#">
+									<img src="https://via.placeholder.com/140x60" alt="" />
+									<span>L'actualité de la Bpi</span>
+								</a>
+							</li>
+							<li>
+								<a href="#">
+									<img src="https://via.placeholder.com/140x60" alt="" />
+									<span>Le magazine de la Bpi</span>
+								</a>
+							</li>
+						</ul>
 					</div>
 
 				</div>
@@ -113,7 +119,7 @@
 
 						<div>
 							<a href="https://www.eurekoi.org/" title="Aller sur le site d'Eurèkoi - nouvelle fenêtre" target="_blank">
-								<img src="https://via.placeholder.com/50x50" alt="Logo d'Eurèkoi" />
+								<img src="https://via.placeholder.com/50x50" alt="Eurèkoi" />
 							</a>
 						</div>
 

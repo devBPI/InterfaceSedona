@@ -3,47 +3,14 @@
 {% block title %}Accueil{% endblock %}
 
 {% block body %}
-	<h1 class="sr-only">Accueil - Catalogue de la BPI</h1>
+	<h1>Accueil - Catalogue de la BPI</h1>
 
-	<div>*Insert carousel*</div>
-	{% for item in carousel.elements %}
-		<pre>
-			{{ dump(item) }}
-		</pre>
-	{% endfor %}
-
+	{% include "home/blocs/carousel.html.twig" %}
+	
 	<h2>Découvrir les parcours</h2>
 	
 	<div>
-		<div>
-			<div>
-				<img src="https://via.placeholder.com/310x265" />
-				<h3><a href="{{ path('home_autoformation') }}">Autoformation</a></h3>
-				<p lang="fr">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rerum ipsa reiciendis reprehenderit enim fugiat, quod repudiandae maiores, quibusdam fuga at sapiente dolores repellat deserunt veritatis velit modi pariatur nulla deleniti.</p>
-			</div>
-		</div>
-
-		<div>
-			<div>
-				<img src="https://via.placeholder.com/310x265" />
-				<h3><a href="{{ path('home_cinema') }}">Cinéma</a></h3>
-				<p lang="fr">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rerum ipsa reiciendis reprehenderit enim fugiat, quod repudiandae maiores, quibusdam fuga at sapiente dolores repellat deserunt veritatis velit modi pariatur nulla deleniti.</p>
-			</div>
-		</div>
-
-		<div>
-			<div>
-				<img src="https://via.placeholder.com/310x265" />
-				<h3><a href="{{ path('home_presse') }}">Presse</a></h3>
-				<p lang="fr">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rerum ipsa reiciendis reprehenderit enim fugiat, quod repudiandae maiores, quibusdam fuga at sapiente dolores repellat deserunt veritatis velit modi pariatur nulla deleniti.</p>
-			</div>
-		</div>
+		{% include "home/blocs/preview-thematic.html.twig" %}
 	</div>
-
-	{#
-	<div>
-		<a href="{{ path('search') }}">Recherche</a>
-	</div>
-	#}
 
 {% endblock %}
