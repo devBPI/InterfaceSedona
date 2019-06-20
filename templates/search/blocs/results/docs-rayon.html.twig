@@ -14,19 +14,22 @@
 			<p lang="fr">par *Insert auteur* (*insert date début-fin*)</p>
 			<p lang="fr">01/02/2016 - résumé</p>
 			<p lang="fr">Résultat de (*Insert Base de donnée*)</p>
-			<!-- Document disponible -->
-			<div lang="fr">
-				<img src="https://via.placeholder.com/15x15" alt="" class="icone-map"/><p><span>Disponible</span> 7.156 MAUP</p>
-			</div>
-			<p lang="fr">Niveau 3</p>
-			<!-- Document indisponible -->
-			<div lang="fr">
-				<div>
-					<img src="https://via.placeholder.com/15x15" alt="" class="icone-map"/>
-					<p>Indisponible</p>
+
+			{% block availability %}
+				<!-- Document disponible -->
+				<div lang="fr">
+					<img src="https://via.placeholder.com/15x15" alt="" class="icone-map"/><p><span>Disponible</span> 7.156 MAUP</p>
 				</div>
-				<button type="button" data-toggle="modal" data-target="#modal-notified"><img src="https://via.placeholder.com/15x15" alt="" class="icone-enveloppe"/> <span class="sr-only">Document indisponible, être prévenu de son retour en rayon - ouverture formulaire</span></button>
-			</div>
+				<p lang="fr">Niveau 3</p>
+				<!-- Document indisponible -->
+				<div lang="fr">
+					<div>
+						<img src="https://via.placeholder.com/15x15" alt="" class="icone-map"/>
+						<p>Indisponible</p>
+					</div>
+					<button type="button" data-toggle="modal" data-target="#modal-notified"><img src="https://via.placeholder.com/15x15" alt="" class="icone-enveloppe"/> <span class="sr-only">Document indisponible, être prévenu de son retour en rayon - ouverture formulaire</span></button>
+				</div>
+			{% endblock %}
 		</div>
 	</div>
 </div>
