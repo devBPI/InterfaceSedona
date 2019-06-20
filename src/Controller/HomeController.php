@@ -28,6 +28,7 @@ class HomeController extends AbstractController
     {
         $this->carouselProvider = $carouselProvider;
     }
+
     /**
      * @Route("", methods={"GET","HEAD"}, name="home")
      * @Route("/", methods={"GET","HEAD"}, name="home2")
@@ -40,19 +41,16 @@ class HomeController extends AbstractController
     }
 
     /**
-     * @Route("/accueil/autoformation", methods={"GET","HEAD"}, name="home_autoformation")
-     * @Route("/accueil/presse", methods={"GET","HEAD"}, name="home_presse")
-     * @Route("/accueil/cinema", methods={"GET","HEAD"}, name="home_cinema")
+     * @Route("/accueil/{thematic}", methods={"GET","HEAD"}, name="home_thematic", requirements={"theme"="autoformation|presse|cinema"})
      *
      * @param Request $request
      * @return Response
      */
-    public function thematicAction(Request $request): Response
+    public function thematicAction(Request $request, $thematic): Response
     {
-        $theme = substr($request->getPathInfo(), strrpos($request->getPathInfo(), '/') + 1);
         return $this->render('home/thematic.html.twig', [
-            'title' => $theme,
-            'carousel' => $this->carouselProvider->getListByThematic($theme)
+            'title'     => $thematic,
+            'carousel'  => $this->carouselProvider->getListByThematic($thematic)
         ]);
     }
 }

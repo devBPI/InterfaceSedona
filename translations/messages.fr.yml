@@ -4,3 +4,16 @@ header:
       en: English version
       es: Espagnol version
       fr: Version française
+
+page:
+  home:
+    page_title: Accueil
+    title: Accueil - Catalogue de la BPI
+    thematic: Découvrir les parcours
+
+bloc:
+  carousel:
+    title: Carousel d'actualités
+    item_desciption: Actualité %index% sur %nb%, %title% %auteur%
+    page: Page %current% sur %nb%
+    btn_pause: Mettre en pause le carousel

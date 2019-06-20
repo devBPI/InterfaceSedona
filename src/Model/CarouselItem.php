@@ -67,7 +67,7 @@ class CarouselItem
     /**
      * @return string
      */
-    public function getPhotoCredit(): string
+    public function getPhotoCredit(): ?string
     {
         return $this->photoCredit;
     }
@@ -75,7 +75,7 @@ class CarouselItem
     /**
      * @return string
      */
-    public function getLink(): string
+    public function getLink(): ?string
     {
         return $this->link;
     }
