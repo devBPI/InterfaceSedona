@@ -35,8 +35,6 @@ class HomeController extends AbstractController
      */
     public function indexAction(): Response
     {
-        dump($this->carouselProvider->getHomeList());
-
         return $this->render('home/default.html.twig', [
             'carousel' => $this->carouselProvider->getHomeList()
         ]);
