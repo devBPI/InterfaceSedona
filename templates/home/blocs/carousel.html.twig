@@ -1,40 +1,32 @@
 <!-- Début - Bloc 1 diaporama nouveautés et/ou articles __ DOM supposé -->
 
-<div class="carousel flickity-enabled is-draggable" tabindex="0" aria-label="Carousel d'actualités">
+
+<div class="carousel flickity-enabled is-draggable" tabindex="0" aria-label="{{ 'bloc.carousel.title'|trans }}">
 	<div class="flickity-viewport">
-		{% for item in carousel.elements %}
-            {{ dump(item) }}
-            <div class="flickity-slider">
-                <div class="carousel-cell is-selected">
-                    <a href="#" aria-label="Actualité 1 sur 24, *Insert titre* *Insert auteur*" lang="fr">
+        <div class="flickity-slider">
+            {% for item in carousel.elements %}
+                <div class="carousel-cell{% if loop.first %} is-selected{% endif %}">
+                    <a href="{{ item.link }}" aria-label="{{ 'bloc.carousel.item_desciption'|trans({'%index%': loop.index ,'%nb%' : carousel.elements|length , '%title%' : item.title, '%%auteur%' : item.description }) }}">
                         <div>
-                            <img src="https://via.placeholder.com/150x200" alt="">
+                            <img src="{{ item.imagePath }}" alt="">
+                            {% if item.photoCredit %}<p lang="fr"> &copy; {{ item.photoCredit }}</p>{% endif %}
                         </div>
-                        <p>*Insert Titre*</p>
-                        <p>*Insert auteur*</p>
+                        <p lang="fr">{{ item.title }}</p>
+                        <p lang="fr">{{ item.description }}</p>
                     </a>
                 </div>
-                <div class="carousel-cell">
-                    <a href="#" aria-label="Actualité 2 sur 24, *Insert titre* *Insert auteur*" lang="fr">
-                        <div>
-                            <img src="https://via.placeholder.com/150x200" alt="">
-                        </div>
-                        <p>*Insert Titre*</p>
-                        <p>*Insert auteur*</p>
-                    </a>
-                </div>
-            </div>
-        {% endfor %}
+            {% endfor %}
+        </div>
 	</div>
 	<!-- Customisation des boutons : DOM supposé. 
 	Informations : pagination, auto-play, défilement infini, limite d'éléments à 24 -->
 	<div class="button-group">
-		<button class="button is-selected" aria-label="Page 1 sur X"></button>
-		<button class="button" aria-label="Page 2 sur X"></button>
-		<button class="button" aria-label="Page 3 sur X"></button>
-		<button class="button" aria-label="Page 4 sur X"></button>
+		<button class="button is-selected" aria-label="{{ 'bloc.carousel.page'|trans({'%current%': 1, '%nb%' : 'X' }) }}"></button>
+        <button class="button" aria-label="{{ 'bloc.carousel.page'|trans({'%current%': 2, '%nb%' : 'X' }) }}"></button>
+        <button class="button" aria-label="{{ 'bloc.carousel.page'|trans({'%current%': 3, '%nb%' : 'X' }) }}"></button>
+        <button class="button" aria-label="{{ 'bloc.carousel.page'|trans({'%current%': 4, '%nb%' : 'X' }) }}"></button>
 	</div>
 </div>
-<button type="button" aria-label="Mettre en pause le carousel"><img src="https://via.placeholder.com/15x15" alt="" class="icone-play"/></button>
+<button type="button" aria-label="{{ 'bloc.carousel.btn_pause'|trans }}"><img src="https://via.placeholder.com/15x15" alt="" class="icone-play"/></button>
 
 <!-- Fin - Bloc 1 diaporama nouveautés et/ou articles -->

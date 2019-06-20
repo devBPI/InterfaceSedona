@@ -12,10 +12,11 @@ use App\Model\CarouselItem;
  */
 class CarouselProvider extends AbstractProvider
 {
+
     protected $modelName = Carousel::class;
 
     /**
-     * @return mixed
+     * @return Carousel
      */
     public function getHomeList(): Carousel
     {
@@ -24,7 +25,7 @@ class CarouselProvider extends AbstractProvider
 
     /**
      * @param string $theme
-     * @return mixed
+     * @return Carousel
      */
     public function getListByThematic(string $theme): Carousel
     {

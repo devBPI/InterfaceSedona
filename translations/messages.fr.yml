@@ -4,3 +4,10 @@ header:
       en: English version
       es: Espagnol version
       fr: Version française
+
+bloc:
+  carousel:
+    title: Carousel d'actualités
+    item_desciption: Actualité %index% sur %nb%, %title% %auteur%
+    page: Page %current% sur %nb%
+    btn_pause: Mettre en pause le carousel
