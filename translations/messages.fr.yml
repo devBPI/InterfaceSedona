@@ -17,3 +17,25 @@ bloc:
     item_desciption: Actualité %index% sur %nb%, %title% %auteur%
     page: Page %current% sur %nb%
     btn_pause: Mettre en pause le carousel
+
+search:
+  notice:
+    header:
+      select_all_label:
+        shelf: Documents en rayon, sélectionner tous les résultats
+        online: Documents en ligne, sélectionner tous les résultats
+      title:
+        shelf: Documents en rayon
+        online: Documents en ligne
+      see_all: Voir tout
+      see_all_focusable:
+        shelf: les documents en rayons
+        online: les documents en ligne
+      sorter:
+        label:
+          shelf: Choix du tri des documents en rayon
+          online: Choix du tri des documents en ligne
+        action: Trier par
+        direction:
+          asc: Ordre ASC
+          desc: Ordre DESC

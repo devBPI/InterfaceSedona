@@ -4,9 +4,7 @@
 namespace App\Controller;
 
 
-use App\Model\SearchResult;
-use App\Service\Provider\AuthorProvider;
-use App\Service\Provider\NoticeProvider;
+use App\Service\Provider\SearchProvider;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -18,23 +16,17 @@ use Symfony\Component\Routing\Annotation\Route;
 class SearchController extends AbstractController
 {
     /**
-     * @var AuthorProvider
+     * @var SearchProvider
      */
-    private $authorProvider;
-    /**
-     * @var NoticeProvider
-     */
-    private $noticeProvider;
+    private $searchProvider;
 
     /**
      * SearchController constructor.
-     * @param AuthorProvider $authorProvider
-     * @param NoticeProvider $noticeProvider
+     * @param SearchProvider $searchProvider
      */
-    public function __construct(AuthorProvider $authorProvider, NoticeProvider $noticeProvider)
+    public function __construct(SearchProvider $searchProvider)
     {
-        $this->authorProvider = $authorProvider;
-        $this->noticeProvider = $noticeProvider;
+        $this->searchProvider = $searchProvider;
     }
 
     /**
@@ -44,20 +36,10 @@ class SearchController extends AbstractController
      */
     public function indexAction(Request $request)
     {
-        $objSearch = new SearchResult($request->get('search', ''));
-        if ($objSearch->hasQuery()) {
-            $objSearch
-                ->setAuthors(
-                    $this->authorProvider->getListBySearch($objSearch->getQuery())
-                )
-                ->setNotices(
-                    $this->noticeProvider->getListBySearch($objSearch->getQuery())
-                )
-                ->setOnlineNotices(
-                    $this->noticeProvider->getListOnlineBySearch($objSearch->getQuery())
-                );
-        }
+        $objSearch = $this->searchProvider->getListBySearch($request->get('search', ''));
+var_dump($objSearch->getAuthors());
 
+die('end');
         return $this->render('search/index.html.twig', [
             'toolbar'=> 'search',
             'objSearch' => $objSearch

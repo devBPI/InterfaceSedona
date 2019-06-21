@@ -5,12 +5,10 @@ namespace App\Model;
 use JMS\Serializer\Annotation as JMS;
 
 /**
- * Class ListNotices
+ * Class Notices
  * @package App\Model
- *
- * @JMS\XmlRoot("notices")
  */
-class ListNotices extends AbstractListNotices
+class Notices extends AbstractListNotices
 {
     /**
      * @var array|Notice[]

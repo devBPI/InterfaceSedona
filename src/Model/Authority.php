@@ -5,10 +5,10 @@ namespace App\Model;
 use JMS\Serializer\Annotation as JMS;
 
 /**
- * Class Author
+ * Class Authority
  * @package App\Model
  */
-class Author
+class Authority implements AuthorityInterface
 {
     /**
      * @var string

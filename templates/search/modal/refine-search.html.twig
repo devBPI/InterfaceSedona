@@ -8,6 +8,20 @@
 				</div>
 
 				<div class="modal-body">
+					{% for facet in facets %}
+						<div>
+							<button type="button" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="rfn-search-{{ facet.name }}" data-target="#rfn-search-available"><img src="https://via.placeholder.com/15x15" alt="" class="icone-caret"/> {{ facet.label }}</button>
+							<div class="collapse" id="rfn-search-{{ facet.name }}" role="group" aria-label="{{ facet.label|lower }}">
+								<button>Supprimer le filtre<span class="sr-only"> : {{ facet.label }}</span></button>
+                                {% for i, value in facet.values %}
+									<div class="form-check">
+										<input type="checkbox" class="form-check-input" id="rfn-{{ facet.name }}-{{ i }}">
+										<label class="form-check-label" for="rfn-{{ facet.name }}-{{ i }}">{{ value.name }}</label>
+									</div>
+                                {% endfor %}
+							</div>
+						</div>
+					{% endfor %}
 					<div>
 						<button type="button" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="rfn-search-available" data-target="#rfn-search-available"><img src="https://via.placeholder.com/15x15" alt="" class="icone-caret"/> Disponibilité</button>
 						<div class="collapse" id="rfn-search-available" role="group" aria-label="disponibilité">

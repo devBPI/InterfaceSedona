@@ -5,12 +5,10 @@ namespace App\Model;
 use JMS\Serializer\Annotation as JMS;
 
 /**
- * Class ListOnlineNotices
+ * Class NoticesOnline
  * @package App\Model
- *
- * @JMS\XmlRoot("notices-online")
  */
-class ListOnlineNotices extends AbstractListNotices
+class NoticesOnline extends AbstractListNotices
 {
     /**
      * @var array|Notice[]
@@ -27,5 +25,4 @@ class ListOnlineNotices extends AbstractListNotices
     {
         return $this->noticesList;
     }
-
 }

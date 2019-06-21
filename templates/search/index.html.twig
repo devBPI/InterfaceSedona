@@ -31,39 +31,18 @@
 	</div>
 
 	<div>
-		{% include "search/blocs/results/preview-authority.html.twig" %}
+		{% include "search/blocs/results/preview-authority.html.twig" with {'author': objSearch.mainAuthor} %}
+	</div>
+	<div class="hidden">
+        {% for author in objSearch.otherAuthors %}
+            {% include "search/blocs/results/preview-authority.html.twig" with {'author': author} %}
+        {% endfor %}
 	</div>
 
 	<div>
-		<div>
-
-			<div>
-				{# Include header - Documents en rayon #}
-				{% include "search/blocs/results/header-docs-rayon.html.twig" %}
-			</div>
-
-			<div>
-                {% for index, notice in objSearch.notices %}
-					{# Include résultat - Documents en rayon #}
-					{% include "search/blocs/results/docs-rayon.html.twig" %}
-                {% endfor %}
-			</div>
-		</div>
-
-		<div>
-
-			<div>
-				{# Include header - Documents en ligne #}
-				{% include "search/blocs/results/header-docs-online.html.twig" %}
-			</div>
-
-			<div>
-                {% for index, notice in objSearch.onlineNotices %}
-					{# Include résultat - Documents en ligne #}
-					{% include "search/blocs/results/docs-online.html.twig" %}
-                {% endfor %}
-			</div>
-		</div>
+        {% from 'search/macros/list-notices.html.twig' import display_list as list_notices %}
+		{{ list_notices('shelf', objSearch.notices) }}
+		{{ list_notices('online', objSearch.noticesOnline) }}
 	</div>
 
 	<div>
