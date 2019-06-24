@@ -1,0 +1,61 @@
+// -------------------------------
+// Configuration Bootstrap
+// -------------------------------
+
+// Body
+//
+// Settings for the `<body>` element.
+
+$body-color:                $black;
+
+// Links
+//
+// Style anchor elements.
+
+$link-color:                              $blue;
+$link-decoration:                         none;
+$link-hover-color:                        $red;
+$link-hover-decoration:                   underline;
+
+// Grid breakpoints
+//
+// Define the minimum dimensions at which your layout will change,
+// adapting to different screen sizes, for use in media queries.
+
+$grid-breakpoints: (
+  xs: 0,
+  md: 768px,
+  lg: 1000px
+);
+
+// Grid containers
+//
+// Define the maximum width of `.container` for different screen sizes.
+
+$container-max-widths: (
+  md: 780px,
+  lg: 1030px
+);
+
+
+// Typography
+//
+// Font, line-height, and color for body text, headings, and more.
+$font-size-base:              1rem; // Assumes the browser default, typically `16px`
+$font-size-lg:                $font-size-base;
+$font-size-sm:                $font-size-base;
+
+// Breadcrumbs
+
+$breadcrumb-padding-y:              15px;
+$breadcrumb-padding-x:             	8px;
+$breadcrumb-item-padding:           5px;
+
+$breadcrumb-margin-bottom:          0;
+
+$breadcrumb-bg:                     $white;
+$breadcrumb-divider-color:          $black;
+$breadcrumb-active-color:           $black;
+$breadcrumb-divider:                quote("-");
+
+$breadcrumb-border-radius:          0;

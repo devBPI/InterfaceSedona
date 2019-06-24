@@ -1,3 +1,13 @@
-// Import file
-@import "variable";
-@import "~bootstrap/scss/bootstrap";
+// -------------------------------
+// @import - Global
+// -------------------------------
+
+// Import Variables Global
+@import 	"variable";
+
+// Import Overwriten Bootstrap Variable
+@import 	"variable-custom-bootstrap",
+			"~bootstrap/scss/bootstrap";
+
+// Base
+@import 	"base";

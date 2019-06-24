@@ -4,38 +4,38 @@
 
 {% block body %}
 
-	<div>
-		<div>
+	<div class="row justify-content-md-between">
+		<div class="col-md-auto">
 			{% include "search/blocs/search-corrector.html.twig" %}
 		</div>
 		
-		<div>
+		<div class="col-md-auto">
 			{% include "search/blocs/related-topics.html.twig" %}
 		</div>
 
-		<div>
+		<div class="col-md-auto">
 			{% include "search/blocs/relaunch-search.html.twig" %}
 		</div>
 	</div>
 	
-	<div>
-		<div>
+	<div class="row">
+		<div class="col-12 col-md-10">
 			{% include "search/blocs/filters-search.html.twig" %}
 		</div>
 
-		<div>
+		<div class="col-12 col-md-2">
 			<button type="button" data-target="modal-refine-search" data-toggle="modal">Affiner<span class="sr-only"> la recherche</span></button>
 			<!-- Include modal des filtres - Affiner -->
 			{% include "search/modal/refine-search.html.twig" %}
 		</div>
 	</div>
 
-	<div>
+	<div class="row">
 		{% include "search/blocs/results/preview-authority.html.twig" %}
 	</div>	
 
-	<div>
-		<div>
+	<div class="row">
+		<div class="col-12 col-md-6">
 
 			<div>
 				{# Include header - Documents en rayon #}
@@ -50,7 +50,7 @@
 			</div>
 		</div>
 
-		<div>
+		<div class="col-12 col-md-6">
 
 			<div>
 				{# Include header - Documents en ligne #}
@@ -66,7 +66,7 @@
 		</div>
 	</div>
 
-	<div>
+	<div class="row justify-content-md-end">
 		{# Include Pagination + Nombre item #}
 		{% include "search/blocs/footer-search.html.twig" %}
 	</div>

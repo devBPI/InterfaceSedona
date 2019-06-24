@@ -17,13 +17,13 @@
 	</head>
 	<body>
 		
-		<div id="menu-evitement">
+		<div id="menu-evitement" class="menu-evitement">
 			{% include "common/navbar-evitement.html.twig" %}
 		</div>
 		
 		<header role="banner">
-			<div>
-				<div>
+			<div class="container">
+				<div class="d-flex">
 					<div id="menu-langue">
 						{% include "header/navbar-langues.html.twig" %}
 					</div>
@@ -41,14 +41,14 @@
 					</div>
 				</div>
 
-				<div>
+				<div class="d-flex">
 					<div>
 						<a href="{{ path('home') }}" title="Aller à l'accueil du catalogue Bibliothèque Publique d'Information Centre Pompidou">
 							<img src="{{ asset('images/bpi-logo.png') }}" alt="Bibliothèque Publique d'Information Centre Pompidou" />
 						</a>
 					</div>
 
-					<button type="button" data-toggle="collapse" data-target="#navbar-principale" aria-controls="navbar-principale" title="Consulter le menu principal" aria-expanded="false" class="navbar-toggler">*Insert icone menu burger*</button>
+					<button type="button" data-toggle="collapse" data-target="#navbar-principale-content" aria-controls="navbar-principale-content" title="Consulter le menu principal" aria-expanded="false" class="navbar-toggler d-md-none">*Insert icone menu burger*</button>
 				</div>
 			
 				<div id="bloc-menu">
@@ -58,7 +58,7 @@
 		</header>	
 
 		<main role="main" id="contenu-site">
-			<div>
+			<div class="container">
 				{% include "common/breadcrumb.html.twig" %}
 				{% include "search/search.html.twig" %}
 				{% include "common/toolbar.html.twig" %}
@@ -67,23 +67,23 @@
 		</main>
 
 		<footer role="contentinfo">
-			<div>
-				<div>
+			<div class="container">
+				<div class="row">
 
-					<div>
+					<div class="col">
 						<div id="menu-plans-sites">
 							{% include "footer/navbar-sitemap.html.twig" %}
 						</div>
 					</div>
 
-					<div>
+					<div class="col">
 						<div id="menu-credit">
 							{% include "footer/navbar-credits.html.twig" %}
 						</div>
 					</div>
 
-					<div>
-						<ul>
+					<div class="col">
+						<ul class="d-flex">
 							<li>
 								<a href="#">
 									<img src="https://via.placeholder.com/140x60" alt="" />
@@ -107,31 +107,33 @@
 
 				</div>
 
-				<div>
+				<div class="row">
 
-					<div>
+					<div class="col-12 col-md-6">
 						<div id="partenaires">
 							{% include "footer/partenaires.html.twig" %}
 						</div>
 					</div>
 
-					<div>
+					<div class="col-12 col-md-6">
+						<div class="d-flex">
 
-						<div>
-							<a href="https://www.eurekoi.org/" title="Aller sur le site d'Eurèkoi - nouvelle fenêtre" target="_blank">
-								<img src="https://via.placeholder.com/50x50" alt="Eurèkoi" />
-							</a>
-						</div>
+							<div>
+								<a href="https://www.eurekoi.org/" title="Aller sur le site d'Eurèkoi - nouvelle fenêtre" target="_blank">
+									<img src="https://via.placeholder.com/50x50" alt="Eurèkoi" />
+								</a>
+							</div>
 
-						<div id="reseaux-sociaux">
-							{% include "footer/socials-medias.html.twig" %}
+							<div id="reseaux-sociaux">
+								{% include "footer/socials-medias.html.twig" %}
+							</div>
 						</div>
 
 					</div>
 
 				</div>
 
-				<div>
+				<div class="text-right">
 					<p>© Copyright XXX</p>
 				</div>
 			</div>
