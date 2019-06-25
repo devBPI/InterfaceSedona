@@ -6,7 +6,6 @@ namespace App\Service\Provider;
 use App\Model\Exception\NoResultException;
 use App\Model\Notice;
 use App\Model\Results;
-use App\Model\SearchResult;
 
 /**
  * Class SearchProvider

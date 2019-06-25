@@ -10,7 +10,7 @@
 			<img src="{{ notice.thumbnail is not empty ? asset(notice.thumbnail)|default('') : 'https://via.placeholder.com/110x110' }}" alt="" />
 		</div>
 		<div>
-			<a href="#" lang="fr" aria-label="*Insert titre* - nouvelle fenêtre"><img src="https://via.placeholder.com/15x15" alt="" class="icone-type-{{ notice.type }}"/> {{ notice.frontTitle }}</a>
+			<a href="{{ path('record_bibliographic', {'ark'}) }}" lang="fr" aria-label="*Insert titre* - nouvelle fenêtre"><img src="https://via.placeholder.com/15x15" alt="" class="icone-type-{{ notice.type }}"/> {{ notice.frontTitle }}</a>
 			<p lang="fr">par {{ notice.frontAuthor }} (*insert date début-fin*)</p>
 			{% if notice.frontAnalyticalTitle is not empty %}
 				<p lang="fr">par {{ notice.frontAnalyticalTitle }}</p>

@@ -15,7 +15,7 @@ class Results
      * @var string
      * @JMS\Exclude()
      */
-    private $query = 'Maupassant';
+    private $query;
 
     /**
      * @var Facets
@@ -26,18 +26,18 @@ class Results
     /**
      * @var array|RankedAuthority[]
      * @JMS\Type("array<App\Model\RankedAuthority>")
-     * @JMS\SerializedName("relevant-authorities")
-     * @JMS\XmlList(entry="authorities-list")
+     * @JMS\SerializedName("authorities-list")
+     * @JMS\XmlList(entry="ranked-authority-indice-cdu")
      */
-    private $rankedAuthorities = [];
+    private $authoritiesList = [];
 
-//    /**
-//     * @var array|Authority[]
-//     * @JMS\Type("array<App\Model\Authority>")
-//     * @JMS\SerializedName("relevant-authorities")
-//     * @JMS\XmlList(entry="ranked-authority-indice-cdu")
-//     */
-//    private $linked_subjects = [];
+    /**
+     * @var array|Authority[]
+     * @JMS\Type("array<string>")
+     * @JMS\SerializedName("sujets-liees-list")
+     * @JMS\XmlList(entry="sujet-liee")
+     */
+    private $linkedSubjects = [];
 
     /**
      * @var Notices
@@ -51,15 +51,6 @@ class Results
      */
     private $noticesOnline;
 
-//    /**
-//     * SearchResult constructor.
-//     * @param string $search
-//     */
-//    public function __construct(string $search)
-//    {
-//        $this->query = $search;
-//    }
-
     /**
      * @return string
      */
@@ -67,6 +58,18 @@ class Results
     {
         return $this->query;
     }
+
+    /**
+     * @param string $query
+     * @return self
+     */
+    public function setQuery($query): self
+    {
+        $this->query = $query;
+
+        return $this;
+    }
+
     /**
      * @return bool
      */
@@ -80,27 +83,29 @@ class Results
      */
     public function getAuthors(): array
     {
-        return $this->rankedAuthorities;
+        return $this->authoritiesList;
     }
 
     /**
-     * @return Authority|null
+     * @return AuthorityInterface|null
      */
-    public function getMainAuthor(): ?Authority
+    public function getMainAuthor(): ?AuthorityInterface
     {
-        if (count($this->rankedAuthorities) === 0) {
+        if (count($this->authoritiesList) === 0) {
             return null;
         }
 
-        return $this->rankedAuthorities[0]->getAuthor();
+        return $this->authoritiesList[0]->getAuthor();
     }
 
     /**
-     * @return Authority[]
+     * @return AuthorityInterface[]
      */
     public function getOtherAuthors(): array
     {
-        return array_slice($this->rankedAuthorities, 1);
+        return array_map(function (RankedAuthority $item) {
+            return $item->getAuthor();
+        }, array_slice($this->authoritiesList, 1));
     }
 
     /**
@@ -125,6 +130,14 @@ class Results
     public function getFacets(): Facets
     {
         return $this->facets;
+    }
+
+    /**
+     * @return string[]|array
+     */
+    public function getLinkedSubjects(): array
+    {
+        return $this->linkedSubjects;
     }
 
 }

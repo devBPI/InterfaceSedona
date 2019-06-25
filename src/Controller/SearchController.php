@@ -15,6 +15,8 @@ use Symfony\Component\Routing\Annotation\Route;
  */
 class SearchController extends AbstractController
 {
+    public const QUERY_LABEL = 'search';
+
     /**
      * @var SearchProvider
      */
@@ -36,10 +38,10 @@ class SearchController extends AbstractController
      */
     public function indexAction(Request $request)
     {
-        $objSearch = $this->searchProvider->getListBySearch($request->get('search', ''));
-var_dump($objSearch->getAuthors());
+        $query = $request->get(self::QUERY_LABEL, '');
+        $objSearch = $this->searchProvider->getListBySearch($query);
+        $objSearch->setQuery($query);
 
-die('end');
         return $this->render('search/index.html.twig', [
             'toolbar'=> 'search',
             'objSearch' => $objSearch

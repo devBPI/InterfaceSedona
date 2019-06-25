@@ -10,7 +10,7 @@
 		</div>
 
 		<div>
-			{% include "search/blocs/related-topics.html.twig" %}
+			{% include "search/blocs/related-topics.html.twig" with {'linkedSubjects': objSearch.linkedSubjects} %}
 		</div>
 
 		<div>
@@ -26,17 +26,23 @@
 		<div>
 			<button type="button" data-target="modal-refine-search">Affiner<span class="sr-only"> la recherche</span></button>
 			<!-- Include modal des filtres - Affiner -->
-			{% include "search/modal/refine-search.html.twig" %}
+			{% include "search/modal/refine-search.html.twig" with {'facets': objSearch.facets} %}
 		</div>
 	</div>
 
 	<div>
 		{% include "search/blocs/results/preview-authority.html.twig" with {'author': objSearch.mainAuthor} %}
 	</div>
-	<div class="hidden">
-        {% for author in objSearch.otherAuthors %}
-            {% include "search/blocs/results/preview-authority.html.twig" with {'author': author} %}
-        {% endfor %}
+
+
+	<div>
+		<button type="button" data-toggle="collapse" data-target="#related-notices" aria-expanded="false" aria-controls="related-notices">Voir plus</button>
+        {# Include collapse notices d'autorité - Affiche les 5 notices d'autorité les plus pertinentes #}
+		<div id="related-notices" class="collapse">
+            {% for author in objSearch.otherAuthors %}
+                {% include "search/blocs/results/preview-authority.html.twig" with {'author': author} %}
+            {% endfor %}
+		</div>
 	</div>
 
 	<div>
@@ -49,13 +55,6 @@
 		{# Include Pagination + Nombre item #}
 		{% include "search/blocs/footer-search.html.twig" %}
 	</div>
-
-	{#
-	<ul>
-		<li><a href="{{ path('record_bibliographic') }}">notice bibliographique</a></li>
-		<li><a href="{{ path('record_authority') }}">notice autorite</a></li>
-	</ul>
-	#}
 
 	<!-- Include modal formulaire pour être prevenu du retour du document en rayon -->
 	{% include "search/modal/notified-form.html.twig" %}
