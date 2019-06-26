@@ -1,8 +1,16 @@
-<ul>
-	<li>
-		<a href="{{ path('user_personal_data') }}"><img src="https://via.placeholder.com/15x15" alt="" class="icone-coeur"/> Ma sélection</a>
-	</li>
-	<li>
-		<a href="{{ path('user_personal_data') }}"><img src="https://via.placeholder.com/15x15" alt="" class="icone-horloge"/> Historique</a>
-	</li>
-</ul>
+<div class="menu-user">
+	<ul class="menu-user__list">
+		<li class="menu-user__list-item">
+			<div class="menu-user__icone">
+				<img src="{{ asset('images/icones/icone-coeur.svg') }}" alt="" class="icone-coeur"/>
+			</div>
+			<a href="{{ path('user_personal_data') }}">Ma sélection</a>
+		</li>
+		<li class="menu-user__list-item">
+			<div class="menu-user__icone">
+				<img src="{{ asset('images/icones/icone-horloge.svg') }}" alt="" class="icone-horloge"/>
+			</div>
+			<a href="{{ path('user_personal_data') }}">Historique</a>
+		</li>
+	</ul>
+</div>

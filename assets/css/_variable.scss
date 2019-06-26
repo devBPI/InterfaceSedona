@@ -2,11 +2,25 @@
 // Variable Global
 // -------------------------------
 
-$red: 			#E2001A;
-$blue:			#00417F;
+// Colors
 
-$white:			#FFFFFF;
-$black:			#000000;
+$red: 				#E2001A;
+$blue:				#00417F;
+
+$white:				#FFFFFF;
+$black:				#000000;
+$grey:				#b2b2b2;
+
+$grey-disabled:	#696969;
+$grey-border:		#D9D9D9;
 
 // Fonts
+
 $font-size-html:		13px;
+$font-regular:			normal;
+$font-medium:			500;
+$font-bold:				bold;
+
+
+// State
+$outline:			thin dotted $red;

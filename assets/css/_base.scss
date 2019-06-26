@@ -4,9 +4,16 @@
 
 // Base
 @import 	"base/base",
+			"base/fonts",
 			"base/typographie";
 
 // Header
-@import 	"base/header/menu-evitement";
+@import 	"base/header/header",
+			"base/header/menu-evitement",
+			"base/header/menu-langue",
+			"base/header/menu-secondaire",
+			"base/header/menu-user",
+			"base/header/account",
+			"base/header/navbar";
 
 // Footer

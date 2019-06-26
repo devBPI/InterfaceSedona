@@ -21,37 +21,41 @@
 			{% include "common/navbar-evitement.html.twig" %}
 		</div>
 		
-		<header role="banner">
+		<header role="banner" class="header">
 			<div class="container">
-				<div class="d-flex">
+				<div class="header__menus d-flex flex-wrap align-items-center justify-content-end justify-content-lg-between">
 					<div id="menu-langue">
-						{% include "header/navbar-langues.html.twig" %}
+						{% include "header/navbar-langue.html.twig" %}
 					</div>
+					
+					<div class="d-flex align-items-center">
+						<div id="menu-secondaire">
+							{% include "header/navbar-secondaire.html.twig" %}
+						</div>
 
-					<div id="menu-secondaire">
-						{% include "header/navbar-secondaire.html.twig" %}
-					</div>
+						<div id="menu-user">
+							{% include "header/navbar-user.html.twig" %}
+						</div>
 
-					<div id="menu-user">
-						{% include "header/navbar-user.html.twig" %}
-					</div>
-
-					<div id="mon-compte">
-						{% include "header/account.html.twig" %}
+						<div id="mon-compte">
+							{% include "header/account.html.twig" %}
+						</div>
 					</div>
 				</div>
 
-				<div class="d-flex">
-					<div>
-						<a href="{{ path('home') }}" title="Aller à l'accueil du catalogue Bibliothèque Publique d'Information Centre Pompidou">
-							<img src="{{ asset('images/bpi-logo.png') }}" alt="Bibliothèque Publique d'Information Centre Pompidou" />
-						</a>
-					</div>
+				<div class="header__logo d-flex flex-wrap justify-content-between align-items-center">
+					<a href="{{ path('home') }}" title="Aller à l'accueil du catalogue Bibliothèque Publique d'Information Centre Pompidou" class="header__logo-link">
+						<img src="{{ asset('images/bpi-logo.png') }}" alt="Bibliothèque Publique d'Information Centre Pompidou" />
+					</a>
 
-					<button type="button" data-toggle="collapse" data-target="#navbar-principale-content" aria-controls="navbar-principale-content" title="Consulter le menu principal" aria-expanded="false" class="navbar-toggler d-md-none">*Insert icone menu burger*</button>
+					<button type="button" data-toggle="collapse" data-target="#navbar-principale-content" aria-controls="navbar-principale-content" title="Consulter le menu principal" aria-expanded="false" class="navbar-toggler d-md-none navbar-burger">
+						<span class="navbar-burger__bar"></span>
+						<span class="navbar-burger__bar"></span>
+						<span class="navbar-burger__bar"></span>
+					</button>
 				</div>
 			
-				<div id="bloc-menu">
+				<div id="bloc-menu" class="header__navbar">
 					{% include "header/navbar-principal.html.twig" %}
 				</div>
 			</div>

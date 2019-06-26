@@ -1,0 +1,58 @@
+// -------------------------------
+// Header - Global
+// -------------------------------
+
+.header {
+
+	.dropdown {
+
+		.btn {
+			border: 1px solid transparent;
+
+			&:hover,
+			&:focus,
+			&[aria-expanded="true"] {
+				border: 1px solid $grey;
+				outline: 0;
+			}
+		}
+
+		&-menu {
+			box-shadow: 1px 4px 4px rgba($black, .25);
+		}
+	}
+
+	&__menus {
+		margin-bottom: 15px;
+	}
+
+	&__logo {
+
+		@include media-breakpoint-up(md) {
+			height: 100px;
+		}
+
+		@include media-breakpoint-up(lg) {
+			margin-bottom: 15px;
+		}
+		
+		&-link {
+			display: block;
+
+			@include media-breakpoint-up(sm){
+				display: inline-block;
+			}
+
+			img {
+
+				@include media-breakpoint-up(lg){
+					max-width: 210px;
+				}
+			}
+		}
+	}
+
+	&__navbar {
+
+	}
+}

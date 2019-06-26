@@ -1,0 +1,33 @@
+// -------------------------------
+// Install Fonts
+// -------------------------------
+
+@font-face {
+	font-family: 'DINPro';
+	src: 	url('/build/fonts/DINPro-Regular.woff2') format('woff2'),
+			url('/build/fonts/DINPro-Regular.woff') format('woff'),
+			url('/build/fonts/DINPro-Regular.ttf') format('truetype'),
+			url('/build/fonts/DINPro-Regular.svg#DINPro-Regular') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'DINPro';
+	src: 	url('/build/fonts/DINPro-Medium.woff2') format('woff2'),
+			url('/build/fonts/DINPro-Medium.woff') format('woff'),
+			url('/build/fonts/DINPro-Medium.ttf') format('truetype'),
+			url('/build/fonts/DINPro-Medium.svg#DINPro-Medium') format('svg');
+	font-weight: 500;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'DINPro';
+	src: 	url('/build/fonts/DINPro-Bold.woff2') format('woff2'),
+			url('/build/fonts/DINPro-Bold.woff') format('woff'),
+			url('/build/fonts/DINPro-Bold.ttf') format('truetype'),
+			url('/build/fonts/DINPro-Bold.svg#DINPro-Bold') format('svg');
+	font-weight: bold;
+	font-style: normal;
+}

@@ -1,0 +1,51 @@
+// -------------------------------
+// Header - Menu User
+// -------------------------------
+
+#menu-user {
+	display: none;
+
+	@include media-breakpoint-up(lg) {
+		display: block;
+	}
+}
+
+.menu-user {
+
+	&__list {
+		list-style-type: none;
+		padding: 0;
+		margin: 0;
+		display: flex;
+
+		&-item {
+			margin-right: 15px;
+			display: flex;
+			align-items: center;
+
+			a {
+				color: $black;
+				font-size: 12px;
+
+				&:hover,
+				&:focus {
+					color: $red;
+				}
+			}
+		}
+	}
+
+	&__icone {
+		width: 20px;
+		height: 20px;
+		background-color: $black;
+		margin-right: 5px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+
+		img {
+			max-height: 13px;
+		}
+	}
+}

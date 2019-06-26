@@ -5,3 +5,18 @@
 html {
 	font-size: $font-size-html;
 }
+
+a {
+
+	&:focus {
+		outline: thin dotted $red;
+	}
+}
+
+.btn {
+
+	&:focus,
+	&.focus {
+		outline: thin dotted $red;
+	}
+}
