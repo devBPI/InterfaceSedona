@@ -4,15 +4,15 @@
 
 // Colors
 
-$red: 				#E2001A;
-$blue:				#00417F;
+$red: 					#E2001A;
+$blue:					#00417F;
 
-$white:				#FFFFFF;
-$black:				#000000;
-$grey:				#b2b2b2;
+$white:					#FFFFFF;
+$black:					#000000;
+$grey:					#b2b2b2;
 
-$grey-disabled:	#696969;
-$grey-border:		#D9D9D9;
+$grey-disabled:		#696969;
+$grey-border:			#D9D9D9;
 
 // Fonts
 
@@ -23,4 +23,8 @@ $font-bold:				bold;
 
 
 // State
-$outline:			thin dotted $red;
+$outline:				thin dotted $red;
+
+
+// Decorations
+$dropdown-shadow:		1px 4px 4px rgba($black, .25);

@@ -18,7 +18,7 @@
 		}
 
 		&-menu {
-			box-shadow: 1px 4px 4px rgba($black, .25);
+			box-shadow: $dropdown-shadow;
 		}
 	}
 
@@ -27,13 +27,10 @@
 	}
 
 	&__logo {
+		margin-bottom: 15px;
 
 		@include media-breakpoint-up(md) {
 			height: 100px;
-		}
-
-		@include media-breakpoint-up(lg) {
-			margin-bottom: 15px;
 		}
 		
 		&-link {

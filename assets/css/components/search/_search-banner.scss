@@ -1,0 +1,102 @@
+// -------------------------------
+// Barre de recherche principal
+// -------------------------------
+
+.search-banner {
+	display: flex;
+	flex-wrap: wrap;
+	border: 1px solid $black;
+	margin-bottom: 15px;
+
+	&__input {
+		max-width: calc(100% - 45px);
+		order: 1;
+
+		@include media-breakpoint-up(md) {
+			max-width: auto;
+			width: auto;
+			flex: 1;
+		}
+
+		input {
+			width: 100%;
+			height: 45px;
+			line-height: 55px;
+			border: 0;
+			padding: 0 10px;
+
+			&:focus {
+				outline: $outline;
+			}
+		}
+	}
+
+	&__select {
+		flex: 0 0 50%;
+		order: 3;
+		height: 45px;
+		margin-bottom: 0;
+
+		@include media-breakpoint-up(md) {
+			flex: 0 0 auto;
+			order: 2;
+		}
+
+		select {
+			height: 100%;
+			border-radius: 0;
+			border: 0;
+			border-top: 1px solid $black;
+			-moz-appearance: none;
+			-webkit-appearance: none;
+			background-color: $grey;
+			color: $white;
+
+			@include media-breakpoint-up(md) {
+				border: 0;
+			}
+
+			&:focus {
+				border-top: 1px solid $black;
+
+				@include media-breakpoint-up(md) {
+					border: 0;
+				}
+			}
+		}
+	}
+
+	&__submit {
+		flex: 0 0 45px;
+		order: 2;
+		height: 45px;
+		background: $red;
+		border: 0;
+
+		@include media-breakpoint-up(md) {
+			flex: 0 0 45px;
+			order: 3;
+		}
+	}
+
+	&__modal {
+		flex: 0 0 50%;
+		order: 4;
+		height: 45px;
+		border: 0;
+		border-top: 1px solid $black;
+		border-left: 1px solid $black;
+		background: white;
+
+		@include media-breakpoint-up(md) {
+			flex: 0 0 auto;
+			border: 0;
+		}
+
+
+		&:focus {
+			outline: $outline;
+			outline-offset: -3px;
+		}
+	}
+}

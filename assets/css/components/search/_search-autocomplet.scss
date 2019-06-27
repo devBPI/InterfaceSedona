@@ -1,0 +1,28 @@
+// -------------------------------
+// Barre de recherche - Autocompletion
+// -------------------------------
+
+#form-search {
+	margin-top: 15px;
+	position: relative;
+}
+
+.search-autocomplet {
+	background-color: white;
+	box-shadow: $dropdown-shadow;
+	margin-top: -1px;
+	border: 1px solid $black;
+	padding: 15px;
+	position: absolute;
+	width: 100%;
+
+	&__list {
+		list-style-type: none;
+		padding: 0;
+		margin: 0;
+	}
+
+	&__item {
+		padding: 3px 0;
+	}
+}
