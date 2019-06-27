@@ -6,10 +6,12 @@ html {
 	font-size: $font-size-html;
 }
 
-a {
+a,
+button {
 
 	&:focus {
 		outline: thin dotted $red;
+		color: $red;
 	}
 }
 
