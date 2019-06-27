@@ -1,0 +1,14 @@
+// -------------------------------
+// Footer - Global
+// -------------------------------
+
+.footer {
+
+	&__top,
+	&__bottom,
+	&__credit {
+		margin-top: 15px;
+		padding-top: 15px;
+		border-top: 5px solid $grey-footer;
+	}
+}

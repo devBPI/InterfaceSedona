@@ -7,7 +7,6 @@ html {
 }
 
 
-
 a {
 
 	&:focus {
@@ -22,6 +21,7 @@ a[target="_blank"] {
 		text-decoration: $hover-target;
 	}
 }
+
 
 button,
 .btn {
