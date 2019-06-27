@@ -6,19 +6,28 @@ html {
 	font-size: $font-size-html;
 }
 
-a,
-button {
+
+
+a {
 
 	&:focus {
-		outline: thin dotted $red;
+		outline: $outline;
 		color: $red;
 	}
 }
 
+a[target="_blank"] {
+
+	&:hover {
+		text-decoration: $hover-target;
+	}
+}
+
+button,
 .btn {
 
 	&:focus,
 	&.focus {
-		outline: thin dotted $red;
+		outline: $outline;
 	}
 }
