@@ -1,70 +1,70 @@
 <!-- Début - Barre utilitaires -->
 <div class="toolbar">
-	<ul>
+	<ul class="toolbar__list">
 		{% if toolbar is defined and toolbar == 'document' %}
-			<li>
+			<li class="toolbar__item">
 				<a href="{{ path('user_list_add') }}" role="button">
-					<img src="https://via.placeholder.com/15x15" alt="" class="icone-coeur"/>
+					<img src="{{ asset('images/icones/icone-coeur.svg') }}" alt="" class="icone-coeur"/>
 					<span><span class="sr-only">Ajouter à </span>Ma sélection</span>
 				</a>
 			</li>
-			<li>
+			<li class="toolbar__item">
 				<a href="{{ path('record_export') }}" role="button">
-					<img src="https://via.placeholder.com/15x15" alt="" class="icone-fichier"/>
+					<img src="{{ asset('images/icones/icone-fichier.svg') }}" alt="" class="icone-fichier"/>
 					<span>Exporter<span class="sr-only"> la sélection</span></span>
 				</a>
 			</li>
 		{% else %}
-			<li>
+			<li class="toolbar__item toolbar__item--disabled">
 				<p>
-					<img src="https://via.placeholder.com/15x15" alt="" class="icone-coeur"/>
+					<img src="{{ asset('images/icones/icone-coeur.svg') }}" alt="" class="icone-coeur"/>
 					<span>Ma sélection</span>
 				</p>
 			</li>
-			<li>
+			<li class="toolbar__item toolbar__item--disabled">
 				<p>
-					<img src="https://via.placeholder.com/15x15" alt="" class="icone-fichier"/>
+					<img src="{{ asset('images/icones/icone-fichier.svg') }}" alt="" class="icone-fichier"/>
 					<span>Exporter</span>
 				</p>
 			</li>
 		{% endif %}
 		{% if toolbar is defined %}
-			<li>
+			<li class="toolbar__item">
 				<a href="{{ path('record_print') }}" role="button">
-					<img src="https://via.placeholder.com/15x15" alt="" class="icone-imprimante"/>
+					<img src="{{ asset('images/icones/icone-imprimante.svg') }}" alt="" class="icone-imprimante"/>
 					<span>Imprimer</span>
 				</a>
 			</li>
 		{% else %}
-			<li>
+			<li class="toolbar__item toolbar__item--disabled">
 				<p>
-					<img src="https://via.placeholder.com/15x15" alt="" class="icone-imprimante"/>
+					<img src="{{ asset('images/icones/icone-imprimante.svg') }}" alt="" class="icone-imprimante"/>
 					<span>Imprimer</span>
 				</p>
 			</li>
 		{% endif %}
-		<li>
+		<li class="toolbar__item">
 			<a href="{{ path('record_share') }}" role="button">
-				<img src="https://via.placeholder.com/15x15" alt="" class="icone-partage"/>
+				<img src="{{ asset('images/icones/icone-partage.svg') }}" alt="" class="icone-partage"/>
 				<span>Partager</span>
 			</a>
 		</li>
-		<li>
+		<li class="toolbar__item">
 			<a href="{{ path('other_service') }}" target="_blank" title="Aide - nouvelle fenêtre">
-				<img src="https://via.placeholder.com/15x15" alt="" class="icone-interrogation"/>
+				<img src="{{ asset('images/icones/icone-aide.svg') }}" alt="" class="icone-interrogation"/>
 				<span>Aide</span>
 			</a>
 		</li>
-		<li>
+		<li class="toolbar__item">
 			<a href="{{ path('user_suggestion') }}" role="button">
-				<img src="https://via.placeholder.com/15x15" alt="" class="icone-livre"/>
+				<img src="{{ asset('images/icones/icone-suggestion.svg') }}" alt="" class="icone-livre"/>
 				<span>Suggestion d'achats</span>
 			</a>
 		</li>
-		<li>
+		<li class="toolbar__item">
 			{# Path to user/modal/report-error.html.twig #}
 			<a href="#" role="button">
-				<img src="https://via.placeholder.com/15x15" alt="" class="icone-enveloppe"/>
+				<img src="{{ asset('images/icones/icone-partage.svg') }}" alt="" class="icone-enveloppe"/>
 				<span>Signaler une erreur</span>
 			</a>
 		</li>

@@ -2,7 +2,9 @@
 // @import - Components
 // -------------------------------
 
-@import 	"components/breadcrumb";
+// Global
+@import 	"components/breadcrumb",
+			"components/toolbar";
 
 // Search
 @import 	"components/search/search-banner",
