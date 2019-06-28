@@ -2,9 +2,10 @@
 // @import - Components
 // -------------------------------
 
-// Global
 @import 	"components/breadcrumb",
-			"components/toolbar";
+			"components/toolbar",
+			"components/carousel-primary",
+			"components/card";
 
 // Search
 @import 	"components/search/search-banner",

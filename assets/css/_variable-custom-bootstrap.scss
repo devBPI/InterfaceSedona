@@ -156,3 +156,26 @@ $dropdown-item-padding-y:           0;
 $dropdown-item-padding-x:           15px;
 
 $dropdown-header-color:             $grey;
+
+
+// Cards
+
+$card-spacer-y:                     0;
+$card-spacer-x:                     0;
+$card-border-width:                 0;
+$card-border-radius:                0;
+$card-border-color:                 transparent;
+$card-inner-border-radius:          0;
+$card-cap-bg:                       0;
+$card-cap-color:                    null !default;
+$card-color:                        null !default;
+$card-bg:                           $white !default;
+
+$card-img-overlay-padding:          1.25rem !default;
+
+$card-group-margin:                 15px / 2 !default;
+$card-deck-margin:                  $card-group-margin !default;
+
+$card-columns-count:                3 !default;
+$card-columns-gap:                  1.25rem !default;
+$card-columns-margin:               $card-spacer-y !default;

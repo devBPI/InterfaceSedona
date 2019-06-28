@@ -5,12 +5,12 @@
 // Import Variables Global
 @import 	"variable";
 
-// Import Overwriten Bootstrap Variable
+// Import Overwritten Bootstrap Variable
 @import 	"variable-custom-bootstrap",
 			"~bootstrap/scss/bootstrap";
 
 // Base
 @import 	"base";
 
-// Component
+// Components
 @import 	"components";
