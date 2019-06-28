@@ -22,6 +22,32 @@
 		text-transform: capitalize;
 	}
 
+	&__list {
+		list-style-type: none;
+		margin: 0;
+		padding: 0;
+		display: flex;
+		flex-wrap: wrap;
+	}
+
+	&__item {
+		min-width: 100%;
+		flex: 0 0 100%;
+
+		@include media-breakpoint-up(md) {
+			min-width: 50%;
+			flex: 0 0 50%;
+		}
+
+		a {
+			color: $black;
+
+			&:hover {
+				color: $red;
+			}
+		}
+	}
+
 	// Gestion border-top
 
 	&-container {
