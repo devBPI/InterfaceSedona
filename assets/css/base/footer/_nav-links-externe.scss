@@ -26,6 +26,11 @@
 			flex-wrap: wrap;
 			flex-direction: column;
 			color: $black;
+			font-size: 10px;
+
+			@include media-breakpoint-up(md) {
+				font-size: 11px;
+			}
 
 			&:hover {
 				color: $red;
