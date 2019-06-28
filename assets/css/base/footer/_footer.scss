@@ -11,4 +11,14 @@
 		padding-top: 15px;
 		border-top: 5px solid $grey-footer;
 	}
+
+	&__credit {
+		text-align: right;
+
+		@include media-breakpoint-up(md) {
+			p {
+				margin-right: 40px;
+			}
+		}
+	}
 }
