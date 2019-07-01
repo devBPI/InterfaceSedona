@@ -1,16 +1,16 @@
 <!-- Début - Bloc 13 Notices simples en 2 colonnes -->
 
-<div>
-	<div class="w-100">
+<div class="list-result__content-item">
+	<div class="list-result__content-selector">
 		<input type="checkbox" id="result-doc-online-{{ i }}">
 		<label for="result-doc-online-{{ i }}"><span class="sr-only">Résultat numéro </span> {{ i }}<span class="sr-only">, sélectionner *Insert titre*</span></label>
 	</div>
-	<div class="d-flex">
-		<div>
-			<img src="https://via.placeholder.com/110x110" alt="" />
+	<div class="list-result__content-body">
+		<div class="list-result__content-image">
+			<img src="{{ asset('images/img-random.jpg') }}" alt="" class="img-fluid" />
 		</div>
-		<div>
-			<a href="#" lang="fr" aria-label="*Insert titre* - nouvelle fenêtre"><img src="https://via.placeholder.com/15x15" alt="" class="icone-type"/> *Insert titre*</a>
+		<div class="list-result__content-infos">
+			<a href="#" lang="fr" aria-label="*Insert titre* - nouvelle fenêtre" class="n2 list-result__content-title"><img src="{{ asset('images/types/type-debat.svg') }}" alt="" class="list-result__content-type"/><span>*Insert titre*</span></a>
 			<p lang="fr">par *Insert auteur* (*insert date début-fin*)</p>
 			<p lang="fr">01/02/2016 - résumé</p>
 			<p lang="fr">Résultat de (Base de donnée)</p>
