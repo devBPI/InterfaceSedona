@@ -23,6 +23,8 @@
 
 		@include media-breakpoint-up(md) {
 			display: flex;
+			flex-wrap: wrap;
+			padding-right: 15px;
 		}
 	}
 

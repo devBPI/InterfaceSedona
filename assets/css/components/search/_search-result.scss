@@ -1,0 +1,60 @@
+// -------------------------------
+// Résultat de recherche - Résultat
+// -------------------------------
+
+.search-result {
+
+	&__image,
+	&__body {
+		margin-top: 15px;
+	}
+
+	&__image {
+		margin-bottom: 15px;
+	}
+
+	&__title {
+
+		a {
+
+			&:hover {
+				color: $red;
+
+				span {
+					color: $red;
+				}
+			}
+		}
+	}
+
+	&__list {
+		list-style-type: none;
+		padding: 0;
+		margin: 0;
+
+		@include media-breakpoint-up(sm) {
+			display: flex;
+			flex-wrap: nowrap;
+		}
+	}
+
+	&__item {
+		padding-right: 25px;
+	}
+
+	&__collapse {
+		border-top: $border-thin;
+		border-bottom: $border-thin;
+		padding: 10px 0;
+	}
+
+	&__button {
+		padding-left: 0;
+		color: $blue;
+
+		&:hover {
+			color: $red;
+			text-decoration: underline;
+		}
+	}
+}
