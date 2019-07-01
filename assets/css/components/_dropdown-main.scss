@@ -1,0 +1,46 @@
+// -------------------------------
+// Dropdown in <main>
+// -------------------------------
+
+#contenu-site {
+
+	.dropdown {
+
+		&-toggle {
+			border: 0;
+			background-color: transparent;
+
+			&:hover {
+				color: $red;
+				text-decoration: underline;
+			}
+		}
+
+		&-menu {
+			box-shadow: $dropdown-shadow;
+		}
+
+		&-item {
+			padding: 5px 15px;
+			
+			a {
+				color: $black;
+
+				&:hover {
+					color: $red;
+				}
+			}
+		}
+
+		&-image-start {
+			display: none;
+			width: 25px;
+			height: auto;
+			margin-right: 10px;
+
+			@include media-breakpoint-up(md) {
+				display: inline-block;
+			}
+		}
+	}
+}

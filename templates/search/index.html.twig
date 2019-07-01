@@ -4,29 +4,31 @@
 
 {% block body %}
 
-	<div class="row justify-content-md-between">
-		<div class="col-md-auto">
+	<div class="row justify-content-sm-between">
+		<div class="col-12 col-sm-auto">
 			{% include "search/blocs/search-corrector.html.twig" %}
 		</div>
 		
-		<div class="col-md-auto">
+		<div class="col-auto">
 			{% include "search/blocs/related-topics.html.twig" %}
 		</div>
 
-		<div class="col-md-auto">
+		<div class="col-auto">
 			{% include "search/blocs/relaunch-search.html.twig" %}
 		</div>
 	</div>
 	
 	<div class="row">
-		<div class="col-12 col-md-10">
+		<div class="col-12 col-sm-10 pr-sm-0">
 			{% include "search/blocs/filters-search.html.twig" %}
 		</div>
 
-		<div class="col-12 col-md-2">
-			<button type="button" data-target="modal-refine-search" data-toggle="modal">Affiner<span class="sr-only"> la recherche</span></button>
-			<!-- Include modal des filtres - Affiner -->
-			{% include "search/modal/refine-search.html.twig" %}
+		<div class="col-12 col-sm-2 pl-sm-0">
+			<div class="search-refine">
+				<button class="search-refine__button" type="button" data-target="modal-refine-search" data-toggle="modal">Affiner<span class="sr-only"> la recherche</span></button>
+				<!-- Include modal des filtres - Affiner -->
+				{% include "search/modal/refine-search.html.twig" %}
+			</div>
 		</div>
 	</div>
 

@@ -5,7 +5,7 @@
 .search-banner {
 	display: flex;
 	flex-wrap: wrap;
-	border: 1px solid $black;
+	border: $border-thin;
 	margin-bottom: 15px;
 
 	&__input {
@@ -46,7 +46,7 @@
 			height: 100%;
 			border-radius: 0;
 			border: 0;
-			border-top: 1px solid $black;
+			border-top: $border-thin;
 			-moz-appearance: none;
 			-webkit-appearance: none;
 			background-color: $grey-disabled;
@@ -57,7 +57,7 @@
 			}
 
 			&:focus {
-				border-top: 1px solid $black;
+				border-top: $border-thin;
 
 				@include media-breakpoint-up(md) {
 					border: 0;
@@ -84,8 +84,8 @@
 		order: 4;
 		height: 45px;
 		border: 0;
-		border-top: 1px solid $black;
-		border-left: 1px solid $black;
+		border-top: $border-thin;
+		border-left: $border-thin;
 		background: white;
 
 		@include media-breakpoint-up(md) {
