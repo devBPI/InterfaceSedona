@@ -9,9 +9,6 @@
 
 	&__item {
 		margin-bottom: 5px;
-	}
-
-	&__content {
 		width: 100%;
 
 		@include media-breakpoint-up(sm) {

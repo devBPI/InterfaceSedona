@@ -4,17 +4,22 @@
 
 {% block body %}
 
-	<div class="row justify-content-between">
-		{% include "record/bibliographic/results-navigation.html.twig" %}
-	</div>
+	<div class="bibliographic-result">
 
-	<div class="row bibliographic-result">
-		{% include "record/bibliographic/result-informations.html.twig" %}
-	</div>
+		<div class="row justify-content-between">
+			<!-- Début - Bloc 15 Navigation dans les résultats -->
+			{% include "record/blocs/results-navigation.html.twig" %}
+			<!-- Fin - Bloc 15 Navigation dans les résultats -->
+		</div>
 
-	<div class="row">
-		{% include "record/bibliographic/related-documents.html.twig" %}
-	</div>
+		<div class="row">
+			{% include "record/bibliographic/result-informations.html.twig" %}
+		</div>
 
+		<div class="row">
+			{% include "record/bibliographic/related-documents.html.twig" %}
+		</div>
+		
+	</div>
 
 {% endblock %}

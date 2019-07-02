@@ -31,6 +31,10 @@ select {
 	}
 }
 
+.border-default {
+	border-top: $border-default;
+}
+
 .border-double {
 	background-image: url('/images/double-bordure.png');
 	background-repeat: repeat-x;

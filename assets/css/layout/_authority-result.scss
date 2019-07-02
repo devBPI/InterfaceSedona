@@ -1,0 +1,25 @@
+// -------------------------------
+// Structure - Notice autorité
+// -------------------------------
+
+.authority-result {
+
+	.result-bdd {
+		display: none;
+	}
+
+	&__body {
+		height: 100%;
+		border-bottom: $border-thin;
+	}
+
+	&__resume {
+		margin-top: $spacer;
+		margin-top: $spacer;
+
+		@include media-breakpoint-up(md) {
+			column-count: 2;
+			column-gap: $spacer * 2;
+		}
+	}
+}
