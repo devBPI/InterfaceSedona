@@ -4,4 +4,10 @@
 
 .carousel-secondary {
 	margin-bottom: $spacer;
+
+	&--double {
+		padding-top: 25px;
+		@extend .border-double;
+		background-position: 0 top;
+	}
 }
