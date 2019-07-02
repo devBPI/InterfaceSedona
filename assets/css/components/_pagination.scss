@@ -1,0 +1,42 @@
+// -------------------------------
+// Pagination
+// -------------------------------
+
+.pagination {
+	margin: 10px 0;
+
+	.page {
+
+		&-link {
+			height: 100%;
+
+			&:hover {
+				border-color: $red;
+				color: $black;
+			}
+
+			&:focus {
+				outline: $outline;
+			}
+			
+			img {
+				height: 13px;
+			}
+
+			&--right,
+			&--right-double {
+
+				img {
+					transform: scaleX(-1);
+				}
+			}
+
+			&--reset {
+
+				&:hover {
+					border-color: transparent;
+				}
+			}
+		}	
+	}
+}

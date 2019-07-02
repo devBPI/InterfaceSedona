@@ -72,17 +72,10 @@
 		</div>
 	</div>
 
-	<div class="row justify-content-md-end">
+	<div class="row justify-content-sm-end">
 		{# Include Pagination + Nombre item #}
 		{% include "search/blocs/footer-search.html.twig" %}
 	</div>
-
-	{# 
-	<ul>
-		<li><a href="{{ path('record_bibliographic') }}">notice bibliographique</a></li>
-		<li><a href="{{ path('record_authority') }}">notice autorite</a></li>
-	</ul>
-	#}
 
 	<!-- Include modal formulaire pour être prevenu du retour du document en rayon -->
 	{% include "search/modal/notified-form.html.twig" %}

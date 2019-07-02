@@ -2,6 +2,13 @@
 // @import - Components
 // -------------------------------
 
+
+// Search
+@import 	"components/search/search-banner",
+			"components/search/search-autocomplet",
+			"components/search/search-result";
+
+// Global
 @import 	"components/breadcrumb",
 			"components/toolbar",
 			"components/carousel-primary",
@@ -9,9 +16,6 @@
 			"components/dropdown-main",
 			"components/search-criteria",
 			"components/search-refine",
-			"components/list-result";
+			"components/list-result",
+			"components/pagination";
 
-// Search
-@import 	"components/search/search-banner",
-			"components/search/search-autocomplet",
-			"components/search/search-result";

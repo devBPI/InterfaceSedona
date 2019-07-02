@@ -179,3 +179,33 @@ $card-deck-margin:                  $card-group-margin !default;
 $card-columns-count:                3 !default;
 $card-columns-gap:                  1.25rem !default;
 $card-columns-margin:               $card-spacer-y !default;
+
+// Pagination
+
+$pagination-padding-y:              0;
+$pagination-padding-x:              5px;
+$pagination-padding-y-sm:           $pagination-padding-y;
+$pagination-padding-x-sm:           $pagination-padding-x;
+$pagination-padding-y-lg:           $pagination-padding-y;
+$pagination-padding-x-lg:           $pagination-padding-x;
+$pagination-line-height:            1.25 !default;
+
+$pagination-color:                  $black;
+$pagination-bg:                     $white !default;
+$pagination-border-width:           $border-width !default;
+$pagination-border-color:           transparent;
+
+$pagination-focus-box-shadow:       none;
+$pagination-focus-outline:          0 !default;
+
+$pagination-hover-color:            $red;
+$pagination-hover-bg:               transparent;
+$pagination-hover-border-color:     transparent;
+
+$pagination-active-color:           $component-active-color !default;
+$pagination-active-bg:              transparent;
+$pagination-active-border-color:    transparent;
+
+$pagination-disabled-color:         $grey-disabled;
+$pagination-disabled-bg:            $white !default;
+$pagination-disabled-border-color:  transparent;
