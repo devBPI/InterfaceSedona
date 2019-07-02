@@ -7,8 +7,8 @@
 	&__top,
 	&__bottom,
 	&__credit {
-		margin-top: 15px;
-		padding-top: 15px;
+		margin-top: $spacer;
+		padding-top: $spacer;
 		border-top: 5px solid $grey-footer;
 	}
 

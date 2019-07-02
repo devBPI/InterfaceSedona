@@ -3,7 +3,7 @@
 // -------------------------------
 
 #form-search {
-	margin-top: 15px;
+	margin-top: $spacer;
 	position: relative;
 }
 
@@ -11,8 +11,8 @@
 	background-color: white;
 	box-shadow: $dropdown-shadow;
 	margin-top: -1px;
-	border: $border-thin;
-	padding: 15px;
+	border: $border-default;
+	padding: $spacer;
 	position: absolute;
 	width: 100%;
 

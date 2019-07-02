@@ -3,7 +3,7 @@
 // -------------------------------
 
 .partenaires {
-	margin-bottom: 15px;
+	margin-bottom: $spacer;
 	
 	@include media-breakpoint-up(md) {
 		margin-bottom: 0;
@@ -18,7 +18,7 @@
 	}
 
 	&__item {
-		padding-right: 15px;
+		padding-right: $spacer;
 		min-width: 25%;
 		flex: 0 0 25%;
 

@@ -3,7 +3,7 @@
 // -------------------------------
 
 .pagination {
-	margin: 10px 0;
+	margin: $spacer 0;
 
 	.page {
 
@@ -14,10 +14,6 @@
 			&:hover {
 				border-color: $red;
 				color: $black;
-			}
-
-			&:focus {
-				outline: $outline;
 			}
 			
 			img {
@@ -58,8 +54,8 @@
 		align-items: flex-end;
 
 		p.page-link {
-			border-left: $border-thin;
-			border-right: $border-thin;
+			border-left: $border-default;
+			border-right: $border-default;
 			
 			&:hover {
 				border-top-color: transparent;

@@ -1,75 +1,142 @@
 <!-- Début - Bloc 16 Notice bibliographique -->
 
 <div class="col-12">
-	<h1 class="n1" lang="fr">*Titre du document*</h1>
-	<p lang="fr">par *Auteur du document*</p>
-</div>
-<div class="col-12 col-md-4">
-	<a href="#">Découvrir l'auteur</a>
-</div>
-<div class="col-12 col-md-4">
-	<a href="#">Du même auteur</a>
-</div>
-<div class="col-12 col-md-4">
-	<div>
-		<img src="https://via.placeholder.com/15x15" alt="" class="icone-livre"/>
-		<p>Livre</p>
+	<h1 class="n1 bibliographic-result__title" lang="fr">*Titre du document*</h1>
+
+	<div class="row align-items-md-center">
+		<div class="col-12 col-md-6">
+			<p lang="fr" class="bibliographic-result__author">par <a href="#">Auteur 01</a>, <a href="#">Auteur 02</a></p>
+		</div>
+		<div class="col-6 col-md-4">
+			<a href="#" class="link">Découvrir l'auteur</a>
+		</div>
+		<div class="col-6 col-md-2">
+			<div class="bibliographic-result__type">
+				<img src="{{ asset('images/types/type-livre.svg') }}" alt="" class="icone-livre"/>
+			</div>
+		</div>
 	</div>
 </div>
 
 <div class="col-12">
-	<h2>Résumé</h2>
-	<p lang="fr">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quibusdam praesentium voluptatibus voluptate perferendis repudiandae eligendi maxime illo unde eum. Aliquam cumque atque architecto, quia officia sit eveniet neque explicabo. Dolorum?Ad, sint cupiditate aliquam quam consequatur soluta doloribus dignissimos, repellendus dicta ex voluptatem repellat, ut debitis quaerat. Nostrum, eius. Quia odit tempore veritatis, non reiciendis iste, laudantium ratione inventore harum.</p>
+	<h2 class="n1 bibliographic-result__subtitle">Résumé</h2>
+	<p lang="fr" class="bibliographic-result__resume">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quibusdam praesentium voluptatibus voluptate perferendis repudiandae eligendi maxime illo unde eum. Aliquam cumque atque architecto, quia officia sit eveniet neque explicabo. Dolorum?Ad, sint cupiditate aliquam quam consequatur soluta doloribus dignissimos, repellendus dicta ex voluptatem repellat, ut debitis quaerat. Nostrum, eius. Quia odit tempore veritatis, non reiciendis iste, laudantium ratione inventore harum. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quibusdam praesentium voluptatibus voluptate perferendis repudiandae eligendi maxime illo unde eum. Aliquam cumque atque architecto, quia officia sit eveniet neque explicabo. Dolorum?Ad, sint cupiditate aliquam quam consequatur soluta doloribus dignissimos, repellendus dicta ex voluptatem repellat, ut debitis quaerat. Nostrum, eius. Quia odit tempore veritatis, non reiciendis iste, laudantium ratione inventore harum.</p>
 </div>
 
 <div class="col-12 col-md-3">
-	<img src="https://via.placeholder.com/200x200" alt=""/>
+	<div class="bibliographic-result__image">
+		<img src="{{ asset('images/img-random.jpg') }}" alt="" class="img-fluid" />
+	</div>
 </div>
 <div class="col-12 col-md-9">
-	<ul>
-		<li>
-			<p>Auteur : <span lang="fr">Guy de Maupassant (1850 - 1893)</span></p>
+	<ul class="list-information bibliographic-result__infos">
+		<li class="list-information__item">
+			<div class="list-information__content">
+				<span class="list-information__label">Auteur :</span>
+				<ul class="list-information__sub-list" lang="fr">
+					<li class="list-information__sub-item"><a href="#">Guy de Maupassant (1850 - 1893)</a></li>
+					<li class="list-information__sub-item"><a href="#">Auteur 02 (1850 - 1893)</a></li>
+				</ul>
+			</div>
 		</li>
-		<li>
-			<p>Thèmes : <a href="#" aria-label="Relancer une recherche avec le terme : amour">amour</a>, <a href="#" aria-label="Relancer une recherche avec le terme : gloire">gloire</a>, <a href="#" aria-label="Relancer une recherche avec le terme : beauté">beauté</a></p>
+		<li class="list-information__item">
+			<div class="list-information__content">
+				<span class="list-information__label">Thèmes :</span>
+				<ul class="list-information__sub-list">
+					<li class="list-information__sub-item"><a href="#" aria-label="Relancer une recherche avec le terme : amour">amour</a></li>
+					<li class="list-information__sub-item"><a href="#" aria-label="Relancer une recherche avec le terme : gloire">gloire</a></li>
+					<li class="list-information__sub-item"><a href="#" aria-label="Relancer une recherche avec le terme : beauté">beauté</a></li>
+				</ul>
+			</div>
 		</li>
-		<li>
-			<p>Sujets : <span lang="fr">Satire d'une société d'argent minée par les scandales politiques</span></p>
+		<li class="list-information__item">
+			<div class="list-information__content">
+				<span class="list-information__label">Sujets :</span>
+				<ul class="list-information__sub-list">
+					<li class="list-information__sub-item"><span lang="fr">Satire d'une société d'argent minée par les scandales politiques</span></li>
+				</ul>
+			</div>
 		</li>
-		<li>
-			<p>Éditeur : <span lang="fr">Ollendorf</span></p>
+		<li class="list-information__item">
+			<div class="list-information__content">
+				<span class="list-information__label">Éditeur :</span>
+				<ul class="list-information__sub-list">
+					<li class="list-information__sub-item"><span lang="fr">Ollendorf</span></li>
+				</ul>
+			</div>
 		</li>
-		<li>
-			<p>Date de publication : <span lang="fr">1885</span></p>
+		<li class="list-information__item">
+			<div class="list-information__content">
+				<span class="list-information__label">Date de publication :</span>
+				<ul class="list-information__sub-list">
+					<li class="list-information__sub-item"><span lang="fr">1885</span></li>
+				</ul>
+			</div>
 		</li>
-		<li>
-			<p>Langue(s) : <span lang="fr">Français</span></p>
+		<li class="list-information__item">
+			<div class="list-information__content">
+				<span class="list-information__label">Langue(s) :</span>
+				<ul class="list-information__sub-list">
+					<li class="list-information__sub-item"><span lang="fr">Français</span></li>
+				</ul>
+			</div>
 		</li>
-		<li>
-			<p>Description : <span lang="fr">Bel-Ami est un oeuvre inscrite dans le mouvement du naturalisme.</span></p>
+		<li class="list-information__item">
+			<div class="list-information__content">
+				<span class="list-information__label">Description :</span>
+				<ul class="list-information__sub-list">
+					<li class="list-information__sub-item"><span lang="fr">Bel-Ami est un oeuvre inscrite dans le mouvement du naturalisme.</span></li>
+				</ul>
+			</div>
 		</li>
-		<li>
-			<p>Titre en relation / Collection : <span lang="fr">Une vie (1883) - Bel-Ami (1885) - Pierre et Jean (1888)</span></p>
+		<li class="list-information__item">
+			<div class="list-information__content">
+				<span class="list-information__label">Titre en relation / Collection :</span>
+				<ul class="list-information__sub-list">
+					<li class="list-information__sub-item"><span lang="fr">Une vie (1883)</span></li>
+					<li class="list-information__sub-item"><span lang="fr">Bel-Ami (1885)</span></li>
+					<li class="list-information__sub-item"><span lang="fr">Pierre et Jean (1888)</span></li>
+				</ul>
+			</div>
 		</li>
-		<li>
-			<p>ISBN : <span lang="fr">978-2-12345-678-9</span></p>
+		<li class="list-information__item">
+			<div class="list-information__content">
+				<span class="list-information__label">ISBN :</span>
+				<ul class="list-information__sub-list">
+					<li class="list-information__sub-item"><span lang="fr">978-2-12345-678-9</span></li>
+				</ul>
+			</div>
 		</li>
-		<li>
-			<p>Indice : <span lang="fr">A459862-12</span></p>
+		<li class="list-information__item">
+			<div class="list-information__content">
+				<span class="list-information__label">Indice :</span>
+				<ul class="list-information__sub-list">
+					<li class="list-information__sub-item"><span lang="fr">A459862-12</span></li>
+				</ul>
+			</div>
 		</li>
 	</ul>
 </div>
 
 <div class="col-12">
-	<div>
-		{# Pour les documents en rayon dispo ou indispo #}
-		<p lang="fr"><span>Disponible / Indisponible</span> 7.156 MAUP</p>
+	{# Pour les documents en rayon dispo#}
+	<div class="bibliographic-result__availability bibliographic-result__availability--available">
+		<p lang="fr"><span>Disponible</span> 7.156 MAUP</p>
 		<p lang="fr">Niveau 3</p>
+	</div>
 
-		{# Pour les documents en ligne consultable #}
+	{# Pour les documents en rayon indispo #}
+	<div class="bibliographic-result__availability bibliographic-result__availability--disabled">
+		<p lang="fr"><span>Indisponible</span></p>
+	</div>
+
+	{# Pour les documents en ligne consultable #}
+	<div class="bibliographic-result__availability">
 		<p><a href="#" lang="fr">Accéder à *Insert nom du document*</a></p>
+	</div>
 
-		{# Pour les documents en ligne non consultable #}
+	{# Pour les documents en ligne non consultable #}
+	<div class="bibliographic-result__availability">
 		<p lang="fr">Consultable à la Bpi</p>
 	</div>
 </div>

@@ -12,7 +12,7 @@
 			&:hover,
 			&:focus,
 			&[aria-expanded="true"] {
-				border: 1px solid $grey;
+				border: $border-thin;
 				outline: 0;
 			}
 		}
@@ -23,11 +23,11 @@
 	}
 
 	&__menus {
-		margin-bottom: 15px;
+		margin-bottom: $spacer;
 	}
 
 	&__logo {
-		margin-bottom: 15px;
+		margin-bottom: $spacer;
 
 		@include media-breakpoint-up(md) {
 			height: 100px;

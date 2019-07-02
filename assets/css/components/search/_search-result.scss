@@ -6,11 +6,11 @@
 
 	&__image,
 	&__body {
-		margin-top: 15px;
+		margin-top: $spacer;
 	}
 
 	&__image {
-		margin-bottom: 15px;
+		margin-bottom: $spacer;
 	}
 
 	&__title {
@@ -43,8 +43,8 @@
 	}
 
 	&__collapse {
-		border-top: $border-thin;
-		border-bottom: $border-thin;
+		border-top: $border-default;
+		border-bottom: $border-default;
 		padding: 10px 0;
 	}
 

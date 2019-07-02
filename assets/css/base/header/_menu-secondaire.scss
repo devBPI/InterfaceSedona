@@ -5,11 +5,11 @@
 #menu-secondaire {
 	margin-left: -1px;
 	margin-right: -1px;
-	border-left: 1px solid $grey;
-	border-right: 1px solid $grey;
+	border-left: $border-thin;
+	border-right: $border-thin;
 
 	@include media-breakpoint-up(lg) {
-		margin-right: 15px;
+		margin-right: $spacer;
 		margin-left: 0;
 	}
 }

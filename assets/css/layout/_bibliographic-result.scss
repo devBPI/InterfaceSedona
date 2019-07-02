@@ -1,0 +1,90 @@
+// -------------------------------
+// Structure - Notice bibliographique
+// -------------------------------
+
+.bibliographic-result {
+	
+	&__title {
+		padding-top: $spacer;
+		border-top: $border-default;
+	}
+
+	&__author {
+
+		@include media-breakpoint-up(md) {
+			margin-bottom: 0;
+		}
+	}
+
+	&__type {
+		text-align: right;
+
+		img {
+			max-width: 35px;
+		}
+	}
+
+	&__subtitle {
+		margin-top: $spacer;
+		padding-top: $spacer;
+		border-top: $border-thin;
+	}
+
+	&__resume {
+		margin-bottom: $spacer;
+		padding-bottom: $spacer;
+		border-bottom: $border-thin;
+
+		@include media-breakpoint-up(md) {
+			column-count: 2;
+			column-gap: $spacer * 2;
+		}
+	}
+
+	&__image {
+		margin-bottom: $spacer;
+	}
+
+	&__availability {
+		padding-top: $spacer;
+		padding-bottom: $spacer;
+		border-top: $border-thin;
+
+		p {
+			margin-bottom: 0;
+		}
+
+		&--available,
+		&--disabled {
+			position: relative;
+			padding-left: $spacer;
+
+			&:before {
+				content: '';
+				position: absolute;
+				width: 10px;
+				height: 16px;
+				top: 0;
+				left: 0;
+				margin-top: 18px;
+				background-size: contain;
+				background-position: center top;
+				background-repeat: no-repeat;
+			}
+		}
+
+		&--available {
+
+			&:before {
+				background-image: url('/images/icones/icone-map-vert.svg');
+			}
+		}
+
+		&--disabled {
+
+			&:before {
+				background-image: url('/images/icones/icone-map-rouge.svg');
+			}
+		}
+	}
+}

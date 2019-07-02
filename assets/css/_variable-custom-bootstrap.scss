@@ -38,22 +38,31 @@ $container-max-widths: (
   lg: 1030px
 );
 
+// Spacing
+
+$spacer: 15px;
+
+// Paragraphs
+//
+// Style p element.
+
+$paragraph-margin-bottom:   $spacer;
+
+
 // Components
 //
 // Define common padding and border radius sizes and more.
 
-$border-width:                1px !default;
+$border-width:                2px !default;
 $border-color:                $grey;
 
 $border-radius:               0;
 $border-radius-lg:            0;
 $border-radius-sm:            0;
 
-$rounded-pill:                50rem !default;
-
-$box-shadow-sm:               0 .125rem .25rem rgba($black, .075) !default;
-$box-shadow:                  0 .5rem 1rem rgba($black, .15) !default;
-$box-shadow-lg:               0 1rem 3rem rgba($black, .175) !default;
+$box-shadow:                  1px 4px 4px rgba($black, .25);
+$box-shadow-sm:               $box-shadow;
+$box-shadow-lg:               $box-shadow;
 
 $component-active-color:      $red;
 $component-active-bg:         $white;
@@ -78,7 +87,7 @@ $font-size-sm:                $font-size-base;
 
 // Breadcrumbs
 
-$breadcrumb-padding-y:              15px;
+$breadcrumb-padding-y:              $spacer;
 $breadcrumb-padding-x:             	10px;
 $breadcrumb-item-padding:           5px;
 $breadcrumb-margin-bottom:          0;
@@ -93,7 +102,7 @@ $breadcrumb-border-radius:          0;
 // For each of Bootstrap's buttons, define text, background, and border color.
 
 $btn-padding-y:               0;
-$btn-padding-x:               15px;
+$btn-padding-x:               $spacer;
 $btn-font-family:             $font-family-sans-serif;
 $btn-font-size:               $font-size-base;
 $btn-line-height:             25px;
@@ -133,9 +142,6 @@ $btn-border-radius-sm:        0;
 $dropdown-min-width:                0;
 $dropdown-padding-y:                10px;
 $dropdown-spacer:                   -1px;
-$dropdown-font-size:                $font-size-base !default;
-$dropdown-color:                    $body-color !default;
-$dropdown-bg:                       $white !default;
 $dropdown-border-color:             $grey;
 $dropdown-border-radius:            0;
 $dropdown-border-width:             1px;
@@ -147,13 +153,10 @@ $dropdown-link-color:               $black;
 $dropdown-link-hover-color:         $red;
 $dropdown-link-hover-bg:            $white;
 
-$dropdown-link-active-color:        $component-active-color !default;
-$dropdown-link-active-bg:           $component-active-bg !default;
-
 $dropdown-link-disabled-color:      $grey;
 
 $dropdown-item-padding-y:           0;
-$dropdown-item-padding-x:           15px;
+$dropdown-item-padding-x:           $spacer;
 
 $dropdown-header-color:             $grey;
 
@@ -167,18 +170,8 @@ $card-border-radius:                0;
 $card-border-color:                 transparent;
 $card-inner-border-radius:          0;
 $card-cap-bg:                       0;
-$card-cap-color:                    null !default;
-$card-color:                        null !default;
-$card-bg:                           $white !default;
 
-$card-img-overlay-padding:          1.25rem !default;
-
-$card-group-margin:                 15px / 2 !default;
-$card-deck-margin:                  $card-group-margin !default;
-
-$card-columns-count:                3 !default;
-$card-columns-gap:                  1.25rem !default;
-$card-columns-margin:               $card-spacer-y !default;
+$card-group-margin:                 $spacer / 2;
 
 // Pagination
 
@@ -188,24 +181,19 @@ $pagination-padding-y-sm:           $pagination-padding-y;
 $pagination-padding-x-sm:           $pagination-padding-x;
 $pagination-padding-y-lg:           $pagination-padding-y;
 $pagination-padding-x-lg:           $pagination-padding-x;
-$pagination-line-height:            1.25 !default;
 
 $pagination-color:                  $black;
-$pagination-bg:                     $white !default;
-$pagination-border-width:           $border-width !default;
 $pagination-border-color:           transparent;
 
 $pagination-focus-box-shadow:       none;
-$pagination-focus-outline:          0 !default;
+$pagination-focus-outline:          $outline;
 
 $pagination-hover-color:            $red;
 $pagination-hover-bg:               transparent;
 $pagination-hover-border-color:     transparent;
 
-$pagination-active-color:           $component-active-color !default;
 $pagination-active-bg:              transparent;
 $pagination-active-border-color:    transparent;
 
 $pagination-disabled-color:         $grey-disabled;
-$pagination-disabled-bg:            $white !default;
 $pagination-disabled-border-color:  transparent;
