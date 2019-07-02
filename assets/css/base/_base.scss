@@ -6,7 +6,6 @@ html {
 	font-size: $font-size-html;
 }
 
-
 a {
 
 	&:focus {
@@ -22,7 +21,6 @@ a[target="_blank"] {
 	}
 }
 
-
 button,
 .btn,
 select {
@@ -31,4 +29,9 @@ select {
 	&.focus {
 		outline: $outline;
 	}
+}
+
+.border-double {
+	background-image: url('/images/double-bordure.png');
+	background-repeat: repeat-x;
 }

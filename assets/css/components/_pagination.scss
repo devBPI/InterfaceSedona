@@ -9,6 +9,7 @@
 
 		&-link {
 			height: 100%;
+			margin-bottom: 0;
 
 			&:hover {
 				border-color: $red;
@@ -21,6 +22,18 @@
 			
 			img {
 				height: 13px;
+
+				+ span {
+					margin-left: 5px;
+				}
+			}
+
+			span {
+				vertical-align: middle;
+
+				+ img {
+					margin-left: 5px;
+				}
 			}
 
 			&--right,
@@ -38,5 +51,26 @@
 				}
 			}
 		}	
+	}
+
+	&--header {
+		margin-top: 0;
+		align-items: flex-end;
+
+		p.page-link {
+			border-left: $border-thin;
+			border-right: $border-thin;
+			
+			&:hover {
+				border-top-color: transparent;
+				border-bottom-color: transparent;
+				border-left-color: $black;
+				border-right-color: $black;
+			}
+		}
+
+		.page-link {
+			margin-left: 0;
+		}
 	}
 }

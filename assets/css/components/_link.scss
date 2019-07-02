@@ -1,0 +1,21 @@
+// -------------------------------
+// Links
+// -------------------------------
+
+.link {
+
+
+	&--icone {
+		margin-top: -2px;
+		display: block;
+
+		img {
+			height: 13px;
+
+			+ span {
+				vertical-align: middle;
+				margin-left: 5px;
+			}
+		}
+	}
+}
