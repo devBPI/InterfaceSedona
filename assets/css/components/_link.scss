@@ -18,4 +18,15 @@
 			}
 		}
 	}
+
+	&--icone-end {
+		margin-top: -2px;
+		display: block;
+
+		img {
+			height: 13px;
+			transform: scaleX(-1);
+			margin-top: -3px;
+		}
+	}
 }
