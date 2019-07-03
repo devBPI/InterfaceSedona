@@ -16,9 +16,11 @@
 		</nav>
 	</div>
 
-	<h1 class="n1"><img src="https://via.placeholder.com/15x15" alt="" class="icone-coeur"/> Ma sélection</h1>
+	<h1 class="n1 title-icone">
+		<span class="icone-square"><img src="{{ asset('images/icones/icone-coeur.svg') }}" alt="" class="icone-coeur"/></span><span>Ma sélection</span>
+	</h1>
 
-	<div class="row justify-content-md-between">
+	<div class="row justify-content-md-between banner-tools">
 		{% include "user/blocs/banner-tools.html.twig" %}
 	</div>
 

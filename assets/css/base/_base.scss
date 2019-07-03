@@ -35,7 +35,31 @@ select {
 	border-top: $border-default;
 }
 
+.border-thin {
+	border-top: $border-thin;
+}
+
 .border-double {
 	background-image: url('/images/double-bordure.png');
 	background-repeat: repeat-x;
+}
+
+.title-icone {
+	display: flex;
+	align-items: center;
+}
+
+.icone-square {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 20px;
+	height: 20px;
+	margin-right: 5px;
+	background-color: $black;
+	text-align: center;
+	
+	img {
+		height: 13px;
+	}
 }

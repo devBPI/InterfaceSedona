@@ -197,3 +197,23 @@ $pagination-active-border-color:    transparent;
 
 $pagination-disabled-color:         $grey-disabled;
 $pagination-disabled-border-color:  transparent;
+
+// Tables
+//
+// Customizes the `.table` component with basic values, each used across all table variations.
+
+$table-cell-padding:          10px;
+$table-cell-padding-sm:       5px;
+
+$table-color:                 $black;
+$table-bg:                    $white;
+$table-accent-bg:             $grey-border;
+$table-hover-color:           $table-color;
+$table-hover-bg:              $grey-border;
+$table-active-bg:             $table-hover-bg;
+
+$table-border-width:          0;
+$table-border-color:          transparent;
+
+$table-head-bg:               $grey;
+$table-head-color:            $grey;

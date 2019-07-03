@@ -1,0 +1,26 @@
+// -------------------------------
+// Groupe header + tableaux
+// -------------------------------
+
+.table-group {
+	margin-bottom: $spacer;
+	border-bottom: $border-default;
+	
+	&__header {
+		display: flex;
+		align-items: baseline;
+		margin-bottom: $spacer;
+	}
+
+	&__title {
+		margin: 0 10px 0;
+		font-size: 15px;
+	}
+
+	&__link {
+
+		img {
+			width: 15px;
+		}
+	}
+}

@@ -1,0 +1,24 @@
+// -------------------------------
+// Tableaux
+// -------------------------------
+
+.table {
+	width: 100%;
+	white-space: nowrap;
+
+	p {
+		margin-bottom: 0;
+	}
+
+	&__button {
+		padding: 0;
+
+		img {
+			width: 8px;
+		}
+	}
+
+	&__type {
+		width: 15px;
+	}
+}

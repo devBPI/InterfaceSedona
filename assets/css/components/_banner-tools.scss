@@ -1,0 +1,63 @@
+// -------------------------------
+// Banner Tools
+// -------------------------------
+
+.banner-tools {
+
+	&__list {
+		list-style-type: none;
+		padding: 0;
+		margin-bottom: $spacer;
+		display: flex;
+		align-items: center;
+
+		@include media-breakpoint-up(lg) {
+			margin-bottom: 0;
+		}
+	}
+
+	&__link {
+		margin-right: 10px;
+
+		&:last-child {
+			margin-right: 0;
+		}
+	}
+
+	&__item {
+		margin-right: 10px;
+
+		&:last-child {
+			margin-right: 0;
+		}
+
+		a {
+			display: flex;
+			align-items: baseline;
+
+			img {
+				width: 8px;
+				margin-left: 5px;
+			}
+		}
+
+		&--top {
+
+			a {
+
+				img {
+					transform: scaleY(-1);
+				}
+			}
+		}
+	}
+
+	&__infos {
+		margin-right: 10px;
+		margin-bottom: 0;
+
+		&:last-child {
+			margin-right: 0;
+		}
+	}
+}
