@@ -1,0 +1,19 @@
+// -------------------------------
+// Nav Pills
+// -------------------------------
+
+.nav-pills {
+	margin-bottom: $spacer;
+
+	.nav {
+
+		&-item {
+			border: $border-thin;
+			border-right: 0;
+
+			&:last-child {
+				border-right: $border-thin;
+			}
+		}
+	}
+}
