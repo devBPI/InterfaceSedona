@@ -69,11 +69,19 @@
 	&__item {
 		padding: 3px 5px;
 
+		a {
+			display: block;
+		}
+
 		&--current {
 			background-color: $grey-footer;
 
 			p {
 				margin-bottom: 0;
+
+				&:focus {
+					outline: $outline;
+				}
 			}
 
 			img {
