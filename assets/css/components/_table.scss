@@ -21,4 +21,21 @@
 	&__type {
 		width: 15px;
 	}
+
+	&__body {
+
+		&-search {
+			width: 20px;
+			height: 20px;
+			line-height: 17px;
+			border-radius: 50%;
+			background-color: $grey;
+			display: inline-block;
+			text-align: center;
+
+			img {
+				width: 12px;
+			}
+		}
+	}
 }
