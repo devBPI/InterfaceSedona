@@ -6,30 +6,40 @@
 
 	<div>
 		<nav>
-			<ul>
-				<li><a href="#" title="Lien actif">Données personnelles</a></li>
-				<li><a href="#" target="_blank" title="La BPI - Nouvelle fenêtre">La Bpi</a></li>
-				<li><a href="#" target="_blank" title="Catalogue - Nouvelle fenêtre">Catalogue</a></li>
-				<li><a href="#" target="_blank" title="Balises - Nouvelle fenêtre">Balises</a></li>
-				<li><a href="#" target="_blank" title="Professionnels - Nouvelle fenêtre">Professionnels</a></li>
+			<ul class="nav nav-tabs" id="user-navigation" role="tablist">
+				<li class="nav-item">
+					<a href="#selection" class="nav-link active" id="user-selection" data-toggle="tab" role="tab" aria-controls="selection" aria-selected="true">Ma sélection</a>
+				</li>
+				<li class="nav-item">
+					<a href="#historique" class="nav-link" id="user-historique" data-toggle="tab" role="tab" aria-controls="historique" aria-selected="false">Mon historique</a>
+				</li>
 			</ul>
 		</nav>
 	</div>
 
-	<h1 class="n1 title-icone">
-		<span class="icone-square"><img src="{{ asset('images/icones/icone-coeur.svg') }}" alt="" class="icone-coeur"/></span><span>Ma sélection</span>
-	</h1>
+	<div class="tab-content" id="user-content">
+		<div class="tab-pane fade show active" id="selection" role="tabpanel" aria-labelledby="user-selection">
 
-	<div class="row justify-content-md-between banner-tools">
-		{% include "user/blocs/banner-tools.html.twig" %}
+			<h1 class="n1 title-icone">
+				<span class="icone-square"><img src="{{ asset('images/icones/icone-coeur.svg') }}" alt="" class="icone-coeur"/></span><span>Ma sélection</span>
+			</h1>
+
+			<div class="row justify-content-md-between banner-tools">
+				{% include "user/blocs/banner-tools.html.twig" %}
+			</div>
+
+			<div>
+				{% include "user/blocs/list-user.html.twig" %}
+			</div>
+
+		</div>
+		<div class="tab-pane fade" id="historique" role="tabpanel" aria-labelledby="user-historique">
+
+			<div>
+				{% include "user/blocs/historic-search.html.twig" %}
+			</div>
+
+		</div>
 	</div>
 
-	<div>
-		{% include "user/blocs/list-user.html.twig" %}
-	</div>
-
-	<div>
-		{% include "user/blocs/historic-search.html.twig" %}
-	</div>
-	
 {% endblock %}

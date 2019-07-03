@@ -217,3 +217,18 @@ $table-border-color:          transparent;
 
 $table-head-bg:               $grey;
 $table-head-color:            $grey;
+
+// Navs
+
+$nav-link-padding-y:                .5rem !default;
+$nav-link-padding-x:                1rem !default;
+
+$nav-tabs-border-color:             $black;
+$nav-tabs-border-width:             2px;
+$nav-tabs-border-radius:            0;
+$nav-tabs-link-hover-border-color:  $nav-tabs-border-color;
+$nav-tabs-link-active-color:        $black;
+$nav-tabs-link-active-bg:           $white;
+$nav-tabs-link-active-border-color: $black;
+
+$nav-pills-border-radius:           0;
