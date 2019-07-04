@@ -16,42 +16,23 @@
 				<a href="#" class="link link--icone-end">Voir tout <span class="sr-only">les résultats </span><span>(*Insert number*)</span> <img src="{{ asset('images/icones/icone-chevron-gauche.svg') }}" alt="" class="icone-chevron-right"/></a>
 			</div>
 		</div>
-		<div class="carousel-secondary authority-document__carousel">
-			<div class="carousel flickity-enabled is-draggable" tabindex="0">
-				<div class="flickity-viewport">
-					<div class="flickity-slider d-flex">
-						<div class="carousel-cell is-selected">
-							<a href="#" aria-label="Document 1 sur 20, *Insert titre* *Insert auteur*" lang="fr">
-								<div>
-									<img src="https://via.placeholder.com/150x200" alt="Image *Insert titre*">
-								</div>
-								<div>
-									<p>*Insert Titre*</p>
-									<p>*Insert auteur*</p>
-								</div>
-							</a>
-						</div>
-						<div class="carousel-cell">
-							<a href="#" aria-label="Document 2 sur 20, *Insert titre* *Insert auteur*" lang="fr">
-								<div>
-									<img src="https://via.placeholder.com/150x200" alt="Image *Insert titre*">
-								</div>
-								<div>
-									<p>*Insert Titre*</p>
-									<p>*Insert auteur*</p>
-								</div>
-							</a>
-						</div>
+		<div class="carousel-secondary">
+			<div class="carousel-secondary__body">
+				<div class="carousel-wrapper">
+					<div class="slick-carousel" role="region" aria-roledescription="carrousel">
+						{% for i in 1..4 %}
+							<div class="slick-slide-content">
+								<a href="#" title="Actualité {{ i }} sur 24, Titre de Auteur">
+									<div>
+										<img src="{{ asset('images/couvertures-generiques/cg-livre.svg') }}" alt="" class="img-fluid" />
+									</div>
+									<p>Titre</p>
+									<p>Auteur</p>
+								</a>
+							</div>
+						{% endfor %}
 					</div>
 				</div>
-				<!-- Customisation des boutons : DOM supposé. 
-				Informations : pas de pagination, pas d'auto-play, pas de défilement infini, limite d'éléments à 20 -->
-				<button class="flickity-button flickity-prev-next-button previous" type="button" aria-label="Element précédent">
-					<img src="{{ asset('images/icones/icone-chevron-gauche.svg') }}" alt="" class="icone-chevron"/>
-				</button>
-				<button class="flickity-button flickity-prev-next-button next" type="button" aria-label="Element suivant">
-					<img src="{{ asset('images/icones/icone-chevron-gauche.svg') }}" alt="" class="icone-chevron"/>
-				</button>
 			</div>
 		</div>
 	</div>
@@ -65,42 +46,23 @@
 				<a href="#" class="link  link--icone-end">Voir tout <span class="sr-only">les résultats </span><span>(*Insert number*)</span> <img src="{{ asset('images/icones/icone-chevron-gauche.svg') }}" alt="" class="icone-chevron"/></a>
 			</div>
 		</div>
-		<div class="carousel-secondary authority-document__carousel">
-			<div class="carousel flickity-enabled is-draggable" tabindex="0">
-				<div class="flickity-viewport">
-					<div class="flickity-slider d-flex">
-						<div class="carousel-cell is-selected">
-							<a href="#" aria-label="Document 1 sur 20, *Insert titre* *Insert auteur*" lang="fr">
-								<div>
-									<img src="https://via.placeholder.com/150x200" alt="Image *Insert titre*">
-								</div>
-								<div>
-									<p>*Insert Titre*</p>
-									<p>*Insert auteur*</p>
-								</div>
-							</a>
-						</div>
-						<div class="carousel-cell">
-							<a href="#" aria-label="Document 2 sur 20, *Insert titre* *Insert auteur*" lang="fr">
-								<div>
-									<img src="https://via.placeholder.com/150x200" alt="Image *Insert titre*">
-								</div>
-								<div>
-									<p>*Insert Titre*</p>
-									<p>*Insert auteur*</p>
-								</div>
-							</a>
-						</div>
+		<div class="carousel-secondary">
+			<div class="carousel-secondary__body">
+				<div class="carousel-wrapper">
+					<div class="slick-carousel" role="region" aria-roledescription="carrousel">
+						{% for i in 1..4 %}
+							<div class="slick-slide-content">
+								<a href="#" title="Actualité {{ i }} sur 24, Titre de Auteur">
+									<div>
+										<img src="{{ asset('images/couvertures-generiques/cg-image.svg') }}" alt="" class="img-fluid" />
+									</div>
+									<p>Titre</p>
+									<p>Auteur</p>
+								</a>
+							</div>
+						{% endfor %}
 					</div>
 				</div>
-				<!-- Customisation des boutons : DOM supposé. 
-				Informations : pas de pagination, pas d'auto-play, pas de défilement infini, limite d'éléments à 20 -->
-				<button class="flickity-button flickity-prev-next-button previous" type="button" aria-label="Element précédent">
-					<img src="{{ asset('images/icones/icone-chevron-gauche.svg') }}" alt="" class="icone-chevron"/>
-				</button>
-				<button class="flickity-button flickity-prev-next-button next" type="button" aria-label="Element suivant">
-					<img src="{{ asset('images/icones/icone-chevron-gauche.svg') }}" alt="" class="icone-chevron"/>
-				</button>
 			</div>
 		</div>
 	</div>
