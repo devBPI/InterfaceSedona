@@ -1,206 +1,296 @@
-<div role="dialog" aria-modal="true" aria-labelledby="modal-search-advanced" class="modal fade">
-	<div class="modal-dialog">
+<div role="dialog" aria-modal="true" aria-labelledby="modal-search-advanced-title" class="modal fade" id="modal-search-advanced">
+	<div class="modal-dialog modal-dialog-centered modal-xl">
 		<div class="modal-content">
-			<form>
+			<form class="modal-form">
 				<div class="modal-header">
-					<h1 class="n1" id="modal-search-advanced">Recherche avancée</h1>
-					<button type="button" aria-label="Fermer cette fenêtre"><span aria-hidden="true">X</span></button>
+					<h1 class="n1 modal-header__title" id="modal-search-advanced-title">Recherche avancée</h1>
+					<button class="close" type="button" aria-label="Fermer cette fenêtre" data-dismiss="modal">
+						<span aria-hidden="true" class="sr-only">X</span>
+						<img src="{{ asset('images/icones/icone-croix-blanc.svg') }}" alt="" />
+					</button>
 				</div>
 
 				<div class="modal-body">
 					<p tabindex="0">Pour rechercher une expression exacte, mettez les mots entre "guillemets".</p>
 
-					<div>
-
-						<div>
-							<div>
-								<div>
-									<label for="adv-search-txt-1">Rechercher par mots clés</label>
-									<input type="text" id="adv-search-txt-1">
-								</div>
-								<div>
-									<div class="dropdown">
-										<button type="button" id="adv-search-dpdw-critere" data-toggle="dropdown" aria-haspopup="listbox" aria-expanded="false">
-										*Insert critères de recherche* <img src="https://via.placeholder.com/15x15" alt="" class="icone-caret"/>
-										</button>
-										<ul class="dropdown-menu" aria-labelledby="adv-search-dpdw-critere" role="listbox" tabindex="-1">
-											<li class="dropdown-item" role="option">
-												<a href="#">*Insert autres critères*</a>
-											</li>
-											<li class="dropdown-item" role="option">
-												<a href="#">*Insert autres critères*</a>
-											</li>	
-										</ul>
-									</div>
+					<div class="search-keyword">
+						<div  class="search-keyword__group">
+							<div class="search-keyword__condition"></div>
+							<div class="search-keyword__input">
+								<label for="adv-search-txt-1" class="sr-only">Rechercher par mots clés</label>
+								<input type="text" id="adv-search-txt-1">
+							</div>
+							<div class="search-keyword__choice">
+								<div class="dropdown">
+									<button type="button" id="adv-search-dpdw-critere" data-toggle="dropdown" aria-haspopup="listbox" aria-expanded="false" class="dropdown-toggle">
+									Auteur
+									</button>
+									<ul class="dropdown-menu" aria-labelledby="adv-search-dpdw-critere" role="listbox" tabindex="-1">
+										<li class="dropdown-item" role="option">
+											<a href="#">Date de publication</a>
+										</li>
+										<li class="dropdown-item" role="option">
+											<a href="#">Titre</a>
+										</li>	
+									</ul>
 								</div>
 							</div>
-
-							<div>
-								<div>
-									<div class="dropdown">
-										<button type="button" id="adv-search-condition-1" data-toggle="dropdown" aria-haspopup="listbox" aria-expanded="false">
-										Et <img src="https://via.placeholder.com/15x15" alt="" class="icone-caret"/>
-										</button>
-										<ul class="dropdown-menu" aria-labelledby="adv-search-condition-1" role="listbox" tabindex="-1">
-											<li class="dropdown-item" role="option" aria-selected="true">
-												<a href="#">Et</a>
-											</li>
-											<li class="dropdown-item" role="option">
-												<a href="#">Ou</a>
-											</li>
-										</ul>
-									</div>
-								</div>
-								<div>
-									<label for="adv-search-txt-2">Rechercher par mots clés</label>
-									<input type="text" id="adv-search-txt-2">
-								</div>
-								<div>
-									<div class="dropdown">
-										<button type="button" id="adv-search-condition-2" data-toggle="dropdown" aria-haspopup="listbox" aria-expanded="false">
-										*Critère de recherche* <img src="https://via.placeholder.com/15x15" alt="" class="icone-caret"/>
-										</button>
-										<ul class="dropdown-menu" aria-labelledby="adv-search-condition-2" role="listbox" tabindex="-1">
-											<li class="dropdown-item" role="option">
-												<a href="#">*Insert autres critères*</a>
-											</li>
-											<li class="dropdown-item" role="option">
-												<a href="#">*Insert autres critères*</a>
-											</li>	
-										</ul>
-									</div>
-								</div>
-								<div>
-									<button type="button"><img src="https://via.placeholder.com/15x15" alt="" class="icone-plus"/><span class="sr-only">Ajouter un champs de recherche</span></button>
-								</div>
-							</div>
+							<div class="search-keyword__add"></div>
 						</div>
 
-						<div>
-							<div>
-								<p>Recherche dans</p>
-								<div>
-									<input type="checkbox" id="adv-search-bdd-all">
-									<label for="adv-search-bdd-all" aria-label="Recherche dans toutes les bases de données">Tout</label>
+						<div class="search-keyword__group">
+							<div class="search-keyword__condition">
+								<div class="dropdown">
+									<button type="button" id="adv-search-condition-1" data-toggle="dropdown" aria-haspopup="listbox" aria-expanded="false" class="dropdown-toggle">
+									Et
+									</button>
+									<ul class="dropdown-menu" aria-labelledby="adv-search-condition-1" role="listbox" tabindex="-1">
+										<li class="dropdown-item" role="option" aria-selected="true">
+											<a href="#">Et</a>
+										</li>
+										<li class="dropdown-item" role="option">
+											<a href="#">Ou</a>
+										</li>
+									</ul>
 								</div>
 							</div>
-							<ul role="group" aria-label="recherche dans">
-								{% for i in 1..3 %}
-									<li>
-										<input type="checkbox" class="form-control" id="adv-search-bdd-{{ i }}">
-										<label for="adv-search-bdd-{{ i }}"><span class="sr-only">Recherche dans </span>Base de données {{ i }}</label>
-									</li>
-								{% endfor %}
-							</ul>
+							<div class="search-keyword__input">
+								<label for="adv-search-txt-2" class="sr-only">Rechercher par mots clés</label>
+								<input type="text" id="adv-search-txt-2">
+							</div>
+							<div class="search-keyword__choice">
+								<div class="dropdown">
+									<button type="button" id="adv-search-condition-2" data-toggle="dropdown" aria-haspopup="listbox" aria-expanded="false" class="dropdown-toggle">
+									Date de publication
+									</button>
+									<ul class="dropdown-menu" aria-labelledby="adv-search-condition-2" role="listbox" tabindex="-1">
+										<li class="dropdown-item" role="option">
+											<a href="#">Auteur</a>
+										</li>
+										<li class="dropdown-item" role="option">
+											<a href="#">Titre</a>
+										</li>	
+									</ul>
+								</div>
+							</div>
+							<div class="search-keyword__add">
+								<button type="button" class="btn"><img src="{{ asset('images/icones/icone-plus.svg') }}" alt="" class="icone-plus"/><span class="sr-only">Ajouter un champs de recherche</span></button>
+							</div>
 						</div>
-
 					</div>
 
-					<div>
-						<div>
-							<p>Date de parution</p>
-							<div role="group" aria-label="date de parution">
-								<div class="form-check form-check-inline">
-									<input class="form-check-input" type="radio" id="adv-search-label-date" value="Date">
-									<label class="form-check-label" for="adv-search-label-date">Date</label>
-								</div>
-								<div class="form-check form-check-inline">
-									<input class="form-check-input" type="radio" id="adv-search-label-period" value="Periode">
-									<label class="form-check-label" for="adv-search-label-period">Periode</label>
-								</div>
-								<div class="form-group">
-									<label for="adv-search-date-1" class="sr-only">Entrer une date de parution</label>
-									<input type="text" class="form-control" id="adv-search-date-1">
-								</div>
-								<div>
+					<div class="search-base">
+						<div class="search-base__group">
+							<p class="search-base__label">Recherche dans</p>
+							<div class="search-base__label">
+								<input type="checkbox" id="adv-search-bdd-all">
+								<label for="adv-search-bdd-all" aria-label="Recherche dans toutes les bases de données">Tout</label>
+							</div>
+						</div>
+						<ul role="group" aria-label="recherche dans" class="search-base__list">
+							{% for i in 1..5 %}
+								<li class="search-base__item">
+									<input type="checkbox" id="adv-search-bdd-{{ i }}">
+									<label for="adv-search-bdd-{{ i }}"><span class="sr-only">Recherche dans </span>Base de données {{ i }}</label>
+								</li>
+							{% endfor %}
+						</ul>
+					</div>
+				</div>
+
+				<div class="modal-body">
+					<div class="container-fluid">
+						<div class="row">
+							<div class="col-12 col-sm-7 col-md-8">
+								<p>Date de publication</p>
+								<div role="group" aria-label="date de parution">
+									<div class="form-check form-check-inline">
+										<input class="form-check-input" type="radio" id="adv-search-label-date" value="Date">
+										<label class="form-check-label" for="adv-search-label-date">Date</label>
+									</div>
+									<div class="form-check form-check-inline">
+										<input class="form-check-input" type="radio" id="adv-search-label-period" value="Periode">
+										<label class="form-check-label" for="adv-search-label-period">Periode</label>
+									</div>
 									<div class="form-group">
-										<label for="adv-search-date-2" class="sr-only">Entrer une deuxième date de parution</label>
-										<input type="text" class="form-control" id="adv-search-date-2">
+										<label for="adv-search-date-1" class="sr-only">Entrer une date de parution</label>
+										<input type="text" class="form-control" id="adv-search-date-1">
+									</div>
+									<div>
+										<div class="form-group">
+											<label for="adv-search-date-2" class="sr-only">Entrer une deuxième date de parution</label>
+											<input type="text" class="form-control" id="adv-search-date-2">
+										</div>
 									</div>
 								</div>
 							</div>
-						</div>
 
-						<div>
-							<p>Langue</p>
-							<div class="dropdown">
-								<button type="button" id="adv-search-langage" data-toggle="dropdown" aria-haspopup="listbox" aria-expanded="false" aria-label="Sélectionner les langues">
-								Français <img src="https://via.placeholder.com/15x15" alt="" class="icone-caret"/>
-								</button>
-								<ul class="dropdown-menu" aria-labelledby="adv-search-langage" role="listbox" tabindex="-1">
-									<li class="dropdown-item" role="option">
-										<a href="#">*Insert autres langues*</a>
-									</li>
-								</ul>
+							<div class="col-12 col-sm-5 col-md-4">
+								<p>Langue</p>
+								<div class="dropdown">
+									<button type="button" id="adv-search-langage" data-toggle="dropdown" aria-haspopup="listbox" aria-expanded="false" aria-label="Sélectionner les langues" class="dropdown-toggle">
+									Français
+									</button>
+									<ul class="dropdown-menu" aria-labelledby="adv-search-langage" role="listbox" tabindex="-1">
+										<li class="dropdown-item" role="option">
+											<a href="#">*Insert autres langues*</a>
+										</li>
+									</ul>
+								</div>
 							</div>
 						</div>
 					</div>
+				</div>
 
-					<div>
-						<button type="button" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="adv-search-type" data-target="#adv-search-type"><img src="https://via.placeholder.com/15x15" alt="" class="icone-caret"/> Type de documents</button>
-						<div class="collapse" id="adv-search-type" role="group" aria-label="type de documents">
-							{% for i in 1..3 %}
-								<div class="form-check">
-									<input type="checkbox" class="form-check-input" id="type-documents-{{ i }}">
-									<label class="form-check-label" for="type-documents-{{ i }}">*Insert Label {{ i }}*</label>
-								</div>
-							{% endfor %}
+				<div class="modal-body">
+					<div class="search-facette">
+						<button type="button" class="search-facette__button btn" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="adv-search-type" data-target="#adv-search-type">Type de documents</button>
+						<div class="collapse search-facette__body" id="adv-search-type" role="group" aria-label="type de documents"> 
+							<div class="search-facette__content">
+								{% for i in 1..6 %}
+									<div class="form-check search-facette__item">
+										<input type="checkbox" class="form-check-input" id="type-documents-{{ i }}">
+										<label class="form-check-label" for="type-documents-{{ i }}">*Insert Label {{ i }}*</label>
+									</div>
+								{% endfor %}
+							</div>
 						</div>
 					</div>
+				</div>
 
-					<div>
-						<button type="button" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="adv-search-support" data-target="#adv-search-support"><img src="https://via.placeholder.com/15x15" alt="" class="icone-caret"/> Supports</button>
-						<div class="collapse" id="adv-search-support" role="group" aria-label="supports">
-							{% for i in 1..3 %}
-								<div class="form-check">
-									<input type="checkbox" class="form-check-input" id="support-documents-{{ i }}">
-									<label class="form-check-label" for="support-documents-{{ i }}">*Insert Label {{ i }}*</label>
-								</div>
-							{% endfor %}
+				<div class="modal-body">
+					<div class="search-facette">
+						<button type="button" class="search-facette__button btn" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="adv-search-support" data-target="#adv-search-support">Supports</button>
+						<div class="collapse search-facette__body" id="adv-search-support" role="group" aria-label="supports"> 
+							<div class="search-facette__content">
+								{% for i in 1..6 %}
+									<div class="form-check search-facette__item">
+										<input type="checkbox" class="form-check-input" id="support-documents-{{ i }}">
+										<label class="form-check-label" for="support-documents-{{ i }}">*Insert Label {{ i }}*</label>
+									</div>
+								{% endfor %}
+							</div>
 						</div>
 					</div>
+				</div>
 
-					<div>
-						<button type="button" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="adv-search-theme" data-target="#adv-search-theme"><img src="https://via.placeholder.com/15x15" alt="" class="icone-caret"/> Thèmes</button>
-						<div class="collapse" id="adv-search-theme" role="group" aria-label="thèmes">
-							{% for i in 1..3 %}
-								<div class="form-check">
-									<input type="checkbox" class="form-check-input" id="theme-documents-{{ i }}">
-									<label class="form-check-label" for="theme-documents-{{ i }}">*Insert Label {{ i }}*</label>
-								</div>
-							{% endfor %}
+				<div class="modal-body">
+					<div class="search-facette">
+						<button type="button" class="search-facette__button btn" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="adv-search-music" data-target="#adv-search-music">Genre musical</button>
+						<div class="collapse search-facette__body" id="adv-search-music" role="group" aria-label="genre musical"> 
+							<div class="search-facette__content">
+								{% for i in 1..6 %}
+									<div class="form-check search-facette__item">
+										<input type="checkbox" class="form-check-input" id="music-documents-{{ i }}">
+										<label class="form-check-label" for="music-documents-{{ i }}">*Insert Label {{ i }}*</label>
+									</div>
+								{% endfor %}
+							</div>
 						</div>
 					</div>
+				</div>
 
-					<div>
-						<button type="button" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="adv-search-geo" data-target="#adv-search-geo"><img src="https://via.placeholder.com/15x15" alt="" class="icone-caret"/> Couverture géographique</button>
-						<div class="collapse" id="adv-search-geo" role="group" aria-label="couverture géographique">
-							{% for i in 1..3 %}
-								<div class="form-check">
-									<input type="checkbox" class="form-check-input" id="geo-documents-{{ i }}">
-									<label class="form-check-label" for="geo-documents-{{ i }}">*Insert Label {{ i }}*</label>
-								</div>
-							{% endfor %}
+				<div class="modal-body">
+					<div class="search-facette">
+						<button type="button" class="search-facette__button btn" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="adv-search-film" data-target="#adv-search-film">Genre film</button>
+						<div class="collapse search-facette__body" id="adv-search-film" role="group" aria-label="genre film"> 
+							<div class="search-facette__content">
+								{% for i in 1..6 %}
+									<div class="form-check search-facette__item">
+										<input type="checkbox" class="form-check-input" id="film-documents-{{ i }}">
+										<label class="form-check-label" for="film-documents-{{ i }}">*Insert Label {{ i }}*</label>
+									</div>
+								{% endfor %}
+							</div>
 						</div>
 					</div>
+				</div>
 
-					<div>
-						<button type="button" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="adv-search-music" data-target="#adv-search-music"><img src="https://via.placeholder.com/15x15" alt="" class="icone-caret"/> Genre musical</button>
-						<div class="collapse" id="adv-search-music" role="group" aria-label="genre musical">
-							{% for i in 1..3 %}
-								<div class="form-check">
-									<input type="checkbox" class="form-check-input" id="music-documents-{{ i }}">
-									<label class="form-check-label" for="music-documents-{{ i }}">*Insert Label {{ i }}*</label>
-								</div>
-							{% endfor %}
+				<div class="modal-body">
+					<div class="search-facette">
+						<button type="button" class="search-facette__button btn" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="adv-search-litteraire" data-target="#adv-search-litteraire">Genre littéraire</button>
+						<div class="collapse search-facette__body" id="adv-search-litteraire" role="group" aria-label="genre littéraire"> 
+							<div class="search-facette__content">
+								{% for i in 1..6 %}
+									<div class="form-check search-facette__item">
+										<input type="checkbox" class="form-check-input" id="litteraire-documents-{{ i }}">
+										<label class="form-check-label" for="litteraire-documents-{{ i }}">*Insert Label {{ i }}*</label>
+									</div>
+								{% endfor %}
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="modal-body">
+					<div class="search-facette">
+						<button type="button" class="search-facette__button btn" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="adv-search-destinataire" data-target="#adv-search-destinataire">Public destinataire</button>
+						<div class="collapse search-facette__body" id="adv-search-destinataire" role="group" aria-label="public destinataire"> 
+							<div class="search-facette__content">
+								{% for i in 1..6 %}
+									<div class="form-check search-facette__item">
+										<input type="checkbox" class="form-check-input" id="destinataire-documents-{{ i }}">
+										<label class="form-check-label" for="destinataire-documents-{{ i }}">*Insert Label {{ i }}*</label>
+									</div>
+								{% endfor %}
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="modal-body">
+					<div class="search-facette">
+						<button type="button" class="search-facette__button btn" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="adv-search-secteur" data-target="#adv-search-secteur">Secteur</button>
+						<div class="collapse search-facette__body" id="adv-search-secteur" role="group" aria-label="secteur"> 
+							<div class="search-facette__content">
+								{% for i in 1..6 %}
+									<div class="form-check search-facette__item">
+										<input type="checkbox" class="form-check-input" id="secteur-documents-{{ i }}">
+										<label class="form-check-label" for="secteur-documents-{{ i }}">*Insert Label {{ i }}*</label>
+									</div>
+								{% endfor %}
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="modal-body">
+					<div class="search-facette">
+						<button type="button" class="search-facette__button btn" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="adv-search-mediation" data-target="#adv-search-mediation">Médiation</button>
+						<div class="collapse search-facette__body" id="adv-search-mediation" role="group" aria-label="médiation"> 
+							<div class="search-facette__content">
+								{% for i in 1..6 %}
+									<div class="form-check search-facette__item">
+										<input type="checkbox" class="form-check-input" id="mediation-documents-{{ i }}">
+										<label class="form-check-label" for="mediation-documents-{{ i }}">*Insert Label {{ i }}*</label>
+									</div>
+								{% endfor %}
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="modal-body">
+					<div class="search-facette">
+						<button type="button" class="search-facette__button btn" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="adv-search-contenu" data-target="#adv-search-contenu">Contenu</button>
+						<div class="collapse search-facette__body" id="adv-search-contenu" role="group" aria-label="contenu"> 
+							<div class="search-facette__content">
+								{% for i in 1..6 %}
+									<div class="form-check search-facette__item">
+										<input type="checkbox" class="form-check-input" id="contenu-documents-{{ i }}">
+										<label class="form-check-label" for="contenu-documents-{{ i }}">*Insert Label {{ i }}*</label>
+									</div>
+								{% endfor %}
+							</div>
 						</div>
 					</div>
 				</div>
 
 				
 				<div class="modal-footer">
-					<button type="button" aria-label="Effacer mes critères de recherche">Effacer ma recherche</button>
-					<button type="submit" aria-label="Lancer ma recherche">Rechercher <img src="https://via.placeholder.com/15x15" alt="" class="icone-loupe"/></button>
+					<button type="button" aria-label="Effacer mes critères de recherche" class="modal-footer__erase btn">Effacer ma recherche</button>
+					<button type="submit" aria-label="Lancer ma recherche" class="modal-footer__submit">
+						<span>Rechercher</span><img src="{{ asset('images/icones/icone-loupe.svg') }}" alt="" class="icone-loupe"/></button>
 				</div>
 			</form>
 		</div>

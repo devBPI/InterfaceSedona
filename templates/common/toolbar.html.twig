@@ -3,16 +3,16 @@
 	<ul class="toolbar__list">
 		{% if toolbar is defined and toolbar == 'document' %}
 			<li class="toolbar__item">
-				<a href="{{ path('user_list_add') }}" role="button">
+				<button data-target="#modal-list-add" data-toggle="modal">
 					<img src="{{ asset('images/icones/icone-coeur.svg') }}" alt="" class="icone-coeur"/>
 					<span><span class="sr-only">Ajouter à </span>Ma sélection</span>
-				</a>
+				</button>
 			</li>
 			<li class="toolbar__item">
-				<a href="{{ path('record_export') }}" role="button">
+				<button data-target="#modal-export" data-toggle="modal">
 					<img src="{{ asset('images/icones/icone-fichier.svg') }}" alt="" class="icone-fichier"/>
 					<span>Exporter<span class="sr-only"> la sélection</span></span>
-				</a>
+				</button>
 			</li>
 		{% else %}
 			<li class="toolbar__item toolbar__item--disabled">
@@ -30,10 +30,10 @@
 		{% endif %}
 		{% if toolbar is defined %}
 			<li class="toolbar__item">
-				<a href="{{ path('record_print') }}" role="button">
+				<button data-target="#modal-print" data-toggle="modal">
 					<img src="{{ asset('images/icones/icone-imprimante.svg') }}" alt="" class="icone-imprimante"/>
 					<span>Imprimer</span>
-				</a>
+				</button>
 			</li>
 		{% else %}
 			<li class="toolbar__item toolbar__item--disabled">
@@ -44,10 +44,10 @@
 			</li>
 		{% endif %}
 		<li class="toolbar__item">
-			<a href="{{ path('record_share') }}" role="button">
+			<button data-target="#modal-share" data-toggle="modal">
 				<img src="{{ asset('images/icones/icone-partage.svg') }}" alt="" class="icone-partage"/>
 				<span>Partager</span>
-			</a>
+			</button>
 		</li>
 		<li class="toolbar__item">
 			<a href="{{ path('other_service') }}" target="_blank" title="Aide - nouvelle fenêtre">
@@ -56,18 +56,46 @@
 			</a>
 		</li>
 		<li class="toolbar__item">
-			<a href="{{ path('user_suggestion') }}" role="button">
+			<button data-target="#modal-suggest" data-toggle="modal">
 				<img src="{{ asset('images/icones/icone-suggestion.svg') }}" alt="" class="icone-livre"/>
 				<span>Suggestion d'achats</span>
-			</a>
+			</button>
 		</li>
 		<li class="toolbar__item">
 			{# Path to user/modal/report-error.html.twig #}
-			<a href="#" role="button">
+			<button data-target="#modal-report" data-toggle="modal">
 				<img src="{{ asset('images/icones/icone-partage.svg') }}" alt="" class="icone-enveloppe"/>
 				<span>Signaler une erreur</span>
-			</a>
+			</button>
 		</li>
 	</ul>
 </div>
 <!-- Fin - Barre utilitaires -->
+
+<!-- Début - Modal ajout à ma sélection -->
+{% include "user/modal/list_add.html.twig" %}
+<!-- Fin - Modal ajout à ma sélection -->
+
+<!-- Début - Modal export -->
+{% include "record/export.html.twig" %}
+<!-- Fin - Modal export -->
+
+<!-- Début - Modal imprimer -->
+{% include "record/print.html.twig" %}
+<!-- Fin - Modal imprimer -->
+
+<!-- Début - Modal partage -->
+{% include "record/share.html.twig" %}
+<!-- Fin - Modal partage -->
+
+<!-- Début - Modal envoyer à un ami -->
+{% include "user/modal/send-to-friend.html.twig" %}
+<!-- Fin - Modal envoyer à un ami -->
+
+<!-- Début - Modal suggestion d'achats -->
+{% include "user/modal/suggestion.html.twig" %}
+<!-- Fin - Modal suggestion d'achats -->
+
+<!-- Début - Modal signaler une erreur -->
+{% include "user/modal/report-error.html.twig" %}
+<!-- Fin - Modal signaler une erreur -->

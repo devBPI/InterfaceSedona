@@ -26,5 +26,12 @@
 			"components/banner-tools",
 			"components/table",
 			"components/table-group",
-			"components/tabs";
+			"components/tabs",
+			"components/modal";
+
+
+// Modal
+@import 	"components/modal/search-keyword",
+			"components/modal/search-base",
+			"components/modal/search-facette";
 

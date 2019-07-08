@@ -1,0 +1,71 @@
+// -------------------------------
+// Modals - Collapse Facettes
+// -------------------------------
+
+.search-facette {
+
+	&__body {
+		padding-top: $spacer;
+	}
+
+	&__button {
+		padding: 0;
+		padding-left: $spacer;
+		position: relative;
+
+		&::before {
+			content: "";
+			position: absolute;
+			top: 50%;
+			transform: translateY(-50%);
+			left: 0;
+			vertical-align: 1px;
+			border-top: 4px solid transparent;
+			border-left: 7px solid;
+			border-bottom: 4px solid transparent;
+		}
+
+		&[aria-expanded="true"] {
+
+			&::before {
+				border-top: 7px solid;
+				border-left: 4px solid transparent;
+				border-bottom: 0;
+				border-right: 4px solid transparent;
+			}
+		}
+	}
+
+	&__content {
+		display: flex;
+		flex-wrap: wrap;
+		width: 100%;
+	}
+
+	&__item {
+		padding-top: 5px;
+		padding-bottom: 5px;
+		flex: 0 0 100%;
+		min-width: 100%;
+
+		@include media-breakpoint-up(md) {
+			flex: 0 0 50%;
+			min-width: 50%;
+		}
+
+		&--button {
+			padding-top: 0;
+			flex: 0 0 100%;
+			min-width: 100%;
+
+			@include media-breakpoint-up(md) {
+				text-align: right;
+			}
+
+			button {
+				padding: 0;
+				color: $grey-disabled;
+			}
+		}
+	}
+}

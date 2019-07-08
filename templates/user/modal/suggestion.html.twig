@@ -1,50 +1,71 @@
-<div role="dialog" aria-modal="true" aria-labelledby="modal-suggest" class="modal">
-	<div class="modal-dialog">
+<div role="dialog" aria-modal="true" aria-labelledby="modal-suggest-title" class="modal" id="modal-suggest">
+	<div class="modal-dialog modal-dialog-centered">
 		<div class="modal-content">
-			<form>
+			<form class="modal-form">
 				<div class="modal-header">
-					<h1 class="n1" id="modal-suggest">Suggestion</h1>
-					<button type="button" aria-label="Fermer cette fenêtre"><span aria-hidden="true">X</span></button>
+					<h1 class="n1 modal-header__title" id="modal-suggest-title">Suggestion</h1>
+					<button class="close" type="button" aria-label="Fermer cette fenêtre" data-dismiss="modal">
+						<span aria-hidden="true" class="sr-only">X</span>
+						<img src="{{ asset('images/icones/icone-croix-blanc.svg') }}" alt="" />
+					</button>
 				</div>
 
 				<div class="modal-body">
 
-					<small>* champs obligatoires</small>
+					<small class="modal-form__indication"><span>*</span> champs obligatoires</small>
 					
-					<div class="form-group">
-						<label for="suggest-title">Titre <span>*</span></label>
-						<input type="text" class="form-control" id="suggest-title" required>
+					<div class="form-group row">
+						<label class="col-12 col-sm-3" for="suggest-title">Titre <span>*</span></label>
+						<div class="col-12 col-sm-9">
+							<input type="text" class="form-control" id="suggest-title" required>
+						</div>
 					</div>
-					<div class="form-group">
-						<label for="suggest-author">Auteur</label>
-						<input type="text" class="form-control" id="suggest-author">
+					<div class="form-group row">
+						<label class="col-12 col-sm-3" for="suggest-author">Auteur</label>
+						<div class="col-12 col-sm-9">
+							<input type="text" class="form-control" id="suggest-author">
+						</div>
 					</div>
-					<div class="form-group">
-						<label for="suggest-type-document">Type de document</label>
-						   <select class="form-control" id="suggest-type-document">
+					<div class="form-group row">
+						<label class="col-12 col-sm-3" for="suggest-type-document">Type de document</label>
+						<div class="col-12 col-sm-9">
+							<select class="form-control" id="suggest-type-document">
 								<option>Type de documents 1</option>
 								<option>Type de documents 2</option>
 								<option>Type de documents 3</option>
 							</select>
+						</div>
 					</div>
-					<div class="form-group">
-						<label for="suggest-editor">Editeur</label>
-						<input type="text" class="form-control" id="suggest-editor">
+					<div class="form-group row">
+						<label class="col-12 col-sm-3" for="suggest-editor">Editeur</label>
+						<div class="col-12 col-sm-9">
+							<input type="text" class="form-control" id="suggest-editor">
+						</div>
 					</div>
 
-					<h4>Coordonnées</h4>
+				</div>
 
-					<div class="form-group">
-						<label for="suggest-last-name">Nom</label>
-						<input type="text" class="form-control" id="suggest-last-name">
+				<div class="modal-body">
+
+					<h2 class="n1">Coordonnées</h2>
+
+					<div class="form-group row">
+						<label class="col-12 col-sm-3" for="suggest-last-name">Nom</label>
+						<div class="col-12 col-sm-9">
+							<input type="text" class="form-control" id="suggest-last-name">
+						</div>
 					</div>
-					<div class="form-group">
-						<label for="suggest-first-name">Prénom</label>
-						<input type="text" class="form-control" id="suggest-first-name">
+					<div class="form-group row">
+						<label class="col-12 col-sm-3" for="suggest-first-name">Prénom</label>
+						<div class="col-12 col-sm-9">
+							<input type="text" class="form-control" id="suggest-first-name">
+						</div>
 					</div>
-					<div class="form-group">
-						<label for="suggest-email">Courriel</label>
-						<input type="text" class="form-control" id="suggest-email">
+					<div class="form-group row">
+						<label class="col-12 col-sm-3" for="suggest-email">Courriel</label>
+						<div class="col-12 col-sm-9">
+							<input type="text" class="form-control" id="suggest-email">
+						</div>
 					</div>
 
 					<div>
@@ -53,8 +74,8 @@
 				</div>
 
 				<div class="modal-footer">
-					<button type="button" aria-label="Fermer cette fenêtre">Annuler</button>
-					<button type="submit">Valider<span class="sr-only"> l'envoi de la suggestion</span></button>
+					<button type="button" aria-label="Fermer cette fenêtre" class="modal-footer__erase btn">Annuler</button>
+					<button type="submit" class="modal-footer__submit">Valider<span class="sr-only"> l'envoi de la suggestion</span></button>
 				</div>
 
 			</form>

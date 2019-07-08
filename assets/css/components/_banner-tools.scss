@@ -31,7 +31,8 @@
 			margin-right: 0;
 		}
 
-		a {
+		button {
+			padding: 0;
 			display: flex;
 			align-items: baseline;
 
@@ -43,7 +44,7 @@
 
 		&-top {
 
-			a {
+			button {
 
 				img {
 					transform: scaleY(-1);

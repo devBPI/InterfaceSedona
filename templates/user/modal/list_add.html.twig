@@ -1,29 +1,83 @@
-<div role="dialog" aria-modal="true" aria-labelledby="modal-list-add" class="modal">
-	<div class="modal-dialog">
+<div role="dialog" aria-modal="true" aria-labelledby="modal-list-add-title" class="modal" id="modal-list-add">
+	<div class="modal-dialog modal-dialog-centered">
 		<div class="modal-content">
-			<form>
+			<form class="modal-form">
 				<div class="modal-header">
-					<h1 class="n1" id="modal-list-add">Création d'une liste</h1>
-					<button type="button" aria-label="Fermer cette fenêtre"><span aria-hidden="true">X</span></button>
+					<h1 class="n1 modal-header__title" id="modal-list-add-title">Ajouter ..</h1>
+					<button class="close" type="button" aria-label="Fermer cette fenêtre" data-dismiss="modal">
+						<span aria-hidden="true" class="sr-only">X</span>
+						<img src="{{ asset('images/icones/icone-croix-blanc.svg') }}" alt="" />
+					</button>
+				</div>
+				
+				<div class="modal-body">
+					<div class="list-result border-0">
+						{% for i in 1..4 %}
+							<div class="list-result__content-item">
+								<div class="list-result__content-body">
+									<div class="list-result__content-image">
+										<img src="{{ asset('images/couvertures-generiques/cg-site.svg') }}" alt="" class="img-fluid" />
+									</div>
+									<div class="list-result__content-infos">
+										<a href="#" lang="fr" aria-label="*Insert titre* - nouvelle fenêtre" class="n2 list-result__content-title"><img src="{{ asset('images/types/type-site.svg') }}" alt="" class="list-result__content-type"/><span>*Insert titre*</span></a>
+										<p lang="fr">par *Insert auteur* (*insert date début-fin*)</p>
+										<p lang="fr">01/02/2016 - résumé</p>
+										<p lang="fr">Résultat de (*Insert Base de donnée*)</p>
+
+										<!-- Document disponible -->
+										<div class="list-result__content-state">
+											<img src="{{ asset('images/icones/icone-map-vert.svg') }}" alt="" class="icone-map"/>
+											<p><span>Disponible</span> - 7.156 MAUP</p>
+											<p lang="fr">Niveau 3</p>
+										</div>
+
+										<!-- Document indisponible -->
+										<div lang="fr" class="list-result__content-state d-flex align-items-center">
+											<img src="{{ asset('images/icones/icone-map-rouge.svg') }}" alt="" class="icone-map"/>
+											<p>Indisponible</p>
+											<button class="btn list-result__content-button" data-toggle="modal" data-target="#modal-notified"><img src="{{ asset('images/icones/icone-enveloppe.svg') }}" alt="" class="icone-enveloppe"/> <span class="sr-only">Document indisponible, être prévenu de son retour en rayon - ouverture formulaire</span></button>
+										</div>
+									</div>
+								</div>
+							</div>
+						{% endfor %}
+					</div>
+				</div>
+
+				<div class="modal-body">
+					<div class="search-base">
+						<p class="search-base__label">.. à Mon compte dans :</p>
+						<ul class="search-base__list">
+							{% for i in 1..10 %}
+								<li class="search-base__item">
+									<input type="checkbox" id="list-{{ i }}">
+									<label for="list-{{ i }}">Liste {{ i }}</label>
+								</li>
+							{% endfor %}
+						</ul>
+					</div>
 				</div>
 
 				<div class="modal-body">
 
-					<small>* champs obligatoires</small>
-					
-					<div class="form-group">
-						<label for="send-expeditor">Titre <span>*</span></label>
-						<input type="text" class="form-control" id="send-expeditor">
-					</div>
+					<small class="modal-form__indication"><span>*</span> champs obligatoires</small>
 
-					<div>
-						<i>*Insert captcha*</i>	
+					<div class="form-group">
+						<input type="checkbox" id="list-add-new">
+						<label for="list-add-new">Nouvelle liste</label>
+					</div>
+					
+					<div class="form-group row">
+						<label for="list-add-title" class="col-12 col-sm-3">Titre <span>*</span></label>
+						<div class="col-12 col-sm-9">
+							<input type="text" class="form-control" id="list-add-title">
+						</div>
 					</div>
 				</div>
 
 				<div class="modal-footer">
-					<button type="button" aria-label="Fermer cette fenêtre">Annuler</button>
-					<button type="submit">Valider<span class="sr-only"> la création de la liste</span></button>
+					<button type="button" aria-label="Fermer cette fenêtre" class="modal-footer__erase btn">Annuler</button>
+					<button type="submit" class="modal-footer__submit">Valider<span class="sr-only"> la création de la liste</span></button>
 				</div>
 			</form>
 		</div>

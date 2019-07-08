@@ -31,6 +31,10 @@ select {
 	}
 }
 
+:focus {
+	outline: $outline;
+}
+
 .border-default {
 	border-top: $border-default;
 }
@@ -62,4 +66,8 @@ select {
 	img {
 		height: 13px;
 	}
+}
+
+.dropdown-toggle::after {
+	border-top: 7px solid;
 }

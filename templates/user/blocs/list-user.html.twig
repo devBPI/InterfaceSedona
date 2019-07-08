@@ -8,7 +8,9 @@
 				<label for="select-liste-{{ i }}" class="sr-only">Sélectionner la liste : *Insert nom de la liste*</label>
 				<input type="checkbox" id="select-liste-{{ i }}" class="table-group__input">
 				<p class="table-group__title">*Insert nom de la liste*</p>
-				<a href="{{ path('user_list_edit') }}" class="table-group__link"><span class="sr-only sr-only-focusable">Changer le nom de la liste</span><img src="{{ asset('images/icones/icone-crayon.svg') }}" alt="" class="icone-pen"/></a>
+				<button class="table-group__link" data-target="#modal-list-edit" data-toggle="modal">
+					<span class="sr-only sr-only-focusable">Changer le nom de la liste</span><img src="{{ asset('images/icones/icone-crayon.svg') }}" alt="" class="icone-pen"/>
+				</buton>
 			</div>
 				
 			<div class="table-responsive">
@@ -29,6 +31,9 @@
 							<th scope="col" aria-sort="none" class="table__thead-date">
 								<button class="btn table__button" type="button" aria-label="Ajoutée le : activer pour trier par ordre ascendant/descendant">Ajoutée le <img src="{{ asset('images/icones/icone-caret-bas.svg') }}" alt="" class="icone-caret"/></button>
 							</th>
+							<th scope="col" aria-sort="none" class="table__thead-comments">
+								Commentaire
+							</th>
 						</tr>
 					</thead>
 					<tbody class="table__body">
@@ -45,6 +50,9 @@
 									<img src="{{ asset('images/types/type-dossier-presse.svg') }}" alt="" class="icone-type-document table__type"/>
 								</td>
 								<td>03/07/2019</td>
+								<td>
+									Lorem ipsum dolor sit amet, consetetur sadipscing elitr.
+								</td>
 							</tr>
 						{% endfor %}
 					</tbody>
@@ -55,7 +63,7 @@
 	{% endfor %}
 
 	<div class="selection__footer">
-		<button type="button" class="selection__button btn"><img src="{{ asset('images/icones/icone-plus.svg') }}" alt="" class="icone-plus"/> Créer une nouvelle liste</button>
+		<button type="button" class="selection__button btn" data-target="#modal-list-create" data-toggle="modal"><img src="{{ asset('images/icones/icone-plus.svg') }}" alt="" class="icone-plus"/> Créer une nouvelle liste</button>
 	</div>
 </div>
 <!-- Fin - Bloc 25 Liste des documents présents dans Ma sélection -->

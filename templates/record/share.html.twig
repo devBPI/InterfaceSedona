@@ -1,9 +1,12 @@
-<div role="dialog" aria-modal="true" aria-labelledby="modal-share" class="modal">
-	<div class="modal-dialog">
+<div role="dialog" aria-modal="true" aria-labelledby="modal-share-title" class="modal" id="modal-share">
+	<div class="modal-dialog modal-dialog-centered">
 		<div class="modal-content">
 			<div class="modal-header">
-				<h1 class="n1" id="modal-share">Partage</h1>
-				<button type="button" aria-label="Fermer cette fenêtre"><span aria-hidden="true">X</span></button>
+				<h1 class="n1 modal-header__title" id="modal-share-title">Partage</h1>
+				<button class="close" type="button" aria-label="Fermer cette fenêtre" data-dismiss="modal">
+					<span aria-hidden="true" class="sr-only">X</span>
+					<img src="{{ asset('images/icones/icone-croix-blanc.svg') }}" alt="" />
+				</button>
 			</div>
 			
 			<div class="modal-body">
@@ -37,7 +40,7 @@
 			</div>
 
 			<div class="modal-footer">
-				<h4>Permalien</h4>
+				<h2 class="n1">Permalien</h2>
 				<div>
 					<p>*insert url*</p>
 					<button type="button">Copier<span class="sr-only"> l'url</span></button>
