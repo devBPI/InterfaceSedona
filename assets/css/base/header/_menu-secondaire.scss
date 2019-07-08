@@ -8,7 +8,7 @@
 	border-left: $border-thin;
 	border-right: $border-thin;
 
-	@include media-breakpoint-up(lg) {
+	@include media-breakpoint-up(md) {
 		margin-right: $spacer;
 		margin-left: 0;
 	}

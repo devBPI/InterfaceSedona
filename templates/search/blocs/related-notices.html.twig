@@ -1,18 +1,53 @@
-<div id="related-notices" class="collapse">
+<div id="related-notices" class="collapse pt-3">
 	{# Demande BPI concernant l'affichage souhaité pour les 5 notices #}
 
-	<div>
-		<div>
-			<img src="https://via.placeholder.com/100x90" alt="" />
+	{% for i in 1..5 %}
+		<div class="row search-result__collapse-item">
+			<div class="col-12">
+				<div>
+					<input type="checkbox" id="result-1">
+					<label for="result-1"><span class="sr-only">Sélectionner *Insert titre*</span></label>
+				</div>
+			</div>
+			<div class="col-6 col-sm-2">
+				<img src="{{ asset('images/types-autorite/autorite-personne.svg') }}" alt="" class="search-result__image img-fluid" />
+			</div>
+			<div class="col-12 col-sm-10">
+				<h2 lang="fr" class="n2 search-result__title">
+					<a href="#" title="*Insert Name identité* - nouvelle fenêtre">*Insert Name identité* <span class="n2">(*Insert date debut-fin*)</span></a>
+				</h2>
+				<ul class="list-information search-result__list">
+					<li class="list-information__item">
+						<span class="list-information__label">Type d'autorité :</span>
+						<ul class="list-information__sub-list" lang="fr">
+							<li class="list-information__sub-item">Personne</li>
+						</ul>
+					</li>
+					<li class="list-information__item">
+						<ul class="list-information__sub-list" lang="fr">
+							<li class="list-information__sub-item">05/08/1850 - 06/07/1893</li>
+						</ul>
+					</li>
+					<li class="list-information__item">
+						<span class="list-information__label">Pays :</span>
+						<ul class="list-information__sub-list" lang="fr">
+							<li class="list-information__sub-item">France</li>
+						</ul>
+					</li>
+					<li class="list-information__item">
+						<span class="list-information__label">Langue(s) :</span>
+						<ul class="list-information__sub-list" lang="fr">
+							<li class="list-information__sub-item">français</li>
+						</ul>
+					</li>
+					<li class="list-information__item">
+						<span class="list-information__label">Activité(s) principale(s) :</span>
+						<ul class="list-information__sub-list" lang="fr">
+							<li class="list-information__sub-item">Écrivain</li>
+						</ul>
+					</li>
+				</ul>
+			</div>
 		</div>
-		<div>
-			<h2 lang="fr">
-				<a href="#" title="*Insert Name identité* - nouvelle fenêtre">*Insert Name identité* <span>(*Insert date debut-fin*)</span></a>
-			</h2>
-			<ul>
-				<li>Pays : <span lang="fr">France</span></li>
-				<li>Langue : <span lang="fr">française</span></li>
-			</ul>
-		</div>
-	</div>
+	{% endfor %}
 </div>

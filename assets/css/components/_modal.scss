@@ -114,7 +114,6 @@
 		background-color: $grey-modal;
 		z-index: $zindex-fixed;
 		margin-top: -1px;
-		justify-content: space-between;
 
 		@include media-breakpoint-up(sm) {
 			position: relative;
@@ -128,6 +127,17 @@
 
 			&:hover {
 				color: $grey-disabled;
+			}
+		}
+
+		&__cancel {
+			background-color: $grey-disabled;
+			color: $white;
+			font-size: 21px;
+			padding: 3px 25px;
+
+			&:hover {
+				background-color: $red;
 			}
 		}
 
@@ -147,6 +157,13 @@
 				width: 23px;
 				margin-left: 10px;
 			}
+		}
+	}
+
+	&--filter {
+		
+		.modal-footer {
+			justify-content: space-between;
 		}
 	}
 }

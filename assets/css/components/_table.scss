@@ -6,6 +6,14 @@
 	width: 100%;
 	white-space: nowrap;
 
+	thead {
+
+		th {
+			vertical-align: middle;
+			font-weight: $font-regular;
+		}
+	}
+
 	p {
 		margin-bottom: 0;
 	}
