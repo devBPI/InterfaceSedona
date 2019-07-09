@@ -45,5 +45,25 @@
 				width: 12px;
 			}
 		}
+
+		&-edit {
+			display: flex;
+
+			button {
+				width: 20px;
+				height: 20px;
+				line-height: 1px;
+				padding: 0;
+				border-radius: 50%;
+				background-color: $grey;
+				display: inline-block;
+				text-align: center;
+				margin-left: 5px;
+
+				img {
+					width: 12px;
+				}
+			}
+		}
 	}
 }

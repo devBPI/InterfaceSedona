@@ -50,8 +50,12 @@
 									<img src="{{ asset('images/types/type-dossier-presse.svg') }}" alt="" class="icone-type-document table__type"/>
 								</td>
 								<td>03/07/2019</td>
-								<td>
-									Lorem ipsum dolor sit amet, consetetur sadipscing elitr.
+								<td class="table__body-edit">
+									<p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr.</p>
+									<button data-target="#modal-comments" data-toggle="modal">
+										<span class="sr-only">Éditer le commentaire</span>
+										<img src="{{ asset('images/icones/icone-crayon.svg') }}" alt="" class="icone-crayon"/>
+									</button>
 								</td>
 							</tr>
 						{% endfor %}
@@ -63,7 +67,7 @@
 	{% endfor %}
 
 	<div class="selection__footer">
-		<button type="button" class="selection__button btn" data-target="#modal-list-create" data-toggle="modal"><img src="{{ asset('images/icones/icone-plus.svg') }}" alt="" class="icone-plus"/> Créer une nouvelle liste</button>
+		<button class="selection__button btn" data-target="#modal-list-create" data-toggle="modal"><img src="{{ asset('images/icones/icone-plus.svg') }}" alt="" class="icone-plus"/> Créer une nouvelle liste</button>
 	</div>
 </div>
 <!-- Fin - Bloc 25 Liste des documents présents dans Ma sélection -->

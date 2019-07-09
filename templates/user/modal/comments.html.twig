@@ -1,0 +1,36 @@
+<div role="dialog" aria-modal="true" aria-labelledby="modal-comments-title" class="modal" id="modal-comments">
+	<div class="modal-dialog modal-dialog-centered">
+		<div class="modal-content">
+			<form class="modal-form">
+				<div class="modal-header">
+					<h1 class="n1 modal-header__title" id="modal-comments-title">Commentaire</h1>
+					<button class="close" type="button" aria-label="Fermer cette fenêtre" data-dismiss="modal">
+						<span aria-hidden="true" class="sr-only">X</span>
+						<img src="{{ asset('images/icones/icone-croix-blanc.svg') }}" alt="" />
+					</button>
+				</div>
+
+				<div class="modal-body">
+
+					<small class="modal-form__indication"><span>*</span> champs obligatoires</small>
+					
+					<div class="form-group row">
+						<label for="comments-text" class="col-12 col-sm-3">Contenu <span>*</span></label>
+						<div class="col-12 col-sm-9">
+							<textarea class="form-control" id="comments-text" rows="3"></textarea>
+						</div>
+					</div>
+
+					<div>
+						<i>*Insert captcha*</i>	
+					</div>
+				</div>
+
+				<div class="modal-footer">
+					<button type="button" data-dismiss="modal" class="modal-footer__cancel">Annuler</button>
+					<button type="submit" class="modal-footer__submit">Valider</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
