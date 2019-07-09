@@ -107,6 +107,7 @@
 	}
 
 	&-footer {
+		flex-wrap: wrap;
 		position: fixed;
 		width: 100%;
 		left: 0;
@@ -117,6 +118,11 @@
 
 		@include media-breakpoint-up(sm) {
 			position: relative;
+		}
+
+		&__quote {
+			min-width: 100%;
+			flex: 0 0 100%;
 		}
 		
 		&__erase {

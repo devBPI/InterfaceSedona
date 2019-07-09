@@ -12,9 +12,13 @@
 		&:hover {
 			background-color: $white;
 		}
+
+		&:focus {
+			outline-offset: -4px;
+		}
 	}
 
-	.nav-link {
+	.nav-item {
 
 		&:first-child {
 

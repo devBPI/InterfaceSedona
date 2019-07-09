@@ -10,6 +10,7 @@
 					</button>
 				</div>
 				
+
 				<div class="modal-body">
 					<div class="list-result border-0">
 						{% for i in 1..4 %}
@@ -44,6 +45,7 @@
 					</div>
 				</div>
 
+				{# Authentifié #}
 				<div class="modal-body">
 					<div class="search-base">
 						<p class="search-base__label">.. à Mon compte dans :</p>
@@ -74,9 +76,34 @@
 						</div>
 					</div>
 				</div>
+				{# Authentifié #}
+
+				{# Pas authentifié #}
+				<div class="modal-body">
+					<p class="mb-0">.. à Ma sélection temporaire.</p>
+				</div>
+
+				<div class="modal-body">
+					<div class="button-arrow">
+						<a href="#" class="button-arrow__button">Retourner à la liste des résultats</a>
+						<a href="/fr/donnees-personnelles" class="button-arrow__button">Aller dans ma sélection</a>
+					</div>
+				</div>
+				{# Pas authentifié #}
+
 
 				<div class="modal-footer">
-					<button type="button" aria-label="Fermer cette fenêtre" class="modal-footer__cancel">Annuler</button>
+					{# Pas authentifié #}
+					<p class="modal-footer__quote">Pour la conserver, connectez-vous à Mon compote.</p>
+
+					{# Authentifié + Pas authentifié #}
+					<button type="button" data-dismiss="modal" class="modal-footer__cancel">Annuler</button>
+
+					{# Pas authentifié #}
+					<button type="submit" class="modal-footer__submit">Me connecter</button>
+					<button type="submit" class="modal-footer__submit">Créer mon compte</button>
+					
+					{# Authentifié #}
 					<button type="submit" class="modal-footer__submit">Valider<span class="sr-only"> la création de la liste</span></button>
 				</div>
 			</form>
