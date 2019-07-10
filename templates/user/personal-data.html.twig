@@ -4,11 +4,16 @@
 
 {% block body %}
 
+	<h1 class="n1">Mon compte</h1>
+
 	<div>
 		<nav>
 			<ul class="nav nav-tabs" id="user-navigation" role="tablist">
 				<li class="nav-item">
-					<a href="#selection" class="nav-link active" id="user-selection" data-toggle="tab" role="tab" aria-controls="selection" aria-selected="true">Ma sélection</a>
+					<a href="#informations" class="nav-link active" id="user-informations" data-toggle="tab" role="tab" aria-controls="informations" aria-selected="true">Mes informations</a>
+				</li>
+				<li class="nav-item">
+					<a href="#selection" class="nav-link" id="user-selection" data-toggle="tab" role="tab" aria-controls="selection" aria-selected="false">Ma sélection</a>
 				</li>
 				<li class="nav-item">
 					<a href="#historique" class="nav-link" id="user-historique" data-toggle="tab" role="tab" aria-controls="historique" aria-selected="false">Mon historique</a>
@@ -18,11 +23,20 @@
 	</div>
 
 	<div class="tab-content" id="user-content">
-		<div class="tab-pane fade show active" id="selection" role="tabpanel" aria-labelledby="user-selection">
+		<div class="tab-pane fade show active" id="informations" role="tabpanel" aria-labelledby="user-informations">
 
-			<h1 class="n1 title-icone">
+			<h2 class="n1 title-icone">
+				<span class="icone-square"><img src="{{ asset('images/icones/icone-user.svg') }}" alt="" class="icone-user"/></span><span>Mes informations</span>
+			</h2>
+
+			<p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
+
+		</div>
+		<div class="tab-pane fade" id="selection" role="tabpanel" aria-labelledby="user-selection">
+
+			<h2 class="n1 title-icone">
 				<span class="icone-square"><img src="{{ asset('images/icones/icone-coeur.svg') }}" alt="" class="icone-coeur"/></span><span>Ma sélection</span>
-			</h1>
+			</h2>
 
 			<div class="row justify-content-md-between banner-tools">
 				{% include "user/blocs/banner-tools.html.twig" %}
