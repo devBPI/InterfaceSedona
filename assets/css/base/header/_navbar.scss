@@ -64,6 +64,27 @@
 					}
 				}
 			}
+
+			&.active {
+
+				.nav-link {
+					position: relative;
+					color: $red;
+
+					&:after {
+						content: '';
+						position: absolute;
+						width: 0;
+						height: 0;
+						right: 0;
+						bottom: 0;
+						margin-right: 5px;
+						margin-bottom: 5px;
+						border-bottom: 16px solid $red;
+						border-left: 16px solid transparent;
+					}
+				}
+			}
 		}
 
 		&-link {
