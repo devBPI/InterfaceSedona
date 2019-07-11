@@ -4,9 +4,9 @@
 
 
 // Search
-@import 	"components/search/search-banner",
-			"components/search/search-autocomplet",
-			"components/search/search-result";
+@import 	"components/banner-search/search-banner",
+			"components/banner-search/search-autocomplet",
+			"components/banner-search/search-result";
 
 // Global
 @import 	"components/breadcrumb",
@@ -30,9 +30,8 @@
 			"components/modal",
 			"components/button-arrow";
 
-
 // Modal
-@import 	"components/modal/search-keyword",
-			"components/modal/search-base",
-			"components/modal/search-facette";
-
+@import 	"components/modal-search/search-keyword",
+			"components/modal-search/search-base",
+			"components/modal-search/search-date",
+			"components/modal-search/search-facette";

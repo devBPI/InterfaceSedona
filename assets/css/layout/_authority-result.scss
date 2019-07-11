@@ -14,9 +14,11 @@
 	}
 
 	&__image {
-		margin-bottom: $spacer;
+		margin: 0 auto $spacer;
+		max-width: 200px;
 
 		@include media-breakpoint-up(md) {
+			max-width: 100%;
 			margin-bottom: 0;
 		}
 	}

@@ -1,0 +1,67 @@
+// -------------------------------
+// Modals - Recherche avancée - Date de publication
+// -------------------------------
+
+.search-date-col {
+	border-bottom: 1px solid $white;
+	margin-bottom: $spacer;
+
+	@include media-breakpoint-up(md) {
+		margin-bottom: 0;
+		border-bottom: 0;
+		border-right: 1px solid $white;
+	}
+}
+
+.search-date {
+	display: flex;
+	align-items: center;
+	flex-wrap: wrap;
+	margin-bottom: $spacer;
+
+	@include media-breakpoint-up(md) {
+		margin-bottom: 0;
+	}
+
+	&__group {
+		min-width: 100%;
+		flex: 0 0 100%;
+
+		@include media-breakpoint-up(lg) {
+			min-width: auto;
+			flex: 0 0 auto;
+		}
+
+		& + & {
+			margin-top: $spacer;
+			display: flex;
+			align-items: center;
+
+			@include media-breakpoint-up(lg) {
+				margin-top: 0;
+			}
+		}
+	}
+
+	&__date {
+		margin-bottom: 0;
+
+		@include media-breakpoint-up(lg) {
+			padding-left: $spacer;
+		}
+
+		&--second {
+			position: relative;
+			padding-left: 38px;
+
+			&:before {
+				content: '-';
+				position: absolute;
+				left: 0;
+				top: 50%;
+				transform: translateY(-50%);
+				margin-left: 15px;
+			}
+		}
+	}
+}

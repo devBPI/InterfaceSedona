@@ -101,31 +101,33 @@
 				<div class="modal-body">
 					<div class="container-fluid">
 						<div class="row">
-							<div class="col-12 col-sm-7 col-md-8">
+							<div class="col-12 col-sm-7 col-md-8 pl-0 search-date-col">
 								<p>Date de publication</p>
-								<div role="group" aria-label="date de parution">
-									<div class="form-check form-check-inline">
-										<input class="form-check-input" type="radio" id="adv-search-label-date" value="Date">
-										<label class="form-check-label" for="adv-search-label-date">Date</label>
+								<div role="group" aria-label="date de parution" class="search-date">
+									<div class="search-date__group">
+										<div class="search-date__radio form-check form-check-inline">
+											<input class="form-check-input" type="radio" id="adv-search-label-date" name="adv-search-date" value="Date" checked>
+											<label class="form-check-label" for="adv-search-label-date">Date</label>
+										</div>
+										<div class="search-date__radio search-date__radio--period form-check form-check-inline">
+											<input class="form-check-input" type="radio" id="adv-search-label-period" name="adv-search-date" value="Periode">
+											<label class="form-check-label" for="adv-search-label-period">Periode</label>
+										</div>
 									</div>
-									<div class="form-check form-check-inline">
-										<input class="form-check-input" type="radio" id="adv-search-label-period" value="Periode">
-										<label class="form-check-label" for="adv-search-label-period">Periode</label>
-									</div>
-									<div class="form-group">
-										<label for="adv-search-date-1" class="sr-only">Entrer une date de parution</label>
-										<input type="text" class="form-control" id="adv-search-date-1">
-									</div>
-									<div>
-										<div class="form-group">
+									<div class="search-date__group">
+										<div class="search-date__date form-group">
+											<label for="adv-search-date-1" class="sr-only">Entrer une date de parution</label>
+											<input type="text" class="form-control" id="adv-search-date-1" placeholder="AAAA">
+										</div>
+										<div class="search-date__date search-date__date--second form-group d-none">
 											<label for="adv-search-date-2" class="sr-only">Entrer une deuxième date de parution</label>
-											<input type="text" class="form-control" id="adv-search-date-2">
+											<input type="text" class="form-control" id="adv-search-date-2" placeholder="AAAA">
 										</div>
 									</div>
 								</div>
 							</div>
 
-							<div class="col-12 col-sm-5 col-md-4">
+							<div class="col-12 col-sm-5 col-md-4 pr-0">
 								<p>Langue</p>
 								<div class="dropdown">
 									<button type="button" id="adv-search-langage" data-toggle="dropdown" aria-haspopup="listbox" aria-expanded="false" aria-label="Sélectionner les langues" class="dropdown-toggle">
