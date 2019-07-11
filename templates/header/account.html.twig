@@ -1,8 +1,9 @@
 <div class="account">
 	{# Quand on est pas connecté #}
-	{# <a href="{{ path('user_personal_data') }}" class="account__link btn">Mon compte</a> #}
+	<a href="{{ path('user_login') }}" class="account__link btn">Mon compte</a>
+
 	{# Quand on est connecté #}
-	<div class="dropdown account__group" aria-label="Menu-compte">
+	<div class="dropdown account__group d-none" aria-label="Menu-compte">
 		<span class="sr-only">Gestion de mon compte</span>
 		<button type="button" id="dropdown-compte" data-toggle="dropdown" aria-haspopup="listbox" aria-expanded="false" class="account__button btn">
 		Bienvenue, Prénom
