@@ -20,9 +20,49 @@
 
 	&__button {
 		padding: 0;
-
-		img {
+		
+		.caret {
+			display: inline-block;
+			vertical-align: text-bottom;
 			width: 8px;
+			height: 12px;
+			margin: 0 5px;
+			background-image: url('/images/icones/icone-caret-double.svg');
+			background-repeat: no-repeat;
+			background-position: 0 0;
+		}
+	}
+
+	[aria-sort="none"] {
+
+		.table__button {
+
+			.caret {
+				vertical-align: text-bottom;
+				background-position: 0 0;
+			}
+		}				
+	}
+
+	[aria-sort="ascending"] {
+
+		.table__button {
+
+			.caret {
+				vertical-align: text-bottom;
+				background-position: 0 -6px;
+			}
+		}		
+	}
+
+	[aria-sort="descending"] {
+
+		.table__button {
+
+			.caret {
+				vertical-align: text-top;
+				background-position: 0 7px;
+			}
 		}
 	}
 
