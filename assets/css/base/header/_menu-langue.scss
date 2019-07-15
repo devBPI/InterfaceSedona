@@ -2,9 +2,6 @@
 // Header - Menu Langue
 // -------------------------------
 
-#menu-langue {
-}
-
 .header {
 
 	.menu-langue {
@@ -42,6 +39,7 @@
 			}
 
 			&-item {
+					font-size: 12px;
 
 				@include media-breakpoint-up(lg) {
 					padding: 0 10px;

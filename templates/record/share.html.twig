@@ -39,13 +39,59 @@
 				</div>
 			</div>
 
-			<div class="modal-footer">
+			<div class="modal-body">
 				<h2 class="n1">Permalien</h2>
 				<div>
 					<p>*insert url*</p>
 					<button type="button">Copier<span class="sr-only"> l'url</span></button>
 				</div>
 			</div>
+			
+			<form class="modal-form">
+				<div class="modal-body">
+					<h2 class="n1">Envoyer cette page à un ami</h2>
+
+					<small class="modal-form__indication">* champs obligatoires</small>
+					
+					<div class="form-group row align-items-center">
+						<label class="col-12 col-sm-3" for="send-expeditor">Expéditeur <span>*</span></label>
+						<div class="col-12 col-sm-9">
+							<input type="text" class="form-control" id="send-expeditor" required>
+						</div>
+					</div>
+
+					<div class="form-group row align-items-center">
+						<label class="col-12 col-sm-3" for="send-recipient">Destinataire <span>*</span></label>
+						<div class="col-12 col-sm-9">
+							<input type="text" class="form-control" id="send-recipient" required>
+						</div>
+					</div>
+
+					<div class="form-group row align-items-center">
+						<label class="col-12 col-sm-3" for="send-title">Titre <span>*</span></label>
+						<div class="col-12 col-sm-9">
+							<input type="text" class="form-control" id="send-title" required>
+						</div>
+					</div>
+
+					<div class="form-group row align-items-center">
+						<label class="col-12 col-sm-3" for="send-text">Texte</label>
+						<div class="col-12 col-sm-9">
+							<textarea class="form-control" id="send-text" rows="3"></textarea>
+						</div>
+					</div>
+
+					<div>
+						<i>*Insert captcha*</i>	
+					</div>
+				</div>
+
+				<div class="modal-footer">
+					<button type="button" data-dismiss="modal" class="modal-footer__cancel">Annuler</button>
+					<button type="submit" class="modal-footer__submit">Envoyer</button>
+				</div>
+			</form>
+
 		</div>
 	</div>
 </div>
