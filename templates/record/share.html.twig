@@ -41,9 +41,10 @@
 
 			<div class="modal-body">
 				<h2 class="n1">Permalien</h2>
-				<div>
-					<p>*insert url*</p>
-					<button type="button">Copier<span class="sr-only"> l'url</span></button>
+				<div class="d-flex">
+					<label for="url-page" class="sr-only">URL de la page</label>
+					<input type="text" class="form-control" id="url-page">
+					<button type="button" class="btn btn-primary">Copier<span class="sr-only"> l'url</span></button>
 				</div>
 			</div>
 			
@@ -87,8 +88,8 @@
 				</div>
 
 				<div class="modal-footer">
-					<button type="button" data-dismiss="modal" class="modal-footer__cancel">Annuler</button>
-					<button type="submit" class="modal-footer__submit">Envoyer</button>
+					<button type="button" data-dismiss="modal" class="btn btn-lg btn-secondary">Annuler</button>
+					<button type="submit" class="btn btn-lg btn-primary">Envoyer</button>
 				</div>
 			</form>
 

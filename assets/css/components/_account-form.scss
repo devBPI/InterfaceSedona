@@ -52,15 +52,4 @@
 	&__link {
 		font-size: 15px;
 	}
-
-	&__button {
-		background-color: $red;
-		color: $white;
-		font-size: 21px;
-		padding: 3px 25px;
-
-		&:hover {
-			background-color: $grey-disabled;
-		}
-	}
 }
