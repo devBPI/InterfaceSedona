@@ -276,8 +276,8 @@ $modal-transition:                  transform .3s ease-out !default;
 
 $label-margin-bottom:                   0;
 
-$input-padding-y:                       .5rem;
-$input-padding-x:                       1rem;
+$input-padding-y:                       .4rem;
+$input-padding-x:                       .4rem;
 $input-font-family:                     $font-family-sans-serif;
 $input-font-size:                       $font-size-base;
 $input-font-weight:                     $font-regular;
@@ -290,11 +290,11 @@ $input-padding-y-lg:                    $input-padding-y;
 $input-padding-x-lg:                    $input-padding-x;
 $input-font-size-lg:                    $input-font-size;
 
-$input-bg:                              $white !default;
+$input-bg:                              $white;
 $input-disabled-bg:                     $white;
 
 $input-color:                           $black;
-$input-border-color:                    $grey-border;
+$input-border-color:                    $grey;
 $input-border-width:                    1px;
 $input-box-shadow:                      none;
 
@@ -302,10 +302,10 @@ $input-border-radius:                   0;
 $input-border-radius-lg:                0;
 $input-border-radius-sm:                0;
 
-$input-focus-bg:                        $input-bg !default;
-$input-focus-border-color:              $input-border-color;
+$input-focus-bg:                        $input-bg;
+$input-focus-border-color:              $black;
 $input-focus-color:                     $input-color !default;
 
-$input-placeholder-color:               $black;
-$input-plaintext-color:                 $body-color !default;
+$input-placeholder-color:               $body-color;
+$input-plaintext-color:                 $body-color;
 

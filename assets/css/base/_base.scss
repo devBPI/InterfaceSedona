@@ -18,6 +18,8 @@ a[target="_blank"] {
 
 	&:hover {
 		text-decoration: $hover-target;
+		text-decoration-style: dotted;
+		text-decoration-color: $red;
 	}
 }
 

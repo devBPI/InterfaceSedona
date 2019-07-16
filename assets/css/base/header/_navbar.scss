@@ -117,6 +117,7 @@
 				width: 50px;
 				height: 25px;
 				position: relative;
+				background-color: $white;
 
 				@include media-breakpoint-up(md) {
 					display: none;
