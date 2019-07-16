@@ -43,6 +43,10 @@ services:
       balance: http
       io.rancher.container.hostname_override: container_name
 
+  redis:
+    labels:
+      io.rancher.container.hostname_override: container_name
+
 volumes:
   db_data:
     driver: rancher-nfs
