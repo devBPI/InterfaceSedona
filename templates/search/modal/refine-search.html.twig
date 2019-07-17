@@ -1,4 +1,4 @@
-<div role="dialog" aria-modal="true" aria-labelledby="modal-refine-search-title" class="modal fade modal--filter" id="modal-refine-search">
+<div role="dialog" aria-modal="true" aria-labelledby="modal-refine-search-title" class="modal fade" id="modal-refine-search">
 	<div class="modal-dialog modal-dialog-centered modal-xl">
 		<div class="modal-content">
 			<form>
@@ -18,10 +18,31 @@
 								<div class="search-facette__item search-facette__item--button">
 									<button class="btn">Supprimer le filtre<span class="sr-only"> : Disponibilité</span></button>
 								</div>
+								<div class="form-check search-facette__item">
+									<input type="checkbox" class="form-check-input" id="rfn-type-avalaible-rayon">
+									<label class="form-check-label" for="rfn-type-avalaible-rayon">Disponible en rayon</label>
+								</div>
+								<div class="form-check search-facette__item">
+									<input type="checkbox" class="form-check-input" id="rfn-type-avalaible-online">
+									<label class="form-check-label" for="rfn-type-avalaible-online">Consultable en ligne</label>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="modal-body">
+					<div class="search-facette">
+						<button type="button" class="search-facette__button btn" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="rfn-search-type" data-target="#rfn-search-type">Type de document <span>(12)</span></button>
+						<div class="collapse search-facette__body" id="rfn-search-type" role="group" aria-label="type de document">
+							<div class="search-facette__content">
+								<div class="search-facette__item search-facette__item--button">
+									<button class="btn">Supprimer le filtre<span class="sr-only"> : Type de document</span></button>
+								</div>
 								{% for i in 1..6 %}
 									<div class="form-check search-facette__item">
-										<input type="checkbox" class="form-check-input" id="rfn-type-avalaible-{{ i }}">
-										<label class="form-check-label" for="rfn-type-avalaible-{{ i }}">*Insert Label {{ i }}*</label>
+										<input type="checkbox" class="form-check-input" id="rfn-type-documents-{{ i }}">
+										<label class="form-check-label" for="rfn-type-documents-{{ i }}">*Insert Label {{ i }}*</label>
 									</div>
 								{% endfor %}
 							</div>
@@ -41,25 +62,6 @@
 									<div class="form-check search-facette__item">
 										<input type="checkbox" class="form-check-input" id="rfn-theme-{{ i }}">
 										<label class="form-check-label" for="rfn-theme-{{ i }}">*Insert Label {{ i }}*</label>
-									</div>
-								{% endfor %}
-							</div>
-						</div>
-					</div>
-				</div>
-
-				<div class="modal-body">
-					<div class="search-facette">
-						<button type="button" class="search-facette__button btn" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="rfn-search-type" data-target="#rfn-search-type">Type de document <span>(12)</span></button>
-						<div class="collapse search-facette__body" id="rfn-search-type" role="group" aria-label="type de document">
-							<div class="search-facette__content">
-								<div class="search-facette__item search-facette__item--button">
-									<button class="btn">Supprimer le filtre<span class="sr-only"> : Type de document</span></button>
-								</div>
-								{% for i in 1..6 %}
-									<div class="form-check search-facette__item">
-										<input type="checkbox" class="form-check-input" id="rfn-type-documents-{{ i }}">
-										<label class="form-check-label" for="rfn-type-documents-{{ i }}">*Insert Label {{ i }}*</label>
 									</div>
 								{% endfor %}
 							</div>
@@ -159,7 +161,6 @@
 
 				
 				<div class="modal-footer">
-					<button type="button" aria-label="Effacer mes critères de recherche" class="btn-link btn">Effacer ma recherche</button>
 					<button type="submit" aria-label="Affiner ma recherche" class="btn btn-lg btn-primary btn-img">
 						<span>Affiner</span><img src="{{ asset('images/icones/icone-loupe.svg') }}" alt="" class="icone-loupe"/></button>
 				</div>

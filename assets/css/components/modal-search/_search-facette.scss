@@ -12,6 +12,7 @@
 		padding: 0;
 		padding-left: $spacer;
 		position: relative;
+		font-size: 15px;
 
 		&::before {
 			content: "";
@@ -33,6 +34,10 @@
 				border-bottom: 0;
 				border-right: 4px solid transparent;
 			}
+		}
+
+		span {
+			color: $grey-disabled;
 		}
 	}
 

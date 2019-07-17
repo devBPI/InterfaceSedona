@@ -2,6 +2,12 @@
 // Header - Menu Langue
 // -------------------------------
 
+#menu-langue {
+
+	@media print {
+		display: none;
+	}
+}
 .header {
 
 	.menu-langue {

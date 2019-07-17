@@ -3,6 +3,10 @@
 // -------------------------------
 
 #mon-compte {
+
+	@media print {
+		display: none;
+	}
 }
 
 .account {

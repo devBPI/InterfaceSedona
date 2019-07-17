@@ -37,22 +37,25 @@
 		}
 
 		img {
-			max-height: 20px;
-			margin-bottom: 5px;
+			height: 30px;
+
+			@include media-breakpoint-up(lg) {
+				height: 20px;
+				margin-bottom: 5px;
+			}
 		}
 
 		p,
 		button,
 		a {
-			display: block;
-			width: 50px;
-			height: 50px;
+			width: 40px;
+			height: 40px;
 			display: flex;
 			justify-content: center;
 			align-items: center;
 			flex-direction: column;
 			text-align: center;
-			background-color: $grey-disabled;
+			background-color: $black;
 			margin-bottom: 0;
 			color: $white;
 			font-size: 8px;
@@ -60,15 +63,28 @@
 			border: 0;
 			padding: 0;
 
+			@include media-breakpoint-up(lg) {
+				width: 50px;
+				height: 50px;
+			}
+
 			&:hover {
 				text-decoration: none;
+			}
+
+			span {
+				display: none;
+
+				@include media-breakpoint-up(lg) {
+					display: block;
+				}
 			}
 		}
 
 		&--disabled {
 
 			p {
-				background-color: $black;
+				background-color: $grey-disabled;
 			}
 		}
 	}

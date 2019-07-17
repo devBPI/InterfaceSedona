@@ -51,14 +51,22 @@
 	// Gestion border-top
 
 	&-container {
-		padding-top: 20px;
-		margin-top: 20px;
+		padding-top: 30px;
+		margin-top: 30px;
 		@extend .border-double;
 		background-position: 0 top;
 
 		@include media-breakpoint-up(md) {
 			padding-top: 40px;
 			margin-top: 40px;
+		}
+
+		& + & {
+			margin-top: 0;
+
+			@include media-breakpoint-up(md) {
+				margin-top: 10px;
+			}
 		}
 
 		&--individual {

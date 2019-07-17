@@ -8,6 +8,10 @@
 	@include media-breakpoint-up(md) {
 		display: block;
 	}
+
+	@media print {
+		display: none;
+	}
 }
 
 .menu-user {

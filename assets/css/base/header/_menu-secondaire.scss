@@ -12,6 +12,10 @@
 		margin-right: $spacer;
 		margin-left: 0;
 	}
+
+	@media print {
+		display: none;
+	}
 }
 
 .header {
@@ -51,6 +55,7 @@
 				border: 0;
 				border-left: 1px solid $grey-border;
 				border-right: 1px solid $grey-border;
+				transform: translate3d(0, 0 , 0) !important;
 			}
 
 			&-item {

@@ -5,6 +5,10 @@
 #form-search {
 	margin-top: $spacer;
 	position: relative;
+
+	@media print {
+		display: none;
+	}
 }
 
 .search-autocomplet {
