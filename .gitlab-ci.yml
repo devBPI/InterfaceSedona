@@ -78,8 +78,8 @@ build:package:
 build:image:
   stage: build
   image: docker:latest
-  only:
-    - master
+#  only:
+#    - master
   before_script:
     - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN registry.sedona.fr
     - apk update
@@ -93,8 +93,8 @@ build:image:
 
 publish:image:
   stage: publish
-  only:
-    - master
+#  only:
+#    - master
   dependencies:
     - build:image
   before_script:
