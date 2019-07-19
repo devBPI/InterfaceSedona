@@ -11,7 +11,7 @@ RUN set -ex ; \
     make c-install
 
 # compilation des assets
-FROM node:10-alpine as builder
+FROM node:10-alpine
 
 COPY . /var/www/html
 WORKDIR /var/www/html
