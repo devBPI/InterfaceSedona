@@ -10,6 +10,16 @@ RUN if [ -d .git ]; then echo "ERROR: .dockerignore folders detected, exiting" &
 RUN set -ex ; \
     make c-install
 
+# compilation des assets
+FROM node:10-alpine
+
+WORKDIR /var/www/html
+
+RUN set -ex ; \
+    npm install ;\
+    encore production
+
+# création de l'image
 FROM registry.sedona.fr/images/php:7-httpd-fpm
 
 ADD .deploy/rancher/app/php-fpm.conf /usr/local/apache2/conf.d/php-fpm.conf
