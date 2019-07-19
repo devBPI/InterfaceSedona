@@ -1,4 +1,4 @@
-FROM registry.sedona.fr/images/php:7.3 as builder
+FROM registry.sedona.fr/images/php:7.3 as builder-php
 LABEL maintainer="<php@sedona.fr> Sedona Solutions - PHP"
 
 COPY . /var/www/html
@@ -11,7 +11,7 @@ RUN set -ex ; \
     make c-install
 
 # compilation des assets
-FROM node:10-alpine
+FROM node:10-alpine as builder-alpine
 
 COPY . /var/www/html
 WORKDIR /var/www/html
@@ -24,7 +24,8 @@ FROM registry.sedona.fr/images/php:7-httpd-fpm
 
 ADD .deploy/rancher/app/php-fpm.conf /usr/local/apache2/conf.d/php-fpm.conf
 
-COPY --from=builder /var/www/html /var/www/html
+COPY --from=builder-php /var/www/html /var/www/html
+COPY --from=builder-alpine /var/www/html /var/www/html
 RUN set -xe ;\
     chown -R www-data /var/www/html ;\
     chmod a+w /var/www/html/var ;\
