@@ -13,6 +13,7 @@ RUN set -ex ; \
 # compilation des assets
 FROM node:10-alpine as builder
 
+COPY . /var/www/html
 WORKDIR /var/www/html
 
 RUN npm install && yarn install && encore production --progress
