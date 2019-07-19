@@ -15,9 +15,7 @@ FROM node:10-alpine
 
 WORKDIR /var/www/html
 
-RUN set -ex ; \
-    npm install ;\
-    encore production
+RUN npm install && encore production
 
 # création de l'image
 FROM registry.sedona.fr/images/php:7-httpd-fpm
