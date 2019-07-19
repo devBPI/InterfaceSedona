@@ -23,6 +23,7 @@ RUN yarn encore production
 FROM registry.sedona.fr/images/php:7-httpd-fpm
 
 ADD .deploy/rancher/app/php-fpm.conf /usr/local/apache2/conf.d/php-fpm.conf
+ADD .deploy/rancher/app/extra.ini /usr/local/etc/php/conf.d/extra.ini
 
 COPY --from=builder-php /var/www/html /var/www/html
 COPY --from=builder-alpine /var/www/html /var/www/html
