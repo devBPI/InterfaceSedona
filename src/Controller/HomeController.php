@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
@@ -28,5 +29,13 @@ class HomeController extends AbstractController
         return $this->render('home/thematic.html.twig', [
             'title' => $theme
         ]);
+    }
+
+    /**
+     * @Route("/test", methods={"GET","HEAD"})
+     */
+    public function testAction(Request $request)
+    {
+        return new Response('test test test');
     }
 }

@@ -34,6 +34,8 @@ services:
       PROJECT_SCHEME: https
       PROJECT_BASEPATH: /
       PROJECT_ENVIRONMENT: PROD
+      APP_ENV: prod
+      APP_SECRET: 41325a0e36e00bd0dd91d06cb36fbad0
 
   smtp:
     image: mailhog/mailhog:latest
