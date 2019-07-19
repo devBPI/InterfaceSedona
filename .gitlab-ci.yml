@@ -139,8 +139,8 @@ deploy:rancher_dev:
   image:
     name: "rancher/cli:$RANCHER_CLI_VERSION"
     entrypoint: ["/bin/sh", "-c"]
-  only:
-    - master
+#  only:
+#    - master
   when: manual
   environment:
     name: dev-rancher
