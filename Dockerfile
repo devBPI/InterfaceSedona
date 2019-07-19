@@ -17,7 +17,7 @@ COPY . /var/www/html
 WORKDIR /var/www/html
 
 RUN npm install
-RUN encore production --progress
+RUN yarn encore production --progress
 
 # création de l'image
 FROM registry.sedona.fr/images/php:7-httpd-fpm
