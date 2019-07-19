@@ -11,11 +11,11 @@ RUN set -ex ; \
     make c-install
 
 # compilation des assets
-FROM node:10-alpine
+FROM node:10-alpine as builder
 
 WORKDIR /var/www/html
 
-RUN npm install && encore production
+RUN npm install && yarn install && encore production --progress
 
 # création de l'image
 FROM registry.sedona.fr/images/php:7-httpd-fpm
