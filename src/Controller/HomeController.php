@@ -30,12 +30,4 @@ class HomeController extends AbstractController
             'title' => $theme
         ]);
     }
-
-    /**
-     * @Route("/test", methods={"GET","HEAD"})
-     */
-    public function testAction(Request $request)
-    {
-        return new Response('test test test');
-    }
 }
