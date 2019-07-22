@@ -5,8 +5,15 @@ header:
   logo_title: Aller à l'accueil du catalogue Bibliothèque Publique d'Information Centre Pompidou
   logo_alt: Bibliothèque Publique d'Information Centre Pompidou
   menu_title: Consulter le menu principal
-  locale:
-    aria:
+  navbar-evitement:
+    contenu-site: Aller au contenu
+    bloc-menu: Aller au menu général
+    menu-plans-sites: Aller au plan du site
+    form-search: Aller à la recherche
+  navbar-langue:
+    title: Choix d'une langue
+    aria: Menu-langue
+    change-to:
       en: English version
       es: Espagnol version
       fr: Version française
