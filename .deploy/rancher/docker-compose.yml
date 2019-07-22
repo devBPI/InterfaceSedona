@@ -36,6 +36,7 @@ services:
       PROJECT_ENVIRONMENT: PROD
       APP_ENV: prod
       APP_SECRET: 41325a0e36e00bd0dd91d06cb36fbad0
+      TRUSTED_PROXIES: 10.42.3.53
 
   smtp:
     image: mailhog/mailhog:latest
