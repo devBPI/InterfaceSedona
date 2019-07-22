@@ -11,6 +11,9 @@
 
 	&__image {
 		margin-bottom: $spacer;
+		max-width: 200px;
+		margin-right: auto;
+		margin-left: auto;
 	}
 
 	&__title {
