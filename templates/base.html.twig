@@ -4,11 +4,9 @@
 		<meta charset="UTF-8">
 		<title>{% block title %}Welcome!{% endblock %}</title>
         {% block stylesheets %}
-            {# 'app' must match the first argument to addEntry() in webpack.config.js #}
-            {{ encore_entry_link_tags('app') }}
-
-			<!-- Renders a link tag (if your module requires any CSS)
-                 <link rel="stylesheet" href="/build/app.css"> -->
+			{% if app.environment != 'test' %}
+            	{{ encore_entry_link_tags('app') }}
+			{% endif %}
         {% endblock %}
 	</head>
 	<body>
@@ -150,11 +148,9 @@
 		</footer>
 
         {% block javascripts %}
-            {{ encore_entry_script_tags('app') }}
-
-			<!-- Renders app.js & a webpack runtime.js file
-                <script src="/build/runtime.js"></script>
-                <script src="/build/app.js"></script> -->
+			{% if app.environment != 'test' %}
+            	{{ encore_entry_script_tags('app') }}
+			{% endif %}
         {% endblock %}
 	</body>
 </html>
