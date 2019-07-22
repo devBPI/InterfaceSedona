@@ -4,4 +4,8 @@
 
 .carousel-primary {
 	margin-bottom: $spacer;
+
+	@media print {
+		display: none;
+	}
 }

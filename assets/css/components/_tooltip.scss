@@ -1,0 +1,11 @@
+// -------------------------------
+// Tooltip
+// -------------------------------
+
+.tooltip {
+
+	&-inner {
+		border: $border-thin;
+		text-align: left;
+	}
+}

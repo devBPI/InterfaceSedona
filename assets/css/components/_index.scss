@@ -51,6 +51,11 @@
 				transform: rotate(-90deg);
 			}
 		}
+
+		&:hover {
+			color: $red;
+			text-decoration: underline;
+		}
 	}
 
 	&__content {

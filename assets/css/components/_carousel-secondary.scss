@@ -5,6 +5,10 @@
 .carousel-secondary {
 	margin-bottom: $spacer;
 
+	@media print {
+		display: none;
+	}
+
 	&--double {
 		padding-top: 25px;
 		@extend .border-double;

@@ -5,6 +5,10 @@
 .pagination {
 	margin: $spacer 0;
 
+	@media print {
+		display: none;
+	}
+
 	.page {
 
 		&-link {
