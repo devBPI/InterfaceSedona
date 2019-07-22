@@ -58,4 +58,36 @@
 			}
 		}
 	}
+
+	&--sub-list {
+		margin-top: $spacer;
+
+		.list-information {
+
+			&__item {
+				display: block;
+			}
+
+			&__label {
+				min-width: 100%;
+				flex: 0 0 100%;
+			}
+
+			&__sub {
+
+				&-list {
+					display: block;
+				}
+
+				&-item {
+					padding-left: $spacer * 2;
+
+					&:before {
+						content: '-';
+						margin-right: 5px;
+					}
+				}
+			}
+		}		
+	}
 }

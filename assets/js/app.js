@@ -14,3 +14,8 @@ const $ = require('jquery');
 require('bootstrap');
 
 console.log('test');
+
+$('[data-toggle="tooltip"]').tooltip({
+	trigger: 'click',
+	template: '<div class="tooltip" role="tooltip"><div class="tooltip-inner"></div></div>'
+});

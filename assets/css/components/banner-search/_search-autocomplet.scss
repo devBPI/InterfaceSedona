@@ -14,11 +14,12 @@
 .search-autocomplet {
 	background-color: white;
 	box-shadow: $dropdown-shadow;
-	margin-top: -1px;
+	margin-top: -17px;
 	border: $border-default;
 	padding: $spacer;
 	position: absolute;
 	width: 100%;
+	z-index: $zindex-dropdown;
 
 	&__list {
 		list-style-type: none;

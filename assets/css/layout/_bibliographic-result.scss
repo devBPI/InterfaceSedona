@@ -89,4 +89,19 @@
 			}
 		}
 	}
+
+	&--list {
+		display: flex;
+		flex-wrap: wrap;
+
+		> div {
+			flex: 0 0 100%;
+			min-width: 100%;
+
+			@include media-breakpoint-up(sm) {
+				flex: 0 0 50%;
+				min-width: 50%;
+			}
+		}	
+	}
 }

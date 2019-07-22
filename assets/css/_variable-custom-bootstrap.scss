@@ -309,3 +309,16 @@ $input-focus-color:                     $input-color !default;
 $input-placeholder-color:               $body-color;
 $input-plaintext-color:                 $body-color;
 
+
+// Tooltips
+
+$tooltip-font-size:                 $font-size-base;
+$tooltip-max-width:                 200px !default;
+$tooltip-color:                     $black;
+$tooltip-bg:                        $white;
+$tooltip-border-radius:             0;
+$tooltip-opacity:                   1;
+$tooltip-padding-y:                 $spacer;
+$tooltip-padding-x:                 $spacer;
+$tooltip-margin:                    0;
+

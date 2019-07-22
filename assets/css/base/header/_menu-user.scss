@@ -34,6 +34,14 @@
 				&:hover,
 				&:focus {
 					color: $red;
+
+					span {
+						color: $red;
+					}
+				}
+
+				span {
+					color: $grey-disabled;
 				}
 			}
 		}

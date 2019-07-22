@@ -113,7 +113,7 @@ et 1971 (CD 1), 1993, 1972, 1973, 1991 et 1992 (CD 2), 2001, 1974, 1998 et 2006 
 		<li class="list-information__item">
 			<span class="list-information__label">Langue(s) :</span>
 			<ul class="list-information__sub-list" lang="fr">
-				<li class="list-information__sub-item">allemand</li>
+				<li class="list-information__sub-item">Allemand</li>
 			</ul>
 		</li>
 		<li class="list-information__item">
@@ -146,27 +146,85 @@ et 1971 (CD 1), 1993, 1972, 1973, 1991 et 1992 (CD 2), 2001, 1974, 1998 et 2006 
 </div>
 
 <div class="col-12">
-	{# Pour les documents en rayon dispo#}
-	<div lang="fr" class="bibliographic-result__availability bibliographic-result__availability--available">
-		<p>78 STRA.R 4 disque 1</p>
-		<p>78 STRA.R 4 disque 2</p>
-		<p>78 STRA.R 4 disque 3</p>
-		<p>Niveau 3 - Musiques et documents parlés</p>
+	{# Pour les documents en rayon dispo #}
+	<div lang="fr" class="bibliographic-result__availability bibliographic-result__availability--available bibliographic-result--list">
+		<div>
+			<p><span>Disponible</span> - 78 STRA.R 4 disque 1</p>
+			<p>78 STRA.R 4 disque 2</p>
+			<p>78 STRA.R 4 disque 3</p>
+			<p>Niveau 3 - Musiques et documents parlés</p>
+		</div>
+	
+		{# Pour les revues/journaux .. #}
+		<div>
+			<p>Dernier numéro reçu : N°110, Janvier 2018</p>
+			<p class="n5 mt-3">Numéros reçus :</p>
+			<ul class="list-information list-information--sub-list">
+				<li class="list-information__item">
+					<span class="list-information__label">2018</span>
+					<ul class="list-information__sub-list">
+						<li class="list-information__sub-item">N° 110, Janvier 2018</li>
+					</ul>
+				</li>
+				<li class="list-information__item">
+					<span class="list-information__label">2017</span>
+					<ul class="list-information__sub-list">
+						<li class="list-information__sub-item">N° 109, Décembre 2017</li>
+						<li class="list-information__sub-item">N° 108, Janvier 2017</li>
+					</ul>
+				</li>
+				<li class="list-information__item">
+					<span class="list-information__label">2016</span>
+					<ul class="list-information__sub-list">
+						<li class="list-information__sub-item">N° 107, Juillet 2016</li>
+						<li class="list-information__sub-item">N° 106, Janvier 2016</li>
+					</ul>
+				</li>
+				<li class="list-information__item">
+					<span class="list-information__label">2015</span>
+					<ul class="list-information__sub-list">
+						<li class="list-information__sub-item">N° 105, Juillet 2015</li>
+						<li class="list-information__sub-item">N° 104, Janvier 2015</li>
+					</ul>
+				</li>
+				<li class="list-information__item">
+					<span class="list-information__label">2014</span>
+					<ul class="list-information__sub-list">
+						<li class="list-information__sub-item">N° 103, Juillet 2014</li>
+						<li class="list-information__sub-item">N° 102, Janvier 2014</li>
+					</ul>
+				</li>
+				<li class="list-information__item">
+					<span class="list-information__label">2013</span>
+					<ul class="list-information__sub-list">
+						<li class="list-information__sub-item">N° 101, Juillet 2013</li>
+						<li class="list-information__sub-item">N° 100, Janvier 2013</li>
+					</ul>
+				</li>
+			</ul>
+		</div>
+
 	</div>
 
 	{# Pour les documents en rayon indispo #}
 	<div lang="fr" class="bibliographic-result__availability bibliographic-result__availability--disabled">
-		<p><span>Indisponible</span></p>
+		<div>
+			<p><span>Indisponible</span></p>
+		</div>
 	</div>
 
 	{# Pour les documents en ligne consultable #}
 	<div lang="fr" class="bibliographic-result__availability">
-		<p><a href="#">Accéder à *Insert nom du document*</a></p>
+		<div>
+			<p><a href="#">Accéder à *Insert nom du document*</a></p>
+		</div>
 	</div>
 
 	{# Pour les documents en ligne non consultable #}
 	<div lang="fr" class="bibliographic-result__availability">
-		<p>Consultable à la Bpi</p>
+		<div>
+			<p>Consultable à la Bpi</p>
+		</div>
 	</div>
 </div>
 
