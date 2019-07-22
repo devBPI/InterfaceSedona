@@ -1,6 +1,94 @@
+global:
+  new-windows: Nouvelle fenêtre
+
 header:
+  logo_title: Aller à l'accueil du catalogue Bibliothèque Publique d'Information Centre Pompidou
+  logo_alt: Bibliothèque Publique d'Information Centre Pompidou
+  menu_title: Consulter le menu principal
   locale:
     aria:
       en: English version
       es: Espagnol version
       fr: Version française
+
+footer:
+  sitemap:
+    bpi:
+      title: La Bpi
+      Catalogue: Catalogue
+      agenda: Agenda
+      la-bibliotheque: La Bibliothèque
+      informations-pratiques: Informations pratiques
+      espace-presse: Presse / Partenariats
+    balises:
+      title: Balises
+      webtv: WebTV / WebRadio
+      exploration: Exploration
+      ma-une: Mon webmagazine
+      qui-sommes-nous: Qui sommes-nous ?
+    professionnels:
+      title: Professionnels
+      collections-et-services: Collections et services
+      cohesion-sociale: Cohésion sociale
+      etudes: Etudes
+      metier: Métier
+      international: International
+  credit-list:
+    espace-presse: Presse et partenariats
+    emplois-et-stages: Emploi & stages
+    marches-publics: Marchés publics
+    mentions-legales: Mentions légales
+    aide-et-accessibilite: Aide et accessiblité
+    contacts-bpi: Contacts
+  links-externe:
+    mensuel: Le mensuel de la Bpi
+    actualite: L'actualité de la Bpi
+    magazine: Le magazine de la Bpi
+  partenaires:
+    eurekoi: Aller sur le site d'Eurèkoi
+    culture: Ministère de la culture
+    pompidou: Centre Pompidou
+    ircam: Ircam
+    franceculture: France Culture
+  socials-medias:
+    facebook: Retrouvez la Bpi sur Facebook
+    twitter: Retrouvez la Bpi sur Twitter
+    instagram: Retrouvez la Bpi sur Instagram
+    youtube: Retrouvez la Bpi sur YouTube
+    linkedin: Retrouvez la Bpi sur LinkedIn
+    rss: Les fils RSS de la Bpi
+
+page:
+  home:
+    page_title: Accueil
+    title: Accueil - Catalogue de la BPI
+    thematic: Découvrir les parcours
+
+bloc:
+  carousel:
+    title: Carousel d'actualités
+    item_desciption: Actualité %index% sur %nb%, %title% %auteur%
+    page: Page %current% sur %nb%
+    btn_pause: Mettre en pause le carousel
+
+search:
+  notice:
+    header:
+      select_all_label:
+        shelf: Documents en rayon, sélectionner tous les résultats
+        online: Documents en ligne, sélectionner tous les résultats
+      title:
+        shelf: Documents en rayon
+        online: Documents en ligne
+      see_all: Voir tout
+      see_all_focusable:
+        shelf: les documents en rayons
+        online: les documents en ligne
+      sorter:
+        label:
+          shelf: Choix du tri des documents en rayon
+          online: Choix du tri des documents en ligne
+        action: Trier par
+        direction:
+          asc: Ordre ASC
+          desc: Ordre DESC

@@ -38,11 +38,11 @@
 				</div>
 
 				<div class="header__logo d-flex flex-wrap justify-content-between align-items-center">
-					<a href="{{ path('home') }}" title="Aller à l'accueil du catalogue Bibliothèque Publique d'Information Centre Pompidou" class="header__logo-link">
-						<img src="{{ asset('images/bpi-logo.png') }}" alt="Bibliothèque Publique d'Information Centre Pompidou" />
+					<a href="{{ path('home') }}" title="{{ 'header.logo_title'|trans }}" class="header__logo-link">
+						<img src="{{ asset('images/bpi-logo.png') }}" alt="{{ 'header.logo_alt'|trans }}" />
 					</a>
 
-					<button type="button" data-toggle="collapse" data-target="#navbar-principale-content" aria-controls="navbar-principale-content" title="Consulter le menu principal" aria-expanded="false" class="navbar-toggler d-md-none navbar-burger">
+					<button type="button" data-toggle="collapse" data-target="#navbar-principale-content" aria-controls="navbar-principale-content" title="{{ 'header.menu_title'|trans }}" aria-expanded="false" class="navbar-toggler d-md-none navbar-burger">
 						<span class="navbar-burger__bar"></span>
 						<span class="navbar-burger__bar"></span>
 						<span class="navbar-burger__bar"></span>
@@ -86,19 +86,19 @@
 									<li class="nav-links-externe__item">
 										<a href="https://www.bpi.fr/a-bibliotheque/publications-et-supports-de-communication/programme-de-la-bpi" target="_blank">
 											<img src="{{ asset('images/footer/logo-programme.png') }}" alt="" />
-											<span>Le mensuel de la Bpi</span>
+											<span>{{ 'footer.links-externe.mensuel'|trans }}</span>
 										</a>
 									</li>
 									<li class="nav-links-externe__item">
 										<a href="https://www.bpi.fr/la-bibliotheque/publications-et-supports-de-communication/lettres-d-information" target="_blank">
 											<img src="{{ asset('images/footer/logo-lettres.png') }}" alt="" />
-											<span>L'actualité de la Bpi</span>
+											<span>{{ 'footer.links-externe.actualite'|trans }}</span>
 										</a>
 									</li>
 									<li class="nav-links-externe__item">
 										<a href="https://www.bpi.fr/la-bibliotheque/publications-et-supports-de-communication/de-ligne-en-ligne" target="_blank">
 											<img src="{{ asset('images/footer/logo-balises.png') }}" alt="" />
-											<span>Le magazine de la Bpi</span>
+											<span>{{ 'footer.links-externe.magazine'|trans }}</span>
 										</a>
 									</li>
 								</ul>
@@ -120,7 +120,7 @@
 							<div class="row justify-content-end align-items-center align-items-md-start">
 								<div class="col-6 col-md-4">
 									<div class="partenaires__rs">
-										<a href="https://www.eurekoi.org/" title="Aller sur le site d'Eurèkoi - nouvelle fenêtre" target="_blank">
+										<a href="https://www.eurekoi.org/" title="{{ 'footer.partenaires.eurekoi'|trans }}" target="_blank">
 											<img src="{{ asset('images/footer/logo-eurekoi.png') }}" alt="Eurèkoi" />
 										</a>
 									</div>

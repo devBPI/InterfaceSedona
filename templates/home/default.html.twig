@@ -1,15 +1,15 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Accueil{% endblock %}
+{% block title %}{{ 'page.home.page_title'|trans }}{% endblock %}
 
 {% block body %}
-	<h1 class="n1">Accueil - Catalogue de la BPI</h1>
+	<h1>{{ 'page.home.title'|trans }}</h1>
 
 	{% include "home/blocs/carousel.html.twig" %}
 	
 	<div class="card-container card-container--individual">
 		
-		<h2 class="n1">Découvrir les parcours</h2>
+		<h2 class="n1">{{ 'page.home.thematic'|trans }}</h2>
 		
 		<div class="row">
 			{% include "home/blocs/preview-thematic.html.twig" %}
