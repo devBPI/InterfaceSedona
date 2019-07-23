@@ -11,6 +11,10 @@
 
 .account {
 
+	@include media-breakpoint-up(lg) {
+		margin-top: 10px;
+	}
+
 	&__link {
 		font-size: 12px;
 

@@ -103,6 +103,16 @@
 					color: $red;
 				}
 			}
+
+			input {
+
+				+ label {
+
+					@include media-breakpoint-up(sm) {
+						padding-top: 0;
+					}
+				}
+			}
 		}
 	}
 

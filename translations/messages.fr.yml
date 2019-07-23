@@ -134,20 +134,22 @@ modal:
     submit-sr-only:  la suppression de la liste "%name%"
   export:   # Modal export
     title: Courriel
-    subtitle: Paramétrer le PDF
+    subtitle: Paramétrer la pièce jointe
     field:
       recipient: Destinataire(s)
       comments: Commentaires
       abstract: Notices abrégés
       long: Notices longues
-      pj: Mettre PDF en pièce jointe
+      pdf: Format PDF
+      txt: Format texte brute
+      img: Exporter les images
     submit: Envoyer
   print:    # Modal imprimer
     title: Paramétrer le PDF
     field:
       abstract: Notices abrégés
       long: Notices longues
-      pj: Mettre PDF en pièce jointe
+      img: Exporter les images
     submit: Imprimer
   share:    # Modal partage
     title: Partage

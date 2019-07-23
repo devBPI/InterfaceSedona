@@ -29,7 +29,7 @@
 						</div>
 					</div>
 					
-					<div class="row justify-content-sm-end">
+					<div class="form-group row justify-content-sm-end">
 						<div class="col-12 col-sm-9">
 							<div class="form-check form-check-inline">
 								<input class="form-check-input" type="radio" id="export-abstract" value="export-abstract" name="export" checked>
@@ -41,14 +41,27 @@
 								<label class="form-check-label" for="export-long">{{ 'modal.export.field.long'|trans }}</label>
 							</div>
 						</div>
+					</div>
+					
+					<div class="form-group row justify-content-sm-end">
+						<div class="col-12 col-sm-9">
+							<div class="form-check form-check-inline">
+								<input class="form-check-input" type="radio" id="export-pdf" value="export-pdf" name="export" checked>
+								<label class="form-check-label" for="export-pdf">{{ 'modal.export.field.pdf'|trans }}</label>
+							</div>
 
+							<div class="form-check form-check-inline">
+								<input class="form-check-input" type="radio" id="export-txt" value="export-txt" name="export">
+								<label class="form-check-label" for="export-txt">{{ 'modal.export.field.txt'|trans }}</label>
+							</div>
+						</div>
 					</div>
 
-					<div class="row justify-content-sm-end">
+					<div class="form-group row justify-content-sm-end">
 						<div class="col-12 col-sm-9">
-							<div class="form-check">
-								<input class="form-check-input" type="checkbox" id="export-pj" value="export-pj">
-								<label class="form-check-label" for="export-pj">{{ 'modal.export.field.pj'|trans }}</label>
+							<div class="form-check form-check-inline">
+								<input class="form-check-input" type="checkbox" id="export-image" value="export-image">
+								<label class="form-check-label" for="export-image">{{ 'modal.export.field.img'|trans }}</label>
 							</div>
 						</div>
 
