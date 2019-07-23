@@ -58,6 +58,10 @@
 
 			&:focus {
 				border-top: $border-default;
+				-moz-appearance: none;
+				-webkit-appearance: none;
+				background-color: $grey-disabled;
+				color: $white;
 
 				@include media-breakpoint-up(md) {
 					border: 0;
