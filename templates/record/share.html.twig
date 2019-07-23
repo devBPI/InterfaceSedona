@@ -2,8 +2,8 @@
 	<div class="modal-dialog modal-dialog-centered">
 		<div class="modal-content">
 			<div class="modal-header">
-				<h1 class="n1 modal-header__title" id="modal-share-title">Partage</h1>
-				<button class="close" type="button" aria-label="Fermer cette fenêtre" data-dismiss="modal">
+				<h1 class="n1 modal-header__title" id="modal-share-title">{{ 'modal.share.title'|trans }}</h1>
+				<button class="close" type="button" aria-label="{{ 'global.modal-close'|trans }}" data-dismiss="modal">
 					<span aria-hidden="true" class="sr-only">X</span>
 					<img src="{{ asset('images/icones/icone-croix-blanc.svg') }}" alt="" />
 				</button>
@@ -40,43 +40,43 @@
 			</div>
 
 			<div class="modal-body">
-				<h2 class="n1">Permalien</h2>
+				<h2 class="n1">{{ 'modal.share.subtitle-1'|trans }}</h2>
 				<div class="d-flex">
-					<label for="url-page" class="sr-only">URL de la page</label>
+					<label for="url-page" class="sr-only">{{ 'modal.share.url-page'|trans }}</label>
 					<input type="text" class="form-control" id="url-page">
-					<button type="button" class="btn btn-primary">Copier<span class="sr-only"> l'url</span></button>
+					<button type="button" class="btn btn-primary">{{ 'modal.share.btn-cpoy'|trans }}<span class="sr-only"> {{ 'modal.share.btn-cpoy-sr-only'|trans }}</span></button>
 				</div>
 			</div>
 			
 			<form class="modal-form">
 				<div class="modal-body">
-					<h2 class="n1">Envoyer cette page à un ami</h2>
+					<h2 class="n1">{{ 'modal.share.subtitle-2'|trans }}</h2>
 
-					<small class="modal-form__indication">* champs obligatoires</small>
+					<small class="modal-form__indication">* {{ 'global.form-mandatory-field'|trans }}</small>
 					
 					<div class="form-group row align-items-center">
-						<label class="col-12 col-sm-3" for="share-send-expeditor">Expéditeur <span>*</span></label>
+						<label class="col-12 col-sm-3" for="share-send-expeditor">{{ 'modal.share.field.expeditor'|trans }} <span>*</span></label>
 						<div class="col-12 col-sm-9">
 							<input type="text" class="form-control" id="share-send-expeditor" required>
 						</div>
 					</div>
 
 					<div class="form-group row align-items-center">
-						<label class="col-12 col-sm-3" for="share-send-recipient">Destinataire <span>*</span></label>
+						<label class="col-12 col-sm-3" for="share-send-recipient">{{ 'modal.share.field.recipient'|trans }} <span>*</span></label>
 						<div class="col-12 col-sm-9">
 							<input type="text" class="form-control" id="share-send-recipient" required>
 						</div>
 					</div>
 
 					<div class="form-group row align-items-center">
-						<label class="col-12 col-sm-3" for="share-send-title">Titre <span>*</span></label>
+						<label class="col-12 col-sm-3" for="share-send-title">{{ 'modal.share.field.title'|trans }} <span>*</span></label>
 						<div class="col-12 col-sm-9">
 							<input type="text" class="form-control" id="share-send-title" required>
 						</div>
 					</div>
 
 					<div class="form-group row align-items-center">
-						<label class="col-12 col-sm-3" for="share-send-text">Texte</label>
+						<label class="col-12 col-sm-3" for="share-send-text">{{ 'modal.share.field.text'|trans }}</label>
 						<div class="col-12 col-sm-9">
 							<textarea class="form-control" id="share-send-text" rows="3"></textarea>
 						</div>
@@ -88,8 +88,8 @@
 				</div>
 
 				<div class="modal-footer">
-					<button type="button" data-dismiss="modal" class="btn btn-lg btn-secondary">Annuler</button>
-					<button type="submit" class="btn btn-lg btn-primary">Envoyer</button>
+					<button type="button" data-dismiss="modal" class="btn btn-lg btn-secondary">{{ 'global.modal-cancel'|trans }}</button>
+					<button type="submit" class="btn btn-lg btn-primary">{{ 'modal.share.submit'|trans }}</button>
 				</div>
 			</form>
 

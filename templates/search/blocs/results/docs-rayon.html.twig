@@ -3,7 +3,7 @@
 <div class="list-result__content-item">
 	<div class="list-result__content-selector">
 		<input type="checkbox" id="result-doc-rayon-{{ i }}">
-		<label for="result-doc-rayon-{{ i }}"><span class="sr-only">Résultat numéro </span> {{ i }}<span class="sr-only">, sélectionner *Insert titre*</span></label>
+		<label for="result-doc-rayon-{{ i }}"><span class="sr-only">{{ 'bloc.notice-simple.result'|trans }} </span> {{ i }}<span class="sr-only">, {{ 'bloc.notice-simple.select'|trans }} *Insert titre*</span></label>
 	</div>
 	<div class="list-result__content-body">
 		<div class="list-result__content-image">
@@ -18,14 +18,14 @@
 			<!-- Document disponible -->
 			<div class="list-result__content-state">
 				<img src="{{ asset('images/icones/icone-map-vert.svg') }}" alt="" class="icone-map"/>
-				<p><span>Disponible</span> - 868(0) CAR</p>
+				<p><span>{{ 'bloc.notice-simple.docuement-available'|trans }}</span> - 868(0) CAR</p>
 				<p lang="fr">Niveau 3 - Langues et littératures</p>
 			</div>
 
 			<!-- Document indisponible -->
 			<div lang="fr" class="list-result__content-state d-flex align-items-center">
 				<img src="{{ asset('images/icones/icone-map-rouge.svg') }}" alt="" class="icone-map"/>
-				<p>Indisponible</p>
+				<p>{{ 'bloc.notice-simple.docuement-unavailable'|trans }}</p>
 				<button class="btn list-result__content-button" data-toggle="modal" data-target="#modal-notified"><img src="{{ asset('images/icones/icone-enveloppe.svg') }}" alt="" class="icone-enveloppe"/> <span class="sr-only">Document indisponible, être prévenu de son retour en rayon - ouverture formulaire</span></button>
 			</div>
 

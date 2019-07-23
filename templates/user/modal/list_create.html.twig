@@ -3,8 +3,8 @@
 		<div class="modal-content">
 			<form class="modal-form">
 				<div class="modal-header">
-					<h1 class="n1 modal-header__title" id="modal-list-create-title">Créer une nouvelle liste</h1>
-					<button class="close" type="button" aria-label="Fermer cette fenêtre" data-dismiss="modal">
+					<h1 class="n1 modal-header__title" id="modal-list-create-title">{{ 'modal.list-create.title'|trans }}</h1>
+					<button class="close" type="button" aria-label="{{ 'global.modal-close'|trans }}" data-dismiss="modal">
 						<span aria-hidden="true" class="sr-only">X</span>
 						<img src="{{ asset('images/icones/icone-croix-blanc.svg') }}" alt="" />
 					</button>
@@ -13,10 +13,10 @@
 				{# Création d'une liste  #}
 				<div class="modal-body">
 
-					<small class="modal-form__indication"><span>*</span> champs obligatoires</small>
+					<small class="modal-form__indication"><span>*</span> {{ 'global.form-mandatory-field'|trans }}</small>
 					
 					<div class="form-group row">
-						<label for="create-title" class="col-12 col-sm-3">Titre <span>*</span></label>
+						<label for="create-title" class="col-12 col-sm-3">{{ 'modal.list-create.field-title'|trans }} <span>*</span></label>
 						<div class="col-12 col-sm-9">
 							<input type="text" class="form-control" id="create-title">
 						</div>
@@ -29,12 +29,12 @@
 
 				{# Message de confirmation de création de liste #}
 				<div class="modal-body">
-					<p>Vous avez bien créé la liste « XX » avec les document sélectionnés.</p>
+					<p>{{ 'modal.list-create.message-success'|trans({'%name%': '*Insert nom de la liste*'}) }}</p>
 				</div>
 
 				<div class="modal-footer">
-					<button type="button" data-dismiss="modal" class="btn btn-lg btn-secondary">Annuler</button>
-					<button type="submit" class="btn btn-lg btn-primary">Valider<span class="sr-only"> la création de la liste</span></button>
+					<button type="button" data-dismiss="modal" class="btn btn-lg btn-secondary">{{ 'global.modal-cancel'|trans }}</button>
+					<button type="submit" class="btn btn-lg btn-primary">{{ 'modal.list-create.submit'|trans }}<span class="sr-only"> {{ 'modal.list-create.submit-sr-only'|trans }}</span></button>
 				</div>
 			</form>
 		</div>

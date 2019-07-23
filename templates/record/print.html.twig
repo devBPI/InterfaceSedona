@@ -3,8 +3,8 @@
 		<div class="modal-content">
 			<form class="modal-form">
 				<div class="modal-header">
-					<h1 class="n1 modal-header__title" id="modal-print-title">Paramétrer le PDF</h1>
-					<button class="close" type="button" aria-label="Fermer cette fenêtre" data-dismiss="modal">
+					<h1 class="n1 modal-header__title" id="modal-print-title">{{ 'modal.print.title'|trans }}</h1>
+					<button class="close" type="button" aria-label="{{ 'global.modal-close'|trans }}" data-dismiss="modal">
 						<span aria-hidden="true" class="sr-only">X</span>
 						<img src="{{ asset('images/icones/icone-croix-blanc.svg') }}" alt="" />
 					</button>
@@ -16,12 +16,12 @@
 						<div class="col-12">
 							<div class="form-check form-check-inline">
 								<input class="form-check-input" type="radio" id="print-abstract" value="print-abstract" name="print" checked>
-								<label class="form-check-label" for="print-abstract">Notices abrégés</label>
+								<label class="form-check-label" for="print-abstract">{{ 'modal.print.field.abstract'|trans }}</label>
 							</div>
 
 							<div class="form-check form-check-inline">
 								<input class="form-check-input" type="radio" id="print-long" value="print-long" name="print">
-								<label class="form-check-label" for="print-long">Notices longues</label>
+								<label class="form-check-label" for="print-long">{{ 'modal.print.field.long'|trans }}</label>
 							</div>
 						</div>
 
@@ -31,7 +31,7 @@
 						<div class="col-12">
 							<div class="form-check">
 								<input class="form-check-input" type="checkbox" id="print-pj" value="print-pj">
-								<label class="form-check-label" for="print-pj">Mettre PDF en pièce jointe</label>
+								<label class="form-check-label" for="print-pj">{{ 'modal.print.field.pj'|trans }}</label>
 							</div>
 						</div>
 
@@ -43,8 +43,8 @@
 				</div>
 
 				<div class="modal-footer">
-					<button type="button" data-dismiss="modal" class="btn btn-lg btn-secondary">Annuler</button>
-					<button type="submit" class="btn btn-lg btn-primary">Imprimer</button>
+					<button type="button" data-dismiss="modal" class="btn btn-lg btn-secondary">{{ 'global.modal-cancel'|trans }}</button>
+					<button type="submit" class="btn btn-lg btn-primary">{{ 'modal.print.submit'|trans }}</button>
 				</div>
 
 			</form>

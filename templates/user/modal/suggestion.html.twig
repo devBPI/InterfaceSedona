@@ -5,8 +5,8 @@
 		<div class="modal-content">
 			<form class="modal-form">
 				<div class="modal-header">
-					<h1 class="n1 modal-header__title" id="modal-suggest-title">Suggestion</h1>
-					<button class="close" type="button" aria-label="Fermer cette fenêtre" data-dismiss="modal">
+					<h1 class="n1 modal-header__title" id="modal-suggest-title">{{ 'modal.suggestion.title'|trans }}</h1>
+					<button class="close" type="button" aria-label="{{ 'global.modal-close'|trans }}" data-dismiss="modal">
 						<span aria-hidden="true" class="sr-only">X</span>
 						<img src="{{ asset('images/icones/icone-croix-blanc.svg') }}" alt="" />
 					</button>
@@ -14,22 +14,22 @@
 
 				<div class="modal-body">
 
-					<small class="modal-form__indication"><span>*</span> champs obligatoires</small>
+					<small class="modal-form__indication"><span>*</span> {{ 'global.form-mandatory-field'|trans }}</small>
 					
 					<div class="form-group row">
-						<label class="col-12 col-sm-3" for="suggest-title">Titre <span>*</span></label>
+						<label class="col-12 col-sm-3" for="suggest-title">{{ 'modal.suggestion.submit'|trans }} <span>*</span></label>
 						<div class="col-12 col-sm-9">
 							<input type="text" class="form-control" id="suggest-title" required>
 						</div>
 					</div>
 					<div class="form-group row">
-						<label class="col-12 col-sm-3" for="suggest-author">Auteur</label>
+						<label class="col-12 col-sm-3" for="suggest-author">{{ 'modal.suggestion.field.author'|trans }}</label>
 						<div class="col-12 col-sm-9">
 							<input type="text" class="form-control" id="suggest-author">
 						</div>
 					</div>
 					<div class="form-group row">
-						<label class="col-12 col-sm-3" for="suggest-type-document">Type de document</label>
+						<label class="col-12 col-sm-3" for="suggest-type-document">{{ 'modal.suggestion.field.document-type'|trans }}</label>
 						<div class="col-12 col-sm-9">
 							<select class="form-control" id="suggest-type-document">
 								<option>Type de documents 1</option>
@@ -39,7 +39,7 @@
 						</div>
 					</div>
 					<div class="form-group row">
-						<label class="col-12 col-sm-3" for="suggest-editor">Editeur</label>
+						<label class="col-12 col-sm-3" for="suggest-editor">{{ 'modal.suggestion.field.editor'|trans }}</label>
 						<div class="col-12 col-sm-9">
 							<input type="text" class="form-control" id="suggest-editor">
 						</div>
@@ -49,22 +49,22 @@
 
 				<div class="modal-body">
 
-					<h2 class="n1">Coordonnées</h2>
+					<h2 class="n1">{{ 'modal.suggestion.subtitle'|trans }}</h2>
 
 					<div class="form-group row">
-						<label class="col-12 col-sm-3" for="suggest-last-name">Nom</label>
+						<label class="col-12 col-sm-3" for="suggest-last-name">{{ 'modal.suggestion.field.last-name'|trans }}</label>
 						<div class="col-12 col-sm-9">
 							<input type="text" class="form-control" id="suggest-last-name">
 						</div>
 					</div>
 					<div class="form-group row">
-						<label class="col-12 col-sm-3" for="suggest-first-name">Prénom</label>
+						<label class="col-12 col-sm-3" for="suggest-first-name">{{ 'modal.suggestion.field.first-name'|trans }}</label>
 						<div class="col-12 col-sm-9">
 							<input type="text" class="form-control" id="suggest-first-name">
 						</div>
 					</div>
 					<div class="form-group row">
-						<label class="col-12 col-sm-3" for="suggest-email">Courriel</label>
+						<label class="col-12 col-sm-3" for="suggest-email">{{ 'modal.suggestion.field.email'|trans }}</label>
 						<div class="col-12 col-sm-9">
 							<input type="text" class="form-control" id="suggest-email">
 						</div>
@@ -76,8 +76,8 @@
 				</div>
 
 				<div class="modal-footer">
-					<button type="button" data-dismiss="modal" class="btn btn-lg btn-secondary">Annuler</button>
-					<button type="submit" class="btn btn-lg btn-primary">Valider<span class="sr-only"> l'envoi de la suggestion</span></button>
+					<button type="button" data-dismiss="modal" class="btn btn-lg btn-secondary">{{ 'global.modal-cancel'|trans }}</button>
+					<button type="submit" class="btn btn-lg btn-primary">{{ 'modal.suggestion.submit'|trans }}<span class="sr-only"> {{ 'modal.suggestion.submit-sr-only'|trans }}</span></button>
 				</div>
 
 			</form>

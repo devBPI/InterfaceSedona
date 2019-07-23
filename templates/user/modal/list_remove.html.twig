@@ -3,20 +3,20 @@
 		<div class="modal-content">
 			<form class="modal-form">
 				<div class="modal-header">
-					<h1 class="n1 modal-header__title" id="modal-list-remove-title">Liste "*Insert nom de la liste*"</h1>
-					<button class="close" type="button" aria-label="Fermer cette fenêtre" data-dismiss="modal">
+					<h1 class="n1 modal-header__title" id="modal-list-remove-title">{{ 'modal.list-remove.title'|trans({'%name%': '*Insert nom de la liste*'}) }}</h1>
+					<button class="close" type="button" aria-label="{{ 'global.modal-close'|trans }}" data-dismiss="modal">
 						<span aria-hidden="true" class="sr-only">X</span>
 						<img src="{{ asset('images/icones/icone-croix-blanc.svg') }}" alt="" />
 					</button>
 				</div>
 
 				<div class="modal-body">
-					<p>Voulez-vous vraiment supprimer cette liste ?</p>
+					<p>{{ 'modal.list-remove.message-confirmation'|trans({'%name%': '*Insert nom de la liste*'}) }}</p>
 				</div>
 
 				<div class="modal-footer">
-					<button type="button" data-dismiss="modal" class="btn btn-lg btn-secondary">Annuler</button>
-					<button type="submit" class="btn btn-lg btn-primary">Confirmer<span class="sr-only"> la suppression de la liste "*Insert nom de la liste*"</span></button>			
+					<button type="button" data-dismiss="modal" class="btn btn-lg btn-secondary">{{ 'global.modal-cancel'|trans }}</button>
+					<button type="submit" class="btn btn-lg btn-primary">{{ 'modal.list-remove.submit'|trans }}<span class="sr-only"> {{ 'modal.list-remove.submit-sr-only'|trans({'%name%': '*Insert nom de la liste*'}) }}</span></button>
 				</div>
 			</form>
 		</div>

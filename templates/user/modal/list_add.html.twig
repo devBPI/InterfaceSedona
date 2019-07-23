@@ -3,8 +3,8 @@
 		<div class="modal-content">
 			<form class="modal-form">
 				<div class="modal-header">
-					<h1 class="n1 modal-header__title" id="modal-list-add-title">Ajouter ..</h1>
-					<button class="close" type="button" aria-label="Fermer cette fenêtre" data-dismiss="modal">
+					<h1 class="n1 modal-header__title" id="modal-list-add-title">{{ 'modal.list-add.title'|trans }}</h1>
+					<button class="close" type="button" aria-label="{{ 'global.modal-close'|trans }}" data-dismiss="modal">
 						<span aria-hidden="true" class="sr-only">X</span>
 						<img src="{{ asset('images/icones/icone-croix-blanc.svg') }}" alt="" />
 					</button>
@@ -22,12 +22,12 @@
 				{# Authentifié #}
 				<div class="modal-body">
 					<div class="search-base">
-						<p class="search-base__label">.. à Mon compte dans :</p>
+						<p class="search-base__label">{{ 'modal.list-add.add-to-profile'|trans }}</p>
 						<ul class="search-base__list">
 							{% for i in 1..10 %}
 								<li class="search-base__item">
 									<input type="checkbox" id="list-{{ i }}">
-									<label for="list-{{ i }}">Liste {{ i }}</label>
+									<label for="list-{{ i }}">{{ 'modal.list-add.list'|trans({'%name%': i }) }}</label>
 								</li>
 							{% endfor %}
 						</ul>
@@ -36,15 +36,15 @@
 
 				<div class="modal-body">
 
-					<small class="modal-form__indication"><span>*</span> champs obligatoires</small>
+					<small class="modal-form__indication"><span>*</span> {{ 'global.form-mandatory-field'|trans }}</small>
 
 					<div class="form-group">
 						<input type="checkbox" id="list-add-new">
-						<label for="list-add-new">Nouvelle liste</label>
+						<label for="list-add-new">{{ 'modal.list-add.new-list'|trans }}</label>
 					</div>
 					
 					<div class="form-group row">
-						<label for="list-add-title" class="col-12 col-sm-3">Titre <span>*</span></label>
+						<label for="list-add-title" class="col-12 col-sm-3">{{ 'modal.list-add.field-title'|trans }} <span>*</span></label>
 						<div class="col-12 col-sm-9">
 							<input type="text" class="form-control" id="list-add-title">
 						</div>
@@ -54,13 +54,13 @@
 
 				{# Pas authentifié #}
 				<div class="modal-body">
-					<p class="mb-0">.. à Ma sélection temporaire.</p>
+					<p class="mb-0">{{ 'modal.list-add.add-to-tempory'|trans }}</p>
 				</div>
 
 				<div class="modal-body">
 					<div class="button-arrow">
-						<a href="#" class="button-arrow__button">Retourner à la liste des résultats</a>
-						<a href="/fr/donnees-personnelles" class="button-arrow__button">Aller dans ma sélection</a>
+						<a href="#" class="button-arrow__button">{{ 'modal.list-add.btn-return'|trans }}</a>
+						<a href="/fr/donnees-personnelles" class="button-arrow__button">{{ 'modal.list-add.btn-selection'|trans }}</a>
 					</div>
 				</div>
 				{# Pas authentifié #}
@@ -68,17 +68,17 @@
 
 				<div class="modal-footer">
 					{# Pas authentifié #}
-					<p class="modal-footer__quote">Pour la conserver, connectez-vous à Mon compote.</p>
+					<p class="modal-footer__quote">{{ 'modal.list-add.btn-login'|trans }}</p>
 
 					{# Authentifié + Pas authentifié #}
-					<button type="button" data-dismiss="modal" class="btn btn-lg btn-secondary">Annuler</button>
+					<button type="button" data-dismiss="modal" class="btn btn-lg btn-secondary">{{ 'global.modal-cancel'|trans }}</button>
 
 					{# Pas authentifié #}
-					<a href="{{ path('user_login') }}" class="btn btn-lg btn-primary">Me connecter</a>
-					<a href="https://www.bpi.fr/formulaire-inscription-bpi" target="_blank" class="btn btn-lg btn-primary">Créer mon compte</a>
+					<a href="{{ path('user_login') }}" class="btn btn-lg btn-primary">{{ 'modal.list-add.btn-login2'|trans }}</a>
+					<a href="https://www.bpi.fr/formulaire-inscription-bpi" target="_blank" class="btn btn-lg btn-primary">{{ 'modal.list-add.btn-register'|trans }}</a>
 					
 					{# Authentifié #}
-					<button type="submit" class="btn btn-lg btn-primary">Valider<span class="sr-only"> la création de la liste</span></button>
+					<button type="submit" class="btn btn-lg btn-primary">{{ 'modal.list-add.submit'|trans }}<span class="sr-only"> {{ 'modal.list-add.submit-sr-only'|trans }}</span></button>
 				</div>
 			</form>
 		</div>

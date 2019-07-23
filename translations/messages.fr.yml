@@ -1,5 +1,8 @@
 global:
   new-windows: Nouvelle fenêtre
+  form-mandatory-field: champs obligatoires
+  modal-close: Fermer cette fenêtre
+  modal-cancel: Annuler
 
 header:
   logo_title: Aller à l'accueil du catalogue Bibliothèque Publique d'Information Centre Pompidou
@@ -17,6 +20,25 @@ header:
       en: English version
       es: Espagnol version
       fr: Version française
+  navbar-secondaire:
+    title: Autres sites
+    aria: Menu-secondaire
+    bpi: La Bpi
+    balises: Balises
+    pro: Professionnels
+    cinemadureel: Cinéma du réel
+  navbar-user:
+    selection: Ma sélection
+    history: Historique
+  account:
+    title_unconnect: Mon compte
+    title_connected: Gestion de mon compte
+    aria: Menu-compte
+    welcome: Bienvenue
+    logout: Se deconnecter
+    profile: Mon compte
+    profile_title: Accéder à mon compte
+  navbar-principal:
 
 footer:
   sitemap:
@@ -65,6 +87,108 @@ footer:
     linkedin: Retrouvez la Bpi sur LinkedIn
     rss: Les fils RSS de la Bpi
 
+main:
+  breadcrumb: Fil d'ariane
+  toolbar:
+    add_to: Ajouter à
+    my_selection: Ma sélection
+    the_selection: la sélection
+    export: Exporter
+    print: Imprimer
+    share: Partager
+    help: Aide
+    other_search:
+    suggest: Suggestion d'achats
+    report-error: Signaler une erreur
+
+modal:
+  list-create:
+    title: Créer une nouvelle liste
+    field-title: Titre
+    message-success: Vous avez bien créé la liste « %name% » avec les document sélectionnés.
+    submit: Valider
+    submit-sr-only:  la création de la liste
+  list-add:   #Modal ajout à ma sélection
+    title: Ajouter ..
+    add-to-profile: '.. à Mon compte dans :'
+    list: Liste %name%
+    new-list: Nouvelle liste
+    field-title: Titre
+    add-to-tempory: .. à Ma sélection temporaire.
+    btn-return: Retourner à la liste des résultats
+    btn-selection: Aller dans ma sélection
+    btn-login: Pour la conserver, connectez-vous à Mon compote.
+    btn-login2: Me connecter
+    btn-register: Créer mon compte
+    submit: Valider
+    submit-sr-only:  la création de la liste
+  list-edit:
+    title: Modification de la liste
+    field-title: Titre
+    submit: Valider
+    submit-sr-only: la modification de la liste
+  list-remove:
+    title: Liste "%name%"
+    message-confirmation: Voulez-vous vraiment supprimer cette liste ?
+    submit: Confirmer
+    submit-sr-only:  la suppression de la liste "%name%"
+  export:   # Modal export
+    title: Courriel
+    subtitle: Paramétrer le PDF
+    field:
+      recipient: Destinataire(s)
+      comments: Commentaires
+      abstract: Notices abrégés
+      long: Notices longues
+      pj: Mettre PDF en pièce jointe
+    submit: Envoyer
+  print:    # Modal imprimer
+    title: Paramétrer le PDF
+    field:
+      abstract: Notices abrégés
+      long: Notices longues
+      pj: Mettre PDF en pièce jointe
+    submit: Imprimer
+  share:    # Modal partage
+    title: Partage
+    subtitle-1: Permalien
+    url-page: URL de la page
+    btn-cpoy: Copier
+    btn-cpoy-sr-only: l'url
+    subtitle-2: Envoyer cette page à un ami
+    field:
+      text: Texte
+      title: Titre
+      recipient: Destinataire
+      expeditor: Expéditeur
+    submit: Envoyer
+  report:   # Modal signaler une erreur
+    title: Signaler une erreur sur le catalogue
+    subtitle: Coordonnées
+    field:
+      object: Objet
+      message: Message
+      last-name: Nom
+      first-name: Prénom
+      email: Courriel
+    submit: Valider
+    submit-sr-only:  l'envoi du mail de signalisation d'erreur
+  suggestion: # Modal suggestion d'achats
+    title: Suggestion
+    subtitle: Coordonnées
+    field:
+      title: Titre
+      author: Auteur
+      document-type: Type de document
+      editor: Editeur
+      last-name: Nom
+      first-name: Prénom
+      email: Courriel
+    submit: Valider
+    submit-sr-only:  l'envoi de la suggestion
+
+
+
 page:
   home:
     page_title: Accueil
@@ -72,11 +196,18 @@ page:
     thematic: Découvrir les parcours
 
 bloc:
-  carousel:
+  carousel:           # Bloc 1 diaporama nouveautés et/ou articles
     title: Carousel d'actualités
     item_desciption: Actualité %index% sur %nb%, %title% %auteur%
     page: Page %current% sur %nb%
     btn_pause: Mettre en pause le carousel
+  preview-thematic:   # Bloc 2 Découvrir les parcours
+    discover-sr-only: 'Découvrir les parcours : %name%'
+  notice-simple:      # Bloc 13 Notices simples en 2 colonnes
+    result: Résultat numéro
+    select: sélectionner
+    docuement-available: Disponible
+    docuement-unavailable: Indisponible
 
 search:
   notice:
