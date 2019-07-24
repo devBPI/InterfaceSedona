@@ -86,8 +86,13 @@
 			}
 		}
 
+		&-type {
+			text-align: center;
+		}
+
 		&-edit {
 			display: flex;
+			position: relative;
 
 			button {
 				width: 20px;
