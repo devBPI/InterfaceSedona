@@ -9,6 +9,14 @@
 		background-color: transparent;
 	}
 
+	.modal-dialog-centered {
+		align-items: flex-start;
+
+		@include media-breakpoint-up(sm) {
+			align-items: center;
+		}
+	}
+
 	&-content {
 		background-clip: unset;
 		border: 0;
@@ -85,6 +93,14 @@
 
 			span {
 				color: $red;
+			}
+		}
+
+		label {
+			font-size: 15px;
+
+			@include media-breakpoint-up(sm) {
+				font-size: 13px;
 			}
 		}
 

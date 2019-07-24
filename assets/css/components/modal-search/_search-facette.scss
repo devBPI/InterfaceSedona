@@ -13,6 +13,8 @@
 		padding-left: $spacer;
 		position: relative;
 		font-size: 15px;
+		width: 100%;
+		text-align: left;
 
 		&::before {
 			content: "";
@@ -49,11 +51,12 @@
 
 	&__item {
 		padding-top: 5px;
-		padding-bottom: 5px;
+		padding-bottom: 10px;
 		flex: 0 0 100%;
 		min-width: 100%;
 
 		@include media-breakpoint-up(md) {
+			padding-bottom: 5px;
 			flex: 0 0 50%;
 			min-width: 50%;
 		}

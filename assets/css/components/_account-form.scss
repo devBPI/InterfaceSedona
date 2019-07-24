@@ -41,11 +41,6 @@
 			display: flex;
 			justify-content: space-between;
 			align-items: center;
-
-			@include media-breakpoint-up(md) {
-				flex: 0 0 75%;
-				max-width: 75%;
-			}
 		}
 	}
 
