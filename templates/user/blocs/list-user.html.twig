@@ -7,7 +7,7 @@
 			<div class="table-group__header">
 				<label for="select-liste-{{ i }}" class="sr-only">Sélectionner la liste : *Insert nom de la liste*</label>
 				<input type="checkbox" id="select-liste-{{ i }}" class="table-group__input">
-				<p class="table-group__title">*Insert nom de la liste*</p>
+				<p class="table-group__title">Liste {{ i }}</p>
 				<button class="table-group__link" data-target="#modal-list-edit" data-toggle="modal">
 					<span class="sr-only sr-only-focusable">Changer le nom de la liste</span><img src="{{ asset('images/icones/icone-crayon.svg') }}" alt="" class="icone-pen"/>
 				</button>
@@ -15,7 +15,7 @@
 				
 			<div class="table-responsive">
 				<table class="table table-striped table-sm table-group__table">
-					<caption class="sr-only">*Insert nom de la liste*</caption>
+					<caption class="sr-only">Liste {{ i }}</caption>
 					<thead class="table__thead">
 						<tr>
 							<th></th>
