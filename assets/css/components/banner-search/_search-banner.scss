@@ -23,10 +23,15 @@
 			height: 45px;
 			line-height: 55px;
 			border: 0;
+			border-bottom: $border-default;
 			padding: 0 10px;
 
 			&:focus {
 				outline: $outline;
+			}
+
+			@include media-breakpoint-up(md) {
+				border: 0;
 			}
 		}
 	}
@@ -36,28 +41,24 @@
 		order: 3;
 		height: 45px;
 		margin-bottom: 0;
+		border-right: $border-default;
 
 		@include media-breakpoint-up(md) {
 			flex: 0 0 auto;
 			order: 2;
+			border: 0;
 		}
 
 		select {
 			height: 100%;
 			border-radius: 0;
 			border: 0;
-			border-top: $border-default;
 			-moz-appearance: none;
 			-webkit-appearance: none;
 			background-color: $grey-disabled;
 			color: $white;
 
-			@include media-breakpoint-up(md) {
-				border: 0;
-			}
-
 			&:focus {
-				border-top: $border-default;
 				-moz-appearance: none;
 				-webkit-appearance: none;
 				background-color: $grey-disabled;
@@ -76,10 +77,12 @@
 		height: 45px;
 		background: $red;
 		border: 0;
+		border-bottom: $border-default;
 
 		@include media-breakpoint-up(md) {
 			flex: 0 0 45px;
 			order: 3;
+			border: 0;
 		}
 	}
 
@@ -88,15 +91,11 @@
 		order: 4;
 		height: 45px;
 		border: 0;
-		border-top: $border-default;
-		border-left: $border-default;
 		background: white;
 
 		@include media-breakpoint-up(md) {
 			flex: 0 0 auto;
-			border: 0;
 		}
-
 
 		&:focus {
 			outline: $outline;

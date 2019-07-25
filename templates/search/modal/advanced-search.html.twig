@@ -1,5 +1,5 @@
 <div role="dialog" aria-modal="true" aria-labelledby="modal-search-advanced-title" class="modal fade modal--filter" id="modal-search-advanced">
-	<div class="modal-dialog modal-dialog-centered modal-xl">
+	<div class="modal-dialog modal-dialog-centered">
 		<div class="modal-content">
 			<form class="modal-form">
 				<div class="modal-header">
@@ -89,9 +89,9 @@
 						</div>
 						<ul role="group" aria-label="recherche dans" class="search-base__list">
 							{% for i in 1..5 %}
-								<li class="search-base__item">
-									<input type="checkbox" id="adv-search-bdd-{{ i }}">
-									<label for="adv-search-bdd-{{ i }}"><span class="sr-only">Recherche dans </span>Base de données {{ i }}</label>
+								<li class="form-check search-base__item">
+									<input type="checkbox" id="adv-search-bdd-{{ i }}" class="form-check-input">
+									<label for="adv-search-bdd-{{ i }}" class="form-check-label"><span class="sr-only">Recherche dans </span>Base de données {{ i }}</label>
 								</li>
 							{% endfor %}
 						</ul>
@@ -127,7 +127,7 @@
 								</div>
 							</div>
 
-							<div class="col-12 col-sm-5 col-md-4 pr-0">
+							<div class="col-12 col-sm-5 col-md-4 pl-0 pl-sm-3 pr-0">
 								<p>Langue</p>
 								<div class="dropdown">
 									<button type="button" id="adv-search-langage" data-toggle="dropdown" aria-haspopup="listbox" aria-expanded="false" aria-label="Sélectionner les langues" class="dropdown-toggle">

@@ -25,9 +25,9 @@
 						<p class="search-base__label">{{ 'modal.list-add.add-to-profile'|trans }}</p>
 						<ul class="search-base__list">
 							{% for i in 1..10 %}
-								<li class="search-base__item">
-									<input type="checkbox" id="list-{{ i }}">
-									<label for="list-{{ i }}">{{ 'modal.list-add.list'|trans({'%name%': i }) }}</label>
+								<li class="search-base__item form-check">
+									<input type="checkbox" id="list-{{ i }}" class="form-check-input">
+									<label for="list-{{ i }}" class="form-check-label">{{ 'modal.list-add.list'|trans({'%name%': i }) }}</label>
 								</li>
 							{% endfor %}
 						</ul>

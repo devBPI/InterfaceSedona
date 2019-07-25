@@ -40,6 +40,7 @@
 
 		@include media-breakpoint-up(sm) {
 			position: relative;
+			padding: 25px 50px;
 		}
 
 		&__title {
@@ -56,6 +57,15 @@
 			line-height: 5px;
 			opacity: 1;
 			transition: .15s;
+
+			@include media-breakpoint-up(sm) {
+				position: absolute;
+				top: 0;
+				right: 0;
+				margin-top: $spacer;
+				margin-right: $spacer;
+				margin-bottom: auto;
+			}
 
 			img {
 				width: 15px;
@@ -74,6 +84,10 @@
 		&:last-child {
 			background-color: red;
 			border-bottom: 0;
+		}
+
+		@include media-breakpoint-up(sm) {
+			padding: $spacer 50px;
 		}
 
 		.list-result {
@@ -98,8 +112,10 @@
 
 		label {
 			font-size: 15px;
+			margin-left: 2px;
+			width: 100%;
 
-			@include media-breakpoint-up(sm) {
+			@include media-breakpoint-up(md) {
 				font-size: 13px;
 			}
 		}
@@ -110,6 +126,7 @@
 				padding-top: 5px;
 				padding-bottom: 5px;
 				font-size: 15px;
+				margin-left: 0;
 
 				@include media-breakpoint-up(sm) {
 					padding-bottom: 0;
@@ -144,6 +161,7 @@
 
 		@include media-breakpoint-up(sm) {
 			position: relative;
+			padding: 25px 50px;
 		}
 
 		&__quote {
