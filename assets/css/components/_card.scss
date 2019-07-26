@@ -19,24 +19,29 @@
 	}
 
 	&__title {
-		text-transform: capitalize;
+		margin-bottom: 0;
+
+		+ .card__content,
+		+ .card__list {
+			margin-top: $spacer;
+		}
+	}
+
+	&__content {
+		margin-bottom: 0;
 	}
 
 	&__list {
 		list-style-type: none;
 		margin: 0;
 		padding: 0;
-		display: flex;
-		flex-wrap: wrap;
 	}
 
 	&__item {
-		min-width: 100%;
-		flex: 0 0 100%;
-
-		@include media-breakpoint-up(md) {
-			min-width: 50%;
-			flex: 0 0 50%;
+		
+		&:before {
+			content: '-';
+			margin-right: 5px;
 		}
 
 		a {
