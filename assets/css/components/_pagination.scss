@@ -46,7 +46,8 @@
 			&--reset {
 
 				&:hover {
-					border-color: transparent;
+					text-decoration: none;
+					color: $black;
 				}
 			}
 		}	

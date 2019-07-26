@@ -2,8 +2,16 @@
 // Card
 // -------------------------------
 
+.card-container {
+
+	.n1 {
+		margin-bottom: $spacer * 2;
+	}
+}
+
 .card {
 	position: relative;
+	padding-bottom: $spacer;
 	margin-bottom: 30px;
 
 	&__link {
@@ -61,11 +69,6 @@
 		@extend .border-double;
 		background-position: 0 top;
 
-		@include media-breakpoint-up(md) {
-			padding-top: 40px;
-			margin-top: 40px;
-		}
-
 		& + & {
 			margin-top: 0;
 
@@ -92,7 +95,7 @@
 					@extend .border-double;
 
 					@include media-breakpoint-up(md) {
-						margin-top: -78px;
+						margin-top: -85px;
 					}
 				}
 			}
@@ -102,10 +105,10 @@
 				.card {
 
 					&:before {
-						margin-top: -58px;
+						margin-top: -75px;
 
 						@include media-breakpoint-up(md) {
-							margin-top: -78px;
+							margin-top: -85px;
 						}
 					}
 				}
