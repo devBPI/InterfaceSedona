@@ -9,7 +9,7 @@
 				<input type="checkbox" id="select-liste-{{ i }}" class="table-group__input">
 				<p class="table-group__title">Liste {{ i }}</p>
 				<button class="table-group__link" data-target="#modal-list-edit" data-toggle="modal">
-					<span class="sr-only sr-only-focusable">Changer le nom de la liste</span><img src="{{ asset('images/icones/icone-crayon.svg') }}" alt="" class="icone-pen"/>
+					<span class="sr-only sr-only-focusable">Changer le nom de la liste</span><img src="{{ asset('images/icones/icone-crayon-gris.svg') }}" alt="" class="icone-pen"/>
 				</button>
 			</div>
 				
@@ -52,9 +52,13 @@
 								<td>03/07/2019</td>
 								<td class="table__body-edit">
 									Lorem ipsum dolor sit amet, consetetur sadipscing elitr.
-									<button data-target="#modal-comments" data-toggle="modal">
-										<span class="sr-only">Éditer le commentaire</span>
-										<img src="{{ asset('images/icones/icone-crayon.svg') }}" alt="" class="icone-crayon"/>
+									<button data-target="#modal-comments-view" data-toggle="modal">
+										<span class="sr-only">Voir le commentaire</span>
+										<img src="{{ asset('images/icones/icone-oeil.svg') }}" alt="" class="icone-oeil"/>
+									</button>
+									<button data-target="#modal-comments-edit" data-toggle="modal">
+										<span class="sr-only">Modifier le commentaire</span>
+										<img src="{{ asset('images/icones/icone-crayon-noir.svg') }}" alt="" class="icone-crayon"/>
 									</button>
 								</td>
 							</tr>
