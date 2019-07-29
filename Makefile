@@ -9,7 +9,7 @@ CLIENT_NAME = $(firstword $(subst /, ,$(COMPOSER_PROJECT_NAME)))
 PROJECT_NAME = $(firstword $(subst -, ,$(lastword $(subst /, ,$(COMPOSER_PROJECT_NAME)))))
 MODULE_NAME = $(lastword $(subst -, ,$(lastword $(subst /, ,$(COMPOSER_PROJECT_NAME)))))
 # GAV
-GROUP_ID = fr.$(CLIENT_NAME).$(PROJECT_NAME).$(MODULE_NAME)
+GROUP_ID = fr.$(CLIENT_NAME).$(PROJECT_NAME)
 ARTIFACT_ID = $(PROJECT_NAME)-$(MODULE_NAME)
 VERSION = $(subst -dev,-SNAPSHOT,${COMPOSER_PROJECT_VERSION})
 # Output
@@ -28,6 +28,11 @@ FIG := $(shell which docker-compose 2> /dev/null)
 PROJECT_IMAGE_NAME := $(subst -,/,$(COMPOSER_PROJECT_NAME))
 PHP_IMAGE_NAME := $(shell awk 'NR==1{print $$2}' Dockerfile )
 
+IN_DOCKER = $(shell expr `cat /proc/1/sched | head -n 1 | grep -cE 'init|systemd'` = 0)
+
+#
+TAR_CAN_EXCLUDE_VCS = $(shell expr `tar --version | grep ^tar | sed 's/^.* //g'` \>= 1.28)
+
 # PHP
 PHP_BIN ?= $(shell which php 2> /dev/null || echo 'php')
 # Composer options
@@ -38,8 +43,15 @@ CINSTALL_OPTIONS ?= --no-interaction --prefer-dist
 PHPSTAN_LEVEL ?= 5
 
 # Symfony options
+SF_VERSION := $(shell expr `grep '"symfony/symfony"' composer.json | cut -d':' -f2 | grep -oe "[[:digit:]].[[:digit:]]" | cut -d. -f1`)
+ifeq "$(SF_VERSION)" "2"
+CONSOLE := $(PHP_BIN) app/console
+VAR_DIR = $(CURDIR)/app
+else
 CONSOLE := $(PHP_BIN) bin/console
 VAR_DIR = $(CURDIR)/var
+endif
+
 CACHE_DIR = $(VAR_DIR)/cache
 LOG_DIR = $(VAR_DIR)/logs
 
@@ -104,6 +116,7 @@ package_info.json:
 
 .env:
 	cp -n .env.dist .env
+	chmod 600 .env
 
 ################################################################################
 ## Docker Compose commands (for development)
@@ -285,3 +298,4 @@ else
 	@$(error Missing docker)
 endif
 .PHONY: image
+
