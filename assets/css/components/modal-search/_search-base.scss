@@ -33,9 +33,11 @@
 		flex: 1;
 		display: flex;
 		flex-wrap: wrap;
+		margin-bottom: -$spacer;
 
 		@include media-breakpoint-up(md) {
 			padding-left: $spacer;
+			margin-bottom: -10px;
 		}
 	}
 

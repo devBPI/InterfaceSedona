@@ -2,17 +2,6 @@
 // Modals - Recherche avancée - Date de publication
 // -------------------------------
 
-.search-date-col {
-	border-bottom: 1px solid $white;
-	margin-bottom: $spacer;
-
-	@include media-breakpoint-up(sm) {
-		margin-bottom: 0;
-		border-bottom: 0;
-		border-right: 1px solid $white;
-	}
-}
-
 .search-date {
 	display: flex;
 	align-items: center;
@@ -27,7 +16,7 @@
 		min-width: 100%;
 		flex: 0 0 100%;
 
-		@include media-breakpoint-up(lg) {
+		@include media-breakpoint-up(md) {
 			min-width: auto;
 			flex: 0 0 auto;
 		}
@@ -37,7 +26,7 @@
 			display: flex;
 			align-items: center;
 
-			@include media-breakpoint-up(lg) {
+			@include media-breakpoint-up(md) {
 				margin-top: 0;
 			}
 		}
@@ -46,7 +35,7 @@
 	&__date {
 		margin-bottom: 0;
 
-		@include media-breakpoint-up(lg) {
+		@include media-breakpoint-up(md) {
 			padding-left: $spacer;
 		}
 

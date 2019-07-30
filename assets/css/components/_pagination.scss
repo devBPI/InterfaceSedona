@@ -9,6 +9,14 @@
 		display: none;
 	}
 
+	.page-item {
+		margin: 0 5px;
+
+		@include media-breakpoint-up(md) {
+			margin: 0;
+		}
+	}
+
 	.page {
 
 		&-link {
@@ -57,9 +65,15 @@
 		margin: 0;
 		align-items: flex-end;
 
+		.page-item {
+			margin: 0;
+		}
+
 		p.page-link {
 			border-left: $border-default;
 			border-right: $border-default;
+			border-top: 0;
+			border-bottom: 0;
 			
 			&:hover {
 				border-top-color: transparent;

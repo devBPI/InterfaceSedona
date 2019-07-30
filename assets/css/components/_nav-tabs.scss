@@ -4,26 +4,42 @@
 
 .nav-tabs {
 
-	.nav-link {
-		border: $border-default;
-		background-color: $grey-border;
-		margin-left: -2px;
+	.nav {
 
-		&:hover {
-			background-color: $white;
+		&-link {
+			border: $border-default;
+			background-color: $grey-border;
+
+			@include media-breakpoint-up(sm) {
+				margin-left: -2px;
+			}
+
+			&:hover {
+				background-color: $white;
+			}
+
+			&:focus {
+				outline-offset: -4px;
+			}
 		}
 
-		&:focus {
-			outline-offset: -4px;
-		}
-	}
+		&-item {			
+			min-width: 100%;
+			flex: 0 0 100%;
+			position: relative;
+			text-align: center;
 
-	.nav-item {
+			@include media-breakpoint-up(sm) {
+				text-align: left;
+				flex: 0 0 auto;
+				min-width: auto;
+			}
 
-		&:first-child {
+			&:first-child {
 
-			.nav-link {
-				margin-left: 0;
+				.nav-link {
+					margin-left: 0;
+				}
 			}
 		}
 	}
