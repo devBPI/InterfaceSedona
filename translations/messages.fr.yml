@@ -198,16 +198,30 @@ page:
     thematic: Découvrir les parcours
 
 bloc:
-  carousel:           # Bloc 1 diaporama nouveautés et/ou articles
+  carousel:               #Bloc 01 diaporama nouveautés et/ou articles
     title: Carousel d'actualités
     item_desciption: Actualité %index% sur %nb%, %title% %auteur%
     page: Page %current% sur %nb%
     btn_pause: Mettre en pause le carousel
-  preview-thematic:   # Bloc 2 Découvrir les parcours
+  preview-thematic:       #Bloc 02 Découvrir les parcours
     discover-sr-only: 'Découvrir les parcours : %name%'
-  preview-thematic-links: # Bloc 5 Accès rapide
+  preview-thematic-links: #Bloc 05 Accès rapide
     link-sr-only: Les thèmes les plus consultés, %name%
-  notice-simple:      # Bloc 13 Notices simples en 2 colonnes
+  search-correct:         #Bloc 07 Orthographe
+    text: Essayez avec l'orthographe
+  related-topics:         #Bloc 08 Sujets Liés
+    title-sr-only: Choix d'un sujet lié
+    title-aria: menu-sujets-lies
+    text: Sujet lié
+  relauch-search:         #Bloc 09 Relance de la recherche
+    title-sr-only: Choix de relance de recherche
+    title-aria: menu-relanche
+    button: Relancer la recherche dans
+  filters-search:         #Bloc 10 Rappel des critères de recherche
+    title: 'Recherche avancée :'
+    title-sr-only: Retrouver les termes et les critères de recherche saisie. Cliquer dessus supprime le critère de recherche ou le filtre.
+
+  notice-simple:          #Bloc 13 Notices simples en 2 colonnes
     result: Résultat numéro
     select: sélectionner
     docuement-available: Disponible

@@ -1,12 +1,12 @@
 <!-- Début - Bloc 8 Sujets Liés -->
 
-<div class="dropdown mb-3" aria-label="menu-sujets-lies">
-	<span class="sr-only">Choix d'un sujet lié</span>
-	<button type="button" id="dropdown-sujets" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="listbox" aria-expanded="false">Sujet lié</button>
+<div class="dropdown mb-3" aria-label="{{ 'bloc.related-topics.title-aria'|trans }}">
+	<span class="sr-only">{{ 'bloc.related-topics.title-sr-only'|trans }}</span>
+	<button type="button" id="dropdown-sujets" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="listbox" aria-expanded="false">{{ 'bloc.related-topics.text'|trans }}</button>
 	<ul class="dropdown-menu" aria-labelledby="dropdown-sujets" role="listbox" tabindex="-1">
 		{% for i in 1..3 %}
 			<li class="dropdown-item" role="option">
-				<a href="#" lang="fr">Sujet lié {{ i }}</a>
+				<a href="#" lang="fr">{{ 'bloc.related-topics.text'|trans }} {{ i }}</a>
 			</li>
 		{% endfor %}
 	</ul>

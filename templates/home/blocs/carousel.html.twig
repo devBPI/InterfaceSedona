@@ -6,7 +6,7 @@
 				<div class="slick-carousel" role="region" aria-roledescription="carrousel">
 					{% for i in 1..4 %}
 						<div class="slick-slide-content">
-							<a href="#" title="Actualité {{ i }} sur 24, Titre de Auteur">
+							<a href="#" title="{{ 'bloc.carousel.item_desciption'|trans({'%index%': i ,'%nb%' : 24 , '%title%' : '*Insert titre*', '%auteur%' : '*Insert auteur*' }) }}">
 								<div>
 									<img src="{{ asset('images/couvertures-generiques/cg-image.svg') }}" alt="" class="img-fluid" />
 								</div>
@@ -24,25 +24,17 @@
 	<div class="carousel flickity-enabled is-draggable" tabindex="0" aria-label="{{ 'bloc.carousel.title'|trans }}">
 		<div class="flickity-viewport">
 			<div class="flickity-slider d-flex">
-				<div class="carousel-cell is-selected">
-					<a href="#" aria-label="
-					{{ 'bloc.carousel.item_desciption'|trans({'%index%': 1 ,'%nb%' : 24 , '%title%' : '*Insert titre*', '%auteur%' : '*Insert auteur*' }) }}" lang="fr">
-						<div>
-							<img src="https://via.placeholder.com/150x200" alt="">
-						</div>
-						<p>*Insert Titre*</p>
-						<p>*Insert auteur*</p>
-					</a>
-				</div>
-				<div class="carousel-cell">
-					<a href="#" aria-label="Actualité 2 sur 24, *Insert titre* *Insert auteur*" lang="fr">
-						<div>
-							<img src="https://via.placeholder.com/150x200" alt="">
-						</div>
-						<p>*Insert Titre*</p>
-						<p>*Insert auteur*</p>
-					</a>
-				</div>
+				{% for i in 1..4 %}
+					<div class="carousel-cell is-selected">
+						<a href="#" aria-label="{{ 'bloc.carousel.item_desciption'|trans({'%index%': i ,'%nb%' : 24 , '%title%' : '*Insert titre*', '%auteur%' : '*Insert auteur*' }) }}" lang="fr">
+							<div>
+								<img src="https://via.placeholder.com/150x200" alt="">
+							</div>
+							<p>*Insert Titre*</p>
+							<p>*Insert auteur*</p>
+						</a>
+					</div>
+				{% endfor %}
 			</div>
 		</div>
 		<!-- Customisation des boutons : DOM supposé. 
