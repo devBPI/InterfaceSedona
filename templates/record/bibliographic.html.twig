@@ -7,9 +7,7 @@
 	<div class="bibliographic-result">
 
 		<div class="row justify-content-between">
-			<!-- Début - Bloc 15 Navigation dans les résultats -->
-			{% include "record/blocs/results-navigation.html.twig" %}
-			<!-- Fin - Bloc 15 Navigation dans les résultats -->
+			{% include "record/blocs/results-navigation.html.twig" with {'routeTarget': path('record_bibliographic') } %}
 		</div>
 
 		<div class="row">
@@ -17,7 +15,9 @@
 		</div>
 
 		<div class="row">
-			{% include "record/bibliographic/related-documents.html.twig" %}
+			<!-- Début - Bloc 17 Documents liés -->
+			{% include "record/blocs/list-related-documents.html.twig" with {'type': 'theme', 'routeTarget': path('record_bibliographic') , 'image': 'images/couvertures-generiques/cg-livre-audio.svg', 'class': 'carousel-secondary--double' } %}
+			<!-- Fin - Bloc 17 Documents liés -->
 		</div>
 		
 	</div>

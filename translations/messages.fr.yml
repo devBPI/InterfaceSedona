@@ -220,12 +220,68 @@ bloc:
   filters-search:         #Bloc 10 Rappel des critères de recherche
     title: 'Recherche avancée :'
     title-sr-only: Retrouver les termes et les critères de recherche saisie. Cliquer dessus supprime le critère de recherche ou le filtre.
-
+  preview-authority:      #Bloc 11 Aperçu d'une autorité
+    first: Sélectionner %name%
+    see-more: Voir plus
+  header-docs:            #Bloc 12 En-tête des résultats
+    rayon:
+      title-sr-only: Documents en rayon, sélectionner tout les résultats
+      in-ligne: 'Documents en rayon :'
+      see-more: Voir tout
+      see-more-sr-only: les documents en rayons
+      order: Choix du trie des documents en rayon
+      order-aria: menu-trie-document-rayon
+    online:
+      title-sr-only: Documents en ligne, sélectionner tout les résultats
+      in-ligne: 'Documents en ligne :'
+      see-more: Voir tout
+      see-more-sr-only: les documents en ligne
+      order: Choix du trie des documents en ligne
+      order-aria: menu-trie-document-ligne
+    order-choice: Trier par
+    order-asc: Ordre ASC
+    order-desc: Ordre DESC
   notice-simple:          #Bloc 13 Notices simples en 2 colonnes
     result: Résultat numéro
     select: sélectionner
+    access-to-bdd: Acceder à %name%
     docuement-available: Disponible
     docuement-unavailable: Indisponible
+  search-header-footer:   #Bloc 14 Tri et pages
+    header:
+      aria-label: Sélectionner le nombre de résultat par colonne
+      nb-result-by-col: %nb% résultats par colonne
+    footer:
+      aria-label: Pagination
+      page-first: Première page
+      page-previous: Page précédente
+      page-next: Page Suivante
+      page-last: Dernière page
+      select-sr-only: Saisir un numéro de page à consulter sur %nb% pages
+      select-of: sur %nb%
+  results-navigation:     #Bloc 15 Navigation dans les résultats
+    return-to-result: Retour aux résultats
+    result-previous: Document précédent
+    result-next: Document suivant
+    result-current: %current% sur %nb%
+  #Bloc 16
+  list-related-docuements:  #Bloc 19 Liste de documents + Bloc 17 Documents liés
+    link-title: Actualité %current% sur %nb%, %name%
+    see-more: Voir tout
+    see-more-sr-only: les résultats
+    carousel-auteur: Auteur
+    carousel-sujets: Sujets
+    carousel-theme: Sur le même thème
+  index:                  #Bloc 20 Feuilletage d'index
+    title: Feuilletage d'indices
+    see-all: Voir la liste complète
+    notice: '*Insert explication du component*'
+    go-to-end: Aller à la fin du feuilletage d'index
+    go-to current-index: Aller sur l'index active
+    previous: précédents
+    current: %name% - Active
+    next: suivants
+    name: index
 
 search:
   notice:

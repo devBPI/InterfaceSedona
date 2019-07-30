@@ -1,4 +1,4 @@
-<form method="post" role="search" id="form-search">
+<form method="get" role="search" id="form-search" action="{{ path('search') }}">
 	<div class="sr-only" id="autocompletion-infos">*Insert texte explicatif pour l'auto-completion*</div>
 	<div class="search-banner" role="combobox" aria-expanded="false" aria-owns="autocompletion-list" aria-haspopup="listbox" id="search-banner"> 
 		<div class="input-group search-banner__input">
@@ -20,7 +20,7 @@
 				<option>Indice / Cote</option>
 			</select>
 		</div>
-		<button type="button" class="search-banner__submit">
+		<button type="submit" class="search-banner__submit">
 			<img src="{{ asset('images/icones/icone-loupe.svg') }}" alt="" class="icone-loupe"/>
 			<span class="sr-only">Valider la recherche</span>
 		</button>

@@ -1,0 +1,22 @@
+<!-- Début - Bloc 13 Notices simples en 2 colonnes -->
+
+<div class="list-result__content-item">
+	<div class="list-result__content-selector">
+		<input type="checkbox" id="result-doc-{{ type }}-{{ i }}">
+		<label for="result-doc-{{ type }}-{{ i }}"><span class="sr-only">{{ 'bloc.notice-simple.result'|trans }} </span> {{ i }}<span class="sr-only">, {{ 'bloc.notice-simple.select'|trans }} *Insert titre*</span></label>
+	</div>
+	<div class="list-result__content-body">
+		<div class="list-result__content-image">
+			<img src="{{ asset('images/couvertures-generiques/cg-journal.svg') }}" alt="" class="img-fluid" />
+		</div>
+		<div class="list-result__content-infos">
+			<a href="{{ path('record_bibliographic') }}" lang="fr" aria-label="*Insert titre* - {{ 'global.new-windows'|trans }}" class="n2 list-result__content-title"><img src="{{ asset('images/types/type-journal.svg') }}" alt="" class="list-result__content-type"/><span>Caravelle : cahiers du monde hispanique et brésilien</span></a>
+			<p lang="fr">par Institut pluridisciplinaire d'étude sur l'Amérique latine (Toulouse)</p>
+
+			{% block availability %} {# block a déplacer aprés dynamisation #}
+			{% endblock %}
+		</div>
+	</div>
+</div>
+
+<!-- Fin - Bloc 13 Notices simples en 2 colonnes -->
