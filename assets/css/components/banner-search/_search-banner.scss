@@ -63,6 +63,7 @@
 				-webkit-appearance: none;
 				background-color: $grey-disabled;
 				color: $white;
+				box-shadow: none;
 
 				@include media-breakpoint-up(md) {
 					border: 0;

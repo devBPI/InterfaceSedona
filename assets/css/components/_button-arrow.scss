@@ -16,7 +16,7 @@
 		position: relative;		
 
 		&:hover {
-			background-color: $grey-disabled;
+			background-color: $black;
 			color: $white;
 			text-decoration: none;
 		}
@@ -44,7 +44,7 @@
 			&:hover {
 
 				&:before {
-					border-right-color: $grey-disabled;
+					border-right-color: $black;
 				}
 			}
 		}
@@ -67,7 +67,7 @@
 			&:hover {
 
 				&:after {
-					border-left-color: $grey-disabled;
+					border-left-color: $black;
 				}
 			}
 		}

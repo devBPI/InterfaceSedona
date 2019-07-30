@@ -10,7 +10,7 @@
 		font-weight: $font-medium;
 
 		&:hover {
-			background-color: $grey-disabled;
+			background-color: $black;
 		}
 
 		@include media-breakpoint-up(md) {
@@ -24,7 +24,7 @@
 		font-weight: $font-medium;
 
 		&:hover {
-			background-color: $red;
+			background-color: $black;
 		}
 
 		@include media-breakpoint-up(md) {
@@ -52,7 +52,7 @@
 		}
 
 		&:hover {
-			color: $grey-disabled;
+			color: $black;
 		}
 	}
 

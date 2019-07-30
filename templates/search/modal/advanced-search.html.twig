@@ -78,7 +78,9 @@
 							</div>
 						</div>
 					</div>
+				</div>
 
+				<div class="modal-body">
 					<div class="search-base">
 						<div class="search-base__group">
 							<p class="search-base__label">Recherche dans</p>
@@ -99,45 +101,27 @@
 				</div>
 
 				<div class="modal-body">
-					<div class="container-fluid">
-						<div class="row">
-							<div class="col-12 col-sm-7 col-md-8 pl-0 search-date-col">
-								<p>Date de publication</p>
-								<div role="group" aria-label="date de parution" class="search-date">
-									<div class="search-date__group">
-										<div class="search-date__radio form-check form-check-inline">
-											<input class="form-check-input" type="radio" id="adv-search-label-date" name="adv-search-date" value="Date" checked>
-											<label class="form-check-label" for="adv-search-label-date">Date</label>
-										</div>
-										<div class="search-date__radio search-date__radio--period form-check form-check-inline">
-											<input class="form-check-input" type="radio" id="adv-search-label-period" name="adv-search-date" value="Periode">
-											<label class="form-check-label" for="adv-search-label-period">Periode</label>
-										</div>
-									</div>
-									<div class="search-date__group">
-										<div class="search-date__date form-group">
-											<label for="adv-search-date-1" class="sr-only">Entrer une date de parution</label>
-											<input type="text" class="form-control" id="adv-search-date-1" placeholder="AAAA">
-										</div>
-										<div class="search-date__date search-date__date--second form-group d-none">
-											<label for="adv-search-date-2" class="sr-only">Entrer une deuxième date de parution</label>
-											<input type="text" class="form-control" id="adv-search-date-2" placeholder="AAAA">
-										</div>
-									</div>
+					<div>
+						<p>Date de publication</p>
+						<div role="group" aria-label="date de parution" class="search-date">
+							<div class="search-date__group">
+								<div class="search-date__radio form-check form-check-inline">
+									<input class="form-check-input" type="radio" id="adv-search-label-date" name="adv-search-date" value="Date" checked>
+									<label class="form-check-label" for="adv-search-label-date">Date</label>
+								</div>
+								<div class="search-date__radio search-date__radio--period form-check form-check-inline">
+									<input class="form-check-input" type="radio" id="adv-search-label-period" name="adv-search-date" value="Periode">
+									<label class="form-check-label" for="adv-search-label-period">Periode</label>
 								</div>
 							</div>
-
-							<div class="col-12 col-sm-5 col-md-4 pl-0 pl-sm-3 pr-0">
-								<p>Langue</p>
-								<div class="dropdown">
-									<button type="button" id="adv-search-langage" data-toggle="dropdown" aria-haspopup="listbox" aria-expanded="false" aria-label="Sélectionner les langues" class="dropdown-toggle">
-									Français
-									</button>
-									<ul class="dropdown-menu" aria-labelledby="adv-search-langage" role="listbox" tabindex="-1">
-										<li class="dropdown-item" role="option">
-											<a href="#">*Insert autres langues*</a>
-										</li>
-									</ul>
+							<div class="search-date__group">
+								<div class="search-date__date form-group">
+									<label for="adv-search-date-1" class="sr-only">Entrer une date de parution</label>
+									<input type="text" class="form-control" id="adv-search-date-1" placeholder="AAAA">
+								</div>
+								<div class="search-date__date search-date__date--second form-group d-none">
+									<label for="adv-search-date-2" class="sr-only">Entrer une deuxième date de parution</label>
+									<input type="text" class="form-control" id="adv-search-date-2" placeholder="AAAA">
 								</div>
 							</div>
 						</div>
@@ -145,8 +129,24 @@
 				</div>
 
 				<div class="modal-body">
+					<div>
+						<p>Langue</p>
+						<div class="dropdown">
+							<button type="button" id="adv-search-langage" data-toggle="dropdown" aria-haspopup="listbox" aria-expanded="false" aria-label="Sélectionner les langues" class="dropdown-toggle">
+							Français
+							</button>
+							<ul class="dropdown-menu" aria-labelledby="adv-search-langage" role="listbox" tabindex="-1">
+								<li class="dropdown-item" role="option">
+									<a href="#">*Insert autres langues*</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+
+				<div class="modal-body">
 					<div class="search-facette">
-						<button type="button" class="search-facette__button btn" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="adv-search-type" data-target="#adv-search-type">Type de documents</button>
+						<button type="button" class="search-facette__button btn" data-toggle="collapse" aria-expanded="false" aria-controls="adv-search-type" data-target="#adv-search-type">Type de documents</button>
 						<div class="collapse search-facette__body" id="adv-search-type" role="group" aria-label="type de documents"> 
 							<div class="search-facette__content">
 								{% for i in 1..6 %}
@@ -162,7 +162,7 @@
 
 				<div class="modal-body">
 					<div class="search-facette">
-						<button type="button" class="search-facette__button btn" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="adv-search-support" data-target="#adv-search-support">Supports</button>
+						<button type="button" class="search-facette__button btn" data-toggle="collapse" aria-expanded="false" aria-controls="adv-search-support" data-target="#adv-search-support">Supports</button>
 						<div class="collapse search-facette__body" id="adv-search-support" role="group" aria-label="supports"> 
 							<div class="search-facette__content">
 								{% for i in 1..6 %}
@@ -178,7 +178,7 @@
 
 				<div class="modal-body">
 					<div class="search-facette">
-						<button type="button" class="search-facette__button btn" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="adv-search-music" data-target="#adv-search-music">Genre musical</button>
+						<button type="button" class="search-facette__button btn" data-toggle="collapse" aria-expanded="false" aria-controls="adv-search-music" data-target="#adv-search-music">Genre musical</button>
 						<div class="collapse search-facette__body" id="adv-search-music" role="group" aria-label="genre musical"> 
 							<div class="search-facette__content">
 								{% for i in 1..6 %}
@@ -194,7 +194,7 @@
 
 				<div class="modal-body">
 					<div class="search-facette">
-						<button type="button" class="search-facette__button btn" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="adv-search-film" data-target="#adv-search-film">Genre film</button>
+						<button type="button" class="search-facette__button btn" data-toggle="collapse" aria-expanded="false" aria-controls="adv-search-film" data-target="#adv-search-film">Genre film</button>
 						<div class="collapse search-facette__body" id="adv-search-film" role="group" aria-label="genre film"> 
 							<div class="search-facette__content">
 								{% for i in 1..6 %}
@@ -210,7 +210,7 @@
 
 				<div class="modal-body">
 					<div class="search-facette">
-						<button type="button" class="search-facette__button btn" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="adv-search-litteraire" data-target="#adv-search-litteraire">Genre littéraire</button>
+						<button type="button" class="search-facette__button btn" data-toggle="collapse" aria-expanded="false" aria-controls="adv-search-litteraire" data-target="#adv-search-litteraire">Genre littéraire</button>
 						<div class="collapse search-facette__body" id="adv-search-litteraire" role="group" aria-label="genre littéraire"> 
 							<div class="search-facette__content">
 								{% for i in 1..6 %}
@@ -226,7 +226,7 @@
 
 				<div class="modal-body">
 					<div class="search-facette">
-						<button type="button" class="search-facette__button btn" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="adv-search-destinataire" data-target="#adv-search-destinataire">Public destinataire</button>
+						<button type="button" class="search-facette__button btn" data-toggle="collapse" aria-expanded="false" aria-controls="adv-search-destinataire" data-target="#adv-search-destinataire">Public destinataire</button>
 						<div class="collapse search-facette__body" id="adv-search-destinataire" role="group" aria-label="public destinataire"> 
 							<div class="search-facette__content">
 								{% for i in 1..6 %}
@@ -242,7 +242,7 @@
 
 				<div class="modal-body">
 					<div class="search-facette">
-						<button type="button" class="search-facette__button btn" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="adv-search-secteur" data-target="#adv-search-secteur">Secteur</button>
+						<button type="button" class="search-facette__button btn" data-toggle="collapse" aria-expanded="false" aria-controls="adv-search-secteur" data-target="#adv-search-secteur">Secteur</button>
 						<div class="collapse search-facette__body" id="adv-search-secteur" role="group" aria-label="secteur"> 
 							<div class="search-facette__content">
 								{% for i in 1..6 %}
@@ -258,7 +258,7 @@
 
 				<div class="modal-body">
 					<div class="search-facette">
-						<button type="button" class="search-facette__button btn" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="adv-search-mediation" data-target="#adv-search-mediation">Médiation</button>
+						<button type="button" class="search-facette__button btn" data-toggle="collapse" aria-expanded="false" aria-controls="adv-search-mediation" data-target="#adv-search-mediation">Médiation</button>
 						<div class="collapse search-facette__body" id="adv-search-mediation" role="group" aria-label="médiation"> 
 							<div class="search-facette__content">
 								{% for i in 1..6 %}
@@ -274,7 +274,7 @@
 
 				<div class="modal-body">
 					<div class="search-facette">
-						<button type="button" class="search-facette__button btn" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="adv-search-contenu" data-target="#adv-search-contenu">Contenu</button>
+						<button type="button" class="search-facette__button btn" data-toggle="collapse" aria-expanded="false" aria-controls="adv-search-contenu" data-target="#adv-search-contenu">Contenu</button>
 						<div class="collapse search-facette__body" id="adv-search-contenu" role="group" aria-label="contenu"> 
 							<div class="search-facette__content">
 								{% for i in 1..6 %}
