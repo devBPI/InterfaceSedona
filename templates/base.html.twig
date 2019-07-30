@@ -60,7 +60,12 @@
 			<div class="container">
 				{% include "common/breadcrumb.html.twig" %}
 				{% include "search/search.html.twig" %}
+
+				{% block searchextended %}{% endblock %}
+
 				{% include "common/toolbar.html.twig" %}
+
+
 				{% block body %}{% endblock %}
 			</div>
 		</main>

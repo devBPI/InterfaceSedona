@@ -2,7 +2,7 @@
 
 {% block title %}Résultat de recherche{% endblock %}
 
-{% block body %}
+{% block searchextended %}
 
 	<div class="row justify-content-sm-between">
 		<div class="col-12 col-sm-auto">
@@ -17,8 +17,8 @@
 			{% include "search/blocs/relaunch-search.html.twig" %}
 		</div>
 	</div>
-	
-	<div class="row">
+
+	<div class="row mb-3">
 		<div class="col-12 col-sm-10 pr-sm-0">
 			{% include "search/blocs/filters-search.html.twig" %}
 		</div>
@@ -31,6 +31,10 @@
 			</div>
 		</div>
 	</div>
+
+{% endblock %} 
+
+{% block body %}
 
 	<div class="row search-result">
 		{% include "search/blocs/results/preview-authority.html.twig" %}
