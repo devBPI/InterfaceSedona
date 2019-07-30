@@ -79,11 +79,23 @@
 		background: $red;
 		border: 0;
 		border-bottom: $border-default;
+		transition: .15s;
 
 		@include media-breakpoint-up(md) {
 			flex: 0 0 45px;
 			order: 3;
 			border: 0;
+		}
+
+		&:hover {
+			background-color: $black;
+		}
+
+		&:focus {
+			outline: $outline;
+			outline-offset: -3px;
+			background-color: $black;
+			color: $white;
 		}
 	}
 
@@ -92,15 +104,24 @@
 		order: 4;
 		height: 45px;
 		border: 0;
-		background: white;
+		background-color: $white;
+		transition: .15s;
 
 		@include media-breakpoint-up(md) {
 			flex: 0 0 auto;
 		}
 
+		&:hover,
+		&:focus {
+			background-color: $black;
+			color: $white;
+		}
+
 		&:focus {
 			outline: $outline;
 			outline-offset: -3px;
+			background-color: $black;
+			color: $white;
 		}
 	}
 }

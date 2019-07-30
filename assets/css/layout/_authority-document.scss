@@ -24,12 +24,6 @@
 		}
 	}
 
-	&__header {
-		display: flex;
-		justify-content: space-between;
-		align-items: baseline;
-	}
-
 	&__documents {
 		margin-bottom: $spacer;
 		border-bottom: $border-default;

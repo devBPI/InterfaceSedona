@@ -8,8 +8,10 @@
 		padding: 3px 10px;
 		color: $white;
 		font-weight: $font-medium;
+		transition: .15s;
 
-		&:hover {
+		&:hover,
+		&:focus {
 			background-color: $black;
 		}
 
@@ -22,8 +24,10 @@
 		padding: 3px 10px;
 		color: $white;
 		font-weight: $font-medium;
+		transition: .15s;
 
-		&:hover {
+		&:hover,
+		&:focus {
 			background-color: $black;
 		}
 
@@ -46,12 +50,14 @@
 		font-weight: $font-bold;
 		color: $red;
 		padding: 0;
+		transition: .15s;
 
 		@include media-breakpoint-up(md) {
 			font-size: 18px;
 		}
 
-		&:hover {
+		&:hover,
+		&:focus {
 			color: $black;
 		}
 	}
@@ -62,10 +68,12 @@
 
 		img {
 			width: 18px;
+			height: 25px;
 			margin-left: 10px;
 
 			@include media-breakpoint-up(md) {
 				width: 23px;
+				height: 30px;
 			}
 		}
 	}

@@ -18,12 +18,19 @@
 		height: 100%;
 		max-height: 50px;
 		padding: 10px;
+		transition: .15s;
 
-		&:hover {
+		&:hover,
+		&:focus {
+			background-color: $black;
+			color: $white;
 		}
 
 		&:focus {
+			outline: $outline;
 			outline-offset: -3px;
+			background-color: $black;
+			color: $white;
 		}
 	}
 }

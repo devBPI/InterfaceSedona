@@ -71,7 +71,8 @@
 				width: 15px;
 			}
 
-			&:hover {
+			&:hover,
+			&:focus {
 				background-color: $black;
 				opacity: 1 !important;
 			}

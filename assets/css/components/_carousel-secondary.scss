@@ -10,9 +10,29 @@
 	}
 
 	&--double {
-		padding-top: 25px;
-		@extend .border-double;
-		background-position: 0 top;
+
+		.carousel-secondary__header {
+			padding-top: 25px;
+			@extend .border-double;
+			background-position: 0 top;
+		}
+	}
+
+	&__header {
+		display: flex;
+		justify-content: space-between;
+		align-items: baseline;
+	}
+
+	&__body {
+		border-bottom: $border-default;
+	}
+
+	&:last-child {
+
+		.carousel-secondary__body {
+			border-bottom: 0;
+		}
 	}
 
 	.slick-carousel {
