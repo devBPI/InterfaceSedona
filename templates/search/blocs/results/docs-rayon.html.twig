@@ -2,8 +2,8 @@
 
 <div class="list-result__content-item">
 	<div class="list-result__content-selector">
-		<input type="checkbox" id="result-doc-rayon-{{ i }}">
-		<label for="result-doc-rayon-{{ i }}"><span class="sr-only">{{ 'bloc.notice-simple.result'|trans }} </span> {{ i }}<span class="sr-only">, {{ 'bloc.notice-simple.select'|trans }} *Insert titre*</span></label>
+		<input type="checkbox" id="result-doc-{{ type|default('rayon') }}-{{ i }}">
+		<label for="result-doc-{{ type|default('rayon') }}-{{ i }}"><span class="sr-only">{{ 'bloc.notice-simple.result'|trans }} </span> {{ i }}<span class="sr-only">, {{ 'bloc.notice-simple.select'|trans }} *Insert titre*</span></label>
 	</div>
 	<div class="list-result__content-body">
 		<div class="list-result__content-image">
