@@ -14,7 +14,6 @@ cache:
   untracked: false
   paths:
     - build/
-    - htmlpage/
     - gl-code-quality-report.json
 
 quality:sonar:
@@ -104,8 +103,6 @@ publish:package:
  dependencies:
     - build:package
  script:
-    - apt-get -q update
-    - apt-get -q install make
     - GROUP_ID=$(make show-var-GROUP_ID)
     - ARTIFACT_ID=$(make show-var-ARTIFACT_ID)
     - VERSION=$(make show-var-VERSION)
