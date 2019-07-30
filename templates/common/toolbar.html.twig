@@ -5,26 +5,26 @@
 			<li class="toolbar__item">
 				<button data-target="#modal-list-add" data-toggle="modal">
 					<img src="{{ asset('images/icones/icone-coeur.svg') }}" alt="" class="icone-coeur"/>
-					<span><span class="sr-only">{{ 'main.toolbar.add_to'|trans }} </span>{{ 'main.toolbar.my_selection'|trans }}</span>
+					<span><span class="sr-only">{{ 'bloc.toolbar.add_to'|trans }} </span>{{ 'bloc.toolbar.my_selection'|trans }}</span>
 				</button>
 			</li>
 			<li class="toolbar__item">
 				<button data-target="#modal-export" data-toggle="modal">
 					<img src="{{ asset('images/icones/icone-fichier.svg') }}" alt="" class="icone-fichier"/>
-					<span>{{ 'main.toolbar.export'|trans }}<span class="sr-only"> {{ 'main.toolbar.the_selection'|trans }}</span></span>
+					<span>{{ 'bloc.toolbar.export'|trans }}<span class="sr-only"> {{ 'bloc.toolbar.the_selection'|trans }}</span></span>
 				</button>
 			</li>
 		{% else %}
 			<li class="toolbar__item toolbar__item--disabled">
 				<p>
 					<img src="{{ asset('images/icones/icone-coeur.svg') }}" alt="" class="icone-coeur"/>
-					<span>{{ 'main.toolbar.my_selection'|trans }}</span>
+					<span>{{ 'bloc.toolbar.my_selection'|trans }}</span>
 				</p>
 			</li>
 			<li class="toolbar__item toolbar__item--disabled">
 				<p>
 					<img src="{{ asset('images/icones/icone-fichier.svg') }}" alt="" class="icone-fichier"/>
-					<span>{{ 'main.toolbar.export'|trans }}</span>
+					<span>{{ 'bloc.toolbar.export'|trans }}</span>
 				</p>
 			</li>
 		{% endif %}
@@ -32,40 +32,40 @@
 			<li class="toolbar__item">
 				<button data-target="#modal-print" data-toggle="modal">
 					<img src="{{ asset('images/icones/icone-imprimante.svg') }}" alt="" class="icone-imprimante"/>
-					<span>{{ 'main.toolbar.print'|trans }}</span>
+					<span>{{ 'bloc.toolbar.print'|trans }}</span>
 				</button>
 			</li>
 		{% else %}
 			<li class="toolbar__item toolbar__item--disabled">
 				<p>
 					<img src="{{ asset('images/icones/icone-imprimante.svg') }}" alt="" class="icone-imprimante"/>
-					<span>{{ 'main.toolbar.print'|trans }}</span>
+					<span>{{ 'bloc.toolbar.print'|trans }}</span>
 				</p>
 			</li>
 		{% endif %}
 		<li class="toolbar__item">
 			<button data-target="#modal-share" data-toggle="modal">
 				<img src="{{ asset('images/icones/icone-partage.svg') }}" alt="" class="icone-partage"/>
-				<span>{{ 'main.toolbar.share'|trans }}</span>
+				<span>{{ 'bloc.toolbar.share'|trans }}</span>
 			</button>
 		</li>
 		<li class="toolbar__item">
-			<a href="{{ path('other_search') }}" title="{{ 'main.toolbar.help'|trans }} - {{ 'global.new-windows'|trans }}" target="_blank">
+			<a href="{{ path('other_search') }}" title="{{ 'bloc.toolbar.help'|trans }} - {{ 'global.new-windows'|trans }}" target="_blank">
 				<img src="{{ asset('images/icones/icone-aide.svg') }}" alt="" class="icone-interrogation"/>
-				<span>{{ 'main.toolbar.help'|trans }}</span>
+				<span>{{ 'bloc.toolbar.help'|trans }}</span>
 			</a>
 		</li>
 		<li class="toolbar__item">
 			<button data-target="#modal-suggest" data-toggle="modal">
 				<img src="{{ asset('images/icones/icone-suggestion.svg') }}" alt="" class="icone-livre"/>
-				<span>{{ 'main.toolbar.suggest'|trans }}</span>
+				<span>{{ 'bloc.toolbar.suggest'|trans }}</span>
 			</button>
 		</li>
 		<li class="toolbar__item">
 			{# Path to user/modal/report-error.html.twig #}
 			<button data-target="#modal-report" data-toggle="modal">
 				<img src="{{ asset('images/icones/icone-error.svg') }}" alt="" class="icone-enveloppe"/>
-				<span>{{ 'main.toolbar.report-error'|trans }}</span>
+				<span>{{ 'bloc.toolbar.report-error'|trans }}</span>
 			</button>
 		</li>
 	</ul>

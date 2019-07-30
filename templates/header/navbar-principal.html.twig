@@ -8,157 +8,177 @@
 			<li class="nav-item dropdown">
 				<a href="https://www.bpi.fr/la-bibliotheque" class="nav-link dropdown-toggle">La Bibliothèque</a>
 				<button class="dropdown-toggle dropdown-toggle--responsive" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
-				<ul class="dropdown-menu">
-					<li class="dropdown-item">
-						<a href="https://www.bpi.fr/la-bibliotheque/missions-et-organisation">Missions et organisation</a>
-						<ul class="dropdown-sub-list">
-							<li class="dropdown-sub-item"><a href="https://www.bpi.fr/la-bibliotheque/missions-et-organisation/organigramme">Organigramme</a></li>
-							<li class="dropdown-sub-item"><a href="https://www.bpi.fr/la-bibliotheque/missions-et-organisation/projets">La bibliothèque en rénovation</a></li>
-							<li class="dropdown-sub-item"><a href="https://www.bpi.fr/la-bibliotheque/missions-et-organisation/chartes">Chartes</a></li>
-							<li class="dropdown-sub-item"><a href="https://www.bpi.fr/la-bibliotheque/missions-et-organisation/rapports-d-activite">Rapports d'activité</a></li>
-						</ul>
-					</li>
-					<li class="dropdown-item">
-						<a href="https://www.bpi.fr/la-bibliotheque/collections">Collections</a>
-						<ul class="dropdown-sub-list">
-							<li class="dropdown-sub-item"><a href="https://www.bpi.fr/la-bibliotheque/collections/livres">Livres</a></li>
-							<li class="dropdown-sub-item"><a href="https://www.bpi.fr/sites/SiteInstitutionnel/home/la-bibliotheque/collections/revues-specialisees.html">Revus spécialisées</a></li>
-							<li class="dropdown-sub-item"><a href="https://www.bpi.fr/la-bibliotheque/collections/presse">Presse</a></li>
-							<li class="dropdown-sub-item"><a href="https://www.bpi.fr/la-bibliotheque/collections/ressources-electroniques">Ressources électroniques</a></li>
-							<li class="dropdown-sub-item"><a href="https://www.bpi.fr/la-bibliotheque/collections/autoformation">Autoformation</a></li>
-							<li class="dropdown-sub-item"><a href="https://www.bpi.fr/la-bibliotheque/collections/collections-audiovisuelles">Collections audiovisuelles</a></li>
-							<li class="dropdown-sub-item"><a href="https://www.bpi.fr/la-bibliotheque/collections/musiques-et-documents-parles">Musiques et documents parlés</a></li>
-							<li class="dropdown-sub-item"><a href="https://www.bpi.fr/la-bibliotheque/collections/nouvelle-generation">Nouvelle génération</a></li>
-							<li class="dropdown-sub-item"><a href="https://www.bpi.fr/sites/SiteInstitutionnel/home/la-bibliotheque/collections/cartes-et-plans.html">Cartes et plans</a></li>
-						</ul>
-					</li>
-					<li class="dropdown-item">
-						<a href="https://www.bpi.fr/la-bibliotheque/offres-culturelles-et-mediations">Offres culturelles et médiations</a>
-						<ul class="dropdown-sub-list">
-							<li class="dropdown-sub-item"><a href="https://www.bpi.fr/la-bibliotheque/offres-culturelles-et-mediations/evenements-culturels">Evénements culturels</a></li>
-							<li class="dropdown-sub-item"><a href="https://www.bpi.fr/la-bibliotheque/offres-culturelles-et-mediations/mediations">Médiations</a></li>
-							<li class="dropdown-sub-item"><a href="https://www.bpi.fr/la-bibliotheque/offres-culturelles-et-mediations/offres-a-distance">Offres à distance</a></li>
-						</ul>
-					</li>
-					<li class="dropdown-item">
-						<a href="https://www.bpi.fr/la-bibliotheque/publications-et-supports-de-communication">Publications et supports de communication</a>
-						<ul class="dropdown-sub-list">
-							<li class="dropdown-sub-item"><a href="https://www.bpi.fr/a-bibliotheque/publications-et-supports-de-communication/programme-de-la-bpi">Programme de la Bpi</a></li>
-							<li class="dropdown-sub-item"><a href="https://www.bpi.fr/newsletters">Lettres d'information</a></li>
-							<li class="dropdown-sub-item"><a href="https://www.bpi.fr/la-bibliotheque/publications-et-supports-de-communication/de-ligne-en-ligne">De ligne en ligne</a></li>
-							<li class="dropdown-sub-item"><a href="https://www.bpi.fr/la-bibliotheque/publications-et-supports-de-communication/supports-de-communication">Supports de communication</a></li>
-							<li class="dropdown-sub-item"><a href="https://www.bpi.fr/la-bibliotheque/publications-et-supports-de-communication/editions-de-la-bibliotheque">Editions de la bibliothèque publique d'information</a></li>
-							<li class="dropdown-sub-item"><a href="http://webtv.bpi.fr/" target="_blank">Web TV / Web Radio</a></li>
-						</ul>
-					</li>
-					<li class="dropdown-item">
-						<a href="https://www.bpi.fr/la-bibliotheque/les-publics-de-la-bpi">Les publics de la Bpi</a>
-						<ul class="dropdown-sub-list">
-							<li class="dropdown-sub-item"><a href="https://www.bpi.fr/la-bibliotheque/les-publics-de-la-bpi/sociologie-des-publics">Sociologie des publics</a></li>
-							<li class="dropdown-sub-item"><a href="https://www.bpi.fr/la-bibliotheque/les-publics-de-la-bpi/enquetes-aupres-des-publics">Enquêtes auprès des publics</a></li>
-						</ul>
-					</li>
-					<li class="dropdown-item">
-						<a href="https://www.bpi.fr/la-bibliotheque/la-bpi-en-chiffres">La Bpi en chiffres</a>
-					</li>
-					<li class="dropdown-item">
-						<a href="https://www.bpi.fr/la-bibliotheque/histoire-de-la-bpi">Histoire de la Bpi</a>
-					</li>
-				</ul>
+				{% include "header/navbar-principal-dropdown.html.twig" with {'list': [
+					{
+						'link': '//www.bpi.fr/la-bibliotheque/missions-et-organisation',
+						'name': 'Missions et organisation',
+						'children' : {
+						'//www.bpi.fr/la-bibliotheque/missions-et-organisation/organigramme': 'Organigramme',
+						'//www.bpi.fr/la-bibliotheque/missions-et-organisation/projets': 'La bibliothèque en rénovation',
+						'//www.bpi.fr/la-bibliotheque/missions-et-organisation/chartes': 'Chartes',
+						'//www.bpi.fr/la-bibliotheque/missions-et-organisation/rapports-d-activite': 'Rapports d\'activité',
+					}
+					},{
+						'link': '//www.bpi.fr/la-bibliotheque/collection',
+						'name': 'Collections',
+						'children' : {
+							'//www.bpi.fr/la-bibliotheque/collections/livres': 'Livres',
+							'//www.bpi.fr/sites/SiteInstitutionnel/home/la-bibliotheque/collections/revues-specialisees.html': 'Revus spécialisées',
+							'//www.bpi.fr/la-bibliotheque/collections/presse': 'Presse',
+							'//www.bpi.fr/la-bibliotheque/collections/ressources-electroniques': 'Ressources électroniques',
+							'//www.bpi.fr/la-bibliotheque/collections/autoformation': 'Autoformation',
+							'//www.bpi.fr/la-bibliotheque/collections/collections-audiovisuelles': 'Collections audiovisuelles',
+							'//www.bpi.fr/la-bibliotheque/collections/musiques-et-documents-parles': 'Musiques et documents parlés',
+							'//www.bpi.fr/la-bibliotheque/collections/nouvelle-generation': 'Nouvelle génération',
+							'//www.bpi.fr/sites/SiteInstitutionnel/home/la-bibliotheque/collections/cartes-et-plans.html': 'Cartes et plans',
+						}
+					},{
+						'link': '//www.bpi.fr/la-bibliotheque/offres-culturelles-et-mediations',
+						'name': 'Offres culturelles et médiations',
+						'children' : {
+							'//www.bpi.fr/la-bibliotheque/offres-culturelles-et-mediations/evenements-culturels': 'Evénements culturels',
+							'//www.bpi.fr/la-bibliotheque/offres-culturelles-et-mediations/mediations': 'Médiations',
+							'//www.bpi.fr/la-bibliotheque/offres-culturelles-et-mediations/offres-a-distance': 'Offres à distance',
+						}
+					},{
+						'link': '//www.bpi.fr/la-bibliotheque/publications-et-supports-de-communication',
+						'name': 'Publications et supports de communication',
+						'children' : {
+							'//www.bpi.fr/a-bibliotheque/publications-et-supports-de-communication/programme-de-la-bpi': 'Programme de la Bpi',
+							'//www.bpi.fr/newsletters': 'Lettres d\'information',
+							'//www.bpi.fr/la-bibliotheque/publications-et-supports-de-communication/de-ligne-en-ligne': 'De ligne en ligne',
+							'//www.bpi.fr/la-bibliotheque/publications-et-supports-de-communication/supports-de-communication': 'Supports de communication',
+							'//www.bpi.fr/la-bibliotheque/publications-et-supports-de-communication/editions-de-la-bibliotheque': 'Editions de la bibliothèque publique d\'information',
+							'http://webtv.bpi.fr/': 'Web TV / Web Radio',
+						}
+					},{
+						'link': '//www.bpi.fr/la-bibliotheque/les-publics-de-la-bpi',
+						'name': 'Les publics de la Bpi',
+						'children' : {
+							'//www.bpi.fr/la-bibliotheque/les-publics-de-la-bpi/sociologie-des-publics': 'Sociologie des publics',
+							'//www.bpi.fr/la-bibliotheque/les-publics-de-la-bpi/enquetes-aupres-des-publics': 'Enquêtes auprès des publics',
+						}
+					},{
+						'link': '//www.bpi.fr/la-bibliotheque/la-bpi-en-chiffres',
+						'name': 'La Bpi en chiffres'
+					},{
+						'link': '//www.bpi.fr/la-bibliotheque/histoire-de-la-bpi',
+						'name': 'Histoire de la Bpi'
+					}
+				]} %}
 			</li>
 			<li class="nav-item dropdown">
 				<a href="https://www.bpi.fr/informations-pratiques" class="nav-link dropdown-toggle">Informations pratiques</a>
 				<button class="dropdown-toggle dropdown-toggle--responsive" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
-				<ul class="dropdown-menu">
-					<li class="dropdown-item">
-						<a href="https://www.bpi.fr/sites/SiteInstitutionnel/home/informations-pratiques/venir-a-la-bpi.html">Venir à la Bpi</a>
-						<ul class="dropdown-sub-list">
-							<li class="dropdown-sub-item"><a href="https://www.bpi.fr/sites/SiteInstitutionnel/home/informations-pratiques/venir-a-la-bpi/horaires.html">Horaires</a></li>
-							<li class="dropdown-sub-item"><a href="https://www.bpi.fr/webcam">Webcam</a></li>
-							<li class="dropdown-sub-item"><a href="https://www.bpi.fr/sites/SiteInstitutionnel/home/informations-pratiques/venir-a-la-bpi/acces.html">Accès</a></li>
-							<li class="dropdown-sub-item"><a href="https://www.bpi.fr/contenus/bpi--mode-demploi">Bpi mode d'emploi</a></li>
-							<li class="dropdown-sub-item"><a href="https://www.bpi.fr/sites/SiteInstitutionnel/home/informations-pratiques/venir-a-la-bpi/contacts.html">Contacts</a></li>
-						</ul>
-					</li>
-					<li class="dropdown-item">
-						<a href="https://www.bpi.fr/informations-pratiques/les-espaces">Les espaces</a>
-						<ul class="dropdown-sub-list">
-							<li class="dropdown-sub-item"><a href="https://www.bpi.fr/informations-pratiques/les-espaces/niveau-1">Niveau 1</a></li>
-							<li class="dropdown-sub-item"><a href="https://www.bpi.fr/informations-pratiques/les-espaces/niveau-2">Niveau 2</a></li>
-							<li class="dropdown-sub-item"><a href="https://www.bpi.fr/informations-pratiques/les-espaces/niveau-3">Niveau 3</a></li>
-						</ul>
-					</li>
-					<li class="dropdown-item">
-						<a href="https://www.bpi.fr/informations-pratiques/les-services">Les services</a>
-						<ul class="dropdown-sub-list">
-							<li class="dropdown-sub-item"><a href="https://www.bpi.fr/sites/SiteInstitutionnel/home/informations-pratiques/les-services/renseignements-et-orientation.html">Renseignements et orientation</a></li>
-							<li class="dropdown-sub-item"><a href="https://www.bpi.fr/informations-pratiques/les-services/internet-et-le-wifi">Internet et le wifi</a></li>
-							<li class="dropdown-sub-item"><a href="https://www.bpi.fr/informations-pratiques/les-services/lautre-internet">L'autre internet</a></li>
-							<li class="dropdown-sub-item"><a href="https://www.bpi.fr/informations-pratiques/les-services/les-autres-services">Les autres services</a></li>
-						</ul>
-					</li>
-					<li class="dropdown-item">
-						<a href="https://www.bpi.fr/informations-pratiques/les-offres-par-type-de-public">Les offres par type de public</a>
-						<ul class="dropdown-sub-list">
-							<li class="dropdown-sub-item"><a href="https://www.bpi.fr/sites/SiteInstitutionnel/home/informations-pratiques/les-offres-par-type-de-public/%c3%89tudiant-ou-lyceen.html">Etudiant ou lycéen</a></li>
-							<li class="dropdown-sub-item"><a href="https://www.bpi.fr/informations-pratiques/les-offres-par-type-de-public/enseignant">Enseignant</a></li>
-							<li class="dropdown-sub-item"><a href="https://www.bpi.fr/informations-pratiques/les-offres-par-type-de-public/famille">Famille</a></li>
-							<li class="dropdown-sub-item"><a href="https://www.bpi.fr/informations-pratiques/les-offres-par-type-de-public/intervenant-du-champ-social">Intervenant du champ social</a></li>
-							<li class="dropdown-sub-item"><a href="https://www.bpi.fr/informations-pratiques/les-offres-par-type-de-public/nouvel-arrivant-a-paris">Nouvel arrivant à Paris</a></li>
-							<li class="dropdown-sub-item"><a href="https://www.bpi.fr/informations-pratiques/les-offres-par-type-de-public/chercheur-d-emploi">En recherche d'emploi</a></li>
-						</ul>
-					</li>
-					<li class="dropdown-item">
-						<a href="https://www.bpi.fr/informations-pratiques/handicap-et-accessibilite">Handicap et accessibilité</a>
-						<ul class="dropdown-sub-list">
-							<li class="dropdown-sub-item"><a href="https://www.bpi.fr/informations-pratiques/handicap-et-accessibilite/acces">Accès</a></li>
-							<li class="dropdown-sub-item"><a href="https://www.bpi.fr/informations-pratiques/handicap-et-accessibilite/les-loges">Les loges</a></li>
-							<li class="dropdown-sub-item"><a href="https://www.bpi.fr/informations-pratiques/handicap-et-accessibilite/les-autres-services-a-destination-du-public-handicape">Les autres services à destination du public handicapé</a></li>
-						</ul>
-					</li>
-					<li class="dropdown-item">
-						<a href="https://www.bpi.fr/informations-pratiques/emplois-et-stages">Emplois et stage</a>
-						<ul class="dropdown-sub-list">
-							<li class="dropdown-sub-item"><a href="https://www.bpi.fr/informations-pratiques/emplois-et-stages/emplois-permanents">Emplois permanents</a></li>
-							<li class="dropdown-sub-item"><a href="https://www.bpi.fr/informations-pratiques/emplois-et-stages/emplois-temporaires">Emplois temporaires</a></li>
-							<li class="dropdown-sub-item"><a href="https://www.bpi.fr/informations-pratiques/emplois-et-stages/stages">Stages</a></li>
-						</ul>
-					</li>
-					<li class="dropdown-item">
-						<a href="https://www.bpi.fr/informations-pratiques/marches-publics">Marchés publics</a>
-						<ul class="dropdown-sub-list">
-							<li class="dropdown-sub-item"><a href="https://www.bpi.fr/informations-pratiques/marches-publics/consultations">Consultations</a></li>
-							<li class="dropdown-sub-item"><a href="https://www.bpi.fr/informations-pratiques/marches-publics/candidatures">Candidatures</a></li>
-							<li class="dropdown-sub-item"><a href="https://www.bpi.fr/informations-pratiques/marches-publics/attributions">Attributions</a></li>
-						</ul>
-					</li>
-					<li class="dropdown-item">
-						<a href="https://www.bpi.fr/sites/SiteInstitutionnel/home/informations-pratiques/foire-aux-questions.html">Foire aux quesitions</a>
-					</li>
-				</ul>
+				{% include "header/navbar-principal-dropdown.html.twig" with {'list': [
+						{
+							'link': '//www.bpi.fr/sites/SiteInstitutionnel/home/informations-pratiques/venir-a-la-bpi.html',
+							'name': 'Venir à la Bpi',
+							'children' : {
+								'//www.bpi.fr/sites/SiteInstitutionnel/home/informations-pratiques/venir-a-la-bpi/horaires.html': 'Horaires',
+								'//www.bpi.fr/webcam': 'Webcam',
+								'//www.bpi.fr/sites/SiteInstitutionnel/home/informations-pratiques/venir-a-la-bpi/acces.html': 'Accès',
+								'//www.bpi.fr/contenus/bpi--mode-demploi': 'Bpi mode d\'emploi',
+								'//www.bpi.fr/sites/SiteInstitutionnel/home/informations-pratiques/venir-a-la-bpi/contacts.html': 'Contacts',
+							}
+						},
+						{
+							'link': '//www.bpi.fr/informations-pratiques/les-espaces',
+							'name': 'Les espaces',
+							'children' : {
+								'//www.bpi.fr/informations-pratiques/les-espaces/niveau-1': 'Niveau 1',
+								'//www.bpi.fr/informations-pratiques/les-espaces/niveau-2': 'Niveau 2',
+								'//www.bpi.fr/informations-pratiques/les-espaces/niveau-3': 'Niveau 3',
+							}
+						},
+						{
+							'link': '//www.bpi.fr/informations-pratiques/les-services',
+							'name': 'Les services',
+							'children' : {
+								'//www.bpi.fr/sites/SiteInstitutionnel/home/informations-pratiques/les-services/renseignements-et-orientation.html': 'Renseignements et orientation',
+								'//www.bpi.fr/informations-pratiques/les-services/internet-et-le-wifi': 'Internet et le wifi',
+								'//www.bpi.fr/informations-pratiques/les-services/lautre-internet': 'L\'autre internet',
+								'//www.bpi.fr/informations-pratiques/les-services/les-autres-services': 'Les autres services',
+							}
+						},
+						{
+							'link': '//www.bpi.fr/informations-pratiques/les-offres-par-type-de-public',
+							'name': 'Les offres par type de public',
+							'children' : {
+								'//www.bpi.fr/sites/SiteInstitutionnel/home/informations-pratiques/les-offres-par-type-de-public/%c3%89tudiant-ou-lyceen.html': 'Etudiant ou lycéen',
+								'//www.bpi.fr/informations-pratiques/les-offres-par-type-de-public/enseignant': 'Enseignant',
+								'//www.bpi.fr/informations-pratiques/les-offres-par-type-de-public/famille': 'Famille',
+								'//www.bpi.fr/informations-pratiques/les-offres-par-type-de-public/intervenant-du-champ-social': 'Intervenant du champ social',
+								'//www.bpi.fr/informations-pratiques/les-offres-par-type-de-public/nouvel-arrivant-a-paris': 'Nouvel arrivant à Paris',
+								'//www.bpi.fr/informations-pratiques/les-offres-par-type-de-public/chercheur-d-emploi': 'En recherche d\'emploi',
+								}
+							},
+						{
+							'link': '//www.bpi.fr/informations-pratiques/handicap-et-accessibilite',
+							'name': 'Handicap et accessibilité',
+							'children' : {
+								'//www.bpi.fr/informations-pratiques/handicap-et-accessibilite/acces': 'Accès',
+								'//www.bpi.fr/informations-pratiques/handicap-et-accessibilite/les-loges': 'Les loges',
+								'//www.bpi.fr/informations-pratiques/handicap-et-accessibilite/les-autres-services-a-destination-du-public-handicape': 'Les autres services à destination du public handicapé',
+							}
+						},
+						{
+							'link': '//www.bpi.fr/informations-pratiques/emplois-et-stages',
+							'name': 'Emplois et stage',
+							'children' : {
+								'//www.bpi.fr/informations-pratiques/emplois-et-stages/emplois-permanents': 'Emplois permanents',
+								'//www.bpi.fr/informations-pratiques/emplois-et-stages/emplois-temporaires': 'Emplois temporaires',
+								'//www.bpi.fr/informations-pratiques/emplois-et-stages/stages': 'Stages',
+							}
+						},
+						{
+							'link': '//www.bpi.fr/informations-pratiques/marches-publics',
+							'name': 'Marchés publics',
+							'children' : {
+								'//www.bpi.fr/informations-pratiques/marches-publics/consultations': 'Consultations',
+								'//www.bpi.fr/informations-pratiques/marches-publics/candidatures': 'Candidatures',
+								'//www.bpi.fr/informations-pratiques/marches-publics/attributions': 'Attributions',
+							}
+						},
+						{
+							'link': '//www.bpi.fr/sites/SiteInstitutionnel/home/informations-pratiques/foire-aux-questions.html',
+							'name': 'Foire aux quesitions'
+						}
+					]} %}
 			</li>
 			<li class="nav-item dropdown">
 				<a href="https://www.bpi.fr/espace-presse" class="nav-link dropdown-toggle">Presse / Partenariats</a>
 				<button class="dropdown-toggle dropdown-toggle--responsive" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
-				<ul class="dropdown-menu">
-					<li class="dropdown-item">
-						<a href="https://www.bpi.fr/espace-presse/communiques-et-dossiers-de-presse">Communiqués et dossiers de presse</a>
-						<ul class="dropdown-sub-list">
-							<li class="dropdown-sub-item"><a href="https://www.bpi.fr/espace-presse/communiques-et-dossiers-de-presse/archives">Archives des communiqués</a></li>
-						</ul>
-					</li>
-					<li class="dropdown-item"><a href="https://www.bpi.fr/espace-presse/tournages-et-reportages">Tournages et prises de vues</a></li>
-					<li class="dropdown-item"><a href="https://www.bpi.fr/espace-presse/logos">Logos</a></li>
-					<li class="dropdown-item">
-						<a href="https://www.bpi.fr/espace-presse/visuels">Visuels</a>
-						<ul class="dropdown-sub-list">
-							<li class="dropdown-sub-item"><a href="https://www.bpi.fr/sites/SiteInstitutionnel/home/presse--partenariats/visuels2/espaces-de-la-bibliotheque.html">Espaces de la bibliothèque</a></li>
-							<li class="dropdown-sub-item"><a href="https://www.bpi.fr/cms/render/live/fr/sites/SiteInstitutionnel/home/presse--partenariats/visuels2/albert-et-david-maysles-its-all.html">Albert et David Maysles "It's all in the film"</a></li>
-							<li class="dropdown-sub-item"><a href="https://www.bpi.fr/sites/SiteInstitutionnel/home/presse--partenariats/visuels2/plus-vite-plus-haut-plus-fort--f.html">Plus vite, plus haut, plus fort : filmer le sport</a></li>
-						</ul>
-					</li>
-					<li class="dropdown-item"><a href="https://www.bpi.fr/sites/SiteInstitutionnel/home/presse--partenariats/partenariats.html">Partenariats</a></li>
-				</ul>
+				{% include "header/navbar-principal-dropdown.html.twig" with {'list': [
+							{
+								'link': 'https://www.bpi.fr/espace-presse/communiques-et-dossiers-de-presse',
+								'name': 'Communiqués et dossiers de presse',
+								'children' : {
+									'https://www.bpi.fr/espace-presse/communiques-et-dossiers-de-presse/archives': 'Archives des communiqués',
+								}
+							},
+							{
+								'link': 'https://www.bpi.fr/espace-presse/tournages-et-reportages',
+								'name': 'Tournages et prises de vues',
+							},
+							{
+								'link': 'https://www.bpi.fr/espace-presse/logos',
+								'name': 'Logos',
+							},
+							{
+								'link': 'https://www.bpi.fr/espace-presse/visuels',
+								'name': 'Visuels',
+								'children' : {
+									'https://www.bpi.fr/sites/SiteInstitutionnel/home/presse--partenariats/visuels2/espaces-de-la-bibliotheque.html': 'Espaces de la bibliothèque',
+									'https://www.bpi.fr/cms/render/live/fr/sites/SiteInstitutionnel/home/presse--partenariats/visuels2/albert-et-david-maysles-its-all.html': 'Albert et David Maysles "It\'s all in the film"',
+									'https://www.bpi.fr/sites/SiteInstitutionnel/home/presse--partenariats/visuels2/plus-vite-plus-haut-plus-fort--f.html': 'Plus vite, plus haut, plus fort : filmer le sport',
+								}
+							},
+							{
+								'link': 'https://www.bpi.fr/sites/SiteInstitutionnel/home/presse--partenariats/partenariats.html',
+								'name': 'Partenariats',
+							}
+					]} %}
 			</li>
 		</ul>
 	</div>

@@ -3,6 +3,7 @@ global:
   form-mandatory-field: champs obligatoires
   modal-close: Fermer cette fenêtre
   modal-cancel: Annuler
+  list-ordering: ": activer pour trier par ordre ascendant/descendant"
 
 header:
   logo_title: Aller à l'accueil du catalogue Bibliothèque Publique d'Information Centre Pompidou
@@ -44,6 +45,7 @@ footer:
   sitemap:
     bpi:
       title: La Bpi
+      class: first
       Catalogue: Catalogue
       agenda: Agenda
       la-bibliotheque: La Bibliothèque
@@ -51,12 +53,14 @@ footer:
       espace-presse: Presse / Partenariats
     balises:
       title: Balises
+      class: second
       webtv: WebTV / WebRadio
       exploration: Exploration
       ma-une: Mon webmagazine
       qui-sommes-nous: Qui sommes-nous ?
     professionnels:
       title: Professionnels
+      class: third
       collections-et-services: Collections et services
       cohesion-sociale: Cohésion sociale
       etudes: Etudes
@@ -86,20 +90,6 @@ footer:
     youtube: Retrouvez la Bpi sur YouTube
     linkedin: Retrouvez la Bpi sur LinkedIn
     rss: Les fils RSS de la Bpi
-
-main:
-  breadcrumb: Fil d'ariane
-  toolbar:
-    add_to: Ajouter à
-    my_selection: Ma sélection
-    the_selection: la sélection
-    export: Exporter
-    print: Imprimer
-    share: Partager
-    help: Aide
-    other_search:
-    suggest: Suggestion d'achats
-    report-error: Signaler une erreur
 
 modal:
   list-create:
@@ -189,15 +179,25 @@ modal:
     submit: Valider
     submit-sr-only:  l'envoi de la suggestion
 
-
-
 page:
+  breadcrumb: Fil d'ariane
   home:
     page_title: Accueil
     title: Accueil - Catalogue de la BPI
     thematic: Découvrir les parcours
 
 bloc:
+  toolbar:                #Barre utilitaires
+    add_to: Ajouter à
+    my_selection: Ma sélection
+    the_selection: la sélection
+    export: Exporter
+    print: Imprimer
+    share: Partager
+    help: Aide
+    other_search:
+    suggest: Suggestion d'achats
+    report-error: Signaler une erreur
   carousel:               #Bloc 01 diaporama nouveautés et/ou articles
     title: Carousel d'actualités
     item_desciption: Actualité %index% sur %nb%, %title% %auteur%
@@ -282,25 +282,35 @@ bloc:
     current: %name% - Active
     next: suivants
     name: index
-
-search:
-  notice:
-    header:
-      select_all_label:
-        shelf: Documents en rayon, sélectionner tous les résultats
-        online: Documents en ligne, sélectionner tous les résultats
-      title:
-        shelf: Documents en rayon
-        online: Documents en ligne
-      see_all: Voir tout
-      see_all_focusable:
-        shelf: les documents en rayons
-        online: les documents en ligne
-      sorter:
-        label:
-          shelf: Choix du tri des documents en rayon
-          online: Choix du tri des documents en ligne
-        action: Trier par
-        direction:
-          asc: Ordre ASC
-          desc: Ordre DESC
+  banner-tools:         #Bloc 24 Barre des tâches
+    select-all: Tout sélectionner
+    select-cancel: Annuler la sélection
+    selected-list: Listes sélectionnées
+    selected-docuement: Documents sélectionnés
+    list-add: Ajouter à
+    list-up: Monter
+    list-down: Descendre
+    list-remove: Supprimer
+    list-name: la liste
+  list-user:            #Bloc 25 Liste des documents présents dans Ma sélection
+    list-select: "Sélectionner la liste : %name%"
+    list-name: Liste %name%
+    list-name-change: Changer le nom de la liste
+    col:
+      title: Titre
+      autor: Auteur
+      type: Type
+      add-to: Ajoutée le
+      comments: Commentaire
+    select-ligne: 'Sélectionner toute la ligne : %title%, %auteur%, %document-type%'
+    link: Accéder à %title%
+    comments-see: Voir le commentaire
+    comments-edit: Modifier le commentaire
+    new-list: Créer une nouvelle liste
+  historic-search:      #Bloc 26 Historique des recherches
+    title: Mon historique
+    col:
+      name: Nom de la recherche
+      date: Recherché le
+    select-ligne: 'Sélectionner la ligne : %title%'
+    reload: Relancer la recherche %title%'

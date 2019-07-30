@@ -1,20 +1,14 @@
 <ul class="nav-credit__list">
-	<li class="nav-credit__item">
-		<a href="https://www.bpi.fr/espace-presse" title="{{ 'footer.credit-list.espace-presse'|trans }} - {{ 'global.new-windows'|trans }}">{{ 'footer.credit-list.espace-presse'|trans }}</a>
-	</li>
-	<li class="nav-credit__item">
-		<a href="https://www.bpi.fr/informations-pratiques/emplois-et-stages" title="{{ 'footer.credit-list.emplois-et-stages'|trans }} - {{ 'global.new-windows'|trans }}">{{ 'footer.credit-list.emplois-et-stages'|trans }}</a>
-	</li>
-	<li class="nav-credit__item">
-		<a href="https://www.bpi.fr/informations-pratiques/marches-publics" title="{{ 'footer.credit-list.marches-publics'|trans }} - {{ 'global.new-windows'|trans }}">{{ 'footer.credit-list.marches-publics'|trans }}</a>
-	</li>
-	<li class="nav-credit__item">
-		<a href="https://www.bpi.fr/mentions-legales" title="{{ 'footer.credit-list.mentions-legales'|trans }} - {{ 'global.new-windows'|trans }}">{{ 'footer.credit-list.mentions-legales'|trans }}</a>
-	</li>
-	<li class="nav-credit__item">
-		<a href="https://www.bpi.fr/aide-et-accessibilite" title="{{ 'footer.credit-list.aide-et-accessibilite'|trans }} - {{ 'global.new-windows'|trans }}">{{ 'footer.credit-list.aide-et-accessibilite'|trans }}</a>
-	</li>
-	<li class="nav-credit__item">
-		<a href="https://www.bpi.fr/contacts-bpi" title="{{ 'footer.credit-list.contacts-bpi'|trans }} - {{ 'global.new-windows'|trans }}">{{ 'footer.credit-list.contacts-bpi'|trans }}</a>
-	</li>
+	{% for link, title in {
+		'//www.bpi.fr/espace-presse': 'footer.credit-list.espace-presse'|trans,
+		'//www.bpi.fr/informations-pratiques/emplois-et-stages': 'footer.credit-list.emplois-et-stages'|trans,
+		'//www.bpi.fr/informations-pratiques/marches-publics': 'footer.credit-list.marches-publics'|trans ,
+		'//www.bpi.fr/mentions-legales': 'footer.credit-list.mentions-legales'|trans,
+		'//www.bpi.fr/aide-et-accessibilite': 'footer.credit-list.aide-et-accessibilite'|trans,
+		'//www.bpi.fr/contacts-bpi': 'footer.credit-list.contacts-bpi'|trans
+	} %}
+		<li class="nav-credit__item">
+			<a href="{{ link }}" title="{{ title }} - {{ 'global.new-windows'|trans }}">{{ title }}</a>
+		</li>
+	{% endfor %}
 </ul>

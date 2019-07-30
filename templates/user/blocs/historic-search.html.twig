@@ -3,15 +3,15 @@
 <div class="historique">
 	<div class="table-responsive">
 		<table class="table table-striped">
-			<caption class="sr-only">Mon historique</caption>
+			<caption class="sr-only">{{ 'bloc.historic-search.title'|trans }}</caption>
 			<thead class="table__thead">
 				<tr>
 					<th></th>
 					<th scope="col" aria-sort="none">
-						<button class="btn table__button" type="button" aria-label="Nom de la recherche : activer pour trier par ordre ascendant/descendant">Mes recherches <span class="caret"></span></button>
+						<button class="btn table__button" type="button" aria-label="{{ 'bloc.historic-search.col.name'|trans }} {{ 'global.list-ordering'|trans  }}">{{ 'bloc.historic-search.col.name'|trans }} <span class="caret"></span></button>
 					</th>
 					<th scope="col" aria-sort="none">
-						<button class="btn table__button" type="button" aria-label="Recherché le : activer pour trier par ordre ascendant/descendant">Recherché le <span class="caret"></span></button>
+						<button class="btn table__button" type="button" aria-label="{{ 'bloc.historic-search.col.date'|trans }} {{ 'global.list-ordering'|trans  }}">{{ 'bloc.historic-search.col.date'|trans }} <span class="caret"></span></button>
 					</th>
 					<th></th>
 				</tr>
@@ -19,13 +19,13 @@
 			<tbody class="table__body">
 				{% for i in 1..5 %}
 					<tr>
-						<td><input type="checkbox" aria-label="Sélectionnez la ligne : *Insert informations sur la recherche*"></td>
+						<td><input type="checkbox" aria-label="{{ 'bloc.historic-search.select-ligne'|trans({'%title%': '*Insert informations sur la recherche*'}) }}"></td>
 						<td>
 							<p>*Insert informations sur la recherche*</p>
 						</td>
 						<td>JJ/MM/AAAA à HH:MM</td>
 						<td class="table__body-search">
-							<a href="#" role="button"><span class="sr-only">Relancer la recherche *Insert informations sur la recherche*</span><img src="{{ asset('images/icones/icone-loupe-noire.svg') }}" alt="" class="icone-loupe"/></a>
+							<a href="{{ path('search') }}" role="button"><span class="sr-only">{{ 'bloc.historic-search.reload'|trans({'%title%': '*Insert informations sur la recherche*'}) }}</span><img src="{{ asset('images/icones/icone-loupe-noire.svg') }}" alt="" class="icone-loupe"/></a>
 						</td>
 					</tr>
 				{% endfor %}
