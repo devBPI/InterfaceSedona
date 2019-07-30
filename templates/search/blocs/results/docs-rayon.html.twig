@@ -10,13 +10,13 @@
 			<img src="{{ asset('images/couvertures-generiques/cg-journal.svg') }}" alt="" class="img-fluid" />
 		</div>
 		<div class="list-result__content-infos">
-			<a href="#" lang="fr" aria-label="*Insert titre* - {{ 'global.new-windows'|trans }}" class="n2 list-result__content-title"><img src="{{ asset('images/types/type-journal.svg') }}" alt="" class="list-result__content-type"/><span>Caravelle : cahiers du monde hispanique et brésilien</span></a>
-			<p lang="fr">par Institut pluridisciplinaire d'étude sur l'Amérique latine (Toulouse)</p>
-			<p lang="fr">Presses universitaires du Mirail</p>
-			<p lang="fr">1988 - 2018</p>
-			<p lang="fr">Résultat de <a href="#" aria-label="Acceder à *Insert name BDD*">*Insert name BDD*</a></p>
+			{% block availability %} {# block a déplacer aprés dynamisation #}
+				<a href="#" lang="fr" aria-label="*Insert titre* - {{ 'global.new-windows'|trans }}" class="n2 list-result__content-title"><img src="{{ asset('images/types/type-journal.svg') }}" alt="" class="list-result__content-type"/><span>Caravelle : cahiers du monde hispanique et brésilien</span></a>
+				<p lang="fr">par Institut pluridisciplinaire d'étude sur l'Amérique latine (Toulouse)</p>
+				<p lang="fr">Presses universitaires du Mirail</p>
+				<p lang="fr">1988 - 2018</p>
+				<p lang="fr">Résultat de <a href="#" aria-label="Acceder à *Insert name BDD*">*Insert name BDD*</a></p>
 
-            {% block availability %}
                 <!-- Document disponible -->
                 <div class="list-result__content-state">
                     <img src="{{ asset('images/icones/icone-map-vert.svg') }}" alt="" class="icone-map"/>
@@ -30,9 +30,9 @@
                     <p>{{ 'bloc.notice-simple.docuement-unavailable'|trans }}</p>
                     <button class="btn list-result__content-button" data-toggle="modal" data-target="#modal-notified"><img src="{{ asset('images/icones/icone-enveloppe.svg') }}" alt="" class="icone-enveloppe"/> <span class="sr-only">Document indisponible, être prévenu de son retour en rayon - ouverture formulaire</span></button>
                 </div>
-            {% endblock %}
 
-			<p lang="fr">Dernier numéro reçu : N° 110, Janvier 2018</p>
+				<p lang="fr">Dernier numéro reçu : N° 110, Janvier 2018</p>
+			{% endblock %}
 		</div>
 	</div>
 </div>
