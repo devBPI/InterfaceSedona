@@ -1,0 +1,66 @@
+// -------------------------------
+// Modals - Recherche avancée - Ajout de mots clés
+// -------------------------------
+
+.search-keyword {
+	margin-bottom: $spacer;
+
+	&__group {
+		display: flex;
+		align-items: baseline;
+		margin-bottom: -1px;
+	}
+
+	&__condition {
+		flex: 0 0 10%;
+		min-width: 10%;
+	}
+
+	&__input {
+		flex: 1;
+
+		input {
+			width: 100%;
+
+			&:focus {
+				z-index: 100;
+			}
+		}
+	}
+
+	&__choice {
+		flex: 0 0 42%;
+		min-width: 42%;
+		padding: 0 5px;
+
+		@include media-breakpoint-up(md) {
+			flex: 0 0 30%;
+			min-width: 30%;
+		}
+
+		@include media-breakpoint-up(lg) {
+			flex: 0 0 25%;
+			min-width: 25%;
+		}
+	}
+
+	&__add {
+		flex: 0 0 7%;
+		min-width: 7%;
+		text-align: right;
+
+		button {
+			width: 20px;
+			height: 20px;
+			border-radius: 20px;
+			text-align: center;
+			padding: 0;
+			line-height: 8px;
+			border: $border-default;
+
+			img {
+				width: 12px;
+			}
+		}
+	}
+}

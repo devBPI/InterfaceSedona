@@ -1,0 +1,179 @@
+// -------------------------------
+// Modals
+// -------------------------------
+
+.modal {
+	background-color: $grey-modal;
+
+	@include media-breakpoint-up(sm) {
+		background-color: transparent;
+	}
+
+	.modal-dialog-centered {
+		align-items: flex-start;
+
+		@include media-breakpoint-up(sm) {
+			align-items: center;
+		}
+	}
+
+	&-content {
+		background-clip: unset;
+		border: 0;
+		margin-top: 80px;
+		margin-bottom: 90px;	
+
+		@include media-breakpoint-up(sm) {
+			margin-top: 0;
+			margin-bottom: 0;
+		}
+	}
+
+	&-header {
+		position: fixed;
+		width: 100%;
+		left: 0;
+		top: 0;
+		background-color: $grey-modal;
+		z-index: $zindex-fixed;
+		align-items: center;
+
+		@include media-breakpoint-up(sm) {
+			position: relative;
+			padding: 25px 50px;
+		}
+
+		&__title {
+			margin-bottom: 0;
+		}
+
+		.close {
+			background-color: $grey-disabled;
+			margin: 0;
+			padding: 5px;
+			float: none;
+			width: 30px;
+			height: 30px;
+			line-height: 5px;
+			opacity: 1;
+			transition: .15s;
+
+			@include media-breakpoint-up(sm) {
+				position: absolute;
+				top: 0;
+				right: 0;
+				margin-top: $spacer;
+				margin-right: $spacer;
+				margin-bottom: auto;
+			}
+
+			img {
+				width: 15px;
+			}
+
+			&:hover {
+				background-color: $red;
+				opacity: 1 !important;
+			}
+		}
+	}
+
+	&-body {
+		border-bottom: 1px solid $white;
+
+		&:last-child {
+			background-color: red;
+			border-bottom: 0;
+		}
+
+		@include media-breakpoint-up(sm) {
+			padding: $spacer 50px;
+		}
+
+		.list-result {
+
+			@include media-breakpoint-up(md) {
+				max-height: 400px;
+				overflow-y: auto;
+			}
+		}
+	}
+
+	&-form {
+
+		&__indication {
+			margin-bottom: $spacer;
+			display: block;
+
+			span {
+				color: $red;
+			}
+		}
+
+		label {
+			font-size: 15px;
+			margin-left: 2px;
+			width: 100%;
+
+			@include media-breakpoint-up(md) {
+				font-size: 13px;
+			}
+		}
+
+		.form-group {
+
+			label {
+				padding-top: 5px;
+				padding-bottom: 5px;
+				font-size: 15px;
+				margin-left: 0;
+
+				@include media-breakpoint-up(sm) {
+					padding-bottom: 0;
+				}
+
+				span {
+					color: $red;
+				}
+			}
+
+			input {
+
+				+ label {
+
+					@include media-breakpoint-up(sm) {
+						padding-top: 0;
+					}
+				}
+			}
+		}
+	}
+
+	&-footer {
+		flex-wrap: wrap;
+		position: fixed;
+		width: 100%;
+		left: 0;
+		bottom: 0;
+		background-color: $grey-modal;
+		z-index: $zindex-fixed;
+		margin-top: -1px;
+
+		@include media-breakpoint-up(sm) {
+			position: relative;
+			padding: 25px 50px;
+		}
+
+		&__quote {
+			min-width: 100%;
+			flex: 0 0 100%;
+		}
+	}
+
+	&--filter {
+		
+		.modal-footer {
+			justify-content: space-between;
+		}
+	}
+}

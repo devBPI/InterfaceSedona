@@ -1,0 +1,26 @@
+// -------------------------------
+// Carousel Secondaire - carousels notice bibliographique + autorité
+// -------------------------------
+
+.carousel-secondary {
+	margin-bottom: $spacer;
+
+	@media print {
+		display: none;
+	}
+
+	&--double {
+		padding-top: 25px;
+		@extend .border-double;
+		background-position: 0 top;
+	}
+
+	.slick-carousel {
+		display: flex;
+	}
+
+	.slick-slide-content {
+		width: 25%;
+		padding: 0 $spacer;
+	}
+}

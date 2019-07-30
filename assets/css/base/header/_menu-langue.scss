@@ -1,0 +1,66 @@
+// -------------------------------
+// Header - Menu Langue
+// -------------------------------
+
+#menu-langue {
+
+	@media print {
+		display: none;
+	}
+}
+.header {
+
+	.menu-langue {
+
+		&__button {
+			position: relative;
+			font-size: 12px;
+
+			&:after {
+				content: "";
+				display: inline-block;
+				width: 0;
+				height: 0;
+				border-top: 4px solid $black;
+				border-left: 4px solid transparent;
+				border-right: 4px solid transparent;
+				vertical-align: middle;
+				margin-left: 3px;
+				margin-bottom: 2px;
+			}
+			
+			@include media-breakpoint-up(lg) { 
+				display: none;
+			}
+		}
+
+		&__list {
+
+			@include media-breakpoint-up(lg) {
+				position: relative!important;
+				display: flex;
+				box-shadow: none;
+				border: 0;
+				border-right: 1px solid $grey-border;
+				padding: 20px 0 10px;
+			}
+
+			&-item {
+					font-size: 12px;
+
+				@include media-breakpoint-up(lg) {
+					padding: 0 10px;
+				}
+
+				a {
+					color: $black;
+					font-size: 12px;
+
+					&:hover {
+						color: $red;
+					}
+				}
+			}
+		}
+	}
+}

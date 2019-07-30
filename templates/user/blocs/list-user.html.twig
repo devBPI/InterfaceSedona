@@ -1,59 +1,77 @@
 <!-- Début - Bloc 25 Liste des documents présents dans Ma sélection -->
 
-<div>
-	<div>
-		{% for i in 1..3 %}
-
-			<div>
-				<label for="select-liste-{{ i }}">Sélectionner la liste : *Insert nom de la liste*</label>
-				<input type="checkbox" id="select-liste-{{ i }}">
-				<p>*Insert nom de la liste*</p>
-				<a href="{{ path('user_list_edit') }}"><span class="sr-only sr-only-focusable">Changer le nom de la liste</span><img src="https://via.placeholder.com/15x15" alt="" class="icone-pen"/></a>
+<div class="selection">
+	
+	{% for i in 1..3 %}
+		<div class="table-group">
+			<div class="table-group__header">
+				<label for="select-liste-{{ i }}" class="sr-only">Sélectionner la liste : *Insert nom de la liste*</label>
+				<input type="checkbox" id="select-liste-{{ i }}" class="table-group__input">
+				<p class="table-group__title">Liste {{ i }}</p>
+				<button class="table-group__link" data-target="#modal-list-edit" data-toggle="modal">
+					<span class="sr-only sr-only-focusable">Changer le nom de la liste</span><img src="{{ asset('images/icones/icone-crayon-gris.svg') }}" alt="" class="icone-pen"/>
+				</button>
+			</div>
+				
+			<div class="table-responsive">
+				<table class="table table-striped table-sm table-group__table">
+					<caption class="sr-only">Liste {{ i }}</caption>
+					<thead class="table__thead">
+						<tr>
+							<th></th>
+							<th scope="col" aria-sort="none" class="table__thead-title">
+								<button class="btn table__button" type="button" aria-label="Titre : activer pour trier par ordre ascendant/descendant">Titre <span class="caret"></span></button>
+							</th>
+							<th scope="col" aria-sort="descending" class="table__thead-author">
+								<button class="btn table__button" type="button" aria-label="Auteur : activer pour trier par ordre ascendant">Auteur <span class="caret"></span></button>
+							</th>
+							<th scope="col" aria-sort="ascending" class="table__thead-type">
+								<button class="btn table__button" type="button" aria-label="Type : activer pour trier par ordre descendant">Type <span class="caret"></span></button>
+							</th>
+							<th scope="col" aria-sort="none" class="table__thead-date">
+								<button class="btn table__button" type="button" aria-label="Ajoutée le : activer pour trier par ordre ascendant/descendant">Ajoutée le <span class="caret"></span></button>
+							</th>
+							<th scope="col" aria-sort="none" class="table__thead-comments">
+								Commentaire
+							</th>
+						</tr>
+					</thead>
+					<tbody class="table__body">
+						{% for i in 1..3 %}
+							<tr>
+								<td><input class="table__input" type="checkbox" aria-label="Sélectionner toute la ligne : *Insert title*, *Insert auteur*, *Insert type de document*"></td>
+								<td>
+									<a href="#" aria-label="Accéder à *Insert title*">Lorem ipsum dolor sit amet, conseteturas</a>
+								</td>
+								<td>
+									Lorem ipsum dolor sit amet, conseteturas
+								</td>
+								<td class="table__body-type">
+									<img src="{{ asset('images/types/type-musique.svg') }}" alt="" class="icone-type-document table__type"/>
+								</td>
+								<td>03/07/2019</td>
+								<td class="table__body-edit">
+									Lorem ipsum dolor sit amet, consetetur sadipscing elitr.
+									<button data-target="#modal-comments-view" data-toggle="modal">
+										<span class="sr-only">Voir le commentaire</span>
+										<img src="{{ asset('images/icones/icone-oeil.svg') }}" alt="" class="icone-oeil"/>
+									</button>
+									<button data-target="#modal-comments-edit" data-toggle="modal">
+										<span class="sr-only">Modifier le commentaire</span>
+										<img src="{{ asset('images/icones/icone-crayon-noir.svg') }}" alt="" class="icone-crayon"/>
+									</button>
+								</td>
+							</tr>
+						{% endfor %}
+					</tbody>
+				</table> 
 			</div>
 
-			<table class="table">
-				<caption>*Insert nom de la liste*</caption>
-				<thead>
-					<tr>
-						<th></th>
-						<th scope="col" aria-sort="none">
-							<button type="button" aria-label="Titre : activer pour trier par ordre ascendant/descendant">Titre <img src="https://via.placeholder.com/15x15" alt="" class="icone-caret"/></button>
-						</th>
-						<th scope="col" aria-sort="none">
-							<button type="button" aria-label="Auteur : activer pour trier par ordre ascendant/descendant">Auteur <img src="https://via.placeholder.com/15x15" alt="" class="icone-caret"/></button>
-						</th>
-						<th scope="col" aria-sort="none">
-							<button type="button" aria-label="Type : activer pour trier par ordre ascendant/descendant">Type <img src="https://via.placeholder.com/15x15" alt="" class="icone-caret"/></button>
-						</th>
-						<th scope="col" aria-sort="none">
-							<button type="button" aria-label="Ajoutée le : activer pour trier par ordre ascendant/descendant">Ajoutée le <img src="https://via.placeholder.com/15x15" alt="" class="icone-caret"/></button>
-						</th>
-					</tr>
-				</thead>
-				<tbody>
-					{% for i in 1..3 %}
-						<tr>
-							<td><input type="checkbox" aria-label="Sélectionner toute la ligne : *Insert title*, *Insert auteur*, *Insert type de document*"></td>
-							<td>
-								<a href="#" aria-label="Accéder à *Insert title*">*Insert title*</a>
-							</td>
-							<td>
-								<p>*Insert auteur*</p>
-							</td>
-							<td>
-								<img src="https://via.placeholder.com/15x15" alt="" class="icone-type-document"/>
-							</td>
-							<td>*Insert date*</td>
-						</tr>
-					{% endfor %}
-				</tbody>
-			</table>
+		</div>
+	{% endfor %}
 
-		{% endfor %}
-	</div>
-
-	<div>
-		<button type="button"><img src="https://via.placeholder.com/15x15" alt="" class="icone-plus"/> Créer une nouvelle liste</button>
+	<div class="selection__footer">
+		<button class="selection__button btn" data-target="#modal-list-create" data-toggle="modal"><img src="{{ asset('images/icones/icone-plus.svg') }}" alt="" class="icone-plus"/> Créer une nouvelle liste</button>
 	</div>
 </div>
 <!-- Fin - Bloc 25 Liste des documents présents dans Ma sélection -->

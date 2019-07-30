@@ -4,30 +4,88 @@
 
 {% block body %}
 
+	<h1 class="n1">Mon compte</h1>
+
 	<div>
 		<nav>
-			<ul>
-				<li><a href="#" title="Lien actif">Données personnelles</a></li>
-				<li><a href="#" target="_blank" title="La BPI - Nouvelle fenêtre">La Bpi</a></li>
-				<li><a href="#" target="_blank" title="Catalogue - Nouvelle fenêtre">Catalogue</a></li>
-				<li><a href="#" target="_blank" title="Balises - Nouvelle fenêtre">Balises</a></li>
-				<li><a href="#" target="_blank" title="Professionnels - Nouvelle fenêtre">Professionnels</a></li>
+			<ul class="nav nav-tabs" id="user-navigation" role="tablist">
+				<li class="nav-item">
+					<a href="#informations" class="nav-link active" id="user-informations" data-toggle="tab" role="tab" aria-controls="informations" aria-selected="true">Mes informations</a>
+				</li>
+				<li class="nav-item">
+					<a href="#selection" class="nav-link" id="user-selection" data-toggle="tab" role="tab" aria-controls="selection" aria-selected="false">Ma sélection</a>
+				</li>
+				<li class="nav-item">
+					<a href="#historique" class="nav-link" id="user-historique" data-toggle="tab" role="tab" aria-controls="historique" aria-selected="false">Mon historique</a>
+				</li>
 			</ul>
 		</nav>
 	</div>
 
-	<h1><img src="https://via.placeholder.com/15x15" alt="" class="icone-coeur"/> Ma sélection</h1>
+	<div class="tab-content" id="user-content">
+		<div class="tab-pane fade show active" id="informations" role="tabpanel" aria-labelledby="user-informations">
 
-	<div>
-		{% include "user/blocs/banner-tools.html.twig" %}
+			<h2 class="n1 title-icone">
+				<span class="icone-square"><img src="{{ asset('images/icones/icone-user.svg') }}" alt="" class="icone-user"/></span><span>Mes informations</span>
+			</h2>
+
+			<div>
+				{% include "user/blocs/user-informations.html.twig" %}
+			</div>
+
+		</div>
+		<div class="tab-pane fade" id="selection" role="tabpanel" aria-labelledby="user-selection">
+
+			<h2 class="n1 title-icone">
+				<span class="icone-square"><img src="{{ asset('images/icones/icone-coeur.svg') }}" alt="" class="icone-coeur"/></span><span>Ma sélection</span>
+			</h2>
+
+			<div class="row justify-content-md-between banner-tools">
+				{% include "user/blocs/banner-tools.html.twig" with {'type':'selection'} %}
+			</div>
+
+			<div>
+				{% include "user/blocs/list-user.html.twig" %}
+			</div>
+
+		</div>
+		<div class="tab-pane fade" id="historique" role="tabpanel" aria-labelledby="user-historique">
+
+			<h2 class="n1 title-icone">
+				<span class="icone-square"><img src="{{ asset('images/icones/icone-horloge.svg') }}" alt="" class="icone-horloge"/></span><span>Mon historique</span>
+			</h2>
+
+			<p class="sr-only">Texte explicatif, précisions sur "sélection d'au moins un document permet de supprimer ces documents" et "il est nécessaire de revenir sur la barre des tâches en haut de la liste pour effectuer cette opération".</p>
+
+			<div class="row justify-content-md-between banner-tools">
+				{% include "user/blocs/banner-tools.html.twig" with {'type':'historique'} %}
+			</div>
+
+			<div>
+				{% include "user/blocs/historic-search.html.twig" %}
+			</div>
+
+		</div>
 	</div>
 
-	<div>
-		{% include "user/blocs/list-user.html.twig" %}
-	</div>
+	<!-- Début - Modal création d'une nouvelle liste -->
+	{% include "user/modal/list_create.html.twig" %}
+	<!-- Fin - Modal création d'une nouvelle liste -->
 
-	<div>
-		{% include "user/blocs/historic-search.html.twig" %}
-	</div>
-	
+	<!-- Début - Modal édition liste -->
+	{% include "user/modal/list_edit.html.twig" %}
+	<!-- Fin - Modal édition liste -->
+
+	<!-- Début - Modal suppression liste -->
+	{% include "user/modal/list_remove.html.twig" %}
+	<!-- Fin - Modal suppression liste -->
+
+	<!-- Début - Modal commentaires view -->
+	{% include "user/modal/comments-edit.html.twig" %}
+	<!-- Fin - Modal commentaires view -->
+
+	<!-- Début - Modal commentaires edit -->
+	{% include "user/modal/comments-view.html.twig" %}
+	<!-- Fin - Modal commentaires edit -->
+
 {% endblock %}

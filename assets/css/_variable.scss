@@ -1,0 +1,39 @@
+// -------------------------------
+// Variable Global
+// -------------------------------
+
+// Colors
+
+$red: 					#E2001A;
+$blue:					#00417F;
+$green:					#387522;
+
+$white:					#FFFFFF;
+$black:					#000000;
+$grey:					#b2b2b2;
+
+$grey-disabled:		#777777;
+$grey-border:			#D9D9D9;
+$grey-footer:			#E2E2E2;
+$grey-modal:			#F3F3F3;
+
+// Fonts
+
+$font-size-html:		13px;
+$font-regular:			normal;
+$font-medium:			500;
+$font-bold:				bold;
+
+
+// States
+
+$outline:				thin dotted $red;
+$hover:					underline;
+$hover-target:			underline dotted $red;
+
+
+// Decorations
+
+$dropdown-shadow:		1px 4px 4px rgba($black, .25);
+$border-default:		2px solid $black;
+$border-thin: 			1px solid $grey;

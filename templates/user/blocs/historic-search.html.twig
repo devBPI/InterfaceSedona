@@ -1,47 +1,31 @@
 <!-- Début - Bloc 26 Historique des recherches -->
 
-<div>
-	<h2><img src="https://via.placeholder.com/15x15" alt="" class="icone-horloge"/> Mon historique</h2>
-
-	<div>
-		<p class="sr-only">Texte explicatif, précisions sur "sélection d'au moins un document permet de supprimer ces documents" et "il est nécessaire de revenir sur la barre des tâches en haut de la liste pour effectuer cette opération".</p>
-		<div>
-			<div class="form-check">
-				<input class="form-check-input" type="checkbox" id="historique-select-all">
-				<label class="form-check-label" for="historique-select-all" aria-label="Sélectionner toute la liste d'historique">Tout sélectionner</label>
-			</div>
-			<button>Annuler la sélection</button>
-		</div>
-		<div>
-			<button>Supprimer <span class="sr-only">la sélection</span><img src="https://via.placeholder.com/15x15" alt="" class="icone-croix"/></button>
-		</div>
-	</div>
-
-	<div>
-		<table class="table">
-			<caption>Mon historique</caption>
-			<thead>
+<div class="historique">
+	<div class="table-responsive">
+		<table class="table table-striped table-sm">
+			<caption class="sr-only">Mon historique</caption>
+			<thead class="table__thead">
 				<tr>
 					<th></th>
 					<th scope="col" aria-sort="none">
-						<button type="button" aria-label="Nom de la recherche : activer pour trier par ordre ascendant/descendant">Nom de la recherche <img src="https://via.placeholder.com/15x15" alt="" class="icone-caret"/> </button>
+						<button class="btn table__button" type="button" aria-label="Nom de la recherche : activer pour trier par ordre ascendant/descendant">Mes recherches <span class="caret"></span></button>
 					</th>
 					<th scope="col" aria-sort="none">
-						<button type="button" aria-label="Recherché le : activer pour trier par ordre ascendant/descendant">Recherché le <img src="https://via.placeholder.com/15x15" alt="" class="icone-caret"/> </button>
+						<button class="btn table__button" type="button" aria-label="Recherché le : activer pour trier par ordre ascendant/descendant">Recherché le <span class="caret"></span></button>
 					</th>
 					<th></th>
 				</tr>
 			</thead>
-			<tbody>
+			<tbody class="table__body">
 				{% for i in 1..5 %}
 					<tr>
 						<td><input type="checkbox" aria-label="Sélectionnez la ligne : *Insert informations sur la recherche*"></td>
 						<td>
 							<p>*Insert informations sur la recherche*</p>
 						</td>
-						<td>*Insert date JJ/MM/AAAA à HH:MM*</td>
-						<td>
-							<a href="#" role="button"><span class="sr-only">Relancer la recherche *Insert informations sur la recherche*</span><img src="https://via.placeholder.com/15x15" alt="" class="icone-loupe"/></a>
+						<td>JJ/MM/AAAA à HH:MM</td>
+						<td class="table__body-search">
+							<a href="#" role="button"><span class="sr-only">Relancer la recherche *Insert informations sur la recherche*</span><img src="{{ asset('images/icones/icone-loupe-noire.svg') }}" alt="" class="icone-loupe"/></a>
 						</td>
 					</tr>
 				{% endfor %}

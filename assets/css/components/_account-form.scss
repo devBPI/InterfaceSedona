@@ -1,0 +1,54 @@
+// -------------------------------
+// Formulaire de connexion
+// -------------------------------
+
+.account-form {
+	padding: $spacer;
+	box-shadow: $dropdown-shadow;
+	border: $border-thin;
+	margin-top: $spacer*2;
+	margin-bottom: $spacer*6;
+
+	@include media-breakpoint-up(md) {
+		padding: 25px 40px;
+	}
+
+	label {
+		padding-top: 5px;
+		padding-bottom: 5px;
+		font-size: 15px;		
+
+		@include media-breakpoint-up(md) {
+			padding-bottom: 0;
+		}
+
+		span {
+			color: $red;
+		}
+	}
+
+	.form-check {
+
+		label {
+			padding: 0;
+		}
+	}
+
+	&__footer {
+		display: flex;
+		justify-content: flex-end;
+		flex-wrap: wrap;
+		
+		&-content {
+			flex: 0 0 100%;
+			max-width: 100%;
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+		}
+	}
+
+	&__link {
+		font-size: 15px;
+	}
+}

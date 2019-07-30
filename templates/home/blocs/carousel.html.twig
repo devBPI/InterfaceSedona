@@ -1,37 +1,59 @@
 <!-- Début - Bloc 1 diaporama nouveautés et/ou articles __ DOM supposé -->
 
-<div class="carousel flickity-enabled is-draggable" tabindex="0" aria-label="Carousel d'actualités">
-	<div class="flickity-viewport">
-		<div class="flickity-slider">
-			<div class="carousel-cell is-selected">
-				<a href="#" aria-label="Actualité 1 sur 24, *Insert titre* *Insert auteur*" lang="fr">
-					<div>
-						<img src="https://via.placeholder.com/150x200" alt="">
-					</div>
-					<p>*Insert Titre*</p>
-					<p>*Insert auteur*</p>
-				</a>
-			</div>
-			<div class="carousel-cell">
-				<a href="#" aria-label="Actualité 2 sur 24, *Insert titre* *Insert auteur*" lang="fr">
-					<div>
-						<img src="https://via.placeholder.com/150x200" alt="">
-					</div>
-					<p>*Insert Titre*</p>
-					<p>*Insert auteur*</p>
-				</a>
+	<div class="carousel-secondary">
+		<div class="carousel-secondary__body">
+			<div class="carousel-wrapper">
+				<div class="slick-carousel" role="region" aria-roledescription="carrousel">
+					{% for i in 1..4 %}
+						<div class="slick-slide-content">
+							<a href="#" title="Actualité {{ i }} sur 24, Titre de Auteur">
+								<div>
+									<img src="{{ asset('images/couvertures-generiques/cg-image.svg') }}" alt="" class="img-fluid" />
+								</div>
+								<p>Titre</p>
+								<p>Auteur</p>
+							</a>
+						</div>
+					{% endfor %}
+				</div>
 			</div>
 		</div>
 	</div>
-	<!-- Customisation des boutons : DOM supposé. 
-	Informations : pagination, auto-play, défilement infini, limite d'éléments à 24 -->
-	<div class="button-group">
-		<button class="button is-selected" aria-label="Page 1 sur X"></button>
-		<button class="button" aria-label="Page 2 sur X"></button>
-		<button class="button" aria-label="Page 3 sur X"></button>
-		<button class="button" aria-label="Page 4 sur X"></button>
-	</div>
-</div>
-<button type="button" aria-label="Mettre en pause le carousel"><img src="https://via.placeholder.com/15x15" alt="" class="icone-play"/></button>
 
+<div class="carousel-primary d-none">	
+	<div class="carousel flickity-enabled is-draggable" tabindex="0" aria-label="{{ 'bloc.carousel.title'|trans }}">
+		<div class="flickity-viewport">
+			<div class="flickity-slider d-flex">
+				<div class="carousel-cell is-selected">
+					<a href="#" aria-label="
+					{{ 'bloc.carousel.item_desciption'|trans({'%index%': 1 ,'%nb%' : 24 , '%title%' : '*Insert titre*', '%auteur%' : '*Insert auteur*' }) }}" lang="fr">
+						<div>
+							<img src="https://via.placeholder.com/150x200" alt="">
+						</div>
+						<p>*Insert Titre*</p>
+						<p>*Insert auteur*</p>
+					</a>
+				</div>
+				<div class="carousel-cell">
+					<a href="#" aria-label="Actualité 2 sur 24, *Insert titre* *Insert auteur*" lang="fr">
+						<div>
+							<img src="https://via.placeholder.com/150x200" alt="">
+						</div>
+						<p>*Insert Titre*</p>
+						<p>*Insert auteur*</p>
+					</a>
+				</div>
+			</div>
+		</div>
+		<!-- Customisation des boutons : DOM supposé. 
+		Informations : pagination, auto-play, défilement infini, limite d'éléments à 24 -->
+		<div class="button-group">
+			<button class="button is-selected" aria-label="{{ 'bloc.carousel.page'|trans({'%current%': 1, '%nb%' : 'X' }) }}"></button>
+			<button class="button" aria-label="{{ 'bloc.carousel.page'|trans({'%current%': 2, '%nb%' : 'X' }) }}"></button>
+			<button class="button" aria-label="{{ 'bloc.carousel.page'|trans({'%current%': 3, '%nb%' : 'X' }) }}"></button>
+			<button class="button" aria-label="{{ 'bloc.carousel.page'|trans({'%current%': 4, '%nb%' : 'X' }) }}"></button>
+		</div>
+	</div>
+	<button type="button" aria-label="{{ 'bloc.carousel.btn_pause'|trans }}"><img src="https://via.placeholder.com/15x15" alt="" class="icone-play"/></button>
+</div>
 <!-- Fin - Bloc 1 diaporama nouveautés et/ou articles -->

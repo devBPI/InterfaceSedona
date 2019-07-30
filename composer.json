@@ -1,5 +1,5 @@
 {
-    "name": "bpi/bpi-catalogue",
+    "name": "bpi/catalogue-site",
     "version": "0.1.0-dev",
     "description": "Site Web Catalogue de la PBI",
     "type": "project",
@@ -8,6 +8,8 @@
         "php": "^7.0.8",
         "ext-ctype": "*",
         "ext-iconv": "*",
+        "doctrine/doctrine-bundle": "^1.11",
+        "doctrine/orm": "^2.6",
         "eightpoints/guzzle-bundle": "^7.4",
         "jms/serializer-bundle": "^3.3",
         "roave/security-advisories": "dev-master",
@@ -27,6 +29,7 @@
         "symfony/twig-bundle": "3.4.*",
         "symfony/validator": "3.4.*",
         "symfony/web-link": "3.4.*",
+        "symfony/webpack-encore-bundle": "^1.6",
         "symfony/yaml": "3.4.*",
         "twig/extensions": "^1.5"
     },

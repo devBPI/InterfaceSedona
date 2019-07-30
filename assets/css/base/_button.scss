@@ -1,0 +1,72 @@
+// -------------------------------
+// Buttons
+// -------------------------------
+
+.btn {
+
+	&-primary {
+		padding: 3px 10px;
+		color: $white;
+		font-weight: $font-medium;
+
+		&:hover {
+			background-color: $grey-disabled;
+		}
+
+		@include media-breakpoint-up(md) {
+			padding: 3px 25px;
+		}
+	}
+
+	&-secondary {
+		padding: 3px 10px;
+		color: $white;
+		font-weight: $font-medium;
+
+		&:hover {
+			background-color: $red;
+		}
+
+		@include media-breakpoint-up(md) {
+			padding: 3px 25px;
+		}
+	}
+
+	&-lg {
+		font-size: 15px;
+
+		@include media-breakpoint-up(md) {
+			font-size: 21px;
+			line-height: 31px;
+		}
+	}
+
+	&-link {
+		font-size: 15px;
+		font-weight: $font-bold;
+		color: $red;
+		padding: 0;
+
+		@include media-breakpoint-up(md) {
+			font-size: 18px;
+		}
+
+		&:hover {
+			color: $grey-disabled;
+		}
+	}
+
+	&-img {
+		display: flex;
+		align-items: stretch;
+
+		img {
+			width: 18px;
+			margin-left: 10px;
+
+			@include media-breakpoint-up(md) {
+				width: 23px;
+			}
+		}
+	}
+}

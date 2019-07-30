@@ -1,24 +1,34 @@
 <form method="post" role="search" id="form-search">
 	<div class="sr-only" id="autocompletion-infos">*Insert texte explicatif pour l'auto-completion*</div>
-	<div role="combobox" aria-expanded="false" aria-owns="autocompletion-list" aria-haspopup="listbox" id="search-banner"> 
-		<div class="input-group">
-			<label for="search-input" id="search-label">Rechercher</label> 
-			<input type="text" aria-autocomplete="list" aria-controls="autocompletion-list" id="search-input" placeholder="Rechercher" aria-label="Saisir un mot clé">
-			<div class="input-group-append">
-				<button type="button">
-					Tout les mots <img src="https://via.placeholder.com/15x15" alt="" class="icone-caret"/>
-				</button>
-				<button type="button">
-					<img src="https://via.placeholder.com/15x15" alt="" class="icone-loupe"/>
-					<span class="sr-only">Valider la recherche</span>
-				</button>
-				<button type="button" data-target="modal-search-advanced" aria-label="Rercherche Avancée - ouverture formulaire">Recherche Avancée</button>
-			</div>
+	<div class="search-banner" role="combobox" aria-expanded="false" aria-owns="autocompletion-list" aria-haspopup="listbox" id="search-banner"> 
+		<div class="input-group search-banner__input">
+			<label for="search-input" id="search-label" class="sr-only">Saisir un mot clé</label> 
+			<input type="text" aria-autocomplete="list" aria-controls="autocompletion-list" id="search-input" placeholder="Rechercher">
 		</div>
+		<div class="form-group search-banner__select">
+			<label for="search-words" class="sr-only">Chercher sur </label>
+			<select class="form-control" id="search-words">
+				<option>Tous les mots</option>
+				<option>Titre</option>
+				<option>Auteur</option>
+				<option>Réalisateur</option>
+				<option>Sujet</option>
+				<option>Thème</option>
+				<option>Editeur</option>
+				<option>Date de publication</option>
+				<option>ISBN, ISSN, numéros commerciaux</option>
+				<option>Indice / Cote</option>
+			</select>
+		</div>
+		<button type="button" class="search-banner__submit">
+			<img src="{{ asset('images/icones/icone-loupe.svg') }}" alt="" class="icone-loupe"/>
+			<span class="sr-only">Valider la recherche</span>
+		</button>
+		<button type="button" data-target="#modal-search-advanced" aria-label="Rercherche Avancée - ouverture formulaire" data-toggle="modal" class="search-banner__modal">Recherche Avancée</button>
 	</div> 
-	<div aria-labelledby="search-label" aria-describedby="autocompletion-infos" id="autocompletion-list">
+	<div aria-labelledby="search-label" aria-describedby="autocompletion-infos" id="autocompletion-list" class="search-autocomplet" style="display: none;">
 		<p class="sr-only" aria-live="assertive">*Insert nombre de résultats* options affichées</p>
-		<ul role="listbox" class="listbox">
+		<ul role="listbox" class="listbox search-autocomplet__list">
 			{% include "search/autocompletion.html.twig" %}
 		</ul>
 	</div>

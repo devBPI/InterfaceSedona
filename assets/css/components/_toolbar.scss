@@ -1,0 +1,91 @@
+// -------------------------------
+// Toolbar
+// -------------------------------
+
+.toolbar {
+	margin-bottom: 10px;
+
+	@include media-breakpoint-up(lg) {
+		margin: 0;
+		position: fixed;
+		top: 0;
+		right: 0;
+		margin-top: 15%;
+		z-index: 1000;
+	}
+
+	&__list {
+		list-style-type: none;
+		padding: 0;
+		margin: 0;
+		display: flex;
+		flex-wrap: wrap;
+
+		@include media-breakpoint-up(lg) {
+			display: inline-block;
+		}
+	}
+
+	&__item {
+		text-align: center;
+		margin-right: 5px;
+		margin-bottom: 5px;
+
+		@include media-breakpoint-up(lg) {
+			margin-right: 0;
+			margin-bottom: 5px;
+		}
+
+		img {
+			height: 30px;
+
+			@include media-breakpoint-up(lg) {
+				height: 20px;
+				margin-bottom: 5px;
+			}
+		}
+
+		p,
+		button,
+		a {
+			width: 40px;
+			height: 40px;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			flex-direction: column;
+			text-align: center;
+			background-color: $black;
+			margin-bottom: 0;
+			color: $white;
+			font-size: 8px;
+			line-height: 9px;
+			border: 0;
+			padding: 0;
+
+			@include media-breakpoint-up(lg) {
+				width: 50px;
+				height: 50px;
+			}
+
+			&:hover {
+				text-decoration: none;
+			}
+
+			span {
+				display: none;
+
+				@include media-breakpoint-up(lg) {
+					display: block;
+				}
+			}
+		}
+
+		&--disabled {
+
+			p {
+				background-color: $grey-disabled;
+			}
+		}
+	}
+}

@@ -16,6 +16,8 @@
 !var/SymfonyRequirements.php
 /vendor/
 /public/bundles/
+/public/imported_images/*
+!/public/imported_images/.gitkeep
 /public/assets/
 /public/css
 /public/js
@@ -31,6 +33,13 @@
 /.env.local.php
 /.env.*.local
 ###< symfony/framework-bundle ###
+
+###> symfony/webpack-encore-bundle ###
+/node_modules/
+/public/build/
+npm-debug.log
+yarn-error.log
+###< symfony/webpack-encore-bundle ###
 
 ###> behat/symfony2-extension ###
 behat.yml

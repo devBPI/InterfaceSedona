@@ -1,19 +1,24 @@
-<div role="dialog" tabindex="-1" aria-modal="true" aria-labelledby="modal-list-edit">
-	<div class="modal-dialog">
+<div role="dialog" tabindex="-1" aria-modal="true" aria-labelledby="modal-list-edit-title" class="modal fade" id="modal-list-edit">
+	<div class="modal-dialog modal-dialog-centered">
 		<div class="modal-content">
-			<form>
+			<form class="modal-form">
 				<div class="modal-header">
-					<h1 id="modal-list-edit">Modification de la liste</h1>
-					<button type="button" aria-label="Fermer cette fenêtre"><span aria-hidden="true">X</span></button>
+					<h1 class="n1 modal-header__title" id="modal-list-edit-title">{{ 'modal.list-edit.title'|trans({'%name%': '*Insert nom de la liste*'}) }}</h1>
+					<button class="close" type="button" aria-label="{{ 'global.modal-close'|trans }}" data-dismiss="modal">
+						<span aria-hidden="true" class="sr-only">X</span>
+						<img src="{{ asset('images/icones/icone-croix-blanc.svg') }}" alt="" />
+					</button>
 				</div>
 			
 				<div class="modal-body">
 
-					<small>* champs obligatoires</small>
+					<small class="modal-form__indication"><span>*</span> {{ 'global.form-mandatory-field'|trans }}</small>
 					
-					<div class="form-group">
-						<label for="send-expeditor">Titre <span>*</span></label>
-						<input type="text" class="form-control" id="send-expeditor">
+					<div class="form-group row">
+						<label for="edit-title" class="col-12 col-sm-4">{{ 'modal.list-edit.field-title'|trans }} <span>*</span></label>
+						<div class="col-12 col-sm-8">
+							<input type="text" class="form-control" id="edit-title">
+						</div>
 					</div>
 
 					<div>
@@ -22,8 +27,8 @@
 				</div>
 
 				<div class="modal-footer">
-					<button type="button" aria-label="Fermer cette fenêtre">Annuler</button>
-					<button type="submit">Valider<span class="sr-only"> la modification de la liste</span></button>
+					<button type="button" data-dismiss="modal" class="btn btn-lg btn-secondary">{{ 'global.modal-cancel'|trans }}</button>
+					<button type="submit" class="btn btn-lg btn-primary">{{ 'modal.list-edit.submit'|trans }}<span class="sr-only"> {{ 'modal.list-edit.submit-sr-only'|trans({'%name%': '*Insert nom de la liste*'}) }}</span></button>
 				</div>
 			</form>
 		</div>

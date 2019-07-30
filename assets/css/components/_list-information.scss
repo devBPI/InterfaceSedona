@@ -1,0 +1,93 @@
+// -------------------------------
+// Liste d'informations
+// -------------------------------
+
+.list-information {
+	list-style-type: none;
+	padding: 0;
+	margin-bottom: $spacer;
+
+	&__item {
+		margin-bottom: $spacer;
+		width: 100%;
+
+		@include media-breakpoint-up(sm) {
+			display: flex;
+			align-items: flex-start;
+		}
+	}
+
+	&__sub {
+
+		&-list {
+			list-style-type: none;
+			margin: 0;
+			padding-left: 0;
+			display: flex;
+			flex-wrap: wrap;
+		}	
+
+		&-item {
+			margin-right: 5px;
+
+			&:after {
+				content: ',';
+			}
+
+			&:last-child {
+				&:after {
+					display: none;
+				}
+			}
+		}
+	}
+
+	&__label {
+		display: block;
+
+		@include media-breakpoint-up(sm) {
+			min-width: 33%;
+			flex: 0 0 33%;
+		}
+
+		+ .list-information__sub-list {
+			padding-left: $spacer;
+
+			@include media-breakpoint-up(sm) {
+				padding-left: 0;
+			}
+		}
+	}
+
+	&--sub-list {
+		margin-top: $spacer;
+
+		.list-information {
+
+			&__item {
+				display: block;
+			}
+
+			&__label {
+				min-width: 100%;
+				flex: 0 0 100%;
+			}
+
+			&__sub {
+
+				&-list {
+					display: block;
+				}
+
+				&-item {
+					padding-left: $spacer * 2;
+
+					&:before {
+						content: '-';
+						margin-right: 5px;
+					}
+				}
+			}
+		}		
+	}
+}

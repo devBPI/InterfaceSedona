@@ -1,0 +1,75 @@
+// -------------------------------
+// Buttons Arrow
+// -------------------------------
+
+.button-arrow {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	&__button {
+		background-color: $red;
+		color: $white;
+		padding: 0 10px;
+		margin: 0 5px;
+		height: 20px;
+		position: relative;		
+
+		&:hover {
+			background-color: $grey-disabled;
+			color: $white;
+			text-decoration: none;
+		}
+
+		&:focus {
+			outline-offset: 1px;
+			color: $white;
+		}
+
+		&:first-child {
+
+			&:before {
+				content: '';
+				position: absolute;
+				width: 0;
+				height: 0;
+				border-top: 10px solid transparent;
+				border-bottom: 10px solid transparent;
+				border-right: 10px solid $red;
+				left: 0;
+				top: 0;
+				margin-left: -10px;
+			}
+
+			&:hover {
+
+				&:before {
+					border-right-color: $grey-disabled;
+				}
+			}
+		}
+
+		&:last-child {
+
+			&:after {
+				content: '';
+				position: absolute;
+				width: 0;
+				height: 0;
+				border-top: 10px solid transparent;
+				border-bottom: 10px solid transparent;
+				border-left: 10px solid $red;
+				right: 0;
+				top: 0;
+				margin-right: -10px;
+			}
+
+			&:hover {
+
+				&:after {
+					border-left-color: $grey-disabled;
+				}
+			}
+		}
+	}	
+}

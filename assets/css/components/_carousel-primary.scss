@@ -1,0 +1,11 @@
+// -------------------------------
+// Carousel Principal - pages accueil + thématique
+// -------------------------------
+
+.carousel-primary {
+	margin-bottom: $spacer;
+
+	@media print {
+		display: none;
+	}
+}

@@ -1,25 +1,63 @@
 <!-- Début - Bloc 11 Aperçu d'une autorité -->
 
-<div>
-	<div>
-		<img src="https://via.placeholder.com/100x90" alt="" />
+<div class="col-12">
+	<div class="mt-3">
+		<input type="checkbox" id="preview-authority-result-1">
+		<label for="preview-authority-result-1"><span class="sr-only">Sélectionner *Insert titre*</span></label>
 	</div>
-	<div>
-		<h1 lang="fr">
-			<a href="#" title="*Insert nom* - nouvelle fenêtre">*Insert Name identité* <span>(*Insert date debut-fin*)</span></a>
+</div>
+
+<div class="col-12 col-md-2">
+	<div class="search-result__image">
+		<img src="{{ asset('images/types-autorite/autorite-collectivite.svg') }}" alt="" class="img-fluid" />
+	</div>
+</div>
+
+<div class="col-12 col-md-10">
+	<div class="search-result__body">
+		<h1 class="n1 search-result__title" lang="fr">
+			<a href="#" title="*Insert nom* - {{ 'global.new-windows'|trans }}">Société des Nations <span class="n2 d-none">(*Insert date debut-fin*)</span></a>
 		</h1>
-		<ul>
-			<li>Pays : <span lang="fr">France</span></li>
-			<li>Langue : <span lang="fr">française</span></li>
-			<li>Domaines : <span lang="fr">littérature</span></li>
+		<ul class="list-information search-result__list">
+			<li class="list-information__item">
+				<span class="list-information__label">Type d'autorité :</span>
+				<ul class="list-information__sub-list" lang="fr">
+					<li class="list-information__sub-item">Collectivité</li>
+				</ul>
+			</li>
+			<li class="list-information__item">
+				<ul class="list-information__sub-list" lang="fr">
+					<li class="list-information__sub-item">1920 - 1945</li>
+				</ul>
+			</li>
+			<li class="list-information__item">
+				<span class="list-information__label">Pays :</span>
+				<ul class="list-information__sub-list" lang="fr">
+					<li class="list-information__sub-item">Pays multiples</li>
+				</ul>
+			</li>
+			<li class="list-information__item">
+				<span class="list-information__label">Langue(s) :</span>
+				<ul class="list-information__sub-list" lang="fr">
+					<li class="list-information__sub-item">Multilingue</li>
+				</ul>
+			</li>
+			<li class="list-information__item">
+				<span class="list-information__label">Activité(s) principale(s) :</span>
+				<ul class="list-information__sub-list" lang="fr">
+					<li class="list-information__sub-item">Créée entre les Etats signataires du traité de Versailles et ayant pour objet de développer la coopération entre les nations et de garantir la paix et la sécurité. Elle a été remplacée par l'ONU</li>
+				</ul>
+			</li>
 		</ul>
 	</div>
 </div>
 
-<div>
-	<button type="button" data-toggle="collapse" data-target="#related-notices" aria-expanded="false" aria-controls="related-notices">Voir plus</button>
-	{# Include collapse notices d'autorité - Affiche les 5 notices d'autorité les plus pertinentes #}
-	{% include "search/blocs/related-notices.html.twig" %}
+<div class="col-12">
+	<div class="search-result__collapse">
+		<button class="search-result__button btn" type="button" data-toggle="collapse" data-target="#related-notices" aria-expanded="false" aria-controls="related-notices">Voir plus</button>
+		{# Include collapse notices d'autorité - Affiche les 5 notices d'autorité les plus pertinentes #}
+		{% include "search/blocs/related-notices.html.twig" %}
+	</div>
 </div>
 
 <!-- Fin - Bloc 11 Aperçu d'une autorité -->

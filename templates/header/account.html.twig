@@ -1,13 +1,16 @@
-{# Quand on est pas connecté #}
-<a href="{{ path('user_personal_data') }}">Mon compte</a>
-{# Quand on est connecté #}
-<div class="dropdown" aria-label="Menu-compte">
-	<span class="sr-only">Gestion de mon compte</span>
-	<button type="button" id="dropdown-compte" data-toggle="dropdown" aria-haspopup="listbox" aria-expanded="false">
-	Bienvenue, *Insert Prénom Nom*
-	</button>
-	<ul class="dropdown-menu" aria-labelledby="dropdown-compte" role="listbox" tabindex="-1">
-		<li class="dropdown-item" role="option"><a href="#">Se deconnecter</a></li>
-		<li class="dropdown-item" role="option"><a href="#" title="Accéder à mon compte - nouvelle fenêtre" target="_blank">Mon compte</a></li>
-	</ul>
+<div class="account">
+	{# Quand on est pas connecté #}
+	<a href="{{ path('user_login') }}" class="account__link btn">{{ 'header.account.title_unconnect'|trans }}</a>
+
+	{# Quand on est connecté #}
+	<div class="dropdown account__group d-none" aria-label="{{ 'header.account.aria'|trans }}">
+		<span class="sr-only">{{ 'header.account.title_connected'|trans }}</span>
+		<button type="button" id="dropdown-compte" data-toggle="dropdown" aria-haspopup="listbox" aria-expanded="false" class="account__button btn">
+		{{ 'header.account.welcome'|trans }}, Prénom
+		</button>
+		<ul class="dropdown-menu account__list" aria-labelledby="dropdown-compte" role="listbox" tabindex="-1">
+			<li class="dropdown-item account__list-item" role="option"><a href="#">{{ 'header.account.logout'|trans }}</a></li>
+			<li class="dropdown-item account__list-item" role="option"><a href="#" title="{{ 'header.account.profile_title'|trans }} - {{ 'global.new-windows'|trans }}" target="_blank">{{ 'header.account.profile'|trans }}</a></li>
+		</ul>
+	</div>
 </div>

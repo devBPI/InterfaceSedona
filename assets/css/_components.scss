@@ -1,0 +1,39 @@
+// -------------------------------
+// @import - Components
+// -------------------------------
+
+
+// Search
+@import 	"components/banner-search/search-banner",
+			"components/banner-search/search-autocomplet",
+			"components/banner-search/search-result";
+
+// Global
+@import 	"components/breadcrumb",
+			"components/toolbar",
+			"components/carousel-primary",
+			"components/carousel-secondary",
+			"components/card",
+			"components/dropdown-main",
+			"components/search-criteria",
+			"components/search-refine",
+			"components/list-result",
+			"components/pagination",
+			"components/link",
+			"components/list-information",
+			"components/index",
+			"components/nav-pills",
+			"components/banner-tools",
+			"components/table",
+			"components/table-group",
+			"components/nav-tabs",
+			"components/modal",
+			"components/button-arrow",
+			"components/account-form",
+			"components/tooltip";
+
+// Modal
+@import 	"components/modal-search/search-keyword",
+			"components/modal-search/search-base",
+			"components/modal-search/search-date",
+			"components/modal-search/search-facette";

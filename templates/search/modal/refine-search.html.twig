@@ -1,79 +1,168 @@
-<div role="dialog" aria-modal="true" aria-labelledby="modal-refine-search">
-	<div class="modal-dialog">
+<div role="dialog" aria-modal="true" aria-labelledby="modal-refine-search-title" class="modal fade" id="modal-refine-search">
+	<div class="modal-dialog modal-dialog-centered">
 		<div class="modal-content">
-			<form>
+			<form class="modal-form">
 				<div class="modal-header">
-					<h1 id="modal-refine-search">Affiner ma recherche</h1>
-					<button type="button" aria-label="Fermer cette fenêtre"><span aria-hidden="true">X</span></button>
+					<h1 class="n1 modal-header__title" id="modal-refine-search-title">Affiner ma recherche</h1>
+					<button class="close" type="button" aria-label="{{ 'global.modal-close'|trans }}" data-dismiss="modal">
+						<span aria-hidden="true" class="sr-only">X</span>
+						<img src="{{ asset('images/icones/icone-croix-blanc.svg') }}" alt="" />
+					</button>
 				</div>
 
 				<div class="modal-body">
-					<div>
-						<button type="button" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="rfn-search-available" data-target="#rfn-search-available"><img src="https://via.placeholder.com/15x15" alt="" class="icone-caret"/> Disponibilité</button>
-						<div class="collapse" id="rfn-search-available" role="group" aria-label="disponibilité">
-							<button>Supprimer le filtre<span class="sr-only"> : Disponibilité</span></button>
-							<p>*Insert content Disponibilité*</p>
-						</div>
-					</div>
-					<div>
-						<button type="button" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="rfn-search-theme" data-target="#rfn-search-theme"><img src="https://via.placeholder.com/15x15" alt="" class="icone-caret"/> Thèmes</button>
-						<div class="collapse" id="rfn-search-theme" role="group" aria-label="thèmes">
-							<button>Supprimer le filtre<span class="sr-only"> : Thèmes</span></button>
-							<p>*Insert content Thèmes*</p>
-						</div>
-					</div>
-					<div>
-						<button type="button" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="rfn-search-type" data-target="#rfn-search-type"><img src="https://via.placeholder.com/15x15" alt="" class="icone-caret"/> Type de document <span>(12)</span></button>
-						<div class="collapse" id="rfn-search-type" role="group" aria-label="type de document">
-							<button>Supprimer le filtre<span class="sr-only"> : Type de document</span></button>
-							{% for i in 1..9 %}
-								<div class="form-check">
-									<input type="checkbox" class="form-check-input" id="rfn-type-documents-{{ i }}">
-									<label class="form-check-label" for="rfn-type-documents-{{ i }}">*Insert Label {{ i }}*</label>
+					<div class="search-facette">
+						<button type="button" class="search-facette__button btn" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="rfn-search-available" data-target="#rfn-search-available">Disponibilité</button>
+						<div class="collapse search-facette__body" id="rfn-search-available" role="group" aria-label="disponibilité">
+							<div class="search-facette__content">
+								<div class="search-facette__item search-facette__item--button">
+									<button class="btn">Supprimer le filtre<span class="sr-only"> : Disponibilité</span></button>
 								</div>
-							{% endfor %}
+								<div class="form-check search-facette__item">
+									<input type="checkbox" class="form-check-input" id="rfn-type-avalaible-rayon">
+									<label class="form-check-label" for="rfn-type-avalaible-rayon">Disponible en rayon</label>
+								</div>
+								<div class="form-check search-facette__item">
+									<input type="checkbox" class="form-check-input" id="rfn-type-avalaible-online">
+									<label class="form-check-label" for="rfn-type-avalaible-online">Consultable en ligne</label>
+								</div>
+							</div>
 						</div>
 					</div>
-					<div>
-						<button type="button" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="rfn-search-author" data-target="#rfn-search-author"><img src="https://via.placeholder.com/15x15" alt="" class="icone-caret"/> Auteur(s)</button>
-						<div class="collapse" id="rfn-search-author" role="group" aria-label="auteur(s)">
-							<button>Supprimer le filtre<span class="sr-only"> : Auteur(s)</span></button>
-							<p>*Insert content Auteurs*</p>
+				</div>
+
+				<div class="modal-body">
+					<div class="search-facette">
+						<button type="button" class="search-facette__button btn" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="rfn-search-type" data-target="#rfn-search-type">Type de document <span>(12)</span></button>
+						<div class="collapse search-facette__body" id="rfn-search-type" role="group" aria-label="type de document">
+							<div class="search-facette__content">
+								<div class="search-facette__item search-facette__item--button">
+									<button class="btn">Supprimer le filtre<span class="sr-only"> : Type de document</span></button>
+								</div>
+								{% for i in 1..6 %}
+									<div class="form-check search-facette__item">
+										<input type="checkbox" class="form-check-input" id="rfn-type-documents-{{ i }}">
+										<label class="form-check-label" for="rfn-type-documents-{{ i }}">*Insert Label {{ i }}*</label>
+									</div>
+								{% endfor %}
+							</div>
 						</div>
 					</div>
-					<div>
-						<button type="button" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="rfn-search-bdd" data-target="#rfn-search-bdd"><img src="https://via.placeholder.com/15x15" alt="" class="icone-caret"/> Bases de recherche</button>
-						<div class="collapse" id="rfn-search-bdd" role="group" aria-label="base de recherche">
-							<button>Supprimer le filtre<span class="sr-only"> : Base de recherche</span></button>
-							<p>*Insert content BDD*</p>
+				</div>
+
+				<div class="modal-body">
+					<div class="search-facette">
+						<button type="button" class="search-facette__button btn" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="rfn-search-theme" data-target="#rfn-search-theme">Thèmes</button>
+						<div class="collapse search-facette__body" id="rfn-search-theme" role="group" aria-label="thèmes">
+							<div class="search-facette__content">
+								<div class="search-facette__item search-facette__item--button">
+									<button class="btn">Supprimer le filtre<span class="sr-only"> : Thèmes</span></button>
+								</div>
+								{% for i in 1..6 %}
+									<div class="form-check search-facette__item">
+										<input type="checkbox" class="form-check-input" id="rfn-theme-{{ i }}">
+										<label class="form-check-label" for="rfn-theme-{{ i }}">*Insert Label {{ i }}*</label>
+									</div>
+								{% endfor %}
+							</div>
 						</div>
 					</div>
-					<div>
-						<button type="button" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="rfn-search-langue" data-target="#rfn-search-langue"><img src="https://via.placeholder.com/15x15" alt="" class="icone-caret"/> Langue(s)</button>
-						<div class="collapse" id="rfn-search-langue" role="group" aria-label="langue(s)">
-							<button>Supprimer le filtre<span class="sr-only"> : Langue(s)</span></button>
-							<p>*Insert content langues*</p>
+				</div>
+
+				<div class="modal-body">
+					<div class="search-facette">
+						<button type="button" class="search-facette__button btn" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="rfn-search-author" data-target="#rfn-search-author">Auteur(s)</button>
+						<div class="collapse search-facette__body" id="rfn-search-author" role="group" aria-label="auteur(s)">
+							<div class="search-facette__content">
+								<div class="search-facette__item search-facette__item--button">
+									<button class="btn">Supprimer le filtre<span class="sr-only"> : Auteur(s)</span></button>
+								</div>
+								{% for i in 1..6 %}
+									<div class="form-check search-facette__item">
+										<input type="checkbox" class="form-check-input" id="rfn-author-{{ i }}">
+										<label class="form-check-label" for="rfn-author-{{ i }}">*Insert Label {{ i }}*</label>
+									</div>
+								{% endfor %}
+							</div>
 						</div>
 					</div>
-					<div>
-						<button type="button" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="rfn-search-date" data-target="#rfn-search-date">Date</button>
-						<div class="collapse" id="rfn-search-date" role="group" aria-label="date">
-							<button>Supprimer le filtre<span class="sr-only"> : Date</span></button>
-							<p>*Insert content Date*</p>
+				</div>
+
+				<div class="modal-body">
+					<div class="search-facette">
+						<button type="button" class="search-facette__button btn" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="rfn-search-bdd" data-target="#rfn-search-bdd">Bases de recherche</button>
+						<div class="collapse search-facette__body" id="rfn-search-bdd" role="group" aria-label="base de recherche">
+							<div class="search-facette__content">
+								<div class="search-facette__item search-facette__item--button">
+									<button class="btn">Supprimer le filtre<span class="sr-only"> : Base de recherche</span></button>
+								</div>
+								{% for i in 1..6 %}
+									<div class="form-check search-facette__item">
+										<input type="checkbox" class="form-check-input" id="rfn-bdd-{{ i }}">
+										<label class="form-check-label" for="rfn-bdd-{{ i }}">*Insert Label {{ i }}*</label>
+									</div>
+								{% endfor %}
+							</div>
 						</div>
 					</div>
-					<div>
-						<button type="button" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="rfn-search-subject" data-target="#rfn-search-subject"><img src="https://via.placeholder.com/15x15" alt="" class="icone-caret"/> Sujets</button>
-						<div class="collapse" id="rfn-search-subject" role="group" aria-label="sujets">
-							<button>Supprimer le filtre<span class="sr-only"> : Sujets</span></button>
-							<p>*Insert content Sujets*</p>
+				</div>
+
+				<div class="modal-body">
+					<div class="search-facette">
+						<button type="button" class="search-facette__button btn" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="rfn-search-langue" data-target="#rfn-search-langue">Langue(s)</button>
+						<div class="collapse search-facette__body" id="rfn-search-langue" role="group" aria-label="langue(s)">
+							<div class="search-facette__content">
+								<div class="search-facette__item search-facette__item--button">
+									<button class="btn">Supprimer le filtre<span class="sr-only"> : Langue(s)</span></button>
+								</div>
+								{% for i in 1..6 %}
+									<div class="form-check search-facette__item">
+										<input type="checkbox" class="form-check-input" id="rfn-langue-{{ i }}">
+										<label class="form-check-label" for="rfn-langue-{{ i }}">*Insert Label {{ i }}*</label>
+									</div>
+								{% endfor %}
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="modal-body">
+					<div class="search-facette">
+						<button type="button" class="search-facette__button btn" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="rfn-search-date" data-target="#rfn-search-date">Date</button>
+						<div class="collapse search-facette__body" id="rfn-search-date" role="group" aria-label="date">
+							<div class="search-facette__content">
+								<div class="search-facette__item search-facette__item--button">
+									<button class="btn">Supprimer le filtre<span class="sr-only"> : Date</span></button>
+								</div>
+								<p>*Insert content Date*</p>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="modal-body">
+					<div class="search-facette">
+						<button type="button" class="search-facette__button btn" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="rfn-search-subject" data-target="#rfn-search-subject">Sujets</button>
+						<div class="collapse search-facette__body" id="rfn-search-subject" role="group" aria-label="sujets">
+							<div class="search-facette__content">
+								<div class="search-facette__item search-facette__item--button">
+									<button class="btn">Supprimer le filtre<span class="sr-only"> : Sujets</span></button>
+								</div>
+								{% for i in 1..6 %}
+									<div class="form-check search-facette__item">
+										<input type="checkbox" class="form-check-input" id="rfn-subject-{{ i }}">
+										<label class="form-check-label" for="rfn-subject-{{ i }}">*Insert Label {{ i }}*</label>
+									</div>
+								{% endfor %}
+							</div>
 						</div>
 					</div>
 				</div>
 
 				
 				<div class="modal-footer">
-					<button type="submit" aria-label="Affiner votre recherche">Affiner <img src="https://via.placeholder.com/15x15" alt="" class="icone-loupe"/></button>
+					<button type="submit" aria-label="Affiner ma recherche" class="btn btn-lg btn-primary btn-img">
+						<span>Affiner</span><img src="{{ asset('images/icones/icone-loupe.svg') }}" alt="" class="icone-loupe"/></button>
 				</div>
 			</form>
 		</div>

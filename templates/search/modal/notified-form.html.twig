@@ -1,19 +1,24 @@
-<div role="dialog" aria-modal="true" aria-labelledby="modal-notified">
-	<div class="modal-dialog">
+<div role="dialog" aria-modal="true" aria-labelledby="modal-notified-title" class="modal fade" id="modal-notified">
+	<div class="modal-dialog modal-dialog-centered">
 		<div class="modal-content">
-			<form>
+			<form class="modal-form">
 				<div class="modal-header">
-					<h1 id="modal-notified">Etre prevenu de son retour en rayon</h1>
-					<button type="button" aria-label="Fermer cette fenêtre"><span aria-hidden="true">X</span></button>
+					<h1 class="n1 modal-header__title" id="modal-notified-title">Être prevenu de son retour en rayon</h1>
+					<button class="close" type="button" aria-label="{{ 'global.modal-close'|trans }}" data-dismiss="modal">
+						<span aria-hidden="true" class="sr-only">X</span>
+						<img src="{{ asset('images/icones/icone-croix-blanc.svg') }}" alt="" />
+					</button>
 				</div>
 
 				<div class="modal-body">
 					
-					<small>* champs obligatoires</small>
+					<small class="modal-form__indication">* {{ 'global.form-mandatory-field'|trans }}</small>
 
-					<div class="form-group">
-						<label for="notified-email">Courriel <span>*</span></label>
-						<input type="text" class="form-control" id="notified-email">
+					<div class="form-group row">
+						<label for="notified-email" class="col-12 col-sm-4">Courriel <span>*</span></label>
+						<div class="col-12 col-sm-8">
+							<input type="text" class="form-control" id="notified-email">
+						</div>
 					</div>
 
 					<div>
@@ -22,8 +27,8 @@
 				</div>
 
 				<div class="modal-footer">
-					<button type="button" aria-label="Annuler">Annuler</button>
-					<button type="submit">Valider<span class="sr-only"> votre inscription à l'alerte de retour en rayon</span></button>
+					<button type="button" data-dismiss="modal" class="btn btn-lg btn-secondary">{{ 'global.modal-cancel'|trans }}</button>
+					<button type="submit" class="btn btn-lg btn-primary">Valider<span class="sr-only"> votre inscription à l'alerte de retour en rayon</span></button>
 				</div>
 			</form>
 		</div>

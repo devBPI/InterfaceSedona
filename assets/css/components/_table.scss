@@ -1,0 +1,120 @@
+// -------------------------------
+// Tableaux
+// -------------------------------
+
+.table {
+	width: 100%;
+	white-space: nowrap;
+
+	thead {
+
+		th {
+			vertical-align: middle;
+			font-weight: $font-regular;
+		}
+	}
+
+	p {
+		margin-bottom: 0;
+	}
+
+	&__button {
+		padding: 0;
+		
+		.caret {
+			display: inline-block;
+			vertical-align: text-bottom;
+			width: 8px;
+			height: 12px;
+			margin: 0 5px;
+			background-image: url('/images/icones/icone-caret-double.svg');
+			background-repeat: no-repeat;
+			background-position: 0 0;
+		}
+	}
+
+	[aria-sort="none"] {
+
+		.table__button {
+
+			.caret {
+				vertical-align: text-bottom;
+				background-position: 0 0;
+			}
+		}				
+	}
+
+	[aria-sort="ascending"] {
+
+		.table__button {
+
+			.caret {
+				vertical-align: text-bottom;
+				background-position: 0 -6px;
+			}
+		}		
+	}
+
+	[aria-sort="descending"] {
+
+		.table__button {
+
+			.caret {
+				vertical-align: text-top;
+				background-position: 0 7px;
+			}
+		}
+	}
+
+	&__type {
+		width: 15px;
+	}
+
+	&__body {
+
+		&-search {
+			position: relative;
+			text-align: right;
+
+			a {
+				width: 20px;
+				height: 20px;
+				line-height: 17px;
+				border-radius: 50%;
+				background-color: $grey;
+				display: inline-block;
+				text-align: center;
+
+				img {
+					width: 12px;
+				}
+			}
+		}
+
+		&-type {
+			text-align: center;
+		}
+
+		&-edit {
+			display: flex;
+			position: relative;
+
+			button {
+				width: 20px;
+				height: 20px;
+				line-height: 1px;
+				padding: 0;
+				border-radius: 50%;
+				background-color: $grey;
+				display: inline-block;
+				text-align: center;
+				margin-left: 5px;
+				border: 0;
+
+				img {
+					width: 12px;
+				}
+			}
+		}
+	}
+}
