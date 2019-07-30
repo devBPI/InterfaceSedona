@@ -27,6 +27,7 @@ ADD .deploy/rancher/app/php-fpm.conf /usr/local/apache2/conf.d/php-fpm.conf
 COPY --from=builder-php /var/www/html /var/www/html
 COPY --from=builder-alpine /var/www/html /var/www/html
 RUN set -xe ;\
+    docker-php-ext-install pdo pdo_pgsql pgsql ;\
     chown -R www-data /var/www/html ;\
     chmod a+w /var/www/html/var ;\
     echo "IncludeOptional conf.d/*.conf" >> /usr/local/apache2/conf/httpd.conf

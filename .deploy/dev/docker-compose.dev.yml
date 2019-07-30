@@ -20,6 +20,7 @@ services:
       - APP_SECRET
     volumes:
       - ./:/var/www/html/
+      - .deploy/dev/app/docker-php-ext-pgsql.ini:/usr/local/etc/php/conf.d/docker-php-ext-pgsql.ini
       - $COMPOSER_LOCAL_HOME:$COMPOSER_CONTAINER_HOME
 
   web:
@@ -61,6 +62,10 @@ services:
       - POSTGRES_DB
       - POSTGRES_USER
       - POSTGRES_PASSWORD
+
+  redis:
+    ports:
+      - "6379:6379"
 
 networks:
   public:

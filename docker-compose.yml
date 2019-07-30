@@ -5,11 +5,17 @@ services:
   app:
     depends_on:
       - db
+      - redis
     networks:
       - default
 
   db:
     image: registry.sedona.fr/images/postgres:9.6
+    networks:
+      - default
+
+  redis:
+    image: registry.sedona.fr/images/redis:3.2
     networks:
       - default
 
