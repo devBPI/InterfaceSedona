@@ -205,6 +205,8 @@ bloc:
     btn_pause: Mettre en pause le carousel
   preview-thematic:   # Bloc 2 Découvrir les parcours
     discover-sr-only: 'Découvrir les parcours : %name%'
+  preview-thematic-links: # Bloc 5 Accès rapide
+    link-sr-only: Les thèmes les plus consultés, %name%
   notice-simple:      # Bloc 13 Notices simples en 2 colonnes
     result: Résultat numéro
     select: sélectionner
