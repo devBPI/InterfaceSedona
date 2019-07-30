@@ -1,6 +1,6 @@
 {
     "name": "bpi/catalogue-site",
-    "version": "0.1.0-dev",
+    "version": "0.1.0",
     "description": "Site Web Catalogue de la PBI",
     "type": "project",
     "license": "proprietary",
