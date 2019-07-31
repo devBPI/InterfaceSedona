@@ -5,6 +5,7 @@
 .breadcrumb {
 	padding-left: 0;
 	padding-bottom: 0;
+	display: block;
 
 	@media print {
 		display: none;
