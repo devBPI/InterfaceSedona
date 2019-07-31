@@ -177,7 +177,7 @@ modal:
       first-name: Prénom
       email: Courriel
     submit: Valider
-    submit-sr-only:  l'envoi de la suggestion
+    submit-sr-only: l'envoi de la suggestion
 
 page:
   breadcrumb: Fil d'ariane
@@ -228,7 +228,7 @@ bloc:
     suggest: Suggestion d'achats
     report-error: Signaler une erreur
   search-zone:
-    autocompletion-notice: '*Insert texte explicatif pour l\'auto-completion*'
+    autocompletion-notice: Insert texte explicatif pour l'auto-completion
     autocompletion-nb-result: %nb% options affichées
     input-sr-only: Saisir un mot clé
     input-placeholder: Rechercher
@@ -352,3 +352,7 @@ bloc:
       date: Recherché le
     select-ligne: 'Sélectionner la ligne : %title%'
     reload: Relancer la recherche %title%'
+
+
+
+
