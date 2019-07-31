@@ -5,7 +5,7 @@
             {% if item.children is defined %}
                 <ul class="dropdown-sub-list">
                     {% for subLink, subName in item.children %}
-                        <li class="dropdown-sub-item"><a href="https://www.bpi.fr/la-bibliotheque/missions-et-organisation/organigramme">Organigramme</a></li>
+                        <li class="dropdown-sub-item"><a href="{{ subLink }}">{{ subName }}</a></li>
                     {% endfor %}
                 </ul>
             {% endif %}

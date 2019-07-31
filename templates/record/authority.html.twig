@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Fiche d'autorité *Insert nom auteur*{% endblock %}
+{% block title %}{{ 'page.authority.title'|trans({'%author%': '*Insert nom auteur*'}) }}{% endblock %}
 
 {% block body %}
 
