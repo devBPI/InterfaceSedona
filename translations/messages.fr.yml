@@ -188,7 +188,7 @@ modal:
   comments-view:  #Modal 11 visualisation d'un commentaire
     title: Voir le commentaire
     close: Fermer
-  notifed-form:   #Modal 12 notification de dispoibilité de docuement
+  notifed-form:   #Modal 12 notification de dispoibilité de document
     title: Être prevenu de son retour en rayon
     field-email: Courriel
     submit: Valider
@@ -318,8 +318,8 @@ bloc:
     result: Résultat numéro
     select: sélectionner
     access-to-bdd: Acceder à %name%
-    docuement-available: Disponible
-    docuement-unavailable: Indisponible
+    document-available: Disponible
+    document-unavailable: Indisponible
   search-header-footer:   #Bloc 14 Tri et pages
     header:
       aria-label: Sélectionner le nombre de résultat par colonne

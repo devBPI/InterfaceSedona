@@ -147,12 +147,22 @@ et 1971 (CD 1), 1993, 1972, 1973, 1991 et 1992 (CD 2), 2001, 1974, 1998 et 2006 
 
 <div class="col-12">
 	{# Pour les documents en rayon dispo #}
-	<div lang="fr" class="bibliographic-result__availability bibliographic-result__availability--available bibliographic-result--list">
+	<div lang="fr" class="bibliographic-result__availability bibliographic-result--list">
 		<div>
-			<p><span>Disponible</span> - 78 STRA.R 4 disque 1</p>
-			<p>78 STRA.R 4 disque 2</p>
-			<p>78 STRA.R 4 disque 3</p>
-			<p>Niveau 3 - Musiques et documents parlés</p>
+			<div class="availability availability--true availability--rayon">
+				<p class="availability__status"><span>Disponible</span> - 78 STRA.R 4 disque 1</p>
+				<p>Niveau 3 - Musiques et documents parlés</p>
+
+				{# Dans le cas où il a + d'1 exemplaire #}
+				<button type="button" class="btn btn-small-link availability__button" data-toggle="collapse" data-target="#availabity-items" aria-expanded="false" aria-controls="availabity-items">Voir plus</button>
+				<div class="collapse" id="availabity-items">
+					<p class="availability__status"><span>Disponible</span> - 78 STRA.R 4 disque 2</p>
+					<p>Niveau 3 - Musiques et documents parlés</p>
+
+					<p class="availability__status"><span>Disponible</span> - 78 STRA.R 4 disque 3</p>
+					<p>Niveau 3 - Musiques et documents parlés</p>
+				</div>
+			</div>
 		</div>
 	
 		{# Pour les revues/journaux .. #}
@@ -207,23 +217,23 @@ et 1971 (CD 1), 1993, 1972, 1973, 1991 et 1992 (CD 2), 2001, 1974, 1998 et 2006 
 	</div>
 
 	{# Pour les documents en rayon indispo #}
-	<div lang="fr" class="bibliographic-result__availability bibliographic-result__availability--disabled">
-		<div>
-			<p><span>Indisponible</span></p>
+	<div lang="fr" class="bibliographic-result__availability">
+		<div class="availability availability--false availability--rayon">
+			<p class="availability__status"><span>Indisponible</span> - En commande</p>
 		</div>
 	</div>
 
 	{# Pour les documents en ligne consultable #}
 	<div lang="fr" class="bibliographic-result__availability">
-		<div>
-			<p><a href="#">Accéder à *Insert nom du document*</a></p>
+		<div class="availability availability--true availability--online">
+			<a href="#">Accéder à *Insert nom du document*</a>
 		</div>
 	</div>
 
 	{# Pour les documents en ligne non consultable #}
 	<div lang="fr" class="bibliographic-result__availability">
-		<div>
-			<p>Consultable à la Bpi</p>
+		<div class="availability availability--false availability--online">
+			<p class="mb-0">Consultable à la Bpi</p>
 		</div>
 	</div>
 </div>
