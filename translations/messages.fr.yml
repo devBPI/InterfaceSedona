@@ -21,6 +21,10 @@ header:
       en: English version
       es: Espagnol version
       fr: Version française
+  navbar-principal:
+    home: Accueil
+    catalogue: Catalogue
+    agenda: Agenda
   navbar-secondaire:
     title: Autres sites
     aria: Menu-secondaire
@@ -39,7 +43,6 @@ header:
     logout: Se deconnecter
     profile: Mon compte
     profile_title: Accéder à mon compte
-  navbar-principal:
 
 footer:
   sitemap:

@@ -59,7 +59,7 @@
 		<main role="main" id="contenu-site">
 			<div class="container">
 				{% include "common/breadcrumb.html.twig" %}
-				{% include "common/search.html.twig" %}
+				{% block search %}{% include "common/search.html.twig" %}{% endblock %}
 				{% block searchextended %}{% endblock %}
 				{% include "common/toolbar.html.twig" %}
 
