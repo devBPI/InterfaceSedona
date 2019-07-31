@@ -88,12 +88,22 @@
 
 <div class="col-12">
 	{# Pour les documents en rayon dispo #}
-	<div lang="fr" class="bibliographic-result__availability bibliographic-result__availability--available bibliographic-result--list">
+	<div lang="fr" class="bibliographic-result__availability bibliographic-result--list">
 		<div>
-			<p><span>{{ 'bloc.notice-simple.docuement-available'|trans }}</span> - 78 STRA.R 4 disque 1</p>
-			<p>78 STRA.R 4 disque 2</p>
-			<p>78 STRA.R 4 disque 3</p>
-			<p>Niveau 3 - Musiques et documents parlés</p>
+			<div class="availability availability--true availability--rayon">
+				<p class="availability__status"><span>{{ 'bloc.notice-simple.docuement-available'|trans }}</span> - 78 STRA.R 4 disque 1</p>
+				<p>Niveau 3 - Musiques et documents parlés</p>
+
+				{# Dans le cas où il a + d'1 exemplaire #}
+				<button type="button" class="btn btn-small-link availability__button" data-toggle="collapse" data-target="#availabity-items" aria-expanded="false" aria-controls="availabity-items">Voir plus</button>
+				<div class="collapse" id="availabity-items">
+					<p class="availability__status"><span>{{ 'bloc.notice-simple.docuement-available'|trans }}</span> - 78 STRA.R 4 disque 2</p>
+					<p>Niveau 3 - Musiques et documents parlés</p>
+
+					<p class="availability__status"><span>{{ 'bloc.notice-simple.docuement-available'|trans }}</span> - 78 STRA.R 4 disque 3</p>
+					<p>Niveau 3 - Musiques et documents parlés</p>
+				</div>
+			</div>
 		</div>
 	
 		{# Pour les revues/journaux .. #}
@@ -148,23 +158,23 @@
 	</div>
 
 	{# Pour les documents en rayon indispo #}
-	<div lang="fr" class="bibliographic-result__availability bibliographic-result__availability--disabled">
-		<div>
-			<p><span>{{ 'bloc.notice-simple.docuement-unavailable'|trans }}</span></p>
+	<div lang="fr" class="bibliographic-result__availability">
+		<div class="availability availability--false availability--rayon">
+			<p class="availability__status"><span>{{ 'bloc.notice-simple.docuement-unavailable'|trans }}</span> - En commande</p>
 		</div>
 	</div>
 
 	{# Pour les documents en ligne consultable #}
 	<div lang="fr" class="bibliographic-result__availability">
-		<div>
-			<p><a href="#">{{ 'bloc.autority-result-information.access-document.in-ligne'|trans({'%name%': '*Insert nom du document*'}) }}</a></p>
+		<div class="availability availability--true availability--online">
+			<a href="#">{{ 'bloc.autority-result-information.access-document.in-ligne'|trans({'%name%': '*Insert nom du document*'}) }}</a>
 		</div>
 	</div>
 
 	{# Pour les documents en ligne non consultable #}
 	<div lang="fr" class="bibliographic-result__availability">
-		<div>
-			<p>{{ 'bloc.autority-result-information.access-document.in-shelf'|trans }}</p>
+		<div class="availability availability--false availability--online">
+			<p class="mb-0">{{ 'bloc.autority-result-information.access-document.in-shelf'|trans }}</p>
 		</div>
 	</div>
 </div>

@@ -77,4 +77,14 @@
 			}
 		}
 	}
+
+	&-small-link {
+		padding: 0;
+		color: $blue;
+
+		&:hover {
+			color: $red;
+			text-decoration: underline;
+		}
+	}
 }
