@@ -1,8 +1,8 @@
 <div id="carousel-{{ type }}" class="carousel-secondary col-12 {{ class|default('') }}">
 	<div class="carousel-secondary__header">
-		<h2 class="n1">{{ ('bloc.list-related-docuements.carousel-'~type)|trans }}</h2>
+		<h2 class="n1">{{ ('bloc.list-related-documents.carousel-'~type)|trans }}</h2>
 		<div>
-			<a href="#" class="link link--icone-end">{{ "bloc.list-related-docuements.see-more"|trans }} <span class="sr-only">{{ "bloc.list-related-docuements.see-more-sr-only"|trans }} </span><span>(*Insert number*)</span> <img src="{{ asset('images/icones/icone-chevron-gauche.svg') }}" alt="" class="icone-chevron-right"/></a>
+			<a href="#" class="link link--icone-end">{{ "bloc.list-related-documents.see-more"|trans }} <span class="sr-only">{{ "bloc.list-related-documents.see-more-sr-only"|trans }} </span><span>(*Insert number*)</span> <img src="{{ asset('images/icones/icone-chevron-gauche.svg') }}" alt="" class="icone-chevron-right"/></a>
 		</div>
 	</div>
 
@@ -11,7 +11,7 @@
 			<div class="slick-carousel" role="region" aria-roledescription="carrousel">
 				{% for i in 1..4 %}
 					<div class="slick-slide-content">
-						<a href="{{ routeTarget }}" title="{{ 'bloc.list-related-docuements.link-title'|trans({'%current%': i, '%nb%': 24, '%name%': 'Titre de Auteur'}) }}">
+						<a href="{{ routeTarget }}" title="{{ 'bloc.list-related-documents.link-title'|trans({'%current%': i, '%nb%': 24, '%name%': 'Titre de Auteur'}) }}">
 							<div>
 								<img src="{{ asset(image) }}" alt="" class="img-fluid" />
 							</div>

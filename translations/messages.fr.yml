@@ -225,7 +225,7 @@ modal:
       in-shelf: Disponible en rayon
       in-ligne: Consultable en ligne
     facette:
-      docuement-type: Type de documents
+      document-type: Type de documents
       supports: Supports
       genre-music: Genre musical
       genre-film: Genre film
@@ -407,7 +407,7 @@ bloc:
     access-document:
       in-shelf: Consultable à la Bpi
       in-ligne: Accéder à %name%
-  list-related-docuements:  #Bloc 19 Liste de documents + Bloc 17 Documents liés
+  list-related-documents:  #Bloc 19 Liste de documents + Bloc 17 Documents liés
     link-title: Actualité %current% sur %nb%, %name%
     see-more: Voir tout
     see-more-sr-only: les résultats
@@ -428,7 +428,7 @@ bloc:
     select-all: Tout sélectionner
     select-cancel: Annuler la sélection
     selected-list: Listes sélectionnées
-    selected-docuement: Documents sélectionnés
+    selected-document: Documents sélectionnés
     list-add: Ajouter à
     list-up: Monter
     list-down: Descendre
