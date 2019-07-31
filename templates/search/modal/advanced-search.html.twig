@@ -20,19 +20,19 @@
 							<input type="text" id="adv-search-txt-1" class="form-control">
 						</div>
 						<div class="search-keyword__choice">
-							<div class="dropdown">
-								<button type="button" id="adv-search-dpdw-critere" data-toggle="dropdown" aria-haspopup="listbox" aria-expanded="false" class="dropdown-toggle">
-								Auteur
-								</button>
-								<ul class="dropdown-menu" aria-labelledby="adv-search-dpdw-critere" role="listbox" tabindex="-1">
-									<li class="dropdown-item" role="option">
-										<a href="#">Date de publication</a>
-									</li>
-									<li class="dropdown-item" role="option">
-										<a href="#">Titre</a>
-									</li>
-								</ul>
-							</div>
+							<label for="adv-search-choice-1" class="sr-only"> // </label>
+							<select class="form-control" id="adv-search-choice-1">
+								<option>Tous les mots</option>
+								<option>Titre</option>
+								<option>Auteur</option>
+								<option>Réalisateur</option>
+								<option>Sujet</option>
+								<option>Thème</option>
+								<option>Editeur</option>
+								<option>Date de publication</option>
+								<option>ISBN, ISSN, numéros commerciaux</option>
+								<option>Indice / Cote</option>
+							</select>
 						</div>
 						<div class="search-keyword__add"></div>
 					</div>
@@ -40,17 +40,11 @@
 					<div class="search-keyword__group">
 						<div class="search-keyword__condition">
 							<div class="dropdown">
-								<button type="button" id="adv-search-condition-1" data-toggle="dropdown" aria-haspopup="listbox" aria-expanded="false" class="dropdown-toggle">
-								Et
-								</button>
-								<ul class="dropdown-menu" aria-labelledby="adv-search-condition-1" role="listbox" tabindex="-1">
-									<li class="dropdown-item" role="option" aria-selected="true">
-										<a href="#">Et</a>
-									</li>
-									<li class="dropdown-item" role="option">
-										<a href="#">Ou</a>
-									</li>
-								</ul>
+								<label for="adv-search-condition-2" class="sr-only"> // </label>
+								<select class="form-control" id="adv-search-condition-2">
+									<option>Et</option>
+									<option>Ou</option>
+								</select>
 							</div>
 						</div>
 						<div class="search-keyword__input">
@@ -58,19 +52,19 @@
 							<input type="text" id="adv-search-txt-2" class="form-control">
 						</div>
 						<div class="search-keyword__choice">
-							<div class="dropdown">
-								<button type="button" id="adv-search-condition-2" data-toggle="dropdown" aria-haspopup="listbox" aria-expanded="false" class="dropdown-toggle">
-								Date de publication
-								</button>
-								<ul class="dropdown-menu" aria-labelledby="adv-search-condition-2" role="listbox" tabindex="-1">
-									<li class="dropdown-item" role="option">
-										<a href="#">Auteur</a>
-									</li>
-									<li class="dropdown-item" role="option">
-										<a href="#">Titre</a>
-									</li>
-								</ul>
-							</div>
+							<label for="adv-search-choice-2" class="sr-only"> // </label>
+							<select class="form-control" id="adv-search-choice-2">
+								<option>Tous les mots</option>
+								<option>Titre</option>
+								<option>Auteur</option>
+								<option>Réalisateur</option>
+								<option>Sujet</option>
+								<option>Thème</option>
+								<option>Editeur</option>
+								<option>Date de publication</option>
+								<option>ISBN, ISSN, numéros commerciaux</option>
+								<option>Indice / Cote</option>
+							</select>
 						</div>
 						<div class="search-keyword__add">
 							<button type="button" class="btn"><img src="{{ asset('images/icones/icone-plus.svg') }}" alt="" class="icone-plus"/><span class="sr-only">Ajouter un champs de recherche</span></button>
