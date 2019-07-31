@@ -1,5 +1,6 @@
 <form method="get" role="search" id="form-search" action="{{ path('search') }}">
-	<div class="sr-only" id="autocompletion-infos">{{ 'bloc.search-zone.autocompletion-notice'|trans }}</div>
+    <!-- Début - Bloc B Zone de recherche simple -->
+    <div class="sr-only" id="autocompletion-infos">{{ 'bloc.search-zone.autocompletion-notice'|trans }}</div>
 	<div class="search-banner" role="combobox" aria-expanded="false" aria-owns="autocompletion-list" aria-haspopup="listbox" id="search-banner"> 
 		<div class="input-group search-banner__input">
 			<label for="search-input" id="search-label" class="sr-only">{{ 'bloc.search-zone.input-sr-only'|trans }}</label>
@@ -32,6 +33,8 @@
 			{% include "search/autocompletion.html.twig" %}
 		</ul>
 	</div>
+    <!-- Fin - Bloc B Zone de recherche simple -->
+
 	<!-- Début - Modal Recherche Avancée -->
 	{% include "search/modal/advanced-search.html.twig" %}
 	<!-- Fin - Modal Recherche Avancée -->

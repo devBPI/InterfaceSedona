@@ -1,4 +1,4 @@
-<!-- Début - Barre utilitaires -->
+<!-- Début - Bloc A Barre utilitaires -->
 <div class="toolbar">
 	<ul class="toolbar__list">
 		{% if toolbar is defined and toolbar == 'document' %}
@@ -70,28 +70,16 @@
 		</li>
 	</ul>
 </div>
-<!-- Fin - Barre utilitaires -->
+<!-- Fin Bloc A - Barre utilitaires -->
 
-<!-- Début - Modal ajout à ma sélection -->
 {% include "user/modal/list_add.html.twig" %}
-<!-- Fin - Modal ajout à ma sélection -->
 
-<!-- Début - Modal export -->
 {% include "record/export.html.twig" %}
-<!-- Fin - Modal export -->
 
-<!-- Début - Modal imprimer -->
 {% include "record/print.html.twig" %}
-<!-- Fin - Modal imprimer -->
 
-<!-- Début - Modal partage -->
 {% include "record/share.html.twig" %}
-<!-- Fin - Modal partage -->
 
-<!-- Début - Modal suggestion d'achats -->
 {% include "user/modal/suggestion.html.twig" %}
-<!-- Fin - Modal suggestion d'achats -->
 
-<!-- Début - Modal signaler une erreur -->
 {% include "user/modal/report-error.html.twig" %}
-<!-- Fin - Modal signaler une erreur -->
