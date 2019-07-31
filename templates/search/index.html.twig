@@ -61,7 +61,7 @@
 							{% block availability %}
 								<p lang="fr">Presses universitaires du Mirail</p>
 								<p lang="fr">1988 - 2018</p>
-								<p lang="fr">Résultat de <a href="#" aria-label="{{ 'bloc.notice-simple.access-to-bdd'|trans({'%name%':'*Insert name BDD*'}) }}">*Insert name BDD*</a></p>
+								<p lang="fr">{{ 'bloc.notice-simple.result-of-bdd'|trans }} <a href="#" aria-label="{{ 'bloc.notice-simple.access-to-bdd'|trans({'%name%':'*Insert name BDD*'}) }}">*Insert name BDD*</a></p>
 
 								<!-- Document disponible -->
 								<div class="list-result__content-state">
@@ -74,10 +74,10 @@
 								<div lang="fr" class="list-result__content-state d-flex align-items-center">
 									<img src="{{ asset('images/icones/icone-map-rouge.svg') }}" alt="" class="icone-map"/>
 									<p>{{ 'bloc.notice-simple.docuement-unavailable'|trans }}</p>
-									<button class="btn list-result__content-button" data-toggle="modal" data-target="#modal-notified"><img src="{{ asset('images/icones/icone-enveloppe.svg') }}" alt="" class="icone-enveloppe"/> <span class="sr-only">Document indisponible, être prévenu de son retour en rayon - ouverture formulaire</span></button>
+									<button class="btn list-result__content-button" data-toggle="modal" data-target="#modal-notified"><img src="{{ asset('images/icones/icone-enveloppe.svg') }}" alt="" class="icone-enveloppe"/> <span class="sr-only">{{ 'bloc.notice-simple.notification-availablity'|trans }}</span></button>
 								</div>
 
-								<p lang="fr">Dernier numéro reçu : N° 110, Janvier 2018</p>
+								<p lang="fr">{{ 'bloc.notice-simple.last-publication'|trans({'%number%': 110, '%pulication-date%': 'Janvier 2018'}) }}</p>
 							{% endblock %}
 						{% endembed %}
 					{% endfor %}

@@ -9,66 +9,18 @@
 	<div class="authority-result__body">
 		<h1 class="n1 authority-result__title" lang="fr">Georges VI , roi de Grande-Bretagne (1895-1952)</h1>
 		<ul class="list-information">
-			<li class="list-information__item">
-				<span class="list-information__label">Type d'autorité :</span>
-				<ul class="list-information__sub-list" lang="fr">
-					<li class="list-information__sub-item">Personne</li>
-				</ul>
-			</li>
-			<li class="list-information__item">
-				<span class="list-information__label">Pays :</span>
-				<ul class="list-information__sub-list" lang="fr">
-					<li class="list-information__sub-item">Royaume-Uni</li>
-				</ul>
-			</li>
-			<li class="list-information__item">
-				<span class="list-information__label">Langue(s) :</span>
-				<ul class="list-information__sub-list" lang="fr">
-					<li class="list-information__sub-item">anglais</li>
-				</ul>
-			</li>
-			<li class="list-information__item">
-				<span class="list-information__label">Naissance :</span>
-				<ul class="list-information__sub-list" lang="fr">
-					<li class="list-information__sub-item">1895, Norfolk, GB</li>
-				</ul>
-			</li>
-			<li class="list-information__item">
-				<span class="list-information__label">Mort :</span>
-				<ul class="list-information__sub-list" lang="fr">
-					<li class="list-information__sub-item">1952, Norfolk, GB</li>
-				</ul>
-			</li>
-			<li class="list-information__item">
-				<span class="list-information__label">Activité(s) principale(s) :</span>
-				<ul class="list-information__sub-list" lang="fr">
-					<li class="list-information__sub-item">Roi de Grande-Bretagne et d'Irlande du Nord (1936-1952)</li>
-				</ul>
-			</li>
-			<li class="list-information__item">
-				<span class="list-information__label">Autre(s) nom(s) :</span>
-				<ul class="list-information__sub-list" lang="fr">
-					<li class="list-information__sub-item">York, Albert (1895-1952), duc d'</li>
-				</ul>
-			</li>
-			<li class="list-information__item">
-				<span class="list-information__label">Nom(s) associé(s) :</span>
-				<ul class="list-information__sub-list" lang="fr">
-					<li class="list-information__sub-item">autres : Windsor , maison de</li>
-				</ul>
-			</li>
-			<li class="list-information__item">
-				<span class="list-information__label">Nom(s) lié(s) :</span>
-				<ul class="list-information__sub-list" lang="fr">
-					<li class="list-information__sub-item">autres :  Grande-Bretagne -- 1936-1952 (Georges VI)</li>
-				</ul>
-			</li>
-			<li class="list-information__item">
-				<span class="list-information__label">ISNI :</span>
-				<ul class="list-information__sub-list" lang="fr">
-					<li class="list-information__sub-item">0000000410249563</li>
-				</ul>
-			</li>
+			{% include 'record/blocs/result-informations-list.html.twig' with {'details': {
+				'authority-type': { 'Personne': '' },
+				'country': { 'Royaume-Uni': '' },
+				'language': { 'anglais': '' },
+				'born-date': { '1895, Norfolk, GB': '' },
+				'dead-date': { '1952, Norfolk, GB': '' },
+				'activity': { 'Roi de Grande-Bretagne et d\'Irlande du Nord (1936-1952)': '' },
+				'name-alias': { 'York, Albert (1895-1952), duc d\'': '' },
+				'name-associe': { 'autres : Windsor , maison de': '' },
+				'name-link': { 'autres :  Grande-Bretagne -- 1936-1952 (Georges VI)': '' },
+				'insi': { '0000000410249563': '' }
+			}} %}
 		</ul>
 	</div>
 </div>

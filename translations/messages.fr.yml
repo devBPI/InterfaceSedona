@@ -195,7 +195,7 @@ modal:
     submit-sr-only: votre inscription à l'alerte de retour en rayon
   advanced-search:  #Modal 13 recheche avancé
     title: Recherche avancée
-    search-keyword:
+    keyword:
       notice: Pour rechercher une expression exacte, mettez les mots entre "guillemets".
       label: Rechercher par mots clés
       type:
@@ -205,14 +205,52 @@ modal:
       group-or: Ou
       group-and: Et
       add-ligne: Ajouter un champs de recherche
-    search-base:
+    base:
       label: Recherche dans
       all: Tout
       all-aria: Recherche dans toutes les bases de données
       in: Recherche dans
       name: Base de données %name%
-    search-date:
+    date:
       title: Date de publication
+      title-sr-only: date de parution
+      by-date: Date
+      by-periode: Periode
+      date-start: Entrer une date de parution
+      date-end: Entrer une deuxième date de parution
+    langage:
+      title: Langue
+      select-aria: Sélectionner les langues
+    available:
+      in-shelf: Disponible en rayon
+      in-ligne: Consultable en ligne
+    facette:
+      docuement-type: Type de documents
+      supports: Supports
+      genre-music: Genre musical
+      genre-film: Genre film
+      genre-book: Genre littéraire
+      public-target: Public destinataire
+      sector: Secteur
+      mediation: Médiation
+      content: Contenu
+      available: Disponibilité
+      theme: Thèmes
+      author: Auteur(s)
+      bdd: Bases de recherche
+      langue: Langue(s)
+      date: Date
+      subject: Sujets
+    clear-search: Effacer ma recherche
+    clear-search-aria: Effacer mes critères de recherche
+    submit: Rechercher
+    submit-aria: Lancer ma recherche
+  refine-search:  #Modal 14 affiné la recheche
+    title: Affiner ma recherche
+    filter-delete: Supprimer le filtre
+    submit: Affiner
+    submit-aria: Affiner ma recherche
+
 
 page:
   breadcrumb: Fil d'ariane
@@ -318,8 +356,11 @@ bloc:
     result: Résultat numéro
     select: sélectionner
     access-to-bdd: Acceder à %name%
+    result-of-bdd: Résultat de
+    last-publication: 'Dernier numéro reçu : N°%number%, %pulication-date%'
     docuement-available: Disponible
     docuement-unavailable: Indisponible
+    notification-availablity: Document indisponible, être prévenu de son retour en rayon - ouverture formulaire
   search-header-footer:   #Bloc 14 Tri et pages
     header:
       aria-label: Sélectionner le nombre de résultat par colonne
@@ -337,7 +378,35 @@ bloc:
     result-previous: Document précédent
     result-next: Document suivant
     result-current: %current% sur %nb%
-  #Bloc 16
+  autority-result-information: #Bloc 16 Notice bibliographique + Bloc 18 Informations de la notice d'autorité
+    autor: 'Auteur(s), compositeur(s), interprète(s) : '
+    autor-dicover: Découvrir l'auteur
+    tracks: Pistes
+    contributor: 'Contributeur(s) :'
+    editor: 'Éditeur(s) :'
+    search-with: 'Relancer une recherche avec le terme : %theme%'
+    date: 'Date :'
+    ouvre: 'Oeuvre(s) :'
+    nots: 'Notes :'
+    language: 'Langue(s) :'
+    resume: 'Résumé :'
+    support: 'Description matérielle :'
+    comercial-number: 'Numéros commerciaux :'
+    genre: 'Genre :'
+    indice: 'Indice :'
+    publication-receve: 'Numéros reçus :'
+    authority-type: "Type d'autorité :"
+    country: 'Pays :'
+    born-date: 'Naissance :'
+    dead-date: 'Mort :'
+    activity: 'Activité(s) principale(s) :'
+    name-alias: 'Autre(s) nom(s) :'
+    name-associe: 'Nom(s) associé(s) :'
+    name-link: 'Nom(s) lié(s) :'
+    insi: 'ISNI :'
+    access-document:
+      in-shelf: Consultable à la Bpi
+      in-ligne: Accéder à %name%
   list-related-docuements:  #Bloc 19 Liste de documents + Bloc 17 Documents liés
     link-title: Actualité %current% sur %nb%, %name%
     see-more: Voir tout
