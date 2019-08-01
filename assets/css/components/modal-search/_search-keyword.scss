@@ -5,14 +5,12 @@
 .search-keyword {
 
 	&__group {
-		display: flex;
 		align-items: center;
-		margin-bottom: -1px;
-	}
+		margin-bottom: $spacer;
 
-	&__condition {
-		flex: 0 0 10%;
-		min-width: 10%;
+		&:last-child {
+			margin-bottom: 0;
+		}
 	}
 
 	&__input {
@@ -27,42 +25,17 @@
 		}
 	}
 
-	&__choice {
-		flex: 0 0 42%;
-		min-width: 42%;
-		padding: 0 5px;
+	&__button {
+		width: 20px;
+		height: 20px;
+		background-image: url('/images/icones/icone-bouton-plus.svg');
+		background-position: center center;
+		background-size: contain;
+		background-repeat: no-repeat;
+		padding: 0;
 
-		@include media-breakpoint-up(md) {
-			flex: 0 0 30%;
-			min-width: 30%;
+		&--remove {
+			background-image: url('/images/icones/icone-bouton-moins.svg');
 		}
-
-		@include media-breakpoint-up(lg) {
-			flex: 0 0 25%;
-			min-width: 25%;
-		}
-	}
-
-	&__add {
-		flex: 0 0 7%;
-		min-width: 7%;
-		text-align: right;
-
-		button {
-			width: 20px;
-			height: 20px;
-			border-radius: 20px;
-			text-align: center;
-			padding: 0;
-			line-height: 8px;
-			border: $border-default;
-
-			img {
-				width: 12px;
-			}
-		}
-	}
-
-	select {
 	}
 }
