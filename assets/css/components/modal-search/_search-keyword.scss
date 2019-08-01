@@ -13,8 +13,23 @@
 		}
 	}
 
+	&__condition {
+		margin-bottom: 5px;
+
+		@include media-breakpoint-up(sm) {
+			margin-bottom: 0;
+		}
+	}
+
 	&__input {
 		flex: 1;
+		margin-bottom: 5px;
+		padding-left: 0;
+
+		@include media-breakpoint-up(sm) {
+			padding-right: 0;
+			margin-bottom: 0;
+		}
 
 		input {
 			width: 100%;
