@@ -21,7 +21,7 @@ $('[data-toggle="tooltip"]').tooltip({
 	template: '<div class="tooltip" role="tooltip"><div class="tooltip-inner"></div></div>'
 });
 
-// Configuration Carousel Primary
+// Configuration Carousel Primary (Accueil + Parcours)
 $('.js-carousel-primary').slick({
 	dots: true,
 	infinite: true,
@@ -55,7 +55,7 @@ $('.js-carousel-primary').slick({
 	]
 });
 
-// Gestion Bouton "Pause/Play"
+// Gestion Bouton "Pause/Play" - Carousel Primary
 $('.carousel__button').on('click', function() {
 	if( $(this).hasClass('carousel__button--pause') ) {
 		$('.js-carousel-primary').slick('slickPause');
@@ -68,4 +68,30 @@ $('.carousel__button').on('click', function() {
 		$(this).removeClass('carousel__button--play')
 		$(this).addClass('carousel__button--pause');
 	}
+});
+
+// Configuration Carousel Secondary (Notices)
+$('.js-carousel-secondary').slick({
+	infinite: false,
+	slidesToShow: 4,
+	slidesToScroll: 1,    
+	autoplay: false,
+	prevArrow: '<button class="slick-prev" aria-label="Actualité précédente" type="button">Précédent</button>',
+	nextArrow: '<button class="slick-next" aria-label="Actualité suivante" type="button">Suivant</button>',
+	responsive: [
+		{
+			breakpoint: 992,
+			settings: 	{
+				slidesToShow: 2,
+				slidesToScroll: 1
+			}
+		},
+		{
+			breakpoint: 576,
+			settings: 	{
+				slidesToShow: 1,
+				slidesToScroll: 1
+			}
+		}
+	]
 });

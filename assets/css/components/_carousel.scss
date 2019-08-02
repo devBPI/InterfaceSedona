@@ -1,5 +1,5 @@
 // -------------------------------
-// Carousel Principal - pages accueil + thématique
+// Carousels
 // -------------------------------
 
 .carousel {
@@ -11,6 +11,37 @@
 
 	&-wrapper {
 		position: relative;
+	}
+
+	// Gestion Carousel Secondary
+	&--secondary {
+
+		.carousel-wrapper {
+			border-bottom: $border-default;
+		}
+
+		&:last-child {
+
+			.carousel-wrapper {
+				border-bottom: 0;
+			}
+		}
+	}
+
+	// Gestion Header
+	&__header {
+		display: flex;
+		justify-content: space-between;
+		align-items: baseline;
+	}
+
+	&--double {
+
+		.carousel__header {
+			padding-top: 25px;
+			@extend .border-double;
+			background-position: 0 top;
+		}
 	}
 
 	// Gestion Contenu
@@ -151,6 +182,10 @@
 			@include media-breakpoint-up(lg) {
 				right: -20px;
 			}
+		}
+
+		&.slick-disabled {
+			display: none !important;
 		}
 	}
 }

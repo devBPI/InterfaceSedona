@@ -1,26 +1,25 @@
-<div id="carousel-{{ type }}" class="carousel-secondary col-12 {{ class|default('') }}">
-	<div class="carousel-secondary__header">
+<div id="carousel-{{ type }}" class="carousel carousel--secondary {{ class|default('') }} col-12">
+	<div class="carousel__header">
 		<h2 class="n1">{{ ('bloc.list-related-documents.carousel-'~type)|trans }}</h2>
 		<div>
 			<a href="#" class="link link--icone-end">{{ "bloc.list-related-documents.see-more"|trans }} <span class="sr-only">{{ "bloc.list-related-documents.see-more-sr-only"|trans }} </span><span>(*Insert number*)</span> <img src="{{ asset('images/icones/icone-chevron-gauche.svg') }}" alt="" class="icone-chevron-right"/></a>
 		</div>
 	</div>
 
-	<div class="carousel-secondary__body">
-		<div class="carousel-wrapper">
-			<div class="slick-carousel" role="region" aria-roledescription="carrousel">
-				{% for i in 1..4 %}
-					<div class="slick-slide-content">
-						<a href="{{ routeTarget }}" title="{{ 'bloc.list-related-documents.link-title'|trans({'%current%': i, '%nb%': 24, '%name%': 'Titre de Auteur'}) }}">
-							<div>
-								<img src="{{ asset(image) }}" alt="" class="img-fluid" />
-							</div>
-							<p>Titre</p>
-							<p>Auteur</p>
-						</a>
+	<div class="carousel-wrapper">
+		<div class="slick-carousel js-carousel-secondary" role="region" aria-roledescription="carrousel">
+			{% for i in 1..24 %}
+				<div class="carousel__slide">
+					<a href="{{ routeTarget }}" class="carousel__slide-link">
+						<span class="sr-only">{{ 'bloc.list-related-documents.link-title'|trans({'%current%': i, '%nb%': 24, '%name%': 'Titre de Auteur'}) }}</span>
+					</a>
+					<div class="carousel__slide-image">
+						<img src="{{ asset(image) }}" class="img-fluid" alt="" />
 					</div>
-				{% endfor %}
-			</div>
+					<p class="n1 carousel__slide-title">Le Climat, les hommes et la mer</p>
+					<p class="n2 carousel__slide-subtitle">Cousin, Christophe</p>
+				</div>
+			{% endfor %}
 		</div>
 	</div>
 </div>
