@@ -312,8 +312,6 @@ bloc:
   carousel:               #Bloc 01 diaporama nouveautés et/ou articles
     title: Carousel d'actualités
     item_desciption: Actualité %index% sur %nb%, %title% %auteur%
-    page: Page %current% sur %nb%
-    btn_pause: Mettre en pause le carousel
   preview-thematic:       #Bloc 02 Découvrir les parcours
     discover-sr-only: 'Découvrir les parcours : %name%'
   preview-thematic-links: #Bloc 05 Accès rapide

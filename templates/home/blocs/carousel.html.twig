@@ -1,51 +1,27 @@
 <!-- Début - Bloc 1 diaporama nouveautés et/ou articles __ DOM supposé -->
 
-	<div class="carousel-secondary">
-		<div class="carousel-secondary__body">
-			<div class="carousel-wrapper">
-				<div class="slick-carousel" role="region" aria-roledescription="carrousel">
-					{% for i in 1..4 %}
-						<div class="slick-slide-content">
-							<a href="#" title="{{ 'bloc.carousel.item_desciption'|trans({'%index%': i ,'%nb%' : 24 , '%title%' : '*Insert titre*', '%auteur%' : '*Insert auteur*' }) }}">
-								<div>
-									<img src="{{ asset('images/couvertures-generiques/cg-image.svg') }}" alt="" class="img-fluid" />
-								</div>
-								<p>Titre</p>
-								<p>Auteur</p>
-							</a>
-						</div>
-					{% endfor %}
-				</div>
-			</div>
-		</div>
-	</div>
-
-<div class="carousel-primary d-none">	
-	<div class="carousel flickity-enabled is-draggable" tabindex="0" aria-label="{{ 'bloc.carousel.title'|trans }}">
-		<div class="flickity-viewport">
-			<div class="flickity-slider d-flex">
-				{% for i in 1..4 %}
-					<div class="carousel-cell is-selected">
-						<a href="#" aria-label="{{ 'bloc.carousel.item_desciption'|trans({'%index%': i ,'%nb%' : 24 , '%title%' : '*Insert titre*', '%auteur%' : '*Insert auteur*' }) }}" lang="fr">
-							<div>
-								<img src="https://via.placeholder.com/150x200" alt="">
-							</div>
-							<p>*Insert Titre*</p>
-							<p>*Insert auteur*</p>
-						</a>
+<div class="carousel carousel--primary">
+	<div class="carousel-wrapper">
+		<div class="slick-carousel js-carousel-primary" role="region" aria-roledescription="carrousel">
+			{% for i in 1..24 %}
+				<div class="carousel__slide">
+					<a href="#" class="carousel__slide-link">
+						<span class="sr-only">{{ 'bloc.carousel.item_desciption'|trans({'%index%': i ,'%nb%' : 24 , '%title%' : '*Insert titre*', '%auteur%' : '*Insert auteur*' }) }}</span>
+					</a>
+					<div class="carousel__slide-image">
+						<img src="{{ asset('images/couvertures-generiques/cg-video.svg') }}" class="img-fluid">
 					</div>
-				{% endfor %}
-			</div>
+					<p class="n1 carousel__slide-title">Le Climat, les hommes et la mer</p>
+					<p class="n2 carousel__slide-subtitle">Cousin, Christophe</p>
+				</div>
+			{% endfor %}
 		</div>
-		<!-- Customisation des boutons : DOM supposé. 
-		Informations : pagination, auto-play, défilement infini, limite d'éléments à 24 -->
-		<div class="button-group">
-			<button class="button is-selected" aria-label="{{ 'bloc.carousel.page'|trans({'%current%': 1, '%nb%' : 'X' }) }}"></button>
-			<button class="button" aria-label="{{ 'bloc.carousel.page'|trans({'%current%': 2, '%nb%' : 'X' }) }}"></button>
-			<button class="button" aria-label="{{ 'bloc.carousel.page'|trans({'%current%': 3, '%nb%' : 'X' }) }}"></button>
-			<button class="button" aria-label="{{ 'bloc.carousel.page'|trans({'%current%': 4, '%nb%' : 'X' }) }}"></button>
+
+		<div class="carousel__control">
+			<button class="carousel__button carousel__button--pause" type="button" aria-label="Mettre en pause le carousel">
+			</button>
 		</div>
 	</div>
-	<button type="button" aria-label="{{ 'bloc.carousel.btn_pause'|trans }}"><img src="https://via.placeholder.com/15x15" alt="" class="icone-play"/></button>
 </div>
+
 <!-- Fin - Bloc 1 diaporama nouveautés et/ou articles -->
