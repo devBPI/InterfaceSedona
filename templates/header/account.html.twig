@@ -10,7 +10,7 @@
 		</button>
 		<ul class="dropdown-menu account__list" aria-labelledby="dropdown-compte" role="listbox" tabindex="-1">
 			<li class="dropdown-item account__list-item" role="option"><a href="#">{{ 'header.account.logout'|trans }}</a></li>
-			<li class="dropdown-item account__list-item" role="option"><a href="#" title="{{ 'header.account.profile_title'|trans }} - {{ 'global.new-windows'|trans }}" target="_blank">{{ 'header.account.profile'|trans }}</a></li>
+			<li class="dropdown-item account__list-item" role="option"><a href="{{ path('user_personal_data') }}" title="{{ 'header.account.profile_title'|trans }}">{{ 'header.account.profile'|trans }}</a></li>
 		</ul>
 	</div>
 </div>
