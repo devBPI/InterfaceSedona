@@ -5,8 +5,12 @@
 .search-keyword {
 
 	&__group {
-		align-items: center;
-		margin-bottom: $spacer;
+		margin-bottom: $spacer*2;
+
+		@include media-breakpoint-up(sm) {
+			align-items: center;
+			margin-bottom: $spacer;
+		}
 
 		&:last-child {
 			margin-bottom: 0;
@@ -14,16 +18,11 @@
 	}
 
 	&__condition {
-		margin-bottom: 5px;
-
-		@include media-breakpoint-up(sm) {
-			margin-bottom: 0;
-		}
 	}
 
 	&__input {
 		flex: 1;
-		margin-bottom: 5px;
+		margin-bottom: 15px;
 		padding-left: 0;
 
 		@include media-breakpoint-up(sm) {
@@ -41,13 +40,32 @@
 	}
 
 	&__button {
-		width: 20px;
-		height: 20px;
 		background-image: url('/images/icones/icone-bouton-plus.svg');
-		background-position: center center;
-		background-size: contain;
+		background-position: right center;
+		background-size: 20px;
 		background-repeat: no-repeat;
-		padding: 0;
+		padding: 0 30px 0 0;
+		margin-top: 10px;
+
+		@include media-breakpoint-up(sm) {
+			margin-top: 0;
+			width: 20px;
+			height: 20px;
+		}
+
+		span {
+
+			@include media-breakpoint-up(sm) {
+				position: absolute;
+				width: 1px;
+				height: 1px;
+				padding: 0;
+				overflow: hidden;
+				clip: rect(0, 0, 0, 0);
+				white-space: nowrap;
+				border: 0;
+			}
+		}
 
 		&--remove {
 			background-image: url('/images/icones/icone-bouton-moins.svg');
