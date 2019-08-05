@@ -10,7 +10,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class UserController extends AbstractController
 {
     /**
-     * @Route("/login", methods={"GET","HEAD"}, name="user_login")
+     * @Route("/authentification", methods={"GET","HEAD"}, name="user_login")
      */
     public function loginAction(Request $request)
     {
@@ -18,7 +18,7 @@ class UserController extends AbstractController
     }
 
     /**
-     * @Route("/donnees-personnelles", methods={"GET","HEAD"}, name="user_personal_data")
+     * @Route("/compte", methods={"GET","HEAD"}, name="user_personal_data")
      */
     public function personalDataAction(Request $request)
     {

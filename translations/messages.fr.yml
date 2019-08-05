@@ -4,6 +4,7 @@ global:
   modal-close: Fermer cette fenêtre
   modal-cancel: Annuler
   list-ordering: ": activer pour trier par ordre ascendant/descendant"
+  site-title: "| Catalogue Bpi"
 
 header:
   logo_title: Aller à l'accueil du catalogue Bibliothèque Publique d'Information Centre Pompidou
@@ -261,13 +262,13 @@ page:
   thematic:
     theme: Les thèmes les plus consultés
   authority:
-    title: Fiche d'autorité %author%
+    title: Autorité %author%
   bibiographic:
-    title: Notice Bibliographique %title%
+    title: Document %title%
   search:
-    title: Résultat de recherche
+    title: Résultats recherche - %termes% - page %currentPage% sur %nbPage%
   login:
-    title: Se connecter
+    title: Authentification
     login: Adresse e-mail
     password: Mot de passe
     remember-me: Se souvenir

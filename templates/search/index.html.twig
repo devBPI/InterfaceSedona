@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}{{ 'page.search.title'|trans }}{% endblock %}
+{% block title %}{{ 'page.search.title'|trans({'%termes%': 'mot clé saisie dans la recherche', '%currentPage%': '2', '%nbPage%': '5'}) }}{% endblock %}
 
 {% block searchextended %}
 
@@ -83,9 +83,6 @@
 								<div class="availability availability--false availability--rayon">
 									<p class="availability__status"><span>{{ 'bloc.notice-simple.document-unavailable'|trans }}</span> - En commande</p>
 									<button class="btn list-result__content-button" data-toggle="modal" data-target="#modal-notified"><img src="{{ asset('images/icones/icone-enveloppe.svg') }}" alt="" class="icone-enveloppe"/> <span class="sr-only">Document indisponible, être prévenu de son retour en rayon - ouverture formulaire</span></button>
-								</div>
-
-								<div lang="fr" class="list-result__content-state d-flex align-items-center">
 								</div>
 
 								<p lang="fr">{{ 'bloc.notice-simple.last-publication'|trans({'%number%': 110, '%pulication-date%': 'Janvier 2018'}) }}</p>
