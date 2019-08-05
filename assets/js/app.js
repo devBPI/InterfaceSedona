@@ -70,6 +70,15 @@ $('.carousel__button').on('click', function() {
 	}
 });
 
+// Correctif suivant retours RGAA
+$(".js-carousel-primary .slick-slide").removeAttr("role");
+$(".carousel__pagination").attr("aria-label", "Choix d'un groupe d'actualités à afficher");
+
+$('.js-carousel-primary').on('afterChange', function(slick, currentSlide){
+  $('.carousel__pagination li').attr("aria-selected", "false");
+  $('.carousel__pagination li.slick-active').attr("aria-selected", "true");
+});
+
 // Configuration Carousel Secondary (Notices)
 $('.js-carousel-secondary').slick({
 	infinite: false,

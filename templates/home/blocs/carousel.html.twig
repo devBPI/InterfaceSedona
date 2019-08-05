@@ -2,6 +2,12 @@
 
 <div class="carousel carousel--primary">
 	<div class="carousel-wrapper">
+		
+		<div class="carousel__control">
+			<button class="carousel__button carousel__button--pause" type="button" aria-label="Mettre en pause le carousel">
+			</button>
+		</div>
+
 		<div class="slick-carousel js-carousel-primary" role="region" aria-roledescription="carrousel">
 			{% for i in 1..24 %}
 				<div class="carousel__slide">
@@ -15,11 +21,6 @@
 					<p class="n2 carousel__slide-subtitle">Cousin, Christophe</p>
 				</div>
 			{% endfor %}
-		</div>
-
-		<div class="carousel__control">
-			<button class="carousel__button carousel__button--pause" type="button" aria-label="Mettre en pause le carousel">
-			</button>
 		</div>
 	</div>
 </div>
