@@ -22,6 +22,8 @@ class SearchController extends AbstractController
      */
     public function searchAllAction(Request $request)
     {
+        // TODO: controleur provisoire destiné a afficher une mise en page spécifique
+
         return $this->render('search/search-all.html.twig', ['toolbar'=> 'search']);
     }
 
