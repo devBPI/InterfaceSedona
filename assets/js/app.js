@@ -14,7 +14,6 @@ const $ = require('jquery');
 require('bootstrap');
 require('slick-carousel');
 
-console.log('test');
 
 $('[data-toggle="tooltip"]').tooltip({
 	trigger: 'click',
@@ -103,4 +102,17 @@ $('.js-carousel-secondary').slick({
 			}
 		}
 	]
+});
+
+// Bouton "Voir plus" / "Voir moins"
+$('.btn-see-more').on('click', function() {
+	if( $(this).hasClass('btn-see-more--more') ) {
+		$(this).text('Voir moins');
+		$(this).removeClass('btn-see-more--more')
+		$(this).addClass('btn-see-more--less');
+	} else {
+		$(this).text('Voir plus');
+		$(this).removeClass('btn-see-more--less')
+		$(this).addClass('btn-see-more--more');
+	}
 });
