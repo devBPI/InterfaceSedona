@@ -6,13 +6,13 @@
 
 			<div class="list-result__header">
 				{# Include header - Documents en rayon #}
-				{% include "search/blocs/results/docs-header.html.twig" with {'type': 'rayon'} %}
+				{% include "search/blocs-results/docs-header.html.twig" with {'type': 'rayon'} %}
 			</div>
 
 			<div class="list-result__content">
 				{% for i in 1..10 %}
 					{# Include résultat - Documents en rayon #}
-					{% embed "search/blocs/results/docs.html.twig" with {'type': 'rayon', 'mode': 'full'} %}
+					{% embed "search/blocs-results/docs-detail.html.twig" with {'type': 'rayon', 'mode': 'full'} %}
 						{% block availability %}
 							<p lang="fr">Presses universitaires du Mirail</p>
 							<p lang="fr">1988 - 2018</p>

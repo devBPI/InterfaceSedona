@@ -6,21 +6,21 @@
 
 	<div class="row justify-content-sm-between">
 		<div class="col-12 col-sm-auto">
-			{% include "search/blocs/search-corrector.html.twig" %}
+			{% include "search/blocs-searchextended/search-corrector.html.twig" %}
 		</div>
 		
 		<div class="col-auto">
-			{% include "search/blocs/related-topics.html.twig" %}
+			{% include "search/blocs-searchextended/related-topics.html.twig" %}
 		</div>
 
 		<div class="col-auto">
-			{% include "search/blocs/relaunch-search.html.twig" %}
+			{% include "search/blocs-searchextended/relaunch-search.html.twig" %}
 		</div>
 	</div>
 
 	<div class="row mb-3">
 		<div class="col-12 col-sm-10 pr-sm-0">
-			{% include "search/blocs/filters-search.html.twig" %}
+			{% include "search/blocs-searchextended/filters-search.html.twig" %}
 		</div>
 
 		<div class="col-12 col-sm-2 pl-sm-0">
@@ -37,12 +37,12 @@
 {% block body %}
 
 	<div class="row search-result">
-		{% include "search/blocs/results/preview-authority.html.twig" %}
+		{% include "search/blocs-results/preview-authority.html.twig" %}
 	</div>
 
 	<div class="row">
 		{# Include Nombre item #}
-		{% include "search/blocs/header-search.html.twig" %}
+		{% include "search/blocs-results/search-header.html.twig" %}
 	</div>
 
 	<div class="row">
@@ -55,13 +55,13 @@
 
 				<div class="list-result__header">
 					{# Include header - Documents en rayon #}
-					{% include "search/blocs/results/docs-header.html.twig" with {'type': 'rayon'} %}
+					{% include "search/blocs-results/docs-header.html.twig" with {'type': 'rayon'} %}
 				</div>
 
 				<div class="list-result__content">
 					{% for i in 1..10 %}
 						{# Include résultat - Documents en rayon #}
-						{% embed "search/blocs/results/docs.html.twig" with {'type': 'rayon'} %}
+						{% embed "search/blocs-results/docs-detail.html.twig" with {'type': 'rayon'} %}
 							{% block availability %}
 								<p lang="fr">Presses universitaires du Mirail</p>
 								<p lang="fr">1988 - 2018</p>
@@ -102,13 +102,13 @@
 
 				<div class="list-result__header">
 					{# Include header - Documents en ligne #}
-					{% include "search/blocs/results/docs-header.html.twig" with {'type': 'online'} %}
+					{% include "search/blocs-results/docs-header.html.twig" with {'type': 'online'} %}
 				</div>
 
 				<div class="list-result__content">
 					{% for i in 1..10 %}
 						{# Include résultat - Documents en ligne #}
-						{% embed "search/blocs/results/docs.html.twig" with {'type': 'online'} %}
+						{% embed "search/blocs-results/docs-detail.html.twig" with {'type': 'online'} %}
 							{% block availability %}
 								<p lang="fr">CNRS</p>
 								<p lang="fr">1999 - résumé <button class="list-result__content-resume" type="button" data-toggle="tooltip" title="Effet de serre, réchauffement climatique, paléoclimatologie...exemples de questions traitées dans ce dossier multimédia et auxquelles répondent des chercheurs du CNRS et de l'INSU. Pour tous, du lecteur curieux au public averti."><img src="{{ asset('images/icones/icone-resume.svg') }}" alt="" /><span class="sr-only">Afficher le résumé</span></button></p>
@@ -134,7 +134,7 @@
 
 	<div class="row">
 		{# Include Pagination #}
-		{% include "search/blocs/footer-search.html.twig" %}
+		{% include "search/blocs-results/search-footer.html.twig" %}
 	</div>
 
 	<!-- Include modal formulaire pour être prevenu du retour du document en rayon -->

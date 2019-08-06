@@ -60,20 +60,4 @@ class RecordController extends AbstractController
 
         return $this->renderPrint($content,'authority'.date('Y-m-d_h-i-s'), $format );
     }
-
-    /**
-     * @Route("/partager", methods={"GET","HEAD"}, name="record_share")
-     */
-    public function shareAction(Request $request)
-    {
-        return $this->render('record/share.html.twig', []);
-    }
-
-    /**
-     * @Route("/exporter", methods={"GET","HEAD"}, name="record_export")
-     */
-    public function exportAction(Request $request)
-    {
-        return $this->render('record/export.html.twig', []);
-    }
 }

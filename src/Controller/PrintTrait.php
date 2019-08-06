@@ -7,6 +7,10 @@ namespace App\Controller;
 use Spipu\Html2Pdf\Html2Pdf;
 use Symfony\Component\HttpFoundation\Response;
 
+/**
+ * Trait PrintTrait
+ * @package App\Controller
+ */
 trait PrintTrait
 {
 

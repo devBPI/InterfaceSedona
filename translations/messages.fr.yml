@@ -3,6 +3,7 @@ global:
   form-mandatory-field: champs obligatoires
   modal-close: Fermer cette fenêtre
   modal-cancel: Annuler
+  modal-btn-close: Fermer
   list-ordering: ": activer pour trier par ordre ascendant/descendant"
   site-title: "| Catalogue Bpi"
 
@@ -298,7 +299,7 @@ bloc:
     print: Imprimer
     share: Partager
     help: Aide
-    other_search:
+    help_search:
     suggest: Suggestion d'achats
     report-error: Signaler une erreur
   search-zone:            #Bloc B  Zone de recherche simple

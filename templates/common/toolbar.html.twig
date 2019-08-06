@@ -50,7 +50,7 @@
 			</button>
 		</li>
 		<li class="toolbar__item">
-			<a href="{{ path('other_search') }}" title="{{ 'bloc.toolbar.help'|trans }} - {{ 'global.new-windows'|trans }}" target="_blank">
+			<a href="{{ path('help_search') }}" title="{{ 'bloc.toolbar.help'|trans }} - {{ 'global.new-windows'|trans }}" target="_blank">
 				<img src="{{ asset('images/icones/icone-aide.svg') }}" alt="" class="icone-interrogation"/>
 				<span>{{ 'bloc.toolbar.help'|trans }}</span>
 			</a>
@@ -74,12 +74,12 @@
 
 {% include "user/modal/list_add.html.twig" %}
 
-{% include "record/export.html.twig" %}
+{% include "common/modal/export.html.twig" %}
 
-{% if printRoute is defined %}{% include "record/print.html.twig" %}{% endif %}
+{% if printRoute is defined %}{% include "common/modal/print.html.twig" %}{% endif %}
 
-{% include "record/share.html.twig" %}
+{% include "common/modal/share.html.twig" %}
 
-{% include "user/modal/suggestion.html.twig" %}
+{% include "common/modal/suggestion.html.twig" %}
 
-{% include "user/modal/report-error.html.twig" %}
+{% include "common/modal/report-error.html.twig" %}
