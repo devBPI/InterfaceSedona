@@ -124,6 +124,7 @@
 		position: absolute;
 		bottom: 0;
 		right: 0;
+		width: 15px;
 		height: 15px;
 		margin-right: $spacer;
 		margin-bottom: 5px;
@@ -137,9 +138,13 @@
 		height: 15px;
 		border: 1px solid transparent;
 		padding: 0;
+		position: absolute;
+		top: 0;
+		left: 0;
 		background-position: center center;
 		background-repeat: no-repeat;
 		background-size: contain;
+		background-color: transparent;
 
 		&--play {
 			background-image: url('/images/icones/icone-play.svg');
