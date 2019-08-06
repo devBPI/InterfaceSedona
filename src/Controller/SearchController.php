@@ -3,6 +3,7 @@
 
 namespace App\Controller;
 
+use Spipu\Html2Pdf\Html2Pdf;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -10,6 +11,8 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class SearchController extends AbstractController
 {
+    use PrintTrait;
+
     /**
      * @Route("/recherche", methods={"GET","HEAD"}, name="search")
      */
@@ -38,20 +41,12 @@ class SearchController extends AbstractController
      */
     public function printAction(Request $request, $format)
     {
-        $html = $this->renderView("search/index.pdf.twig", [
-            'toolbar'       => 'search',
-            'printRoute'    => $this->generateUrl('record_authority_pdf')
+        $content = $this->renderView("search/index.".($format == 'txt' ? 'txt': 'pdf').".twig", [
+            'isPrintLong'   => $request->get('print-type', 'print-long') == 'print-long',
+            'includeImage'  => $request->get('print-image', null) == 'print-image',
         ]);
-        if ($format == 'html') {
-            return new Response($html);
-        } elseif ($format == 'txt') {
-            return new Response($html,200,[
-                'Content-Type' => 'application/force-download',
-                'Content-Disposition' => 'attachment; filename="recherche_'.date('Y-m-d_h-i-s').'.txt"'
-            ]);
-        }
-        return new Response($html);
 
+        return $this->renderPrint($content,'search'.date('Y-m-d_h-i-s'), $format );
     }
 
     /**

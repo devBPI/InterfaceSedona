@@ -107,7 +107,7 @@
         "version": "v1.0.1"
     },
     "doctrine/migrations": {
-        "version": "v2.1.0"
+        "version": "2.1.1"
     },
     "doctrine/orm": {
         "version": "v2.6.3"
@@ -135,6 +135,18 @@
     },
     "fig/link-util": {
         "version": "1.0.0"
+    },
+    "friendsofsymfony/jsrouting-bundle": {
+        "version": "2.3",
+        "recipe": {
+            "repo": "github.com/symfony/recipes-contrib",
+            "branch": "master",
+            "version": "2.3",
+            "ref": "a9f2e49180f75cdc71ae279a929c4b2e0638de84"
+        },
+        "files": [
+            "config/routes/fos_js_routing.yaml"
+        ]
     },
     "guzzlehttp/guzzle": {
         "version": "6.3.3"
@@ -254,6 +266,9 @@
         "files": [
             "config/packages/sensio_framework_extra.yaml"
         ]
+    },
+    "spipu/html2pdf": {
+        "version": "v5.2.1"
     },
     "swiftmailer/swiftmailer": {
         "version": "v6.2.0"
@@ -439,6 +454,9 @@
             "config/packages/security.yaml"
         ]
     },
+    "symfony/serializer": {
+        "version": "v3.4.30"
+    },
     "symfony/stopwatch": {
         "version": "v3.4.24"
     },
@@ -530,6 +548,9 @@
     "symfony/yaml": {
         "version": "v3.4.24"
     },
+    "tecnickcom/tcpdf": {
+        "version": "6.2.26"
+    },
     "twig/extensions": {
         "version": "1.0",
         "recipe": {
@@ -544,6 +565,9 @@
     },
     "twig/twig": {
         "version": "v2.7.4"
+    },
+    "willdurand/jsonp-callback-validator": {
+        "version": "v1.1.0"
     },
     "zendframework/zend-code": {
         "version": "3.3.1"
