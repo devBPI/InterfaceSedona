@@ -1,23 +1,36 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Fiche d'autorité *Insert nom auteur*{% endblock %}
+{% block title %}{{ 'page.authority.title'|trans({'%author%': '*Insert nom auteur*'}) }}{% endblock %}
 
 {% block body %}
 
-	<div>
-		{% include "record/authority/results-navigation.html.twig" %}
-	</div>
+	<div class="authority-result">
 
-	<div>
-		{% include "record/authority/result-informations.html.twig" %}
-	</div>
+		<div class="row justify-content-between">
+			{% include "record/blocs/results-navigation.html.twig" with {'routeTarget': path('record_authority') } %}
+		</div>
 
-	<div>
-		{% include "record/authority/list-related-documents.html.twig" %}
-	</div>
+		<div class="row">
+			{% include "record/blocs/detail-authority.html.twig" %}
+		</div>
 
-	<div>
-		{% include "record/authority/index.html.twig" %}
+		<div class="row authority-document">
+			<!-- Début - Bloc 19 Liste de documents  -->
+			<div class="col-12">
+				<ul class="authority-document__list">
+					<li class="authority-document__item"><a href="#carousel-auteur">{{ 'bloc.list-related-documents.carousel-auteur'|trans }}</a></li>
+					<li class="authority-document__item"><a href="#carousel-sujets">{{ 'bloc.list-related-documents.carousel-sujets'|trans }}</a></li>
+				</ul>
+			</div>
+			{% include "record/blocs/list-related-documents.html.twig" with {'type': 'auteur', 'routeTarget': path('record_authority') , 'image': 'images/couvertures-generiques/cg-livre.svg' } %}
+			{% include "record/blocs/list-related-documents.html.twig" with {'type': 'sujets', 'routeTarget': path('record_bibliographic') , 'image': 'images/couvertures-generiques/cg-image.svg' } %}
+			<!-- Fin - Bloc 19 Liste de documents  -->
+		</div>
+
+		<div class="row">
+			{% include "record/blocs/index-browsing.html.twig" %}
+		</div>
+
 	</div>
 
 {% endblock %}

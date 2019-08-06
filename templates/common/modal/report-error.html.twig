@@ -1,0 +1,11 @@
+{# Adresse d'envoi du formulaire : catalogue.public@bpi.fr #}
+
+<!-- Début - Modal 09 signaler une erreur -->
+<div role="dialog" aria-modal="true" aria-labelledby="modal-report-title" class="modal fade" id="modal-report">
+	<div class="modal-dialog modal-dialog-centered">
+		<div class="modal-content">
+			{{ render(controller('App\\Controller\\CommonController::reportErrorAction')) }}
+		</div>
+	</div>
+</div>
+<!-- Fin - Modal 09 signaler une erreur -->

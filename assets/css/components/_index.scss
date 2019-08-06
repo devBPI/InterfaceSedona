@@ -1,0 +1,100 @@
+// -------------------------------
+// Feuilletage d'index
+// -------------------------------
+
+.index {
+	padding-top: 25px;
+	@extend .border-double;
+	background-position: 0 top;
+
+	&__header {
+
+		@include media-breakpoint-up(sm) {
+			display: flex;
+			align-items: baseline;
+		}
+
+		a {
+			margin-bottom: $spacer;
+			display: inline-block;
+
+			@include media-breakpoint-up(sm) {
+				margin-bottom: 0;
+			}
+		}
+	}
+
+	&__title {
+		margin-right: $spacer;
+	}
+
+	&__button {
+		padding: 0 5px;
+
+		img {
+			height: 13px;
+			margin: 0 10px;
+		}
+
+		&--top {
+			margin-bottom: 5px;
+			
+			img {
+				transform: rotate(90deg);
+			}
+		}
+
+		&--bottom {
+			margin-top: 5px;
+			
+			img {
+				transform: rotate(-90deg);
+			}
+		}
+
+		&:hover {
+			color: $red;
+			text-decoration: underline;
+		}
+	}
+
+	&__content {
+		text-align: center;
+	}
+
+	&__list {
+		list-style-type: none;
+		margin: 0;
+		padding: $spacer 0;
+		text-align: left;
+		border-top: $border-default;
+		border-bottom: $border-default;
+	}
+
+	&__item {
+		padding: 3px 5px;
+
+		a {
+			display: block;
+		}
+
+		&--current {
+			background-color: $grey-footer;
+
+			p {
+				margin-bottom: 0;
+
+				&:focus {
+					outline: $outline;
+				}
+			}
+
+			img {
+				height: 11px;
+				transform: scaleX(-1);
+				margin-right: 5px;
+				margin-top: -2px;
+			}
+		}
+	}
+}

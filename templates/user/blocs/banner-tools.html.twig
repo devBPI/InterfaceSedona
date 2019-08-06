@@ -1,34 +1,39 @@
 <!-- Début - Bloc 24 Barre des tâches -->
-
-<div>
-	<div>
-		<div class="form-check">
-			<input class="form-check-input" type="checkbox" id="account-select-all">
-			<label class="form-check-label" for="account-select-all">Tout sélectionner</label>
+<div class="col-12 col-md-auto">
+	<div class="banner-tools__list">
+		<div class="form-check banner-tools__link">
+			<input class="form-check-input" type="checkbox" id="account-{{ type }}-select-all">
+			<label class="form-check-label" for="account-{{ type }}-select-all">{{ 'bloc.banner-tools.select-all'|trans }}</label>
 		</div>
-		<a href="#">Annuler la sélection</a>
-
-		<div>
-			<p>Listes sélectionnées <span>(123)</span></p>
-			<p>Documents sélectionnés <span>(123)</span></p>
-		</div>
-
-		<div>
-			<ul>
-				<li>
-					<a href="#">Ajouter à <span class="sr-only">une liste</span><img src="https://via.placeholder.com/15x15" alt="" class="icone-caret"/></a>
-				</li>
-				<li>
-					<a href="#">Monter <span class="sr-only">la liste</span><img src="https://via.placeholder.com/15x15" alt="" class="icone-caret"/></a>
-				</li>
-				<li>
-					<a href="#">Descendre <span class="sr-only">la liste</span><img src="https://via.placeholder.com/15x15" alt="" class="icone-caret"/></a>
-				</li>
-				<li>
-					<a href="{{ path('user_list_remove') }}">Supprimer <span class="sr-only">la liste</span><img src="https://via.placeholder.com/15x15" alt="" class="icone-croix"/></a>
-				</li>
-			</ul>
-		</div>
+		<a href="#" class="banner-tools__link">{{ 'bloc.banner-tools.select-cancel'|trans }}</a>
 	</div>
+</div>
+
+<div class="col-12 col-md-auto">
+	<div class="banner-tools__list">
+		<p class="banner-tools__infos">{{ 'bloc.banner-tools.selected-list'|trans }} <span>(123)</span></p>
+		<p class="banner-tools__infos">{{ 'bloc.banner-tools.selected-document'|trans }} <span>(123)</span></p>
+	</div>
+</div>
+
+<div class="col-12 col-md-auto">
+	<ul class="banner-tools__list mb-0">
+		<li class="banner-tools__item banner-tools__item-add">
+			<button class="btn" data-target="#modal-list-add" data-toggle="modal">{{ 'bloc.banner-tools.list-add'|trans }} <span class="sr-only">{{ 'bloc.banner-tools.list-name'|trans }}</span><img src="{{ asset('images/icones/icone-caret-bas.svg') }}" alt="" class="icone-caret"/></button>
+		</li>
+		<li class="banner-tools__item banner-tools__item-top">
+			<button class="btn">{{ 'bloc.banner-tools.list-up'|trans }} <span class="sr-only">{{ 'bloc.banner-tools.list-name'|trans }}</span><img src="{{ asset('images/icones/icone-caret-bas.svg') }}" alt="" class="icone-caret"/></button>
+		</li>
+		<li class="banner-tools__item banner-tools__item-bottom">
+			<button class="btn">{{ 'bloc.banner-tools.list-down'|trans }} <span class="sr-only">{{ 'bloc.banner-tools.list-name'|trans }}</span><img src="{{ asset('images/icones/icone-caret-bas.svg') }}" alt="" class="icone-caret"/></button>
+		</li>
+		<li class="banner-tools__item banner-tools__item-btn">
+			<button class="btn" data-target="#modal-list-remove" data-toggle="modal">{{ 'bloc.banner-tools.list-remove'|trans }} <span class="sr-only">{{ 'bloc.banner-tools.list-name'|trans }}</span><img src="{{ asset('images/icones/icone-croix-noire.svg') }}" alt="" class="icone-croix"/></button>
+		</li>
+	</ul>
+</div>
+
+<div class="col-12">
+	<hr class="border-thin">
 </div>
 <!-- Fin - Bloc 24 Barre des tâches -->

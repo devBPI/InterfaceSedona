@@ -1,0 +1,20 @@
+<!-- Début - Bloc 11 Aperçu d'une autorité -->
+
+{% include "search/blocs-results/preview-authority_related-notice.html.twig" with {'i':0, 'level': 1 } %}
+
+<div class="col-12">
+	<div class="search-result__collapse">
+		<button class="search-result__button btn btn-see-more btn-see-more--more" type="button" data-toggle="collapse" data-target="#related-notices" aria-expanded="false" aria-controls="related-notices">{{ 'bloc.preview-authority.see-more'|trans }}</button>
+		{# Include collapse notices d'autorité - Affiche les 5 notices d'autorité les plus pertinentes #}
+		<div id="related-notices" class="collapse pt-3">
+			{# Demande BPI concernant l'affichage souhaité pour les 5 notices #}
+			{% for i in 1..5 %}
+				<div class="row search-result__collapse-item">
+					{% include "search/blocs-results/preview-authority_related-notice.html.twig" with {'level': 2 } %}
+				</div>
+			{% endfor %}
+		</div>
+	</div>
+</div>
+
+<!-- Fin - Bloc 11 Aperçu d'une autorité -->

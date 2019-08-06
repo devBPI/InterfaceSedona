@@ -1,0 +1,84 @@
+// -------------------------------
+// Disponibilité
+// -------------------------------
+
+.availability {
+	padding-left: $spacer;
+	
+	&--true,
+	&--false {
+
+		&:before {
+			content: '';
+			position: absolute;
+			width: 10px;
+			height: 16px;
+			top: 0;
+			left: 0;
+			margin-top: 18px;
+			background-size: contain;
+			background-position: center top;
+			background-repeat: no-repeat;
+		}
+	}
+
+	&__status {	
+		position: relative;
+		margin-bottom: 0;
+
+		&:before {
+			content: '';
+			position: absolute;
+			width: 10px;
+			height: 16px;
+			top: 0;
+			left: 0;
+			margin-top: 3px;
+			margin-left: -$spacer;
+			background-size: contain;
+			background-position: center top;
+			background-repeat: no-repeat;
+		}
+	}
+
+	&--true {
+
+		.availability__status {
+
+			&:before {
+				background-image: url('/images/icones/icone-map-vert.svg');
+			}
+		}
+	}
+
+	&--false {
+		display: flex;
+		align-items: center;
+
+		.availability__status {
+
+			&:before {
+				background-image: url('/images/icones/icone-map-rouge.svg');
+			}
+		}
+	}
+
+	&__place {
+		margin-bottom: $spacer;
+	}
+
+	&__button {
+		margin-top: -20px;
+	}
+
+	.list-result {
+
+		.availability__button {
+			margin-top: 0;
+		}
+	}
+
+	&--online {
+		padding-left: 0;
+	}
+}

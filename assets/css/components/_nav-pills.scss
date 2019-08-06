@@ -1,0 +1,45 @@
+// -------------------------------
+// Nav Pills
+// -------------------------------
+
+.nav-pills {
+	margin-bottom: $spacer;
+
+	.nav {
+
+		&-item {
+			border: $border-thin;
+			border-bottom: 0;
+			min-width: 100%;
+			flex: 0 0 100%;
+			position: relative;
+
+			@include media-breakpoint-up(sm) {
+				border-bottom: $border-thin;
+				flex: 1 1 auto;
+				min-width: auto;
+				margin-bottom: -1px;
+				margin-right: -1px;
+			}
+
+			&:last-child {
+				border-bottom: $border-thin;
+
+				@include media-breakpoint-up(sm) {
+					border-right: $border-thin;
+				}
+			}
+
+			.dropdown-menu {
+				min-width: 100%;
+			}
+		}
+
+		&-link {
+
+			&:focus {
+				outline-offset: -3px;
+			}
+		}
+	}
+}

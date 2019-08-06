@@ -1,0 +1,52 @@
+
+<div class="col-12">
+	<div>
+		<input type="checkbox" id="related-notice-result-{{ i }}">
+		<label for="related-notice-result-{{ i }}"><span class="sr-only">{{ 'bloc.preview-authority.first'|trans({'%%name%': '*Insert titre*'}) }}</span></label>
+	</div>
+</div>
+
+<div class="col-12 col-md-2">
+	<div class="search-result__image">
+		<img src="{{ asset('images/types-autorite/autorite-personne.svg') }}" alt="" class="img-fluid" />
+	</div>
+</div>
+
+<div class="col-12 col-md-10">
+	{% if level == 2 %}<div class="search-result__body">{% endif %}
+	<h{{ level }} lang="fr" class="n{{ level }} search-result__title">
+		<a href="{{ path('record_authority') }}" title="*Insert Name identité* - {{ 'global.new-windows'|trans }}">*Insert Name identité* <span class="n2">(*Insert date debut-fin*)</span></a>
+	</h{{ level }}>
+	<ul class="list-information search-result__list">
+		<li class="list-information__item">
+			<span class="list-information__label">Type d'autorité :</span>
+			<ul class="list-information__sub-list" lang="fr">
+				<li class="list-information__sub-item">Personne</li>
+			</ul>
+		</li>
+		<li class="list-information__item">
+			<ul class="list-information__sub-list" lang="fr">
+				<li class="list-information__sub-item">05/08/1850 - 06/07/1893</li>
+			</ul>
+		</li>
+		<li class="list-information__item">
+			<span class="list-information__label">Pays :</span>
+			<ul class="list-information__sub-list" lang="fr">
+				<li class="list-information__sub-item">France</li>
+			</ul>
+		</li>
+		<li class="list-information__item">
+			<span class="list-information__label">Langue(s) :</span>
+			<ul class="list-information__sub-list" lang="fr">
+				<li class="list-information__sub-item">français</li>
+			</ul>
+		</li>
+		<li class="list-information__item">
+			<span class="list-information__label">Activité(s) principale(s) :</span>
+			<ul class="list-information__sub-list" lang="fr">
+				<li class="list-information__sub-item">Écrivain</li>
+			</ul>
+		</li>
+	</ul>
+	{% if level == 2 %}</div>{% endif %}
+</div>

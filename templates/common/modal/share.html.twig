@@ -1,0 +1,100 @@
+<!-- Début - Modal 07 partage -->
+<div role="dialog" aria-modal="true" aria-labelledby="modal-share-title" class="modal fade" id="modal-share">
+	<div class="modal-dialog modal-dialog-centered">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h1 class="n1 modal-header__title" id="modal-share-title">{{ 'modal.share.title'|trans }}</h1>
+				<button class="close" type="button" aria-label="{{ 'global.modal-close'|trans }}" data-dismiss="modal">
+					<span aria-hidden="true" class="sr-only">X</span>
+					<img src="{{ asset('images/icones/icone-croix-blanc.svg') }}" alt="" />
+				</button>
+			</div>
+			
+			<div class="modal-body">
+				{# Boutons RS générer par AddThis, DOM susceptible : #}
+				<div>
+					<div>
+						<div>
+							<a role="button" tabindex="1">
+								<span class="sr-only">Partager sur Facebook</span>
+								<span>*Insert icone Facebook*</span>
+								<span>Facebook</span>
+							</a>
+							<a role="button" tabindex="1">
+								<span class="sr-only"></span>
+								<span>*Insert icone Twitter*</span>
+								<span>Twitter</span>
+							</a>
+							<a role="button" tabindex="1">
+								<span class="sr-only"></span>
+								<span>*Insert icone LinkedIn*</span>
+								<span>LinkedIn</span>
+							</a>
+							<a role="button" tabindex="1">
+								<span class="sr-only"></span>
+								<span>*Insert icone Pinterest*</span>
+								<span>Pinterest</span>
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="modal-body">
+				<h2 class="n1">{{ 'modal.share.subtitle-1'|trans }}</h2>
+				<div class="d-flex">
+					<label for="url-page" class="sr-only">{{ 'modal.share.url-page'|trans }}</label>
+					<input type="text" class="form-control" id="url-page">
+					<button type="button" class="btn btn-primary">{{ 'modal.share.btn-cpoy'|trans }}<span class="sr-only"> {{ 'modal.share.btn-cpoy-sr-only'|trans }}</span></button>
+				</div>
+			</div>
+			
+			<form class="modal-form">
+				<div class="modal-body">
+					<h2 class="n1">{{ 'modal.share.subtitle-2'|trans }}</h2>
+
+					<small class="modal-form__indication">* {{ 'global.form-mandatory-field'|trans }}</small>
+					
+					<div class="form-group row align-items-center">
+						<label class="col-12 col-sm-4" for="share-send-expeditor">{{ 'modal.share.field.expeditor'|trans }} <span>*</span></label>
+						<div class="col-12 col-sm-8">
+							<input type="email" class="form-control" id="share-send-expeditor" required autocomplete="email">
+						</div>
+					</div>
+
+					<div class="form-group row align-items-center">
+						<label class="col-12 col-sm-4" for="share-send-recipient">{{ 'modal.share.field.recipient'|trans }} <span>*</span></label>
+						<div class="col-12 col-sm-8">
+							<input type="email" class="form-control" id="share-send-recipient" required autocomplete="email">
+						</div>
+					</div>
+
+					<div class="form-group row align-items-center">
+						<label class="col-12 col-sm-4" for="share-send-title">{{ 'modal.share.field.title'|trans }} <span>*</span></label>
+						<div class="col-12 col-sm-8">
+							<input type="text" class="form-control" id="share-send-title" required>
+						</div>
+					</div>
+
+					<div class="form-group row align-items-center">
+						<label class="col-12 col-sm-4" for="share-send-text">{{ 'modal.share.field.text'|trans }}</label>
+						<div class="col-12 col-sm-8">
+							<textarea class="form-control" id="share-send-text" rows="3"></textarea>
+						</div>
+					</div>
+
+					<div>
+						<i>*Insert captcha*</i>	
+					</div>
+				</div>
+
+				<div class="modal-footer">
+					<button type="button" data-dismiss="modal" class="btn btn-lg btn-secondary">{{ 'global.modal-cancel'|trans }}</button>
+					<button type="submit" class="btn btn-lg btn-primary">{{ 'modal.share.submit'|trans }}</button>
+				</div>
+			</form>
+
+		</div>
+	</div>
+</div>
+<!-- Début - Modal 07 fin -->

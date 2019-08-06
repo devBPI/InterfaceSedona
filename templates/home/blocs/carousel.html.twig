@@ -1,31 +1,29 @@
-<!-- Début - Bloc 1 diaporama nouveautés et/ou articles __ DOM supposé -->
-{% if carousel.elements|length > 0 %}
-    <div class="carousel flickity-enabled is-draggable" tabindex="0" aria-label="{{ 'bloc.carousel.title'|trans }}">
-        <div class="flickity-viewport">
-            <div class="flickity-slider">
-                {% for item in carousel.elements %}
-                    <div class="carousel-cell{% if loop.first %} is-selected{% endif %}">
-                        <a href="{{ item.link }}" aria-label="{{ 'bloc.carousel.item_desciption'|trans({'%index%': loop.index ,'%nb%' : carousel.elements|length , '%title%' : item.title, '%%auteur%' : item.description }) }}">
-                            <div>
-                                <img src="{{ item.imagePath }}" alt="">
-                                {% if item.photoCredit %}<p lang="fr"> &copy; {{ item.photoCredit }}</p>{% endif %}
-                            </div>
-                            <p lang="fr">{{ item.title }}</p>
-                            <p lang="fr">{{ item.description }}</p>
-                        </a>
-                    </div>
-                {% endfor %}
-            </div>
-        </div>
-        <!-- Customisation des boutons : DOM supposé.
-        Informations : pagination, auto-play, défilement infini, limite d'éléments à 24 -->
-        <div class="button-group">
-            <button class="button is-selected" aria-label="{{ 'bloc.carousel.page'|trans({'%current%': 1, '%nb%' : 'X' }) }}"></button>
-            <button class="button" aria-label="{{ 'bloc.carousel.page'|trans({'%current%': 2, '%nb%' : 'X' }) }}"></button>
-            <button class="button" aria-label="{{ 'bloc.carousel.page'|trans({'%current%': 3, '%nb%' : 'X' }) }}"></button>
-            <button class="button" aria-label="{{ 'bloc.carousel.page'|trans({'%current%': 4, '%nb%' : 'X' }) }}"></button>
-        </div>
-    </div>
-    <button type="button" aria-label="{{ 'bloc.carousel.btn_pause'|trans }}"><img src="https://via.placeholder.com/15x15" alt="" class="icone-play"/></button>
-{% endif %}
+<!-- Début - Bloc 1 diaporama nouveautés et/ou articles -->
+
+<div class="carousel carousel--primary">
+	<div class="carousel-wrapper">
+
+		<div class="carousel__control">
+			<button class="carousel__button carousel__button--pause" type="button" aria-label="Mettre en pause le carousel">
+			</button>
+		</div>
+
+		<div class="slick-carousel js-carousel-primary" role="region" aria-roledescription="carrousel">
+            {% for item in carousel.elements %}
+				<div class="carousel__slide">
+					<a href="{{ item.link }}" class="carousel__slide-link">
+						<span class="sr-only">{{ 'bloc.carousel.item_desciption'|trans({'%index%': loop.index ,'%nb%' : carousel.elements|length , '%title%' : item.title , '%auteur%' : item.description }) }}</span>
+					</a>
+					<div class="carousel__slide-image">
+						<img src="{{ item.imagePath }}" class="img-fluid" alt="" />
+                        {% if item.photoCredit %}<p lang="fr"> &copy; {{ item.photoCredit }}</p>{% endif %}
+					</div>
+					<p class="n1 carousel__slide-title">{{ item.title }}</p>
+					<p class="n2 carousel__slide-subtitle">{{ item.description }}</p>
+				</div>
+			{% endfor %}
+		</div>
+	</div>
+</div>
+
 <!-- Fin - Bloc 1 diaporama nouveautés et/ou articles -->

@@ -1,0 +1,35 @@
+<!-- Début - Bloc 20 Feuilletage d'index -->
+
+<div class="col-12">
+	<div class="index">
+		<div class="index__header">
+			<h2 class="n1 index__title">{{ 'bloc.index.title'|trans }}</h2>
+			<a href="#">{{ 'bloc.index.see-all'|trans }} <span>(PDF)</span></a>
+		</div>
+
+		<div class="index__body">
+			<p tabindex="0" class="sr-only sr-only-focusable">{{ 'bloc.index.notice'|trans }}</p>
+			<a href="#fin-feuilletage" class="sr-only sr-only-focusable">{{ 'bloc.index.go-to-end'|trans }}</a>
+			<a href="#index-current" class="sr-only sr-only-focusable">{{ 'bloc.index.go-to current-index'|trans }}</a>
+			<div class="index__content">
+				<button type="button" class="btn index__button index__button--top"><img src="{{ asset('images/icones/icone-chevron-gauche.svg') }}" alt="" class="icone-chevron-top"/>5 <span class="sr-only">{{ 'bloc.index.name'|trans }}</span> {{ 'bloc.index.previous'|trans }}<img src="{{ asset('images/icones/icone-chevron-gauche.svg') }}" alt="" class="icone-chevron-top"/></button>
+				<ul class="index__list">
+					<li class="index__item"><a href="#" lang="fr">index 1</a></li>
+					<li class="index__item"><a href="#" lang="fr">index 2</a></li>
+					<li class="index__item"><a href="#" lang="fr">index 3</a></li>
+					<li class="index__item"><a href="#" lang="fr">index 4</a></li>
+					<li class="index__item"><a href="#" lang="fr">index 5</a></li>
+					<li class="index__item index__item--current"><p id="index-current" aria-current="page" lang="fr" tabindex="0"><img src="{{ asset('images/icones/icone-chevron-gauche.svg') }}" alt="" class="icone-chevron-right"/>{{ 'bloc.index.current'|trans({'%name%': 'index 6'}) }}</p></li>
+					<li class="index__item"><a href="#" lang="fr">index 7</a></li>
+					<li class="index__item"><a href="#" lang="fr">index 8</a></li>
+					<li class="index__item"><a href="#" lang="fr">index 9</a></li>
+					<li class="index__item"><a href="#" lang="fr">index 10</a></li>
+					<li class="index__item"><a href="#" lang="fr">index 11</a></li>
+				</ul>
+				<button type="button" class="btn index__button index__button--bottom"><img src="{{ asset('images/icones/icone-chevron-gauche.svg') }}" alt="" class="icone-chevron-bottom"/>5 <span class="sr-only">{{ 'bloc.index.name'|trans }}</span> {{ 'bloc.index.next'|trans }}<img src="{{ asset('images/icones/icone-chevron-gauche.svg') }}" alt="" class="icone-chevron-bottom"/></button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- Fin - Bloc 20 Feuilletage d'index -->

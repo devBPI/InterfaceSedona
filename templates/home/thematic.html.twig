@@ -1,16 +1,18 @@
 {% extends 'base.html.twig' %}
 
+{% block title %}Parcours {{ title }}{% endblock %}
+
 {% block body %}
-	<h1>{{ title }}</h1>
+	<h1 class="n1">{{ title }}</h1>
 
 	{% include "home/blocs/carousel.html.twig" %}
 
-	<h2>Les thèmes les plus consultés</h2>
-	
-	<div>
-		{% include "home/blocs/preview-thematic-links.html.twig" %}
+	<div class="card-container">
+
+		<h2 class="n1">{{ 'page.thematic.theme'|trans }}</h2>
+		
+		<div class="row">
+			{% include "home/blocs/preview-thematic-links.html.twig" %}
+		</div>
 	</div>
-
-	<div><a href="{{ path('search') }}">Recherche</a></div>
-
 {% endblock %}

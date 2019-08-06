@@ -1,8 +1,14 @@
-<ul>
-	<li><a href="#" target="_blank" title="Presse et partenariats - Nouvelle fenêtre">Presse et partenariats</a></li>
-	<li><a href="#" target="_blank" title="Emploi & stages - Nouvelle fenêtre">Emploi & stages</a></li>
-	<li><a href="#" target="_blank" title="Marchés publics - Nouvelle fenêtre">Marchés publics</a></li>
-	<li><a href="#" target="_blank" title="Mentions légales - Nouvelle fenêtre">Mentions légales</a></li>
-	<li><a href="#" target="_blank" title="Aide et accessiblité - Nouvelle fenêtre">Aide et accessibilité</a></li>
-	<li><a href="#" target="_blank" title="Contacts - Nouvelle fenêtre">Contacts</a></li>
+<ul class="nav-credit__list">
+	{% for link, title in {
+		'//www.bpi.fr/espace-presse': 'footer.credit-list.espace-presse'|trans,
+		'//www.bpi.fr/informations-pratiques/emplois-et-stages': 'footer.credit-list.emplois-et-stages'|trans,
+		'//www.bpi.fr/informations-pratiques/marches-publics': 'footer.credit-list.marches-publics'|trans ,
+		'//www.bpi.fr/mentions-legales': 'footer.credit-list.mentions-legales'|trans,
+		'//www.bpi.fr/aide-et-accessibilite': 'footer.credit-list.aide-et-accessibilite'|trans,
+		'//www.bpi.fr/contacts-bpi': 'footer.credit-list.contacts-bpi'|trans
+	} %}
+		<li class="nav-credit__item">
+			<a href="{{ link }}" title="{{ title }} - {{ 'global.new-windows'|trans }}">{{ title }}</a>
+		</li>
+	{% endfor %}
 </ul>

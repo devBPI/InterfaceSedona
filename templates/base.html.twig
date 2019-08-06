@@ -2,149 +2,155 @@
 <html lang="{{ app.request.locale }}">
 	<head>
 		<meta charset="UTF-8">
-		<title>{% block title %}Welcome!{% endblock %}</title>
+		<title>{% block title %}Titre{% endblock %} {{ 'global.site-title'|trans }}</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
         {% block stylesheets %}
-            {# 'app' must match the first argument to addEntry() in webpack.config.js #}
-            {{ encore_entry_link_tags('app') }}
-
-			<!-- Renders a link tag (if your module requires any CSS)
-                 <link rel="stylesheet" href="/build/app.css"> -->
+			{% if app.environment != 'test' %}
+            	{{ encore_entry_link_tags('app') }}
+			{% endif %}
         {% endblock %}
 	</head>
 	<body>
-	<!-- ... -->
-
-	</head>
-	<body>
 		
-		<div id="menu-evitement">
-			{% include "common/navbar-evitement.html.twig" %}
+		<div id="menu-evitement" class="menu-evitement">
+			{% include "header/navbar-evitement.html.twig" %}
 		</div>
 		
-		<header role="banner">
-			<div>
-				<div>
+		<header role="banner" class="header">
+			<div class="container">
+				<div class="header__menus d-flex flex-wrap align-items-center justify-content-end justify-content-lg-between">
 					<div id="menu-langue">
-						{% include "header/navbar-langues.html.twig" %}
+						{% include "header/navbar-langue.html.twig" %}
 					</div>
 
-					<div id="menu-secondaire">
-						{% include "header/navbar-secondaire.html.twig" %}
-					</div>
+					<div class="d-flex align-items-center">
+						<div id="menu-secondaire">
+							{% include "header/navbar-secondaire.html.twig" %}
+						</div>
 
-					<div id="menu-user">
-						{% include "header/navbar-user.html.twig" %}
-					</div>
+						<div id="menu-user">
+							{% include "header/navbar-user.html.twig" %}
+						</div>
 
-					<div id="mon-compte">
-						{% include "header/account.html.twig" %}
+						<div id="mon-compte">
+							{% include "header/account.html.twig" %}
+						</div>
 					</div>
 				</div>
 
-				<div>
-					<div>
-						<a href="{{ path('home') }}" title="Aller à l'accueil du catalogue Bibliothèque Publique d'Information Centre Pompidou">
-							<img src="{{ asset('images/bpi-logo.png') }}" alt="Bibliothèque Publique d'Information Centre Pompidou" />
-						</a>
-					</div>
+				<div class="header__logo d-flex flex-wrap justify-content-between align-items-center">
+					<a href="{{ path('home') }}" title="{{ 'header.logo_title'|trans }}" class="header__logo-link">
+						<img src="{{ asset('images/bpi-logo.png') }}" alt="{{ 'header.logo_alt'|trans }}" />
+					</a>
 
-					<button type="button" data-toggle="collapse" data-target="#navbar-principale" aria-controls="navbar-principale" title="Consulter le menu principal" aria-expanded="false" class="navbar-toggler">*Insert icone menu burger*</button>
+					<button type="button" data-toggle="collapse" data-target="#navbar-principale-content" aria-controls="navbar-principale-content" title="{{ 'header.menu_title'|trans }}" aria-expanded="false" class="navbar-toggler d-md-none navbar-burger">
+						<span class="navbar-burger__bar"></span>
+						<span class="navbar-burger__bar"></span>
+						<span class="navbar-burger__bar"></span>
+					</button>
 				</div>
 			
-				<div id="bloc-menu">
+				<div id="bloc-menu" class="header__navbar">
 					{% include "header/navbar-principal.html.twig" %}
 				</div>
 			</div>
 		</header>	
 
 		<main role="main" id="contenu-site">
-			<div>
+			<div class="container">
 				{% include "common/breadcrumb.html.twig" %}
-				{% include "search/search.html.twig" %}
+				{% block search %}{% include "common/search.html.twig" %}{% endblock %}
+				{% block searchextended %}{% endblock %}
 				{% include "common/toolbar.html.twig" %}
+
+
 				{% block body %}{% endblock %}
 			</div>
 		</main>
 
-		<footer role="contentinfo">
-			<div>
-				<div>
+		<footer role="contentinfo" class="footer">
+			<div class="container">
+				<div class="footer__top">
+					<div class="row">
+						<div class="col-6 col-md-3">
+							<div id="menu-plans-sites">
+								{% include "footer/navbar-sitemap.html.twig" %}
+							</div>
+						</div>
 
-					<div>
-						<div id="menu-plans-sites">
-							{% include "footer/navbar-sitemap.html.twig" %}
+						<div class="col-6 col-md-3">
+							<div id="menu-credit" class="nav-credit">
+								{% include "footer/navbar-credits.html.twig" %}
+							</div>
+						</div>
+
+						<div class="col-12 col-md-6">
+							<div class="nav-links-externe">
+								<ul class="nav-links-externe__list">
+									<li class="nav-links-externe__item">
+										<a href="https://www.bpi.fr/a-bibliotheque/publications-et-supports-de-communication/programme-de-la-bpi" target="_blank">
+											<img src="{{ asset('images/footer/logo-programme.png') }}" alt="" />
+											<span>{{ 'footer.links-externe.mensuel'|trans }}</span>
+										</a>
+									</li>
+									<li class="nav-links-externe__item">
+										<a href="https://www.bpi.fr/la-bibliotheque/publications-et-supports-de-communication/lettres-d-information" target="_blank">
+											<img src="{{ asset('images/footer/logo-lettres.png') }}" alt="" />
+											<span>{{ 'footer.links-externe.actualite'|trans }}</span>
+										</a>
+									</li>
+									<li class="nav-links-externe__item">
+										<a href="https://www.bpi.fr/la-bibliotheque/publications-et-supports-de-communication/de-ligne-en-ligne" target="_blank">
+											<img src="{{ asset('images/footer/logo-balises.png') }}" alt="" />
+											<span>{{ 'footer.links-externe.magazine'|trans }}</span>
+										</a>
+									</li>
+								</ul>
+							</div>
 						</div>
 					</div>
+				</div>
+				<div class="footer__bottom">
+					<div class="row">
 
-					<div>
-						<div id="menu-credit">
-							{% include "footer/navbar-credits.html.twig" %}
+						<div class="col-12 col-md-6">
+							<div id="partenaires" class="partenaires">
+								{% include "footer/partenaires.html.twig" %}
+							</div>
+						</div>
+
+						<div class="col-12 col-md-6">
+
+							<div class="row justify-content-end align-items-center align-items-md-start">
+								<div class="col-6 col-md-4">
+									<div class="partenaires__rs">
+										<a href="https://www.eurekoi.org/" title="{{ 'footer.partenaires.eurekoi'|trans }}" target="_blank">
+											<img src="{{ asset('images/footer/logo-eurekoi.png') }}" alt="Eurèkoi" />
+										</a>
+									</div>
+								</div>
+								<div class="col-6 col-md-5 col-lg-6">
+									<div id="reseaux-sociaux" class="nav-rs">
+										{% include "footer/socials-medias.html.twig" %}
+									</div>
+								</div>
+							</div>
+
 						</div>
 					</div>
-
-					<div>
-						<ul>
-							<li>
-								<a href="#">
-									<img src="https://via.placeholder.com/140x60" alt="" />
-									<span>Le mensuel de la Bpi</span>
-								</a>
-							</li>
-							<li>
-								<a href="#">
-									<img src="https://via.placeholder.com/140x60" alt="" />
-									<span>L'actualité de la Bpi</span>
-								</a>
-							</li>
-							<li>
-								<a href="#">
-									<img src="https://via.placeholder.com/140x60" alt="" />
-									<span>Le magazine de la Bpi</span>
-								</a>
-							</li>
-						</ul>
-					</div>
-
 				</div>
 
-				<div>
-
-					<div>
-						<div id="partenaires">
-							{% include "footer/partenaires.html.twig" %}
-						</div>
-					</div>
-
-					<div>
-
-						<div>
-							<a href="https://www.eurekoi.org/" title="Aller sur le site d'Eurèkoi - nouvelle fenêtre" target="_blank">
-								<img src="https://via.placeholder.com/50x50" alt="Eurèkoi" />
-							</a>
-						</div>
-
-						<div id="reseaux-sociaux">
-							{% include "footer/socials-medias.html.twig" %}
-						</div>
-
-					</div>
-
-				</div>
-
-				<div>
+				<div class="footer__credit">
 					<p>© Copyright XXX</p>
 				</div>
 			</div>
 
 		</footer>
 
-
         {% block javascripts %}
-            {{ encore_entry_script_tags('app') }}
-
-			<!-- Renders app.js & a webpack runtime.js file
-                <script src="/build/runtime.js"></script>
-                <script src="/build/app.js"></script> -->
+			{% if app.environment != 'test' %}
+            	{{ encore_entry_script_tags('app') }}
+			{% endif %}
         {% endblock %}
 	</body>
 </html>

@@ -1,0 +1,14 @@
+<ul class="dropdown-menu">
+    {% for item in list %}
+        <li class="dropdown-item">
+            <a href="{{ item.link }}">{{ item.name }}</a>
+            {% if item.children is defined %}
+                <ul class="dropdown-sub-list">
+                    {% for subLink, subName in item.children %}
+                        <li class="dropdown-sub-item"><a href="{{ subLink }}">{{ subName }}</a></li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        </li>
+    {% endfor %}
+</ul>

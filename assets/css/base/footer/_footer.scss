@@ -1,0 +1,29 @@
+// -------------------------------
+// Footer - Global
+// -------------------------------
+
+.footer {
+
+	@media print {
+		display: none;
+	}
+
+	&__top,
+	&__bottom,
+	&__credit {
+		margin-top: $spacer;
+		padding-top: $spacer;
+		border-top: 5px solid $grey-footer;
+	}
+
+	&__credit {
+		text-align: right;
+
+		@include media-breakpoint-up(md) {
+			
+			p {
+				margin-right: 40px;
+			}
+		}
+	}
+}

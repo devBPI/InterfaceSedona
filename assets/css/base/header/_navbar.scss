@@ -1,0 +1,294 @@
+// -------------------------------
+// Header - Navbar
+// -------------------------------
+
+#bloc-menu {
+	
+	@media print {
+		display: none;
+	}
+}
+
+.navbar {
+	padding: 0;
+
+	.nav {
+		width: 100%;
+
+		&-item {
+			border-bottom: $border-thin;
+			text-align: center;
+
+			@include media-breakpoint-up(md) {
+				border-right: $border-thin;
+				border-top: 1px solid transparent;
+				flex: 1 1 auto;
+				text-align: center;
+			}
+
+			&:first-child {
+
+				@include media-breakpoint-up(md) {
+					border-left: 1px solid transparent;
+				}
+
+				&:hover {
+
+					@include media-breakpoint-up(md) {
+						border-left-color: $grey;
+					}
+				}
+			}
+
+			&:last-child {
+
+				@include media-breakpoint-up(md) {
+					border-right: 1px solid transparent;
+				}
+
+				&:hover {
+
+					@include media-breakpoint-up(md) {
+						border-right-color: $grey;
+					}
+				}
+			}
+
+			&:hover {
+
+				@include media-breakpoint-up(md) {
+					border-top-color: $grey;
+				}
+			}
+
+			&.dropdown {
+				
+				@include media-breakpoint-up(md) {
+					position: static;
+
+					&:hover {
+						border-bottom: 0;
+					}
+				}
+			}
+
+			&.active {
+
+				.nav-link {
+					position: relative;
+					color: $red;
+
+					&:after {
+						content: '';
+						position: absolute;
+						width: 0;
+						height: 0;
+						right: 0;
+						bottom: 0;
+						margin-right: 5px;
+						margin-bottom: 5px;
+						border-bottom: 16px solid $red;
+						border-left: 16px solid transparent;
+					}
+				}
+			}
+		}
+
+		&-link {
+			color: $black;
+			font-size: 15px;
+			font-weight: $font-medium;
+			line-height: 1;
+
+			&:hover {
+				color: $red;
+			}
+
+			&:focus {
+				outline: $outline;
+				color: $red;
+			}
+		}
+	}
+
+	.dropdown {
+
+		&-toggle {
+
+			&:after {
+				display: none;
+			}
+
+			&--responsive {
+				border: 0;
+				border-radius: 0;
+				width: 50px;
+				height: 25px;
+				position: relative;
+				background-color: $white;
+
+				@include media-breakpoint-up(md) {
+					display: none;
+				}
+
+				&:focus {
+					outline: $outline;
+				}
+
+				&:before {
+					content: "";
+					position: absolute;
+					width: 0;
+					height: 0;
+					border-top: 10px solid $black;
+					border-left: 10px solid transparent;
+					border-right: 10px solid transparent;
+					top: 50%;
+					left: 0;
+					right: 0;
+					margin-left: auto;
+					margin-right: auto;
+					transform: translateY(-50%);
+				}
+			}
+		}
+
+		&-menu {
+			padding: $spacer 0;
+			border: 0;
+			border-top: 1px solid $red;
+			box-shadow: none;
+
+			@include media-breakpoint-up(md) {
+				border: $border-thin;
+				box-shadow: $dropdown-shadow;
+				width: 100%;
+				padding: 30px 0 10px;
+			}
+
+			&.show {
+				@include media-breakpoint-up(md) {
+					display: flex;
+					flex-wrap: wrap;
+				}
+			}
+		}
+
+		&-item {
+
+			@include media-breakpoint-up(md) {
+				width: auto;
+				min-width: 25%;
+				flex: 0 0 25%;
+				white-space: normal;
+				margin-bottom: 25px;
+			}
+
+			> a {
+				font-size: 15px;
+				color: $black;
+				padding: 5px 0;
+				display: inline-block;
+
+				@include media-breakpoint-up(md) {
+					font-size: 13px;
+					line-height: 15px;
+					font-weight: $font-bold;
+					padding: 0;
+					padding-left: 15px;
+					position: relative;
+					margin-bottom: 8px;
+
+					&:before {
+						content: "";
+						position: absolute;
+						width: 0;
+						height: 0;
+						border-left: 8px solid $red;
+						border-top: 8px solid transparent;
+						border-bottom: 8px solid transparent;
+						top: 0;
+						left: 0;
+					}
+				}
+
+				&:hover {
+					color: $red;
+				}
+			}
+		}
+
+		&-sub-list {
+			list-style-type: none;
+			padding-left: $spacer;
+		}
+
+		&-sub-item {
+			padding: 3px 0;
+
+			a {
+				font-size: 12px;
+				color: $black;
+
+				@include media-breakpoint-up(md) {
+					font-size: 13px;
+					line-height: 15px;
+					position: relative;
+
+					&:after {
+						content: "";
+						position: absolute;
+						width: 0;
+						height: 0;
+						border-left: 5px solid $grey;
+						border-top: 5px solid transparent;
+						border-bottom: 5px solid transparent;
+						top: 0;
+						left: 0;
+						margin-left: -15px;
+						margin-top: 4px;
+					}
+				}
+
+				&:hover {
+					color: $red;
+				}
+			}
+		}
+	}
+}
+
+
+// Icone Burger 
+
+.navbar-burger {
+	width: 35px;
+	height: 35px;
+	border: 1px solid $black;
+	padding: 8px;
+	margin: 10px 0;
+
+	&:focus {
+		outline: $outline;
+	}
+
+	&[aria-expanded="true"] {
+		border-color: $red;
+		outline: 0;
+
+		.navbar-burger__bar {
+			background-color: $red;
+		}
+	}
+
+	&__bar {
+		width: 17px;
+		height: 3px;
+		background-color: $black;
+		display: block;
+
+		& + & {
+			margin-top: 3px;
+		}
+	}
+}

@@ -1,0 +1,16 @@
+// -------------------------------
+// Mon Compte - Mon Historique
+// -------------------------------
+
+#historique {
+
+	.banner-tools {
+
+		&__infos,
+		&__item-add,
+		&__item-top,
+		&__item-bottom {
+			display: none;
+		}
+	}
+}

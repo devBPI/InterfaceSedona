@@ -1,0 +1,23 @@
+// -------------------------------
+// @import - Global
+// -------------------------------
+
+// Import Variables Global
+@import 	"variable";
+
+// Import Overwritten Bootstrap Variable
+@import 	"variable-custom-bootstrap",
+			"~bootstrap/scss/bootstrap";
+
+// Import Overwritten Slick Variable
+@import 	"~slick-carousel/slick/slick",
+			"~slick-carousel/slick/slick-theme";
+
+// Base
+@import 	"base";
+
+// Layout
+@import 	"layout";
+
+// Components
+@import 	"components";

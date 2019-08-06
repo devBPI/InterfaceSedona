@@ -1,0 +1,98 @@
+{# Adresse d'envoi du formulaire : organigramme.0302@bpi.fr #}
+
+<!-- Début - Modal 08 suggestion d'achats -->
+<div role="dialog" aria-modal="true" aria-labelledby="modal-suggest-title" class="modal fade" id="modal-suggest">
+	<div class="modal-dialog modal-dialog-centered">
+		<div class="modal-content">
+			<form class="modal-form">
+				<div class="modal-header">
+					<h1 class="n1 modal-header__title" id="modal-suggest-title">{{ 'modal.suggestion.title'|trans }}</h1>
+					<button class="close" type="button" aria-label="{{ 'global.modal-close'|trans }}" data-dismiss="modal">
+						<span aria-hidden="true" class="sr-only">X</span>
+						<img src="{{ asset('images/icones/icone-croix-blanc.svg') }}" alt="" />
+					</button>
+				</div>
+
+				<div class="modal-body">
+
+					<small class="modal-form__indication"><span>*</span> {{ 'global.form-mandatory-field'|trans }}</small>
+					
+					<div class="form-group row">
+						<label class="col-12 col-sm-4" for="suggest-title">{{ 'modal.suggestion.field.title'|trans }} <span>*</span></label>
+						<div class="col-12 col-sm-8">
+							<input type="text" class="form-control" id="suggest-title" required>
+						</div>
+					</div>
+					<div class="form-group row">
+						<label class="col-12 col-sm-4" for="suggest-author">{{ 'modal.suggestion.field.author'|trans }}</label>
+						<div class="col-12 col-sm-8">
+							<input type="text" class="form-control" id="suggest-author">
+						</div>
+					</div>
+					<div class="form-group row">
+						<label class="col-12 col-sm-4" for="suggest-type-document">{{ 'modal.suggestion.field.document-type'|trans }}</label>
+						<div class="col-12 col-sm-8">
+							<select class="form-control" id="suggest-type-document">
+								<option>Livre</option>
+								<option>Livre numérique</option>
+								<option>Musique</option>
+								<option>Vidéo</option>
+								<option>BD</option>
+								<option>Revue, journal</option>
+								<option>Revue numérique</option>
+								<option>Site et base</option>
+								<option>Livre audio</option>
+								<option>Débat et enregistrement</option>
+								<option>Carte</option>
+								<option>Partition et méthode</option>
+								<option>Formation</option>
+							</select>
+						</div>
+					</div>
+					<div class="form-group row">
+						<label class="col-12 col-sm-4" for="suggest-editor">{{ 'modal.suggestion.field.editor'|trans }}</label>
+						<div class="col-12 col-sm-8">
+							<input type="text" class="form-control" id="suggest-editor">
+						</div>
+					</div>
+
+				</div>
+
+				<div class="modal-body">
+
+					<h2 class="n1">{{ 'modal.suggestion.subtitle'|trans }}</h2>
+
+					<div class="form-group row">
+						<label class="col-12 col-sm-4" for="suggest-last-name">{{ 'modal.suggestion.field.last-name'|trans }}</label>
+						<div class="col-12 col-sm-8">
+							<input type="text" class="form-control" id="suggest-last-name" autocomplete="family-name">
+						</div>
+					</div>
+					<div class="form-group row">
+						<label class="col-12 col-sm-4" for="suggest-first-name">{{ 'modal.suggestion.field.first-name'|trans }}</label>
+						<div class="col-12 col-sm-8">
+							<input type="text" class="form-control" id="suggest-first-name" autocomplete="given-name">
+						</div>
+					</div>
+					<div class="form-group row">
+						<label class="col-12 col-sm-4" for="suggest-email">{{ 'modal.suggestion.field.email'|trans }}</label>
+						<div class="col-12 col-sm-8">
+							<input type="email" class="form-control" id="suggest-email" autocomplete="email">
+						</div>
+					</div>
+
+					<div>
+						<i>*Insert captcha*</i>	
+					</div>
+				</div>
+
+				<div class="modal-footer">
+					<button type="button" data-dismiss="modal" class="btn btn-lg btn-secondary">{{ 'global.modal-cancel'|trans }}</button>
+					<button type="submit" class="btn btn-lg btn-primary">{{ 'modal.suggestion.submit'|trans }}<span class="sr-only"> {{ 'modal.suggestion.submit-sr-only'|trans }}</span></button>
+				</div>
+
+			</form>
+		</div>
+	</div>
+</div>
+<!-- Fin - Modal 08 suggestion d'achats -->

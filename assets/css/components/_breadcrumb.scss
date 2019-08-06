@@ -1,0 +1,12 @@
+// -------------------------------
+// Breadcrumb
+// -------------------------------
+
+.breadcrumb {
+	padding-left: 0;
+	display: block;
+
+	@media print {
+		display: none;
+	}
+}

@@ -1,12 +1,20 @@
-<div class="dropdown" aria-label="Menu-secondaire">
-	<span class="sr-only">Autres sites</span>
-	<button type="button" id="dropdown-autres-sites" data-toggle="dropdown" aria-haspopup="listbox" aria-expanded="false" class="visible-xs">
-	Autres sites 
+<div class="dropdown menu-secondaire" aria-label="{{ 'header.navbar-secondaire.aria'|trans }}">
+	<span class="sr-only">{{ 'header.navbar-secondaire.title'|trans }}</span>
+	<button type="button" id="dropdown-autres-sites" data-toggle="dropdown" aria-haspopup="listbox" aria-expanded="false" class="menu-secondaire__button btn">
+	{{ 'header.navbar-secondaire.title'|trans }}
 	</button>
-	<ul class="dropdown-menu" aria-labelledby="dropdown-autres-sites" role="listbox" tabindex="-1">
-		<li class="dropdown-item" role="option"><a href="#" title="Bpi - nouvelle fenêtre" target="_blank">La Bpi</a></li>
-		<li class="dropdown-item" role="option"><a href="#" title="Balises - nouvelle fenêtre" target="_blank">Balises</a></li>
-		<li class="dropdown-item" role="option"><a href="#" title="Professionnels - nouvelle fenêtre" target="_blank">Professionnels</a></li>
-		<li class="dropdown-item" role="option"><a href="#" title="Cinéma du réel - nouvelle fenêtre" target="_blank">Cinéma du réel</a></li>
+	<ul class="dropdown-menu menu-secondaire__list" aria-labelledby="dropdown-autres-sites" role="listbox" tabindex="-1">
+		<li class="dropdown-item menu-secondaire__list-item" role="option">
+			<a href="https://www.bpi.fr/bpi" title="{{ 'header.navbar-secondaire.bpi'|trans }}">{{ 'header.navbar-secondaire.bpi'|trans }}</a>
+		</li>
+		<li class="dropdown-item menu-secondaire__list-item" role="option">
+			<a href="https://balises.bpi.fr/a-la-une" title="{{ 'header.navbar-secondaire.balises'|trans }}">{{ 'header.navbar-secondaire.balises'|trans }}</a>
+		</li>
+		<li class="dropdown-item menu-secondaire__list-item" role="option">
+			<a href="https://pro.bpi.fr/pro" title="{{ 'header.navbar-secondaire.pro'|trans }}">{{ 'header.navbar-secondaire.pro'|trans }}</a>
+		</li>
+		<li class="dropdown-item menu-secondaire__list-item" role="option">
+			<a href="http://www.cinemadureel.org/" title="{{ 'header.navbar-secondaire.cinemadureel'|trans }} - {{ 'global.new-windows'|trans }}" target="_blank">{{ 'header.navbar-secondaire.cinemadureel'|trans }}</a>
+		</li>
 	</ul>
 </div>

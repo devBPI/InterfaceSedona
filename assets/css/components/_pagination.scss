@@ -1,0 +1,92 @@
+// -------------------------------
+// Pagination
+// -------------------------------
+
+.pagination {
+	margin: $spacer 0;
+
+	@media print {
+		display: none;
+	}
+
+	.page-item {
+		margin: 0 5px;
+
+		@include media-breakpoint-up(md) {
+			margin: 0;
+		}
+	}
+
+	.page {
+
+		&-link {
+			height: 100%;
+			margin-bottom: 0;
+
+			&:hover {
+				text-decoration: underline;
+			}
+
+			img {
+				height: 13px;
+
+				+ span {
+					margin-left: 5px;
+				}
+			}
+
+			span {
+				vertical-align: middle;
+
+				+ img {
+					margin-left: 5px;
+				}
+			}
+
+			&--right,
+			&--right-double {
+
+				img {
+					transform: scaleX(-1);
+				}
+			}
+
+			&--reset {
+
+				&:hover {
+					text-decoration: none;
+					color: $black;
+				}
+			}
+		}	
+	}
+
+	&--header {
+		margin: 0;
+		align-items: flex-end;
+
+		.page-item {
+			margin: 0;
+		}
+
+		p.page-link {
+			border-left: $border-default;
+			border-right: $border-default;
+			border-top: 0;
+			border-bottom: 0;
+			
+			&:hover {
+				border-top-color: transparent;
+				border-bottom-color: transparent;
+				border-left-color: $black;
+				border-right-color: $black;
+				color: $black;
+				text-decoration: none;
+			}
+		}
+
+		.page-link {
+			margin-left: 0;
+		}
+	}
+}

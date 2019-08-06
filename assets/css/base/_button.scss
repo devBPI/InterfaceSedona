@@ -1,0 +1,118 @@
+// -------------------------------
+// Buttons + Link
+// -------------------------------
+
+.btn {
+
+	&-primary {
+		padding: 3px 10px;
+		color: $white;
+		font-weight: $font-medium;
+		transition: .15s;
+
+		&:hover,
+		&:focus {
+			background-color: $black;
+		}
+
+		@include media-breakpoint-up(md) {
+			padding: 3px 25px;
+		}
+	}
+
+	&-secondary {
+		padding: 3px 10px;
+		color: $white;
+		font-weight: $font-medium;
+		transition: .15s;
+
+		&:hover,
+		&:focus {
+			background-color: $black;
+		}
+
+		@include media-breakpoint-up(md) {
+			padding: 3px 25px;
+		}
+	}
+
+	&-lg {
+		font-size: 15px;
+
+		@include media-breakpoint-up(md) {
+			font-size: 21px;
+			line-height: 31px;
+		}
+	}
+
+	&-link {
+		font-size: 15px;
+		font-weight: $font-bold;
+		color: $red;
+		padding: 0;
+		transition: .15s;
+
+		@include media-breakpoint-up(md) {
+			font-size: 18px;
+		}
+
+		&:hover,
+		&:focus {
+			color: $black;
+		}
+	}
+
+	&-img {
+		display: flex;
+		align-items: stretch;
+
+		img {
+			width: 18px;
+			height: 25px;
+			margin-left: 10px;
+
+			@include media-breakpoint-up(md) {
+				width: 23px;
+				height: 30px;
+			}
+		}
+	}
+
+	&-small-link {
+		padding: 0;
+		color: $blue;
+
+		&:hover {
+			color: $red;
+			text-decoration: underline;
+		}
+	}
+}
+
+.link {
+
+	&--icone {
+		margin-top: -2px;
+		display: block;
+
+		img {
+			height: 13px;
+
+			+ span {
+				vertical-align: middle;
+				margin-left: 5px;
+			}
+		}
+	}
+
+	&--icone-end {
+		margin-top: -2px;
+		display: block;
+
+		img {
+			height: 13px;
+			transform: scaleX(-1);
+			margin-top: -3px;
+		}
+	}
+}

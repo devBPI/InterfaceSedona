@@ -1,26 +1,32 @@
 <!-- Début - Bloc 5 Accès rapide -->
 
 <!-- Bloc avec un lien sur le titre (car pas de liens sous l'image) -->
-<div>
-	<div lang="fr">
-		<a href="#"><span class="sr-only">Les thèmes les plus consultés, *Insert nom du thème*</span></a>
-		<h3>*Insert nom du thème*</h3>
-		<img src="https://via.placeholder.com/210x230" alt="" />
+{% for i in 1..4 %}
+	<div class="col-12 col-sm-6 col-lg-3">
+		<div lang="fr" class="card">
+			<a href="#" class="card__link"><span class="sr-only">{{ "bloc.preview-thematic-links.link-sr-only"|trans({'%name%' : '*Insert nom du thème*' }) }}</span></a>
+			<img src="{{ asset('images/parcours/actu-revues/ar-revues-musique.jpg') }}" alt="" class="img-fluid card-img-top" />
+			<div class="card-body">
+				<h3 class="n2 card__title">Revues sur la musique</h3>
+			</div>
+		</div>
 	</div>
-</div>
+{% endfor %}
 
 <!-- Bloc avec des liens sous l'image, donc pas de lien sur le titre -->
-{% for i in 0..2 %}
-	<div>
-		<div lang="fr">
-			<h3>*Insert nom du thème*</h3>
-			<img src="https://via.placeholder.com/210x230" alt="" />
-			<ul>
-				<li><a href="#">Niveau 1</a></li>
-				<li><a href="#">Niveau 2</a></li>
-				<li><a href="#">Niveau 3</a></li>
-				<li><a href="#">Niveau 4</a></li>
-			</ul>
+{% for i in 1..4 %}
+	<div class="col-12 col-sm-6 col-lg-3">
+		<div lang="fr" class="card">
+			<img src="{{ asset('images/parcours/actu-revues/ar-revues-loisirs.jpg') }}" alt="" class="img-fluid card-img-top" />
+			<div class="card-body">
+				<h3 class="n2 card__title">Revues sur les loisirs</h3>
+				<ul class="card__list">
+					<li class="card__item"><a href="#">Sports, jeux, tourisme</a></li>
+					<li class="card__item"><a href="#">Vie pratique</a></li>
+					<li class="card__item"><a href="#">Culture geek</a></li>
+					<li class="card__item"><a href="#">Déco - brico - cuisine</a></li>
+				</ul>
+			</div>
 		</div>
 	</div>
 {% endfor %}

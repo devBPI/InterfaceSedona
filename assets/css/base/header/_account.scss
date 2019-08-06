@@ -1,0 +1,64 @@
+// -------------------------------
+// Header - Mon Compte
+// -------------------------------
+
+#mon-compte {
+
+	@media print {
+		display: none;
+	}
+}
+
+.account {
+
+	@include media-breakpoint-up(lg) {
+		margin-top: 10px;
+	}
+
+	&__link {
+		font-size: 12px;
+
+		&:hover {
+			color: $red;
+			text-decoration: underline;
+		}
+
+		&:focus {
+			color: $red;
+		}
+	}
+
+	&__button {
+		position: relative;
+		font-size: 12px;
+
+		&:after {
+			content: "";
+			display: inline-block;
+			width: 0;
+			height: 0;
+			border-top: 4px solid $black;
+			border-left: 4px solid transparent;
+			border-right: 4px solid transparent;
+			vertical-align: middle;
+			margin-left: 3px;
+			margin-bottom: 2px;
+		}
+	}
+
+	&__list {
+		
+		&-item {
+
+			a {
+				font-size: 12px;
+				color: $black;
+
+				&:hover {
+					color: $red;
+				}
+			}
+		}
+	}
+	
+}

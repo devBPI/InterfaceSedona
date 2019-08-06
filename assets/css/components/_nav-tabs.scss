@@ -1,0 +1,50 @@
+// -------------------------------
+// Tabs
+// -------------------------------
+
+.nav-tabs {
+
+	.nav {
+
+		&-link {
+			border: $border-default;
+			background-color: $grey-footer;
+
+			@include media-breakpoint-up(sm) {
+				margin-left: -2px;
+			}
+
+			&:hover {
+				background-color: $white;
+			}
+
+			&:focus {
+				outline-offset: -4px;
+			}
+		}
+
+		&-item {			
+			min-width: 100%;
+			flex: 0 0 100%;
+			position: relative;
+			text-align: center;
+
+			@include media-breakpoint-up(sm) {
+				text-align: left;
+				flex: 0 0 auto;
+				min-width: auto;
+			}
+
+			&:first-child {
+
+				.nav-link {
+					margin-left: 0;
+				}
+			}
+		}
+	}
+}
+
+.tab-pane {
+	padding-top: $spacer;
+}

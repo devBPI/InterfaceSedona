@@ -10,27 +10,19 @@ use Symfony\Component\Routing\Annotation\Route;
 class UserController extends AbstractController
 {
     /**
-     * @Route("/donnees-personnelles", methods={"GET","HEAD"}, name="user_personal_data")
+     * @Route("/authentification", methods={"GET","HEAD"}, name="user_login")
+     */
+    public function loginAction(Request $request)
+    {
+        return $this->render('user/login.html.twig', []);
+    }
+
+    /**
+     * @Route("/compte", methods={"GET","HEAD"}, name="user_personal_data")
      */
     public function personalDataAction(Request $request)
     {
         return $this->render('user/personal-data.html.twig', []);
-    }
-
-    /**
-     * @Route("/suggestion", methods={"GET","HEAD"}, name="user_suggestion")
-     */
-    public function suggestionAction(Request $request)
-    {
-        return $this->render('user/modal/suggestion.html.twig', []);
-    }
-
-    /**
-     * @Route("/envoyer-a-un-ami", methods={"GET","HEAD"}, name="user_send_to_friend")
-     */
-    public function sendToFriendAction(Request $request)
-    {
-        return $this->render('user/modal/send-to-friend.html.twig', []);
     }
 
     /**

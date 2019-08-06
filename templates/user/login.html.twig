@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ 'page.login.title'|trans }}{% endblock %}
+
+{% block search %}{% endblock %}
+
+{% block body %}
+
+	<h1 class="n1">{{ 'page.login.title'|trans }}</h1>
+
+	<div class="row justify-content-center">
+		<div class="col-12 col-sm-10 col-lg-8">
+			<form class="account-form">
+				<div class="form-group row">
+					<label for="account-mail" class="col-12 col-md-4">{{ 'page.login.login'|trans }}</label>
+					<div class="col-12 col-md-8">
+						<input type="email" class="form-control" id="account-mail" autocomplete="email">
+					</div>
+				</div>
+				<div class="form-group row">
+					<label for="account-password" class="col-12 col-md-4">{{ 'page.login.password'|trans }}</label>
+					<div class="col-12 col-md-8">
+						<input type="password" class="form-control" id="account-password" autocomplete="current-password">
+					</div>
+				</div>
+				<div class="row justify-content-end">
+					<div class="col-12 col-md-8">
+						<div class="form-group form-check">
+							<input type="checkbox" class="form-check-input" id="account-keep">
+							<label class="form-check-label" for="account-keep">{{ 'page.login.remember-me'|trans }}</label>
+						</div>
+					</div>
+				</div>
+				<div class="row justify-content-end">
+					<div class="col-12 col-md-8">
+						<div class="account-form__footer">
+							<div class="account-form__footer-content">
+								<a href="http://authz.bpi.fr/mail.pl?skin=bootstrap" target="_blank" class="account-form__link">{{ 'page.login.forgotten-password'|trans }}</a>
+								<button type="submit" class="btn btn-lg btn-primary">{{ 'page.login.submit'|trans }}</button>
+							</div>
+							<div class="account-form__footer-content">
+								<a href="https://www.bpi.fr/formulaire-inscription-bpi" target="_blank" class="account-form__link">{{ 'page.login.create-profil'|trans }}</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+{% endblock %}

@@ -1,0 +1,75 @@
+// -------------------------------
+// Base
+// -------------------------------
+
+html {
+	font-size: $font-size-html;
+}
+
+a {
+
+	&:focus {
+		outline: $outline;
+		color: $red;
+	}
+}
+
+a[target="_blank"] {
+
+	&:hover {
+		text-decoration: $hover-target;
+		text-decoration-style: dotted;
+		text-decoration-color: $red;
+	}
+}
+
+button,
+.btn,
+select {
+
+	&:focus,
+	&.focus {
+		outline: $outline;
+	}
+}
+
+:focus {
+	outline: $outline;
+}
+
+.border-default {
+	border-top: $border-default;
+}
+
+.border-thin {
+	border-top: $border-thin;
+}
+
+.border-double {
+	background-image: url('/images/double-bordure.png');
+	background-repeat: repeat-x;
+}
+
+.title-icone {
+	display: flex;
+	align-items: center;
+}
+
+.icone-square {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 20px;
+	height: 20px;
+	margin-right: 5px;
+	background-color: $black;
+	text-align: center;
+	
+	img {
+		height: 13px;
+	}
+}
+
+.dropdown-toggle::after {
+	border-top: 7px solid;
+}

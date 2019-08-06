@@ -1,0 +1,84 @@
+<!-- Début - Modal 05 export -->
+<div role="dialog" aria-modal="true" aria-labelledby="modal-export-title" class="modal fade" id="modal-export">
+	<div class="modal-dialog modal-dialog-centered">
+		<div class="modal-content">
+			<form class="modal-form">
+				<div class="modal-header">
+					<h1 class="n1 modal-header__title" id="modal-export-title">{{ 'modal.export.title'|trans }}</h1>
+					<button class="close" type="button" aria-label="{{ 'global.modal-close'|trans }}" data-dismiss="modal">
+						<span aria-hidden="true" class="sr-only">X</span>
+						<img src="{{ asset('images/icones/icone-croix-blanc.svg') }}" alt="" />
+					</button>
+				</div>
+
+				<div class="modal-body">
+					<h2 class="n2">{{ 'modal.export.subtitle'|trans }}</h2>
+
+					<small class="modal-form__indication"><span>*</span> {{ 'global.form-mandatory-field'|trans }}</small>
+
+					<div class="form-group row">
+						<label class="col-12 col-sm-4" for="export-recipient">{{ 'modal.export.field.recipient'|trans }} <span>*</span></label>
+						<div class="col-12 col-sm-8">
+							<input type="email" class="form-control" id="export-recipient" autocomplete="email">
+						</div>
+					</div>
+
+					<div class="form-group row">
+						<label class="col-12 col-sm-4" for="export-comments">{{ 'modal.export.field.comments'|trans }}</label>
+						<div class="col-12 col-sm-8">
+							<input type="text" class="form-control" id="export-comments">
+						</div>
+					</div>
+					
+					<div class="form-group row justify-content-sm-end">
+						<div class="col-12 col-sm-8">
+							<div class="form-check form-check-inline">
+								<input class="form-check-input" type="radio" id="export-abstract" value="export-abstract" name="export-type" checked>
+								<label class="form-check-label" for="export-abstract">{{ 'modal.export.field.abstract'|trans }}</label>
+							</div>
+
+							<div class="form-check form-check-inline">
+								<input class="form-check-input" type="radio" id="export-long" value="export-long" name="export-type">
+								<label class="form-check-label" for="export-long">{{ 'modal.export.field.long'|trans }}</label>
+							</div>
+						</div>
+					</div>
+					
+					<div class="form-group row justify-content-sm-end">
+						<div class="col-12 col-sm-8">
+							<div class="form-check form-check-inline">
+								<input class="form-check-input" type="radio" id="export-pdf" value="export-pdf" name="export-format" checked>
+								<label class="form-check-label" for="export-pdf">{{ 'modal.export.field.pdf'|trans }}</label>
+							</div>
+
+							<div class="form-check form-check-inline">
+								<input class="form-check-input" type="radio" id="export-txt" value="export-txt" name="export-format">
+								<label class="form-check-label" for="export-txt">{{ 'modal.export.field.txt'|trans }}</label>
+							</div>
+						</div>
+					</div>
+
+					<div class="form-group row justify-content-sm-end">
+						<div class="col-12 col-sm-8">
+							<div class="form-check form-check-inline">
+								<input class="form-check-input" type="checkbox" id="export-image" value="export-image">
+								<label class="form-check-label" for="export-image">{{ 'modal.export.field.img'|trans }}</label>
+							</div>
+						</div>
+
+					</div>
+
+					<div>
+						<i>*Insert captcha*</i>	
+					</div>		
+				</div>
+
+				<div class="modal-footer">
+					<button type="button" data-dismiss="modal" class="btn btn-lg btn-secondary">{{ 'global.modal-cancel'|trans }}</button>
+					<button type="submit" class="btn btn-lg btn-primary">{{ 'modal.export.submit'|trans }}</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+<!-- Fin - Modal 05 export -->

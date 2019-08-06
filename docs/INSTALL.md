@@ -27,8 +27,9 @@ $ docker login registry.sedona.fr
 et lancer les commandes suivantes dans le dossier d'installation
 ```
     $ git config --global core.autocrlf input
-    $ git clone git@git.sedona.fr:saintgobain/esalon/e-salon-back-office.git
-    $ cd e-salon-back-office
+    $ git clone git@git.sedona.fr:bpi/catalogue/bpi-catalogue.git
+
+    $ cd bpi-catalogue
     $ docker-compose up
 ```
 

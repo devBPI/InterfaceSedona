@@ -28,3 +28,8 @@
 ./composer.phar
 ./sonar-project.properties
 ./Dockerfile
+./package-lock.json
+./webpack.config.js
+./node_modules/
+./npm-debug.log
+./yarn-error.log

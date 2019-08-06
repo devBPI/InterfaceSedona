@@ -1,0 +1,40 @@
+<form class="modal-form" method="post" novalidate="novalidate" action="{{ path('common-repport-error') }}" data-toggle="form-remote">
+	<div class="modal-header">
+		<h1 class="n1 modal-header__title" id="modal-report-title">{{ 'modal.report.title'|trans }}</h1>
+		<button class="close" type="button" aria-label="{{ 'global.modal-close'|trans }}" data-dismiss="modal">
+			<span aria-hidden="true" class="sr-only">X</span>
+			<img src="{{ asset('images/icones/icone-croix-blanc.svg') }}" alt="" />
+		</button>
+	</div>
+
+	{% if form.vars.errors|length > 0 %}
+		<div class="modal-body">
+			{{ form_errors(form) }}
+		</div>
+	{% endif %}
+
+	<div class="modal-body">
+		<small class="modal-form__indication"><span>*</span> {{ 'global.form-mandatory-field'|trans }}</small>
+		{{ form_row(form.object) }}
+		{{ form_row(form.message) }}
+	</div>
+
+	<div class="modal-body">
+		<h2 class="n1">{{ 'modal.report.subtitle'|trans }}</h2>
+		{{ form_row(form.lastName) }}
+		{{ form_row(form.firstName) }}
+		{{ form_row(form.email) }}
+
+		<div>
+			<i>*Insert captcha*</i>
+		</div>
+
+		{{ form_rest(form) }}
+	</div>
+
+	<div class="modal-footer">
+		<button type="button" data-dismiss="modal" class="btn btn-lg btn-secondary">{{ 'global.modal-cancel'|trans }}</button>
+		<button type="submit" class="btn btn-lg btn-primary">{{ 'modal.report.submit'|trans }}<span class="sr-only"> {{ 'modal.report.submit-sr-only'|trans }}</span></button>
+	</div>
+
+</form>

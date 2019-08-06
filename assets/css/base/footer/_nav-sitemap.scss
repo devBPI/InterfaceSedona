@@ -1,0 +1,63 @@
+// -------------------------------
+// Footer - Navbar Sitemap
+// -------------------------------
+
+.nav-sitemap {
+	position: relative;
+	padding-top: 75px;
+
+	@include media-breakpoint-up(lg) {
+		padding-top: 30px;
+	}
+
+	&__button {
+		background-color: white;
+		border: 0;
+		padding: 0;
+		top: 0;
+		font-size: 15px;
+		font-weight: $font-bold;
+		color: $grey-disabled;
+		position: absolute;
+		top: 0;
+
+		&:hover {
+			color: $red;
+			text-decoration: underline;
+		}
+
+		&--second {
+			margin-top: 23px;
+
+			@include media-breakpoint-up(lg) {
+				margin-top: 0;
+				margin-left: 60px;
+			}
+		}
+
+		&--third {
+			margin-top: 47px;
+
+			@include media-breakpoint-up(lg) {
+				margin-top: 0;
+				margin-left: 135px;
+			}
+		}
+	}
+
+	&__list {
+		padding-left: 20px;
+		margin: 0;
+	}
+
+	&__item {
+
+		a {
+			color: $black;
+
+			&:hover {
+				color: $red;
+			}
+		}
+	}
+}

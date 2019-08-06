@@ -3,14 +3,16 @@
 {% block title %}{{ 'page.home.page_title'|trans }}{% endblock %}
 
 {% block body %}
-	<h1>{{ 'page.home.title'|trans }}</h1>
+	<h1 class="n1">{{ 'page.home.title'|trans }}</h1>
 
 	{% include "home/blocs/carousel.html.twig" %}
-	
-	<h2>{{ 'page.home.thematic'|trans }}</h2>
-	
-	<div>
-		{% include "home/blocs/preview-thematic.html.twig" %}
-	</div>
 
+	<div class="card-container card-container--individual">
+
+		<h2 class="n1">{{ 'page.home.thematic'|trans }}</h2>
+
+		<div class="row">
+			{% include "home/blocs/preview-thematic.html.twig" %}
+		</div>
+	</div>
 {% endblock %}

@@ -1,0 +1,77 @@
+// -------------------------------
+// Header - Menu Secondaire
+// -------------------------------
+
+#menu-secondaire {
+	margin-left: -1px;
+	margin-right: -1px;
+	border-left: $border-thin;
+	border-right: $border-thin;
+
+	@include media-breakpoint-up(md) {
+		margin-right: $spacer;
+		margin-left: 0;
+	}
+
+	@media print {
+		display: none;
+	}
+}
+
+.header {
+
+	.menu-secondaire {
+
+		&__button {
+			position: relative;
+			font-size: 12px;
+			margin-left: -1px;
+			margin-right: -1px;
+
+			&:after {
+				content: "";
+				display: inline-block;
+				width: 0;
+				height: 0;
+				border-top: 4px solid $black;
+				border-left: 4px solid transparent;
+				border-right: 4px solid transparent;
+				vertical-align: middle;
+				margin-left: 3px;
+				margin-bottom: 2px;
+			}
+			
+			@include media-breakpoint-up(lg) { 
+				display: none;
+			}
+		}
+
+		&__list {
+
+			@include media-breakpoint-up(lg) {
+				position: relative!important;
+				display: flex;
+				box-shadow: none;
+				border: 0;
+				transform: translate3d(0, 0 , 0) !important;
+				padding: 20px 0 10px;
+			}
+
+			&-item {
+
+				@include media-breakpoint-up(lg) {
+					padding: 0 10px;
+				}
+
+				a {
+					color: $black;
+					font-size: 12px;
+
+					&:hover {
+						color: $red;
+					}
+				}
+			}
+		}
+	}
+}

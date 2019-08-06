@@ -1,0 +1,23 @@
+<!-- Début - Modal 11 visualisation d'un commentaire -->
+<div role="dialog" aria-modal="true" aria-labelledby="modal-comments-view-title" class="modal fade" id="modal-comments-view">
+	<div class="modal-dialog modal-dialog-centered">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h1 class="n1 modal-header__title" id="modal-comments-view-title">{{ 'modal.comments-view.title'|trans }}</h1>
+				<button class="close" type="button" aria-label="{{ 'global.modal-close'|trans }}" data-dismiss="modal">
+					<span aria-hidden="true" class="sr-only">X</span>
+					<img src="{{ asset('images/icones/icone-croix-blanc.svg') }}" alt="" />
+				</button>
+			</div>
+
+			<div class="modal-body">
+				<p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takiata.</p>
+			</div>
+
+			<div class="modal-footer">
+				<button type="button" data-dismiss="modal" class="btn btn-lg btn-secondary">{{ 'modal.comments-view.close'|trans }}</button>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- Fin - Modal 11 visualisation d'un commentaire -->

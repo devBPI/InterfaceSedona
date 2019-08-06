@@ -1,0 +1,197 @@
+// -------------------------------
+// Carousels
+// -------------------------------
+
+.carousel {
+	margin-bottom: $spacer;
+
+	@media print {
+		display: none;
+	}
+
+	&-wrapper {
+		position: relative;
+	}
+
+	// Gestion Carousel Secondary
+	&--secondary {
+
+		.carousel-wrapper {
+			border-bottom: $border-default;
+		}
+
+		&:last-child {
+
+			.carousel-wrapper {
+				border-bottom: 0;
+			}
+		}
+	}
+
+	// Gestion Header
+	&__header {
+		display: flex;
+		justify-content: space-between;
+		align-items: baseline;
+	}
+
+	&--double {
+
+		.carousel__header {
+			padding-top: 25px;
+			@extend .border-double;
+			background-position: 0 top;
+		}
+	}
+
+	// Gestion Contenu
+	&__slide {
+		position: relative;
+		padding: $spacer $spacer*3;
+
+		@include media-breakpoint-up(lg) {
+			padding: $spacer;
+		}
+
+		&-link {
+			position: absolute;
+			width: calc(100% - 15px * 6);
+			height: calc(100% - 15px * 2);
+			top: $spacer;
+			left: $spacer*3;
+
+			@include media-breakpoint-up(lg) {
+				width: calc(100% - 15px * 2);
+				height: calc(100% - 15px * 2);
+				left: $spacer;
+			}
+		}
+
+		&-image {
+			margin-bottom: $spacer;
+			max-width: 200px;
+
+			@include media-breakpoint-up(lg) {
+				max-width: 100%;
+			}
+		}
+
+		&-title {
+			margin-bottom: 0;
+		}
+
+		&-subtitle {
+			margin-bottom: 0;
+		}
+	}
+
+	// Gestion Pagination
+	&__pagination {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: flex-end;
+		list-style-type: none;
+		margin-top: $spacer;
+		margin-right: $spacer;
+		padding: 0 35px 0 0;
+
+		.slick-active &-dot {
+			background-color: $red;
+		}
+
+		&-dot {
+			-moz-appearance: none;
+			-webkit-appearance: none;
+			width: 25px;
+			height: 15px;
+			display: inline-block;
+			border: 1px solid $red;
+			margin-left: 5px;
+		
+			&:hover {
+				cursor: pointer;
+				background-color: $red;
+			}
+
+			span {
+				display: none;
+			}
+		}
+	}
+	
+	// Gestion Bouton Pause/Play
+	&__control {
+		position: absolute;
+		bottom: 0;
+		right: 0;
+		width: 15px;
+		height: 15px;
+		margin-right: $spacer;
+		margin-bottom: 5px;
+		z-index: 100;
+	}
+
+	&__button {
+		-moz-appearance: none;
+		-webkit-appearance: none;
+		width: 25px;
+		height: 15px;
+		border: 1px solid transparent;
+		padding: 0;
+		position: absolute;
+		top: 0;
+		left: 0;
+		background-position: center center;
+		background-repeat: no-repeat;
+		background-size: contain;
+		background-color: transparent;
+
+		&--play {
+			background-image: url('/images/icones/icone-play.svg');
+		}
+
+		&--pause {
+			background-image: url('/images/icones/icone-pause.svg');
+		}
+	}
+
+	// Gestion Navigation
+	.slick-arrow {
+		background-image: url('/images/icones/icone-chevron-gauche.svg');
+		background-size: 18px;
+		background-repeat: no-repeat;
+		background-position: center center;
+		width: 30px;
+		height: 40px;
+		z-index: 100;
+
+		&:before {
+			display: none;
+		}
+
+		&:focus {
+			outline: $outline;
+		}
+
+		&.slick-prev {
+			left: 10px;
+
+			@include media-breakpoint-up(lg) {
+				left: -20px;
+			}
+		}
+
+		&.slick-next {
+			transform: translate(0, -50%) scaleX(-1);
+			right: 10px;
+
+			@include media-breakpoint-up(lg) {
+				right: -20px;
+			}
+		}
+
+		&.slick-disabled {
+			display: none !important;
+		}
+	}
+}
