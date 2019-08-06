@@ -91,7 +91,7 @@
 			margin-bottom: 0;
 
 			span {
-				color: $red;
+				color: $grey-disabled;
 			}
 		}
 
@@ -145,7 +145,7 @@
 		}
 
 		&-type {
-			max-width: 25px;
+			width: 25px;
 			max-height: 25px;
 			margin-right: 5px;
 		}
