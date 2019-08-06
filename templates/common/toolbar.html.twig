@@ -28,7 +28,7 @@
 				</p>
 			</li>
 		{% endif %}
-		{% if toolbar is defined %}
+		{% if printRoute is defined %}
 			<li class="toolbar__item">
 				<button data-target="#modal-print" data-toggle="modal">
 					<img src="{{ asset('images/icones/icone-imprimante.svg') }}" alt="" class="icone-imprimante"/>
@@ -76,7 +76,7 @@
 
 {% include "record/export.html.twig" %}
 
-{% include "record/print.html.twig" %}
+{% if printRoute is defined %}{% include "record/print.html.twig" %}{% endif %}
 
 {% include "record/share.html.twig" %}
 

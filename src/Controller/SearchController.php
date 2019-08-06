@@ -5,6 +5,7 @@ namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 class SearchController extends AbstractController
@@ -14,7 +15,10 @@ class SearchController extends AbstractController
      */
     public function indexAction(Request $request)
     {
-        return $this->render('search/index.html.twig', ['toolbar'=> 'search']);
+        return $this->render('search/index.html.twig', [
+            'toolbar'       => 'search',
+            'printRoute'    => $this->generateUrl('search_pdf')
+        ]);
     }
 
     /**
@@ -23,8 +27,31 @@ class SearchController extends AbstractController
     public function searchAllAction(Request $request)
     {
         // TODO: controleur provisoire destiné a afficher une mise en page spécifique
+        return $this->render('search/index-all.html.twig', [
+            'toolbar'       => 'search',
+            'printRoute'    => $this->generateUrl('search_pdf')
+        ]);
+    }
 
-        return $this->render('search/search-all.html.twig', ['toolbar'=> 'search']);
+    /**
+     * @Route("/recherche.{format}", methods={"GET","HEAD"}, name="search_pdf", requirements={"format" = "html|pdf|txt"}, defaults={"format" = "pdf"})
+     */
+    public function printAction(Request $request, $format)
+    {
+        $html = $this->renderView("search/index.pdf.twig", [
+            'toolbar'       => 'search',
+            'printRoute'    => $this->generateUrl('record_authority_pdf')
+        ]);
+        if ($format == 'html') {
+            return new Response($html);
+        } elseif ($format == 'txt') {
+            return new Response($html,200,[
+                'Content-Type' => 'application/force-download',
+                'Content-Disposition' => 'attachment; filename="recherche_'.date('Y-m-d_h-i-s').'.txt"'
+            ]);
+        }
+        return new Response($html);
+
     }
 
     /**

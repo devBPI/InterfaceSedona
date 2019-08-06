@@ -16,6 +16,11 @@
 			{% block availability %} {# block a déplacer aprés dynamisation #}
 			{% endblock %}
 		</div>
+
+		{% if mode is defined and mode == 'full' %}
+			<div>mode full</div>
+		{% endif %}
+
 	</div>
 </div>
 
