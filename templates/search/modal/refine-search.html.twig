@@ -18,7 +18,6 @@
 					'author',
 					'bdd',
 					'langue',
-					'date',
 					'subject'
 				] %}
 					<div class="modal-body">
@@ -41,6 +40,31 @@
 					</div>
 				{% endfor %}
 
+				<div class="modal-body">
+					<div class="search-facette">
+						<button type="button" class="search-facette__button btn" data-toggle="collapse" aria-expanded="false" aria-controls="rfn-search-date" data-target="#rfn-search-date">Date</button>
+						<div class="collapse search-facette__body" id="rfn-search-date" role="group" aria-label="Date">
+							<div class="search-facette__content">
+								<div class="search-facette__item search-facette__item--button">
+									<button class="btn">{{ 'modal.refine-search.filter-delete'|trans }}<span class="sr-only"> : Date</span></button>
+								</div>
+								<div class="search-facette__date">
+									<div>
+										<label for="rfn-search-date-1" class="sr-only">Entrez une première date</label>
+										<input type="text" class="form-control" id="rfn-search-date-1" placeholder="AAAA">
+									</div>
+									<div class="mx-3">
+										*Insert Slider*
+									</div>
+									<div>
+										<label for="rfn-search-date-2" class="sr-only">Entrez une deuxième date</label>
+										<input type="text" class="form-control" id="rfn-search-date-2" placeholder="AAAA">
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
 				
 				<div class="modal-footer">
 					<button type="submit" aria-label="{{ 'modal.refine-search.submit-aria'|trans }}" class="btn btn-lg btn-primary btn-img">
