@@ -18,6 +18,14 @@ class SearchController extends AbstractController
     }
 
     /**
+     * @Route("/recherche-tout", methods={"GET","HEAD"}, name="search_all")
+     */
+    public function searchAllAction(Request $request)
+    {
+        return $this->render('search/search-all.html.twig', ['toolbar'=> 'search']);
+    }
+
+    /**
      * @Route("/recherche-avance", methods={"GET","HEAD"}, name="search_advanced")
      */
     public function advancedSearchAction(Request $request)

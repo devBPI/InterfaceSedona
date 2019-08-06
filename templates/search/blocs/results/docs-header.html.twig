@@ -4,7 +4,7 @@
 	<label for="all-document-{{ type }}" class="sr-only">{{ ('bloc.header-docs.'~type~'.title-sr-only')|trans }}</label>
 	<input type="checkbox" id="all-document-{{ type }}" class="list-result__header-checkbox">
 	<h3 class="n2 list-result__header-title">{{ ('bloc.header-docs.'~type~'.in-ligne')|trans }} <span>55</span></h3>
-	<a href="#" class="list-result__header-link">{{ ('bloc.header-docs.'~type~'.see-more')|trans }} <span class="sr-only sr-only-focusable">{{ ('bloc.header-docs.'~type~'.see-more-sr-only')|trans }}</span></a>
+	<a href="{{ path("search_all") }}" class="list-result__header-link">{{ ('bloc.header-docs.'~type~'.see-more')|trans }} <span class="sr-only sr-only-focusable">{{ ('bloc.header-docs.'~type~'.see-more-sr-only')|trans }}</span></a>
 </div>
 <div class="dropdown">
 	<span class="sr-only" aria-label="{{ ('bloc.header-docs.'~type~'.order-aria')|trans }}">{{ ('bloc.header-docs.'~type~'.order')|trans }}</span>
