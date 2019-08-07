@@ -101,11 +101,11 @@ show-mode:
 clean:
 	rm -rf $(CACHE_DIR)/${APP_ENV}/
 	rm -rf $(LOG_DIR)/${APP_ENV}*.log
-	rm -rf package_info.json
 .PHONY: clean
 
 clean-all: clean
 	rm -rf $(BUILD_DIR)
+	rm -rf package_info.json
 .PHONY: clean-all
 
 $(BUILD_DIR):

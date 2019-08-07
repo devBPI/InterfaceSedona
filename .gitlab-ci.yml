@@ -77,6 +77,7 @@ build:image:
   stage: build
   image: docker:latest
 #  only:
+#    - tags
 #    - master
   before_script:
     - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN registry.sedona.fr
@@ -114,6 +115,7 @@ publish:package:
 publish:image:
   stage: publish
   #  only:
+#  - tags
   #    - master
   dependencies:
     - build:image
@@ -133,7 +135,10 @@ deploy:rancher_dev:
   image:
     name: "rancher/cli:$RANCHER_CLI_VERSION"
     entrypoint: ["/bin/sh", "-c"]
+  dependencies:
+    - build:image
 #  only:
+#    - tags
 #    - master
   when: manual
   environment:

@@ -62,3 +62,24 @@ composer.phar
 # Backup entities generated with doctrine:generate:entities command
 */Entity/*~
 
+
+### Sedona Files
+.env
+.gitignore
+.gitlab-ci.yml
+.package-ignore
+.sensiolabs.yml
+behat.yml.dist
+Dockerfile
+README.md
+docker-compose.yml
+sonar-project.properties
+docs
+tests
+
+### Project Files
+package-lock.json
+webpack.config.js
+node_modules
+npm-debug.log
+yarn-error.log

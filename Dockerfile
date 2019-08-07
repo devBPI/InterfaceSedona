@@ -8,7 +8,7 @@ WORKDIR /var/www/html
 RUN if [ -d .git ]; then echo "ERROR: .dockerignore folders detected, exiting" && exit 1; fi
 
 RUN set -ex ; \
-    make c-install
+    make package_info.json c-install cc assets
 
 # compilation des assets
 FROM node:10-alpine as builder-alpine
@@ -21,15 +21,17 @@ RUN yarn encore production
 
 # création de l'image
 FROM registry.sedona.fr/images/php:7-httpd-fpm
+LABEL maintainer="<php@sedona.fr> Sedona Solutions - PHP"
 
 ADD .deploy/rancher/app/php-fpm.conf /usr/local/apache2/conf.d/php-fpm.conf
-
 COPY --from=builder-php /var/www/html /var/www/html
 COPY --from=builder-alpine /var/www/html /var/www/html
 RUN set -xe ;\
-    #docker-php-ext-install pdo pdo_pgsql pgsql ;\
     chown -R www-data /var/www/html ;\
     chmod a+w /var/www/html/var ;\
     echo "IncludeOptional conf.d/*.conf" >> /usr/local/apache2/conf/httpd.conf
 
 WORKDIR /var/www/html
+
+RUN set -ex ; \
+    rm -rf .deploy .env .env.dist
