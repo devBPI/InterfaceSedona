@@ -37,11 +37,7 @@
 {% block body %}
 
 	<div class="row search-result">
-		{% include "search/blocs-results/preview-authority.html.twig"  with {'author': objSearch.mainAuthor} %}
-
-        {% for author in objSearch.otherAuthors %}
-            {% include "search/blocs-results/preview-authority.html.twig" with {'author': author} %}
-        {% endfor %}
+		{% include "search/blocs-results/preview-authority.html.twig" %}
     </div>
 
 	<div class="row">
