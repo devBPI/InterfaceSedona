@@ -399,6 +399,7 @@ bloc:
     country: 'Pays :'
     born-date: 'Naissance :'
     dead-date: 'Mort :'
+    born-dead-date: ''
     activity: 'Activité(s) principale(s) :'
     name-alias: 'Autre(s) nom(s) :'
     name-associe: 'Nom(s) associé(s) :'

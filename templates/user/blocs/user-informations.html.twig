@@ -1,18 +1,11 @@
 <div class="row justify-content-center">
 	<div class="col-12 col-sm-10 col-md-9 col-lg-7">
 		<ul class="list-information account-form">
-			<li class="list-information__item">
-				<span class="list-information__label">{{ 'page.personal-data.profil.pseudo'|trans }}</span>
-				<span class="list-information__sub-list">Lorem</span>
-			</li>
-			<li class="list-information__item">
-				<span class="list-information__label">{{ 'page.personal-data.profil.name'|trans }}</span>
-				<span class="list-information__sub-list">Lorem Ipsum Dolor</span>
-			</li>
-			<li class="list-information__item">
-				<span class="list-information__label">{{ 'page.personal-data.profil.email'|trans }}</span>
-				<span class="list-information__sub-list">lorem-ipsum@dolor.com</span>
-			</li>
+			{% include 'common/informations-list.html.twig' with {'details': {
+				'page.personal-data.profil.pseudo': { 'Lorem': '' },
+				'page.personal-data.profil.name': { 'Lorem Ipsum Dolor': '' },
+				'page.personal-data.profil.email': { 'lorem-ipsum@dolor.com': '' }
+			}} %}
 		</ul>
 	</div>
 </div>
