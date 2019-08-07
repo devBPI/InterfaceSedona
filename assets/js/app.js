@@ -136,7 +136,6 @@ $(document).on('submit', '[data-toggle=form-remote]', function (event) {
 		data = $form.serializeArray(),
 		$parentModal = $form.parents('.modal:first')
 	;
-	console.log('02');
 
 	if ($(event.originalEvent.explicitOriginalTarget).is(':submit')) {
 		var $button = $(event.originalEvent.explicitOriginalTarget);

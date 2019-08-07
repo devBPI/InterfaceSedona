@@ -18,35 +18,13 @@
 		<a href="{{ path('record_authority') }}" title="*Insert Name identité* - {{ 'global.new-windows'|trans }}">{{ author.name }} <span class="n2">(*Insert date debut-fin*)</span></a>
 	</h{{ level }}>
 	<ul class="list-information search-result__list">
-		<li class="list-information__item">
-			<span class="list-information__label">Type d'autorité :</span>
-			<ul class="list-information__sub-list" lang="fr">
-				<li class="list-information__sub-item">Personne</li>
-			</ul>
-		</li>
-		<li class="list-information__item">
-			<ul class="list-information__sub-list" lang="fr">
-				<li class="list-information__sub-item">05/08/1850 - 06/07/1893</li>
-			</ul>
-		</li>
-		<li class="list-information__item">
-			<span class="list-information__label">Pays :</span>
-			<ul class="list-information__sub-list" lang="fr">
-				<li class="list-information__sub-item">France</li>
-			</ul>
-		</li>
-		<li class="list-information__item">
-			<span class="list-information__label">Langue(s) :</span>
-			<ul class="list-information__sub-list" lang="fr">
-				<li class="list-information__sub-item">français</li>
-			</ul>
-		</li>
-		<li class="list-information__item">
-			<span class="list-information__label">Activité(s) principale(s) :</span>
-			<ul class="list-information__sub-list" lang="fr">
-				<li class="list-information__sub-item">Écrivain</li>
-			</ul>
-		</li>
+		{% include 'common/informations-list.html.twig' with {'prefix': 'bloc.autority-result-information.', 'details': {
+			'authority-type': { 'Personne': '' },
+			'born-dead-date': { '05/08/1850 - 06/07/1893': '' },
+			'country': { 'France': '' },
+			'language': { 'français': '' },
+			'activity': { 'Écrivain': '' }
+		}} %}
 	</ul>
 	{% if level == 2 %}</div>{% endif %}
 </div>

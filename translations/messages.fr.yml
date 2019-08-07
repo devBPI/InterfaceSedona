@@ -330,7 +330,7 @@ bloc:
     button: Relancer la recherche dans
   filters-search:         #Bloc 10 Rappel des critères de recherche
     title: 'Recherche avancée :'
-    title-sr-only: Retrouver les termes et les critères de recherche saisie. Cliquer dessus supprime le critère de recherche ou le filtre.
+    title-sr-only: Activer le lien supprime le critère de recherche ou le filtre.
   preview-authority:      #Bloc 11 Aperçu d'une autorité
     first: Sélectionner %name%
     see-more: Voir plus
@@ -399,6 +399,7 @@ bloc:
     country: 'Pays :'
     born-date: 'Naissance :'
     dead-date: 'Mort :'
+    born-dead-date: ''
     activity: 'Activité(s) principale(s) :'
     name-alias: 'Autre(s) nom(s) :'
     name-associe: 'Nom(s) associé(s) :'
