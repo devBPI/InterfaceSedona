@@ -33,6 +33,16 @@
 			.dropdown-menu {
 				min-width: 100%;
 			}
+
+			&:hover {
+
+				.dropdown-menu {
+
+					@include media-breakpoint-up(md) {
+						display: block !important;
+					}
+				}
+			}
 		}
 
 		&-link {
