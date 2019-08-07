@@ -3,7 +3,7 @@
 {% for home in ['autoformation','presse','cinema'] %}
 	<div class="col-12 col-md-4">
 		<div lang="fr" class="card">
-			<a href="{{ path('home_'~home) }}" class="card__link"><span class="sr-only">{{ 'bloc.preview-thematic.discover-sr-only'|trans({'%name%': home }) }}</span></a>
+			<a href="{{ path('home_thematic', {'thematic': home}) }}" class="card__link"><span class="sr-only">{{ 'bloc.preview-thematic.discover-sr-only'|trans({'%name%': home }) }}</span></a>
 			<img src="{{ asset('images/parcours/parcours-presse.jpg') }}" alt="" class="img-fluid card-img-top" />
 			<div class="card-body">
 				<h3 class="n2 card__title">{{ home }}</h3>

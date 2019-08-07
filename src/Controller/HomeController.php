@@ -4,11 +4,10 @@ declare(strict_types=1);
 namespace App\Controller;
 
 use App\Service\Provider\CarouselProvider;
-use Symfony\Component\HttpFoundation\Response;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 /**
  * Class HomeController
@@ -36,9 +35,12 @@ class HomeController extends AbstractController
      */
     public function indexAction(): Response
     {
-        return $this->render('home/default.html.twig', [
-            'carousel' => $this->carouselProvider->getHomeList()
-        ]);
+        return $this->render(
+            'home/default.html.twig',
+            [
+                'carousel' => $this->carouselProvider->getHomeList(),
+            ]
+        );
     }
 
     /**
@@ -49,9 +51,12 @@ class HomeController extends AbstractController
      */
     public function thematicAction(Request $request, $thematic): Response
     {
-        return $this->render('home/thematic.html.twig', [
-            'title'     => $thematic,
-            'carousel'  => $this->carouselProvider->getListByThematic($thematic)
-        ]);
+        return $this->render(
+            'home/thematic.html.twig',
+            [
+                'title' => $thematic,
+                'carousel' => $this->carouselProvider->getListByThematic($thematic),
+            ]
+        );
     }
 }

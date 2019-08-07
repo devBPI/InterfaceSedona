@@ -5,8 +5,9 @@
 			<li class="nav-item"><a href="https://www.bpi.fr/bpi" class="nav-link">Accueil</a></li>
 			<li class="nav-item active"><a href="/" class="nav-link">Catalogue</a></li>
 			<li class="nav-item"><a href="https://www.bpi.fr/agenda" class="nav-link">Agenda</a></li>
-			<li class="nav-item dropdown">
+			<li class="nav-item">
 				<a href="https://www.bpi.fr/la-bibliotheque" class="nav-link dropdown-toggle">La Bibliothèque</a>
+				<span class="sr-only">Accéder à la bibliothèque</span>
 				<button class="dropdown-toggle dropdown-toggle--responsive" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
 				{% include "header/navbar-principal-dropdown.html.twig" with {'list': [
 					{
@@ -58,8 +59,9 @@
 					{ 'link': '//www.bpi.fr/la-bibliotheque/histoire-de-la-bpi', 'name': 'Histoire de la Bpi' }
 				]} %}
 			</li>
-			<li class="nav-item dropdown">
+			<li class="nav-item">
 				<a href="https://www.bpi.fr/informations-pratiques" class="nav-link dropdown-toggle">Informations pratiques</a>
+				<span class="sr-only">Accéder aux informations pratiques</span>
 				<button class="dropdown-toggle dropdown-toggle--responsive" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
 				{% include "header/navbar-principal-dropdown.html.twig" with {'list': [
 						{
@@ -127,8 +129,9 @@
 						{ 'link': '//www.bpi.fr/sites/SiteInstitutionnel/home/informations-pratiques/foire-aux-questions.html', 'name': 'Foire aux quesitions'}
 					]} %}
 			</li>
-			<li class="nav-item dropdown">
+			<li class="nav-item">
 				<a href="https://www.bpi.fr/espace-presse" class="nav-link dropdown-toggle">Presse / Partenariats</a>
+				<span class="sr-only">Accéder à la presse et aux partenariats</span>
 				<button class="dropdown-toggle dropdown-toggle--responsive" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
 				{% include "header/navbar-principal-dropdown.html.twig" with {'list': [
 							{

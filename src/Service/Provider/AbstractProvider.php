@@ -8,7 +8,6 @@ use App\Service\ImageService;
 use GuzzleHttp\Psr7\Response;
 use JMS\Serializer\Serializer;
 use JMS\Serializer\SerializerInterface;
-use Symfony\Component\Debug\Exception\ContextErrorException;
 
 /**
  * Class AbstractProvider
@@ -78,7 +77,7 @@ abstract class AbstractProvider implements ApiProvider
     {
         try {
             return $this->imageService->getLocalPath(file_get_contents($url), $folderName, $this->imageService->extractPathFromUrl($url));
-        } catch (ContextErrorException $exception) {
+        } catch (\ErrorException $exception) {
             // Log error
         }
 
@@ -95,7 +94,7 @@ abstract class AbstractProvider implements ApiProvider
     {
         try {
             return $this->imageService->getLocalPath($content, $folderName, $fileName);
-        } catch (ContextErrorException $exception) {
+        } catch (\ErrorException $exception) {
             // Log error
         }
 

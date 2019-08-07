@@ -1,0 +1,12 @@
+<div class="list-result list-result--{{ type }}">
+	<div class="list-result__header">
+		{% include 'search/blocs-results/docs-header.html.twig' %}
+	</div>
+
+	<div class="list-result__content">
+		{% for index, notice in notices.noticesList %}
+			{# Include résultat #}
+			{% include "search/blocs-results/docs-detail.html.twig" %}
+		{% endfor %}
+	</div>
+</div>

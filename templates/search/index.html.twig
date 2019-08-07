@@ -47,92 +47,14 @@
 
 	<div class="row">
 
-
 		{% block result %}
-
-        {% from 'search/macros/list-notices.html.twig' import display_list as list_notices %}
-        {{ list_notices('shelf', objSearch.notices) }}
-
-		<div class="col-12 col-md-6 pr-md-0">
-			<div class="list-result list-result--rayon">
-
-				<div class="list-result__header">
-					{# Include header - Documents en rayon #}
-					{% include "search/blocs-results/docs-header.html.twig" with {'type': 'rayon'} %}
-				</div>
-
-				<div class="list-result__content">
-					{% for i in 1..10 %}
-						{# Include résultat - Documents en rayon #}
-						{% embed "search/blocs-results/docs-detail.html.twig" with {'type': 'rayon'} %}
-							{% block availability %}
-								<p lang="fr">Presses universitaires du Mirail</p>
-								<p lang="fr">1988 - 2018</p>
-								<p lang="fr">{{ 'bloc.notice-simple.result-of-bdd'|trans }} <a href="#" aria-label="{{ 'bloc.notice-simple.access-to-bdd'|trans({'%name%':'*Insert name BDD*'}) }}">*Insert name BDD*</a></p>
-
-								<!-- Document disponible -->
-								<div class="availability availability--true availability--rayon">
-									<p class="availability__status"><span>{{ 'bloc.notice-simple.document-available'|trans }}</span> - 78 STRA.R 4 disque 1</p>
-									<p>Niveau 3 - Musiques et documents parlés</p>
-
-									{# Dans le cas où il a + d'1 exemplaire #}
-									<button type="button" class="btn btn-small-link btn-see-more btn-see-more--more" data-toggle="collapse" data-target="#availabity-items-{{ i }}" aria-expanded="false" aria-controls="availabity-items-{{ i }}">Voir plus</button>
-									<div class="collapse" id="availabity-items-{{ i }}">
-										<p class="availability__status"><span>{{ 'bloc.notice-simple.document-available'|trans }}</span> - 78 STRA.R 4 disque 2</p>
-										<p>Niveau 3 - Musiques et documents parlés</p>
-
-										<p class="availability__status"><span>{{ 'bloc.notice-simple.document-available'|trans }}</span> - 78 STRA.R 4 disque 3</p>
-										<p>Niveau 3 - Musiques et documents parlés</p>
-									</div>
-								</div>
-
-								<!-- Document indisponible -->
-								<div class="availability availability--false availability--rayon">
-									<p class="availability__status"><span>{{ 'bloc.notice-simple.document-unavailable'|trans }}</span> - En commande</p>
-									<button class="btn list-result__content-button" data-toggle="modal" data-target="#modal-notified"><img src="{{ asset('images/icones/icone-enveloppe.svg') }}" alt="" class="icone-enveloppe"/> <span class="sr-only">Document indisponible, être prévenu de son retour en rayon - ouverture formulaire</span></button>
-								</div>
-
-								<p lang="fr">{{ 'bloc.notice-simple.last-publication'|trans({'%number%': 110, '%pulication-date%': 'Janvier 2018'}) }}</p>
-							{% endblock %}
-						{% endembed %}
-					{% endfor %}
-				</div>
+			<div class="col-12 col-md-6 pr-md-0">
+				{% include 'search/blocs-results/docs-container.html.twig' with {'type': 'rayon', 'notices': objSearch.notices} %}
 			</div>
-		</div>
 
-        {{ list_notices('online', objSearch.noticesOnline) }}
-
-		<div class="col-12 col-md-6 pl-md-0">
-			<div class="list-result list-result--online">
-
-				<div class="list-result__header">
-					{# Include header - Documents en ligne #}
-					{% include "search/blocs-results/docs-header.html.twig" with {'type': 'online'} %}
-				</div>
-
-				<div class="list-result__content">
-					{% for i in 1..10 %}
-						{# Include résultat - Documents en ligne #}
-						{% embed "search/blocs-results/docs-detail.html.twig" with {'type': 'online'} %}
-							{% block availability %}
-								<p lang="fr">CNRS</p>
-								<p lang="fr">1999 - résumé <button class="list-result__content-resume" type="button" data-toggle="tooltip" title="Effet de serre, réchauffement climatique, paléoclimatologie...exemples de questions traitées dans ce dossier multimédia et auxquelles répondent des chercheurs du CNRS et de l'INSU. Pour tous, du lecteur curieux au public averti."><img src="{{ asset('images/icones/icone-resume.svg') }}" alt="" /><span class="sr-only">Afficher le résumé</span></button></p>
-								<p lang="fr">Résultat de <a href="#" aria-label="Acceder à *Insert name BDD*">*Insert name BDD*</a></p>
-								<!-- Pour les documents en ligne consultable -->
-								<div class="availability availability--true availability--online">
-									<a href="#">Accéder à *Insert nom du document*</a>
-								</div>
-								<!-- Pour les documents en ligne non consultable -->
-								<div class="availability availability--false availability--online">
-									<p class="mb-0">Consultable à la Bpi</p>
-								</div>
-							{% endblock %}
-						{% endembed %}
-					{% endfor %}
-				</div>
+			<div class="col-12 col-md-6 pl-md-0">
+				{% include 'search/blocs-results/docs-container.html.twig' with {'type': 'online', 'notices': objSearch.noticesOnline} %}
 			</div>
-		</div>
-
 		{% endblock %}
 
 	</div>

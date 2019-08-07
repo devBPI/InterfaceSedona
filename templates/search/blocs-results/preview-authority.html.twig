@@ -8,7 +8,7 @@
 		{# Include collapse notices d'autorité - Affiche les 5 notices d'autorité les plus pertinentes #}
 		<div id="related-notices" class="collapse pt-3">
 			{# Demande BPI concernant l'affichage souhaité pour les 5 notices #}
-			{% for author in objSearch.otherAuthors %}
+			{% for i, author in objSearch.otherAuthors %}
 				<div class="row search-result__collapse-item">
 					{% include "search/blocs-results/preview-authority_related-notice.html.twig" with {'author': author, 'level': 2 } %}
 				</div>
