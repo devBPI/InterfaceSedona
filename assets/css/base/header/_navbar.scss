@@ -111,6 +111,17 @@
 		}
 	}
 
+	@include media-breakpoint-up(md) {
+
+		.dropdown-link:hover {
+			
+			.dropdown-menu {
+				display: flex !important;
+				flex-wrap: wrap;
+			}
+		}
+	}
+
 	.dropdown {
 
 		&-toggle {
