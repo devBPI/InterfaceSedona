@@ -27,11 +27,13 @@ class RepportErrorType extends AbstractType
             ])
             ->add('lastName', TextType::class,[
                 'required'  => false,
-                'label'     => 'modal.report.field.last-name'
+                'label'     => 'modal.report.field.last-name',
+                'attr'      => ['autocomplete'=> 'family-name' ]
             ])
             ->add('firstName', TextType::class,[
                 'required'  => false,
-                'label'     => 'modal.report.field.first-name'
+                'label'     => 'modal.report.field.first-name',
+                'attr'      => ['autocomplete'=> 'name' ]
             ])
             ->add('email', EmailType::class,[
                 'required'  => false,
