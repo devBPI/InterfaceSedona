@@ -8,7 +8,8 @@ WORKDIR /var/www/html
 RUN if [ -d .git ]; then echo "ERROR: .dockerignore folders detected, exiting" && exit 1; fi
 
 RUN set -ex ; \
-    make package_info.json c-install cc assets
+    make package_info.json c-install cc assets ;\
+    make dotenv-clear
 
 # compilation des assets
 FROM node:10-alpine as builder-alpine
@@ -32,6 +33,3 @@ RUN set -xe ;\
     echo "IncludeOptional conf.d/*.conf" >> /usr/local/apache2/conf/httpd.conf
 
 WORKDIR /var/www/html
-
-RUN set -ex ; \
-    rm -rf .deploy .env .env.dist
