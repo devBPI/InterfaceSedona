@@ -4,7 +4,7 @@
 	<div class="search-banner" role="combobox" aria-expanded="false" aria-owns="autocompletion-list" aria-haspopup="listbox" id="search-banner"> 
 		<div class="input-group search-banner__input">
 			<label for="search-input" id="search-label" class="sr-only">{{ 'bloc.search-zone.input-sr-only'|trans }}</label>
-			<input type="text" aria-autocomplete="list" aria-controls="autocompletion-list" id="search-input" placeholder="{{ 'bloc.search-zone.input-placeholder'|trans }}"
+			<input type="text" name="search" aria-autocomplete="list" aria-controls="autocompletion-list" id="search-input" placeholder="{{ 'bloc.search-zone.input-placeholder'|trans }}"
 				   {% if objSearch is defined and objSearch.query %}value="{{ objSearch.query }}"{% endif %} />
 		</div>
 		<div class="form-group search-banner__select">
