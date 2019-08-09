@@ -128,6 +128,38 @@ $('.btn-see-more').on('click', function() {
 			.addClass('btn-see-more--more');
 	}
 });
+
+// Ajout boutton "Voir plus" suivant nombres d'informations - Notice Bibliographique ---------------------------------------------------------
+$('.js-list-information ul.list-information__sub-list').each( function() {
+	var $list = $(this),
+		$children = $list.children(),
+		$children_length = $children.length;
+
+	if ( $children_length > 4 ) {
+		$children.eq(4).nextAll().addClass('d-none');
+		$children.eq(4).after('<li><button type="button" class="btn btn-small-link js-btn js-btn--more">Voir tout</button></li>');
+	}
+});
+
+$('.js-btn').on('click', function() {
+	var $this = $(this),
+		$items = $this.parent().nextAll();
+
+	if( $this.hasClass('js-btn--more') ) {
+		$items.removeClass('d-none');
+		$this
+			.text('Voir moins')
+			.removeClass('js-btn--more')
+			.addClass('js-btn--less');
+	} else {
+		$items.addClass('d-none');
+		$this
+			.text('Voir plus')
+			.removeClass('js-btn--less')
+			.addClass('js-btn--more');
+	}
+});
+
 // -- Formulaire Remoter -----------------------------------------------------------------------------------------
 $(document).on('submit', '[data-toggle=form-remote]', function (event) {
 	// Stop form from submitting normally

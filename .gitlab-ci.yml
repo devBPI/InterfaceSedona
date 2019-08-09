@@ -6,7 +6,8 @@ stages:
 
 variables:
   RANCHER_CLI_VERSION: "v0.6.10"
-  STACK_NAME: "bpi-catalogue"
+  RANCHER_STACK_NAME: "bpi-catalogue"
+  RANCHER_STACK_URL: https://bpi-catalogue.dev.sedona.fr
   SENSIO_INSIGHT_PROJECT_ID: "d00b38e4-085a-4648-b87f-86de05d98aab"
 
 cache:
@@ -44,7 +45,7 @@ quality:w3c:
   stage: quality
   image: registry.sedona.fr/images/php:7
   script:
-    - make .env c-install behat-w3c
+    - make dotenv-make c-install behat-w3c
   artifacts:
     name: "test"
     paths:
@@ -54,30 +55,31 @@ quality:w3c:
     untracked: true
 
 build:package:
- stage: build
- image: registry.sedona.fr/images/php:7
- only:
+  stage: build
+  image: registry.sedona.fr/images/php:7
+  only:
     - master
     - tags
- cache:
+  cache:
     key: "$CI_PIPELINE_ID-$CI_COMMIT_REF_SLUG"
     untracked: true
     policy: push
     paths:
-     - build/
- artifacts:
+      - build/
+  artifacts:
     untracked: false
     expire_in: 30 mins
     paths:
-     - build/
- script:
-    - make .env default clean
+      - build/
+  script:
+    - make dotenv-make default clean
 
 build:image:
   stage: build
   image: docker:latest
-#  only:
-#    - master
+  only:
+    - tags
+    - master
   before_script:
     - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN registry.sedona.fr
     - apk update
@@ -89,20 +91,20 @@ build:image:
     - docker build -t $DB_IMAGE_TAG -f .deploy/db.Dockerfile .deploy
 
 publish:package:
- stage: publish
- image: "registry.sedona.fr/images/maven:latest-gitlab-ci"
- only:
+  stage: publish
+  image: "registry.sedona.fr/images/maven:latest-gitlab-ci"
+  only:
     - master
     - tags
- cache:
+  cache:
     key: "$CI_PIPELINE_ID-$CI_COMMIT_REF_SLUG"
     untracked: true
     policy: pull
     paths:
-     - build/
- dependencies:
+      - build/
+  dependencies:
     - build:package
- script:
+  script:
     - GROUP_ID=$(make show-var-GROUP_ID)
     - ARTIFACT_ID=$(make show-var-ARTIFACT_ID)
     - VERSION=$(make show-var-VERSION)
@@ -113,8 +115,9 @@ publish:package:
 
 publish:image:
   stage: publish
-  #  only:
-  #    - master
+  only:
+    - tags
+    - master
   dependencies:
     - build:image
   before_script:
@@ -133,11 +136,14 @@ deploy:rancher_dev:
   image:
     name: "rancher/cli:$RANCHER_CLI_VERSION"
     entrypoint: ["/bin/sh", "-c"]
-#  only:
-#    - master
+  dependencies:
+    - build:image
+  only:
+    - tags
+    - master
   when: manual
   environment:
     name: dev-rancher
-    url: https://bpi-catalogue.dev.sedona.fr
+    url: $RANCHER_STACK_URL
   script:
-    - rancher up --stack $STACK_NAME -d --confirm-upgrade --force-recreate --pull --file .deploy/rancher/docker-compose.yml --rancher-file .deploy/rancher/rancher-compose.yml app
+    - rancher up --stack $RANCHER_STACK_NAME -d --confirm-upgrade --force-recreate --pull --file .deploy/rancher/docker-compose.yml --rancher-file .deploy/rancher/rancher-compose.yml app
