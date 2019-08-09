@@ -3,6 +3,8 @@
 
 namespace App\Controller;
 
+use App\Model\Notice;
+use App\Service\Provider\NoticeProvider;
 use Spipu\Html2Pdf\Html2Pdf;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -13,12 +15,42 @@ class RecordController extends AbstractController
 {
     use PrintTrait;
 
+
+    /**
+     * @var NoticeProvider
+     */
+    private $noticeProvider;
+
+    /**
+     * RecordController constructor.
+     * @param NoticeProvider $noticeProvider
+     */
+    public function __construct(NoticeProvider $noticeProvider)
+    {
+        $this->noticeProvider = $noticeProvider;
+    }
+
     /**
      * @Route("/notice-bibliographique", methods={"GET","HEAD"}, name="record_bibliographic")
      */
     public function bibliographicRecordAction(Request $request)
     {
+        $query = $request->get('ark');
+
+        $object = new Notice(); // $this->noticeProvider->getNotice($query);
+        dump($object);
+        //$objSearch->setQuery($query);
+/*
+
+
+        return $this->render('search/index.html.twig', [
+            'toolbar'       => 'search',
+            'objSearch'     => $objSearch,
+            'printRoute'    => $this->generateUrl('search_pdf')
+        ]);
+*/
         return $this->render('record/bibliographic.html.twig', [
+            'object'     => $object,
             'toolbar'       => 'document',
             'printRoute'    => $this->generateUrl('record_bibliographic_pdf')
         ]);
