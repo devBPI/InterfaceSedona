@@ -11,7 +11,6 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class RecordController extends AbstractController
 {
-    use PrintTrait;
 
     /**
      * @Route("/notice-bibliographique", methods={"GET","HEAD"}, name="record_bibliographic")

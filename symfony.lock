@@ -160,9 +160,6 @@
     "h4cc/wkhtmltopdf-amd64": {
         "version": "0.12.4"
     },
-    "h4cc/wkhtmltopdf-i386": {
-        "version": "0.12.4"
-    },
     "hoa/compiler": {
         "version": "3.17.08.08"
     },

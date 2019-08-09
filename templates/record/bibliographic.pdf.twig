@@ -4,7 +4,7 @@
     <h1>notice-bibliographique</h1>
 	
 	{% if includeImage %}
-		<img src="" alt="">
+		<img src="{{ absolute_url(asset('images/parcours/parcours-presse.jpg')) }}" alt="">
 	{% endif %}
 	<p>bala bla bla etttt {% if isPrintLong %}le texte supp pour le long{% endif %} </p>
 

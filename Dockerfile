@@ -28,6 +28,8 @@ ADD .deploy/rancher/app/php-fpm.conf /usr/local/apache2/conf.d/php-fpm.conf
 COPY --from=builder-php /var/www/html /var/www/html
 COPY --from=builder-alpine /var/www/html /var/www/html
 RUN set -xe ;\
+    apt update && apt install -y --no-install-recommends xvfb wkhtmltopdf ;\
+    rm -rf /var/lib/apt/lists/* ; \
     chown -R www-data /var/www/html ;\
     chmod a+w /var/www/html/var ;\
     echo "IncludeOptional conf.d/*.conf" >> /usr/local/apache2/conf/httpd.conf
