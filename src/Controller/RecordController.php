@@ -3,7 +3,7 @@
 
 namespace App\Controller;
 
-use Spipu\Html2Pdf\Html2Pdf;
+use Knp\Bundle\SnappyBundle\Snappy\Response\PdfResponse;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -20,21 +20,34 @@ class RecordController extends AbstractController
     {
         return $this->render('record/bibliographic.html.twig', [
             'toolbar'       => 'document',
-            'printRoute'    => $this->generateUrl('record_bibliographic_pdf')
+            'printRoute'    => $this->generateUrl('record_bibliographic_pdf',['format'=> 'pdf'])
         ]);
     }
 
     /**
-     * @Route("/notice-bibliographique.{format}", methods={"GET","HEAD"}, name="record_bibliographic_pdf", requirements={"format" = "html|pdf|txt"}, defaults={"format" = "pdf"})
+     * @Route("/print/notice-bibliographique.{format}", methods={"GET","HEAD"}, name="record_bibliographic_pdf", requirements={"format" = "html|pdf|txt"}, defaults={"format" = "pdf"})
      */
-    public function bibliographicRecordPDFAction(Request $request, $format = "pdf")
+    public function bibliographicRecordPDFAction(Request $request, \Knp\Snappy\Pdf $knpSnappy, $format = "pdf")
     {
         $content = $this->renderView("record/bibliographic.".($format == 'txt' ? 'txt': 'pdf').".twig", [
             'isPrintLong'   => $request->get('print-type', 'print-long') == 'print-long',
             'includeImage'  => $request->get('print-image', null) == 'print-image',
         ]);
+        $filename = 'bibliographic'.date('Y-m-d_h-i-s');
 
-        return $this->renderPrint($content,'bibliographic'.date('Y-m-d_h-i-s'), $format );
+        if ($format == 'txt') {
+            return new Response($content,200,[
+                'Content-Type' => 'application/force-download',
+                'Content-Disposition' => 'attachment; filename="'.$filename.'.txt"'
+            ]);
+        } elseif ($format == 'html') {
+            return new Response($content);
+        }
+
+        return new PdfResponse(
+            $knpSnappy->getOutputFromHtml($content),
+            $filename.".pdf"
+        );
     }
 
     /**
@@ -49,15 +62,28 @@ class RecordController extends AbstractController
     }
 
     /**
-     * @Route("/notice-autorite.{format}", methods={"GET","HEAD"}, name="record_authority_pdf", requirements={"format" = "html|pdf|txt"}, defaults={"format" = "pdf"})
+     * @Route("/print/notice-autorite.{format}", name="record_authority_pdf", requirements={"format" = "html|pdf|txt"}, defaults={"format" = "pdf"})
      */
-    public function authorityRecordPDFAction(Request $request, $format = "pdf")
+    public function authorityRecordPDFAction(Request $request, \Knp\Snappy\Pdf $knpSnappy, $format = "pdf")
     {
         $content = $this->renderView("record/authority.".($format == 'txt' ? 'txt': 'pdf').".twig", [
             'isPrintLong'   => $request->get('print-type', 'print-long') == 'print-long',
             'includeImage'  => $request->get('print-image', null) == 'print-image',
         ]);
+        $filename = 'authority_'.date('Y-m-d_h-i-s');
 
-        return $this->renderPrint($content,'authority'.date('Y-m-d_h-i-s'), $format );
+        if ($format == 'txt') {
+            return new Response($content,200,[
+                'Content-Type' => 'application/force-download',
+                'Content-Disposition' => 'attachment; filename="'.$filename.'.txt"'
+            ]);
+        } elseif ($format == 'html') {
+            return new Response($content);
+        }
+
+        return new PdfResponse(
+            $knpSnappy->getOutputFromHtml($content),
+            $filename.".pdf"
+        );
     }
 }

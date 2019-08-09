@@ -20,7 +20,7 @@ class SearchController extends AbstractController
     {
         return $this->render('search/index.html.twig', [
             'toolbar'       => 'search',
-            'printRoute'    => $this->generateUrl('search_pdf')
+            'printRoute'    => $this->generateUrl('search_pdf',['format'=> 'pdf'])
         ]);
     }
 
@@ -32,7 +32,7 @@ class SearchController extends AbstractController
         // TODO: controleur provisoire destiné a afficher une mise en page spécifique
         return $this->render('search/index-all.html.twig', [
             'toolbar'       => 'search',
-            'printRoute'    => $this->generateUrl('search_pdf')
+            'printRoute'    => $this->generateUrl('search_pdf',['format'=> 'pdf'])
         ]);
     }
 
