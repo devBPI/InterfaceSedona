@@ -45,7 +45,7 @@ quality:w3c:
   stage: quality
   image: registry.sedona.fr/images/php:7
   script:
-    - make .env c-install behat-w3c
+    - make dotenv-make c-install behat-w3c
   artifacts:
     name: "test"
     paths:
