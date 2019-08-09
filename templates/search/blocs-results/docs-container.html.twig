@@ -1,4 +1,4 @@
-<div class="list-result list-result--{{ type }}">
+<div class="list-result list-result--{{ classColl|default(type) }}">
 	<div class="list-result__header">
 		{% include 'search/blocs-results/docs-header.html.twig' %}
 	</div>
