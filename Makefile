@@ -228,6 +228,7 @@ ifdef CONSOLE
 	else \
 		$(CONSOLE) --env=${APP_ENV} assets:install --symlink  ;\
 	fi
+	$(CONSOLE) --env=${APP_ENV} fos:js-routing:dump --format=json --target=public/js/fos_js_routes.json
 else
 	@printf "Cannot install assets (needs symfony/console)\n"
 endif
