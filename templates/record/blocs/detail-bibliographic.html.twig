@@ -29,8 +29,8 @@
 	</div>
 </div>
 <div class="col-12 col-md-9">
-	<ul class="list-information bibliographic-result__infos">
-		{% include 'common/informations-list.html.twig' with {'details': {
+	<ul class="list-information bibliographic-result__infos js-list-information">
+		{% include 'common/informations-list.html.twig' with {'prefix': 'bloc.autority-result-information.', 'details': {
 			'contributor': {
 				'Plasson, Michel (1933-....)': '#',
 				'Ericson, Eric (1918-2013)': '#',
@@ -111,47 +111,14 @@
 			<p>{{ 'bloc.notice-simple.last-publication'|trans({'%number%': 110, '%pulication-date%': 'Janvier 2018'}) }}</p>
 			<p class="n5 mt-3">{{ 'bloc.autority-result-information.publication-receve'|trans }}</p>
 			<ul class="list-information list-information--sub-list">
-				<li class="list-information__item">
-					<span class="list-information__label">2018</span>
-					<ul class="list-information__sub-list">
-						<li class="list-information__sub-item">N° 110, Janvier 2018</li>
-					</ul>
-				</li>
-				<li class="list-information__item">
-					<span class="list-information__label">2017</span>
-					<ul class="list-information__sub-list">
-						<li class="list-information__sub-item">N° 109, Décembre 2017</li>
-						<li class="list-information__sub-item">N° 108, Janvier 2017</li>
-					</ul>
-				</li>
-				<li class="list-information__item">
-					<span class="list-information__label">2016</span>
-					<ul class="list-information__sub-list">
-						<li class="list-information__sub-item">N° 107, Juillet 2016</li>
-						<li class="list-information__sub-item">N° 106, Janvier 2016</li>
-					</ul>
-				</li>
-				<li class="list-information__item">
-					<span class="list-information__label">2015</span>
-					<ul class="list-information__sub-list">
-						<li class="list-information__sub-item">N° 105, Juillet 2015</li>
-						<li class="list-information__sub-item">N° 104, Janvier 2015</li>
-					</ul>
-				</li>
-				<li class="list-information__item">
-					<span class="list-information__label">2014</span>
-					<ul class="list-information__sub-list">
-						<li class="list-information__sub-item">N° 103, Juillet 2014</li>
-						<li class="list-information__sub-item">N° 102, Janvier 2014</li>
-					</ul>
-				</li>
-				<li class="list-information__item">
-					<span class="list-information__label">2013</span>
-					<ul class="list-information__sub-list">
-						<li class="list-information__sub-item">N° 101, Juillet 2013</li>
-						<li class="list-information__sub-item">N° 100, Janvier 2013</li>
-					</ul>
-				</li>
+				{% include 'common/informations-list.html.twig' with {'details': {
+					'2018': { 'N° 110, Janvier 2018': '' },
+					'2017': { 'N° 109, Décembre 2017': '', 'N° 108, Janvier 2017' : '' },
+					'2016': { 'N° 107, Juillet 2016': '', 'N° 106, Janvier 2016' : '' },
+					'2015': { 'N° 105, Décembre 2015': '', 'N° 104, Janvier 2015' : '' },
+					'2014': { 'N° 103, Juillet 2014': '', 'N° 102, Janvier 2014' : '' },
+					'2013': { 'N° 101, Décembre 2013': '', 'N° 100, Janvier 2013' : '' },
+				}} %}
 			</ul>
 		</div>
 

@@ -3,6 +3,7 @@
 
 namespace App\Controller;
 
+use Knp\Bundle\SnappyBundle\Snappy\Response\PdfResponse;
 use Spipu\Html2Pdf\Html2Pdf;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -11,7 +12,6 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class SearchController extends AbstractController
 {
-    use PrintTrait;
 
     /**
      * @Route("/recherche", methods={"GET","HEAD"}, name="search")
@@ -20,7 +20,7 @@ class SearchController extends AbstractController
     {
         return $this->render('search/index.html.twig', [
             'toolbar'       => 'search',
-            'printRoute'    => $this->generateUrl('search_pdf')
+            'printRoute'    => $this->generateUrl('search_pdf',['format'=> 'pdf'])
         ]);
     }
 
@@ -32,21 +32,34 @@ class SearchController extends AbstractController
         // TODO: controleur provisoire destiné a afficher une mise en page spécifique
         return $this->render('search/index-all.html.twig', [
             'toolbar'       => 'search',
-            'printRoute'    => $this->generateUrl('search_pdf')
+            'printRoute'    => $this->generateUrl('search_pdf',['format'=> 'pdf'])
         ]);
     }
 
     /**
-     * @Route("/recherche.{format}", methods={"GET","HEAD"}, name="search_pdf", requirements={"format" = "html|pdf|txt"}, defaults={"format" = "pdf"})
+     * @Route("/print/recherche.{format}", methods={"GET","HEAD"}, name="search_pdf", requirements={"format" = "html|pdf|txt"}, defaults={"format" = "pdf"})
      */
-    public function printAction(Request $request, $format)
+    public function printAction(Request $request, \Knp\Snappy\Pdf $knpSnappy, $format)
     {
         $content = $this->renderView("search/index.".($format == 'txt' ? 'txt': 'pdf').".twig", [
             'isPrintLong'   => $request->get('print-type', 'print-long') == 'print-long',
             'includeImage'  => $request->get('print-image', null) == 'print-image',
         ]);
+        $filename = 'search-'.date('Y-m-d_h-i-s');
 
-        return $this->renderPrint($content,'search'.date('Y-m-d_h-i-s'), $format );
+        if ($format == 'txt') {
+            return new Response($content,200,[
+                'Content-Type' => 'application/force-download',
+                'Content-Disposition' => 'attachment; filename="'.$filename.'.txt"'
+            ]);
+        } elseif ($format == 'html') {
+            return new Response($content);
+        }
+
+        return new PdfResponse(
+            $knpSnappy->getOutputFromHtml($content),
+            $filename.".pdf"
+        );
     }
 
     /**

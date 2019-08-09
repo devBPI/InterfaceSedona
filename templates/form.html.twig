@@ -1,6 +1,5 @@
 {% extends 'bootstrap_4_horizontal_layout.html.twig' %}
 
-
 {% block form_label -%}
     {%- if label is same as(false) -%}
         <div class="{{ block('form_label_class') }}"></div>
@@ -38,3 +37,16 @@
 {% block form_group_class -%}
     col-12 col-sm-8
 {%- endblock form_group_class %}
+
+
+{%- block password_widget -%}
+    {%- set type = type|default('password') -%}
+    {%- set attr = attr|merge({ 'autocomplete':'current-password' }) -%}
+    {{ block('form_widget_simple') }}
+{%- endblock password_widget -%}
+
+{%- block email_widget -%}
+    {%- set type = type|default('email') -%}
+    {%- set attr = attr|merge({ 'autocomplete':'email' }) -%}
+    {{ block('form_widget_simple') }}
+{%- endblock email_widget -%}

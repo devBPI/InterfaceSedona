@@ -101,11 +101,11 @@ show-mode:
 clean:
 	rm -rf $(CACHE_DIR)/${APP_ENV}/
 	rm -rf $(LOG_DIR)/${APP_ENV}*.log
-	rm -rf package_info.json
 .PHONY: clean
 
 clean-all: clean
 	rm -rf $(BUILD_DIR)
+	rm -rf package_info.json
 .PHONY: clean-all
 
 $(BUILD_DIR):
@@ -114,8 +114,13 @@ $(BUILD_DIR):
 package_info.json:
 	echo "{\"date_version\":\"${NOW}\",\"tag\":\"${CI_COMMIT_TAG}\",\"project_url\":\"${CI_PROJECT_URL}\", \"sha\":\"${CI_COMMIT_SHA}\"}" | tee package_info.json
 
-.env:
+dotenv-make:
 	cp -n .env.dist .env
+	chmod 600 .env
+
+dotenv-clear:
+	rm -rf .deploy .env .env.dist
+	touch .env
 	chmod 600 .env
 
 ################################################################################
@@ -286,7 +291,7 @@ db-init: db-create db-update
 ##	CI/CD Config Build
 ################################################################################
 
-package: $(BUILD_DIR) package_info.json c-install
+package: $(BUILD_DIR) package_info.json c-install dotenv-clear
 	@printf "Building ${BUILD_DIR}/${PACKAGE_NAME}\n"
 	tar --ignore-failed-read --exclude-from=./.package-ignore -czf ${BUILD_DIR}/${PACKAGE_NAME} .
 .PHONY: package

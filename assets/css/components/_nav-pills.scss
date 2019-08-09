@@ -2,43 +2,69 @@
 // Nav Pills
 // -------------------------------
 
-.nav-pills {
-	margin-bottom: $spacer;
+#contenu-site {
+	.nav-pills {
+		margin-bottom: $spacer;
 
-	.nav {
+		.nav {
 
-		&-item {
-			border: $border-thin;
-			border-bottom: 0;
-			min-width: 100%;
-			flex: 0 0 100%;
-			position: relative;
-
-			@include media-breakpoint-up(sm) {
-				border-bottom: $border-thin;
-				flex: 1 1 auto;
-				min-width: auto;
-				margin-bottom: -1px;
-				margin-right: -1px;
-			}
-
-			&:last-child {
-				border-bottom: $border-thin;
+			&-item {
+				min-width: 100%;
+				flex: 0 0 100%;
+				position: relative;
 
 				@include media-breakpoint-up(sm) {
-					border-right: $border-thin;
+					flex: 1 1 auto;
+					min-width: auto;
+					margin-bottom: -1px;
+					margin-right: -1px;
+				}
+
+				&:last-child {
+
+					.nav-link {
+						border-bottom: $border-thin;
+
+						@include media-breakpoint-up(sm) {
+							border-right: $border-thin;
+						}
+					}
+				}
+
+				.dropdown-menu {
+					min-width: 100%;
+				}
+
+				&:hover {
+
+					.dropdown-menu {
+
+						@include media-breakpoint-up(md) {
+							display: block !important;
+						}
+					}
 				}
 			}
 
-			.dropdown-menu {
-				min-width: 100%;
-			}
-		}
+			&-link {
+				border: $border-thin;
+				border-bottom: 0;
 
-		&-link {
+				&:after {
+					display: none;
 
-			&:focus {
-				outline-offset: -3px;
+					@include media-breakpoint-up(md) {
+						display: inline-block;
+					}
+				}
+
+				@include media-breakpoint-up(sm) {
+					border-bottom: $border-thin;
+				}
+
+				&:focus {
+					outline-offset: -3px;
+				}
 			}
 		}
 	}
