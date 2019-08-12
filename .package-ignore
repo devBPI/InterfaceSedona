@@ -9,8 +9,10 @@
 ./.settings
 ./.deploy
 ./.package-ignore
+./.env.dist
 ./docker-compose.*
 ./nbproject
+./app/config/parameters.yml
 ./build
 ./bin/behat
 ./bin/doctrine*
@@ -20,8 +22,10 @@
 ./bin/selenium-server-standalone
 ./bin/simple-phpunit
 ./features
+./installer
 ./tests
 ./var/*
+./web/config.php
 ./behat.yml*
 ./phpunit.xml*
 ./README.md
