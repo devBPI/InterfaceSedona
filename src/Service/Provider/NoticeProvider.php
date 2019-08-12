@@ -106,18 +106,18 @@ EOF;
     {
         /** @var ListNotices $notices */
         try{
-            $notices = $this->hydrateFromResponse('/details/notice/', [
-                'ark' => $this->formatQuery($query)
+            $notices = $this->arrayFromResponse('/details/notice-themed/', [
+                'permalink' => $query
             ], Notice::class);
         }catch(NoResultException $e){
             dump("la ressource n'est plus disponible page 404 customisé à faire");
         }
+
 /*
         foreach ($notices->getNoticesList() as $notice) {
             $this->getImagesForNotice($notice);
         }
 */
-
     }
 }
 

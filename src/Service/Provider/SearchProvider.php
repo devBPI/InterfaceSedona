@@ -83,4 +83,30 @@ EOF;
             return '';
         }
     }
+
+    /**
+     * @param string $query
+     * @return mixed
+     */
+    public function findNoticeAutocomplete(string $query)
+    {
+        /** @var Results $searchResult */
+        $content = $this->hydrateFromResponse('/autocomplete/notices', [
+            'word' => $query
+        ]);
+
+        dump($content);die;
+
+/*
+        foreach ($searchResult->getNotices()->getNoticesList() as $notice) {
+            $this->getImagesForNotice($notice);
+        }
+
+        foreach ($searchResult->getNoticesOnline()->getNoticesList() as $notice) {
+            $this->getImagesForNotice($notice);
+        }
+*/
+        return $content;
+    }
+
 }
