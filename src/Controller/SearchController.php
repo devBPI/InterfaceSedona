@@ -3,6 +3,7 @@
 
 namespace App\Controller;
 
+use App\Model\SuggestionList;
 use Spipu\Html2Pdf\Html2Pdf;
 use App\Service\Provider\SearchProvider;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -97,19 +98,19 @@ class SearchController extends AbstractController
     {
 
         $query = $request->get('word');
-        $objSearch = $this->searchProvider->findNoticeAutocomplete($query);
-        //$facet = $objSearch->getFacets();
 
-        $searchResponse = [
-            ['label'=>'toto1'],
-            ['label'=>'toto2'],
-            ['label'=>'toto3'],
-        ];
+        try{
+            $objSearch = $this->searchProvider->findNoticeAutocomplete($query, SuggestionList::class);
+
+        }catch(\Exception $exception){
+            return new JsonResponse([
+                'code'=> $exception->getCode(),
+                'message' => $exception->getMessage(),
+            ]);
+        }
 
         return new JsonResponse([
-            'code' => 200, //$objSearch->getStatusCode(),
-            'message' => 'ok', //$serviceProposed->message,
-            'html' => $this->renderView('search/autocompletion.html.twig', ['words' => $searchResponse,
+            'html' => $this->renderView('search/autocompletion.html.twig', ['words' => $objSearch->getSuggestions(),
             ])
 
         ]);

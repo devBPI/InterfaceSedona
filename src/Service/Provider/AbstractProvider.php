@@ -106,15 +106,5 @@ abstract class AbstractProvider implements ApiProvider
 
         return '';
     }
-
-    /**
-     *
-     */
-    protected function getResponse()
-    {
-      /*  $reponse = $this->api->get($endpoint, $queries);
-
-        return $this->api->
-      */
-    }
+    
 }

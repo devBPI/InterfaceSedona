@@ -3,21 +3,10 @@
 	{% if words is defined %}
 		{%  for word in words %}
 			<li class="search-autocomplet__item" role="option" aria-selected="false">
-				<a href="#" class="search-autocomplet__item-content">word.label</a>
+				<a href="#" class="search-autocomplet__item-content">{{ word }}</a>
 			</li>
 		{% endfor %}
 	{% else %}
-		<li class="search-autocomplet__item" role="option" aria-selected="false">
-		<a href="#" class="search-autocomplet__item-content">Proposition 1</a>
-		</li>
-			<li class="search-autocomplet__item" role="option" aria-selected="false">
-			<a href="#" class="search-autocomplet__item-content">Proposition 2</a>
-		</li>
-			<li class="search-autocomplet__item" role="option" aria-selected="false">
-			<a href="#" class="search-autocomplet__item-content">Proposition 3</a>
-		</li>
-		<li class="search-autocomplet__item" role="option" aria-selected="false">
-			<a href="#" class="search-autocomplet__item-content">Proposition 4</a>
-		</li>
+
 	{% endif %}
 </ul>

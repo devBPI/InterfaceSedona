@@ -86,14 +86,15 @@ EOF;
 
     /**
      * @param string $query
-     * @return mixed
+     * @param string $model
+     * @return object
      */
-    public function findNoticeAutocomplete(string $query)
+    public function findNoticeAutocomplete(string $query, string $model)
     {
         /** @var Results $searchResult */
-        $content = $this->hydrateFromResponse('/autocomplete/notices', [
-            'word' => $query
-        ]);
+        $content = $this->hydrateFromResponse('/autocomplete/notices',
+            ['word' => $query,],
+            $model);
 
 
 /*
