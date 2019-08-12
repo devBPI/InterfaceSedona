@@ -6,6 +6,7 @@ namespace App\Controller;
 use Spipu\Html2Pdf\Html2Pdf;
 use App\Service\Provider\SearchProvider;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -99,12 +100,16 @@ class SearchController extends AbstractController
         $objSearch = $this->searchProvider->findNoticeAutocomplete($query);
         //$facet = $objSearch->getFacets();
 
-        dump($objSearch); die;
+        $searchResponse = [
+            ['label'=>'toto1'],
+            ['label'=>'toto2'],
+            ['label'=>'toto3'],
+        ];
 
         return new JsonResponse([
-            'code' => $objSearch->getStatusCode(),
-            'message' => $serviceProposed->message,
-            'html' => $this->renderView('        search/autocompletion.html.twig', ['words' => $objSearch,
+            'code' => 200, //$objSearch->getStatusCode(),
+            'message' => 'ok', //$serviceProposed->message,
+            'html' => $this->renderView('search/autocompletion.html.twig', ['words' => $searchResponse,
             ])
 
         ]);

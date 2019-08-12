@@ -163,19 +163,44 @@ $('[data-toggle="autocomplete"]').on('keyup', function () {
 
 $('#search-input').on('keyup', function(e){
     let $this = $(this);
-    let url   = $this.data('urlAutocomplete');
-    let val = $this.val();
+    /**
+	  * @type string
+     */
+    let url =  $this.data('urlAutocomplete');
+
+    /**
+	 *
+     * @type {{word: *}}
+     */
+    let datas ={'word': $this.val()};
+
     if ($this.val().length >= 3){
         setTimeout(function () {
-                $.post(
-                    url,
-                    {'word': val},
-                    function(data) {
-                        $('.search-autocomplet__list').html(data.html);
-                    }, 'json'
-                );
-            },
-            300)
+			 /**
+			  * send the form
+			  **/
+				$.ajax({
+					method: "POST",
+					url: url,
+					data: datas,
+				}).done(function (data) {
+					// stop the spinner
+					$('#autocompletion-list')
+						.html(data.html)
+						.show()
+					;
+				}).fail(
+					function (jqXHR, textStatus) {
+					   // handle the message jqXHR.responseJSON.message;
+						// stop the spinner and show the message
+					}
+				);
+		},300);
 
     }
+});
+
+$(document).on('click', '.search-autocomplet__item-content', function (e) {
+	$('#search-input').val($(this).html());
+	$('#autocompletion-list').hide();
 });

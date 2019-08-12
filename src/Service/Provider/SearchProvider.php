@@ -95,7 +95,6 @@ EOF;
             'word' => $query
         ]);
 
-        dump($content);die;
 
 /*
         foreach ($searchResult->getNotices()->getNoticesList() as $notice) {
