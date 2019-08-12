@@ -15,6 +15,7 @@ require('bootstrap');
 require('slick-carousel');
 
 const routes = require('../../public/js/fos_js_routes.json');
+
 import Routing from '../../vendor/friendsofsymfony/jsrouting-bundle/Resources/public/js/router.min.js';
 
 Routing.setRoutingData(routes);
@@ -190,4 +191,23 @@ $('[data-toggle="autocomplete"]').on('keyup', function () {
     // $.ajax()
     console.log(Routing.generate('search_autocompletion'));
     console.log($(this).val());
+});
+
+$('#search-input').on('keyup', function(e){
+    let $this = $(this);
+    let url   = $this.data('urlAutocomplete');
+    let val = $this.val();
+    if ($this.val().length >= 3){
+        setTimeout(function () {
+                $.post(
+                    url,
+                    {'word': val},
+                    function(data) {
+                        $('.search-autocomplet__list').html(data.html);
+                    }, 'json'
+                );
+            },
+            300)
+
+    }
 });

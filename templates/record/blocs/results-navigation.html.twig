@@ -1,19 +1,28 @@
 <!-- Début - Bloc 15 Navigation dans les résultats -->
 
 <div class="col-auto">
-	<a href="{{ path('search') }}" class="link link--icone mb-3 mb-md-0"><img src="{{ asset('images/icones/icone-chevron-gauche.svg') }}" alt="" class="icone-chevron"/><span>{{ 'bloc.results-navigation.return-to-result'|trans }}</span></a>
+	<a href="{{ path('search') }}" class="link link--icone mb-3 mb-md-0">
+		<img src="{{ asset('images/icones/icone-chevron-gauche.svg') }}" alt="" class="icone-chevron"/>
+		<span>{{ 'bloc.results-navigation.return-to-result'|trans }}</span>
+	</a>
 </div>
 <div class="col-12 col-md-auto">
 	<nav aria-label="pagination">
 		<ul class="pagination pagination--header justify-content-center justify-content-md-end">
 			<li class="page-item">
-				<a href="{{ routeTarget }}" class="page-link page-link--left"><img src="{{ asset('images/icones/icone-chevron-gauche.svg') }}" alt="" class="icone-chevron"/><span>{{ 'bloc.results-navigation.result-previous'|trans }}</span></a>
+				<a href="{{ routeTarget }}" class="page-link page-link--left">
+					<img src="{{ asset('images/icones/icone-chevron-gauche.svg') }}" alt="" class="icone-chevron"/>
+					<span>{{ 'bloc.results-navigation.result-previous'|trans }}</span>
+				</a>
 			</li>
 			<li class="page-item">
 				<p class="page-link">{{ 'bloc.results-navigation.result-current'|trans({'%nb%': 55, '%current%': 6 }) }}</p>
 			</li>
 			<li class="page-item">
-				<a href="{{ routeTarget }}" class="page-link page-link--right"><span>{{ 'bloc.results-navigation.result-next'|trans }}</span><img src="{{ asset('images/icones/icone-chevron-gauche.svg') }}" alt="" class="icone-chevron"/></a>
+				<a href="{{ routeTarget }}" class="page-link page-link--right">
+					<span>{{ 'bloc.results-navigation.result-next'|trans }}</span>
+					<img src="{{ asset('images/icones/icone-chevron-gauche.svg') }}" alt="" class="icone-chevron"/>
+				</a>
 			</li>
 		</ul>
 	</nav>

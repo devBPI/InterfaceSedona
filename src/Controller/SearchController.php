@@ -101,13 +101,28 @@ class SearchController extends AbstractController
     }
 
     /**
-     * @Route("/autocompletion", methods={"GET","HEAD"}, name="search_autocompletion")
+     * @Route("/autocompletion", methods={"POST"}, name="search_autocompletion")
      * @param Request $request
      * @return \Symfony\Component\HttpFoundation\Response
      */
     public function autocompletionAction(Request $request)
     {
-        return $this->render('search/autocompletion.html.twig', []);
+
+        $query = $request->get('word');
+        $objSearch = $this->searchProvider->findNoticeAutocomplete($query);
+        //$facet = $objSearch->getFacets();
+
+        dump($objSearch); die;
+
+        return new JsonResponse([
+            'code' => $objSearch->getStatusCode(),
+            'message' => $serviceProposed->message,
+            'html' => $this->renderView('        search/autocompletion.html.twig', ['words' => $objSearch,
+            ])
+
+        ]);
+
+
     }
 
 }
