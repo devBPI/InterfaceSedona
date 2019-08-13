@@ -19,6 +19,7 @@
         "build": "encore production --progress"
     },
     "dependencies": {
+        "icheck": "^1.0.2",
         "slick-carousel": "^1.8.1"
     }
 }

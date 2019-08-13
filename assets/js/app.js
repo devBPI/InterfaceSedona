@@ -13,11 +13,18 @@ const $ = require('jquery');
 
 require('bootstrap');
 require('slick-carousel');
+require('icheck');
 
 
 $('[data-toggle="tooltip"]').tooltip({
 	trigger: 'click',
 	template: '<div class="tooltip" role="tooltip"><div class="tooltip-inner"></div></div>'
+});
+
+$('input').iCheck({
+	checkboxClass: 'check check--checkbox',
+	radioClass: 'check check--radio',
+	focusClass: 'focus'
 });
 
 // Configuration Carousel Primary (Accueil + Parcours) ----------------------------------------------------------------
@@ -138,7 +145,7 @@ $('.js-list-information ul.list-information__sub-list').each( function() {
 			.addClass('d-none');
 		$children
 			.eq(4)
-			.after('<li><button type="button" class="btn btn-small-link js-btn js-btn--more">Voir tout<span class="sr-only"> les informations</span></button></li>');
+			.after('<li><button type="button" class="btn btn-small-link js-btn js-btn--more">Voir tout<span class="sr-only"> les résultats</span></button></li>');
 	}
 });
 
@@ -165,13 +172,18 @@ $('.js-btn').on('click', function() {
 $('.search-date__group').change(function() {
 	var $input_period = $('.search-date__date--second');
 
-	if ( $('#adv-search-label-period').prop('checked') ) {
+	if ( $('.search-date__radio--period .check--radio').hasClass('checked') ) {
 		$input_period.removeClass('d-none');
 	} else {
 		$input_period.addClass('d-none');
 	}
 });
 
+// Gestion navigation focus - Menu principal ---------------------------------------------------------
+$('.dropdown-link .nav-link').on('focus', function() {
+	$('.dropdown-menu').removeClass('show');
+	$(this).siblings('.dropdown-menu').addClass('show');
+});
 
 // -- Formulaire Remoter -----------------------------------------------------------------------------------------
 $(document).on('submit', '[data-toggle=form-remote]', function (event) {

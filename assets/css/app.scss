@@ -9,9 +9,12 @@
 @import 	"variable-custom-bootstrap",
 			"~bootstrap/scss/bootstrap";
 
-// Import Overwritten Slick Variable
+// Import Slick
 @import 	"~slick-carousel/slick/slick",
 			"~slick-carousel/slick/slick-theme";
+
+// Import Slick
+// @import 	"~icheck/skins/minimal/minimal";
 
 // Base
 @import 	"base";

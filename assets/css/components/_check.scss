@@ -1,0 +1,70 @@
+// -------------------------------
+// Custom Checkbox + Radio
+// -------------------------------
+
+.check {
+	width: 15px;
+	height: 15px;
+	border: $border-check;
+	display: inline-block;
+	vertical-align: middle;
+	margin-right: 5px;
+	box-shadow: inset 0 0 0 2px $white;
+
+	&.check {
+
+		&--checkbox {
+
+			&.hover {
+				background-color: $black;
+			}
+
+			&.focus {
+				background-color: $red;
+				outline: $outline;
+			}
+
+			&.checked {
+				background-color: $red;
+			}
+		}
+
+		&--radio {
+			border-radius: 10px;
+
+			&.hover {
+				background-color: $black;
+			}
+
+			&.focus {
+				background-color: $red;
+				outline: $outline;
+			}
+
+			&.checked {
+				background-color: $red;
+			}
+		}
+	}
+
+	+ .form-check-label {
+		display: inline-block;
+		vertical-align: middle;
+		width: auto;
+		padding-top: 0!important;
+	}
+}
+
+.modal {
+
+	.check {
+		box-shadow: inset 0 0 0 2px $grey-modal;
+	}
+}
+
+.list-result--online {
+
+	.check {
+		box-shadow: inset 0 0 0 2px $grey-footer;
+	}	
+}
