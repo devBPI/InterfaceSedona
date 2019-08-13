@@ -35,7 +35,7 @@
 								<option>Indice / Cote</option>
 							</select>
 						</div>
-						<div class="col-12 col-sm-1 text-right"></div>
+						<div class="col-12 col-sm-1 text-right pr-sm-0"></div>
 					</div>
 
 					<div class="search-keyword__group row">
@@ -65,7 +65,7 @@
 								<option>Indice / Cote</option>
 							</select>
 						</div>
-						<div class="col-12 col-sm-1 text-right">
+						<div class="col-12 col-sm-1 text-right pr-sm-0">
 							<button type="button" class="btn search-keyword__button search-keyword__button--add">
 								<span>{{ 'modal.advanced-search.keyword.add-ligne'|trans }}</span>
 							</button>
@@ -156,7 +156,7 @@
 						<button type="button" class="search-facette__button btn" data-toggle="collapse" aria-expanded="false" aria-controls="adv-search-{{ key }}" data-target="#adv-search-{{ key }}">{{ ('modal.advanced-search.facette.'~key)|trans }}</button>
 						<div class="collapse search-facette__body" id="adv-search-{{ key }}" role="group" aria-label="{{ ('modal.advanced-search.facette.'~key)|trans }}">
 							<div class="search-facette__content">
-								{% for i in 1..6 %}
+								{% for i in 1..24 %}
 									<div class="form-check search-facette__item">
 										<input type="checkbox" class="form-check-input" id="{{ key }}-{{ i }}">
 										<label class="form-check-label" for="{{ key }}-{{ i }}">*Insert Label {{ i }}*</label>

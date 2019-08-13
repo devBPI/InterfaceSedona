@@ -132,8 +132,13 @@ $('.js-list-information ul.list-information__sub-list').each( function() {
 		$children_length = $children.length;
 
 	if ( $children_length > 4 ) {
-		$children.eq(4).nextAll().addClass('d-none');
-		$children.eq(4).after('<li><button type="button" class="btn btn-small-link js-btn js-btn--more">Voir tout</button></li>');
+		$children
+			.eq(4)
+			.nextAll()
+			.addClass('d-none');
+		$children
+			.eq(4)
+			.after('<li><button type="button" class="btn btn-small-link js-btn js-btn--more">Voir tout<span class="sr-only"> les informations</span></button></li>');
 	}
 });
 
@@ -155,6 +160,18 @@ $('.js-btn').on('click', function() {
 			.addClass('js-btn--more');
 	}
 });
+
+// Affichage champs date - Modal recherche avancée ---------------------------------------------------------
+$('.search-date__group').change(function() {
+	var $input_period = $('.search-date__date--second');
+
+	if ( $('#adv-search-label-period').prop('checked') ) {
+		$input_period.removeClass('d-none');
+	} else {
+		$input_period.addClass('d-none');
+	}
+});
+
 
 // -- Formulaire Remoter -----------------------------------------------------------------------------------------
 $(document).on('submit', '[data-toggle=form-remote]', function (event) {
