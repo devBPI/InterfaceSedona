@@ -28,7 +28,15 @@ $('input').iCheck({
 	focusClass: 'focus'
 });
 
-var mySlider = new Slider('#rfn-date-slider');
+$('#modal-refine-search').on('show.bs.modal', function (e) {
+	var sliderDate = new Slider('#rfn-date-slider', {
+		min: 1900,
+		max: 2010,
+		step: 5,
+		value: [1945,1980],
+		handle: 'square'
+	});
+})
 
 // Configuration Carousel Primary (Accueil + Parcours) ----------------------------------------------------------------
 $('.js-carousel-primary')
