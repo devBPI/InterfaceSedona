@@ -112,10 +112,7 @@ class SearchController extends AbstractController
         return new JsonResponse([
             'html' => $this->renderView('search/autocompletion.html.twig', ['words' => $objSearch->getSuggestions(),
             ])
-
         ]);
-
-
     }
 
 }

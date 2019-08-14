@@ -64,13 +64,7 @@ abstract class AbstractProvider implements ApiProvider
      */
     protected function arrayFromResponse(string $endpoint, array $queries = []): Response
     {
-
         return $this->api->get($endpoint, $queries);
-
-       /* $toto =   $this->api->get($endpoint, $queries);
-        dump($this->api, $toto); die;
-       */
-
     }
 
 
@@ -106,5 +100,4 @@ abstract class AbstractProvider implements ApiProvider
 
         return '';
     }
-    
 }
