@@ -14,6 +14,7 @@ const $ = require('jquery');
 require('bootstrap');
 require('slick-carousel');
 require('icheck');
+var Slider = require('bootstrap-slider');
 
 
 $('[data-toggle="tooltip"]').tooltip({
@@ -26,6 +27,8 @@ $('input').iCheck({
 	radioClass: 'check check--radio',
 	focusClass: 'focus'
 });
+
+var mySlider = new Slider('#rfn-date-slider');
 
 // Configuration Carousel Primary (Accueil + Parcours) ----------------------------------------------------------------
 $('.js-carousel-primary')
@@ -180,9 +183,9 @@ $('.search-date__group').change(function() {
 });
 
 // Gestion navigation focus - Menu principal ---------------------------------------------------------
-$('.dropdown-link .nav-link').on('focus', function() {
+$('.dropdown-link .dropdown-menu > li a').on('focus', function() {
 	$('.dropdown-menu').removeClass('show');
-	$(this).siblings('.dropdown-menu').addClass('show');
+	$(this).parent('.dropdown-menu').addClass('show');
 });
 
 // -- Formulaire Remoter -----------------------------------------------------------------------------------------

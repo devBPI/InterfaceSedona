@@ -62,7 +62,8 @@
 	}
 }
 
-.list-result--online {
+.list-result--online,
+.table-striped tbody tr:nth-of-type(odd) {
 
 	.check {
 		box-shadow: inset 0 0 0 2px $grey-footer;
