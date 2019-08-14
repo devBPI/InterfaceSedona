@@ -191,9 +191,9 @@ $('.search-date__group').change(function() {
 });
 
 // Gestion navigation focus - Menu principal ---------------------------------------------------------
-$('.dropdown-link .dropdown-menu > li a').on('focus', function() {
+$('.dropdown-link .nav-link').on('focus', function() {
 	$('.dropdown-menu').removeClass('show');
-	$(this).parent('.dropdown-menu').addClass('show');
+	$(this).siblings('.dropdown-menu').addClass('show');
 });
 
 // -- Formulaire Remoter -----------------------------------------------------------------------------------------

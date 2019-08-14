@@ -163,17 +163,6 @@
 					transform: translateY(-50%);
 				}
 			}
-
-			&:focus {
-
-				& ~ .dropdown-menu {
-					
-					@include media-breakpoint-up(md) {
-						display: flex;
-						flex-wrap: wrap;
-					}
-				}
-			}
 		}
 
 		&-menu {

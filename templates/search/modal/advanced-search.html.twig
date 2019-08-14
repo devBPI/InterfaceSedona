@@ -82,7 +82,7 @@
 						<p class="search-base__label">{{ 'modal.advanced-search.base.label'|trans }}</p>
 						<div class="form-check search-base__label">
 							<input type="checkbox" id="adv-search-bdd-all" class="form-check-input">
-							<label for="adv-search-bdd-all" aria-label="{{ 'modal.advanced-search.base.all-aria'|trans }}" class="form-check-label">{{ 'modal.advanced-search.base.all'|trans }}</label>
+							<label for="adv-search-bdd-all" class="form-check-label">{{ 'modal.advanced-search.base.all'|trans }}</label>
 						</div>
 					</div>
 					<ul role="group" aria-label="{{ 'modal.advanced-search.base.in'|trans }}" class="search-base__list">
@@ -169,8 +169,8 @@
 			{% endfor %}
 
 			<div class="modal-footer">
-				<button type="button" aria-label="{{ 'modal.advanced-search.clear-search-aria'|trans }}" class="btn-link btn">{{ 'modal.advanced-search.clear-search'|trans }}</button>
-				<button type="submit" aria-label="{{ 'modal.advanced-search.submit-aria'|trans }}" class="btn btn-lg btn-primary btn-img">
+				<button type="button" class="btn-link btn">{{ 'modal.advanced-search.clear-search'|trans }}</button>
+				<button type="submit" class="btn btn-lg btn-primary btn-img">
 					<span>{{ 'modal.advanced-search.submit'|trans }}</span><img src="{{ asset('images/icones/icone-loupe.svg') }}" alt="" class="icone-loupe"/></button>
 			</div>
 		</div>
