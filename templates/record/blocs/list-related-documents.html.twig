@@ -1,3 +1,4 @@
+
 <div id="carousel-{{ type }}" class="carousel carousel--secondary {{ class|default('') }} col-12">
 	<div class="carousel__header">
 		<h2 class="n1">{{ ('bloc.list-related-documents.carousel-'~type)|trans }}</h2>
@@ -8,16 +9,17 @@
 
 	<div class="carousel-wrapper">
 		<div class="slick-carousel js-carousel-secondary" role="region" aria-roledescription="carrousel">
-			{% for i in 1..24 %}
+			{% for  object in objects.mappedNotices %}
 				<div class="carousel__slide">
 					<a href="{{ routeTarget }}" class="carousel__slide-link">
-						<span class="sr-only">{{ 'bloc.list-related-documents.link-title'|trans({'%current%': i, '%nb%': 24, '%name%': 'Titre de Auteur'}) }}</span>
+
+						<span class="sr-only">{{ 'bloc.list-related-documents.link-title'|trans({'%current%': 2, '%nb%': objects.pagination.rows, '%name%': object.titles[0] }) }}</span>
 					</a>
 					<div class="carousel__slide-image">
 						<img src="{{ asset(image) }}" class="img-fluid" alt="" />
 					</div>
-					<p class="n1 carousel__slide-title">Le Climat, les hommes et la mer</p>
-					<p class="n2 carousel__slide-subtitle">Cousin, Christophe</p>
+					<p class="n1 carousel__slide-title">{{object.titles[0]}}</p>
+					<p class="n2 carousel__slide-subtitle">{{ object.authors[0]}}</p>
 				</div>
 			{% endfor %}
 		</div>

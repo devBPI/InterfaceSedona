@@ -3,10 +3,13 @@ declare(strict_types=1);
 
 namespace App\Service\Provider;
 
+use App\Model\Author;
 use App\Model\Exception\NoResultException;
 use App\Model\ListNotices;
 use App\Model\ListOnlineNotices;
 use App\Model\Notice;
+use App\Model\NoticeMappedAuthority;
+use App\Model\Notices;
 
 /**
  * Class NoticeProvider
@@ -101,4 +104,39 @@ EOF;
             return '';
         }
     }
+
+    /**
+     * @param int $id
+     * @return
+     */
+    public function getSubjectNotice(int $id)
+    {
+          try {
+            $content = $this
+                ->hydrateFromResponse('/details/authority/'.$id.'/notices/notices-sujets', [], NoticeMappedAuthority::class)
+                ;
+        } catch (NoResultException $exception) {
+            return '';
+        }
+
+        return $content;
+    }
+
+    /**
+     * @param $id
+     * @return object|string
+     */
+    public function getAuthorsNotice($id)
+    {
+        try {
+            $content = $this
+                ->hydrateFromResponse('/details/authority/'.$id.'/notices/notices-auteurs', [], NoticeMappedAuthority::class)
+                ;
+        } catch (NoResultException $exception) {
+            return '';
+        }
+
+        return $content;
+    }
 }
+

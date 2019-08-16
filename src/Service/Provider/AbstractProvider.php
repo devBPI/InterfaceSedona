@@ -69,7 +69,7 @@ abstract class AbstractProvider implements ApiProvider
 
 
     /**
-     * @param string $url
+     * @param string $urlnotice-autorite
      * @param string $folderName
      * @return string
      */
@@ -100,4 +100,6 @@ abstract class AbstractProvider implements ApiProvider
 
         return '';
     }
+
+
 }

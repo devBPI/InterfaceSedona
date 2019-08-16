@@ -3,6 +3,8 @@
 
 namespace App\Controller;
 
+
+use App\Service\Provider\NoticeProvider;
 use Knp\Bundle\SnappyBundle\Snappy\Response\PdfResponse;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -11,6 +13,19 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class RecordController extends AbstractController
 {
+    /**
+     * @var NoticeProvider
+     */
+    private $noticeProvider;
+
+    /**
+     * RecordController constructor.
+     * @param NoticeProvider $noticeProvider
+     */
+    public function __construct(NoticeProvider $noticeProvider)
+    {
+        $this->noticeProvider = $noticeProvider;
+    }
 
     /**
      * @Route("/notice-bibliographique", methods={"GET","HEAD"}, name="record_bibliographic")
@@ -54,9 +69,13 @@ class RecordController extends AbstractController
      */
     public function authorityRecordAction(Request $request)
     {
+        $subject = $this->noticeProvider->getSubjectNotice($request->get('id'));
+        $authors = $this->noticeProvider->getAuthorsNotice($request->get('id'));
         return $this->render('record/authority.html.twig', [
             'toolbar'       => 'document',
-            'printRoute'    => $this->generateUrl('record_authority_pdf')
+            'printRoute'    => $this->generateUrl('record_authority_pdf'),
+            'subjects'      => $subject,
+            'authors'       => $authors,
         ]);
     }
 
@@ -86,3 +105,4 @@ class RecordController extends AbstractController
         );
     }
 }
+

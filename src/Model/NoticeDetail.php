@@ -1,3 +1,4 @@
+
 <?php
 
 namespace App\Model;
@@ -5,19 +6,42 @@ namespace App\Model;
 use JMS\Serializer\Annotation as JMS;
 
 /**
- * Class NoticeDetail
+ * Class Notice
  * @package App\Model
  */
-class Notice
+class NoticeDetail
 {
     use NoticeMappedTrait;
+
+
     /**
-     * @var array
-     * @JMS\Type("array<string>")
-     * @JMS\SerializedName("auteurs")
-     * @JMS\XmlList("auteur")
+     * @var array|Author
+     * @JMS\Type("array<App/Model/Author>")
+c     * @JMS\XmlList("auteur")
      */
     private $authors;
+
+    /**
+     * @var array|Author
+     * @JMS\Type("array<App/Model/Author>")
+     * @JMS\SerializedName("auteursSecondaires")
+     * @JMS\XmlList("auteursSecondaire")
+     */
+    private $secondAuthors;
+
+    /**
+     * @var string
+     * @JMS\Type("string")
+     * @JMS\SerializedName("autresEditions")
+     */
+    private $otherEdition;
+    /**
+     * @var string
+     * @JMS\Type("string")
+     * @JMS\SerializedName("nomPubliqueConfiguration")
+     */
+    private $publicConfiguration;
+
 
     /**
      * @var string
@@ -53,6 +77,14 @@ class Notice
      * @JMS\XmlList("titreAnalytique")
      */
     private $analyticalTitles;
+
+    /**
+     * @var array
+     * @JMS\Type("array<string>")
+     * @JMS\SerializedName("auteurs")
+     * @JMS\XmlList("auteur")
+     */
+    private $authors;
 
     /**
      * @var array
@@ -211,7 +243,6 @@ class Notice
 
         return $this;
     }
-
     /**
      * @return array
      */
@@ -259,7 +290,4 @@ class Notice
     {
         return $this->resume;
     }
-
 }
-
-
