@@ -201,12 +201,22 @@ modal:
       notice: Pour rechercher une expression exacte, mettez les mots entre "guillemets".
       label: Rechercher par mots clés
       type:
-        autor: Auteur
-        publication-date: Date de publication
+        general: Tous les mots
         title: Titre
-      group-or: Ou
-      group-and: Et
+        author: Auteur
+        realisator: Réalisateur
+        subject: Sujet
+        theme: Thème
+        editor: Editeur
+        publication-date: Date de publication
+        isbn-issn-numcommercial: ISBN, ISSN, numéros commerciaux
+        indice-cote: Indice / Cote
+      group:
+        or: Ou
+        and: Et
+        not: Sauf
       add-ligne: Ajouter un champs de recherche
+
     base:
       label: Recherche dans
       all: Tout
@@ -227,12 +237,12 @@ modal:
       in-shelf: Disponible en rayon
       in-ligne: Consultable en ligne
     facette:
-      document-type: Type de documents
+      documentType: Type de documents
       supports: Supports
-      genre-music: Genre musical
-      genre-film: Genre film
-      genre-book: Genre littéraire
-      public-target: Public destinataire
+      genreMusic: Genre musical
+      genreFilm: Genre film
+      genreBook: Genre littéraire
+      publicTarget: Public destinataire
       sector: Secteur
       mediation: Médiation
       content: Contenu
@@ -267,7 +277,9 @@ page:
   bibiographic:
     title: Document %title%
   search:
-    title: Résultats recherche - %termes% - page %currentPage% sur %nbPage%
+    title:
+      simple: Résultats recherche simple - %termes% - page %currentPage% sur %nbPage%
+      advanced: Résultats recherche avancée - %termes% - page %currentPage% sur %nbPage%
   login:
     title: Authentification
     login: Adresse e-mail
@@ -457,7 +469,3 @@ bloc:
       date: Recherché le
     select-ligne: 'Sélectionner la ligne : %title%'
     reload: Relancer la recherche %title%'
-
-
-
-

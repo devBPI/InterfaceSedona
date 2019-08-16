@@ -6,7 +6,7 @@
 	<ul class="dropdown-menu" aria-labelledby="dropdown-sujets" role="listbox" tabindex="-1">
 		{% for subject in linkedSubjects %}
 			<li class="dropdown-item" role="option">
-				<a href="{{ path('search', { (constant('App\\Controller\\SearchController::QUERY_LABEL')): subject }) }}"
+				<a href="{{ path('search', { (constant('App\\WordsList::SIMPLE_SEARCH_LABEL')): subject }) }}"
 				   lang="fr">{{ 'bloc.related-topics.text'|trans }} {{ subject }}</a>
 			</li>
 		{% endfor %}

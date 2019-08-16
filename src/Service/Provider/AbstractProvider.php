@@ -46,9 +46,13 @@ abstract class AbstractProvider implements ApiProvider
      * @param string|null $model
      * @return object
      */
-    protected function hydrateFromResponse(string $endpoint, array $queries = [], string $model = null)
+    protected function hydrateFromResponse(string $endpoint, array $queries = [], string $model = null, $debug = false)
     {
         $response = $this->arrayFromResponse($endpoint, $queries);
+
+        if ($debug) {
+            dump($response, $response->getBody()->getContents());die('end');
+        }
 
         return $this->serializer->deserialize(
             $response->getBody()->getContents(),

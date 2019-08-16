@@ -22,7 +22,7 @@ services:
     volumes:
       - ./:/var/www/html/
       - $COMPOSER_LOCAL_HOME:$COMPOSER_CONTAINER_HOME
-      - .deploy/dev/app:/sedona
+      - .deploy/dev/app:/docker-entrypoint-init.d
 
   web:
     image: registry.sedona.fr/images/httpd:24
