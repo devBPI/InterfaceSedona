@@ -1,4 +1,3 @@
-
 <?php
 
 namespace App\Model;
@@ -11,13 +10,15 @@ use JMS\Serializer\Annotation as JMS;
  */
 class NoticeDetail
 {
-    use NoticeMappedTrait;
+    private const SEPARATOR = ' ; ';
 
+    use NoticeMappedTrait;
 
     /**
      * @var array|Author
      * @JMS\Type("array<App/Model/Author>")
-c     * @JMS\XmlList("auteur")
+     * @JMS\SerializedName("auteurs")
+     * @JMS\XmlList("auteur")
      */
     private $authors;
 
@@ -30,9 +31,10 @@ c     * @JMS\XmlList("auteur")
     private $secondAuthors;
 
     /**
-     * @var string
-     * @JMS\Type("string")
+     * @var array
+     * @JMS\Type("array<string>")
      * @JMS\SerializedName("autresEditions")
+     * @JMS\XmlList("autresEdition")
      */
     private $otherEdition;
     /**
@@ -41,7 +43,28 @@ c     * @JMS\XmlList("auteur")
      * @JMS\SerializedName("nomPubliqueConfiguration")
      */
     private $publicConfiguration;
+    /**
+     * @var array
+     * @JMS\Type("array<string>")
+     * @JMS\SerializedName("datesPublication")
+     * @JMS\XmlList("datePublication")
+     */
+    private $publishedDate;
 
+    /**
+     * @var array
+     * @JMS\Type("array<string>")
+     * @JMS\SerializedName("contributeurs")
+     * @JMS\XmlList("contributeur")
+     */
+    private $contributors;
+    /**
+     * @var array
+     * @JMS\Type("array<string>")
+     * @JMS\SerializedName("contributeurVideos")
+     * @JMS\XmlList("contributeurVideo")
+     */
+    private $videoContributors;
 
     /**
      * @var string
@@ -49,12 +72,41 @@ c     * @JMS\XmlList("auteur")
      * @JMS\SerializedName("permalink")
      */
     private $id;
+    /**
+     * @var string
+     * @JMS\Type("string")
+     * @JMS\SerializedName("is-online")
+     */
+    private $isOnline;
+
+    /**
+     * @var array|IndiceCdu
+     * @JMS\Type("array<App/Model/IndiceCdu>")
+     * @JMS\SerializedName("indices")
+     * @JMS\XmlList("indice")
+     */
+    private $indices;
+
+    /**
+     * @var array
+     * @JMS\Type("array<string>")
+     * @JMS\SerializedName("genres")
+     * @JMS\XmlList("genre")
+     */
+    private $kinds;
+    /**
+     * @var array
+     * @JMS\Type("array<string>")
+     * @JMS\SerializedName("images-info")
+     * @JMS\XmlList("image-info")
+     */
+    private $imageInfo;
 
     /**
      * @var string
      * @JMS\Type("string")
      */
-    private $isbn;
+    private $sourceId;
 
     /**
      * @var string
@@ -69,6 +121,25 @@ c     * @JMS\XmlList("auteur")
      * @JMS\XmlList("titre")
      */
     private $titles;
+    /**
+     * @var array
+     * @JMS\Type("array<string>")
+     * @JMS\SerializedName("titresAlternatifs")
+     * @JMS\XmlList("titresAlternatif")
+     */
+    private $alternateTitle;
+    /**
+     * @var string
+     * @JMS\Type("string")
+     * @JMS\SerializedName("sujets")
+     */
+    private $titleEnRelation;
+    /**
+     * @var string
+     * @JMS\Type("string")
+     * @JMS\SerializedName("sujets")
+     */
+    private $titleTogether;
 
     /**
      * @var array
@@ -77,14 +148,6 @@ c     * @JMS\XmlList("auteur")
      * @JMS\XmlList("titreAnalytique")
      */
     private $analyticalTitles;
-
-    /**
-     * @var array
-     * @JMS\Type("array<string>")
-     * @JMS\SerializedName("auteurs")
-     * @JMS\XmlList("auteur")
-     */
-    private $authors;
 
     /**
      * @var array
@@ -109,6 +172,93 @@ c     * @JMS\XmlList("auteur")
      * @JMS\XmlList("resume")
      */
     private $resume;
+
+    /**
+     * @var array
+     * @JMS\Type("array<string>")
+     * @JMS\SerializedName("descriptionsMaterielle")
+     * @JMS\XmlList("descriptionMaterielle")
+     */
+    private $materielDescription;
+
+    /**
+     * @var array
+     * @JMS\Type("array<string>")
+     * @JMS\SerializedName("langues")
+     * @JMS\XmlList("langue")
+     */
+    private $languages=[];
+    /**
+     * @var array
+     * @JMS\Type("array<string>")
+     * @JMS\SerializedName("editeurs")
+     * @JMS\XmlList("editeur")
+     */
+    private $publishers=[];
+    /**
+     * @var array
+     * @JMS\Type("array<string>")
+     * @JMS\SerializedName("links")
+     * @JMS\XmlList("link")
+     */
+    private $links;
+
+    /**
+     * @var array
+     * @JMS\Type("array<string>")
+     * @JMS\SerializedName("journal-infos")
+     * @JMS\XmlList("journal-info")
+     */
+    private $informations;
+
+    /**
+     * @var array
+     * @JMS\Type("array<string>")
+     * @JMS\SerializedName("notes")
+     * @JMS\XmlList("note")
+     */
+    private $notes;
+    /**
+     * @var array
+     * @JMS\Type("array<string>")
+     * @JMS\SerializedName("origins")
+     * @JMS\XmlList("origin")
+     */
+    private $origins;
+    /**
+     * @var string
+     * @JMS\Type("string")
+     * @JMS\SerializedName("resultatDe")
+     */
+    private $resultTo;
+
+    /**
+     * @var array
+     * @JMS\Type("array<string>")
+     * @JMS\SerializedName("reunits")
+     * @JMS\XmlList("reunit")
+     */
+    private $reunits;
+    /**
+     * @var array
+     * @JMS\Type("array<string>")
+     * @JMS\SerializedName("isbns")
+     * @JMS\XmlList("isbn")
+     */
+    private $isbns;
+    /**
+     * @var array
+     * @JMS\Type("array<string>")
+     * @JMS\SerializedName("droits-infos")
+     * @JMS\XmlList("droits-info")
+     */
+    private $rightInformation;
+    /**
+     * @var string
+     * @JMS\Type("string")
+     * @JMS\SerializedName("seriesCollection")
+     */
+    private $seriesCollection;
 
     /**
      * @var array|NoticeAvailable[]
@@ -139,11 +289,11 @@ c     * @JMS\XmlList("auteur")
     }
 
     /**
-     * @return string
+     * @return array
      */
-    public function getIsbn(): ?string
+    public function getIsbns():array
     {
-        return $this->isbn;
+        return $this->isbns;
     }
 
     /**
@@ -243,6 +393,7 @@ c     * @JMS\XmlList("auteur")
 
         return $this;
     }
+
     /**
      * @return array
      */
@@ -291,3 +442,4 @@ c     * @JMS\XmlList("auteur")
         return $this->resume;
     }
 }
+

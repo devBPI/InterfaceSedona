@@ -12,7 +12,6 @@
 			{% for  object in objects.mappedNotices %}
 				<div class="carousel__slide">
 					<a href="{{ routeTarget }}" class="carousel__slide-link">
-
 						<span class="sr-only">{{ 'bloc.list-related-documents.link-title'|trans({'%current%': 2, '%nb%': objects.pagination.rows, '%name%': object.titles[0] }) }}</span>
 					</a>
 					<div class="carousel__slide-image">

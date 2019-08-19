@@ -10,6 +10,9 @@ use JMS\Serializer\Annotation as JMS;
  */
 class Notice
 {
+
+    private const SEPARATOR = ' ; ';
+
     use NoticeMappedTrait;
     /**
      * @var array
@@ -18,7 +21,6 @@ class Notice
      * @JMS\XmlList("auteur")
      */
     private $authors;
-
     /**
      * @var string
      * @JMS\Type("string")

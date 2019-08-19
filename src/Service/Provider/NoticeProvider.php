@@ -138,5 +138,21 @@ EOF;
 
         return $content;
     }
+
+    public function getAuthorityNotice($id)
+    {
+
+        try {
+            $content = $this
+                ->hydrateFromResponse('/details/notice-themed/ark:/34201/nptfl0000029128', [], NoticeMappedAuthority::class)
+                ;
+
+        } catch (NoResultException $exception) {
+            return '';
+        }
+
+
+        return $content;
+    }
 }
 

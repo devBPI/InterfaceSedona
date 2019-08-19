@@ -15,8 +15,14 @@ class NoticeAvailable
     /**
      * @var string
      * @JMS\Type("string")
+     * @JMS\SerializedName("categorie")
      */
     private $category;
+    /**
+     * @var string
+     * @JMS\Type("string")
+     */
+    private $cote;
 
     /**
      * @var string
@@ -26,15 +32,35 @@ class NoticeAvailable
 
     /**
      * @var string
+     * @JMS\SerializedName("disponibilite")
      * @JMS\Type("string")
      */
     private $availability;
 
     /**
      * @var string
+     * @JMS\SerializedName("localisation")
      * @JMS\Type("string")
      */
     private $location;
+
+    /**
+     * @var string
+     *
+     * @JMS\Type("string")
+     * @JMS\SerializedName("disponibilite-label")
+     */
+    private $labelDisponibility;
+
+
+    /**
+     * @var array
+     * @JMS\Type("array<string>")
+     * @JMS\SerializedName("supports")
+     * @JMS\XmlList("support")
+     */
+    private $support;
+
 
     /**
      * @return bool

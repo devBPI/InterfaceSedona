@@ -69,14 +69,16 @@ class RecordController extends AbstractController
      */
     public function authorityRecordAction(Request $request)
     {
-        $subject = $this->noticeProvider->getSubjectNotice($request->get('id'));
-        $authors = $this->noticeProvider->getAuthorsNotice($request->get('id'));
-        return $this->render('record/authority.html.twig', [
-            'toolbar'       => 'document',
-            'printRoute'    => $this->generateUrl('record_authority_pdf'),
-            'subjects'      => $subject,
-            'authors'       => $authors,
-        ]);
+        $notices = $this->noticeProvider->getAuthorityNotice($request->get('id'));
+        /*
+          $subject = $this->noticeProvider->getSubjectNotice($request->get('id'));
+          $authors = $this->noticeProvider->getAuthorsNotice($request->get('id'));
+          return $this->render('record/authority.html.twig', [
+              'toolbar'       => 'document',
+              'printRoute'    => $this->generateUrl('record_authority_pdf'),
+              'subjects'      => $subject,
+              'authors'       => $authors,
+          ]);*/
     }
 
     /**
