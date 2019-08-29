@@ -105,6 +105,24 @@ EOF;
         }
     }
 
+        public function getNotice(string $query)
+    {
+        /** @var ListNotices $notices */
+        try{
+            $notices = $this->arrayFromResponse('/details/notice-themed/', [
+                'permalink' => $query
+            ], Notice::class);
+        }catch(NoResultException $e){
+            dump("la ressource n'est plus disponible page 404 customisé à faire");
+        }
+
+/*
+        foreach ($notices->getNoticesList() as $notice) {
+            $this->getImagesForNotice($notice);
+        }
+*/
+    }
+
     /**
      * @param int $id
      * @return
@@ -121,6 +139,9 @@ EOF;
 
         return $content;
     }
+    /**
+     * @TODO à mettre dans un nouveau provider
+     */
 
     /**
      * @param $id

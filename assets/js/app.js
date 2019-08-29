@@ -15,6 +15,7 @@ require('bootstrap');
 require('slick-carousel');
 
 const routes = require('../../public/js/fos_js_routes.json');
+
 import Routing from '../../vendor/friendsofsymfony/jsrouting-bundle/Resources/public/js/router.min.js';
 
 Routing.setRoutingData(routes);
@@ -190,4 +191,48 @@ $('[data-toggle="autocomplete"]').on('keyup', function () {
     // $.ajax()
     console.log(Routing.generate('search_autocompletion'));
     console.log($(this).val());
+});
+
+$('#search-input').on('keyup', function(e){
+    let $this = $(this);
+    /**
+	  * @type string
+     */
+    let url =  $this.data('urlAutocomplete');
+
+    /**
+	 *
+     * @type {{word: *}}
+     */
+    let datas ={'word': $this.val()};
+
+    if ($this.val().length >= 3){
+        setTimeout(function () {
+			 /**
+			  * send the form
+			  **/
+				$.ajax({
+					method: "POST",
+					url: url,
+					data: datas,
+				}).done(function (data) {
+					// stop the spinner
+					$('#autocompletion-list')
+						.html(data.html)
+						.show()
+					;
+				}).fail(
+					function (jqXHR, textStatus) {
+					   // handle the message jqXHR.responseJSON.message;
+						// stop the spinner and show the message
+					}
+				);
+		},300);
+
+    }
+});
+
+$(document).on('click', '.search-autocomplet__item-content', function (e) {
+	$('#search-input').val($(this).html());
+	$('#autocompletion-list').hide();
 });

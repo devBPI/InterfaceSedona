@@ -12,7 +12,6 @@ use App\Model\CarouselItem;
  */
 class CarouselProvider extends AbstractProvider
 {
-
     protected $modelName = Carousel::class;
 
     /**
