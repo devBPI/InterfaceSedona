@@ -3,6 +3,11 @@
 
 namespace App\Controller;
 
+use App\Model\Search\Criteria;
+use App\Model\Search\FacetFilter;
+use App\Service\Provider\AdvancedSearchProvider;
+use App\WordsList;
+use Knp\Bundle\SnappyBundle\Snappy\Response\PdfResponse;
 use Spipu\Html2Pdf\Html2Pdf;
 use App\Service\Provider\SearchProvider;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;

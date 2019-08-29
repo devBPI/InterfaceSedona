@@ -38,7 +38,8 @@ class RecordController extends AbstractController
         $query = $request->get('ark');
 
         $object = $this->noticeProvider->getNotice($query);
-        dump($object);
+
+
         //$objSearch->setQuery($query);
 /*
 
