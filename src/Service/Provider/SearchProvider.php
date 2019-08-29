@@ -6,6 +6,12 @@ namespace App\Service\Provider;
 use App\Model\Exception\NoResultException;
 use App\Model\Notice;
 use App\Model\Results;
+use App\Model\Search\Criteria;
+use App\Model\Search\FacetFilter;
+use App\Service\APIClient\CatalogClient;
+use App\Service\ImageService;
+use JMS\Serializer\SerializerInterface;
+use Twig_Environment;
 
 /**
  * Class SearchProvider
@@ -15,15 +21,37 @@ class SearchProvider extends AbstractProvider
 {
     protected $modelName = Results::class;
 
+    /** @var Twig_Environment  */
+    private $templating;
+
     /**
-     * @param string $query
-     * @return mixed
+     * SearchProvider constructor.
+     * @param CatalogClient $api
+     * @param ImageService $imageService
+     * @param SerializerInterface $serializer
+     * @param Twig_Environment $templating
      */
-    public function getListBySearch(string $query): Results
+    public function __construct(CatalogClient $api, ImageService $imageService, SerializerInterface $serializer, Twig_Environment $templating)
+    {
+        parent::__construct($api, $imageService, $serializer);
+
+        $this->templating = $templating;
+    }
+
+    /**
+     * @param Criteria $criteria
+     * @param FacetFilter $facets
+     * @return mixed
+     * @throws \Twig\Error\LoaderError
+     * @throws \Twig\Error\RuntimeError
+     * @throws \Twig\Error\SyntaxError
+     */
+    public function getListBySearch(Criteria $criteria, FacetFilter $facets): Results
     {
         /** @var Results $searchResult */
         $searchResult = $this->hydrateFromResponse('/search/all', [
-            'criters' => $this->formatQuery($query)
+            'criters' => $this->serializer->serialize($criteria, 'xml'),
+            'facets' => $this->templating->render('search/facet-filters.xml.twig', ['attributes' => $facets->getAttributes()])
         ]);
 
         foreach ($searchResult->getNotices()->getNoticesList() as $notice) {
@@ -34,23 +62,6 @@ class SearchProvider extends AbstractProvider
         }
 
         return $searchResult;
-    }
-
-    /**
-     * @param string $query
-     * @return string
-     */
-    private function formatQuery(string $query): string
-    {
-        return <<<EOF
-<?xml version="1.0"?>
-<search-criterias>
-    <parcours>general</parcours>
-    <page>1</page>
-    <rows>20</rows>
-    <general>$query</general>
-</search-criterias>
-EOF;
     }
 
     /**
@@ -96,16 +107,6 @@ EOF;
             ['word' => $query,],
             $model);
 
-
-/*
-        foreach ($searchResult->getNotices()->getNoticesList() as $notice) {
-            $this->getImagesForNotice($notice);
-        }
-
-        foreach ($searchResult->getNoticesOnline()->getNoticesList() as $notice) {
-            $this->getImagesForNotice($notice);
-        }
-*/
         return $content;
     }
 

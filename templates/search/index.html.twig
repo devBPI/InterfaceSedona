@@ -1,9 +1,8 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}{{ 'page.search.title'|trans({'%termes%': 'mot clé saisie dans la recherche', '%currentPage%': '2', '%nbPage%': '5'}) }}{% endblock %}
+{% block title %}{{ (title ?? 'page.search.title.simple')|trans({'%termes%': 'mot clé saisie dans la recherche', '%currentPage%': '2', '%nbPage%': '5'}) }}{% endblock %}
 
 {% block searchextended %}
-
 	<div class="row justify-content-sm-between">
 		<div class="col-12 col-sm-auto">
 			{% include "search/blocs-searchextended/search-corrector.html.twig" %}

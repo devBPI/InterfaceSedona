@@ -12,12 +12,6 @@ use JMS\Serializer\Annotation as JMS;
 class Results
 {
     /**
-     * @var string
-     * @JMS\Exclude()
-     */
-    private $query;
-
-    /**
      * @var Facets
      * @JMS\Type("App\Model\Facets")
      */
@@ -50,33 +44,6 @@ class Results
      * @JMS\Type("App\Model\NoticesOnline")
      */
     private $noticesOnline;
-
-    /**
-     * @return string
-     */
-    public function getQuery(): ?string
-    {
-        return $this->query;
-    }
-
-    /**
-     * @param string $query
-     * @return self
-     */
-    public function setQuery($query): self
-    {
-        $this->query = $query;
-
-        return $this;
-    }
-
-    /**
-     * @return bool
-     */
-    public function hasQuery(): bool
-    {
-        return !empty($this->query);
-    }
 
     /**
      * @return Authority[]
