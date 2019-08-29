@@ -1,4 +1,7 @@
 jms_serializer:
+    property_naming:
+      separator:  -
+      lower_case: true
     visitors:
         xml_serialization:
             format_output: '%kernel.debug%'

@@ -3,23 +3,66 @@
 
 namespace App\Controller;
 
+use App\Model\Search\Criteria;
+use App\Model\Search\FacetFilter;
+use App\Service\Provider\AdvancedSearchProvider;
+use App\WordsList;
 use Knp\Bundle\SnappyBundle\Snappy\Response\PdfResponse;
 use Spipu\Html2Pdf\Html2Pdf;
+use App\Service\Provider\SearchProvider;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
+/**
+ * Class SearchController
+ * @package App\Controller
+ */
 class SearchController extends AbstractController
 {
+    /**
+     * @var SearchProvider
+     */
+    private $searchProvider;
+    /**
+     * @var AdvancedSearchProvider
+     */
+    private $advancedSearchProvider;
 
     /**
-     * @Route("/recherche", methods={"GET","HEAD"}, name="search")
+     * SearchController constructor.
+     * @param SearchProvider $searchProvider
+     * @param AdvancedSearchProvider $advancedSearchProvider
+     */
+    public function __construct(SearchProvider $searchProvider, AdvancedSearchProvider $advancedSearchProvider)
+    {
+        $this->searchProvider = $searchProvider;
+        $this->advancedSearchProvider = $advancedSearchProvider;
+    }
+
+    /**
+     * @Route("/recherche", methods={"GET", "POST"}, name="search")
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\Response
+     * @throws \Twig\Error\LoaderError
+     * @throws \Twig\Error\RuntimeError
+     * @throws \Twig\Error\SyntaxError
      */
     public function indexAction(Request $request)
     {
+        $criteria = new Criteria($request);
+        $facets = new FacetFilter($request);
+        $objSearch = $this->searchProvider->getListBySearch($criteria, $facets);
+
+        $title = 'page.search.title';
+        $title .= $request->get(WordsList::ADVANCED_SEARCH_LABEL) === WordsList::CLICKED ?
+            'advanced' : 'simple';
+
         return $this->render('search/index.html.twig', [
+            'title'         => $title,
             'toolbar'       => 'search',
+            'objSearch'     => $objSearch,
             'printRoute'    => $this->generateUrl('search_pdf',['format'=> 'pdf'])
         ]);
     }
@@ -63,19 +106,41 @@ class SearchController extends AbstractController
     }
 
     /**
-     * @Route("/recherche-avance", methods={"GET","HEAD"}, name="search_advanced")
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function advancedSearchAction(Request $request)
+    public function advancedSearchContent(Request $request)
     {
-        return $this->render('search/modal/advanced-search.html.twig', []);
+        return $this->render('search/blocs-advanced-search/content.html.twig', [
+            'criteria' => $this->advancedSearchProvider->getAdvancedSearchCriteria(),
+            'queries' => $request->get(Criteria::QUERY_NAME, []),
+            'filters' => $request->get(FacetFilter::QUERY_NAME, [])
+        ]);
     }
 
     /**
-     * @Route("/autocompletion", methods={"GET","HEAD"}, name="search_autocompletion")
+     * @Route("/autocompletion", methods={"POST"}, name="search_autocompletion")
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function autocompletionAction(Request $request)
     {
-        return $this->render('search/autocompletion.html.twig', []);
+
+        $query = $request->get('word');
+        $objSearch = $this->searchProvider->findNoticeAutocomplete($query);
+        //$facet = $objSearch->getFacets();
+
+        dump($objSearch); die;
+
+        return new JsonResponse([
+            'code' => $objSearch->getStatusCode(),
+            'message' => $serviceProposed->message,
+            'html' => $this->renderView('        search/autocompletion.html.twig', ['words' => $objSearch,
+            ])
+
+        ]);
+
+
     }
 
 }
