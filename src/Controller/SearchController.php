@@ -21,6 +21,10 @@ use Symfony\Component\Routing\Annotation\Route;
  */
 class SearchController extends AbstractController
 {
+    use PrintTrait;
+
+    public const QUERY_LABEL = 'search';
+
     /**
      * @var SearchProvider
      */
@@ -127,20 +131,21 @@ class SearchController extends AbstractController
     {
 
         $query = $request->get('word');
-        $objSearch = $this->searchProvider->findNoticeAutocomplete($query);
-        //$facet = $objSearch->getFacets();
 
-        dump($objSearch); die;
+        try{
+            $objSearch = $this->searchProvider->findNoticeAutocomplete($query, SuggestionList::class);
+
+        }catch(\Exception $exception){
+            return new JsonResponse([
+                'code'=> $exception->getCode(),
+                'message' => $exception->getMessage(),
+            ]);
+        }
 
         return new JsonResponse([
-            'code' => $objSearch->getStatusCode(),
-            'message' => $serviceProposed->message,
-            'html' => $this->renderView('        search/autocompletion.html.twig', ['words' => $objSearch,
+            'html' => $this->renderView('search/autocompletion.html.twig', ['words' => $objSearch->getSuggestions(),
             ])
-
         ]);
-
-
     }
 
 }
