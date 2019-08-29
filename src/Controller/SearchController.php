@@ -5,13 +5,10 @@ namespace App\Controller;
 
 use App\Model\Search\Criteria;
 use App\Model\Search\FacetFilter;
-use App\Service\HistoricService;
 use App\Model\SuggestionList;
+use App\Service\HistoricService;
 use App\Service\Provider\AdvancedSearchProvider;
 use App\Service\Provider\SearchProvider;
-use Knp\Bundle\SnappyBundle\Snappy\Response\PdfResponse;
-use App\Service\Provider\SearchProvider;
-use App\WordsList;
 use Knp\Bundle\SnappyBundle\Snappy\Response\PdfResponse;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -67,11 +64,10 @@ class SearchController extends AbstractController
      */
     public function indexAction(Request $request)
     {
-
         if ($request->request->count() > 0) {
             $this->historicService->saveMyHistoric($request);
-
         }
+
         $criteria = new Criteria($request);
         $facets = new FacetFilter($request);
         $objSearch = $this->searchProvider->getListBySearch($criteria, $facets);
@@ -125,9 +121,9 @@ class SearchController extends AbstractController
         if ($format == 'txt') {
             return new Response(
                 $content, 200, [
-                'Content-Type' => 'application/force-download',
-                'Content-Disposition' => 'attachment; filename="'.$filename.'.txt"',
-            ]
+                    'Content-Type' => 'application/force-download',
+                    'Content-Disposition' => 'attachment; filename="'.$filename.'.txt"',
+                ]
             );
         } elseif ($format == 'html') {
             return new Response($content);
@@ -167,19 +163,23 @@ class SearchController extends AbstractController
 
             $objSearch = $this->searchProvider->findNoticeAutocomplete($query, SuggestionList::class);
 
-            return new JsonResponse([
-                'html' => $this->renderView(
-                    'search/autocompletion.html.twig',
-                    [
-                        'words' => $objSearch->getSuggestions(),
-                    ]
-                ),
-            ]);
+            return new JsonResponse(
+                [
+                    'html' => $this->renderView(
+                        'search/autocompletion.html.twig',
+                        [
+                            'words' => $objSearch->getSuggestions(),
+                        ]
+                    ),
+                ]
+            );
         } catch (\Exception $exception) {
-            return new JsonResponse([
-                'code' => $exception->getCode(),
-                'message' => $exception->getMessage(),
-            ]);
+            return new JsonResponse(
+                [
+                    'code' => $exception->getCode(),
+                    'message' => $exception->getMessage(),
+                ]
+            );
         }
     }
 
