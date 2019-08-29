@@ -77,6 +77,7 @@ class SearchFiltersExtension extends AbstractExtension
         $context_queries = $this->requestStack->getMasterRequest()->get($context, []);
         if ($index !== null) {
             if (
+                is_array($context_queries) &&
                 array_key_exists($index, $context_queries) &&
                 array_key_exists($index, $context_queries[$index])
             ) {

@@ -25,6 +25,7 @@
         "symfony/flex": "^1.1",
         "symfony/form": "3.4.*",
         "symfony/framework-bundle": "3.4.*",
+        "symfony/ldap": "3.4.*",
         "symfony/monolog-bundle": "^3.1",
         "symfony/process": "3.4.*",
         "symfony/security-bundle": "3.4.*",

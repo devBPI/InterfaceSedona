@@ -3,26 +3,65 @@
 
 namespace App\Controller;
 
+use App\Service\HistoricService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\User\LdapUserProvider;
+use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
+/**
+ * Class UserController
+ * @package App\Controller
+ */
 class UserController extends AbstractController
 {
     /**
-     * @Route("/authentification", methods={"GET","HEAD"}, name="user_login")
+     * @var HistoricService
      */
-    public function loginAction(Request $request)
+    private $historicService;
+
+    /**
+     * UserController constructor.
+     * @param HistoricService $historicService
+     */
+    public function __construct(HistoricService $historicService)
     {
-        return $this->render('user/login.html.twig', []);
+        $this->historicService = $historicService;
+    }
+
+    /**
+     * @Route("/authentification", methods={"GET","POST"}, name="user_login")
+     */
+    public function loginAction(Request $request, AuthenticationUtils $authUtils)
+    {
+        // get the login error if there is one
+        $error = $authUtils->getLastAuthenticationError();
+
+
+        // last username entered by the user
+        $lastUsername = $authUtils->getLastUsername();
+        dump($error, $lastUsername);
+//        {
+//        dump($request->get('_username'), $request->request->all());
+//        if ($request->get('_username') !== null) {
+//            $user = $this->get('security.user.provider.ldap')->loadUserByUsername($request->get('_username'));
+//            dump($user);
+//        }
+//        dump($this->get('security.user.provider.ldap')->)
+        return $this->render('user/login.html.twig', [
+        ]);
     }
 
     /**
      * @Route("/compte", methods={"GET","HEAD"}, name="user_personal_data")
+     * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function personalDataAction(Request $request)
+    public function personalDataAction()
     {
-        return $this->render('user/personal-data.html.twig', []);
+        return $this->render('user/personal-data.html.twig', [
+            'history' => $this->historicService->getHistory()
+        ]);
     }
 
     /**

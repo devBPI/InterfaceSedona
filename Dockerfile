@@ -8,6 +8,7 @@ WORKDIR /var/www/html
 RUN if [ -d .git ]; then echo "ERROR: .dockerignore folders detected, exiting" && exit 1; fi
 
 RUN set -ex ; \
+    apt update && apt-get install php-ldap ;\
     make package_info.json c-install cc assets ;\
     make dotenv-clear
 
@@ -29,6 +30,7 @@ COPY --from=builder-php /var/www/html /var/www/html
 COPY --from=builder-alpine /var/www/html /var/www/html
 RUN set -xe ;\
     apt update && apt install -y --no-install-recommends xvfb wkhtmltopdf ;\
+    apt-get install php-ldap ;\
     rm -rf /var/lib/apt/lists/* ; \
     chown -R www-data /var/www/html ;\
     chmod a+w /var/www/html/var ;\

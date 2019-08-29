@@ -22,19 +22,7 @@ class User
     /**
      * @ORM\Column(type="string", length=100, nullable=false, unique=true)
      */
-    private $login;
-
-    /**
-     * @ORM\Column(type="string", length=100, nullable=false)
-     * @var string
-     */
-    private $firstname;
-
-    /**
-     * @ORM\Column(type="string", length=100, nullable=false)
-     * @var string
-     */
-    private $lastname;
+    private $ldap;
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\UserHistory", mappedBy="User")

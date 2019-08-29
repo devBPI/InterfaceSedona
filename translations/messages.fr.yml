@@ -277,9 +277,10 @@ page:
   bibiographic:
     title: Document %title%
   search:
-    title:
-      simple: Résultats recherche simple - %termes% - page %currentPage% sur %nbPage%
-      advanced: Résultats recherche avancée - %termes% - page %currentPage% sur %nbPage%
+    title: Résultats recherche %mode% - %searchInput% - page %currentPage% sur %nbPage%
+    mode:
+      0: simple
+      1: avancée
   login:
     title: Authentification
     login: Adresse e-mail

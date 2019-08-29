@@ -5,11 +5,10 @@ namespace App\Controller;
 
 use App\Model\Search\Criteria;
 use App\Model\Search\FacetFilter;
+use App\Service\HistoricService;
 use App\Service\Provider\AdvancedSearchProvider;
-use App\WordsList;
-use Knp\Bundle\SnappyBundle\Snappy\Response\PdfResponse;
-use Spipu\Html2Pdf\Html2Pdf;
 use App\Service\Provider\SearchProvider;
+use Knp\Bundle\SnappyBundle\Snappy\Response\PdfResponse;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -29,16 +28,25 @@ class SearchController extends AbstractController
      * @var AdvancedSearchProvider
      */
     private $advancedSearchProvider;
+    /**
+     * @var HistoricService
+     */
+    private $historicService;
 
     /**
      * SearchController constructor.
      * @param SearchProvider $searchProvider
      * @param AdvancedSearchProvider $advancedSearchProvider
+     * @param HistoricService $historicService
      */
-    public function __construct(SearchProvider $searchProvider, AdvancedSearchProvider $advancedSearchProvider)
-    {
+    public function __construct(
+        SearchProvider $searchProvider,
+        AdvancedSearchProvider $advancedSearchProvider,
+        HistoricService $historicService
+    ) {
         $this->searchProvider = $searchProvider;
         $this->advancedSearchProvider = $advancedSearchProvider;
+        $this->historicService = $historicService;
     }
 
     /**
@@ -48,53 +56,72 @@ class SearchController extends AbstractController
      * @throws \Twig\Error\LoaderError
      * @throws \Twig\Error\RuntimeError
      * @throws \Twig\Error\SyntaxError
+     * @throws \Doctrine\ORM\ORMException
      */
     public function indexAction(Request $request)
     {
+
+        if ($request->request->count() > 0) {
+            $this->historicService->saveMyHistoric($request);
+
+        }
         $criteria = new Criteria($request);
         $facets = new FacetFilter($request);
         $objSearch = $this->searchProvider->getListBySearch($criteria, $facets);
 
-        $title = 'page.search.title';
-        $title .= $request->get(WordsList::ADVANCED_SEARCH_LABEL) === WordsList::CLICKED ?
-            'advanced' : 'simple';
-
-        return $this->render('search/index.html.twig', [
-            'title'         => $title,
-            'toolbar'       => 'search',
-            'objSearch'     => $objSearch,
-            'printRoute'    => $this->generateUrl('search_pdf',['format'=> 'pdf'])
-        ]);
+        return $this->render(
+            'search/index.html.twig',
+            [
+                'title' => $this->historicService->setTitleFromRequest($request),
+                'toolbar' => 'search',
+                'objSearch' => $objSearch,
+                'printRoute' => $this->generateUrl('search_pdf', ['format' => 'pdf']),
+            ]
+        );
     }
 
     /**
      * @Route("/recherche-tout", methods={"GET","HEAD"}, name="search_all")
+     * @param Request $request
+     * @return Response
      */
     public function searchAllAction(Request $request)
     {
         // TODO: controleur provisoire destiné a afficher une mise en page spécifique
-        return $this->render('search/index-all.html.twig', [
-            'toolbar'       => 'search',
-            'printRoute'    => $this->generateUrl('search_pdf',['format'=> 'pdf'])
-        ]);
+        return $this->render(
+            'search/index-all.html.twig',
+            [
+                'toolbar' => 'search',
+                'printRoute' => $this->generateUrl('search_pdf', ['format' => 'pdf']),
+            ]
+        );
     }
 
     /**
      * @Route("/print/recherche.{format}", methods={"GET","HEAD"}, name="search_pdf", requirements={"format" = "html|pdf|txt"}, defaults={"format" = "pdf"})
+     * @param Request $request
+     * @param \Knp\Snappy\Pdf $knpSnappy
+     * @param $format
+     * @return PdfResponse|Response
      */
     public function printAction(Request $request, \Knp\Snappy\Pdf $knpSnappy, $format)
     {
-        $content = $this->renderView("search/index.".($format == 'txt' ? 'txt': 'pdf').".twig", [
-            'isPrintLong'   => $request->get('print-type', 'print-long') == 'print-long',
-            'includeImage'  => $request->get('print-image', null) == 'print-image',
-        ]);
+        $content = $this->renderView(
+            "search/index.".($format == 'txt' ? 'txt' : 'pdf').".twig",
+            [
+                'isPrintLong' => $request->get('print-type', 'print-long') == 'print-long',
+                'includeImage' => $request->get('print-image', null) == 'print-image',
+            ]
+        );
         $filename = 'search-'.date('Y-m-d_h-i-s');
 
         if ($format == 'txt') {
-            return new Response($content,200,[
+            return new Response(
+                $content, 200, [
                 'Content-Type' => 'application/force-download',
-                'Content-Disposition' => 'attachment; filename="'.$filename.'.txt"'
-            ]);
+                'Content-Disposition' => 'attachment; filename="'.$filename.'.txt"',
+            ]
+            );
         } elseif ($format == 'html') {
             return new Response($content);
         }
@@ -111,11 +138,14 @@ class SearchController extends AbstractController
      */
     public function advancedSearchContent(Request $request)
     {
-        return $this->render('search/blocs-advanced-search/content.html.twig', [
-            'criteria' => $this->advancedSearchProvider->getAdvancedSearchCriteria(),
-            'queries' => $request->get(Criteria::QUERY_NAME, []),
-            'filters' => $request->get(FacetFilter::QUERY_NAME, [])
-        ]);
+        return $this->render(
+            'search/blocs-advanced-search/content.html.twig',
+            [
+                'criteria' => $this->advancedSearchProvider->getAdvancedSearchCriteria(),
+                'queries' => $request->get(Criteria::QUERY_NAME, []),
+                'filters' => $request->get(FacetFilter::QUERY_NAME, []),
+            ]
+        );
     }
 
     /**
@@ -130,15 +160,22 @@ class SearchController extends AbstractController
         $objSearch = $this->searchProvider->findNoticeAutocomplete($query);
         //$facet = $objSearch->getFacets();
 
-        dump($objSearch); die;
+        dump($objSearch);
+        die;
 
-        return new JsonResponse([
-            'code' => $objSearch->getStatusCode(),
-            'message' => $serviceProposed->message,
-            'html' => $this->renderView('        search/autocompletion.html.twig', ['words' => $objSearch,
-            ])
+        return new JsonResponse(
+            [
+                'code' => $objSearch->getStatusCode(),
+                'message' => $serviceProposed->message,
+                'html' => $this->renderView(
+                    '        search/autocompletion.html.twig',
+                    [
+                        'words' => $objSearch,
+                    ]
+                ),
 
-        ]);
+            ]
+        );
 
 
     }

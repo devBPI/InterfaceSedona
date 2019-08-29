@@ -38,3 +38,18 @@ services:
 
   App\Service\ImageService:
     arguments: ['%kernel.project_dir%/public/']
+  App\Service\HistoricService:
+    arguments: ['@doctrine.orm.entity_manager']
+
+
+  Symfony\Component\Ldap\Ldap:
+    arguments: ['@Symfony\Component\Ldap\Adapter\ExtLdap\Adapter']
+  Symfony\Component\Ldap\Adapter\ExtLdap\Adapter:
+    arguments:
+    -   host: sldap-bpi.bpi.fr
+        port: 389
+#        encryption: tls
+        options:
+          protocol_version: 3
+          referrals: false
+

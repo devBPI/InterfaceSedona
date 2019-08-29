@@ -31,6 +31,12 @@ class UserHistory
     private $title;
 
     /**
+     * @ORM\Column(type="json_array", nullable=false, options={"jsonb": true})
+     * @var array
+     */
+    private $queries;
+
+    /**
      * @ORM\Column(type="string", length=250, nullable=false)
      * @var string
      */
@@ -41,5 +47,66 @@ class UserHistory
      * @var \DateTime
      */
     private $creation_date;
+
+    /**
+     * UserHistory constructor.
+     * @param string $title
+     * @param array $queries
+     */
+    public function __construct(string $title, array $queries = [])
+    {
+        $this->title = $title;
+        $this->queries = $queries;
+        $this->url = md5(serialize($queries));
+        $this->creation_date = new \DateTime();
+    }
+
+    /**
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * @return User|null
+     */
+    public function getUser(): ?User
+    {
+        return $this->User;
+    }
+
+    /**
+     * @return string
+     */
+    public function getTitle(): string
+    {
+        return $this->title;
+    }
+
+    /**
+     * @return array
+     */
+    public function getQueries(): array
+    {
+        return $this->queries;
+    }
+
+    /**
+     * @return string
+     */
+    public function getUrl(): string
+    {
+        return $this->url;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getCreationDate(): \DateTime
+    {
+        return $this->creation_date;
+    }
 
 }
