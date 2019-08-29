@@ -4,7 +4,7 @@
 namespace App\Controller;
 
 use App\Form\RepportErrorType;
-use App\Model\From\RepportError;
+use App\Model\From\ReportError;
 use App\Service\MailSenderService;
 use Symfony\Component\Form\FormError;
 use Symfony\Component\HttpFoundation\Request;
@@ -19,7 +19,7 @@ class CommonController extends AbstractController
      */
     public function reportErrorAction(Request $request, MailSenderService $mailSenderService)
     {
-        $form = $this->createForm(RepportErrorType::class, new RepportError());
+        $form = $this->createForm(RepportErrorType::class, new ReportError());
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
