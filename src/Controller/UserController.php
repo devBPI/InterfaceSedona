@@ -60,7 +60,7 @@ class UserController extends AbstractController
     public function personalDataAction()
     {
         return $this->render('user/personal-data.html.twig', [
-            'history' => $this->historicService->getHistory()
+            'histories' => $this->historicService->getHistory()
         ]);
     }
 
