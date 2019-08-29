@@ -6,10 +6,15 @@ namespace App\Controller;
 use App\Model\Search\Criteria;
 use App\Model\Search\FacetFilter;
 use App\Service\HistoricService;
+use App\Model\SuggestionList;
 use App\Service\Provider\AdvancedSearchProvider;
 use App\Service\Provider\SearchProvider;
 use Knp\Bundle\SnappyBundle\Snappy\Response\PdfResponse;
+use App\Service\Provider\SearchProvider;
+use App\WordsList;
+use Knp\Bundle\SnappyBundle\Snappy\Response\PdfResponse;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -20,6 +25,8 @@ use Symfony\Component\Routing\Annotation\Route;
  */
 class SearchController extends AbstractController
 {
+    use PrintTrait;
+
     /**
      * @var SearchProvider
      */
@@ -151,33 +158,29 @@ class SearchController extends AbstractController
     /**
      * @Route("/autocompletion", methods={"POST"}, name="search_autocompletion")
      * @param Request $request
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @return JsonResponse
      */
-    public function autocompletionAction(Request $request)
+    public function autocompletionAction(Request $request): JsonResponse
     {
+        try {
+            $query = $request->get('word');
 
-        $query = $request->get('word');
-        $objSearch = $this->searchProvider->findNoticeAutocomplete($query);
-        //$facet = $objSearch->getFacets();
+            $objSearch = $this->searchProvider->findNoticeAutocomplete($query, SuggestionList::class);
 
-        dump($objSearch);
-        die;
-
-        return new JsonResponse(
-            [
-                'code' => $objSearch->getStatusCode(),
-                'message' => $serviceProposed->message,
+            return new JsonResponse([
                 'html' => $this->renderView(
-                    '        search/autocompletion.html.twig',
+                    'search/autocompletion.html.twig',
                     [
-                        'words' => $objSearch,
+                        'words' => $objSearch->getSuggestions(),
                     ]
                 ),
-
-            ]
-        );
-
-
+            ]);
+        } catch (\Exception $exception) {
+            return new JsonResponse([
+                'code' => $exception->getCode(),
+                'message' => $exception->getMessage(),
+            ]);
+        }
     }
 
 }

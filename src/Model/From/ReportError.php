@@ -4,7 +4,10 @@
 namespace App\Model\From;
 use Symfony\Component\Validator\Constraints as Asset;
 
-
+/**
+ * Class ReportError
+ * @package App\Model\From
+ */
 class ReportError
 {
     /**
