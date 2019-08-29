@@ -4,7 +4,7 @@
 namespace App\Service;
 
 
-use App\Model\From\RepportError;
+use App\Model\From\ReportError;
 use Twig\Environment;
 
 class MailSenderService

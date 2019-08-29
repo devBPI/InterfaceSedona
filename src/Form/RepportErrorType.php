@@ -4,7 +4,7 @@
 namespace App\Form;
 
 
-use App\Model\From\RepportError;
+use App\Model\From\ReportError;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
@@ -53,7 +53,7 @@ class RepportErrorType extends AbstractType
 //    public function configureOptions(OptionsResolver $resolver)
 //    {
 //        $resolver->setDefaults([
-//            'data_class' => RepportError::class,
+//            'data_class' => ReportError::class,
 //        ]);
 //    }
 }
