@@ -7,8 +7,6 @@ use App\Service\HistoricService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Security\Core\User\LdapUserProvider;
-use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 /**
  * Class UserController
@@ -32,25 +30,11 @@ class UserController extends AbstractController
 
     /**
      * @Route("/authentification", methods={"GET","POST"}, name="user_login")
+     * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function loginAction(Request $request, AuthenticationUtils $authUtils)
+    public function loginAction()
     {
-        // get the login error if there is one
-        $error = $authUtils->getLastAuthenticationError();
-
-
-        // last username entered by the user
-        $lastUsername = $authUtils->getLastUsername();
-        dump($error, $lastUsername);
-//        {
-//        dump($request->get('_username'), $request->request->all());
-//        if ($request->get('_username') !== null) {
-//            $user = $this->get('security.user.provider.ldap')->loadUserByUsername($request->get('_username'));
-//            dump($user);
-//        }
-//        dump($this->get('security.user.provider.ldap')->)
-        return $this->render('user/login.html.twig', [
-        ]);
+        return $this->render('user/login.html.twig');
     }
 
     /**
@@ -59,7 +43,27 @@ class UserController extends AbstractController
      */
     public function personalDataAction()
     {
-        return $this->render('user/personal-data.html.twig', [
+        return $this->render('user/personal-data.html.twig');
+    }
+
+    /**
+     * @Route("/selection", methods={"GET","HEAD"}, name="user_selection")
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function selectionAction()
+    {
+        return $this->render('user/tabs/selection.html.twig', [
+            'histories' => $this->historicService->getHistory()
+        ]);
+    }
+
+    /**
+     * @Route("/historique", methods={"GET","HEAD"}, name="user_historic")
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function historicAction()
+    {
+        return $this->render('user/tabs/historic.html.twig', [
             'histories' => $this->historicService->getHistory()
         ]);
     }

@@ -20,7 +20,8 @@ class UserHistory
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="histories", cascade={"all"})
+     * @ORM\ManyToOne(targetEntity="LdapUser", inversedBy="histories", cascade={"remove"})
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id", nullable=true)
      */
     private $User;
 
@@ -50,11 +51,13 @@ class UserHistory
 
     /**
      * UserHistory constructor.
+     * @param LdapUser $user
      * @param string $title
      * @param array $queries
      */
-    public function __construct(string $title, array $queries = [])
+    public function __construct(?LdapUser $user, string $title, array $queries = [])
     {
+        $this->User = $user;
         $this->title = $title;
         $this->queries = $queries;
         $this->url = md5(serialize($queries));
@@ -70,9 +73,9 @@ class UserHistory
     }
 
     /**
-     * @return User|null
+     * @return LdapUser|null
      */
-    public function getUser(): ?User
+    public function getUser(): ?LdapUser
     {
         return $this->User;
     }

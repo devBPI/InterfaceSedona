@@ -20,7 +20,7 @@ class UserSelectionCategory
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="selections", cascade={"all"})
+     * @ORM\ManyToOne(targetEntity="LdapUser", inversedBy="selections", cascade={"all"})
      */
     private $User;
 

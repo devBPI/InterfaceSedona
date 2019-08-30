@@ -187,6 +187,18 @@ $(document).on('submit', '[data-toggle=form-remote]', function (event) {
 	return false;
 });
 
+$('[data-toggle="tabajax"]').click(function(e) {
+    var $this = $(this),
+        loadurl = $this.attr('href'),
+        targ = $this.attr('data-target');
+
+    $.get(loadurl, function(data) {
+        $(targ).html(data);
+    });
+
+    $this.tab('show');
+    return false;
+});
 $('[data-toggle="autocomplete"]').on('keyup', function () {
     // $.ajax()
     console.log(Routing.generate('search_autocompletion'));

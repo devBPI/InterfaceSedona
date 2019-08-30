@@ -7,7 +7,7 @@
             <label for="search-input" id="search-label"
                    class="sr-only">{{ 'bloc.search-zone.input-sr-only'|trans }}</label>
             {% set field_name = constant('App\\WordsList::SIMPLE_SEARCH_LABEL')~'['~constant('App\\WordsList::TEXT_LABEL')~']' %}
-            <input name="{{ field_name }}"
+            <input name="{{ field_name }}" autocomplete="off"
                    type="text" aria-autocomplete="list" aria-controls="autocompletion-list"
                    id="search-input" data-url-autocomplete="{{ path('search_autocompletion') }}"
                    placeholder="{{ 'bloc.search-zone.input-placeholder'|trans }}"

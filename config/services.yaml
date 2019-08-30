@@ -53,3 +53,14 @@ services:
           protocol_version: 3
           referrals: false
 
+
+  App\Provider\BpiLdapUserProvider:
+    arguments:
+      - '@Symfony\Component\Ldap\Ldap'
+      - '@doctrine.orm.entity_manager'
+      - "dc=bpi,dc=fr"
+      - "ou=lecture,ou=applications,dc=bpi,dc=fr"
+      - mio1eThe
+      - ['ROLE_USER']
+      - ['mail', 'sn','cn', 'pseudo', 'uid', 'entryUUID']
+      - mail

@@ -1,18 +1,13 @@
 <?php
 declare(strict_types=1);
 
-
-/**
- * Created by PhpStorm.
- * User: infra
- * Date: 12/08/19
- * Time: 17:14
- */
-
 namespace App\Model;
 use JMS\Serializer\Annotation as JMS;
 
-
+/**
+ * Class SuggestionList
+ * @package App\Model
+ */
 class SuggestionList
 {
     /**
@@ -44,6 +39,5 @@ class SuggestionList
     {
         return $this->originalWord;
     }
-
 
 }

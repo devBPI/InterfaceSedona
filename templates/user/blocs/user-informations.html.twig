@@ -1,11 +1,13 @@
 <div class="row justify-content-center">
 	<div class="col-12 col-sm-10 col-md-9 col-lg-7">
 		<ul class="list-information account-form">
-			{% include 'common/informations-list.html.twig' with {'details': {
-				'page.personal-data.profil.pseudo': { 'Lorem': '' },
-				'page.personal-data.profil.name': { 'Lorem Ipsum Dolor': '' },
-				'page.personal-data.profil.email': { 'lorem-ipsum@dolor.com': '' }
-			}} %}
+			{% if app.user %}
+				{% include 'common/informations-list.html.twig' with {'details': {
+					'page.personal-data.profil.pseudo': app.user.username,
+					'page.personal-data.profil.name': app.user.firstname~' '~app.user.lastname,
+					'page.personal-data.profil.email': app.user.username
+				}} %}
+			{% endif %}
 		</ul>
 	</div>
 </div>

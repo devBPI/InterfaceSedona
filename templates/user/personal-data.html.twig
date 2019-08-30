@@ -9,63 +9,38 @@
 	<div>
 		<nav>
 			<ul class="nav nav-tabs" id="user-navigation" role="tablist">
+                {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+					<li class="nav-item">
+						<a href="#informations" class="nav-link active" id="user-informations" data-toggle="tab" role="tab" aria-controls="informations" aria-selected="true">{{ 'page.personal-data.profil.title'|trans }}</a>
+					</li>
+				{% endif %}
 				<li class="nav-item">
-					<a href="#informations" class="nav-link active" id="user-informations" data-toggle="tab" role="tab" aria-controls="informations" aria-selected="true">{{ 'page.personal-data.profil.title'|trans }}</a>
+					<a href="{{ path('user_selection') }}" data-target="#selection" class="nav-link" id="user-selection" data-toggle="tabajax" role="tab" aria-controls="selection" aria-selected="false">{{ 'page.personal-data.selection.title'|trans }}</a>
 				</li>
 				<li class="nav-item">
-					<a href="#selection" class="nav-link" id="user-selection" data-toggle="tab" role="tab" aria-controls="selection" aria-selected="false">{{ 'page.personal-data.selection.title'|trans }}</a>
-				</li>
-				<li class="nav-item">
-					<a href="#historique" class="nav-link" id="user-historique" data-toggle="tab" role="tab" aria-controls="historique" aria-selected="false">{{ 'page.personal-data.historic.title'|trans }}</a>
+					<a href="{{ path('user_historic') }}" data-target="#historique" class="nav-link" id="user-historique" data-toggle="tabajax" role="tab" aria-controls="historique" aria-selected="false">{{ 'page.personal-data.historic.title'|trans }}</a>
 				</li>
 			</ul>
 		</nav>
 	</div>
 
 	<div class="tab-content" id="user-content">
-		<div class="tab-pane fade show active" id="informations" role="tabpanel" aria-labelledby="user-informations">
+        {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+			<div class="tab-pane fade show active" id="informations" role="tabpanel" aria-labelledby="user-informations">
 
-			<h2 class="n1 title-icone">
-				<span class="icone-square"><img src="{{ asset('images/icones/icone-user.svg') }}" alt="" class="icone-user"/></span><span>{{ 'page.personal-data.profil.title'|trans }}</span>
-			</h2>
+				<h2 class="n1 title-icone">
+					<span class="icone-square"><img src="{{ asset('images/icones/icone-user.svg') }}" alt="" class="icone-user"/></span><span>{{ 'page.personal-data.profil.title'|trans }}</span>
+				</h2>
 
-			<div>
-				{% include "user/blocs/user-informations.html.twig" %}
+				<div>
+					{% include "user/blocs/user-informations.html.twig" %}
+				</div>
+
 			</div>
+		{% endif %}
 
-		</div>
-		<div class="tab-pane fade" id="selection" role="tabpanel" aria-labelledby="user-selection">
-
-			<h2 class="n1 title-icone">
-				<span class="icone-square"><img src="{{ asset('images/icones/icone-coeur.svg') }}" alt="" class="icone-coeur"/></span><span>{{ 'page.personal-data.selection.title'|trans }}</span>
-			</h2>
-
-			<div class="row justify-content-md-between banner-tools">
-				{% include "user/blocs/banner-tools.html.twig" with {'type':'selection'} %}
-			</div>
-
-			<div>
-				{% include "user/blocs/list-user.html.twig" %}
-			</div>
-
-		</div>
-		<div class="tab-pane fade" id="historique" role="tabpanel" aria-labelledby="user-historique">
-
-			<h2 class="n1 title-icone">
-				<span class="icone-square"><img src="{{ asset('images/icones/icone-horloge.svg') }}" alt="" class="icone-horloge"/></span><span>{{ 'page.personal-data.historic.title'|trans }}</span>
-			</h2>
-
-			<p class="sr-only">{{ 'page.personal-data.historic.notice'|trans }}</p>
-
-			<div class="row justify-content-md-between banner-tools">
-				{% include "user/blocs/banner-tools.html.twig" with {'type':'historique'} %}
-			</div>
-
-			<div>
-				{% include "user/blocs/historic-search.html.twig" %}
-			</div>
-
-		</div>
+		<div class="tab-pane fade" id="selection" role="tabpanel" aria-labelledby="user-selection"></div>
+		<div class="tab-pane fade" id="historique" role="tabpanel" aria-labelledby="user-historique"></div>
 	</div>
 
 	<!-- Début - Modal création d'une nouvelle liste -->

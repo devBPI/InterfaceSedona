@@ -4,9 +4,12 @@ declare(strict_types=1);
 namespace App\Service;
 
 use App\Entity\UserHistory;
+use App\Model\LdapUser;
 use App\WordsList;
 use Doctrine\ORM\EntityManager;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
+use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Translation\Translator;
 use Symfony\Component\Translation\TranslatorInterface;
 
@@ -28,16 +31,22 @@ final class HistoricService
      * @var string
      */
     private $searchTitle = null;
+    /**
+     * @var TokenStorageInterface
+     */
+    private $tokenStorage;
 
     /**
      * HistoricService constructor.
      * @param EntityManager $entityManager
+     * @param TokenStorageInterface $tokenStorage
      * @param TranslatorInterface $translator
      */
-    public function __construct(EntityManager $entityManager, TranslatorInterface $translator)
+    public function __construct(EntityManager $entityManager, TokenStorageInterface $tokenStorage, TranslatorInterface $translator)
     {
         $this->entityManager = $entityManager;
         $this->translator = $translator;
+        $this->tokenStorage = $tokenStorage;
     }
 
     /**
@@ -47,7 +56,20 @@ final class HistoricService
      */
     public function saveMyHistoric(Request $request)
     {
-        $history = new UserHistory($this->setTitleFromRequest($request), $request->request->all());
+        $user = null;
+        if (
+            $this->tokenStorage->getToken() instanceof TokenInterface &&
+            $this->tokenStorage->getToken()->getUser() instanceof LdapUser
+        ) {
+            $user = $this->tokenStorage->getToken()->getUser()->getEntityUser();
+            $this->entityManager->merge($user);
+        }
+
+        $history = new UserHistory(
+            $user,
+            $this->setTitleFromRequest($request),
+            $request->request->all()
+        );
         $this->entityManager->persist($history);
         $this->entityManager->flush($history);
     }
