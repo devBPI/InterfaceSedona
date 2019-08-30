@@ -15,12 +15,80 @@ class Notice
 
     use NoticeMappedTrait;
     /**
+     * @var array|Value[]
+     * @JMS\Type("array<App\Model\Value>")
+     * @JMS\SerializedName("seriesCollection")
+     * @JMS\XmlList("serieCollection")
+     */
+    private $collectionSeries;
+
+    /**
+     * @var array
+     * @JMS\Type("array<string>")
+     * @JMS\SerializedName("origines")
+     * @JMS\XmlList("origine")
+     */
+    private $origins;
+
+    /**
+     * @var array
+     * @JMS\Type("array<string>")
+     * @JMS\SerializedName("nomPubliqueConfiguration")
+     */
+    private $configurationName;
+
+    /**
+     * @var array
+     * @JMS\Type("array<string>")
+     * @JMS\SerializedName("titresEnsemble")
+     * @JMS\XmlList("titreEnsemble")
+     */
+    private $togetherTitle;
+    /**
      * @var array
      * @JMS\Type("array<string>")
      * @JMS\SerializedName("auteurs")
      * @JMS\XmlList("auteur")
      */
     private $authors;
+    /**
+     * @var array
+     * @JMS\Type("array<string>")
+     * @JMS\SerializedName("reunits")
+     * @JMS\XmlList("reunit")
+     */
+    private $meeting;
+    /**
+     * @var array
+     * @JMS\Type("array<string>")
+     * @JMS\SerializedName("autresEditions")
+     * @JMS\XmlList("autreEdition")
+     */
+    private $otherEdition;
+    /**
+    /**
+     * @var array
+     * @JMS\Type("array<string>")
+     * @JMS\SerializedName("conservations")
+     * @JMS\XmlList("conservation")
+     */
+    private $conservation;
+    /**
+     * @var array
+     * @JMS\Type("array<string>")
+     * @JMS\SerializedName("auteursSecondaires")
+     * @JMS\XmlList("auteurSecondaire")
+     */
+    private $otherAuthors;
+
+    /**
+     * @var array|Picture[]
+     * @JMS\Type("array<App\Model\Picture>")
+     * @JMS\SerializedName("images-info")
+     * @JMS\XmlList("image-info")
+     */
+    private $pictures;
+
     /**
      * @var string
      * @JMS\Type("string")
@@ -39,6 +107,19 @@ class Notice
      * @JMS\Type("string")
      */
     private $type;
+    /**
+     * @var string
+     * @JMS\Type("string")
+     * @JMS\SerializedName("periodicite")
+     */
+    private $periodicity;
+    /**
+     * @var string
+     * @JMS\SerializedName("editeurs")
+     * @JMS\XmlList("editeur")
+     * @JMS\Type("string")
+     */
+    private $editors;
 
     /**
      * @var array
@@ -47,6 +128,13 @@ class Notice
      * @JMS\XmlList("titre")
      */
     private $titles;
+    /**
+     * @var array
+     * @JMS\Type("array<string>")
+     * @JMS\SerializedName("contributeurs")
+     * @JMS\XmlList("contributeur")
+     */
+    private $contributeurs;
 
     /**
      * @var array
@@ -55,6 +143,55 @@ class Notice
      * @JMS\XmlList("titreAnalytique")
      */
     private $analyticalTitles;
+    /**
+     * @var array
+     * @JMS\Type("array<string>")
+     * @JMS\SerializedName("titresAlternatifs")
+     * @JMS\XmlList("titreAlternatifs")
+     */
+    private $alternatifTitle;
+    /**
+     * @var array
+     * @JMS\Type("array<string>")
+     * @JMS\SerializedName("titresUniforms")
+     * @JMS\XmlList("titresUniforms")
+     */
+    private $uniformTitle;
+    /**
+     * @var array
+     * @JMS\Type("array<string>")
+     * @JMS\SerializedName("sujets")
+     * @JMS\XmlList("sujet")
+     */
+    private $subject;
+    /**
+     * @var array
+     * @JMS\Type("array<string>")
+     * @JMS\SerializedName("langues")
+     * @JMS\XmlList("langue")
+     */
+    private $languages;
+    /**
+     * @var array
+     * @JMS\Type("array<string>")
+     * @JMS\SerializedName("kinds")
+     * @JMS\XmlList("kind")
+     */
+    private $genre;
+    /**
+     * @var array|IndiceCdu[]
+     * @JMS\Type("array<App\Model\IndiceCdu>")
+     * @JMS\SerializedName("indices")
+     * @JMS\XmlList("indice")
+     */
+    private $indices;
+    /**
+     * @var array#
+     * @JMS\Type("array<string>")
+     * @JMS\SerializedName("contenus")
+     * @JMS\XmlList("contenu")
+     */
+    private $contents;
 
     /**
      * @var array
@@ -71,6 +208,21 @@ class Notice
      * @JMS\XmlList("dateTextuelle")
      */
     private $dates;
+    /**
+     * @var array
+     * @JMS\Type("array<string>")
+     * @JMS\SerializedName("datesPublication")
+     * @JMS\XmlList("datePublication")
+     */
+    private $publishedDates;
+
+    /**
+     * @var array
+     * @JMS\Type("array<string>")
+     * @JMS\SerializedName("datesPublication")
+     * @JMS\XmlList("datePublication")
+     */
+    private $otherDates;
 
     /**
      * @var array
@@ -79,6 +231,20 @@ class Notice
      * @JMS\XmlList("resume")
      */
     private $resume;
+    /**
+     * @var array
+     * @JMS\Type("array<string>")
+     * @JMS\SerializedName("descriptionsMaterielle")
+     * @JMS\XmlList("descriptionMaterielle")
+     */
+    private $materialDescriptions;
+    /**
+     * @var array
+     * @JMS\Type("array<string>")
+     * @JMS\SerializedName("notes")
+     * @JMS\XmlList("note")
+     */
+    private $notes;
 
     /**
      * @var array|NoticeAvailable[]
@@ -261,6 +427,179 @@ class Notice
     {
         return $this->resume;
     }
+
+    /**
+     * @return array
+     */
+    public function getContributeurs(): array
+    {
+        return $this->contributeurs;
+    }
+
+    /**
+     * @return Picture
+     */
+    public function getPictures()
+    {
+        if (is_array($this->pictures)){
+
+            return $this->pictures[0];
+        }
+        return $this->pictures;
+    }
+
+    /**
+     * @return array
+     */
+    public function getOtherAuthors(): array
+    {
+        return $this->otherAuthors;
+    }
+
+    /**
+     * @return array
+     */
+    public function getPublishedDates(): array
+    {
+        return $this->publishedDates;
+    }
+
+    /**
+     * @return array
+     */
+    public function getOtherDates(): array
+    {
+        return $this->otherDates;
+    }
+
+    /**
+     * @return array
+     */
+    public function getAlternatifTitle(): array
+    {
+        return $this->alternatifTitle;
+    }
+
+    /**
+     * @return array
+     */
+    public function getUniformTitle(): array
+    {
+        return $this->uniformTitle;
+    }
+
+    /**
+     * @return array
+     */
+    public function getNotes(): array
+    {
+        return $this->notes;
+    }
+
+    /**
+     * @return array
+     */
+    public function getMaterialDescriptions(): array
+    {
+        return $this->materialDescriptions;
+    }
+
+    /**
+     * @return array
+     */
+    public function getTogetherTitle(): array
+    {
+        return $this->togetherTitle;
+    }
+
+    /**
+     * @return array
+     */
+    public function getMeeting(): array
+    {
+        return $this->meeting;
+    }
+
+    /**
+     * @return array
+     */
+    public function getConservation(): array
+    {
+        return $this->conservation;
+    }
+
+    /**
+     * @return array
+     */
+    public function getSubject(): array
+    {
+        return $this->subject;
+    }
+
+    /**
+     * @return array
+     */
+    public function getIndices(): array
+    {
+        return $this->indices;
+    }
+
+    /**
+     * @return array
+     */
+    public function getConfigurationName(): array
+    {
+        return $this->configurationName;
+    }
+
+    /**
+     * @return array
+     */
+    public function getOrigins(): array
+    {
+        return $this->origins;
+    }
+
+    /**
+     * @return string
+     */
+    public function getEditors(): string
+    {
+        return $this->editors;
+    }
+
+    /**
+     * @return null|string
+     */
+    public function getPeriodicity(): ?string
+    {
+        return $this->periodicity;
+    }
+
+    /**
+     * @return array|null
+     */
+    public function getContents(): ?array
+    {
+        return $this->contents;
+    }
+
+    /**
+     * @return array
+     */
+    public function getCollectionSeries(): array
+    {
+        return $this->collectionSeries;
+    }
+
+    /**
+     * @return array
+     */
+    public function getLanguages(): array
+    {
+        return $this->languages;
+    }
+
 
 }
 

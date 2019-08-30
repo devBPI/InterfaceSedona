@@ -8,7 +8,7 @@ use JMS\Serializer\Annotation as JMS;
  * Class IndiceCdu
  * @package App\Model
  */
-class IndiceCdu implements AuthorityInterface
+class IndiceCdu  extends Cdu implements AuthorityInterface
 {
     /**
      * @var string
@@ -16,19 +16,6 @@ class IndiceCdu implements AuthorityInterface
      * @JMS\SerializedName("permalink")
      */
     private $id;
-
-    /**
-     * @var string
-     * @JMS\Type("string")
-     */
-    private $cote;
-
-    /**
-     * @var string
-     * @JMS\Type("string")
-     * @JMS\SerializedName("libelle")
-     */
-    private $name;
 
 
     /**
@@ -38,22 +25,5 @@ class IndiceCdu implements AuthorityInterface
     {
         return $this->id;
     }
-
-    /**
-     * @return string
-     */
-    public function getCote(): string
-    {
-        return $this->cote;
-    }
-
-    /**
-     * @return string
-     */
-    public function getName(): string
-    {
-        return trim($this->name, '[]');
-    }
-
-
 }
+

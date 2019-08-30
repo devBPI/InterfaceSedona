@@ -24,6 +24,14 @@ class Notices extends AbstractListNotices
      * @JMS\SerializedName("MappedNotices")
      */
     private $mappedNotices = [];
+    /**
+     * @var array|Cdu[]
+     * @JMS\Type("array<App\Model\Cdu>")
+     * @JMS\SerializedName("list-cdu-used")
+     * @JMS\XmlList(entry="cdu-used")
+     *
+     */
+    private $cduUsed = [];
 
     /**
      * @return Subject[]|array
@@ -39,6 +47,14 @@ class Notices extends AbstractListNotices
     public function getMappedNotices()
     {
         return $this->mappedNotices;
+    }
+
+    /**
+     * @return Cdu[]|array
+     */
+    public function getCduUsed()
+    {
+        return $this->cduUsed;
     }
 }
 

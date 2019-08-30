@@ -102,4 +102,12 @@ class NoticeAvailable
         return $this->location;
     }
 
+    /**
+     * @return string
+     */
+    public function getLabelDisponibility(): string
+    {
+        return $this->labelDisponibility;
+    }
+
 }

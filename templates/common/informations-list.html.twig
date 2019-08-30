@@ -1,10 +1,367 @@
-{% for type, items in details %}
+{#% for type, items in details %}
     <li class="list-information__item">
-        {% if (prefix|default('')~type)|trans is not empty %}<span class="list-information__label">{{ (prefix|default('')~type)|trans }}</span>{% endif %}
+        {% if (prefix|default('')~type)|trans is not empty %}
+            <span class="list-information__label">{{ (prefix|default('')~type)|trans }}</span>{% endif %}
         <ul class="list-information__sub-list" lang="fr">
             {% for label, link in items %}
-                <li class="list-information__sub-item">{% if link is not empty and label is not empty %}<a href="{{ link }}" aria-label="{{ 'bloc.autority-result-information.search-with'|trans({'%theme%': label }) }}">{{ label }}</a>{% else %}{{ label }}{% endif %}</li>
+                <li class="list-information__sub-item">
+                    {% if link is not empty and label is not empty %}
+                        <a href="{{ link }}" aria-label="{{ 'bloc.autority-result-information.search-with'|trans({'%theme%': label }) }}">
+                            {{ label }}
+                        </a>
+                    {% else %}
+                        {{ label }}
+                    {% endif %}
+                </li>
             {% endfor %}
         </ul>
     </li>
-{% endfor %}
+{% endfor %#}
+
+
+    {% if notice.otherAuthors is not empty %}
+        <li class="list-information__item">
+            <span class="list-information__label">{{ ('Autre(s) auteur(s)')|trans }}</span>
+            <ul class="list-information__sub-list" lang="fr">
+                {% for otherAuthor in notice.otherAuthors %}
+                    <li class="list-information__sub-item">
+
+                        {#<a href="{{ link }}" aria-label="{{ 'bloc.autority-result-information.search-with'|trans({'%theme%': label }) }}">
+                                    {{ label }}
+                                </a>
+                        #}
+                            {{ otherAuthor }}
+                    </li>
+                {% endfor %}
+            </ul>
+        </li>
+    {% endif %}
+
+    {% if notice.contributeurs is not empty %}
+        <li class="list-information__item">
+            <span class="list-information__label">{{ ('Contributeur(s)')|trans }}</span>
+            <ul class="list-information__sub-list" lang="fr">
+                {% for element in notice.contributeurs %}
+                    <li class="list-information__sub-item">
+                        {#<a href="{{ link }}" aria-label="{{ 'bloc.autority-result-information.search-with'|trans({'%theme%': label }) }}">
+                                    {{ label }}
+                                </a>
+                        #}
+                            {{ element }}
+                    </li>
+                {% endfor %}
+            </ul>
+        </li>
+    {% endif %}
+
+{% if notice.editors is not empty %}
+        <li class="list-information__item">
+            <span class="list-information__label">{{ ('Editeur(s)')|trans }}</span>
+            <ul class="list-information__sub-list" lang="fr">
+                {% for element in notice.editors %}
+                    <li class="list-information__sub-item">
+                        {#<a href="{{ link }}" aria-label="{{ 'bloc.autority-result-information.search-with'|trans({'%theme%': label }) }}">
+                                    {{ label }}
+                                </a>
+                        #}
+                            {{ element }}
+                    </li>
+                {% endfor %}
+            </ul>
+        </li>
+    {% endif %}
+{% if notice.publishedDates is not empty %}
+        <li class="list-information__item">
+            <span class="list-information__label">{{ ('Date(s)')|trans }}</span>
+            <ul class="list-information__sub-list" lang="fr">
+                {% for element in notice.publishedDates %}
+                    <li class="list-information__sub-item">
+                        {#<a href="{{ link }}" aria-label="{{ 'bloc.autority-result-information.search-with'|trans({'%theme%': label }) }}">
+                                    {{ label }}
+                                </a>
+                        #}
+                            {{ element }}
+                    </li>
+                {% endfor %}
+            </ul>
+        </li>
+    {% endif %}
+
+{% if notice.otherDates is not empty %}
+    <li class="list-information__item">
+        <span class="list-information__label">{{ ("Date d'édition papier")|trans }}</span>
+        <ul class="list-information__sub-list" lang="fr">
+            {% for element in notice.otherDates %}
+                <li class="list-information__sub-item">
+                    {#<a href="{{ link }}" aria-label="{{ 'bloc.autority-result-information.search-with'|trans({'%theme%': label }) }}">
+                                {{ label }}
+                            </a>
+                    #}
+                        {{ element }}
+                </li>
+            {% endfor %}
+        </ul>
+    </li>
+{% endif %}
+
+{% if notice.periodicity is not empty %}
+    <li class="list-information__item">
+        <span class="list-information__label">{{ ("Date d'édition papier")|trans }}</span>
+        <ul class="list-information__sub-list" lang="fr">
+                <li class="list-information__sub-item">
+                    {#<a href="{{ link }}" aria-label="{{ 'bloc.autority-result-information.search-with'|trans({'%theme%': label }) }}">
+                                {{ label }}
+                            </a>
+                    #}
+                        {{ notice.periodicity }}
+                </li>
+        </ul>
+    </li>
+{% endif %}
+
+
+{% if notice.uniformTitle is not empty %}
+    <li class="list-information__item">
+        <span class="list-information__label">{{ ("Oeuvre(s)")|trans }}</span>
+        <ul class="list-information__sub-list" lang="fr">
+            {% for element in notice.uniformTitle %}
+                <li class="list-information__sub-item">
+                    {#<a href="{{ link }}" aria-label="{{ 'bloc.autority-result-information.search-with'|trans({'%theme%': label }) }}">
+                                {{ label }}
+                            </a>
+                    #}
+                        {{ element }}
+                </li>
+            {% endfor %}
+        </ul>
+    </li>
+{% endif %}
+
+{% if notice.alternatifTitle is not empty %}
+    <li class="list-information__item">
+        <span class="list-information__label">{{ ("Autre(s) forme(s) de titre ")|trans }}</span>
+        <ul class="list-information__sub-list" lang="fr">
+            {% for element in notice.alternatifTitle %}
+                <li class="list-information__sub-item">
+                    {#<a href="{{ link }}" aria-label="{{ 'bloc.autority-result-information.search-with'|trans({'%theme%': label }) }}">
+                                {{ label }}
+                            </a>
+                    #}
+                        {{ element }}
+                </li>
+            {% endfor %}
+        </ul>
+    </li>
+{% endif %}
+
+{#% if notice.contenus is not empty %}
+    <li class="list-information__item">
+        <span class="list-information__label">{{ ("Contenu ")|trans }}</span>
+        <ul class="list-information__sub-list" lang="fr">
+            {% for element in notice.contenus %}
+                <li class="list-information__sub-item">
+                    {#<a href="{{ link }}" aria-label="{{ 'bloc.autority-result-information.search-with'|trans({'%theme%': label }) }}">
+                                {{ label }}
+                            </a>
+
+                        {{ element }}
+                </li>
+            {% endfor %}
+        </ul>
+    </li>
+{% endif %#}
+
+{% if notice.notes is not empty %}
+    <li class="list-information__item">
+        <span class="list-information__label">{{ ("Notes ")|trans }}</span>
+        <ul class="list-information__sub-list" lang="fr">
+            {% for element in notice.notes %}
+                <li class="list-information__sub-item">
+                    {#<a href="{{ link }}" aria-label="{{ 'bloc.autority-result-information.search-with'|trans({'%theme%': label }) }}">
+                                {{ label }}
+                            </a>
+                    #}
+                        {{ element }}
+                </li>
+            {% endfor %}
+        </ul>
+    </li>
+{% endif %}
+
+{% if notice.resume is not empty %}
+    <li class="list-information__item">
+        <span class="list-information__label">{{ ("Résumé ")|trans }}</span>
+        <ul class="list-information__sub-list" lang="fr">
+            {% for element in notice.resume %}
+                <li class="list-information__sub-item">
+                    {#<a href="{{ link }}" aria-label="{{ 'bloc.autority-result-information.search-with'|trans({'%theme%': label }) }}">
+                                {{ label }}
+                            </a>
+                    #}
+                        {{ element }}
+                </li>
+            {% endfor %}
+        </ul>
+    </li>
+{% endif %}
+{% if notice.languages is not empty %}
+    <li class="list-information__item">
+        <span class="list-information__label">{{ ("Langue(s) ")|trans }}</span>
+        <ul class="list-information__sub-list" lang="fr">
+            {% for element in notice.languages %}
+                <li class="list-information__sub-item">
+                        {{ element }}
+                </li>
+            {% endfor %}
+        </ul>
+    </li>
+{% endif %}
+{% if notice.materialDescriptions is not empty %}
+    <li class="list-information__item">
+        <span class="list-information__label">{{ ("Description matérielle ")|trans }}</span>
+        <ul class="list-information__sub-list" lang="fr">
+            {% for element in notice.materialDescriptions %}
+                <li class="list-information__sub-item">
+                    {#<a href="{{ link }}" aria-label="{{ 'bloc.autority-result-information.search-with'|trans({'%theme%': label }) }}">
+                                {{ label }}
+                            </a>
+                    #}
+                        {{ element }}
+                </li>
+            {% endfor %}
+        </ul>
+    </li>
+{% endif %}
+{% if notice.togetherTitle is not empty %}
+    <li class="list-information__item">
+        <span class="list-information__label">{{ ("Titre(s) d'ensemble  ")|trans }}</span>
+        <ul class="list-information__sub-list" lang="fr">
+            {% for element in notice.togetherTitle %}
+                <li class="list-information__sub-item">
+                    {#<a href="{{ link }}" aria-label="{{ 'bloc.autority-result-information.search-with'|trans({'%theme%': label }) }}">
+                                {{ label }}
+                            </a>
+                    #}
+                        {{ element }}
+                </li>
+            {% endfor %}
+        </ul>
+    </li>
+{% endif %}
+{% if notice.collectionSeries %}
+    <li class="list-information__item">
+    <span class="list-information__label">{{ ("Série  Collection")|trans }}</span>
+        <ul class="list-information__sub-list" lang="fr">
+            {% for element in notice.collectionSeries %}
+                <li class="list-information__sub-item">
+                    {#<a href="{{ link }}" aria-label="{{ 'bloc.autority-result-information.search-with'|trans({'%theme%': label }) }}">
+                                {{ label }}
+                            </a>
+                    #}
+                        {{ element.value }}
+                </li>
+            {% endfor %}
+        </ul>
+    </li>
+{% endif %}
+{% if notice.meeting %}
+    <li class="list-information__item">
+
+    <span class="list-information__label">{{ ("Réunit ")|trans }}</span>
+        <ul class="list-information__sub-list" lang="fr">
+            {% for element in notice.meeting %}
+                <li class="list-information__sub-item">
+                    {#<a href="{{ link }}" aria-label="{{ 'bloc.autority-result-information.search-with'|trans({'%theme%': label }) }}">
+                                {{ label }}
+                            </a>
+                    #}
+                        {{ element }}
+                </li>
+            {% endfor %}
+        </ul>
+    </li>
+{% endif %}
+
+{#% if notice.otherEdition%}
+        <span class="list-information__label">{{ ("Autre(s) éditions ")|trans }}</span>
+        <ul class="list-information__sub-list" lang="fr">
+            {% for element in notice.otherEdition %}
+                <li class="list-information__sub-item">
+                    <a href="{{ link }}" aria-label="{{ 'bloc.autority-result-information.search-with'|trans({'%theme%': label }) }}">
+                                {{ label }}
+                            </a>
+
+                        {{ element }}
+                </li>
+            {% endfor %}
+        </ul>
+    </li>
+{% endif %#}
+
+{% if notice.subject %}
+    <li class="list-information__item">
+
+    <span class="list-information__label">{{ ("Sujet(s)")|trans }}</span>
+        <ul class="list-information__sub-list" lang="fr">
+            {% for element in notice.subject %}
+                <li class="list-information__sub-item">
+                    {#<a href="{{ link }}" aria-label="{{ 'bloc.autority-result-information.search-with'|trans({'%theme%': label }) }}">
+                                {{ label }}
+                            </a>
+                    #}
+                        {{ element | raw }}
+                </li>
+            {% endfor %}
+        </ul>
+    </li>
+{% endif %}
+
+{% if notice.indices %}
+    <li class="list-information__item">
+
+    <span class="list-information__label">{{ ("Indice(s)")|trans }}</span>
+        <ul class="list-information__sub-list" lang="fr">
+            {% for element in notice.indices %}
+                <li class="list-information__sub-item">
+                    {#<a href="{{ link }}" aria-label="{{ 'bloc.autority-result-information.search-with'|trans({'%theme%': label }) }}">
+                                {{ label }}
+                            </a>
+                    #}
+                        {{ element.name }}
+                </li>
+            {% endfor %}
+        </ul>
+    </li>
+{% endif %}
+{% if notice.origins %}
+        <li class="list-information__item">
+
+        <span class="list-information__label">{{ ("Originie de la notice")|trans }}</span>
+        <ul class="list-information__sub-list" lang="fr">
+            {% for element in notice.origins %}
+                <li class="list-information__sub-item">
+                    {#<a href="{{ link }}" aria-label="{{ 'bloc.autority-result-information.search-with'|trans({'%theme%': label }) }}">
+                                {{ label }}
+                            </a>
+                    #}
+                        {{ element }}
+                </li>
+            {% endfor %}
+        </ul>
+    </li>
+{% endif %}
+{% if notice.configurationName %}
+        <li class="list-information__item">
+
+        <span class="list-information__label">{{ ("Originie de la notice")|trans }}</span>
+        <ul class="list-information__sub-list" lang="fr">
+            <li class="list-information__sub-item">
+                {#<a href="{{ link }}" aria-label="{{ 'bloc.autority-result-information.search-with'|trans({'%theme%': label }) }}">
+                            {{ label }}
+                        </a>
+                #}
+                    {{ notice.configurationName }}
+            </li>
+        </ul>
+    </li>
+{% endif %}
