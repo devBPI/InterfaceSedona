@@ -4,48 +4,122 @@
 
 	{% for title in notice.titles  %}
 		<h1 class="n1 bibliographic-result__title" lang="fr">
-			{{ notice.title }}
+			{{ title }}
 		</h1>
     {% endfor %}
+	{% if notice.titleForm %}
+		{% for title in notice.titleForm  %}
+			<h1 class="n1 bibliographic-result__title" lang="fr">
+                {{ title }}
+			</h1>
+		{% endfor %}
+	{% endif %}
+    {% if notice.translatedBy is not empty %}
+		<li class="list-information__item">
+			<span class="list-information__label">{{ ('Traduction de: ')|trans }}</span>
+			<ul class="list-information__sub-list" lang="fr">
+                {% for element in notice.translatedBy %}
+					<li class="list-information__sub-item">
+						<a href="{{ path('search', {'simple_search[text]':element}) }}" >
+                            {{ element }},
+						</a>
+					</li>
+                {% endfor %}
+			</ul>
+		</li>
+    {% endif %}
+    {% if notice.analyticalTitles is not empty %}
+		<li class="list-information__item">
+			<span class="list-information__label">{{ ('dans ')|trans }}</span>
+			<ul class="list-information__sub-list" lang="fr">
+                {% for element in notice.analyticalTitles %}
+					<li class="list-information__sub-item">
+						<a href="{{ path('search', {'simple_search[text]':element}) }}" >
+                            {{ element }},
+						</a>
+					</li>
+                {% endfor %}
+			</ul>
+		</li>
+    {% endif %}
+	{% if notice.directors is not empty %}
+        <li class="list-information__item">
+            <span class="list-information__label">{{ ('Réalisateurs')|trans }}</span>
+            <ul class="list-information__sub-list" lang="fr">
+                {% for element in notice.directors %}
+                    <li class="list-information__sub-item">
+                        <a href="{{ path('search', {'simple_search[text]':element}) }}" >
+                            {{ element }},
+                        </a>
+                    </li>
+                {% endfor %}
+            </ul>
+        </li>
+	{% endif %}
+
 	<div class="row align-items-md-center justify-content-between">
 		<div class="col-12 col-md-6">
-			<p lang="fr" class="bibliographic-result__author">
-				{{ 'bloc.autority-result-information.autor'|trans }}
-				<a href="#">Strauss, Richard (1864-1949)</a>
-			</p>
+            {% for author in notice.authorsValue %}
+				<p lang="fr" class="bibliographic-result__author">
+					{% if loop.first  %}
+						{{ 'bloc.autority-result-information.autor'|trans }}
+					{% endif %}
+					<a href=" {{ path('search', {'simple_search[text]':author.value}) }}">{{ author.value }}</a>
+
+				</p>
+			{% endfor %}
+		</div>
+
+		<div class="col-12 col-md-6">
+            {% for author in notice.authorsValue %}
+				<p lang="fr" class="bibliographic-result__author">
+					{% if loop.first  %}
+						{{ 'bloc.autority-result-information.autor'|trans }}
+					{% endif %}
+					<a href=" {{ path('search', {'simple_search[text]':author.value}) }}">{{ author.value }}</a>
+
+				</p>
+			{% endfor %}
 		</div>
 		<div class="col-6 col-md-4">
 			<a href="#" class="link">{{ 'bloc.autority-result-information.autor-dicover'|trans }}</a>
 		</div>
 		<div class="col-6 col-md-2">
 			<div class="bibliographic-result__type">
-				<img src="{{ asset('images/types/type-musique.svg') }}" alt="" />
-
+				<img src="{{ asset('images/types/type-musique.svg') }}" alt="{{ notice.type }}" />
 			</div>
 		</div>
 	</div>
+
+
+
 </div>
-
-<div class="col-12">
-	<h2 class="n1 bibliographic-result__subtitle">{{ 'bloc.autority-result-information.tracks'|trans }}</h2>
-	{% for content in notice.contents %}
-		<p lang="fr" class="bibliographic-result__resume">
-				{{ content }}
-		</p>
-	{% endfor %}
-
-	{% for resume in notice.resume %}
-		<p lang="fr" class="bibliographic-result__resume">
-				{{ content }}
-		</p>
-	{% endfor %}
-</div>
-
+{% if  notice.contents %}
+	<div class="col-12">
+		<h2 class="n1 bibliographic-result__subtitle">{{ 'bloc.autority-result-information.tracks'|trans }}</h2>
+		{% for content in notice.contents %}
+			<p lang="fr" class="bibliographic-result__resume">
+					{{ content }}
+			</p>
+		{% endfor %}
+	</div>
+{% endif %}
+{% if notice.resume %}
+	<div class="col-12">
+		<h2 class="n1 bibliographic-result__subtitle">{{ 'bloc.autority-result-information.resume'|trans }}</h2>
+        {% for resume in notice.resume %}
+			<p lang="fr" class="bibliographic-result__resume">
+                {{ content }}
+			</p>
+        {% endfor %}
+	</div>
+{% endif %}
 <div class="col-12 col-md-3">
 	<div class="bibliographic-result__image">
-		<img src="{{ notice.pictures.url}}" alt="{{ notice.pictures.description |raw }}" class="img-fluid" />
+		<img src="{% if object.notice.picture %}{{ object.notice.picture.url }}{% else %}{{ asset('images/couvertures-generiques/cg-musique.svg') }}{% endif %}" alt="{% if object.notice.picture %}{{ object.notice.picture.description }}{% endif %}" class="img-fluid" />
 	</div>
 </div>
+
 <div class="col-12 col-md-9">
 	<ul class="list-information bibliographic-result__infos js-list-information">
 		{#'ouvre': {
@@ -67,9 +141,6 @@
 			'genre' : { 'Musiques > Classique > Documents en juke-box': '#'},
 			'comercial-number' : { 'Warner Classic 2564634928': ''}
 		},
-
-
-
 		#}
 		{% include 'common/informations-list.html.twig' with {
 			'notice': notice,
@@ -85,18 +156,26 @@
 	<div lang="fr" class="bibliographic-result__availability bibliographic-result--list">
 		<div>
 			<div class="availability availability--true availability--rayon">
-				<p class="availability__status"><span>{{ 'bloc.notice-simple.document-available'|trans }}</span> - 78 STRA.R 4 disque 1</p>
-				<p>Niveau 3 - Musiques et documents parlés</p>
+				{% for exemplaire in notice.copies %}
+					{%  if loop.first %}
+						<p class="availability__status"><span>{{ 'bloc.notice-simple.document-available'|trans }}</span> {{ exemplaire.category}}</p>
+						<p>{#Niveau 3 - Musiques et documents parlés#}{{ exemplaire.location }} {% for support in exemplaire.support %} - {{ support }} {% endfor %}</p>
+						{# Dans le cas où il a + d'1 exemplaire #}
+						<button type="button" class="btn btn-small-link availability__button btn-see-more btn-see-more--more" data-toggle="collapse" data-target="#availabity-items" aria-expanded="false" aria-controls="availabity-items">Voir plus</button>
+					{% endif %}
+					{% if loop.first %}
+						<div class="collapse" id="availabity-items">
+					{% endif %}
+					{% if  not loop.first %}
+							<p class="availability__status"><span>{{ 'bloc.notice-simple.document-available'|trans }}</span> - {{ exemplaire.category}}</p>
+							<p>{{ exemplaire.location }} {% for support in exemplaire.support %} - {{ support }} {% endfor %}</p>
+					{% endif %}
+					{% if loop.first %}
+						</div>
+					{% endif %}
 
-				{# Dans le cas où il a + d'1 exemplaire #}
-				<button type="button" class="btn btn-small-link availability__button btn-see-more btn-see-more--more" data-toggle="collapse" data-target="#availabity-items" aria-expanded="false" aria-controls="availabity-items">Voir plus</button>
-				<div class="collapse" id="availabity-items">
-					<p class="availability__status"><span>{{ 'bloc.notice-simple.document-available'|trans }}</span> - 78 STRA.R 4 disque 2</p>
-					<p>Niveau 3 - Musiques et documents parlés</p>
 
-					<p class="availability__status"><span>{{ 'bloc.notice-simple.document-available'|trans }}</span> - 78 STRA.R 4 disque 3</p>
-					<p>Niveau 3 - Musiques et documents parlés</p>
-				</div>
+				{% endfor %}
 			</div>
 		</div>
 
@@ -105,7 +184,7 @@
 			<p>{{ 'bloc.notice-simple.last-publication'|trans({'%number%': 110, '%pulication-date%': 'Janvier 2018'}) }}</p>
 			<p class="n5 mt-3">{{ 'bloc.autority-result-information.publication-receve'|trans }}</p>
 			<ul class="list-information list-information--sub-list">
-				{% include 'common/informations-list.html.twig' with {'details': {
+				{% include 'common/informations-authority.html.twig' with {'details': {
 					'2018': { 'N° 110, Janvier 2018': '' },
 					'2017': { 'N° 109, Décembre 2017': '', 'N° 108, Janvier 2017' : '' },
 					'2016': { 'N° 107, Juillet 2016': '',  'N° 106, Janvier 2016' : '' },

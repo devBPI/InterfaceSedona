@@ -110,4 +110,12 @@ class NoticeAvailable
         return $this->labelDisponibility;
     }
 
+    /**
+     * @return array
+     */
+    public function getSupport(): array
+    {
+        return $this->support;
+    }
+
 }

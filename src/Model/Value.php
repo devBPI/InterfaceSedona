@@ -29,5 +29,4 @@ class Value implements ValueBPIInterface
     {
         return $this->value;
     }
-
 }

@@ -29,6 +29,20 @@ class Notice
      * @JMS\XmlList("origine")
      */
     private $origins;
+    /**
+     * @var array
+     * @JMS\Type("array<string>")
+     * @JMS\SerializedName("conservations")
+     * @JMS\XmlList("conservation")
+     */
+    private $conservations;
+    /**
+     * @var array
+     * @JMS\Type("array<string>")
+     * @JMS\SerializedName("epoques")
+     * @JMS\XmlList("epoque")
+     */
+    private $eras;
 
     /**
      * @var array
@@ -47,10 +61,31 @@ class Notice
     /**
      * @var array
      * @JMS\Type("array<string>")
+     * @JMS\SerializedName("titresForm")
+     * @JMS\XmlList("titreForm")
+     */
+    private $titleForm;
+    /**
+     * @var array
+     * @JMS\Type("array<string>")
+     * @JMS\SerializedName("titresEnRelation")
+     * @JMS\XmlList("titreEnRelation")
+     */
+    private $inRelationTitle;
+    /**
+     * @var array
+     * @JMS\Type("array<string>")
      * @JMS\SerializedName("auteurs")
      * @JMS\XmlList("auteur")
      */
     private $authors;
+    /**
+     * @var array|Value[]
+     * @JMS\Type("array<App\Model\Value>")
+     * @JMS\SerializedName("auteurs")
+     * @JMS\XmlList("auteur")
+     */
+    private $authorsValue;
     /**
      * @var array
      * @JMS\Type("array<string>")
@@ -97,16 +132,32 @@ class Notice
     private $id;
 
     /**
-     * @var string
-     * @JMS\Type("string")
+     * @var array
+     * @JMS\Type("array<string>")
+     * @JMS\SerializedName("isbns")
+     * @JMS\XmlList("isbn")
      */
     private $isbn;
+    /**
+     * @var array
+     * @JMS\Type("array<string>")
+     * @JMS\SerializedName("issns")
+     * @JMS\XmlList("issn")
+
+     */
+    private $issn;
 
     /**
      * @var string
      * @JMS\Type("string")
      */
     private $type;
+    /**
+     * @var string
+     * @JMS\Type("string")
+     */
+    private $row;
+
     /**
      * @var string
      * @JMS\Type("string")
@@ -131,6 +182,13 @@ class Notice
     /**
      * @var array
      * @JMS\Type("array<string>")
+     * @JMS\SerializedName("themes")
+     * @JMS\XmlList("theme")
+     */
+    private $topics;
+    /**
+     * @var array
+     * @JMS\Type("array<string>")
      * @JMS\SerializedName("contributeurs")
      * @JMS\XmlList("contributeur")
      */
@@ -146,10 +204,24 @@ class Notice
     /**
      * @var array
      * @JMS\Type("array<string>")
+     * @JMS\SerializedName("traductionsDe")
+     * @JMS\XmlList("traductionDe")
+     */
+    private $translatedBy;
+    /**
+     * @var array
+     * @JMS\Type("array<string>")
      * @JMS\SerializedName("titresAlternatifs")
      * @JMS\XmlList("titreAlternatifs")
      */
     private $alternatifTitle;
+    /**
+     * @var array
+     * @JMS\Type("array<string>")
+     * @JMS\SerializedName("titresJournal")
+     * @JMS\XmlList("titreJournal")
+     */
+    private $titleInformation;
     /**
      * @var array
      * @JMS\Type("array<string>")
@@ -174,10 +246,157 @@ class Notice
     /**
      * @var array
      * @JMS\Type("array<string>")
+     * @JMS\SerializedName("languesOriginales")
+     * @JMS\XmlList("langueOriginale")
+     */
+    private $originalLanguages;
+    /**
+     * @var array
+     * @JMS\Type("array<string>")
      * @JMS\SerializedName("kinds")
      * @JMS\XmlList("kind")
      */
-    private $genre;
+    private $kinds;
+    /**
+     * @var array
+     * @JMS\Type("array<string>")
+     * @JMS\SerializedName("publiques")
+     * @JMS\XmlList("publique")
+     */
+    private $publics;
+
+    /**
+     * @var array
+     * @JMS\Type("array<string>")
+     * @JMS\SerializedName("droits")
+     * @JMS\XmlList("droit")
+     */
+    private $rights;
+    /**
+     * @var array
+     * @JMS\Type("array<string>")
+     * @JMS\SerializedName("licences")
+     * @JMS\XmlList("licence")
+     */
+    private $licences;
+    /**
+     * @var array
+     * @JMS\Type("array<string>")
+     * @JMS\SerializedName("copyrights")
+     * @JMS\XmlList("copyright")
+     */
+    private $copyright;
+    /**
+     * @var array
+     * @JMS\Type("array<string>")
+     * @JMS\SerializedName("lieuxManifestations")
+     * @JMS\XmlList("lieuManifestation")
+     */
+    private $placesEvents;
+
+    /**
+     * @var array
+     * @JMS\Type("array<string>")
+     * @JMS\SerializedName("lieux")
+     * @JMS\XmlList("lieu")
+     */
+    private $locations;
+    /**
+     * @var array
+     * @JMS\Type("array<string>")
+     * @JMS\SerializedName("numerosCommerciaux")
+     * @JMS\XmlList("numeroCommercial")
+     */
+    private $commercialNumbers;
+    /**
+     * @var Quatrieme|null
+     * @JMS\Type("App\Model\Quatrieme")
+     * @JMS\SerializedName("quatrieme")
+     */
+    private $fourth;
+    /**
+     * @var string
+     * @JMS\Type("string")
+     * @JMS\SerializedName("table-des-matieres")
+
+     */
+    private $contentsTable;
+
+    /**
+     * @return array
+     */
+    public function getCommercialNumbers(): array
+    {
+        return $this->commercialNumbers;
+    }
+
+    /**
+     * @return array
+     */
+    public function getTopics(): array
+    {
+        return $this->topics;
+    }
+
+
+
+    /**
+     * @return array
+     */
+    public function getPublics(): array
+    {
+        return $this->publics;
+    }
+
+    /**
+     * @return array
+     */
+    public function getRights(): array
+    {
+        return $this->rights;
+    }
+
+    /**
+     * @return array
+     */
+    public function getLicences(): array
+    {
+        return $this->licences;
+    }
+
+    /**
+     * @return array
+     */
+    public function getCopyright(): array
+    {
+        return $this->copyright;
+    }
+
+    /**
+     * @return array
+     */
+    public function getPlacesEvents(): array
+    {
+        return $this->placesEvents;
+    }
+
+    /**
+     * @return Quatrieme|null
+     */
+    public function getFourth(): ?Quatrieme
+    {
+        return $this->fourth;
+    }
+
+
+
+    /**
+     * @return string|null
+     */
+    public function getContentsTable(): ?string
+    {
+        return $this->contentsTable;
+    }
     /**
      * @var array|IndiceCdu[]
      * @JMS\Type("array<App\Model\IndiceCdu>")
@@ -238,6 +457,14 @@ class Notice
      * @JMS\XmlList("descriptionMaterielle")
      */
     private $materialDescriptions;
+
+    /**
+     * @return array
+     */
+    public function getTitleInformation(): array
+    {
+        return $this->titleInformation;
+    }
     /**
      * @var array
      * @JMS\Type("array<string>")
@@ -275,9 +502,9 @@ class Notice
     }
 
     /**
-     * @return string
+     * @return null|string
      */
-    public function getIsbn(): ?string
+    public function getIsbn()
     {
         return $this->isbn;
     }
@@ -437,15 +664,22 @@ class Notice
     }
 
     /**
-     * @return Picture
+     * @return Picture[]|array
      */
     public function getPictures()
     {
-        if (is_array($this->pictures)){
+            return $this->pictures;
 
+    }    /**
+     * @return Picture|mixed|null
+     */
+    public function getPicture()
+    {
+        if (is_array($this->pictures) && !empty($this->pictures[0]) ){
             return $this->pictures[0];
         }
-        return $this->pictures;
+
+        return null;
     }
 
     /**
@@ -600,7 +834,102 @@ class Notice
         return $this->languages;
     }
 
+    /**
+     * @return Value[]|array
+     */
+    public function getAuthorsValue()
+    {
+        return $this->authorsValue;
+    }
 
+    /**
+     * @return string
+     */
+    public function getRow(): string
+    {
+        return $this->row;
+    }
+
+    /**
+     * @return array
+     */
+    public function getOriginalLanguages(): array
+    {
+        return $this->originalLanguages;
+    }
+
+    /**
+     * @return array
+     */
+    public function getInRelationTitle(): array
+    {
+        return $this->inRelationTitle;
+    }
+
+    /**
+     * @return array
+     */
+    public function getOtherEdition(): array
+    {
+        return $this->otherEdition;
+    }
+
+
+    /**
+     * @return array
+     */
+    public function getConservations(): array
+    {
+        return $this->conservations;
+    }
+
+    /**
+     * @return array
+     */
+    public function getEras(): array
+    {
+        return $this->eras;
+    }
+
+    /**
+     * @return array
+     */
+    public function getKinds(): array
+    {
+        return $this->kinds;
+    }
+
+    /**
+     * @return array
+     */
+    public function getIssn()
+    {
+        return $this->issn;
+    }
+
+    /**
+     * @return array
+     */
+    public function getLocations(): array
+    {
+        return $this->locations;
+    }
+
+    /**
+     * @return array
+     */
+    public function getTitleForm(): array
+    {
+        return $this->titleForm;
+    }
+
+    /**
+     * @return array
+     */
+    public function getTranslatedBy(): array
+    {
+        return $this->translatedBy;
+    }
 }
 
 

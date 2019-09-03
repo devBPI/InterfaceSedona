@@ -1,4 +1,4 @@
-{% if author %}
+
 <div class="col-12">
 	<div>
 		<input type="checkbox" id="related-notice-result-{{ i }}">
@@ -18,7 +18,7 @@
 		<a href="{{ path('record_authority') }}" title="*Insert Name identité* - {{ 'global.new-windows'|trans }}">{{ author.name }} <span class="n2">(*Insert date debut-fin*)</span></a>
 	</h{{ level }}>
 	<ul class="list-information search-result__list">
-		{% include 'common/informations-list.html.twig' with {'prefix': 'bloc.autority-result-information.', 'details': {
+		{% include 'common/informations-authority.html.twig' with {'prefix': 'bloc.autority-result-information.', 'details': {
 			'authority-type': { 'Personne': '' },
 			'born-dead-date': { '05/08/1850 - 06/07/1893': '' },
 			'country': { 'France': '' },
@@ -28,4 +28,3 @@
 	</ul>
 	{% if level == 2 %}</div>{% endif %}
 </div>
-{% endif %}

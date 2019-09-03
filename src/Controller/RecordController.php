@@ -37,7 +37,6 @@ class RecordController extends AbstractController
 
         $query = $request->get('ark');
         $object = $this->noticeProvider->getNotice($query);
-
         //$objSearch->setQuery($query);
 /*
 
@@ -47,7 +46,6 @@ class RecordController extends AbstractController
             'printRoute'    => $this->generateUrl('search_pdf')
         ]);
 */
-
         return $this->render('record/bibliographic.html.twig', [
             'object'     => $object,
             'toolbar'       => 'document',

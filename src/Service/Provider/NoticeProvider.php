@@ -106,10 +106,10 @@ EOF;
         }
     }
 
-        public function getNotice(string $query)
+    public function getNotice(string $query)
     {
         try{
-            $notices = $this->hydrateFromResponse('/details/notice-themed/ark:/34201/nptfl0000317903', [], NoticeThemed::class);
+            $notices = $this->hydrateFromResponse(sprintf('/details/notice-themed/%s', $query), [], NoticeThemed::class);
 
         }catch(NoResultException $e){
             dump("la ressource n'est plus disponible page 404 customisé à faire");
