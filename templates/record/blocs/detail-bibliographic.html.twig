@@ -1,7 +1,5 @@
 <!-- Début - Bloc 16 Notice bibliographique -->
-
 <div class="col-12">
-
 	{% for title in notice.titles  %}
 		<h1 class="n1 bibliographic-result__title" lang="fr">
 			{{ title }}
@@ -58,18 +56,6 @@
 	{% endif %}
 
 	<div class="row align-items-md-center justify-content-between">
-		<div class="col-12 col-md-6">
-            {% for author in notice.authorsValue %}
-				<p lang="fr" class="bibliographic-result__author">
-					{% if loop.first  %}
-						{{ 'bloc.autority-result-information.autor'|trans }}
-					{% endif %}
-					<a href=" {{ path('search', {'simple_search[text]':author.value}) }}">{{ author.value }}</a>
-
-				</p>
-			{% endfor %}
-		</div>
-
 		<div class="col-12 col-md-6">
             {% for author in notice.authorsValue %}
 				<p lang="fr" class="bibliographic-result__author">
