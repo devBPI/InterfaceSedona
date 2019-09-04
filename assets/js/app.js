@@ -235,4 +235,5 @@ $('#search-input').on('keyup', function(e){
 $(document).on('click', '.search-autocomplet__item-content', function (e) {
 	$('#search-input').val($(this).html());
 	$('#autocompletion-list').hide();
+	$('.search-banner__submit').click();
 });

@@ -30,22 +30,12 @@ class RecordController extends AbstractController
     }
 
     /**
-     * @Route("/notice-bibliographique", methods={"GET","HEAD"}, name="record_bibliographic")
+     * @Route("/notice-bibliographique/{permalink}", methods={"GET","HEAD"}, name="record_bibliographic")
      */
-    public function bibliographicRecordAction(Request $request)
+    public function bibliographicRecordAction(Request $request, $permalink)
     {
+        $object = $this->noticeProvider->getNotice($permalink);
 
-        $query = $request->get('ark');
-        $object = $this->noticeProvider->getNotice($query);
-        //$objSearch->setQuery($query);
-/*
-
-        return $this->render('search/index.html.twig', [
-            'toolbar'       => 'search',
-            'objSearch'     => $objSearch,
-            'printRoute'    => $this->generateUrl('search_pdf')
-        ]);
-*/
         return $this->render('record/bibliographic.html.twig', [
             'object'     => $object,
             'toolbar'       => 'document',
@@ -80,13 +70,11 @@ class RecordController extends AbstractController
     }
 
     /**
-     * @Route("/notice-autorite", methods={"GET","HEAD"}, name="record_authority")
+     * @Route("/notice-autorite/{permalink}", methods={"GET","HEAD"}, name="record_authority")
      */
-    public function authorityRecordAction(Request $request)
+    public function authorityRecordAction(Request $request, $permalink)
     {
-        $query = $request->get('ark');
-
-        $object = $this->noticeProvider->getAuthority($query);
+        $object = $this->noticeProvider->getAuthority($permalink);
         $id = $object->getId();
         $subject = $this->noticeProvider->getSubjectNotice($id);
         $authors = $this->noticeProvider->getAuthorsNotice($id);

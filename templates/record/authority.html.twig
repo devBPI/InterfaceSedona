@@ -5,7 +5,7 @@
 {% block body %}
 	<div class="authority-result">
 		<div class="row justify-content-between">
-			{% include "record/blocs/results-navigation.html.twig" with {'routeTarget': path('record_authority') } %}
+			{% include "record/blocs/results-navigation.html.twig" with {'routeTarget': path('record_authority', {'permalink':notice.permalink}) } %}
 		</div>
 		<div class="row">
 			{% include "record/blocs/detail-authority.html.twig" with {'notice': notice } %}
@@ -19,10 +19,10 @@
 				</ul>
 			</div>
             {% if authors.mappedNotices is not empty %}
-            	{% include "record/blocs/list-related-documents.html.twig" with {'object': authors, 'type': notice.type, 'routeTarget': path('record_authority') , 'image': 'images/couvertures-generiques/cg-livre.svg' } %}
+            	{% include "record/blocs/list-related-documents.html.twig" with {'object': authors, 'type': notice.type, 'image': 'images/couvertures-generiques/cg-livre.svg' } %}
 			{% endif %}
 			{% if subjects.mappedNotices is not empty %}
-				{% include "record/blocs/list-related-documents.html.twig" with {'object': subjects, 'type': notice.type, 'routeTarget': path('record_authority') , 'image': 'images/couvertures-generiques/cg-image.svg' } %}
+				{% include "record/blocs/list-related-documents.html.twig" with {'object': subjects, 'type': notice.type, 'image': 'images/couvertures-generiques/cg-image.svg' } %}
 			{% endif %}
 			<!-- Fin - Bloc 19 Liste de documents  -->
 		</div>

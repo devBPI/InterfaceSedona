@@ -14,7 +14,7 @@
             <img src="{{ asset(image) }}" alt="" class="img-fluid"/>
         </div>
         <div class="list-result__content-infos">
-            <a href="{{ path('record_bibliographic', {'ark': notice.id}) }}" lang="fr"
+            <a href="{{ path('record_bibliographic', {'permalink': notice.permalink}) }}" lang="fr"
                aria-label="{{ notice.frontTitle }} - {{ 'global.new-windows'|trans }}"
                class="n2 list-result__content-title">
                 <img src="{{ asset('images/types/type-journal.svg') }}" alt=""

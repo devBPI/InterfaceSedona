@@ -10,7 +10,7 @@
 		<div class="slick-carousel js-carousel-secondary" role="region" aria-roledescription="carrousel">
 			{% for  element in object.mappedNotices %}
 				<div class="carousel__slide">
-					<a href="{{ path('record_authority', {'ark': element.permalink}) }}" class="carousel__slide-link">
+					<a href="{{ path('record_authority', {'permalink': element.permalink}) }}" class="carousel__slide-link">
 						<span class="sr-only">
 							{{ 'bloc.list-related-documents.link-title'|trans({'%current%': object.pagination.page, '%nb%': object.pagination.rows, '%name%': element.titles[0] }) }}</span>
 					</a>
