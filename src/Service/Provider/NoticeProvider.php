@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace App\Service\Provider;
 
 use App\Model\Author;
+use App\Model\Authority;
 use App\Model\Exception\NoResultException;
 use App\Model\ListNotices;
 use App\Model\ListOnlineNotices;
@@ -108,8 +109,10 @@ EOF;
 
     public function getNotice(string $query)
     {
+        $notices = [];
         try{
             $notices = $this->hydrateFromResponse(sprintf('/details/notice-themed/%s', $query), [], NoticeThemed::class);
+          //  $notices = $this->hydrateFromResponse(sprintf('/details/authority/%s', $query), [], NoticeThemed::class);
 
         }catch(NoResultException $e){
             dump("la ressource n'est plus disponible page 404 customisé à faire");
@@ -155,20 +158,21 @@ EOF;
         return $content;
     }
 
-    public function getAuthorityNotice($id)
+    /**
+     * @param $query
+     * @return array|object
+     */
+    public function getAuthority($query)
     {
+        $notices = [];
+        try{
+            $notices = $this->hydrateFromResponse(sprintf('/details/authority/%s', $query), [], Authority::class);
 
-        try {
-            $content = $this
-                ->hydrateFromResponse('/details/notice-themed/ark:/34201/nptfl0000029128', [], NoticeMappedAuthority::class)
-                ;
-
-        } catch (NoResultException $exception) {
-            return '';
+        }catch(NoResultException $e){
+            dump("la ressource n'est plus disponible page 404 customisé à faire");
         }
 
-
-        return $content;
+        return $notices;
     }
 }
 

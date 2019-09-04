@@ -95,7 +95,7 @@
 		<h2 class="n1 bibliographic-result__subtitle">{{ 'bloc.autority-result-information.resume'|trans }}</h2>
         {% for resume in notice.resume %}
 			<p lang="fr" class="bibliographic-result__resume">
-                {{ content }}
+                {{ resume }}
 			</p>
         {% endfor %}
 	</div>
@@ -159,8 +159,6 @@
 					{% if loop.first %}
 						</div>
 					{% endif %}
-
-
 				{% endfor %}
 			</div>
 		</div>

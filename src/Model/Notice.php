@@ -129,6 +129,12 @@ class Notice
      * @JMS\Type("string")
      * @JMS\SerializedName("permalink")
      */
+    private $permalink;
+    /**
+     * @var string
+     * @JMS\Type("string")
+     * @JMS\SerializedName("id")
+     */
     private $id;
 
     /**
@@ -494,9 +500,9 @@ class Notice
     private $cover;
 
     /**
-     * @return string
+     * @return null|string
      */
-    public function getId(): string
+    public function getId(): ?string
     {
         return $this->id;
     }
@@ -930,6 +936,16 @@ class Notice
     {
         return $this->translatedBy;
     }
+
+    /**
+     * @return string
+     */
+    public function getPermalink(): string
+    {
+        return $this->permalink;
+    }
+
+
 }
 
 
