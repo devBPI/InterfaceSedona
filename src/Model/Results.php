@@ -44,6 +44,12 @@ class Results
      * @JMS\Type("App\Model\NoticesOnline")
      */
     private $noticesOnline;
+    /**
+     * @var SuggestionList
+     * @JMS\Type("App\Model\SuggestionList")
+     * @JMS\SerializedName("suggestions-list")
+     */
+    private $suggestionList;
 
     /**
      * @return Authority[]
@@ -105,6 +111,14 @@ class Results
     public function getLinkedSubjects(): array
     {
         return $this->linkedSubjects;
+    }
+
+    /**
+     * @return SuggestionList
+     */
+    public function getSuggestionList(): SuggestionList
+    {
+        return $this->suggestionList;
     }
 
 }

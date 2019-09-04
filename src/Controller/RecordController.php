@@ -30,10 +30,11 @@ class RecordController extends AbstractController
     }
 
     /**
-     * @Route("/notice-bibliographique/{permalink}", methods={"GET","HEAD"}, name="record_bibliographic")
+     * @Route("/notice-bibliographique", methods={"GET","HEAD"}, name="record_bibliographic")
      */
-    public function bibliographicRecordAction(Request $request, $permalink)
+    public function bibliographicRecordAction(Request $request)
     {
+        $permalink = $request->get('permalink');
         $object = $this->noticeProvider->getNotice($permalink);
 
         return $this->render('record/bibliographic.html.twig', [
@@ -70,10 +71,11 @@ class RecordController extends AbstractController
     }
 
     /**
-     * @Route("/notice-autorite/{permalink}", methods={"GET","HEAD"}, name="record_authority")
+     * @Route("/notice-autorite", methods={"GET","HEAD"}, name="record_authority")
      */
-    public function authorityRecordAction(Request $request, $permalink)
+    public function authorityRecordAction(Request $request)
     {
+        $permalink = $request->get('permalink');
         $object = $this->noticeProvider->getAuthority($permalink);
         $id = $object->getId();
         $subject = $this->noticeProvider->getSubjectNotice($id);
@@ -113,5 +115,7 @@ class RecordController extends AbstractController
             $filename.".pdf"
         );
     }
+
+
 }
 

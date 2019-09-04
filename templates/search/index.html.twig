@@ -5,7 +5,7 @@
 {% block searchextended %}
 	<div class="row justify-content-sm-between">
 		<div class="col-12 col-sm-auto">
-			{% include "search/blocs-searchextended/search-corrector.html.twig" %}
+			{% include "search/blocs-searchextended/search-corrector.html.twig" with {'suggestionList': objSearch.suggestionList} %}
 		</div>
 		
 		<div class="col-auto">

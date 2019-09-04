@@ -38,12 +38,11 @@ class SuggestionList
     }
 
     /**
-     * @return string
+     * @return null|string
      */
-    public function getOriginalWord(): string
+    public function getOriginalWord(): ?string
     {
         return $this->originalWord;
     }
-
 
 }

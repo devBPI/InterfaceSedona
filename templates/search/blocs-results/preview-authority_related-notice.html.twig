@@ -16,7 +16,7 @@
 	{% if level == 2 %}<div class="search-result__body">{% endif %}
 		{% if author is not empty %}
 			<h{{ level }} lang="fr" class="n{{ level }} search-result__title">
-				<a href="{{ path('record_authority', {'permalink', author.permalink}) }}" title="*Insert Name identité* - {{ 'global.new-windows'|trans }}">{{ author.name }} <span class="n2">(*Insert date debut-fin*)</span></a>
+				<a href="{{ path('record_authority', {'permalink':'null'}) }}" title="*Insert Name identité* - {{ 'global.new-windows'|trans }}">{{ author.name }}<span class="n2">(*Insert date debut-fin*)</span></a>
 			</h{{ level }}>
 		{% endif %}
 	<ul class="list-information search-result__list">
