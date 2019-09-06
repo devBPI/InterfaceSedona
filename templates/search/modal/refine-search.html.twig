@@ -2,7 +2,7 @@
 <div role="dialog" aria-modal="true" aria-labelledby="modal-refine-search-title" class="modal fade" id="modal-refine-search">
 	<div class="modal-dialog modal-dialog-centered">
 		<div class="modal-content">
-			<form class="modal-form"  method="get" action="{{ path('search') }}">
+			<form class="modal-form"  method="get" action="{{ path('search', {"dataCriteria":objSearch.criteria.toJson}) }}">
 				<div class="modal-header">
 					<h1 class="n1 modal-header__title" id="modal-refine-search-title">{{ 'modal.refine-search.title'|trans }}</h1>
 					<button class="close" type="button" aria-label="{{ 'global.modal-close'|trans }}" data-dismiss="modal">
@@ -10,9 +10,8 @@
 						<img src="{{ asset('images/icones/icone-croix-blanc.svg') }}" alt="" />
 					</button>
 				</div>
-
                 <!-- a merger avec ci dessous --->
-                {% for facet in facets %}
+                {#% for facet in facets %}
                     <div class="modal-body">
                         <div class="search-facette">
                             <div>
@@ -21,7 +20,7 @@
                                     <button>Supprimer le filtre<span class="sr-only"> : {{ facet.label }}</span></button>
                                     {% for i, value in facet.values %}
                                         <div class="form-check">
-                                            <input type="checkbox" class="form-check-input" id="rfn-{{ facet.name }}-{{ i }}">
+                                            <input type="checkbox" class="form-check-input" id="rfn-{{ facet.name }}-{{ i }}" name="{{ facet.name }}[]" value="{{ value.name }}">
                                             <label class="form-check-label" for="rfn-{{ facet.name }}-{{ i }}">{{ value.name }}</label>
                                         </div>
                                     {% endfor %}
@@ -29,30 +28,22 @@
                             </div>
                         </div>
                     </div>
-                {% endfor %}
+                {% endfor %#}
                 <!-- a merger avec ci dessous --->
 
-				{% for key in [
-					'document-type',
-					'available',
-					'theme',
-					'author',
-					'bdd',
-					'langue',
-					'subject'
-				] %}
+				{% for facet in objSearch.facets.facets %}
 					<div class="modal-body">
 						<div class="search-facette">
-							<button type="button" class="search-facette__button btn" data-toggle="collapse" aria-expanded="false" aria-controls="rfn-search-{{ key }}" data-target="#rfn-search-{{ key }}">{{ ('modal.advanced-search.facette.'~key)|trans }} <span>(12)</span></button>
-							<div class="collapse search-facette__body" id="rfn-search-{{ key }}" role="group" aria-label="{{ ('modal.advanced-search.facette.'~key)|trans }}">
+							<button type="button" class="search-facette__button btn" data-toggle="collapse" aria-expanded="false" aria-controls="rfn-search-{{facet.name}}" data-target="#rfn-search-{{facet.name}}">{{ facet.label }} <span>({{ facet.values | length }})</span></button>
+							<div class="collapse search-facette__body" id="rfn-search-{{facet.name}}" role="group" aria-label="{{ facet.label }}">
 								<div class="search-facette__content">
 									<div class="search-facette__item search-facette__item--button">
-										<button class="btn">{{ 'modal.refine-search.filter-delete'|trans }}<span class="sr-only"> : {{ ('modal.advanced-search.facette.'~key)|trans }}</span></button>
+										<button class="btn">{{ 'modal.refine-search.filter-delete'|trans }}<span class="sr-only"> : {{ facet.label }}</span></button>
 									</div>
-									{% for i in 1..6 %}
+									{% for index, facetChild in facet.values %}
 										<div class="form-check search-facette__item">
-											<input type="checkbox" class="form-check-input" id="rfn-{{ key }}-{{ i }}">
-											<label class="form-check-label" for="rfn-{{ key }}-{{ i }}">*Insert Label {{ i }}*</label>
+											<input type="checkbox" class="form-check-input" id="rfn-{{ facet.name }}-{{ index }}" name="facets[{{ facet.name }}][]" value="{{ facetChild.name }}" {% if app.request.query.get('facets') is defined and check_value_exist(facet.name,  facetChild.name, app.request.query.get('facets')) %}checked{% endif %} >
+											<label class="form-check-label" for="rfn-{{ facet.name }}-{{ index }}">{{ facetChild.name}}</label>
 										</div>
 									{% endfor %}
 								</div>
@@ -61,7 +52,7 @@
 					</div>
 				{% endfor %}
 
-				<div class="modal-body">
+				{#<div class="modal-body">
 					<div class="search-facette">
 						<button type="button" class="search-facette__button btn" data-toggle="collapse" aria-expanded="false" aria-controls="rfn-search-date" data-target="#rfn-search-date">Date</button>
 						<div class="collapse search-facette__body" id="rfn-search-date" role="group" aria-label="Date">
@@ -85,8 +76,9 @@
 							</div>
 						</div>
 					</div>
-				</div>
-				
+				</div>#}
+
+				<input type="hidden" name="dataCriteria" value="{{ objSearch.criteria.toJson }}">
 				<div class="modal-footer">
 					<button type="submit" aria-label="{{ 'modal.refine-search.submit-aria'|trans }}" class="btn btn-lg btn-primary btn-img">
 						<span>{{ 'modal.refine-search.submit'|trans }}</span><img src="{{ asset('images/icones/icone-loupe.svg') }}" alt="" class="icone-loupe"/></button>

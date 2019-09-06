@@ -12,12 +12,11 @@
         {{ 'bloc.header-docs.order-choice'|trans }}
 	</button>
 	<ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown-trie-{{ type }}" role="listbox" tabindex="-1">
+{% for index, value in constant('App\\Model\\Search\\Criteria::SORT') %}
 		<li class="dropdown-item" role="option">
-			<a href="#">{{ 'bloc.header-docs.order-asc'|trans }}</a>
+			<a href="{{ path('search', {'dataCriteria': objSearch.criteria.toJson, 'sort': value}) }}">{{ ('bloc.header-docs.order-'~ index) |trans }}</a>
 		</li>
-		<li class="dropdown-item" role="option">
-			<a href="#">{{ 'bloc.header-docs.order-desc'|trans }}</a>
-		</li>
+{% endfor %}
 	</ul>
 </div>
 <!-- Fin - Bloc 12 En-tête des résultats -->

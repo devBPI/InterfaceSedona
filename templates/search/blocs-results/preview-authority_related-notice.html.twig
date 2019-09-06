@@ -1,4 +1,3 @@
-
 <div class="col-12">
 	<div>
 		<input type="checkbox" id="related-notice-result-{{ i }}">
@@ -16,17 +15,21 @@
 	{% if level == 2 %}<div class="search-result__body">{% endif %}
 		{% if author is not empty %}
 			<h{{ level }} lang="fr" class="n{{ level }} search-result__title">
-				<a href="{{ path('record_authority', {'permalink':'null'}) }}" title="*Insert Name identité* - {{ 'global.new-windows'|trans }}">{{ author.name }}<span class="n2">(*Insert date debut-fin*)</span></a>
+				{% if author.permalink is defined and author.permalink is not null %}
+					<a href="{{ path('record_authority', {'permalink':author.permalink }) }}" title="*Insert Name identité* - {{ 'global.new-windows'|trans }}">{{ author.name }}<span class="n2"></span></a>
+				{% else %}
+                    {{ author.name }}
+				{% endif %}
 			</h{{ level }}>
 		{% endif %}
+
 	<ul class="list-information search-result__list">
-		{% include 'common/informations-authority.html.twig' with {'prefix': 'bloc.autority-result-information.', 'details': {
-			'authority-type': { 'Personne': '' },
-			'born-dead-date': { '05/08/1850 - 06/07/1893': '' },
-			'country': { 'France': '' },
-			'language': { 'français': '' },
-			'activity': { 'Écrivain': '' }
-		}} %}
+		{% include 'common/informations-authority.html.twig'
+			with {
+				'prefix': 'bloc.autority-result-information.',
+            	'author': author,
+			}
+		%}
 	</ul>
 	{% if level == 2 %}</div>{% endif %}
 </div>

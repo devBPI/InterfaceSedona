@@ -54,13 +54,21 @@ class SearchController extends AbstractController
      */
     public function indexAction(Request $request)
     {
-        $criteria = new Criteria($request);
-        $facets = new FacetFilter($request);
-        $objSearch = $this->searchProvider->getListBySearch($criteria, $facets);
 
-        $title = 'page.search.title';
-        $title .= $request->get(WordsList::ADVANCED_SEARCH_LABEL) === WordsList::CLICKED ?
-            'advanced' : 'simple';
+        if ($request->get('dataCriteria')){
+            $criteria = $request->get('dataCriteria');
+            $criteria = \json_decode($criteria, true);
+            $criteria = Criteria::fromArray($criteria);
+        }else{
+            $criteria = new Criteria($request);
+        }
+        $criteria->setPage($request->get('page', 1));
+        $criteria->setSort($request->get('sort', Criteria::SORT_DEFAULT));
+
+        $facets     = new FacetFilter($request);
+        $objSearch  = $this->searchProvider->getListBySearch($criteria, $facets);
+        $title      = 'page.search.title';
+        $title      .= $request->get(WordsList::ADVANCED_SEARCH_LABEL) === WordsList::CLICKED ?'advanced' : 'simple';
 
         return $this->render(
             'search/index.html.twig',

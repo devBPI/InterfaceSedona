@@ -4,6 +4,7 @@
 namespace App\Controller;
 
 
+use App\Service\Provider\NoticeAuthorityProvider;
 use App\Service\Provider\NoticeProvider;
 use Knp\Bundle\SnappyBundle\Snappy\Response\PdfResponse;
 use App\Model\Notice;
@@ -19,14 +20,21 @@ class RecordController extends AbstractController
      * @var NoticeProvider
      */
     private $noticeProvider;
+    /**
+     * @var NoticeAuthorityProvider
+     */
+    private $noticeAuhtority;
 
     /**
      * RecordController constructor.
      * @param NoticeProvider $noticeProvider
+     * @param NoticeAuthorityProvider $noticeAuhtority
      */
-    public function __construct(NoticeProvider $noticeProvider)
+    public function __construct(NoticeProvider $noticeProvider, NoticeAuthorityProvider $noticeAuhtority)
     {
         $this->noticeProvider = $noticeProvider;
+
+        $this->noticeAuhtority = $noticeAuhtority;
     }
 
     /**
@@ -76,10 +84,10 @@ class RecordController extends AbstractController
     public function authorityRecordAction(Request $request)
     {
         $permalink = $request->get('permalink');
-        $object = $this->noticeProvider->getAuthority($permalink);
+        $object = $this->noticeAuhtority->getAuthority($permalink);
         $id = $object->getId();
-        $subject = $this->noticeProvider->getSubjectNotice($id);
-        $authors = $this->noticeProvider->getAuthorsNotice($id);
+        $subject = $this->noticeAuhtority->getSubjectNotice($id);
+        $authors = $this->noticeAuhtority->getAuthorsNotice($id);
 
         return $this->render('record/authority.html.twig', [
               'toolbar'       => 'document',

@@ -14,14 +14,15 @@
             <img src="{{ asset(image) }}" alt="" class="img-fluid"/>
         </div>
         <div class="list-result__content-infos">
-            <a href="{{ path('record_bibliographic', {'permalink': notice.permalink}) }}" lang="fr"
+            <a href="{{ path('record_bibliographic', {'permalink': notice.permalink}) }}"
+               lang="fr"
                aria-label="{{ notice.frontTitle }} - {{ 'global.new-windows'|trans }}"
-               class="n2 list-result__content-title">
+               class="n2 list-result__content-title"
+            >
                 <img src="{{ asset('images/types/type-journal.svg') }}" alt=""
                      class="list-result__content-type"/>
                 <span>{{ notice.frontTitle }}</span></a>
-            <p lang="fr">par {{ notice.frontAuthor }} (*insert date début-fin*)</p>
-
+            <p lang="fr">par {{ notice.frontAuthor }} {% if notice.dates[0] is defined %}{{ notice.dates[0] }}{% endif %}</p>
             {% if notice.frontAnalyticalTitle is not empty %}
                 <p lang="fr">par {{ notice.frontAnalyticalTitle }}</p>
             {% endif %}
@@ -29,7 +30,6 @@
                                                               src="https://via.placeholder.com/15x15" alt=""
                                                               class="icone-indice"/></p>
             <p lang="fr">Résultat de (*Insert Base de donnée*)</p>
-
             {% block availability %}
                 {# #### notices en rayon #### #}
                 {% for copy in notice.copies %}
@@ -55,8 +55,6 @@
                         </div>
                     {% endif %}
                 {% endfor %}
-
-
                 {# #### notices en ligne #### #}
                 <!-- Pour les documents en ligne consultable -->
                 <p><a href="#" lang="fr">Accéder à *Insert nom du document*</a></p>

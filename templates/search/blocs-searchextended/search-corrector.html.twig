@@ -1,6 +1,6 @@
 <!-- Début - Bloc 7 Orthographe -->
 <p class="mb-3">
-    {% if suggestionList  %}
+    {% if suggestionList.suggestions is defined and  suggestionList.suggestions|length >0 %}
         {{ 'bloc.search-correct.text'|trans }}
         {% for suggestion in suggestionList.suggestions %}
             <a href="{{ path('search', {'simple_search[text]':suggestion}) }}" aria-label="{{ 'bloc.search-correct.text'|trans }} {{ suggestion }}" lang="fr">{{ suggestion }}</a>

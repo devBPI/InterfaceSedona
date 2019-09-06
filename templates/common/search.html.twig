@@ -1,3 +1,4 @@
+
 <form method="get" role="search" id="form-search" action="{{ path('search') }}">
     <!-- Début - Bloc B Zone de recherche simple -->
     <div class="sr-only" id="autocompletion-infos">{{ 'bloc.search-zone.autocompletion-notice'|trans }}</div>
@@ -11,7 +12,7 @@
                    type="text" aria-autocomplete="list" aria-controls="autocompletion-list"
                    id="search-input" data-url-autocomplete="{{ path('search_autocompletion') }}"
                    placeholder="{{ 'bloc.search-zone.input-placeholder'|trans }}"
-                   value="{{ get_value_by_field_name(constant('App\\WordsList::SIMPLE_SEARCH_LABEL'), constant('App\\WordsList::TEXT_LABEL')) }}"
+                   value="{% if objSearch.criteria.general is defined %} {{ objSearch.criteria.general }}{%endif %}"
                 />
         </div>
         <div class="form-group search-banner__select">

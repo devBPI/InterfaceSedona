@@ -362,8 +362,14 @@ bloc:
       order: Choix du trie des documents en ligne
       order-aria: menu-trie-document-ligne
     order-choice: Trier par
-    order-asc: Ordre ASC
-    order-desc: Ordre DESC
+    order-default: DEFAULT
+    order-tile_a_z: TITRE_A_Z
+    order-tile_z_a: TITRE_Z_A
+    order-author_a_z: AUTHEUR_A_Z
+    order-author_z_a: AUTHEUR_Z_A
+    order-older: OLDER
+    order-younger: YOUNGER
+
   notice-simple:          #Bloc 13 Notices simples en 2 colonnes
     result: Résultat numéro
     select: sélectionner
@@ -408,6 +414,7 @@ bloc:
     indice: 'Indice :'
     publication-receve: 'Numéros reçus :'
     authority-type: "Type d'autorité :"
+    other-names: "Autre(s) nom(s) : "
     country: 'Pays :'
     born-date: 'Naissance :'
     dead-date: 'Mort :'

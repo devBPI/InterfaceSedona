@@ -38,7 +38,8 @@ class SearchFiltersExtension extends AbstractExtension
         return [
             new TwigFunction('search_words', [$this, 'getSearchWords']),
             new TwigFunction('words_operators', [$this, 'getSearchOperators']),
-            new TwigFunction('get_value_by_field_name', [$this, 'getValueByFieldName'])
+            new TwigFunction('get_value_by_field_name', [$this, 'getValueByFieldName']),
+            new TwigFunction('check_value_exist', [$this, 'isValueExist']),
         ];
     }
 
@@ -87,5 +88,27 @@ class SearchFiltersExtension extends AbstractExtension
         }
 
         return null;
+    }
+
+    /**
+     * @param string $key
+     * @param $searchValue
+     * @param array|null $array
+     * @return bool
+     */
+    public function isValueExist(string $key,  $searchValue, array $array=null):bool
+    {
+        if (empty($array[$key])){
+            return false;
+        }
+
+        foreach ($array[$key] as $index => $value){
+
+             if ($value === $searchValue){
+                 return true;
+             }
+         }
+
+         return false;
     }
 }

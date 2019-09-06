@@ -121,58 +121,5 @@ EOF;
         return $notices;
     }
 
-    /**
-     * @param int $id
-     * @return
-     */
-    public function getSubjectNotice(int $id)
-    {
-          try {
-            $content = $this
-                ->hydrateFromResponse('/details/authority/'.$id.'/notices/notices-sujets', [], NoticeMappedAuthority::class)
-                ;
-        } catch (NoResultException $exception) {
-            return '';
-        }
-
-        return $content;
-    }
-    /**
-     * @TODO à mettre dans un nouveau provider
-     */
-
-    /**
-     * @param $id
-     * @return object|string
-     */
-    public function getAuthorsNotice($id)
-    {
-        try {
-            $content = $this
-                ->hydrateFromResponse('/details/authority/'.$id.'/notices/notices-auteurs', [], NoticeMappedAuthority::class)
-                ;
-        } catch (NoResultException $exception) {
-            return '';
-        }
-
-        return $content;
-    }
-
-    /**
-     * @param $query
-     * @return array|object
-     */
-    public function getAuthority($query)
-    {
-        $notices = [];
-        try{
-            $notices = $this->hydrateFromResponse(sprintf('/details/authority/%s', $query), [], Authority::class);
-
-        }catch(NoResultException $e){
-            dump("la ressource n'est plus disponible page 404 customisé à faire");
-        }
-
-        return $notices;
-    }
 }
 

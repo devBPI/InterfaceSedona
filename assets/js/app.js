@@ -237,3 +237,11 @@ $(document).on('click', '.search-autocomplet__item-content', function (e) {
 	$('#autocompletion-list').hide();
 	$('.search-banner__submit').click();
 });
+
+$(document).on('change','.js-pagination-select', function (e) {
+	let $this = $(this);
+	let page = $this.val();
+
+	let url = $this.data('url').replace(0, page);
+	window.location = url;
+});

@@ -4,7 +4,14 @@
         <facets>
             {% for name, values in attributes %}
                 <facet>
-                    <name>{{ ('filters.mapping.'~name)|trans({}, 'facets') }}</name>
+                    <name>
+                        {% if translateNames is defined and translateNames == false %}
+                            {{ name }}
+                        {% else %}
+                            {{  ('filters.mapping.'~name)|trans({}, 'facets') }}
+                        {% endif %}
+                    </name>
+
                     <values>
                         {% for value in values %}
                             <value>{{ value }}</value>

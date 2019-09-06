@@ -3,6 +3,7 @@
 namespace App\Model;
 
 
+use App\Model\Search\Criteria;
 use JMS\Serializer\Annotation as JMS;
 
 /**
@@ -11,6 +12,11 @@ use JMS\Serializer\Annotation as JMS;
  */
 class Results
 {
+    /**
+     * @var Criteria|null
+     */
+    private $criteria;
+
     /**
      * @var Facets
      * @JMS\Type("App\Model\Facets")
@@ -49,7 +55,47 @@ class Results
      * @JMS\Type("App\Model\SuggestionList")
      * @JMS\SerializedName("suggestions-list")
      */
+
     private $suggestionList;
+
+    /**
+     * @var int
+     * @JMS\Type("int")
+     * @JMS\SerializedName("page")
+     */
+    private $page;
+    /**
+     * @var int
+     * @JMS\Type("int")
+     * @JMS\SerializedName("num-pages")
+     */
+    private $pageTotal;
+
+    /**
+     * @return RankedAuthority[]|array
+     */
+    public function getAuthoritiesList()
+    {
+        return $this->authoritiesList;
+    }
+
+    /**
+     * @return int
+     */
+    public function getPage(): int
+    {
+        return $this->page;
+    }
+
+    /**
+     * @return int
+     */
+    public function getPageTotal(): int
+    {
+        return $this->pageTotal;
+    }
+
+
 
     /**
      * @return Authority[]
@@ -121,4 +167,22 @@ class Results
         return $this->suggestionList;
     }
 
+    /**
+     * @param Criteria|null $criteria
+     * @return Results
+     */
+    public function setCriteria(Criteria $criteria): Results
+    {
+        $this->criteria = $criteria;
+        return $this;
+    }
+
+    /**
+     * @return Criteria|null
+     */
+    public function getCriteria(): Criteria
+    {
+        return $this->criteria;
+    }
 }
+

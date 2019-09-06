@@ -463,14 +463,6 @@ class Notice
      * @JMS\XmlList("descriptionMaterielle")
      */
     private $materialDescriptions;
-
-    /**
-     * @return array
-     */
-    public function getTitleInformation(): array
-    {
-        return $this->titleInformation;
-    }
     /**
      * @var array
      * @JMS\Type("array<string>")
@@ -498,6 +490,14 @@ class Notice
      * @JMS\Exclude()
      */
     private $cover;
+    /**
+     * @return array
+     */
+    public function getTitleInformation(): array
+    {
+        return $this->titleInformation;
+    }
+
 
     /**
      * @return null|string
