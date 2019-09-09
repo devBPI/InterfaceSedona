@@ -116,23 +116,27 @@ class Criteria
 
     /**
      * Criteria constructor.
-     * @param Request $request
+     * @param array $request
      */
-    public function __construct(Request $request = null)
+    public function __construct(array $request = [])
     {
-        if ($request instanceof Request) {
-            if ($request->get(WordsList::ADVANCED_SEARCH_ACTION) === WordsList::CLICKED) {
-                foreach ($request->get(self::QUERY_NAME, []) as $name => $value) {
-                    $this->$name = $value;
-                }
-
-                $this->setKeywords(
-                    $request->get(WordsList::ADVANCED_SEARCH_LABEL, []),
-                    $request->get(WordsList::ADVANCED_SEARCH_OPERATOR, [])
-                );
-            } elseif ($request->get(WordsList::SIMPLE_SEARCH_LABEL, null) !== null) {
-                $this->setFieldByKeywordRow($request->get(WordsList::SIMPLE_SEARCH_LABEL, []));
+        if (
+            array_key_exists(WordsList::ADVANCED_SEARCH_ACTION, $request) &&
+            $request[WordsList::ADVANCED_SEARCH_ACTION] === WordsList::CLICKED
+        ) {
+            foreach ($request[self::QUERY_NAME] as $name => $value) {
+                $this->$name = $value;
             }
+
+            $this->setKeywords(
+                $request[WordsList::ADVANCED_SEARCH_LABEL],
+                $request[WordsList::ADVANCED_SEARCH_OPERATOR]
+            );
+        } elseif (
+            array_key_exists(WordsList::SIMPLE_SEARCH_LABEL, $request) &&
+            $request[WordsList::SIMPLE_SEARCH_LABEL] !== null
+        ) {
+            $this->setFieldByKeywordRow($request[WordsList::SIMPLE_SEARCH_LABEL]);
         }
     }
 

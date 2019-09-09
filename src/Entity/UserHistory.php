@@ -20,28 +20,15 @@ class UserHistory
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="LdapUser", inversedBy="histories", cascade={"remove"})
-     * @ORM\JoinColumn(name="user_id", referencedColumnName="id", nullable=true)
-     */
-    private $User;
-
-    /**
-     * @ORM\Column(type="string", length=250, nullable=false)
+     * @ORM\Column(type="string", length=50, nullable=true)
      * @var string
      */
-    private $title;
+    private $user_uid;
 
     /**
-     * @ORM\Column(type="json_array", nullable=false, options={"jsonb": true})
-     * @var array
+     * @ORM\ManyToOne(targetEntity="App\Entity\SearchHistory", inversedBy="userHistories")
      */
-    private $queries;
-
-    /**
-     * @ORM\Column(type="string", length=250, nullable=false)
-     * @var string
-     */
-    private $url;
+    private $Search;
 
     /**
      * @ORM\Column(type="datetime", nullable=false)
@@ -51,16 +38,12 @@ class UserHistory
 
     /**
      * UserHistory constructor.
-     * @param LdapUser $user
-     * @param string $title
-     * @param array $queries
+     *
+     * @param SearchHistory $objSearch
      */
-    public function __construct(?LdapUser $user, string $title, array $queries = [])
+    public function __construct(SearchHistory $objSearch)
     {
-        $this->User = $user;
-        $this->title = $title;
-        $this->queries = $queries;
-        $this->url = md5(serialize($queries));
+        $this->Search = $objSearch;
         $this->creation_date = new \DateTime();
     }
 
@@ -73,38 +56,6 @@ class UserHistory
     }
 
     /**
-     * @return LdapUser|null
-     */
-    public function getUser(): ?LdapUser
-    {
-        return $this->User;
-    }
-
-    /**
-     * @return string
-     */
-    public function getTitle(): string
-    {
-        return $this->title;
-    }
-
-    /**
-     * @return array
-     */
-    public function getQueries(): array
-    {
-        return $this->queries;
-    }
-
-    /**
-     * @return string
-     */
-    public function getUrl(): string
-    {
-        return $this->url;
-    }
-
-    /**
      * @return \DateTime
      */
     public function getCreationDate(): \DateTime
@@ -112,4 +63,38 @@ class UserHistory
         return $this->creation_date;
     }
 
+    /**
+     * @param string $user_uid
+     * @return self
+     */
+    public function setUserUid($user_uid): self
+    {
+        $this->user_uid = $user_uid;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getTitle(): string
+    {
+        if ($this->Search instanceof SearchHistory) {
+            return $this->Search->getTitle();
+        }
+
+        return 'Recherche anonyme';
+    }
+
+    /**
+     * @return string
+     */
+    public function getUrl(): ?string
+    {
+        if ($this->Search instanceof SearchHistory) {
+            return $this->Search->getId();
+        }
+
+        return null;
+    }
 }

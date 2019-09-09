@@ -2,7 +2,6 @@
 
 namespace App\Model\Search;
 
-use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Class FacetFilter
@@ -19,12 +18,14 @@ class FacetFilter
 
     /**
      * FacetFilter constructor.
-     * @param Request $request
+     * @param array $request
      */
-    public function __construct(Request $request)
+    public function __construct(array $request = [])
     {
-        foreach ($request->get(self::QUERY_NAME, []) as $name => $values) {
-            $this->attributes[$name] = $values;
+        if (array_key_exists(self::QUERY_NAME, $request)) {
+            foreach ($request[self::QUERY_NAME] as $name => $values) {
+                $this->attributes[$name] = $values;
+            }
         }
     }
 

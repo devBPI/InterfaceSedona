@@ -20,9 +20,10 @@ class UserSelectionCategory
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="LdapUser", inversedBy="selections", cascade={"all"})
+     * @ORM\Column(type="string", length=50, nullable=false)
+     * @var string
      */
-    private $User;
+    private $user_uid;
 
     /**
      * @ORM\Column(type="string", length=250, nullable=false)

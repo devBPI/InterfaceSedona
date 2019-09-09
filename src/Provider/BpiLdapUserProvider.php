@@ -3,12 +3,10 @@
 namespace App\Provider;
 
 
-use App\Entity\LdapUser as EntityUser;
 use App\Model\LdapUser;
 use Doctrine\ORM\EntityManager;
 use InvalidArgumentException;
 use Symfony\Component\Ldap\Entry;
-use Symfony\Component\Ldap\Exception\ConnectionException;
 use Symfony\Component\Ldap\Ldap;
 use Symfony\Component\Ldap\LdapInterface;
 use Symfony\Component\Security\Core\Exception\UsernameNotFoundException;
@@ -21,8 +19,6 @@ use Symfony\Component\Security\Core\User\UserInterface;
  */
 class BpiLdapUserProvider extends LdapUserProvider
 {
-    const UID_KEY = 'entryUUID';
-
     /** @var Ldap */
     private $ldap;
     private $baseDn;
@@ -91,8 +87,6 @@ class BpiLdapUserProvider extends LdapUserProvider
     /**
      * @param string $username
      * @return LdapUser|\Symfony\Component\Security\Core\User\User|UserInterface
-     * @throws \Doctrine\ORM\ORMException
-     * @throws \Doctrine\ORM\OptimisticLockException
      */
     public function loadUserByUsername($username)
     {
@@ -106,31 +100,32 @@ class BpiLdapUserProvider extends LdapUserProvider
                 $options['filter'] = $this->fields;
             }
             $search = $this->ldap->query($this->baseDn, $query, $options);
-        } catch (ConnectionException $e) {
-            throw new UsernameNotFoundException(sprintf('LdapUser "%s" not found.', $username), 0, $e);
-        }
 
-        $entries = $search->execute();
-        $count = \count($entries);
+            $entries = $search->execute();
+            $count = \count($entries);
 
-        if (!$count) {
-            throw new UsernameNotFoundException(sprintf('LdapUser "%s" not found.', $username));
-        }
-
-        if ($count > 1) {
-            throw new UsernameNotFoundException('More than one user found');
-        }
-
-        $entry = $entries[0];
-
-        try {
-            if (null !== $this->uidKey) {
-                $username = $this->getAttributeValue($entry, $this->uidKey);
+            if (!$count) {
+                throw new UsernameNotFoundException(sprintf('User "%s" not found.', $username));
             }
-        } catch (InvalidArgumentException $e) {
-        }
 
-        return $this->loadUser($username, $entry);
+            if ($count > 1) {
+                throw new UsernameNotFoundException('More than one user found');
+            }
+
+            $entry = $entries[0];
+
+            try {
+                if (null !== $this->uidKey) {
+                    $username = $this->getAttributeValue($entry, $this->uidKey);
+                }
+            } catch (InvalidArgumentException $e) {
+            }
+
+            return $this->loadUser($username, $entry);
+        } catch (\Exception $exception) {
+            dump(get_class($exception), $exception->getMessage());
+            die('KO');
+        }
     }
 
     /**
@@ -147,7 +142,6 @@ class BpiLdapUserProvider extends LdapUserProvider
     public function refreshUser(UserInterface $user)
     {
         return $user;
-//        return new LdapUser($user->getUsername(), $user->getRoles());
     }
 
     /**
@@ -157,20 +151,10 @@ class BpiLdapUserProvider extends LdapUserProvider
      * @param Entry $entry
      *
      * @return LdapUser
-     * @throws \Doctrine\ORM\ORMException
-     * @throws \Doctrine\ORM\OptimisticLockException
      */
-    protected function loadUser($username, Entry $entry)
+    protected function loadUser($username, Entry $entry): LdapUser
     {
-        $ldap_uuid = $entry->getAttribute(self::UID_KEY)[0];
-        $userEntity = $this->entityManager->getRepository(EntityUser::class)->find($ldap_uuid);
-        if (!$userEntity instanceof EntityUser) {
-            $userEntity = new EntityUser($ldap_uuid);
-            $this->entityManager->persist($userEntity);
-            $this->entityManager->flush($userEntity);
-        }
-
-        return new LdapUser($username, $entry->getAttributes(), $userEntity, $this->defaultRoles);
+        return new LdapUser($entry->getAttributes(), $this->defaultRoles);
     }
 
     /**

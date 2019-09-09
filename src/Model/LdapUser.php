@@ -2,28 +2,31 @@
 
 namespace App\Model;
 
-use App\Entity\LdapUser as EntityUser;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
- * Class LdapUser
+ * Class User
  * @package App\Model
  */
 class LdapUser implements UserInterface
 {
+    const UID_KEY = 'entryUUID';
     const USERNAME_KEY = 'pseudo';
     const LASTNAME_KEY = 'sn';
     const FIRSTNAME_KEY = 'cn';
     const EMAIL_KEY = 'mail';
 
-    /** @var null|string  */
-    private $username;
-    private $lastname;
-    private $firstname;
-    private $email;
+    private static $mandatory_fields = [
+        self::USERNAME_KEY => 'username',
+        self::UID_KEY => 'uid'
+    ];
 
-    /** @var null|LdapUser */
-    private $entityUser;
+    /** @var null|string  */
+    protected $uid;
+    protected $username;
+    protected $lastname;
+    protected $firstname;
+    protected $email;
 
     private $password;
     private $enabled;
@@ -31,23 +34,36 @@ class LdapUser implements UserInterface
 
     /**
      * LdapUser constructor.
-     * @param null|string $username
+     *
      * @param array $data
-     * @param EntityUser $entityUser
      * @param array $roles
      * @param bool $enabled
      */
-    public function __construct(string $username, array $data = [], EntityUser $entityUser, array $roles = [], bool $enabled = true)
+    public function __construct(array $data = [], array $roles = [], bool $enabled = true)
     {
-        if ('' === $username || null === $username) {
-            throw new \InvalidArgumentException('The username cannot be empty.');
+        foreach (self::$mandatory_fields as $field => $label) {
+            if (
+                !(array_key_exists($field, $data) && isset($data[$field][0])) ||
+                (empty($data[$field][0]))
+            ) {
+                throw new \InvalidArgumentException('The '.$label.' cannot be empty.');
+            }
         }
 
-        $this->entityUser = $entityUser;
         $this->enabled = $enabled;
         $this->roles = $roles;
 
+        $this->setEntryAttributes($data);
+    }
 
+    /**
+     * @param array $data
+     */
+    public function setEntryAttributes(array $data = []): void
+    {
+        if (array_key_exists(self::UID_KEY, $data) && isset($data[self::UID_KEY][0])) {
+            $this->uid = $data[self::UID_KEY][0];
+        }
         if (array_key_exists(self::USERNAME_KEY, $data) && isset($data[self::USERNAME_KEY][0])) {
             $this->username = $data[self::USERNAME_KEY][0];
         }
@@ -60,7 +76,6 @@ class LdapUser implements UserInterface
         if (array_key_exists(self::EMAIL_KEY, $data) && isset($data[self::EMAIL_KEY][0])) {
             $this->email = $data[self::EMAIL_KEY][0];
         }
-
     }
 
     /**
@@ -69,6 +84,14 @@ class LdapUser implements UserInterface
     public function __toString(): string
     {
         return $this->getUsername();
+    }
+
+    /**
+     * @return string
+     */
+    public function getUid(): string
+    {
+        return $this->uid;
     }
 
     /**
@@ -102,15 +125,6 @@ class LdapUser implements UserInterface
     {
         return $this->email;
     }
-
-    /**
-     * @return EntityUser
-     */
-    public function getEntityUser(): ?EntityUser
-    {
-        return $this->entityUser;
-    }
-
 
     /**
      * {@inheritdoc}
@@ -150,4 +164,5 @@ class LdapUser implements UserInterface
     {
         // TODO: Implement eraseCredentials() method.
     }
+
 }

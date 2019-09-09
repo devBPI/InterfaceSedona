@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20190830154219 extends AbstractMigration
+final class Version20190909094446 extends AbstractMigration
 {
     public function getDescription() : string
     {
@@ -51,19 +51,17 @@ final class Version20190830154219 extends AbstractMigration
         $this->addSql('CREATE TABLE search_engine (id INT NOT NULL, name VARCHAR(100) NOT NULL, logo VARCHAR(100) NOT NULL, url VARCHAR(100) NOT NULL, PRIMARY KEY(id))');
         $this->addSql('CREATE UNIQUE INDEX UNIQ_314A75925E237E06 ON search_engine (name)');
         $this->addSql('CREATE TABLE notice_availability_request (id BIGINT NOT NULL, notice_configuration_id BIGINT NOT NULL, notice_source_id VARCHAR(1024) NOT NULL, request_date TIMESTAMP(0) WITHOUT TIME ZONE DEFAULT CURRENT_TIMESTAMP NOT NULL, modification_date TIMESTAMP(0) WITHOUT TIME ZONE DEFAULT CURRENT_TIMESTAMP NOT NULL, requester VARCHAR(1024) DEFAULT NULL, notification_email VARCHAR(1024) DEFAULT NULL, comment VARCHAR(1024) DEFAULT NULL, PRIMARY KEY(id))');
-        $this->addSql('CREATE TABLE user_selection_category (id INT NOT NULL, user_id VARCHAR(255) DEFAULT NULL, title VARCHAR(250) NOT NULL, position INT NOT NULL, PRIMARY KEY(id))');
-        $this->addSql('CREATE INDEX IDX_7DAD8A72A76ED395 ON user_selection_category (user_id)');
-        $this->addSql('CREATE TABLE user_history (id INT NOT NULL, user_id VARCHAR(255) DEFAULT NULL, title VARCHAR(250) NOT NULL, queries JSONB NOT NULL, url VARCHAR(250) NOT NULL, creation_date TIMESTAMP(0) WITHOUT TIME ZONE NOT NULL, PRIMARY KEY(id))');
-        $this->addSql('CREATE INDEX IDX_7FB76E41A76ED395 ON user_history (user_id)');
-        $this->addSql('COMMENT ON COLUMN user_history.queries IS \'(DC2Type:json_array)\'');
-        $this->addSql('CREATE TABLE ldap_user (id VARCHAR(255) NOT NULL, PRIMARY KEY(id))');
+        $this->addSql('CREATE TABLE user_selection_category (id INT NOT NULL, user_uid VARCHAR(50) NOT NULL, title VARCHAR(250) NOT NULL, position INT NOT NULL, PRIMARY KEY(id))');
+        $this->addSql('CREATE TABLE search_history (id VARCHAR(40) NOT NULL, title VARCHAR(250) NOT NULL, queries JSONB NOT NULL, PRIMARY KEY(id))');
+        $this->addSql('COMMENT ON COLUMN search_history.queries IS \'(DC2Type:json_array)\'');
+        $this->addSql('CREATE TABLE user_history (id INT NOT NULL, search_id VARCHAR(40) DEFAULT NULL, user_uid VARCHAR(50) DEFAULT NULL, creation_date TIMESTAMP(0) WITHOUT TIME ZONE NOT NULL, PRIMARY KEY(id))');
+        $this->addSql('CREATE INDEX IDX_7FB76E41650760A9 ON user_history (search_id)');
         $this->addSql('ALTER TABLE user_selection_document ADD CONSTRAINT FK_A38819C512469DE2 FOREIGN KEY (category_id) REFERENCES user_selection_category (id) NOT DEFERRABLE INITIALLY IMMEDIATE');
         $this->addSql('ALTER TABLE theme_level ADD CONSTRAINT FK_C2C847F6727ACA70 FOREIGN KEY (parent_id) REFERENCES theme (id) NOT DEFERRABLE INITIALLY IMMEDIATE');
         $this->addSql('ALTER TABLE theme ADD CONSTRAINT FK_9775E708727ACA70 FOREIGN KEY (parent_id) REFERENCES thematic (id) NOT DEFERRABLE INITIALLY IMMEDIATE');
         $this->addSql('ALTER TABLE thematic_word ADD CONSTRAINT FK_F54773842395FCED FOREIGN KEY (thematic_id) REFERENCES thematic (id) ON DELETE CASCADE NOT DEFERRABLE INITIALLY IMMEDIATE');
         $this->addSql('ALTER TABLE thematic_word ADD CONSTRAINT FK_F5477384E357438D FOREIGN KEY (word_id) REFERENCES word (id) ON DELETE CASCADE NOT DEFERRABLE INITIALLY IMMEDIATE');
-        $this->addSql('ALTER TABLE user_selection_category ADD CONSTRAINT FK_7DAD8A72A76ED395 FOREIGN KEY (user_id) REFERENCES ldap_user (id) NOT DEFERRABLE INITIALLY IMMEDIATE');
-        $this->addSql('ALTER TABLE user_history ADD CONSTRAINT FK_7FB76E41A76ED395 FOREIGN KEY (user_id) REFERENCES ldap_user (id) NOT DEFERRABLE INITIALLY IMMEDIATE');
+        $this->addSql('ALTER TABLE user_history ADD CONSTRAINT FK_7FB76E41650760A9 FOREIGN KEY (search_id) REFERENCES search_history (id) NOT DEFERRABLE INITIALLY IMMEDIATE');
     }
 
     public function down(Schema $schema) : void
@@ -77,8 +75,7 @@ final class Version20190830154219 extends AbstractMigration
         $this->addSql('ALTER TABLE theme DROP CONSTRAINT FK_9775E708727ACA70');
         $this->addSql('ALTER TABLE thematic_word DROP CONSTRAINT FK_F54773842395FCED');
         $this->addSql('ALTER TABLE user_selection_document DROP CONSTRAINT FK_A38819C512469DE2');
-        $this->addSql('ALTER TABLE user_selection_category DROP CONSTRAINT FK_7DAD8A72A76ED395');
-        $this->addSql('ALTER TABLE user_history DROP CONSTRAINT FK_7FB76E41A76ED395');
+        $this->addSql('ALTER TABLE user_history DROP CONSTRAINT FK_7FB76E41650760A9');
         $this->addSql('DROP SEQUENCE word_id_seq CASCADE');
         $this->addSql('DROP SEQUENCE user_selection_document_id_seq CASCADE');
         $this->addSql('DROP SEQUENCE theme_level_id_seq CASCADE');
@@ -97,7 +94,7 @@ final class Version20190830154219 extends AbstractMigration
         $this->addSql('DROP TABLE search_engine');
         $this->addSql('DROP TABLE notice_availability_request');
         $this->addSql('DROP TABLE user_selection_category');
+        $this->addSql('DROP TABLE search_history');
         $this->addSql('DROP TABLE user_history');
-        $this->addSql('DROP TABLE ldap_user');
     }
 }

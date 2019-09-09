@@ -3,7 +3,10 @@ declare(strict_types=1);
 
 namespace App\Service;
 
+use App\Entity\SearchHistory;
+use App\Entity\User;
 use App\Entity\UserHistory;
+use App\Model\Exception\SearchHistoryException;
 use App\Model\LdapUser;
 use App\WordsList;
 use Doctrine\ORM\EntityManager;
@@ -42,8 +45,11 @@ final class HistoricService
      * @param TokenStorageInterface $tokenStorage
      * @param TranslatorInterface $translator
      */
-    public function __construct(EntityManager $entityManager, TokenStorageInterface $tokenStorage, TranslatorInterface $translator)
-    {
+    public function __construct(
+        EntityManager $entityManager,
+        TokenStorageInterface $tokenStorage,
+        TranslatorInterface $translator
+    ) {
         $this->entityManager = $entityManager;
         $this->translator = $translator;
         $this->tokenStorage = $tokenStorage;
@@ -56,22 +62,26 @@ final class HistoricService
      */
     public function saveMyHistoric(Request $request)
     {
-        $user = null;
+        $searchHash = SearchHistory::getSearchHash($request->request->all());
+        $searchHistory = $this->entityManager->getRepository(SearchHistory::class)->find($searchHash);
+        if (!$searchHistory instanceof SearchHistory) {
+            $searchHistory = new SearchHistory(
+                $this->setTitleFromRequest($request),
+                $request->request->all()
+            );
+            $this->entityManager->persist($searchHistory);
+        }
+
         if (
             $this->tokenStorage->getToken() instanceof TokenInterface &&
             $this->tokenStorage->getToken()->getUser() instanceof LdapUser
         ) {
-            $user = $this->tokenStorage->getToken()->getUser()->getEntityUser();
-            $this->entityManager->merge($user);
+            $userHistory = new UserHistory($searchHistory);
+            $userHistory->setUserUid($this->tokenStorage->getToken()->getUser()->getUid());
+            $this->entityManager->persist($userHistory);
         }
 
-        $history = new UserHistory(
-            $user,
-            $this->setTitleFromRequest($request),
-            $request->request->all()
-        );
-        $this->entityManager->persist($history);
-        $this->entityManager->flush($history);
+        $this->entityManager->flush();
     }
 
     /**
@@ -93,14 +103,21 @@ final class HistoricService
                 $searchInput = $request->get(WordsList::SIMPLE_SEARCH_LABEL, null)[WordsList::TEXT_LABEL];
             }
 
-            $mode = $this->translator->trans('page.search.mode.'.($request->get(WordsList::ADVANCED_SEARCH_ACTION) === WordsList::CLICKED ? '1':'0'));
+            $mode = $this->translator->trans(
+                'page.search.mode.'.($request->get(
+                    WordsList::ADVANCED_SEARCH_ACTION
+                ) === WordsList::CLICKED ? '1' : '0')
+            );
 
-            $this->searchTitle = $this->translator->trans('page.search.title', [
-                '%mode%' => $mode,
-                '%searchInput%'=> $searchInput,
-                '%currentPage%'=> '2',
-                '%nbPage%'=> '5'
-            ]);
+            $this->searchTitle = $this->translator->trans(
+                'page.search.title',
+                [
+                    '%mode%' => $mode,
+                    '%searchInput%' => $searchInput,
+                    '%currentPage%' => '2',
+                    '%nbPage%' => '5',
+                ]
+            );
         }
 
         return $this->searchTitle;
@@ -111,6 +128,30 @@ final class HistoricService
      */
     public function getHistory(): array
     {
+        if (
+            $this->tokenStorage->getToken() instanceof TokenInterface &&
+            $this->tokenStorage->getToken()->getUser() instanceof LdapUser
+        ) {
+            return $this->entityManager->getRepository(UserHistory::class)->findBy(
+                ['user_uid' => $this->tokenStorage->getToken()->getUser()->getUid()]
+            );
+        }
+
         return $this->entityManager->getRepository(UserHistory::class)->findAll();
+    }
+
+    /**
+     * @param string $hash
+     * @return SearchHistory
+     * @throws SearchHistoryException
+     */
+    public function getSearchHistoryByHash(string $hash): SearchHistory
+    {
+        $searchHistory = $this->entityManager->getRepository(SearchHistory::class)->find($hash);
+        if (!$searchHistory instanceof SearchHistory) {
+            throw new SearchHistoryException('No search for hash '.$hash);
+        }
+
+        return $searchHistory;
     }
 }

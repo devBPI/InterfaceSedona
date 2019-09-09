@@ -21,7 +21,7 @@
             </tr>
             </thead>
             <tbody class="table__body">
-            {% for history in app.user.histories %}
+            {% for history in histories %}
                 <tr>
                     <td>
                         <input type="checkbox"
@@ -32,10 +32,10 @@
                     </td>
                     <td>{{ history.creationDate|date('d/m/Y \\à H:i') }}</td>
                     <td class="table__body-search">
-                        <a href="{{ history.url }}" role="button"><span
-                                    class="sr-only">{{ 'bloc.historic-search.reload'|trans({'%title%': history.title}) }}</span><img
-                                    src="{{ asset('images/icones/icone-loupe-noire.svg') }}" alt=""
-                                    class="icone-loupe"/></a>
+                        <a href="{{ path('search', {'saved_id': history.url}) }}" role="button"><span
+                            class="sr-only">{{ 'bloc.historic-search.reload'|trans({'%title%': history.title}) }}</span><img
+                            src="{{ asset('images/icones/icone-loupe-noire.svg') }}" alt=""
+                            class="icone-loupe"/></a>
                     </td>
                 </tr>
             {% endfor %}

@@ -3,6 +3,7 @@
 
 namespace App\Controller;
 
+use App\Model\Exception\SearchHistoryException;
 use App\Model\Search\Criteria;
 use App\Model\Search\FacetFilter;
 use App\Model\SuggestionList;
@@ -54,28 +55,48 @@ class SearchController extends AbstractController
     }
 
     /**
-     * @Route("/recherche", methods={"GET", "POST"}, name="search")
+     * @Route("/recherche/{savedId}", defaults={"savedId" = null}, methods={"GET", "POST"}, name="search")
+     * @param string $savedId
      * @param Request $request
      * @return \Symfony\Component\HttpFoundation\Response
+     * @throws \Doctrine\ORM\ORMException
      * @throws \Twig\Error\LoaderError
      * @throws \Twig\Error\RuntimeError
      * @throws \Twig\Error\SyntaxError
-     * @throws \Doctrine\ORM\ORMException
      */
-    public function indexAction(Request $request)
+    public function indexAction(string $savedId, Request $request)
     {
-        if ($request->request->count() > 0) {
-            $this->historicService->saveMyHistoric($request);
+        $params = [];
+        $title = '';
+        $savedSearch = false;
+
+        try {
+            if ($savedId !== null && ($searchHistory = $this->historicService->getSearchHistoryByHash($savedId))) {
+                $params = $searchHistory->getQueries();
+                $title = $searchHistory->getTitle();
+                $savedSearch = true;
+            }
+        } catch (SearchHistoryException $exception) {
+            // log
         }
 
-        $criteria = new Criteria($request);
-        $facets = new FacetFilter($request);
+        if (!$savedSearch) {
+            $params = $request->request->all();
+            $title = $this->historicService->setTitleFromRequest($request);
+
+            if ($request->request->count() > 0) {
+                $this->historicService->saveMyHistoric($request);
+            }
+        }
+
+        $criteria = new Criteria($params);
+        $facets = new FacetFilter($params);
         $objSearch = $this->searchProvider->getListBySearch($criteria, $facets);
 
         return $this->render(
             'search/index.html.twig',
             [
-                'title' => $this->historicService->setTitleFromRequest($request),
+                'title' => $title,
                 'toolbar' => 'search',
                 'objSearch' => $objSearch,
                 'printRoute' => $this->generateUrl('search_pdf', ['format' => 'pdf']),
