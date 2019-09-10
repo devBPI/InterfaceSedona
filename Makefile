@@ -203,7 +203,7 @@ endif
 cache-clear:
 ifdef CONSOLE
 	$(CONSOLE) --env=${APP_ENV} cache:clear --no-warmup
-	$(CONSOLE) --env=${APP_ENV} doctrine:cache:clear-metadata
+    # $(CONSOLE) --env=${APP_ENV} doctrine:cache:clear-metadata
 	$(CONSOLE) --env=${APP_ENV} doctrine:cache:clear-query
 	$(CONSOLE) --env=${APP_ENV} doctrine:cache:clear-result
 else

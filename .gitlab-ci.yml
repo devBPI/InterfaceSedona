@@ -68,7 +68,7 @@ build:package:
       - build/
   artifacts:
     untracked: false
-    expire_in: 30 mins
+    expire_in: 90 mins
     paths:
       - build/
   script:
