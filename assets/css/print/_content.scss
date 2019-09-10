@@ -1,0 +1,50 @@
+// -------------------------------
+// Print - Contenu Global
+// -------------------------------
+
+.print {
+
+	&__header {
+		padding-top: .5cm;
+		border-top: $border-default;
+		border-bottom: $border-default;
+	}
+
+	&__item {
+		margin-top: .75cm;
+		border-bottom: $border-thin;
+		page-break-inside: avoid;
+		
+		&:last-child {
+			border-bottom: 0;
+			margin-bottom: 0;
+		}
+	}
+
+	&__bloc {
+		page-break-inside: avoid;
+
+		+ & {
+			margin-top: .5cm;
+		}
+
+		&--online {
+
+			.print__header {
+				page-break-before: always;
+				break-before: always;
+			}
+		}
+	}
+
+	&__image {
+		max-width: 100%;
+		margin-bottom: .75cm;
+	}
+
+	&__list {
+		list-style-type: none;
+		padding-left: 0;
+		margin-bottom: .75cm;
+	}
+}
