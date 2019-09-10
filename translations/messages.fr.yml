@@ -337,18 +337,11 @@ bloc:
       in-ligne: 'Documents en rayon :'
       see-more: Voir tout
       see-more-sr-only: les documents en rayons
-      order: Choix du trie des documents en rayon
-      order-aria: menu-trie-document-rayon
     online:
       title-sr-only: Documents en ligne, sélectionner tout les résultats
       in-ligne: 'Documents en ligne :'
       see-more: Voir tout
       see-more-sr-only: les documents en ligne
-      order: Choix du trie des documents en ligne
-      order-aria: menu-trie-document-ligne
-    order-choice: Trier par
-    order-asc: Ordre ASC
-    order-desc: Ordre DESC
   notice-simple:          #Bloc 13 Notices simples en 2 colonnes
     result: Résultat numéro
     select: sélectionner
@@ -360,8 +353,19 @@ bloc:
     notification-availablity: Document indisponible, être prévenu de son retour en rayon - ouverture formulaire
   search-header-footer:   #Bloc 14 Tri et pages
     header:
-      aria-label: Sélectionner le nombre de résultat par colonne
+      nb-result-aria: dropdown-number-items
+      nb-result-title: Sélectionner le nombre de résultat par colonne
       nb-result-by-col: %nb% résultats par colonne
+      order: Choix du trie des documents
+      order-aria: dropdown-trie-result
+      order-choice: Trier par
+      order-pertinence: Pertinence
+      order-title-asc: Titre A-Z
+      order-title-desc: Titre Z-A
+      order-author-asc: Auteur A-Z
+      order-author-desc: Auteur Z-A
+      order-most-recent: Le plus récent
+      order-least-recent: Le moins récent
     footer:
       aria-label: Pagination
       page-first: Première page

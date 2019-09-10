@@ -4,21 +4,7 @@
 	<label for="all-document-{{ type }}" class="sr-only">{{ ('bloc.header-docs.'~type~'.title-sr-only')|trans }}</label>
 	<input type="checkbox" id="all-document-{{ type }}" class="list-result__header-checkbox">
 	<h3 class="n2 list-result__header-title">{{ ('bloc.header-docs.'~type~'.in-ligne')|trans }} <span>55</span></h3>
-	<a href="{{ path("search_all") }}" class="list-result__header-link">{{ ('bloc.header-docs.'~type~'.see-more')|trans }} <span class="sr-only sr-only-focusable">{{ ('bloc.header-docs.'~type~'.see-more-sr-only')|trans }}</span></a>
 </div>
-<div class="dropdown">
-	<span class="sr-only" aria-label="{{ ('bloc.header-docs.'~type~'.order-aria')|trans }}">{{ ('bloc.header-docs.'~type~'.order')|trans }}</span>
-	<button class="dropdown-toggle" type="button" id="dropdown-trie-{{ type }}" data-toggle="dropdown" aria-haspopup="listbox" aria-expanded="false">
-		{{ 'bloc.header-docs.order-choice'|trans }}
-	</button>
-	<ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown-trie-{{ type }}" role="listbox" tabindex="-1">
-		<li class="dropdown-item" role="option">
-			<a href="#">{{ 'bloc.header-docs.order-asc'|trans }}</a>
-		</li>
-		<li class="dropdown-item" role="option">
-			<a href="#">{{ 'bloc.header-docs.order-desc'|trans }}</a>
-		</li>
-	</ul>
-</div>
+<a href="{{ path("search_all") }}" class="list-result__header-link">{{ ('bloc.header-docs.'~type~'.see-more')|trans }} <span class="sr-only sr-only-focusable">{{ ('bloc.header-docs.'~type~'.see-more-sr-only')|trans }}</span></a>
 
 <!-- Fin - Bloc 12 En-tête des résultats -->
