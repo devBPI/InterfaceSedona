@@ -78,13 +78,31 @@ class UserSelectionController extends AbstractController
     }
 
     /**
-     * @Route("/list/ajout", methods={"GET","HEAD"}, name="user_list_add")
+     * @Route("/list/ajout", methods={"GET","POST"}, name="user_list_add")
      * @param Request $request
      * @return Response
      */
     public function addListAction(Request $request): Response
     {
-        return $this->render('user/modal/list_add.html.twig', []);
+        $params = [];
+        if ($request->request->count() > 0) {
+            try {
+                $this->selectionService->addDocumentToCategories($request);
+
+                return $this->render('user/modal/add-list-success.html.twig');
+            } catch (\Exception $e) {
+                $params = [
+                    'error' => $e->getMessage(),
+                ];
+            }
+        }
+
+        $params += [
+            'categories' => $this->selectionService->getCategories(),
+            'object' => $request->get('current', null),
+        ];
+
+        return $this->render('user/modal/add-list-content.html.twig', $params);
     }
 
     /**

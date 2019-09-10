@@ -1,8 +1,16 @@
 {% if author %}
 <div class="col-12">
 	<div>
-		<input type="checkbox" id="related-notice-result-{{ i }}">
-		<label for="related-notice-result-{{ i }}"><span class="sr-only">{{ 'bloc.preview-authority.first'|trans({'%%name%': '*Insert titre*'}) }}</span></label>
+        <input type="checkbox" id="related-notice-result-{{ i }}" class="addableInList"
+               name="{{ constant('App\\Controller\\SearchController::INPUT_AUTHOR') }}[]" value="{{ author.id }}">
+        <label for="related-notice-result-{{ i }}">
+            <span class="sr-only">{{ 'bloc.preview-authority.first'|trans({'%%name%': '*Insert titre*'}) }}</span>
+        </label>
+
+        <input type="hidden" name="item[__item__][url]" value="{{ path('record_authority', {'ark': author.id}) }}">
+        <input type="hidden" name="item[__item__][name]" value="{{ author.name }}">
+        <input type="hidden" name="item[__item__][author]" value="">
+        <input type="hidden" name="item[__item__][type]" value="author">
 	</div>
 </div>
 

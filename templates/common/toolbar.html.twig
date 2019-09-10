@@ -1,9 +1,9 @@
 <!-- Début - Bloc A Barre utilitaires -->
 <div class="toolbar">
 	<ul class="toolbar__list">
-		{% if toolbar is defined and toolbar == 'document' %}
+		{#{% if toolbar is defined and toolbar == 'document' %}#}
 			<li class="toolbar__item">
-				<button data-target="#modal-list-add" data-toggle="modal">
+				<button data-remote="{{ path('user_list_add') }}" data-target="#modal-list-add" data-toggle="modal">
 					<img src="{{ asset('images/icones/icone-coeur.svg') }}" alt="" class="icone-coeur"/>
 					<span><span class="sr-only">{{ 'bloc.toolbar.add_to'|trans }} </span>{{ 'bloc.toolbar.my_selection'|trans }}</span>
 				</button>
@@ -14,20 +14,20 @@
 					<span>{{ 'bloc.toolbar.export'|trans }}<span class="sr-only"> {{ 'bloc.toolbar.the_selection'|trans }}</span></span>
 				</button>
 			</li>
-		{% else %}
-			<li class="toolbar__item toolbar__item--disabled">
-				<p>
-					<img src="{{ asset('images/icones/icone-coeur.svg') }}" alt="" class="icone-coeur"/>
-					<span>{{ 'bloc.toolbar.my_selection'|trans }}</span>
-				</p>
-			</li>
-			<li class="toolbar__item toolbar__item--disabled">
-				<p>
-					<img src="{{ asset('images/icones/icone-fichier.svg') }}" alt="" class="icone-fichier"/>
-					<span>{{ 'bloc.toolbar.export'|trans }}</span>
-				</p>
-			</li>
-		{% endif %}
+		{#{% else %}#}
+			{#<li class="toolbar__item toolbar__item--disabled">#}
+				{#<p>#}
+					{#<img src="{{ asset('images/icones/icone-coeur.svg') }}" alt="" class="icone-coeur"/>#}
+					{#<span>{{ 'bloc.toolbar.my_selection'|trans }}</span>#}
+				{#</p>#}
+			{#</li>#}
+			{#<li class="toolbar__item toolbar__item--disabled">#}
+				{#<p>#}
+					{#<img src="{{ asset('images/icones/icone-fichier.svg') }}" alt="" class="icone-fichier"/>#}
+					{#<span>{{ 'bloc.toolbar.export'|trans }}</span>#}
+				{#</p>#}
+			{#</li>#}
+		{#{% endif %}#}
 		{% if printRoute is defined %}
 			<li class="toolbar__item">
 				<button data-target="#modal-print" data-toggle="modal">

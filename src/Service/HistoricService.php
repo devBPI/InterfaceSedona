@@ -128,9 +128,9 @@ final class HistoricService
 
     /**
      * @param SearchHistory $searchHistory
-     * @return UserHistory
+     * @return UserHistory|null
      */
-    private function getUserHistory(SearchHistory $searchHistory): UserHistory
+    private function getUserHistory(SearchHistory $searchHistory): ?UserHistory
     {
         return $this->entityManager->getRepository(UserHistory::class)->findOneBy(
             ['Search' => $searchHistory, 'user_uid' => $this->tokenStorage->getToken()->getUser()->getUid()]

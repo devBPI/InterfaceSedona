@@ -41,7 +41,7 @@ class UserSelectionCategory
     private $position = 0;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\UserSelectionDocument", mappedBy="Category")
+     * @ORM\OneToMany(targetEntity="App\Entity\UserSelectionDocument", mappedBy="Category", cascade={"all"})
      * @var ArrayCollection
      */
     private $documents;
@@ -91,5 +91,14 @@ class UserSelectionCategory
         $this->title = $title;
 
         return $this;
+    }
+
+    /**
+     * @param UserSelectionDocument $document
+     */
+    public function addDocument(UserSelectionDocument $document): void
+    {
+        $document->setCategory($this);
+        $this->documents->add($document);
     }
 }

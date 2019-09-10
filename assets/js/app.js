@@ -273,4 +273,15 @@ $(document)
 		$('#search-input').val($(this).html());
 		$('#autocompletion-list').hide();
 	})
-;
+	.on('show.bs.modal', '#modal-list-add', function () {
+        $('#resume-container').html('');
+		let objSelected = $('#contenu-site').find('input:checked.addableInList');
+        for (let [key, value] of Object.entries(objSelected)) {
+        	let container = $(value).parents('.list-result__content-item');
+        	if (container.length > 0) {
+        		let card = container.clone()[0];
+        		card = card.innerHTML.replace(/__item__/gi, key);
+                $('#resume-container').append(card);
+			}
+        }
+	});

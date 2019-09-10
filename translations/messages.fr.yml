@@ -118,6 +118,9 @@ modal:
     btn-register: Créer mon compte
     submit: Valider
     submit-sr-only:  la création de la liste
+    message-success: Les documents ont bien été ajoutés à vos listes
+    message-error:
+      no-category: Aucune catégorie n'a été sélectionnée. Veuillez en sélectionner une ou en créer une nouvelle.
   list-edit:          #Modal 03 edition d'une liste
     title: Modification de la liste
     field-title: Titre

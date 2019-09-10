@@ -2,11 +2,16 @@
 
 <div class="list-result__content-item">
     <div class="list-result__content-selector">
-        <input type="checkbox" id="result-doc-{{ type }}-{{ index }}">
+        <input type="checkbox" id="result-doc-{{ type }}-{{ index }}" class="addableInList"
+               name="{{ constant('App\\Controller\\SearchController::INPUT_NOTICE') }}[]" value="{{ notice.id }}">
         <label for="result-doc-{{ type }}-{{ index }}">
             <span class="sr-only">{{ 'bloc.notice-simple.result'|trans }} </span> {{ index }}
             <span class="sr-only">, {{ 'bloc.notice-simple.select'|trans }} {{ notice.frontTitle }}</span>
         </label>
+        <input type="hidden" name="item[__item__][url]" value="{{ path('record_bibliographic', {'ark': notice.id}) }}">
+        <input type="hidden" name="item[__item__][name]" value="{{ notice.frontTitle }}">
+        <input type="hidden" name="item[__item__][author]" value="{{ notice.frontAuthor }}">
+        <input type="hidden" name="item[__item__][type]" value="{{ notice.type }}">
     </div>
     <div class="list-result__content-body">
         <div class="list-result__content-image">
