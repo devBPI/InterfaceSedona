@@ -39,12 +39,24 @@ $('#modal-refine-search').on('show.bs.modal', function (e) {
 })
 
 // Configuration Carousel Primary (Accueil + Parcours) ----------------------------------------------------------------
+var $slider_items = $(".js-carousel-primary .carousel__slide");
+
+if ($(window).width() > 576 && $(window).width() < 992) {
+	for(var i = 0; i < $slider_items.length; i+=2) {
+		$slider_items.slice(i, i+2).wrapAll('<div role="tabpanel" class="carousel__body"></div>');
+	}
+} else if ($(window).width() > 992) {
+	for(var i = 0; i < $slider_items.length; i+=4) {
+		$slider_items.slice(i, i+4).wrapAll('<div role="tabpanel" class="carousel__body"></div>');
+	}
+}
+
 $('.js-carousel-primary')
 	.slick({
 		dots: true,
 		infinite: true,
-		slidesToShow: 4,
-		slidesToScroll: 4,
+		slidesToShow: 1,
+		slidesToScroll: 1,
 		autoplay: true,
 		autoplaySpeed: 5000,
 		prevArrow: '<button class="slick-prev" aria-label="Actualité précédente" type="button">Précédent</button>',
@@ -52,30 +64,13 @@ $('.js-carousel-primary')
 		dotsClass: 'carousel__pagination',
 		customPaging: function (slider, i) {
 			var slideNumber = (i + 1),
-				totalSlides = slider.slideCount;
-			return '<a class="carousel__pagination-dot" href="#" type="button" role="tab"><span class="sr-only">' + slideNumber + ' page sur ' + totalSlides + '</span></a>';
-		},
-		responsive: [
-			{
-				breakpoint: 992,
-				settings: 	{
-					slidesToShow: 2,
-					slidesToScroll: 2
-				}
-			},
-			{
-				breakpoint: 576,
-				settings: 	{
-					slidesToShow: 1,
-					slidesToScroll: 1
-				}
-			}
-		]
+			totalSlides = slider.slideCount;
+			return '<button class="carousel__pagination-dot" role="tab"><span class="sr-only">' + slideNumber + ' page sur ' + totalSlides + '</span></button>';
+		}
 	})
 	.on('afterChange', function(slick, currentSlide){
-		// Correctif suivant retours RGAA
-		$('.carousel__pagination li').attr("aria-selected", "false");
-		$('.carousel__pagination li.slick-active').attr("aria-selected", "true");
+		$('.custom-dots li').attr("aria-selected", "false").removeAttr("role");
+		$('.custom-dots li.slick-active').attr("aria-selected", "true");
 	})
 ;
 
@@ -99,7 +94,9 @@ $('.carousel__button').on('click', function() {
 
 // Correctif suivant retours RGAA
 $(".js-carousel-primary .slick-slide").removeAttr("role");
-$(".carousel__pagination").attr("aria-label", "Choix d'un groupe d'actualités à afficher");
+$(".custom-dots").attr("aria-label", "Choix d'un groupe d'actualités à afficher");
+$('.custom-dots li').attr("aria-selected", "false");
+$('.custom-dots li.slick-active').attr("aria-selected", "true");
 
 // Configuration Carousel Secondary (Notices) --------------------------------------------------------------------------
 $('.js-carousel-secondary').slick({
