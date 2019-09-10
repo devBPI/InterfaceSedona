@@ -40,6 +40,8 @@ services:
     arguments: ['%kernel.project_dir%/public/']
   App\Service\HistoricService:
     arguments: ['@doctrine.orm.entity_manager']
+  App\Service\SelectionListService:
+    arguments: ['@doctrine.orm.entity_manager']
 
 
   Symfony\Component\Ldap\Ldap:

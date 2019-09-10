@@ -1,7 +1,12 @@
 security:
     # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
     providers:
-#        in_memory: { memory: ~ }
+#        in_memory:
+#           memory:
+#               users:
+#                   gmeot:
+#                       password: test
+#                       roles: ['ROLE_USER']
 
         bpi_ldap:
             id: App\Provider\BpiLdapUserProvider
@@ -10,6 +15,9 @@ security:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
         main:
+#            pattern: ^/
+#            form_login:
+#                provider: in_memory
             form_login_ldap:
                 login_path: user_login
                 check_path: user_login

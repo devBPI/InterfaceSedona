@@ -2,42 +2,7 @@
 <div role="dialog" aria-modal="true" aria-labelledby="modal-list-create-title" class="modal fade" id="modal-list-create">
 	<div class="modal-dialog modal-dialog-centered">
 		<div class="modal-content">
-			<form class="modal-form">
-				<div class="modal-header">
-					<h1 class="n1 modal-header__title" id="modal-list-create-title">{{ 'modal.list-create.title'|trans }}</h1>
-					<button class="close" type="button" aria-label="{{ 'global.modal-close'|trans }}" data-dismiss="modal">
-						<span aria-hidden="true" class="sr-only">X</span>
-						<img src="{{ asset('images/icones/icone-croix-blanc.svg') }}" alt="" />
-					</button>
-				</div>
-
-				{# Création d'une liste  #}
-				<div class="modal-body">
-
-					<small class="modal-form__indication"><span>*</span> {{ 'global.form-mandatory-field'|trans }}</small>
-					
-					<div class="form-group row">
-						<label for="create-title" class="col-12 col-sm-4">{{ 'modal.list-create.field-title'|trans }} <span>*</span></label>
-						<div class="col-12 col-sm-8">
-							<input type="text" class="form-control" id="create-title">
-						</div>
-					</div>
-
-					<div>
-						<i>*Insert captcha*</i>	
-					</div>
-				</div>
-
-				{# Message de confirmation de création de liste #}
-				<div class="modal-body">
-					<p>{{ 'modal.list-create.message-success'|trans({'%name%': '*Insert nom de la liste*'}) }}</p>
-				</div>
-
-				<div class="modal-footer">
-					<button type="button" data-dismiss="modal" class="btn btn-lg btn-secondary">{{ 'global.modal-cancel'|trans }}</button>
-					<button type="submit" class="btn btn-lg btn-primary">{{ 'modal.list-create.submit'|trans }}<span class="sr-only"> {{ 'modal.list-create.submit-sr-only'|trans }}</span></button>
-				</div>
-			</form>
+            {{ render(controller('App\\Controller\\UserSelectionController::createListAction')) }}
 		</div>
 	</div>
 </div>

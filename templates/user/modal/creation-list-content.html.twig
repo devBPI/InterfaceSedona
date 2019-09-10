@@ -1,0 +1,37 @@
+<form data-toggle="form-remote" action="{{ path('user_list_create') }}" method="post" class="modal-form">
+	<div class="modal-header">
+		<h1 class="n1 modal-header__title" id="modal-list-create-title">{{ 'modal.list-create.title'|trans }}</h1>
+		<button class="close" type="button" aria-label="{{ 'global.modal-close'|trans }}" data-dismiss="modal">
+			<span aria-hidden="true" class="sr-only">X</span>
+			<img src="{{ asset('images/icones/icone-croix-blanc.svg') }}" alt="" />
+		</button>
+	</div>
+
+    {# Création d'une liste  #}
+	<div class="modal-body">
+
+		<small class="modal-form__indication"><span>*</span> {{ 'global.form-mandatory-field'|trans }}</small>
+
+		<div class="form-group row">
+			<label for="create-title" class="col-12 col-sm-4">{{ 'modal.list-create.field-title'|trans }} <span>*</span></label>
+			<div class="col-12 col-sm-8">
+				<input type="text" class="form-control {% if error is defined %}is-invalid{% endif %}" id="create-title"
+					   name="{{ constant('App\\Controller\\UserSelectionController::INPUT_TITLE_NAME') }}">
+				{% if error is defined %}
+					<span class="invalid-feedback d-block">{{ error|trans }}</span>
+				{% endif %}
+			</div>
+		</div>
+
+		<div>
+			<i>*Insert captcha*</i>
+		</div>
+	</div>
+
+	<div class="modal-footer">
+		<button type="button" data-dismiss="modal" class="btn btn-lg btn-secondary">{{ 'global.modal-cancel'|trans }}</button>
+		<button type="submit" class="btn btn-lg btn-primary">
+			{{ 'modal.list-create.submit'|trans }}<span class="sr-only"> {{ 'modal.list-create.submit-sr-only'|trans }}</span>
+		</button>
+	</div>
+</form>

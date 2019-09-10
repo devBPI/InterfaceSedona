@@ -99,6 +99,7 @@ footer:
 modal:
   list-create:          #Modal 01  Création d'une liste
     title: Créer une nouvelle liste
+    mandatory-field: La saisie du titre de la liste est obligatoire
     field-title: Titre
     message-success: Vous avez bien créé la liste « %name% » avec les document sélectionnés.
     submit: Valider

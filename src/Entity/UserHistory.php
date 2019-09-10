@@ -27,6 +27,7 @@ class UserHistory
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\SearchHistory", inversedBy="userHistories")
+     * @var SearchHistory
      */
     private $Search;
 
@@ -37,6 +38,18 @@ class UserHistory
     private $creation_date;
 
     /**
+     * @ORM\Column(type="datetime", nullable=false)
+     * @var \DateTime
+     */
+    private $last_view_date;
+
+    /**
+     * @ORM\Column(type="integer")
+     * @var int
+     */
+    private $count = 0;
+
+    /**
      * UserHistory constructor.
      *
      * @param SearchHistory $objSearch
@@ -45,6 +58,7 @@ class UserHistory
     {
         $this->Search = $objSearch;
         $this->creation_date = new \DateTime();
+        $this->incrementCount();
     }
 
     /**
@@ -70,6 +84,44 @@ class UserHistory
     public function setUserUid($user_uid): self
     {
         $this->user_uid = $user_uid;
+
+        return $this;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getLastViewDate(): \DateTime
+    {
+        return $this->last_view_date;
+    }
+
+    /**
+     * @param \DateTime $last_view_date
+     * @return self
+     */
+    public function setLastViewDate(\DateTime $last_view_date): self
+    {
+        $this->last_view_date = $last_view_date;
+
+        return $this;
+    }
+
+    /**
+     * @return int
+     */
+    public function getCount(): int
+    {
+        return $this->count;
+    }
+
+    /**
+     * @return self
+     */
+    public function incrementCount(): self
+    {
+        $this->count++;
+        $this->last_view_date = new \DateTime();
 
         return $this;
     }

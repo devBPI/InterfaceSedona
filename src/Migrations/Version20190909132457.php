@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20190909094446 extends AbstractMigration
+final class Version20190909132457 extends AbstractMigration
 {
     public function getDescription() : string
     {
@@ -54,7 +54,7 @@ final class Version20190909094446 extends AbstractMigration
         $this->addSql('CREATE TABLE user_selection_category (id INT NOT NULL, user_uid VARCHAR(50) NOT NULL, title VARCHAR(250) NOT NULL, position INT NOT NULL, PRIMARY KEY(id))');
         $this->addSql('CREATE TABLE search_history (id VARCHAR(40) NOT NULL, title VARCHAR(250) NOT NULL, queries JSONB NOT NULL, PRIMARY KEY(id))');
         $this->addSql('COMMENT ON COLUMN search_history.queries IS \'(DC2Type:json_array)\'');
-        $this->addSql('CREATE TABLE user_history (id INT NOT NULL, search_id VARCHAR(40) DEFAULT NULL, user_uid VARCHAR(50) DEFAULT NULL, creation_date TIMESTAMP(0) WITHOUT TIME ZONE NOT NULL, PRIMARY KEY(id))');
+        $this->addSql('CREATE TABLE user_history (id INT NOT NULL, search_id VARCHAR(40) DEFAULT NULL, user_uid VARCHAR(50) DEFAULT NULL, creation_date TIMESTAMP(0) WITHOUT TIME ZONE NOT NULL, last_view_date TIMESTAMP(0) WITHOUT TIME ZONE NOT NULL, count INT NOT NULL, PRIMARY KEY(id))');
         $this->addSql('CREATE INDEX IDX_7FB76E41650760A9 ON user_history (search_id)');
         $this->addSql('ALTER TABLE user_selection_document ADD CONSTRAINT FK_A38819C512469DE2 FOREIGN KEY (category_id) REFERENCES user_selection_category (id) NOT DEFERRABLE INITIALLY IMMEDIATE');
         $this->addSql('ALTER TABLE theme_level ADD CONSTRAINT FK_C2C847F6727ACA70 FOREIGN KEY (parent_id) REFERENCES theme (id) NOT DEFERRABLE INITIALLY IMMEDIATE');

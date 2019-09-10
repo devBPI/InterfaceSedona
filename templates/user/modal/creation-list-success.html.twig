@@ -1,6 +1,6 @@
 <div>
 	<div class="modal-header">
-		<h1 class="n1 modal-header__title" id="modal-report-title">{{ 'modal.report.title'|trans }}</h1>
+		<h1 class="n1 modal-header__title" id="modal-list-create-title">{{ 'modal.list-create.title'|trans }}</h1>
 		<button class="close" type="button" aria-label="{{ 'global.modal-close'|trans }}" data-dismiss="modal">
 			<span aria-hidden="true" class="sr-only">X</span>
 			<img src="{{ asset('images/icones/icone-croix-blanc.svg') }}" alt="" />
@@ -8,7 +8,7 @@
 	</div>
 
 	<div class="modal-body">
-		Le signalement a été envoyé avec succès
+		<p>{{ 'modal.list-create.message-success'|trans({'%name%': title}) }}</p>
 	</div>
 
 	<div class="modal-footer">

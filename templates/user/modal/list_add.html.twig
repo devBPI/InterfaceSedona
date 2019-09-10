@@ -20,66 +20,72 @@
 					</div>
 				</div>
 
-				{# Authentifié #}
-				<div class="modal-body">
-					<div class="search-base">
-						<p class="search-base__label">{{ 'modal.list-add.add-to-profile'|trans }}</p>
-						<ul class="search-base__list">
-							{% for i in 1..10 %}
-								<li class="search-base__item form-check">
-									<input type="checkbox" id="list-{{ i }}" class="form-check-input">
-									<label for="list-{{ i }}" class="form-check-label">{{ 'modal.list-add.list'|trans({'%name%': i }) }}</label>
-								</li>
-							{% endfor %}
-						</ul>
-					</div>
-				</div>
-
-				<div class="modal-body">
-
-					<small class="modal-form__indication"><span>*</span> {{ 'global.form-mandatory-field'|trans }}</small>
-
-					<div class="form-group form-check">
-						<input type="checkbox" id="list-add-new" class="form-check-input">
-						<label for="list-add-new" class="form-check-label">{{ 'modal.list-add.new-list'|trans }}</label>
-					</div>
-					
-					<div class="form-group row">
-						<label for="list-add-title" class="col-12 col-sm-4">{{ 'modal.list-add.field-title'|trans }} <span>*</span></label>
-						<div class="col-12 col-sm-8">
-							<input type="text" class="form-control" id="list-add-title">
+                {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+					{# Authentifié #}
+					<div class="modal-body">
+						<div class="search-base">
+							<p class="search-base__label">{{ 'modal.list-add.add-to-profile'|trans }}</p>
+							<ul class="search-base__list">
+								{% for i in 1..10 %}
+									<li class="search-base__item form-check">
+										<input type="checkbox" id="list-{{ i }}" class="form-check-input">
+										<label for="list-{{ i }}" class="form-check-label">{{ 'modal.list-add.list'|trans({'%name%': i }) }}</label>
+									</li>
+								{% endfor %}
+							</ul>
 						</div>
 					</div>
-				</div>
-				{# Authentifié #}
 
-				{# Pas authentifié #}
-				<div class="modal-body">
-					<p class="mb-0">{{ 'modal.list-add.add-to-tempory'|trans }}</p>
-				</div>
+					<div class="modal-body">
 
-				<div class="modal-body">
-					<div class="button-arrow">
-						<a href="#" class="button-arrow__button">{{ 'modal.list-add.btn-return'|trans }}</a>
-						<a href="{{ path('user_personal_data') }}" class="button-arrow__button">{{ 'modal.list-add.btn-selection'|trans }}</a>
+						<small class="modal-form__indication"><span>*</span> {{ 'global.form-mandatory-field'|trans }}</small>
+
+						<div class="form-group form-check">
+							<input type="checkbox" id="list-add-new" class="form-check-input">
+							<label for="list-add-new" class="form-check-label">{{ 'modal.list-add.new-list'|trans }}</label>
+						</div>
+
+						<div class="form-group row">
+							<label for="list-add-title" class="col-12 col-sm-4">{{ 'modal.list-add.field-title'|trans }} <span>*</span></label>
+							<div class="col-12 col-sm-8">
+								<input type="text" class="form-control" id="list-add-title">
+							</div>
+						</div>
 					</div>
-				</div>
-				{# Pas authentifié #}
+					{# Authentifié #}
+				{% else %}
+					{# Pas authentifié #}
+					<div class="modal-body">
+						<p class="mb-0">{{ 'modal.list-add.add-to-tempory'|trans }}</p>
+					</div>
+
+					<div class="modal-body">
+						<div class="button-arrow">
+							<a href="#" class="button-arrow__button">{{ 'modal.list-add.btn-return'|trans }}</a>
+							<a href="{{ path('user_personal_data') }}" class="button-arrow__button">{{ 'modal.list-add.btn-selection'|trans }}</a>
+						</div>
+					</div>
+					{# Pas authentifié #}
+				{% endif %}
 
 
 				<div class="modal-footer">
-					{# Pas authentifié #}
-					<p class="modal-footer__quote">{{ 'modal.list-add.btn-login'|trans }}</p>
+                    {% if not is_granted('IS_AUTHENTICATED_FULLY') %}
+						{# Pas authentifié #}
+						<p class="modal-footer__quote">{{ 'modal.list-add.btn-login'|trans }}</p>
+					{% endif %}
 
 					{# Authentifié + Pas authentifié #}
 					<button type="button" data-dismiss="modal" class="btn btn-lg btn-secondary">{{ 'global.modal-cancel'|trans }}</button>
 
-					{# Pas authentifié #}
-					<a href="{{ path('user_login') }}" class="btn btn-lg btn-primary">{{ 'modal.list-add.btn-login2'|trans }}</a>
-					<a href="https://www.bpi.fr/formulaire-inscription-bpi" target="_blank" class="btn btn-lg btn-primary">{{ 'modal.list-add.btn-register'|trans }}</a>
-					
-					{# Authentifié #}
-					<button type="submit" class="btn btn-lg btn-primary">{{ 'modal.list-add.submit'|trans }}<span class="sr-only"> {{ 'modal.list-add.submit-sr-only'|trans }}</span></button>
+                    {% if not is_granted('IS_AUTHENTICATED_FULLY') %}
+						{# Pas authentifié #}
+						<a href="{{ path('user_login') }}" class="btn btn-lg btn-primary">{{ 'modal.list-add.btn-login2'|trans }}</a>
+						<a href="https://www.bpi.fr/formulaire-inscription-bpi" target="_blank" class="btn btn-lg btn-primary">{{ 'modal.list-add.btn-register'|trans }}</a>
+					{% else %}
+						{# Authentifié #}
+						<button type="submit" class="btn btn-lg btn-primary">{{ 'modal.list-add.submit'|trans }}<span class="sr-only"> {{ 'modal.list-add.submit-sr-only'|trans }}</span></button>
+					{% endif %}
 				</div>
 			</form>
 		</div>

@@ -4,7 +4,6 @@ declare(strict_types=1);
 namespace App\Service;
 
 use App\Entity\SearchHistory;
-use App\Entity\User;
 use App\Entity\UserHistory;
 use App\Model\Exception\SearchHistoryException;
 use App\Model\LdapUser;
@@ -57,10 +56,9 @@ final class HistoricService
 
     /**
      * @param Request $request
-     * @return string
      * @throws \Doctrine\ORM\ORMException
      */
-    public function saveMyHistoric(Request $request)
+    public function saveMyHistoric(Request $request): void
     {
         $searchHash = SearchHistory::getSearchHash($request->request->all());
         $searchHistory = $this->entityManager->getRepository(SearchHistory::class)->find($searchHash);
@@ -76,9 +74,14 @@ final class HistoricService
             $this->tokenStorage->getToken() instanceof TokenInterface &&
             $this->tokenStorage->getToken()->getUser() instanceof LdapUser
         ) {
-            $userHistory = new UserHistory($searchHistory);
-            $userHistory->setUserUid($this->tokenStorage->getToken()->getUser()->getUid());
-            $this->entityManager->persist($userHistory);
+            $userHistory = $this->getUserHistory($searchHistory);
+            if ($userHistory instanceof UserHistory) {
+                $userHistory->incrementCount();
+            } else {
+                $userHistory = new UserHistory($searchHistory);
+                $userHistory->setUserUid($this->tokenStorage->getToken()->getUser()->getUid());
+                $this->entityManager->persist($userHistory);
+            }
         }
 
         $this->entityManager->flush();
@@ -124,6 +127,17 @@ final class HistoricService
     }
 
     /**
+     * @param SearchHistory $searchHistory
+     * @return UserHistory
+     */
+    private function getUserHistory(SearchHistory $searchHistory): UserHistory
+    {
+        return $this->entityManager->getRepository(UserHistory::class)->findOneBy(
+            ['Search' => $searchHistory, 'user_uid' => $this->tokenStorage->getToken()->getUser()->getUid()]
+        );
+    }
+
+    /**
      * @return array|UserHistory[]
      */
     public function getHistory(): array
@@ -143,7 +157,8 @@ final class HistoricService
     /**
      * @param string $hash
      * @return SearchHistory
-     * @throws SearchHistoryException
+     * @throws \Doctrine\ORM\ORMException
+     * @throws \Doctrine\ORM\OptimisticLockException
      */
     public function getSearchHistoryByHash(string $hash): SearchHistory
     {
@@ -152,6 +167,41 @@ final class HistoricService
             throw new SearchHistoryException('No search for hash '.$hash);
         }
 
+        if (
+            $this->tokenStorage->getToken() instanceof TokenInterface &&
+            $this->tokenStorage->getToken()->getUser() instanceof LdapUser
+        ) {
+            $this->getUserHistory($searchHistory)->incrementCount();
+            $this->entityManager->flush();
+        }
+
         return $searchHistory;
+    }
+
+    /**
+     * @param array $list
+     * @throws \Doctrine\ORM\ORMException
+     * @throws \Doctrine\ORM\OptimisticLockException
+     */
+    public function deleteHistories(array $list): void
+    {
+        foreach ($this->entityManager->getRepository(UserHistory::class)->findBy(['id' => $list]) as $history) {
+            $this->entityManager->remove($history);
+        }
+
+        $this->entityManager->flush();
+    }
+
+    /**
+     * @param $action
+     * @param $listObj
+     * @throws \Doctrine\ORM\ORMException
+     * @throws \Doctrine\ORM\OptimisticLockException
+     */
+    public function applyAction($action, $listObj): void
+    {
+        if ($action === 'delete') {
+            $this->deleteHistories($listObj);
+        }
     }
 }

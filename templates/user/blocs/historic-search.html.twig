@@ -24,18 +24,18 @@
             {% for history in histories %}
                 <tr>
                     <td>
-                        <input type="checkbox"
+                        <input type="checkbox" name="{{ constant('App\\Controller\\UserHistoryController::INPUT_NAME') }}[]" value="{{ history.id }}"
                                aria-label="{{ 'bloc.historic-search.select-ligne'|trans({'%title%': history.title}) }}">
                     </td>
                     <td>
                         <p>{{ history.title }}</p>
                     </td>
-                    <td>{{ history.creationDate|date('d/m/Y \\à H:i') }}</td>
+                    <td>{{ history.lastViewDate|date('d/m/Y \\à H:i') }}</td>
                     <td class="table__body-search">
-                        <a href="{{ path('search', {'saved_id': history.url}) }}" role="button"><span
-                            class="sr-only">{{ 'bloc.historic-search.reload'|trans({'%title%': history.title}) }}</span><img
-                            src="{{ asset('images/icones/icone-loupe-noire.svg') }}" alt=""
-                            class="icone-loupe"/></a>
+                        <a href="{{ path('search', {'savedId': history.url}) }}" role="button">
+                            <span class="sr-only">{{ 'bloc.historic-search.reload'|trans({'%title%': history.title}) }}</span>
+                            <img src="{{ asset('images/icones/icone-loupe-noire.svg') }}" alt="" class="icone-loupe"/>
+                        </a>
                     </td>
                 </tr>
             {% endfor %}

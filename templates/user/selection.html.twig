@@ -1,0 +1,37 @@
+{% extends 'user/personal-data.html.twig' %}
+
+{% block content %}
+    <h2 class="n1 title-icone">
+        <span class="icone-square"><img src="{{ asset('images/icones/icone-coeur.svg') }}" alt="" class="icone-coeur"/></span><span>{{ 'page.personal-data.selection.title'|trans }}</span>
+    </h2>
+
+    <div class="row justify-content-md-between banner-tools">
+        {% include "user/blocs/banner-tools.html.twig" with {'type':'selection'} %}
+    </div>
+
+    <div>
+        {% include "user/blocs/list-user.html.twig" %}
+    </div>
+
+
+    <!-- Début - Modal création d'une nouvelle liste -->
+    {% include "user/modal/list_create.html.twig" %}
+    <!-- Fin - Modal création d'une nouvelle liste -->
+
+    <!-- Début - Modal édition liste -->
+    {% include "user/modal/list_edit.html.twig" %}
+    <!-- Fin - Modal édition liste -->
+
+    <!-- Début - Modal suppression liste -->
+    {% include "user/modal/list_remove.html.twig" %}
+    <!-- Fin - Modal suppression liste -->
+
+    <!-- Début - Modal commentaires view -->
+    {% include "user/modal/comments-edit.html.twig" %}
+    <!-- Fin - Modal commentaires view -->
+
+    <!-- Début - Modal commentaires edit -->
+    {% include "user/modal/comments-view.html.twig" %}
+    <!-- Fin - Modal commentaires edit -->
+
+{% endblock %}

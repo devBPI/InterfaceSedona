@@ -64,7 +64,7 @@ class SearchController extends AbstractController
      * @throws \Twig\Error\RuntimeError
      * @throws \Twig\Error\SyntaxError
      */
-    public function indexAction(string $savedId, Request $request)
+    public function indexAction(string $savedId = null, Request $request)
     {
         $params = [];
         $title = '';
