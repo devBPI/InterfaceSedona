@@ -3,12 +3,12 @@
 	<nav aria-label="{{ 'bloc.search-header-footer.footer.aria-label'|trans }}" role="navigation">
 		<ul class="pagination justify-content-center">
 			<li class="page-item">
-				<a href="{{ path('search', {'dataCriteria':criteria.toJson, 'page':1}) }}" class="page-link page-link--left-double">
+				<a href="{{ path('search', {'searchToken': searchToken, 'page':1}) }}" class="page-link page-link--left-double">
 					<img src="{{ asset('images/icones/icone-chevron-double-gauche.svg') }}" alt="" class="icone-chevron-double"/><span class="sr-only">{{ 'bloc.search-header-footer.footer.page-first'|trans }}</span>
 				</a>
 			</li>
 			<li class="page-item">
-				<a href="{{ path('search', {'dataCriteria':criteria.toJson, 'page': page>1?page-1:1 }) }}" class="page-link page-link--left">
+				<a href="{{ path('search', {'searchToken': searchToken, 'page': page>1?page-1:1 }) }}" class="page-link page-link--left">
 					<img src="{{ asset('images/icones/icone-chevron-gauche.svg') }}" alt="" class="icone-chevron"/>
 					<span class="sr-only">{{ 'bloc.search-header-footer.footer.page-previous'|trans }}</span>
 				</a>
@@ -16,21 +16,22 @@
 			<li class="page-item">
 				<div class="page-link page-link--reset">
 					<label for="pagination-select" class="sr-only">{{ 'bloc.search-header-footer.footer.select-sr-only'|trans({'%nb%': 5 }) }}</label>
-					<select id="pagination-select" class="js-pagination-select" data-url="{{ path('search', {'dataCriteria':criteria.toJson, 'page':0 }) }}">
+					<select id="pagination-select" class="js-pagination-select" data-url="{{ path('search', {'searchToken': searchToken, 'page':0 }) }}">
 						{% for i in  0..pagesTotal %}
 							<option value="{{ i }}" {% if i == page %}selected{% endif %}>{{ i }}</option>
 						{% endfor %}
 					</select>
+
 					{{ 'bloc.search-header-footer.footer.select-of'|trans({'%nb%': pagesTotal }) }}
 				</div>
 			</li>
 			<li class="page-item">
-				<a href="{{ path('search', {'dataCriteria':criteria.toJson, 'page':page+1}) }}" class="page-link page-link--right">
+				<a href="{{ path('search', {'searchToken': searchToken, 'page':page+1}) }}" class="page-link page-link--right">
 					<img src="{{ asset('images/icones/icone-chevron-gauche.svg') }}" alt="" class="icone-chevron-double"/><span class="sr-only">{{ 'bloc.search-header-footer.footer.page-next'|trans }}</span>
 				</a>
 			</li>
 			<li class="page-item">
-				<a href="{{ path('search', {'dataCriteria':criteria.toJson, 'page':pagesTotal}) }}" class="page-link page-link--right-double">
+				<a href="{{ path('search', {'searchToken': searchToken, 'page':pagesTotal}) }}" class="page-link page-link--right-double">
 					<img src="{{ asset('images/icones/icone-chevron-double-gauche.svg') }}" alt="" class="icone-chevron"/><span class="sr-only">{{ 'bloc.search-header-footer.footer.page-last'|trans }}</span>
 				</a>
 			</li>

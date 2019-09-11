@@ -9,7 +9,7 @@ declare(strict_types=1);
 
 namespace App\Model;
 
-use JMS\Serializer\Annotation as JMS;
+use App\Model\Traits\NoticeMappedTrait;
 
 class Subject
 {

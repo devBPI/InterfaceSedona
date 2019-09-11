@@ -7,10 +7,19 @@
 		</button>
 		<ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown-number-items" role="listbox" tabindex="-1">
 			<li class="dropdown-item" role="option">
-				<a href="#">{{ 'bloc.search-header-footer.header.aria-label'|trans({'%nb%': 25 }) }}</a>
+				<a href="{{ path('search', {'searchToken': searchToken, 'rows': 10}) }}" {% if objSearch.criteria.rows == 10 %}class="text-bold" {% endif %}>
+					{{ 'bloc.search-header-footer.header.nb-result-by-col'|trans({'%nb%': 10 }) }}
+				</a>
+			</li>
+			<li class="dropdown-item" role="option" >
+				<a href="{{ path('search', {'searchToken': searchToken, 'rows': 25}) }}" {% if objSearch.criteria.rows == 25 %}class="text-bold" {% endif %}>
+					{{ 'bloc.search-header-footer.header.nb-result-by-col'|trans({'%nb%': 25 }) }}
+				</a>
 			</li>
 			<li class="dropdown-item" role="option">
-				<a href="#">{{ 'bloc.search-header-footer.header.aria-label'|trans({'%nb%': 50}) }}</a>
+				<a href="{{ path('search', {'searchToken': searchToken, 'rows': 50}) }}" {% if objSearch.criteria.rows == 50 %}class="text-bold" {% endif %}>
+					{{ 'bloc.search-header-footer.header.nb-result-by-col'|trans({'%nb%': 50}) }}
+				</a>
 			</li>
 		</ul>
 	</div>

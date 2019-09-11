@@ -8,6 +8,7 @@
 
 namespace App\Model;
 
+use App\Model\Interfaces\ValueBPIInterface;
 use JMS\Serializer\Annotation as JMS;
 
 /**

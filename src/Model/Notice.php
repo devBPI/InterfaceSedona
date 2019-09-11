@@ -2,18 +2,20 @@
 
 namespace App\Model;
 
+use App\Model\Interfaces\NoticeInterface;
+use App\Model\Traits\NoticeMappedTrait;
+use App\Model\Traits\NoticeTrait;
 use JMS\Serializer\Annotation as JMS;
 
 /**
  * Class NoticeDetail
  * @package App\Model
  */
-class Notice
+class Notice implements NoticeInterface
 {
-
     private const SEPARATOR = ' ; ';
 
-    use NoticeMappedTrait;
+    use NoticeMappedTrait, NoticeTrait;
     /**
      * @var array|Value[]
      * @JMS\Type("array<App\Model\Value>")
@@ -124,12 +126,6 @@ class Notice
      */
     private $pictures;
 
-    /**
-     * @var string
-     * @JMS\Type("string")
-     * @JMS\SerializedName("permalink")
-     */
-    private $permalink;
     /**
      * @var string
      * @JMS\Type("string")
@@ -472,12 +468,11 @@ class Notice
     private $notes;
 
     /**
-     * @var array|NoticeAvailable[]
-     * @JMS\Type("array<App\Model\NoticeAvailable>")
+     * @var NoticeAvailable
+     * @JMS\Type("App\Model\NoticeAvailable")
      * @JMS\SerializedName("exemplaires")
-     * @JMS\XmlList("exemplaire")
      */
-    private $copies = [];
+    private $copies;
 
     /**
      * @var string
@@ -568,9 +563,9 @@ class Notice
     }
 
     /**
-     * @return NoticeAvailable[]|array
+     * @return NoticeAvailable
      */
-    public function getCopies(): array
+    public function getCopies():NoticeAvailable
     {
         return $this->copies;
     }

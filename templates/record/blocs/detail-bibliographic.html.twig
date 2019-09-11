@@ -128,7 +128,7 @@
 			'comercial-number' : { 'Warner Classic 2564634928': ''}
 		},
 		#}
-		{% include 'common/informations-list.html.twig' with {
+		{% include 'common/informations-bibliographic.html.twig' with {
 			'notice': notice,
 			'prefix': 'bloc.autority-result-information.',
 			'details': [
@@ -162,21 +162,22 @@
 				{% endfor %}
 			</div>
 		</div>
-
 		{# Pour les revues/journaux .. #}
 		<div>
-			<p>{{ 'bloc.notice-simple.last-publication'|trans({'%number%': 110, '%pulication-date%': 'Janvier 2018'}) }}</p>
-			<p class="n5 mt-3">{{ 'bloc.autority-result-information.publication-receve'|trans }}</p>
-			<ul class="list-information list-information--sub-list">
-				{% include 'common/informations-authority.html.twig' with {'details': {
-					'2018': { 'N° 110, Janvier 2018': '' },
-					'2017': { 'N° 109, Décembre 2017': '', 'N° 108, Janvier 2017' : '' },
-					'2016': { 'N° 107, Juillet 2016': '',  'N° 106, Janvier 2016' : '' },
-					'2015': { 'N° 105, Décembre 2015': '', 'N° 104, Janvier 2015' : '' },
-					'2014': { 'N° 103, Juillet 2014': '',  'N° 102, Janvier 2014' : '' },
-					'2013': { 'N° 101, Décembre 2013': '', 'N° 100, Janvier 2013' : '' },
-				}} %}
-			</ul>
+			{% if notice.copies.lastNumber %}
+				<p>{{ 'bloc.notice-simple.last-publication'|trans }} {{  notice.copies.lastNumber}}</p>
+            {% endif %}
+			{% if  notice.copies.valuesReciviedNumber is defined and notice.copies.valuesReciviedNumber |length >0 %}
+				<p class="n5 mt-3">{{ 'bloc.autority-result-information.publication-receve'|trans }}</p>
+				<ul class="list-information list-information--sub-list">
+					{%
+						include 'common/informations-list.html.twig' with {'details': {
+							'no-label':notice.copies.valuesReciviedNumber,
+							}
+						}
+					%}
+				</ul>
+			{% endif %}
 		</div>
 	</div>
 

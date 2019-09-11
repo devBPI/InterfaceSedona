@@ -6,7 +6,7 @@
  * Time: 16:38
  */
 
-namespace App\Model;
+namespace App\Model\Traits;
 
 use JMS\Serializer\Annotation as JMS;
 

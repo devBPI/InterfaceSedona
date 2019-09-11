@@ -43,6 +43,7 @@ class Criteria implements ToJsonInterface, FromArrayInterface
         'older'      =>'OLDER',
         'younger'    =>'YOUNGER',
     ];
+    const ROWS_DEFAULT = 15;
 
     /**
      * @var string
@@ -51,7 +52,7 @@ class Criteria implements ToJsonInterface, FromArrayInterface
     private $general;
 
     /**
-     * @var string
+     * @var int
      * @JMS\Type("int")
      */
     private $rows;
@@ -268,12 +269,13 @@ class Criteria implements ToJsonInterface, FromArrayInterface
         ]
             ;
     }
+
     /**
-     * @return int|null
+     * @return int
      */
-    public function getRows(): ?int
+    public function getRows(): int
     {
-        return $this->rows;
+        return $this->rows??Criteria::ROWS_DEFAULT;
     }
 
     /**
@@ -283,6 +285,7 @@ class Criteria implements ToJsonInterface, FromArrayInterface
     public function setRows(int $rows=null): Criteria
     {
         $this->rows = $rows;
+
         return $this;
     }
 

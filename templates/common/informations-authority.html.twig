@@ -52,7 +52,6 @@
     </li>
 {% endif %}
 {% if  author.countries  is defined and author.countries |length>0 %}
-
     <li class="list-information__item">
         <span class="list-information__label">{{ 'bloc.autority-result-information.country'|trans }}</span>
         <ul class="list-information__sub-list" lang="fr">
@@ -66,7 +65,8 @@
 {% endif %}
 {% if  author.languages is defined and author.languages |length>0  %}
     <li class="list-information__item">
-        <span class="list-information__label">{{ 'bloc.autority-result-information.language'|trans }}</span>
+                    {#% if link is not empty and label is not empty %}<a href="{{ link }}" aria-label="{{ 'bloc.autority-result-information.search-with'|trans({'%theme%': label }) }}">{{ label }}</a>{% else %}{{ label }}{% endif %#}
+    <span class="list-information__label">{{ 'bloc.autority-result-information.language'|trans }}</span>
         <ul class="list-information__sub-list" lang="fr">
             {% for language in author.languages %}
                 <li class="list-information__sub-item">

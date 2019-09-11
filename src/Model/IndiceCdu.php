@@ -2,6 +2,7 @@
 
 namespace App\Model;
 
+use App\Model\Interfaces\AuthorityInterface;
 use JMS\Serializer\Annotation as JMS;
 
 /**

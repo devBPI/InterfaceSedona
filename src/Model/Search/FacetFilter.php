@@ -3,6 +3,7 @@
 namespace App\Model\Search;
 
 use Symfony\Component\HttpFoundation\Request;
+use JMS\Serializer\Annotation as JMS;
 
 /**
  * Class FacetFilter
@@ -14,6 +15,7 @@ class FacetFilter
 
     /**
      * @var array
+     * @JMS\Type("array")
      */
     private $attributes = [];
 

@@ -11,34 +11,37 @@
 		</div>
 		<div class="row">
 			<!-- Début - Bloc 17 Documents liés -->
-
 			<div id="carousel-{{ object.notice.type }}" class="carousel carousel--secondary {{ class|default('') }} col-12">
 				<div class="carousel__header">
 					<h2 class="n1">{{ ('bloc.list-related-documents.carousel-'~object.notice.type)|trans }}</h2>
 					<div>
-						<a href="#" class="link link--icone-end">{{ "bloc.list-related-documents.see-more"|trans }} <span class="sr-only">{{ "bloc.list-related-documents.see-more-sr-only"|trans }} </span><span>(*Insert number*)</span> <img src="{{ asset('images/icones/icone-chevron-gauche.svg') }}" alt="" class="icone-chevron-right"/></a>
+						<a href="#" class="link link--icone-end">
+							{{ "bloc.list-related-documents.see-more"|trans }}
+							<span class="sr-only">{{ "bloc.list-related-documents.see-more-sr-only"|trans }} </span>
+							<span>(*Insert number*)</span>
+							<img src="{{ asset('images/icones/icone-chevron-gauche.svg') }}" alt="" class="icone-chevron-right"/>
+						</a>
 					</div>
 				</div>
 				<div class="carousel-wrapper">
 					<div class="slick-carousel js-carousel-secondary" role="region" aria-roledescription="carrousel">
                         {% for  object in object.noticesSameTheme.noticesList %}
-								<div class="carousel__slide">
-									<a href="{{ path('record_bibliographic', {'permalink': object.permalink}) }}" class="carousel__slide-link">
-										<span class="sr-only">
-											{#{ 'bloc.list-related-documents.link-title'|trans({'%current%': object.pagination.page, '%nb%': object.pagination.rows, '%name%': object.titles[0] }) }#}
-											{{ object.titles[0] }}
-										</span>
-									</a>
-									<div class="carousel__slide-image">
-										<img src="{% if object.picture %}{{ object.picture.url }}{% else %}{{ asset('images/couvertures-generiques/cg-image.svg') }}{% endif %}" class="img-fluid" alt="" />
-									</div>
-									<p class="n1 carousel__slide-title">{{object.titles[0]}}</p>
-									<p class="n2 carousel__slide-subtitle">
-                                        {% for author in object.authors %}
-                                            {{ author}}
-                                        {% endfor %}
-									</p>
+							<div class="carousel__slide">
+								<a href="{{ path('record_bibliographic', {'permalink': object.permalink}) }}" class="carousel__slide-link">
+									<span class="sr-only">
+										{{ object.titles[0] }}
+									</span>
+								</a>
+								<div class="carousel__slide-image">
+									<img src="{% if object.picture %}{{ object.picture.url }}{% else %}{{ asset('images/couvertures-generiques/cg-image.svg') }}{% endif %}" class="img-fluid" alt="" />
 								</div>
+								<p class="n1 carousel__slide-title">{{object.titles[0]}}</p>
+								<p class="n2 carousel__slide-subtitle">
+									{% for author in object.authors %}
+										{{ author}}
+									{% endfor %}
+								</p>
+							</div>
                         {% endfor %}
 					</div>
 				</div>

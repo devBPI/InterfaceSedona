@@ -2,28 +2,24 @@
 declare(strict_types=1);
 namespace App\Model;
 
+use App\Model\Interfaces\AuthorityInterface;
+use App\Model\Interfaces\NoticeInterface;
+use App\Model\Traits\NoticeTrait;
 use JMS\Serializer\Annotation as JMS;
-
 /**
  * Class Authority
  * @package App\Model
  */
-class Authority implements AuthorityInterface
+class Authority implements AuthorityInterface, NoticeInterface
 {
-    /**
-     * @var string
-     * @JMS\Type("string")
-     * @JMS\SerializedName("permalink")
-     */
-    private $permalink;
+    use NoticeTrait;
+
     /**
      * @var string
      * @JMS\Type("string")
      * @JMS\SerializedName("id")
      */
     private $id;
-
-
     /**
      * @var string
      * @JMS\Type("string")
@@ -38,12 +34,7 @@ class Authority implements AuthorityInterface
      */
     private $formAdopted;
 
-    /**
-     * @var string
-     * @JMS\Type("string")
-     * @JMS\SerializedName("type")
-     */
-    private $type;
+
     /**
      * @var array
      * @JMS\Type("array<string>")
@@ -80,22 +71,7 @@ class Authority implements AuthorityInterface
     private $birthLocation;
 
     /**
-     * @return string
-     */
-    public function getBirthLocation(): string
-    {
-        return $this->birthLocation;
-    }
-
-    /**
-     * @return string
-     */
-    public function getDeathLocation(): string
-    {
-        return $this->deathLocation;
-    }
-    /**
-     * @var string
+     * @var string|null
      * @JMS\Type("string")
      * @JMS\SerializedName("dateMort")
      */
@@ -134,8 +110,6 @@ class Authority implements AuthorityInterface
      * @JMS\SerializedName("employePour")
      */
     private $employedfor;
-
-
     /**
      * @var array
      * @JMS\Type("array<string>")
@@ -143,7 +117,6 @@ class Authority implements AuthorityInterface
      * @JMS\XmlList("formeAssociee")
      */
     private $associetedForm;
-
     /**
      * @var array
      * @JMS\Type("array<string>")
@@ -175,13 +148,14 @@ class Authority implements AuthorityInterface
      * @JMS\XmlList("origine")
      */
     private $origins;
-
     /**
-     * @var string
-     * @JMS\Type("string")
-     * @JMS\SerializedName("isni")
+     * @var array
+     * @JMS\Type("array<string>")
+     * @JMS\SerializedName("resumes")
+     * @JMS\XmlList("resume")
      */
-    private $isni;
+    private $resumes;
+
     /**
      * @var string
      * @JMS\Type("string")
@@ -189,6 +163,21 @@ class Authority implements AuthorityInterface
      */
     private $originalUrl;
 
+    /**
+     * @return null|string
+     */
+    public function getBirthLocation(): ?string
+    {
+        return $this->birthLocation;
+    }
+
+    /**
+     * @return null|string
+     */
+    public function getDeathLocation(): ?string
+    {
+        return $this->deathLocation;
+    }
     /**
      * @return string
      */
@@ -238,17 +227,17 @@ class Authority implements AuthorityInterface
     }
 
     /**
-     * @return string
+     * @return null|string
      */
-    public function getBirthDate(): string
+    public function getBirthDate(): ?string
     {
         return $this->birthDate;
     }
 
     /**
-     * @return string
+     * @return null|string
      */
-    public function getDeathDate(): string
+    public function getDeathDate(): ?string
     {
         return $this->deathDate;
     }
@@ -325,13 +314,7 @@ class Authority implements AuthorityInterface
         return $this->origins;
     }
 
-    /**
-     * @return string
-     */
-    public function getIsni(): string
-    {
-        return $this->isni;
-    }
+
 
     /**
      * @return null|string
@@ -342,19 +325,11 @@ class Authority implements AuthorityInterface
     }
 
     /**
-     * @return string
+     * @return array
      */
-    public function getPermalink(): string
+    public function getResumes(): array
     {
-        return $this->permalink;
-    }
-
-    /**
-     * @return string
-     */
-    public function getType(): string
-    {
-        return $this->type;
+        return $this->resumes;
     }
 }
 

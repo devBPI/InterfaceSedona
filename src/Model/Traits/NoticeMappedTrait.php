@@ -7,7 +7,7 @@ declare(strict_types=1);
  * Time: 15:56
  */
 
-namespace App\Model;
+namespace App\Model\Traits;
 
 use JMS\Serializer\Annotation as JMS;
 

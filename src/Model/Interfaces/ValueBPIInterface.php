@@ -6,7 +6,7 @@
  * Time: 17:20
  */
 
-namespace App\Model;
+namespace App\Model\Interfaces;
 
 
 interface ValueBPIInterface

@@ -375,7 +375,7 @@ bloc:
     select: sélectionner
     access-to-bdd: Acceder à %name%
     result-of-bdd: Résultat de
-    last-publication: 'Dernier numéro reçu : N°%number%, %pulication-date%'
+    last-publication: 'Dernier numéro reçu :'
     document-available: Disponible
     document-unavailable: Indisponible
     notification-availablity: Document indisponible, être prévenu de son retour en rayon - ouverture formulaire

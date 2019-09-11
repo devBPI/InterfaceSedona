@@ -4,8 +4,10 @@ declare(strict_types=1);
 namespace App\Service\Provider;
 
 use App\Model\Exception\NoResultException;
+use App\Model\Facets;
 use App\Model\Notice;
 use App\Model\Results;
+use App\Model\Search;
 use App\Model\Search\Criteria;
 use App\Model\Search\FacetFilter;
 use App\Service\APIClient\CatalogClient;
@@ -55,8 +57,8 @@ class SearchProvider extends AbstractProvider
             'facets' => $this->templating->render('search/facet-filters.xml.twig', ['attributes' => $facets->getAttributes(), 'translateNames'=>false]),
             'page' => $criteria->getPage(),
             'sort' => $criteria->getSort()??'DEFAULT',
+            'rows' => $criteria->getRows(),
         ]);
-
 
         foreach ($searchResult->getNotices()->getNoticesList() as $notice) {
             $this->getImagesForNotice($notice);
@@ -116,5 +118,5 @@ class SearchProvider extends AbstractProvider
 
         return $content;
     }
-
 }
+

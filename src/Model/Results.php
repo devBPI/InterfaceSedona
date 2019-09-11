@@ -3,20 +3,18 @@
 namespace App\Model;
 
 
+use App\Model\Interfaces\SearchResultInterface;
 use App\Model\Search\Criteria;
+use App\Model\Traits\SearchResultTrait;
 use JMS\Serializer\Annotation as JMS;
 
 /**
  * Class Results
  * @package App\Model
  */
-class Results
+class Results implements SearchResultInterface
 {
-    /**
-     * @var Criteria|null
-     */
-    private $criteria;
-
+    use SearchResultTrait;
     /**
      * @var Facets
      * @JMS\Type("App\Model\Facets")
@@ -55,9 +53,7 @@ class Results
      * @JMS\Type("App\Model\SuggestionList")
      * @JMS\SerializedName("suggestions-list")
      */
-
     private $suggestionList;
-
     /**
      * @var int
      * @JMS\Type("int")
@@ -70,7 +66,6 @@ class Results
      * @JMS\SerializedName("num-pages")
      */
     private $pageTotal;
-
     /**
      * @return RankedAuthority[]|array
      */
@@ -106,9 +101,9 @@ class Results
     }
 
     /**
-     * @return AuthorityInterface|null
+     * @return AuthorityInterface|Authority|null
      */
-    public function getMainAuthor(): ?AuthorityInterface
+    public function getMainAuthor()
     {
         if (count($this->authoritiesList) === 0) {
             return null;
@@ -144,14 +139,6 @@ class Results
     }
 
     /**
-     * @return Facets
-     */
-    public function getFacets(): Facets
-    {
-        return $this->facets;
-    }
-
-    /**
      * @return string[]|array
      */
     public function getLinkedSubjects(): array
@@ -178,11 +165,12 @@ class Results
     }
 
     /**
-     * @return Criteria|null
+     * @return Facets
      */
-    public function getCriteria(): Criteria
+    public function getFacets(): Facets
     {
-        return $this->criteria;
+        return $this->facets;
     }
+
 }
 

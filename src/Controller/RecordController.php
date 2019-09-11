@@ -4,15 +4,21 @@
 namespace App\Controller;
 
 
+use App\Model\Authority;
+use App\Model\Search;
+use App\Service\NavigationService;
 use App\Service\Provider\NoticeAuthorityProvider;
 use App\Service\Provider\NoticeProvider;
+use App\Service\Provider\SearchProvider;
 use Knp\Bundle\SnappyBundle\Snappy\Response\PdfResponse;
 use App\Model\Notice;
 use Spipu\Html2Pdf\Html2Pdf;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Annotation\Route;
+use JMS\Serializer\SerializerInterface;
 
 class RecordController extends AbstractController
 {
@@ -25,29 +31,52 @@ class RecordController extends AbstractController
      */
     private $noticeAuhtority;
 
+    /** @var Serializer */
+    protected $serializer;
+    /**
+     * @var SearchProvider
+     */
+    private $searchProvider;
+
     /**
      * RecordController constructor.
      * @param NoticeProvider $noticeProvider
      * @param NoticeAuthorityProvider $noticeAuhtority
+     * @param SerializerInterface $serializer
+     * @param SearchProvider $searchProvider
      */
-    public function __construct(NoticeProvider $noticeProvider, NoticeAuthorityProvider $noticeAuhtority)
+    public function __construct(NoticeProvider $noticeProvider,
+                                NoticeAuthorityProvider $noticeAuhtority,
+                                SerializerInterface $serializer,
+                                SearchProvider $searchProvider
+    )
     {
         $this->noticeProvider = $noticeProvider;
-
         $this->noticeAuhtority = $noticeAuhtority;
+        $this->serializer = $serializer;
+        $this->searchProvider = $searchProvider;
     }
 
     /**
      * @Route("/notice-bibliographique", methods={"GET","HEAD"}, name="record_bibliographic")
      */
-    public function bibliographicRecordAction(Request $request)
+    public function bibliographicRecordAction(Request $request, SessionInterface $session)
     {
         $permalink = $request->get('permalink');
+        $searchToken = $request->get('searchToken');
         $object = $this->noticeProvider->getNotice($permalink);
 
+        $navigation = new NavigationService(
+            $this->searchProvider,
+            $permalink,
+            $this->serializer->deserialize($session->get($searchToken, ''),  Search::class, 'json'),
+            $searchToken
+        );
+
         return $this->render('record/bibliographic.html.twig', [
-            'object'     => $object,
+            'object'        => $object,
             'toolbar'       => 'document',
+            'navigation'    => $navigation,
             'printRoute'    => $this->generateUrl('record_bibliographic_pdf',['format'=> 'pdf'])
         ]);
     }
@@ -80,22 +109,39 @@ class RecordController extends AbstractController
 
     /**
      * @Route("/notice-autorite", methods={"GET","HEAD"}, name="record_authority")
+     * @param Request $request
+     * @param SessionInterface $session
+     * @return Response
+     * @throws \Twig\Error\LoaderError
+     * @throws \Twig\Error\RuntimeError
+     * @throws \Twig\Error\SyntaxError
      */
-    public function authorityRecordAction(Request $request)
+    public function authorityRecordAction(Request $request, SessionInterface $session)
     {
         $permalink = $request->get('permalink');
         $object = $this->noticeAuhtority->getAuthority($permalink);
         $id = $object->getId();
         $subject = $this->noticeAuhtority->getSubjectNotice($id);
         $authors = $this->noticeAuhtority->getAuthorsNotice($id);
+        $searchToken = $request->get('searchToken');
+
+        $navigation = new NavigationService(
+            $this->searchProvider,
+            $permalink,
+            $this->serializer->deserialize($session->get($searchToken, ''),  Search::class, 'json'),
+            $searchToken,
+            Authority::class
+        );
 
         return $this->render('record/authority.html.twig', [
-              'toolbar'       => 'document',
-              'printRoute'    => $this->generateUrl('record_authority_pdf'),
-              'subjects'      => $subject,
-              'authors'       => $authors,
-              'notice'       => $object,
-              ]);
+                  'toolbar'         => 'document',
+                  'printRoute'      => $this->generateUrl('record_authority_pdf'),
+                  'subjects'        => $subject,
+                  'authors'         => $authors,
+                  'notice'          => $object,
+                  'navigation'     => $navigation,
+              ]
+        );
     }
 
     /**

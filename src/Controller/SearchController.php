@@ -3,17 +3,20 @@
 
 namespace App\Controller;
 
+use App\Model\Search;
 use App\Model\Search\Criteria;
 use App\Model\Search\FacetFilter;
 use App\Model\SuggestionList;
 use App\Service\Provider\AdvancedSearchProvider;
 use App\Service\Provider\SearchProvider;
 use App\WordsList;
+use JMS\Serializer\SerializerInterface;
 use Knp\Bundle\SnappyBundle\Snappy\Response\PdfResponse;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
@@ -32,43 +35,57 @@ class SearchController extends AbstractController
      * @var AdvancedSearchProvider
      */
     private $advancedSearchProvider;
+    /**
+     * @var SerializerInterface
+     */
+    private $serializer;
 
     /**
      * SearchController constructor.
      * @param SearchProvider $searchProvider
      * @param AdvancedSearchProvider $advancedSearchProvider
+     * @param SerializerInterface $serializer
      */
-    public function __construct(SearchProvider $searchProvider, AdvancedSearchProvider $advancedSearchProvider)
+    public function __construct(SearchProvider $searchProvider, AdvancedSearchProvider $advancedSearchProvider, SerializerInterface $serializer )
     {
         $this->searchProvider = $searchProvider;
         $this->advancedSearchProvider = $advancedSearchProvider;
+        $this->serializer = $serializer;
     }
 
     /**
      * @Route("/recherche", methods={"GET", "POST"}, name="search")
      * @param Request $request
+     * @param SessionInterface $session
      * @return \Symfony\Component\HttpFoundation\Response
      * @throws \Twig\Error\LoaderError
      * @throws \Twig\Error\RuntimeError
      * @throws \Twig\Error\SyntaxError
      */
-    public function indexAction(Request $request)
+    public function indexAction(Request $request, SessionInterface $session)
     {
-
-        if ($request->get('dataCriteria')){
-            $criteria = $request->get('dataCriteria');
-            $criteria = \json_decode($criteria, true);
-            $criteria = Criteria::fromArray($criteria);
+        if ($request->get('searchToken')){
+            $search = $this
+                ->serializer
+                ->deserialize(
+                    $session->get($request->get('searchToken')),
+                    Search::class,
+                    'json'
+                )
+            ;
         }else{
-            $criteria = new Criteria($request);
+            $search = new Search(new Criteria($request), new FacetFilter($request));
         }
-        $criteria->setPage($request->get('page', 1));
-        $criteria->setSort($request->get('sort', Criteria::SORT_DEFAULT));
 
-        $facets     = new FacetFilter($request);
-        $objSearch  = $this->searchProvider->getListBySearch($criteria, $facets);
+        $search->getCriteria()->setSort($request->get('sort', Criteria::SORT_DEFAULT));
+        $search->getCriteria()->setRows($request->get('rows', Criteria::ROWS_DEFAULT));
+        $search->getCriteria()->setPage($request->get('page', 1));
+
+        $objSearch  = $this->searchProvider->getListBySearch($search->getCriteria(), $search->getFacets());
         $title      = 'page.search.title';
         $title      .= $request->get(WordsList::ADVANCED_SEARCH_LABEL) === WordsList::CLICKED ?'advanced' : 'simple';
+        $hash  = \spl_object_hash($search);
+        $session->set($hash, $this->serializer->serialize($search, 'json'));
 
         return $this->render(
             'search/index.html.twig',
@@ -77,6 +94,7 @@ class SearchController extends AbstractController
                 'toolbar' => 'search',
                 'objSearch' => $objSearch,
                 'printRoute' => $this->generateUrl('search_pdf', ['format' => 'pdf']),
+                'searchToken' => $hash
             ]
         );
     }
