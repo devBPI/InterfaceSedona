@@ -1,4 +1,4 @@
-FROM registry.sedona.fr/images/php:7.3 as builder-php
+FROM registry.sedona.fr/images/php:7.3 as builder
 LABEL maintainer="<php@sedona.fr> Sedona Solutions - PHP"
 
 COPY . /var/www/html
@@ -11,22 +11,13 @@ RUN set -ex ; \
     make package_info.json c-install cc assets ;\
     make dotenv-clear
 
-# compilation des assets
-FROM node:10-alpine as builder-alpine
-
-COPY . /var/www/html
-WORKDIR /var/www/html
-
-RUN npm install
-RUN yarn encore production
-
 # création de l'image
 FROM registry.sedona.fr/images/php:7-httpd-fpm
 LABEL maintainer="<php@sedona.fr> Sedona Solutions - PHP"
 
 ADD .deploy/rancher/app/php-fpm.conf /usr/local/apache2/conf.d/php-fpm.conf
-COPY --from=builder-php /var/www/html /var/www/html
-COPY --from=builder-alpine /var/www/html /var/www/html
+COPY --from=builder /var/www/html /var/www/html
+
 RUN set -xe ;\
     apt update && apt install -y --no-install-recommends xvfb wkhtmltopdf ;\
     rm -rf /var/lib/apt/lists/* ; \
