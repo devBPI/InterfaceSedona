@@ -9,6 +9,8 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
+ * @Route("/historique", name="user_historic")
+ *
  * Class UserHistoryController
  * @package App\Controller
  */
@@ -31,7 +33,7 @@ class UserHistoryController extends AbstractController
     }
 
     /**
-     * @Route("/historique", methods={"GET","POST"}, name="user_historic")
+     * @Route("/", methods={"GET","POST"}, name="_index")
      * @param Request $request
      * @return \Symfony\Component\HttpFoundation\Response
      * @throws \Doctrine\ORM\ORMException

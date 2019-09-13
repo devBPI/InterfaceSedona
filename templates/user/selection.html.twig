@@ -5,13 +5,25 @@
         <span class="icone-square"><img src="{{ asset('images/icones/icone-coeur.svg') }}" alt="" class="icone-coeur"/></span><span>{{ 'page.personal-data.selection.title'|trans }}</span>
     </h2>
 
-    <div class="row justify-content-md-between banner-tools">
-        {% include "user/blocs/banner-tools.html.twig" with {'type':'selection'} %}
-    </div>
 
-    <div>
-        {% include "user/blocs/list-user.html.twig" %}
-    </div>
+    <form action="{{ path('user_selection_index') }}" method="post">
+
+        <div class="row justify-content-md-between banner-tools">
+            {% include "user/blocs/banner-tools.html.twig" with {'type': constant('App\\Controller\\UserSelectionController::INPUT_NAME')} %}
+        </div>
+
+        <div>
+            {% include "user/blocs/list-user.html.twig" %}
+        </div>
+
+
+        <!-- Début - Modal suppression liste -->
+        {% include "user/modal/list_remove.html.twig" %}
+        <!-- Fin - Modal suppression liste -->
+
+    </form>
+
+
 
 
     <!-- Début - Modal création d'une nouvelle liste -->
@@ -22,13 +34,6 @@
     {% include "user/modal/list_edit.html.twig" %}
     <!-- Fin - Modal édition liste -->
 
-    <!-- Début - Modal suppression liste -->
-    {% include "user/modal/list_remove.html.twig" %}
-    <!-- Fin - Modal suppression liste -->
-
-    <!-- Début - Modal commentaires view -->
-    {% include "user/modal/comments-edit.html.twig" %}
-    <!-- Fin - Modal commentaires view -->
 
     <!-- Début - Modal commentaires edit -->
     {% include "user/modal/comments-view.html.twig" %}

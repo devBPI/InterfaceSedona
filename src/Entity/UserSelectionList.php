@@ -8,12 +8,12 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Class UserSelectionCategory
+ * Class UserSelectionList
  * @package App\Entity
  *
- * @ORM\Entity()
+ * @ORM\Entity(repositoryClass="App\Repository\UserSelectionListRepository")
  */
-class UserSelectionCategory
+class UserSelectionList
 {
     /**
      * @ORM\Id
@@ -36,18 +36,18 @@ class UserSelectionCategory
 
     /**
      * @ORM\Column(type="integer", nullable=false)
-     * @var string
+     * @var int
      */
     private $position = 0;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\UserSelectionDocument", mappedBy="Category", cascade={"all"})
+     * @ORM\OneToMany(targetEntity="App\Entity\UserSelectionDocument", mappedBy="List", cascade={"all"})
      * @var ArrayCollection
      */
     private $documents;
 
     /**
-     * UserSelectionCategory constructor.
+     * UserSelectionList constructor.
      * @param LdapUser $user
      * @param string $title
      */
@@ -84,7 +84,7 @@ class UserSelectionCategory
 
     /**
      * @param string $title
-     * @return UserSelectionCategory
+     * @return UserSelectionList
      */
     public function setTitle(string $title): self
     {
@@ -98,7 +98,26 @@ class UserSelectionCategory
      */
     public function addDocument(UserSelectionDocument $document): void
     {
-        $document->setCategory($this);
+        $document->setList($this);
         $this->documents->add($document);
+    }
+
+    /**
+     * @param int $position
+     * @return UserSelectionList
+     */
+    public function setPosition(int $position): self
+    {
+        $this->position = $position;
+
+        return $this;
+    }
+
+    /**
+     * @return int
+     */
+    public function getPosition(): int
+    {
+        return $this->position;
     }
 }

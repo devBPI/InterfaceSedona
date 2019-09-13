@@ -19,7 +19,7 @@
 
 <div class="col-12 col-md-auto">
     <ul class="banner-tools__list mb-0">
-        {% if type == 'selection' %}
+        {% if type == constant('App\\Controller\\UserSelectionController::INPUT_NAME') %}
             <li class="banner-tools__item banner-tools__item-add">
                 <button type="button" class="btn" data-target="#modal-list-add" data-toggle="modal">
                     {{ 'bloc.banner-tools.list-add'|trans }} <span class="sr-only">{{ 'bloc.banner-tools.list-name'|trans }}</span>

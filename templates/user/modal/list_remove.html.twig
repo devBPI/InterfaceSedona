@@ -4,7 +4,7 @@
 		<div class="modal-content">
 			<div class="modal-header">
 				<h1 class="n1 modal-header__title" id="modal-list-remove-title">
-                    {{ 'modal.list-remove.title'|trans({'%name%': '*Insert nom de la liste*'}) }}</h1>
+                    {{ 'modal.list-remove.title'|trans }}</h1>
 				<button class="close" type="button" aria-label="{{ 'global.modal-close'|trans }}" data-dismiss="modal">
 					<span aria-hidden="true" class="sr-only">X</span>
 					<img src="{{ asset('images/icones/icone-croix-blanc.svg') }}" alt="" />
@@ -12,7 +12,7 @@
 			</div>
 
 			<div class="modal-body">
-				<p>{{ 'modal.list-remove.message-confirmation'|trans({'%name%': '*Insert nom de la liste*'}) }}</p>
+				<p>{{ 'modal.list-remove.message-confirmation'|trans }}</p>
 			</div>
 
 			<div class="modal-footer">
@@ -21,7 +21,7 @@
                 </button>
 				<button type="submit" name="action" value="delete" class="btn btn-lg btn-primary">
                     {{ 'modal.list-remove.submit'|trans }}
-                    <span class="sr-only"> {{ 'modal.list-remove.submit-sr-only'|trans({'%name%': '*Insert nom de la liste*'}) }}</span>
+                    <span class="sr-only"> {{ 'modal.list-remove.submit-sr-only'|trans }}</span>
                 </button>
 			</div>
 		</div>

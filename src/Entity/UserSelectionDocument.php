@@ -20,9 +20,9 @@ class UserSelectionDocument
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\UserSelectionCategory", inversedBy="documents")
+     * @ORM\ManyToOne(targetEntity="UserSelectionList", inversedBy="documents")
      */
-    private $Category;
+    private $List;
 
     /**
      * @ORM\Column(type="string", length=250, nullable=false)
@@ -49,10 +49,16 @@ class UserSelectionDocument
     private $creation_date;
 
     /**
-     * @ORM\Column(type="integer", nullable=false)
+     * @ORM\Column(type="string", nullable=false)
      * @var string
      */
-    private $position = 0;
+    private $permalink;
+
+    /**
+     * @ORM\Column(type="string", nullable=false)
+     * @var string
+     */
+    private $url;
 
     /**
      * @ORM\Column(type="text", nullable=true)
@@ -69,6 +75,8 @@ class UserSelectionDocument
         $this->title = $data['name'];
         $this->author = $data['author'];
         $this->document_type = $data['type'];
+        $this->permalink = $data['id'];
+        $this->url = $data['url'];
         $this->creation_date = new \DateTime();
     }
 
@@ -105,6 +113,14 @@ class UserSelectionDocument
     }
 
     /**
+     * @return string
+     */
+    public function getUrl(): string
+    {
+        return $this->url;
+    }
+
+    /**
      * @return \DateTime
      */
     public function getCreationDate(): \DateTime
@@ -115,18 +131,18 @@ class UserSelectionDocument
     /**
      * @return string
      */
-    public function getComment(): string
+    public function getComment(): ?string
     {
         return $this->comment;
     }
 
     /**
-     * @param mixed $Category
+     * @param mixed $List
      * @return self
      */
-    public function setCategory($Category): self
+    public function setList($List): self
     {
-        $this->Category = $Category;
+        $this->List = $List;
 
         return $this;
     }

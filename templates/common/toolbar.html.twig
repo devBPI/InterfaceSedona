@@ -3,7 +3,7 @@
 	<ul class="toolbar__list">
 		{#{% if toolbar is defined and toolbar == 'document' %}#}
 			<li class="toolbar__item">
-				<button data-remote="{{ path('user_list_add') }}" data-target="#modal-list-add" data-toggle="modal">
+				<button data-target="#modal-list-add" data-toggle="modal">
 					<img src="{{ asset('images/icones/icone-coeur.svg') }}" alt="" class="icone-coeur"/>
 					<span><span class="sr-only">{{ 'bloc.toolbar.add_to'|trans }} </span>{{ 'bloc.toolbar.my_selection'|trans }}</span>
 				</button>

@@ -1,6 +1,6 @@
-<form data-toggle="form-remote" action="{{ path('user_list_edit', {'category': category.id}) }}" method="post" class="modal-form">
+<form data-toggle="form-remote" action="{{ path('user_selection_list_edit', {'list': list.id}) }}" method="post" class="modal-form">
 	<div class="modal-header">
-		<h1 class="n1 modal-header__title" id="modal-list-edit-title">{{ 'modal.list-edit.title'|trans({'%name%': category.title}) }}</h1>
+		<h1 class="n1 modal-header__title" id="modal-list-edit-title">{{ 'modal.list-edit.title'|trans({'%name%': list.title}) }}</h1>
 		<button class="close" type="button" aria-label="{{ 'global.modal-close'|trans }}" data-dismiss="modal">
 			<span aria-hidden="true" class="sr-only">X</span>
 			<img src="{{ asset('images/icones/icone-croix-blanc.svg') }}" alt="" />
@@ -14,8 +14,8 @@
 			<label for="edit-title" class="col-12 col-sm-4">{{ 'modal.list-edit.field-title'|trans }} <span>*</span></label>
 			<div class="col-12 col-sm-8">
 				<input type="text" class="form-control {% if error is defined %}is-invalid{% endif %}" id="edit-title"
-					   name="{{ constant('App\\Controller\\UserSelectionController::INPUT_TITLE_NAME') }}"
-					   value="{{ category.title }}">
+					   name="{{ constant('App\\Controller\\UserSelectionController::INPUT_LIST_TITLE') }}"
+					   value="{{ list.title }}">
                 {% if error is defined %}
 					<span class="invalid-feedback d-block">{{ error|trans }}</span>
                 {% endif %}
@@ -31,7 +31,7 @@
 		<button type="button" data-dismiss="modal" class="btn btn-lg btn-secondary">{{ 'global.modal-cancel'|trans }}</button>
 		<button type="submit" class="btn btn-lg btn-primary">
 			{{ 'modal.list-edit.submit'|trans }}
-			<span class="sr-only"> {{ 'modal.list-edit.submit-sr-only'|trans({'%name%': category.title}) }}</span>
+			<span class="sr-only"> {{ 'modal.list-edit.submit-sr-only'|trans({'%name%': list.title}) }}</span>
 		</button>
 	</div>
 </form>

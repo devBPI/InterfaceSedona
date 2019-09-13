@@ -131,7 +131,7 @@ $(document)
 // Bouton "Voir plus" / "Voir moins" -----------------------------------------------------------------------------------
 	.on('click', '.btn-see-more', function() {
 		var $this = $(this);
-		if( $this.hasClass('btn-see-more--more') ) {
+		if ( $this.hasClass('btn-see-more--more') ) {
 			$this
 				.text('Voir moins')
 				.removeClass('btn-see-more--more')
@@ -147,7 +147,7 @@ $(document)
 		var $this = $(this),
 			$items = $this.parent().nextAll();
 
-		if( $this.hasClass('js-btn--more') ) {
+		if ( $this.hasClass('js-btn--more') ) {
 			$items.removeClass('d-none');
 			$this
 				.text('Voir moins')
@@ -180,24 +180,29 @@ $(document)
 			$form.attr('action'),
 			data
 		).done(function (data) {
-			$form.replaceWith(data);
-			$parentModal.trigger('loaded.bs.modal');
-		}).fail(function () {
-			$form.replaceWith(data);
+		    if (data === 'reload') {
+                window.location.reload();
+            } else {
+                $form.replaceWith(data);
+                $parentModal.trigger('loaded.bs.modal');
+            }
+		}).fail(function (data) {
+            $form.replaceWith(data);
 		});
 		return false;
 	})
     .on('click', '[data-toggle=modal]', function(e) {
         var $this = $(this),
             $modal = $($this.data('target')),
-            reload = $this.attr('data-reload') !== undefined;
+            reload = $this.attr('data-reload') !== undefined,
+            overrideContent = $this.attr('data-content');
 
         if ($this.is('a, :submit') ) {
             e.preventDefault();
         }
 
         var remote = null;
-        if($this.is('a[href]') !== undefined) {
+        if ($this.is('a[href]')) {
             remote = $this.attr('href');
         } else if($this.attr('data-remote') !== undefined && $this.attr('data-remote') !== '') {
             remote = $this.attr('data-remote');
@@ -215,6 +220,10 @@ $(document)
             }
 
             $modal.find(".modal-content").load(remote);
+        }
+
+        if (overrideContent !== undefined) {
+            $modal.find(".modal-body").html(overrideContent);
         }
 
         return false;

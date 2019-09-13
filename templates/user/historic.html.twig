@@ -7,7 +7,7 @@
 
     <p class="sr-only">{{ 'page.personal-data.historic.notice'|trans }}</p>
 
-    <form action="{{ path('user_historic') }}" method="post">
+    <form action="{{ path('user_historic_index') }}" method="post">
 
         <div class="row justify-content-md-between banner-tools">
             {% include "user/blocs/banner-tools.html.twig" with {'type': constant('App\\Controller\\UserHistoryController::INPUT_NAME')} %}

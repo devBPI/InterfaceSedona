@@ -3,8 +3,8 @@
 
 namespace App\Controller;
 
-use App\Entity\UserSelectionCategory;
-use App\Form\SelectionCategoryType;
+use App\Entity\UserSelectionList;
+use App\Entity\UserSelectionDocument;
 use App\Service\SelectionListService;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -13,14 +13,19 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
+ * @route("/selection", name="user_selection")
+ *
  * Class UserSelectionController
  * @package App\Controller
  */
 class UserSelectionController extends AbstractController
 {
     const INPUT_NAME = 'selection';
-    const INPUT_TITLE_NAME = 'selection_category_title';
-    const INPUT_CATEGORY = 'selection_category';
+    const INPUT_LIST = 'list';
+    const CHECK_NEW_LIST = 'new_list';
+    const INPUT_LIST_TITLE = 'selection_list_title';
+    const INPUT_DOCUMENT = 'document';
+    const INPUT_DOC_COMMENT = 'selection_document_comment';
 
     /**
      * @var SelectionListService
@@ -37,20 +42,30 @@ class UserSelectionController extends AbstractController
     }
 
     /**
-     * @Route("/selection", methods={"GET"}, name="user_selection")
+     * @Route("/", methods={"GET","POST"}, name="_index")
+     * @param Request $request
      * @return \Symfony\Component\HttpFoundation\Response
+     * @throws \Doctrine\ORM\ORMException
+     * @throws \Doctrine\ORM\OptimisticLockException
      */
-    public function selectionAction(): Response
+    public function selectionAction(Request $request): Response
     {
+        if (count($request->request->all()) > 0) {
+            $listObj = $request->get(self::INPUT_NAME, []);
+            $action = $request->get('action');
+
+            $this->selectionService->applyAction($action, $listObj);
+        }
+
         return $this->render( 'user/selection.html.twig',[
-            'selectionCategories' => $this->selectionService->getCategories(),
+            'lists' => $this->selectionService->getLists(),
         ]);
     }
 
 
     /**
      * @Security("has_role('ROLE_USER')")
-     * @Route("/list/creer", methods={"POST"}, name="user_list_create")
+     * @Route("/list/creation", methods={"POST"}, name="_list_create")
      * @param Request $request
      * @return \Symfony\Component\HttpFoundation\Response
      * @throws \Doctrine\ORM\ORMException
@@ -59,7 +74,7 @@ class UserSelectionController extends AbstractController
     public function createListAction(Request $request): Response
     {
         $param = [];
-        $title = $request->get(self::INPUT_TITLE_NAME, null);
+        $title = $request->get(self::INPUT_LIST_TITLE, null);
         if ($title !== null) {
             if ($title !== '') {
                 $this->selectionService->createCategory($title);
@@ -78,7 +93,7 @@ class UserSelectionController extends AbstractController
     }
 
     /**
-     * @Route("/list/ajout", methods={"GET","POST"}, name="user_list_add")
+     * @Route("/list/ajout-documents", methods={"GET","POST"}, name="_list_add")
      * @param Request $request
      * @return Response
      */
@@ -87,7 +102,7 @@ class UserSelectionController extends AbstractController
         $params = [];
         if ($request->request->count() > 0) {
             try {
-                $this->selectionService->addDocumentToCategories($request);
+                $this->selectionService->addDocumentToLists($request);
 
                 return $this->render('user/modal/add-list-success.html.twig');
             } catch (\Exception $e) {
@@ -98,7 +113,7 @@ class UserSelectionController extends AbstractController
         }
 
         $params += [
-            'categories' => $this->selectionService->getCategories(),
+            'lists' => $this->selectionService->getLists(),
             'object' => $request->get('current', null),
         ];
 
@@ -106,20 +121,20 @@ class UserSelectionController extends AbstractController
     }
 
     /**
-     * @Route("/list/modifier/{category}", methods={"GET","POST"}, name="user_list_edit")
-     * @param UserSelectionCategory $category
+     * @Route("/list/{list}/modification", methods={"GET","POST"}, name="_list_edit")
+     * @param UserSelectionList $list
      * @param Request $request
      * @return Response
      * @throws \Doctrine\ORM\ORMException
      * @throws \Doctrine\ORM\OptimisticLockException
      */
-    public function editListAction(UserSelectionCategory $category, Request $request): Response
+    public function editListAction(UserSelectionList $list, Request $request): Response
     {
-        $param = ['category' => $category];
-        $title = $request->get(self::INPUT_TITLE_NAME, null);
+        $param = ['list' => $list];
+        $title = $request->get(self::INPUT_LIST_TITLE, null);
         if ($title !== null) {
             if ($title !== '') {
-                $this->selectionService->updateCategory($category, $title);
+                $this->selectionService->updateCategory($list, $title);
 
                 return $this->render(
                     'user/modal/creation-list-success.html.twig',
@@ -138,10 +153,24 @@ class UserSelectionController extends AbstractController
     }
 
     /**
-     * @Route("/list/supprimer", methods={"GET","HEAD"}, name="user_list_remove")
+     * @Route("/list/document/{document}/modification/commentaire", methods={"GET","POST"}, name="_list_document_comment_edit")
+     * @param UserSelectionDocument $document
+     * @param Request $request
+     * @return Response
+     * @throws \Doctrine\ORM\ORMException
+     * @throws \Doctrine\ORM\OptimisticLockException
      */
-    public function removeListAction(Request $request): Response
+    public function editDocumentCommentAction(UserSelectionDocument $document, Request $request): Response
     {
-        return $this->render('user/modal/list_remove.html.twig', []);
+        $comment = $request->get(self::INPUT_DOC_COMMENT, null);
+        if ($comment !== null) {
+
+            $this->selectionService->updateDocument($document, $comment);
+            return new Response('reload');
+        }
+
+        return $this->render('user/modal/comments-edit.html.twig', [
+            'document' => $document
+        ]);
     }
 }

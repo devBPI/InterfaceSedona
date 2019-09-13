@@ -126,11 +126,11 @@ modal:
     field-title: Titre
     submit: Valider
     submit-sr-only: la modification de la liste
-  list-remove:      #Modal 04 supperions d'une liste
-    title: Liste "%name%"
-    message-confirmation: Voulez-vous vraiment supprimer cette liste ?
+  list-remove:      #Modal 04 supperions de listes
+    title: Suppression des listes et des documents
+    message-confirmation: Voulez-vous vraiment supprimer les listes et documents sélectionnés ?
     submit: Confirmer
-    submit-sr-only:  la suppression de la liste "%name%"
+    submit-sr-only:  la suppression des listes et documents sélectionnés
   export:           #Modal 05 export
     title: Courriel
     subtitle: Paramétrer la pièce jointe
