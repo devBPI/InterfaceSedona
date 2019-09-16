@@ -63,6 +63,7 @@
 				background-color: $grey-disabled;
 				color: $white;
 				box-shadow: none;
+				outline: $outline;
 
 				@include media-breakpoint-up(md) {
 					border: 0;

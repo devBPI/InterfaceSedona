@@ -4,38 +4,31 @@
 		<meta charset="UTF-8">
 		<title>{% block title %}Titre{% endblock %} {{ 'global.site-title'|trans }}</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="stylesheet" href="{{ absolute_url(asset('build/print-css.css')) }}">
 	</head>
 	<body>
 		
-		<header role="banner" class="header">
+		<header class="header">
 			<div class="container">
-
-				<div class="header__logo d-flex flex-wrap justify-content-between align-items-center">
-					<a href="{{ path('home') }}" title="{{ 'header.logo_title'|trans }}" class="header__logo-link">
-						<img src="{{ absolute_url(asset('images/bpi-logo.png')) }}" alt="{{ 'header.logo_alt'|trans }}" />
-					</a>
+				<div class="header__logo">
+					<img src="{{ absolute_url(asset('images/bpi-logo.png')) }}" alt="{{ 'header.logo_alt'|trans }}" />
 				</div>
-
 			</div>
 		</header>	
 
-		<main role="main" id="contenu-site">
+		<main class="print">
 			<div class="container">
-
+				<h1 class="n0">{{ block('title') }}</h1>
 				{% block body %}{% endblock %}
-				
 			</div>
 		</main>
 
-		<footer role="contentinfo" class="footer">
+{# 		<footer role="contentinfo" class="footer">
 			<div class="container">
-
 				<div class="footer__credit">
 					<p>© Copyright XXX</p>
 				</div>
-
 			</div>
-
-		</footer>
+		</footer> #}
 	</body>
 </html>

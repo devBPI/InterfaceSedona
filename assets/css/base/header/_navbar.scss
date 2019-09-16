@@ -73,6 +73,7 @@
 			}
 
 			&.active {
+				border-top-color: $grey;
 
 				.nav-link {
 					position: relative;

@@ -13,6 +13,8 @@ const $ = require('jquery');
 
 require('bootstrap');
 require('slick-carousel');
+require('icheck');
+var Slider = require('bootstrap-slider');
 
 const routes = require('../../public/js/fos_js_routes.json');
 
@@ -24,6 +26,22 @@ $('[data-toggle="tooltip"]').tooltip({
 	trigger: 'click',
 	template: '<div class="tooltip" role="tooltip"><div class="tooltip-inner"></div></div>'
 });
+
+$('input').iCheck({
+	checkboxClass: 'check check--checkbox',
+	radioClass: 'check check--radio',
+	focusClass: 'focus'
+});
+
+$('#modal-refine-search').on('show.bs.modal', function (e) {
+	var sliderDate = new Slider('#rfn-date-slider', {
+		min: 1900,
+		max: 2010,
+		step: 5,
+		value: [1945,1980],
+		handle: 'square'
+	});
+})
 
 // Configuration Carousel Primary (Accueil + Parcours) ----------------------------------------------------------------
 $('.js-carousel-primary')
@@ -137,8 +155,13 @@ $('.js-list-information ul.list-information__sub-list').each( function() {
 		$children_length = $children.length;
 
 	if ( $children_length > 4 ) {
-		$children.eq(4).nextAll().addClass('d-none');
-		$children.eq(4).after('<li><button type="button" class="btn btn-small-link js-btn js-btn--more">Voir tout</button></li>');
+		$children
+			.eq(4)
+			.nextAll()
+			.addClass('d-none');
+		$children
+			.eq(4)
+			.after('<li><button type="button" class="btn btn-small-link js-btn js-btn--more">Voir tout<span class="sr-only"> les résultats</span></button></li>');
 	}
 });
 
@@ -159,6 +182,23 @@ $('.js-btn').on('click', function() {
 			.removeClass('js-btn--less')
 			.addClass('js-btn--more');
 	}
+});
+
+// Affichage champs date - Modal recherche avancée ---------------------------------------------------------
+$('.search-date__group').change(function() {
+	var $input_period = $('.search-date__date--second');
+
+	if ( $('.search-date__radio--period .check--radio').hasClass('checked') ) {
+		$input_period.removeClass('d-none');
+	} else {
+		$input_period.addClass('d-none');
+	}
+});
+
+// Gestion navigation focus - Menu principal ---------------------------------------------------------
+$('.dropdown-link .nav-link').on('focus', function() {
+	$('.dropdown-menu').removeClass('show');
+	$(this).siblings('.dropdown-menu').addClass('show');
 });
 
 // -- Formulaire Remoter -----------------------------------------------------------------------------------------

@@ -1,6 +1,58 @@
 {% extends 'base.pdf.twig' %}
 
-{% block body %}
-	<h1>notice-autorite</h1>
+{% block title %}Vos références d'autorités{% endblock %}
 
+{% block body %}
+	{% for i in 1..3 %}
+		<div class="print__item">
+			<div class="row">
+				<div class="col-12">
+					<h2 class="n1">{{ i }}) Georges VI, roi de Grande-Bretagne (1895-1952)</h2>
+				</div>
+				{% if includeImage %}
+					<div class="col-3">
+						<img src="{{ absolute_url(asset('images/types-autorite/autorite-personne.svg')) }}" alt="" class="print__image" />
+					</div>
+				{% endif %}
+				<div class="col">
+					<ul class="print__list">
+						<li>XXX(Forme retenue, sans libellé);</li>
+						<li>Type d'autorité : XXX;</li>
+						<li>XXX(Indice et label de l'indice, sans libellé);</li>
+						<li>Type d'autorité : XXX;</li>
+						<li>Autre(s) nom(s) : XXX;</li>
+
+						{% if not isPrintLong %}
+							<li>Date(s) : XXX;</li>
+						{% endif %}
+
+						{% if isPrintLong %}
+							<li>XXX(Formes parallèles, sans libellé);</li>
+						{% endif %}
+
+						<li>Pays : XXX;</li>
+						<li>Langue(s) : XXX;</li>
+
+						{% if isPrintLong %}
+							<li>Genre musical : XXX;</li>
+							<li>Date(s) : XXX; Naissance : XXX;</li>
+							<li>Mort : XXX;</li>
+						{% endif %}
+
+						<li>Activité(s) principale(s) : XXX;</li>
+
+						{% if isPrintLong %}
+							<li>Notes : XXX;</li>
+							<li>Autre(s) nom(s) : XXX; Employé pour : XXX;</li>
+							<li>Nom(s) associé(s) / Nom(s) lié(s) : XXX;</li>
+							<li>Notes sur le classement : XXX;</li>
+							<li>ISNI : XXX;</li>
+							<li>Origine de la notice : XXX;</li>
+						{% endif %}
+						<li><a href="#">Lien de la notice</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	{% endfor %}
 {% endblock %}
