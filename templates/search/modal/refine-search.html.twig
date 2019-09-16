@@ -38,12 +38,22 @@
 							<div class="collapse search-facette__body" id="rfn-search-{{facet.name}}" role="group" aria-label="{{ facet.label }}">
 								<div class="search-facette__content">
 									<div class="search-facette__item search-facette__item--button">
-										<button class="btn">{{ 'modal.refine-search.filter-delete'|trans }}<span class="sr-only"> : {{ facet.label }}</span></button>
+										<button class="btn js-delete-filter" data-name="{{ facet.name }}" type="button">
+											{{ 'modal.refine-search.filter-delete'|trans }}
+											<span class="sr-only"> : {{ facet.label }}</span>
+										</button>
 									</div>
 									{% for index, facetChild in facet.values %}
 										<div class="form-check search-facette__item">
-											<input type="checkbox" class="form-check-input" id="rfn-{{ facet.name }}-{{ index }}" name="facets[{{ facet.name }}][]" value="{{ facetChild.name }}" {% if app.request.query.get('facets') is defined and check_value_exist(facet.name,  facetChild.name, app.request.query.get('facets')) %}checked{% endif %} >
-											<label class="form-check-label" for="rfn-{{ facet.name }}-{{ index }}">{{ facetChild.name}}</label>
+											<input
+													type="checkbox"
+													class="form-check-input input-{{ facet.name }}"
+													id="rfn-{{ facet.name }}-{{ index }}"
+													name="facets[{{ facet.name }}][]"
+													value="{{ facetChild.name }}"
+													{% if app.request.query.get('facets') is defined and check_value_exist(facet.name,  facetChild.name, app.request.query.get('facets')) %}checked{% endif %}
+											>
+											<label class="form-check-label" for="rfn-{{ facet.name }}-{{ index }}">{{ facetChild.name }}</label>
 										</div>
 									{% endfor %}
 								</div>

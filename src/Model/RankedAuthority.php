@@ -62,7 +62,7 @@ class RankedAuthority
      */
     public function getPermalink():string
     {
-        return $this->authority->getPermalink();
+        return $this->getAuthor()->getPermalink();
     }
 
     /**
@@ -71,5 +71,21 @@ class RankedAuthority
     public function getRow()
     {
         return $this->getRank();
+    }
+
+    /**
+     * @return IndiceCdu
+     */
+    public function getIndiceCdu(): IndiceCdu
+    {
+        return $this->indiceCdu;
+    }
+
+    /**
+     * @return null|string
+     */
+    public function getClassName():?string
+    {
+        return get_class($this->getAuthor());
     }
 }

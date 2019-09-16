@@ -19,12 +19,8 @@
             <ul class="list-information__sub-list" lang="fr">
                 {% for element in notice.contributeurs %}
                     <li class="list-information__sub-item">
-                        {#<a href="{{ link }}" >
-                                    {{ label }}
-                                </a>
-                        #}
                         <a href="{{ path('search', {'simple_search[text]':element}) }}" >
-                            {{ element }},
+                            {{ element }}
                         </a>
                     </li>
                 {% endfor %}
@@ -66,10 +62,6 @@
             <ul class="list-information__sub-list" lang="fr">
                 {% for element in notice.publishedDates %}
                     <li class="list-information__sub-item">
-                        {#<a href="{{ link }}" >
-                                    {{ label }}
-                                </a>
-                        #}
                             {{ element }}
                     </li>
                 {% endfor %}
@@ -96,7 +88,6 @@
         <span class="list-information__label">{{ ("Date d'édition papier")|trans }}</span>
         <ul class="list-information__sub-list" lang="fr">
                 <li class="list-information__sub-item">
-
                         {{ notice.periodicity }}
                 </li>
         </ul>
@@ -108,7 +99,6 @@
         <ul class="list-information__sub-list" lang="fr">
             {% for element in notice.uniformTitle %}
                 <li class="list-information__sub-item">
-
                         {{ element }}
                 </li>
             {% endfor %}
@@ -156,20 +146,18 @@
         </ul>
     </li>
 {% endif %}
-
-{% if notice.resume is not empty %}
+{#% if notice.resume is not empty %}
     <li class="list-information__item">
         <span class="list-information__label">{{ ("Résumé ")|trans }}</span>
         <ul class="list-information__sub-list" lang="fr">
             {% for element in notice.resume %}
                 <li class="list-information__sub-item">
-
                         {{ element }}
                 </li>
             {% endfor %}
         </ul>
     </li>
-{% endif %}
+{% endif %#}
 {% if notice.languages is not empty %}
     <li class="list-information__item">
         <span class="list-information__label">{{ ("Langue(s) ")|trans }}</span>
@@ -273,7 +261,7 @@
                             </a>
                         {{ element }}
                 </li>
-                {# @TODO gérer la deuxième valeurs conservation deux définitions différentes voir le fichier XML gabarit V2 onglet notice ligne 51  #}
+                {# @TODO gérer la deuxième valeurs conservation car il y a deux définitions différentes voir le fichier XML gabarit V2 onglet notice ligne 51  #}
                 {% if notice.conservations %}
                     {% for element in conservations %}
                         <li class="list-information__sub-item">
@@ -301,8 +289,6 @@
         </ul>
     </li>
 {% endif %}
-
-
 {% if notice.eras is not empty %}
     <li class="list-information__item">
         <span class="list-information__label">{{ ("Epoque")|trans }}</span>
@@ -317,7 +303,6 @@
         </ul>
     </li>
 {% endif %}
-
 {% if notice.locations is not empty %}
     <li class="list-information__item">
         <span class="list-information__label">{{ ("Lieu")|trans }}</span>
@@ -354,10 +339,7 @@
         <ul class="list-information__sub-list" lang="fr">
             {% for element in notice.topics %}
                 <li class="list-information__sub-item">
-
                         {{ element }}
-
-                    {#TODO bouton afficher 5 et plus si #}
                 </li>
             {% endfor %}
         </ul>
@@ -390,21 +372,18 @@
     </li>
 {% endif %}
 {#comnumber#}
-
 {% if notice.commercialNumbers is not empty %}
     <li class="list-information__item">
         <span class="list-information__label">{{ ("Numéros commerciaux")|trans }}</span>
         <ul class="list-information__sub-list" lang="fr">
             {% for element in notice.commercialNumbers %}
                 <li class="list-information__sub-item">
-
                     {{ element }}
                 </li>
             {% endfor %}
         </ul>
     </li>
 {% endif %}
-
 {% if notice.indices %}
     <li class="list-information__item">
 
@@ -412,30 +391,24 @@
         <ul class="list-information__sub-list" lang="fr">
             {% for element in notice.indices %}
                 <li class="list-information__sub-item">
-
                         {{ element.name }}
                 </li>
             {% endfor %}
         </ul>
     </li>
 {% endif %}
-
-
 {% if notice.publics %}
     <li class="list-information__item">
-
-    <span class="list-information__label">{{ ("Public")|trans }}</span>
+        <span class="list-information__label">{{ ("Public")|trans }}</span>
         <ul class="list-information__sub-list" lang="fr">
             {% for element in notice.publics %}
                 <li class="list-information__sub-item">
-
-                        {{ element.name }},
+                        {{ element }}
                 </li>
             {% endfor %}
         </ul>
     </li>
 {% endif %}
-
 {#droit#}
 {% if notice.licences or notice.rights or notice.copyright %}
     <li class="list-information__item">
@@ -443,20 +416,17 @@
         <ul class="list-information__sub-list" lang="fr">
             {% for element in notice.rights %}
                 <li class="list-information__sub-item">
-
                         {{ element.name }},
                 </li>
             {% endfor %}
             {% for element in notice.licences %}
                 <li class="list-information__sub-item">
-
-                        {{ element.name }},
+                        {{ element.name }}
                 </li>
             {% endfor %}
             {% for element in notice.copyright %}
                 <li class="list-information__sub-item">
-
-                        {{ element.name }},
+                        {{ element.name }}
                 </li>
             {% endfor %}
         </ul>
@@ -469,7 +439,6 @@
         <ul class="list-information__sub-list" lang="fr">
             {% for element in notice.placesEvents %}
                 <li class="list-information__sub-item">
-
                         {{ element }}
                 </li>
             {% endfor %}
@@ -483,7 +452,6 @@
         <ul class="list-information__sub-list" lang="fr">
             {% for element in notice.origins %}
                 <li class="list-information__sub-item">
-
                         {{ element }}
                 </li>
             {% endfor %}
@@ -495,11 +463,9 @@
     <li class="list-information__item">
         <span class="list-information__label">{{ ("Résultat de ")|trans }}</span>
         <ul class="list-information__sub-list" lang="fr">
-
-                <li class="list-information__sub-item">
-
-                        {{ notice.configurationName }}
-                </li>
+            <li class="list-information__sub-item">
+                    {{ notice.configurationName }}
+            </li>
         </ul>
     </li>
 {% endif %}
@@ -511,26 +477,14 @@
             <li class="list-information__sub-item">
                 <span>{{ 'Presentation' |trans }}</span>
                 {{ notice.fourth.presentation }}
-                {#<a href="{{ link }}" >
-                            {{ label }}
-                        </a>
-                #}
             </li>
             <li class="list-information__sub-item">
                 <span>{{ 'Biographie' |trans }}</span>
                 {{ notice.fourth.biography }}
-                {#<a href="{{ link }}" >
-                            {{ label }}
-                        </a>
-                #}
             </li>
             <li class="list-information__sub-item">
                 <span>{{ 'Inforamtions editeurs' |trans }}</span>
                 {{ notice.fourth.editorInfo }}
-                {#<a href="{{ link }}" >
-                            {{ label }}
-                        </a>
-                #}
             </li>
         </ul>
     </li>
@@ -541,10 +495,6 @@
         <span class="list-information__label">{{ ("Tables des matières")|trans }}</span>
         <ul class="list-information__sub-list" lang="fr">
             <li class="list-information__sub-item">
-                {#<a href="{{ link }}" >
-                            {{ label }}
-                        </a>
-                #}
                     {{ notice.contentsTable }}
             </li>
         </ul>

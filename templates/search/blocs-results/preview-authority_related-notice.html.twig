@@ -15,10 +15,22 @@
 	{% if level == 2 %}<div class="search-result__body">{% endif %}
 		{% if author is not empty %}
 			<h{{ level }} lang="fr" class="n{{ level }} search-result__title">
-				{% if author.permalink is defined and author.permalink is not null %}
-					<a href="{{ path('record_authority', {'permalink':author.permalink, 'searchToken': searchToken}) }}" title="*Insert Name identité* - {{ 'global.new-windows'|trans }}">{{ author.name }}<span class="n2"></span></a>
+				{% if author.cote is defined and author.cote is not null %}
+					<a
+							href="{{ path('record_indice_cdu', {'permalink':author.permalink, 'searchToken': searchToken}) }}"
+							title="*Insert Name identité* - {{ 'global.new-windows'|trans }}"
+					>
+                        {{ author.name }}
+						<span class="n2"></span>
+					</a>
 				{% else %}
-                    {{ author.name }}
+					<a
+							href="{{ path('record_authority', {'permalink':author.permalink, 'searchToken': searchToken}) }}"
+							title="*Insert Name identité* - {{ 'global.new-windows'|trans }}"
+					>
+                        {{ author.name }}
+						<span class="n2"></span>
+					</a>
 				{% endif %}
 			</h{{ level }}>
 		{% endif %}

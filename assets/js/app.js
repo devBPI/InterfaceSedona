@@ -245,3 +245,12 @@ $(document).on('change','.js-pagination-select', function (e) {
 	let url = $this.data('url').replace(0, page);
 	window.location = url;
 });
+
+$(document).on('click', '.js-delete-filter',  function(e){
+	e.preventDefault();
+	let $this = $(this);
+    console.log($this.data('name'));
+
+    $('.input-'+$this.data('name')).prop('checked', false);
+
+});

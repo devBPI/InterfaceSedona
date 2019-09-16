@@ -6,6 +6,7 @@ namespace App\Service\Provider;
 use App\Model\Author;
 use App\Model\Authority;
 use App\Model\Exception\NoResultException;
+use App\Model\IndiceCdu;
 use App\Model\ListNotices;
 use App\Model\ListOnlineNotices;
 use App\Model\Notice;
@@ -71,6 +72,38 @@ class NoticeAuthorityProvider extends AbstractProvider
         }
 
         return $notices;
+    }
+    /**
+     * @param $query
+     * @return array|object
+     */
+    public function getIndiceCdu($query)
+    {
+        $notices = [];
+        try{
+            $notices = $this->hydrateFromResponse(sprintf('/details/indice-cdu/%s', $query), [], IndiceCdu::class);
+
+        }catch(NoResultException $e){
+            dump("la ressource n'est plus disponible page 404 customisé à faire");
+        }
+
+        return $notices;
+    }
+    /**
+     * @param int $id
+     * @return
+     */
+    public function getSubjectIndice(int $id)
+    {
+        try {
+            $content = $this
+                ->hydrateFromResponse('/details/indice-cdu/'.$id.'/notices/notices-sujets', [], NoticeMappedAuthority::class)
+            ;
+        } catch (NoResultException $exception) {
+            return '';
+        }
+
+        return $content;
     }
 }
 

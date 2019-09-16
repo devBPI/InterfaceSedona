@@ -139,27 +139,28 @@
 </div>
 <div class="col-12">
 	{# Pour les documents en rayon dispo #}
-	<div lang="fr" class="bibliographic-result__availability bibliographic-result--list">
+    {% if sameInstance(notice.copies,'App\\Model\\NoticeAvailable') %}
+		<div lang="fr" class="bibliographic-result__availability bibliographic-result--list">
 		<div>
 			<div class="availability availability--true availability--rayon">
-				{% for exemplaire in notice.copies %}
-					{%  if loop.first %}
-						<p class="availability__status"><span>{{ 'bloc.notice-simple.document-available'|trans }}</span> {{ exemplaire.category}}</p>
-						<p>{#Niveau 3 - Musiques et documents parlés#}{{ exemplaire.location }} {% for support in exemplaire.support %} - {{ support }} {% endfor %}</p>
-						{# Dans le cas où il a + d'1 exemplaire #}
-						<button type="button" class="btn btn-small-link availability__button btn-see-more btn-see-more--more" data-toggle="collapse" data-target="#availabity-items" aria-expanded="false" aria-controls="availabity-items">Voir plus</button>
-					{% endif %}
-					{% if loop.first %}
-						<div class="collapse" id="availabity-items">
-					{% endif %}
-					{% if  not loop.first %}
-							<p class="availability__status"><span>{{ 'bloc.notice-simple.document-available'|trans }}</span> - {{ exemplaire.category}}</p>
-							<p>{{ exemplaire.location }} {% for support in exemplaire.support %} - {{ support }} {% endfor %}</p>
-					{% endif %}
-					{% if loop.first %}
-						</div>
-					{% endif %}
-				{% endfor %}
+					{% for exemplaire in notice.copies %}
+						{%  if loop.first %}
+							<p class="availability__status"><span>{{ 'bloc.notice-simple.document-available'|trans }}</span> {{ exemplaire.category}}</p>
+							<p>{#Niveau 3 - Musiques et documents parlés#}{{ exemplaire.location }} {% for support in exemplaire.support %} - {{ support }} {% endfor %}</p>
+							{# Dans le cas où il a + d'1 exemplaire #}
+							<button type="button" class="btn btn-small-link availability__button btn-see-more btn-see-more--more" data-toggle="collapse" data-target="#availabity-items" aria-expanded="false" aria-controls="availabity-items">Voir plus</button>
+						{% endif %}
+						{% if loop.first %}
+							<div class="collapse" id="availabity-items">
+						{% endif %}
+						{% if  not loop.first %}
+								<p class="availability__status"><span>{{ 'bloc.notice-simple.document-available'|trans }}</span> - {{ exemplaire.category}}</p>
+								<p>{{ exemplaire.location }} {% for support in exemplaire.support %} - {{ support }} {% endfor %}</p>
+						{% endif %}
+						{% if loop.first %}
+							</div>
+						{% endif %}
+					{% endfor %}
 			</div>
 		</div>
 		{# Pour les revues/journaux .. #}
@@ -180,6 +181,7 @@
 			{% endif %}
 		</div>
 	</div>
+    {% endif %}
 
 	{# Pour les documents en rayon indispo #}
 	<div lang="fr" class="bibliographic-result__availability">

@@ -1,6 +1,5 @@
 <!-- Début - Bloc 15 Navigation dans les résultats -->
-{% if navigation is defined  and navigation.row is not null %}
-
+{% if navigation is defined  and navigation is not null %}
 	<div class="col-auto">
 		<a href="{{ path('search', {'searchToken':navigation.hash}) }}" class="link link--icone mb-3 mb-md-0">
 			<img src="{{ asset('images/icones/icone-chevron-gauche.svg') }}" alt="" class="icone-chevron"/>
@@ -10,32 +9,35 @@
 	<div class="col-12 col-md-auto">
 		<nav aria-label="pagination">
 			<ul class="pagination pagination--header justify-content-center justify-content-md-end">
-				{% if navigation.previousPermalink is defined and navigation.previousPermalink is not null %}
-					<li class="page-item">
-						<a href="{{ path('record_bibliographic', {'permalink':navigation.previousPermalink, 'searchToken':navigation.hash}) }}" class="page-link page-link--left">
+				<li class="page-item">
+					{% if navigation.previousPermalink is defined and navigation.previousPermalink is not null %}
+						<a href="{{ path(route_by_object(navigation.previousPermalink.type), {'permalink':navigation.previousPermalink.permalink, 'searchToken':navigation.hash}) }}" class="page-link page-link--left">
 							<img src="{{ asset('images/icones/icone-chevron-gauche.svg') }}" alt="" class="icone-chevron"/>
 							<span>{{ 'bloc.results-navigation.result-previous'|trans }}</span>
 						</a>
-					</li>
-				{% endif %}
+                    {% else %}
+							<span>{{ 'bloc.results-navigation.result-previous'|trans }}</span>
+
+					{% endif %}
+				</li>
 				<li class="page-item">
 					<p class="page-link">{{ 'bloc.results-navigation.result-current'|trans({'%nb%': navigation.rows, '%current%': navigation.row }) }}</p>
 				</li>
 				<li class="page-item">
 					{% if navigation.nextPermalink is defined and navigation.nextPermalink is not null %}
-						<a href="{{  path('record_bibliographic', {'permalink':navigation.nextPermalink, 'searchToken':navigation.hash}) }}" class="page-link page-link--right">
+						<a href="{{  path(route_by_object(navigation.nextPermalink.type), {'permalink':navigation.nextPermalink.permalink, 'searchToken':navigation.hash}) }}" class="page-link page-link--right">
 							<span>{{ 'bloc.results-navigation.result-next'|trans }}</span>
 							<img src="{{ asset('images/icones/icone-chevron-gauche.svg') }}" alt="" class="icone-chevron"/>
 						</a>
-					{% endif %}
+					{% else %}
+						<span>{{ 'bloc.results-navigation.result-next'|trans }}</span>
+                    {% endif %}
 				</li>
 			</ul>
 		</nav>
 	</div>
 {% endif %}
-
 <div class="col-12">
 	<hr class="border-default">
 </div>
-
 <!-- Fin - Bloc 15 Navigation dans les résultats -->

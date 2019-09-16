@@ -1,10 +1,9 @@
 <?php
-
+declare(strict_types=1);
 
 namespace App\Controller;
 
-
-use App\Model\Authority;
+use App\Model\RankedAuthority;
 use App\Model\Search;
 use App\Service\NavigationService;
 use App\Service\Provider\NoticeAuthorityProvider;
@@ -58,23 +57,30 @@ class RecordController extends AbstractController
     }
 
     /**
-     * @Route("/notice-bibliographique", methods={"GET","HEAD"}, name="record_bibliographic")
+     * @Route("/notice-bibliographique/{permalink}", methods={"GET","HEAD"}, name="record_bibliographic", requirements={"permalink"=".+"})
      */
-    public function bibliographicRecordAction(Request $request, SessionInterface $session)
+    public function bibliographicRecordAction(Request $request, string $permalink, SessionInterface $session)
     {
-        $permalink = $request->get('permalink');
         $searchToken = $request->get('searchToken');
+
         $object = $this->noticeProvider->getNotice($permalink);
 
-        $navigation = new NavigationService(
-            $this->searchProvider,
-            $permalink,
-            $this->serializer->deserialize($session->get($searchToken, ''),  Search::class, 'json'),
-            $searchToken
-        );
+        $navigation = null;
+        if ($session->has($searchToken)){
+            $navigation =
+                new NavigationService(
+                    $this->searchProvider,
+                    $permalink,
+                    $this->serializer->deserialize($session->get($searchToken),  Search::class, 'json'),
+                    $searchToken,
+                    $object->getNotice()->isOnLigne()?Notice::ON_LIGNE:Notice::ON_SHELF
+                );
+        }
+
 
         return $this->render('record/bibliographic.html.twig', [
             'object'        => $object,
+            'notice'=> $object->getNotice(),
             'toolbar'       => 'document',
             'navigation'    => $navigation,
             'printRoute'    => $this->generateUrl('record_bibliographic_pdf',['format'=> 'pdf'])
@@ -108,30 +114,34 @@ class RecordController extends AbstractController
     }
 
     /**
-     * @Route("/notice-autorite", methods={"GET","HEAD"}, name="record_authority")
+     * @Route("/notice-autorite/{permalink}", methods={"GET","HEAD"}, name="record_authority", requirements={"permalink"=".+"})
      * @param Request $request
+     * @param string $permalink
      * @param SessionInterface $session
      * @return Response
      * @throws \Twig\Error\LoaderError
      * @throws \Twig\Error\RuntimeError
      * @throws \Twig\Error\SyntaxError
      */
-    public function authorityRecordAction(Request $request, SessionInterface $session)
+    public function authorityRecordAction(Request $request, string $permalink, SessionInterface $session)
     {
-        $permalink = $request->get('permalink');
         $object = $this->noticeAuhtority->getAuthority($permalink);
         $id = $object->getId();
         $subject = $this->noticeAuhtority->getSubjectNotice($id);
         $authors = $this->noticeAuhtority->getAuthorsNotice($id);
         $searchToken = $request->get('searchToken');
 
-        $navigation = new NavigationService(
-            $this->searchProvider,
-            $permalink,
-            $this->serializer->deserialize($session->get($searchToken, ''),  Search::class, 'json'),
-            $searchToken,
-            Authority::class
-        );
+        $navigation = null;
+
+        if ($session->has($searchToken)) {
+            $navigation = new NavigationService(
+                $this->searchProvider,
+                $permalink,
+                $this->serializer->deserialize($session->get($searchToken, ''), Search::class, 'json'),
+                $searchToken,
+                RankedAuthority::class
+            );
+        }
 
         return $this->render('record/authority.html.twig', [
                   'toolbar'         => 'document',
@@ -144,6 +154,44 @@ class RecordController extends AbstractController
         );
     }
 
+    /**
+     * @Route("/indice-cdu/{permalink}", methods={"GET","HEAD"}, name="record_indice_cdu", requirements={"permalink"=".+"})
+     * @param Request $request
+     * @param string $permalink
+     * @param SessionInterface $session
+     * @return Response
+     * @throws \Twig\Error\LoaderError
+     * @throws \Twig\Error\RuntimeError
+     * @throws \Twig\Error\SyntaxError
+     */
+    public function cduIndiceRecordAction(Request $request, string $permalink, SessionInterface $session)
+    {
+        $object = $this->noticeAuhtority->getIndiceCdu($permalink);
+        $id = $object->getId();
+        $subject = $this->noticeAuhtority->getSubjectNotice($id);
+        $authors =  [];
+        $searchToken = $request->get('searchToken');
+        $navigation = null;
+        if ($session->has($searchToken)) {
+            $navigation = new NavigationService(
+                $this->searchProvider,
+                $permalink,
+                $this->serializer->deserialize($session->get($searchToken, ''), Search::class, 'json'),
+                $searchToken,
+                RankedAuthority::class
+            );
+        }
+
+        return $this->render('record/authority.html.twig', [
+                  'toolbar'         => 'document',
+                  'printRoute'      => $this->generateUrl('record_authority_pdf'),
+                  'subjects'        => $subject,
+                  'authors'         => $authors,
+                  'notice'          => $object,
+                  'navigation'      => $navigation,
+              ]
+        );
+    }
     /**
      * @Route("/print/notice-autorite.{format}", name="record_authority_pdf", requirements={"format" = "html|pdf|txt"}, defaults={"format" = "pdf"})
      */

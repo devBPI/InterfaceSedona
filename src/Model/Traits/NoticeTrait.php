@@ -28,14 +28,6 @@ trait NoticeTrait
     private $type;
 
     /**
-     * @var string
-     * @JMS\Type("string")
-     * @JMS\SerializedName("isni")
-     */
-    private $isni;
-
-
-    /**
      * @return string
      */
     public function getPermalink(): string
@@ -49,12 +41,5 @@ trait NoticeTrait
     public function getType(): string
     {
         return $this->type;
-    }
-    /**
-     * @return null|string
-     */
-        public function getIsni(): ?string
-    {
-        return $this->isni;
     }
 }

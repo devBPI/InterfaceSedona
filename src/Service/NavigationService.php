@@ -9,32 +9,33 @@ declare(strict_types=1);
 namespace App\Service;
 
 use App\Model\Authority;
-use App\Model\Facet;
-use App\Model\Facets;
+use App\Model\IndiceCdu;
 use App\Model\Notice;
-use App\Model\Results;
+use App\Model\RankedAuthority;
 use App\Model\Search;
-use App\Model\Search\Criteria;
-use App\Service\Provider\NoticeAuthorityProvider;
 use App\Service\Provider\SearchProvider;
+use App\Utils\NavigationNotice;
 
+/**
+ * Class NavigationService
+ * @package App\Service
+ */
 class NavigationService
 {
-
     /**
      * @var string
      */
     private $hash;
     /**
-     * @var string|null
+     * @var NavigationNotice|null
      */
     private $previousPermalink;
     /**
-     * @var string
+     * @var NavigationNotice
      */
     private $actualPermalink;
     /**
-     * @var string|null
+     * @var NavigationNotice|null
      */
     private $nextPermalink;
     /**
@@ -63,13 +64,20 @@ class NavigationService
      * @throws \Twig\Error\RuntimeError
      * @throws \Twig\Error\SyntaxError
      */
-    private function getNoticeList(SearchProvider $searchProvider, Search $search, $type){
+    private function getNoticeList(SearchProvider $searchProvider, Search $search, $type)
+    {
         $searchResultNotices = $searchProvider->getListBySearch($search->getCriteria(), $search->getFacets());
-        if ($type == Authority::class){
+
+        if ($type === RankedAuthority::class){
+
             return $searchResultNotices->getAuthoritiesList();
+        }
+        if ($type === Notice::ON_LIGNE){
+            return $searchResultNotices->getNoticesOnline()->getNoticesList();
         }
 
         return $searchResultNotices->getNotices()->getNoticesList();
+
     }
 
     /**
@@ -82,17 +90,17 @@ class NavigationService
      * @throws \Twig\Error\RuntimeError
      * @throws \Twig\Error\SyntaxError
      */
-    public function __construct(SearchProvider $searchProvider, string $permalink, Search $search=null, string $hash=null, $type=Notice::class)
+    public function __construct(SearchProvider $searchProvider, string $permalink, Search $search=null, string $hash=null, $type=null)
     {
-        $this->actualPermalink = $permalink;
+
         if ($search === null){
             return;
         }
         $this->hash = $hash;
 
         $notices = $this->getNoticeList($searchProvider, $search, $type);
-dump( $notices ); die;
         $this->rows = \count($notices);
+
         $noticesFiltered = array_filter($notices, function($value) use($permalink){
             if ($value->getPermalink() === $permalink){
                 return true;
@@ -100,14 +108,13 @@ dump( $notices ); die;
         });
 
         if (\count($noticesFiltered)>0){
-
             $this->row = array_key_first($noticesFiltered);
-
+            $this->actualPermalink = new NavigationNotice($permalink, get_class($notices[$this->row])) ;
             if ($this->row > 0){
-                $this->previousPermalink = $notices[$this->row-1]->getPermalink();
+                $this->previousPermalink = new NavigationNotice($notices[$this->row-1]->getPermalink(), $notices[$this->row-1]->getClassName()) ;
             }
             if ($this->row < count($notices) - 1) {
-                $this->nextPermalink = $notices[$this->row + 1]->getPermalink();
+                $this->nextPermalink = new NavigationNotice($notices[$this->row + 1]->getPermalink(), $notices[$this->row+1]->getClassName());
             }
         }
     }
@@ -129,28 +136,44 @@ dump( $notices ); die;
     }
 
     /**
-     * @return null|string
+     * @return NavigationNotice|null
      */
-    public function getPreviousPermalink(): ?string
+    public function getPreviousPermalink(): ?NavigationNotice
     {
         return $this->previousPermalink;
     }
 
     /**
-     * @return string
+     * @return NavigationNotice
      */
-    public function getActualPermalink(): string
+    public function getActualPermalink(): NavigationNotice
     {
         return $this->actualPermalink;
     }
 
     /**
-     * @return null|string
+     * @return NavigationNotice|null
      */
-    public function getNextPermalink(): ?string
+    public function getNextPermalink(): ?NavigationNotice
     {
         return $this->nextPermalink;
     }
 
+    /**
+     * @param string|null $value
+     * @return string
+     */
+    public static function getRouteByObject(string $value=null)
+    {
+        switch ($value){
+            case Authority::class:
+                return 'record_authority';
+            case IndiceCdu::class:
+                return 'record_indice_cdu';
+            case Notice::class:
+                return 'record_bibliographic';
+            default:
+                throw new  \InvalidArgumentException(sprintf('route not finded for  %s', $value));
+        }
+    }
 }
-

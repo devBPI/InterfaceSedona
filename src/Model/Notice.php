@@ -14,6 +14,8 @@ use JMS\Serializer\Annotation as JMS;
 class Notice implements NoticeInterface
 {
     private const SEPARATOR = ' ; ';
+    public const ON_LIGNE = 'en ligne';
+    public const ON_SHELF = 'en rayon';
 
     use NoticeMappedTrait, NoticeTrait;
     /**
@@ -324,6 +326,22 @@ class Notice implements NoticeInterface
      */
     private $contentsTable;
 
+
+    /**
+     * @var string
+     * @JMS\Type("string")
+     * @JMS\SerializedName("isni")
+     */
+    private $isni;
+
+    /**
+     * @return null|string
+     */
+    public function getIsni(): ?string
+    {
+        return $this->isni;
+    }
+
     /**
      * @return array
      */
@@ -339,8 +357,6 @@ class Notice implements NoticeInterface
     {
         return $this->topics;
     }
-
-
 
     /**
      * @return array
@@ -389,8 +405,6 @@ class Notice implements NoticeInterface
     {
         return $this->fourth;
     }
-
-
 
     /**
      * @return string|null
@@ -563,9 +577,9 @@ class Notice implements NoticeInterface
     }
 
     /**
-     * @return NoticeAvailable
+     * @return NoticeAvailable|null
      */
-    public function getCopies():NoticeAvailable
+    public function getCopies():?NoticeAvailable
     {
         return $this->copies;
     }
@@ -940,7 +954,38 @@ class Notice implements NoticeInterface
         return $this->permalink;
     }
 
+    public function getClassName()
+    {
+        return self::class;
+    }
 
+    /**
+     * @return bool
+     */
+    public function isOnLigne():bool
+    {
+        /**
+         * @TODO ask for a field to specified the type of notice is it's onligne or not
+         */
+        $material = $this->getMaterialDescriptions();
+        if (count($material)<1){
+            return false;
+        }
+
+        return $material[1] !== 'Papier';
+    }
+
+    /**
+     * @return string
+     */
+    public function getTitle():string
+    {
+         $titles = $this->getTitles();
+         if (count($titles)>0){
+             return $titles[0];
+         }
+
+         return 'Notice sans titre';
+    }
 }
-
 

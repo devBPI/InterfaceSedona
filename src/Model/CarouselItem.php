@@ -57,9 +57,9 @@ class CarouselItem
     }
 
     /**
-     * @return string
+     * @return null|string
      */
-    public function getImagePath(): string
+    public function getImagePath(): ?string
     {
         return $this->imagePath;
     }

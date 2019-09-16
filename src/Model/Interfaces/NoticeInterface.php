@@ -20,9 +20,10 @@ interface NoticeInterface
      * @return string
      */
     public function getType():string;
-
     /**
-     * @return null|string
+     *
+     * @return string
      */
-    public function getIsni(): ?string;
+    public function getTitle():string;
+
 }

@@ -55,6 +55,7 @@ class SearchController extends AbstractController
 
     /**
      * @Route("/recherche", methods={"GET", "POST"}, name="search")
+     * 
      * @param Request $request
      * @param SessionInterface $session
      * @return \Symfony\Component\HttpFoundation\Response
@@ -84,7 +85,7 @@ class SearchController extends AbstractController
         $objSearch  = $this->searchProvider->getListBySearch($search->getCriteria(), $search->getFacets());
         $title      = 'page.search.title';
         $title      .= $request->get(WordsList::ADVANCED_SEARCH_LABEL) === WordsList::CLICKED ?'advanced' : 'simple';
-        $hash  = \spl_object_hash($search);
+        $hash       = \spl_object_hash($search);
         $session->set($hash, $this->serializer->serialize($search, 'json'));
 
         return $this->render(

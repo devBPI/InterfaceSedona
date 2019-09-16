@@ -15,8 +15,8 @@ class Authority implements AuthorityInterface, NoticeInterface
     use NoticeTrait;
 
     /**
-     * @var string
-     * @JMS\Type("string")
+     * @var int
+     * @JMS\Type("int")
      * @JMS\SerializedName("id")
      */
     private $id;
@@ -164,10 +164,26 @@ class Authority implements AuthorityInterface, NoticeInterface
     private $originalUrl;
 
     /**
+     * @var string
+     * @JMS\Type("string")
+     * @JMS\SerializedName("isni")
+     */
+    private $isni;
+
+    /**
+     * @return null|string
+     */
+    public function getIsni(): ?string
+    {
+        return $this->isni;
+    }
+
+    /**
      * @return null|string
      */
     public function getBirthLocation(): ?string
     {
+
         return $this->birthLocation;
     }
 
@@ -179,9 +195,9 @@ class Authority implements AuthorityInterface, NoticeInterface
         return $this->deathLocation;
     }
     /**
-     * @return string
+     * @return int|null
      */
-    public function getId(): string
+    public function getId(): ?int
     {
         return $this->id;
     }
@@ -330,6 +346,19 @@ class Authority implements AuthorityInterface, NoticeInterface
     public function getResumes(): array
     {
         return $this->resumes;
+    }
+
+    /**
+     *
+     * @return string
+     */
+    public function getTitle(): string
+    {
+        if ($this->getName()){
+            return $this->getName();
+        }
+
+        return "Notice d'autorité sans nom";
     }
 }
 

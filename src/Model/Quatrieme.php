@@ -38,24 +38,25 @@ class Quatrieme
     private $editorInfo;
 
     /**
-     * @return string
+     * @return null|string
      */
-    public function getPresentation(): string
+    public function getPresentation(): ?string
     {
         return $this->presentation;
     }
+
     /**
-     * @return string
+     * @return null|string
      */
-    public function getBiography(): string
+    public function getBiography(): ?string
     {
         return $this->biography;
     }
 
     /**
-     * @return string
+     * @return null|string
      */
-    public function getEditorInfo(): string
+    public function getEditorInfo(): ?string
     {
         return $this->editorInfo;
     }
