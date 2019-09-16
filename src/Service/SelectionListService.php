@@ -72,32 +72,14 @@ final class SelectionListService
     }
 
     /**
-     * @param string $title
-     * @param bool $flush
-     * @return UserSelectionList
-     * @throws \Doctrine\ORM\ORMException
-     * @throws \Doctrine\ORM\OptimisticLockException
-     */
-    public function createCategory(string $title, $flush = true): UserSelectionList
-    {
-        $selectionCategory = new UserSelectionList($this->tokenStorage->getToken()->getUser(), $title);
-        $this->entityManager->persist($selectionCategory);
-        if ($flush) {
-            $this->entityManager->flush();
-        }
-
-        return $selectionCategory;
-    }
-
-    /**
-     * @param UserSelectionList $category
+     * @param UserSelectionList $list
      * @param $title
      * @throws \Doctrine\ORM\ORMException
      * @throws \Doctrine\ORM\OptimisticLockException
      */
-    public function updateCategory(UserSelectionList $category, $title)
+    public function updateList(UserSelectionList $list, $title)
     {
-        $category->setTitle($title);
+        $list->setTitle($title);
         $this->entityManager->flush();
     }
 
@@ -108,14 +90,11 @@ final class SelectionListService
      */
     public function addDocumentToLists(Request $request)
     {
-        $documents = [];
-        foreach ($request->get(UserSelectionController::INPUT_DOCUMENT, []) as $item) {
-            $documents[] = new UserSelectionDocument($item);
-        }
+        $documents = $this->createDocumentsByRequest($request);
 
         foreach ($this->getListsByRequest($request) as $userSelectionCategory) {
             foreach ($documents as $document) {
-                $userSelectionCategory->addDocument($document);
+                $userSelectionCategory->addDocument(clone $document);
             }
         }
 
@@ -125,8 +104,30 @@ final class SelectionListService
     /**
      * @param Request $request
      * @return array
+     */
+    private function createDocumentsByRequest(Request $request): array
+    {
+        $documents = [];
+
+        foreach ($request->get(UserSelectionController::INPUT_DOCUMENT, []) as $item) {
+            $documents[] = new UserSelectionDocument($item);
+        }
+
+        foreach ($request->get(UserSelectionController::INPUT_NAME, []) as $key => $param) {
+            if ($key === UserSelectionController::INPUT_DOCUMENT) {
+                foreach ($param as $item) {
+                    $documents[] = $this->entityManager->getRepository(UserSelectionDocument::class)->find($item);
+                }
+            }
+        }
+
+        return $documents;
+    }
+
+    /**
+     * @param Request $request
+     * @return array
      * @throws \Doctrine\ORM\ORMException
-     * @throws \Doctrine\ORM\OptimisticLockException
      */
     private function getListsByRequest(Request $request): array
     {
@@ -143,14 +144,27 @@ final class SelectionListService
                 throw new SelectionCategoryException('modal.list-create.mandatory-field');
             }
 
-            $lists[] = $this->createCategory($title, false);
+            $lists[] = $this->createList($title);
         }
 
         if (count($lists) === 0) {
-            throw new SelectionCategoryException('modal.list-add.message-error.no-category');
+            throw new SelectionCategoryException('modal.list-add.message-error.no-list');
         }
 
         return $lists;
+    }
+
+    /**
+     * @param string $title
+     * @return UserSelectionList
+     * @throws \Doctrine\ORM\ORMException
+     */
+    private function createList(string $title): UserSelectionList
+    {
+        $list = new UserSelectionList($this->tokenStorage->getToken()->getUser(), $title);
+        $this->entityManager->persist($list);
+
+        return $list;
     }
 
     /**
@@ -249,5 +263,14 @@ final class SelectionListService
         }
 
         $this->entityManager->flush();
+    }
+
+    /**
+     * @param $lists
+     * @return int
+     */
+    public function getCountSelectedDocs($lists): int
+    {
+        return $this->entityManager->getRepository(UserSelectionDocument::class)->count(['List' => $lists]);
     }
 }

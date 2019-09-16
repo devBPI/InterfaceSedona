@@ -19,6 +19,7 @@
         "build": "encore production --progress"
     },
     "dependencies": {
+        "datatables.net-bs4": "^1.10.19",
         "slick-carousel": "^1.8.1"
     }
 }

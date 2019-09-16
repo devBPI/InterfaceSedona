@@ -24,11 +24,11 @@
     <td class="table__body-edit">
         {% if document.comment is not empty and document.comment|split("\n").0 is defined %}
             {{ document.comment|split("\n").0|trim }}
+            <button data-content="{{ '<p>'~document.comment|nl2br~'</p>' }}" data-target="#modal-comments-view" data-toggle="modal">
+                <span class="sr-only">{{ 'bloc.list-user.comments-see'|trans }}</span>
+                <img src="{{ asset('images/icones/icone-oeil.svg') }}" alt="" class="icone-oeil"/>
+            </button>
         {% endif %}
-        <button data-content="{{ '<p>'~document.comment|nl2br~'</p>' }}" data-target="#modal-comments-view" data-toggle="modal">
-            <span class="sr-only">{{ 'bloc.list-user.comments-see'|trans }}</span>
-            <img src="{{ asset('images/icones/icone-oeil.svg') }}" alt="" class="icone-oeil"/>
-        </button>
         <button data-remote="{{ path('user_selection_list_document_comment_edit', {'document': document.id}) }}" data-target="#modal-list-edit" data-toggle="modal">
             <span class="sr-only">{{ 'bloc.list-user.comments-edit'|trans }}</span>
             <img src="{{ asset('images/icones/icone-crayon-noir.svg') }}" alt="" class="icone-crayon"/>

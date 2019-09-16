@@ -13,6 +13,7 @@ const $ = require('jquery');
 
 require('bootstrap');
 require('slick-carousel');
+require('datatables.net-bs4');
 
 const routes = require('../../public/js/fos_js_routes.json');
 
@@ -282,15 +283,37 @@ $(document)
 		$('#search-input').val($(this).html());
 		$('#autocompletion-list').hide();
 	})
-	.on('show.bs.modal', '#modal-list-add', function () {
-        $('#resume-container').html('');
-		let objSelected = $('#contenu-site').find('input:checked.addableInList');
-        for (let [key, value] of Object.entries(objSelected)) {
-        	let container = $(value).parents('.list-result__content-item');
-        	if (container.length > 0) {
-        		let card = container.clone()[0];
-        		card = card.innerHTML.replace(/__item__/gi, key);
-                $('#resume-container').append(card);
+	.on('click', '[data-reload="true"]', function (e) {
+		location.reload();
+	})
+	.on('show.bs.modal', '#modal-list-add,#modal-list-create', function (e) {
+		let $inputContainer = $(this).find('#resume-container');
+        $inputContainer.html('');
+        let $invoker = $(e.relatedTarget);
+		if ($invoker.data('context') == 'selection') {
+            $inputContainer.parent('.modal-body').hide();
+            for (let doc of $('[name="selection[document][]"]:checked')) {
+                let card = $(doc).clone();
+                $inputContainer.append(card);
 			}
-        }
+		} else {
+            let objSelected = $('#contenu-site').find('input:checked.addableInList');
+            for (let [key, value] of Object.entries(objSelected)) {
+                let container = $(value).parents('.list-result__content-item');
+                if (container.length > 0) {
+                    let card = container.clone()[0];
+                    card = card.innerHTML.replace(/__item__/gi, key);
+                    $inputContainer.append(card);
+                }
+            }
+		}
 	});
+
+$(document).ready(function () {
+    $('table.table-striped').dataTable({
+        "paging":   false,
+        "info":   false,
+        "searching":   false,
+        "scrollX": false
+	});
+});

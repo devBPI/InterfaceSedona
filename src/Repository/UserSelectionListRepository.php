@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\UserSelectionList;
+use Doctrine\DBAL\Connection;
 use Doctrine\ORM\EntityRepository;
 
 /**
@@ -32,10 +33,10 @@ class UserSelectionListRepository extends EntityRepository
     public function findByIds(array $ids): array
     {
         return $this->createQueryBuilder('list')
-            ->where('list.ids IN :ids')
+            ->where('list.id IN (:ids)')
             ->orderBy('list.position')
             ->getQuery()
-            ->setParameter('ids', $ids)
+            ->setParameter('ids', $ids, Connection::PARAM_INT_ARRAY)
             ->getResult();
     }
 }

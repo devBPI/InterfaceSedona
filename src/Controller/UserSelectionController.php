@@ -57,8 +57,10 @@ class UserSelectionController extends AbstractController
             $this->selectionService->applyAction($action, $listObj);
         }
 
+        $lists = $this->selectionService->getLists();
         return $this->render( 'user/selection.html.twig',[
-            'lists' => $this->selectionService->getLists(),
+            'lists' => $lists,
+            'selectedDocs' => $this->selectionService->getCountSelectedDocs($lists)
         ]);
     }
 
@@ -77,10 +79,11 @@ class UserSelectionController extends AbstractController
         $title = $request->get(self::INPUT_LIST_TITLE, null);
         if ($title !== null) {
             if ($title !== '') {
-                $this->selectionService->createCategory($title);
+                $this->selectionService->addDocumentToLists($request);
 
                 return $this->render('user/modal/creation-list-success.html.twig', [
                     'title' => $title,
+                    'action' => 'create'
                 ]);
             }
 
@@ -93,6 +96,7 @@ class UserSelectionController extends AbstractController
     }
 
     /**
+     * @Security("has_role('ROLE_USER')")
      * @Route("/list/ajout-documents", methods={"GET","POST"}, name="_list_add")
      * @param Request $request
      * @return Response
@@ -121,6 +125,7 @@ class UserSelectionController extends AbstractController
     }
 
     /**
+     * @Security("has_role('ROLE_USER')")
      * @Route("/list/{list}/modification", methods={"GET","POST"}, name="_list_edit")
      * @param UserSelectionList $list
      * @param Request $request
@@ -134,14 +139,12 @@ class UserSelectionController extends AbstractController
         $title = $request->get(self::INPUT_LIST_TITLE, null);
         if ($title !== null) {
             if ($title !== '') {
-                $this->selectionService->updateCategory($list, $title);
+                $this->selectionService->updateList($list, $title);
 
-                return $this->render(
-                    'user/modal/creation-list-success.html.twig',
-                    [
-                        'title' => $title,
-                    ]
-                );
+                return $this->render('user/modal/creation-list-success.html.twig', [
+                    'title' => $title,
+                    'action' => 'edit'
+                ]);
             }
 
             $param += [
@@ -153,6 +156,7 @@ class UserSelectionController extends AbstractController
     }
 
     /**
+     * @Security("has_role('ROLE_USER')")
      * @Route("/list/document/{document}/modification/commentaire", methods={"GET","POST"}, name="_list_document_comment_edit")
      * @param UserSelectionDocument $document
      * @param Request $request

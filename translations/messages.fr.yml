@@ -101,7 +101,7 @@ modal:
     title: Créer une nouvelle liste
     mandatory-field: La saisie du titre de la liste est obligatoire
     field-title: Titre
-    message-success: Vous avez bien créé la liste « %name% » avec les document sélectionnés.
+    message-success: Vous avez bien créé la liste « %name% » avec les documents sélectionnés.
     submit: Valider
     submit-sr-only:  la création de la liste
   list-add:             #Modal 02 ajout à ma sélection
@@ -120,12 +120,13 @@ modal:
     submit-sr-only:  la création de la liste
     message-success: Les documents ont bien été ajoutés à vos listes
     message-error:
-      no-category: Aucune catégorie n'a été sélectionnée. Veuillez en sélectionner une ou en créer une nouvelle.
+      no-list: Aucune liste n'a été sélectionnée. Veuillez en sélectionner une ou en créer une nouvelle.
   list-edit:          #Modal 03 edition d'une liste
     title: Modification de la liste
     field-title: Titre
     submit: Valider
     submit-sr-only: la modification de la liste
+    message-success: La liste « %name% » a bien été modifiée.
   list-remove:      #Modal 04 supperions de listes
     title: Suppression des listes et des documents
     message-confirmation: Voulez-vous vraiment supprimer les listes et documents sélectionnés ?

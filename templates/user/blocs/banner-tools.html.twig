@@ -10,18 +10,20 @@
     </div>
 </div>
 
+{% if type == constant('App\\Controller\\UserSelectionController::INPUT_NAME') %}
 <div class="col-12 col-md-auto">
     <div class="banner-tools__list">
-        <p class="banner-tools__infos">{{ 'bloc.banner-tools.selected-list'|trans }} <span>({{ total|default(0) }})</span></p>
-        <p class="banner-tools__infos">{{ 'bloc.banner-tools.selected-document'|trans }} <span>({{ selected|default(0) }})</span></p>
+        <p class="banner-tools__infos">{{ 'bloc.banner-tools.selected-list'|trans }} <span>({{ selectedList|default(0) }})</span></p>
+        <p class="banner-tools__infos">{{ 'bloc.banner-tools.selected-document'|trans }} <span>({{ selectedDocs|default(0) }})</span></p>
     </div>
 </div>
+{% endif %}
 
 <div class="col-12 col-md-auto">
     <ul class="banner-tools__list mb-0">
         {% if type == constant('App\\Controller\\UserSelectionController::INPUT_NAME') %}
             <li class="banner-tools__item banner-tools__item-add">
-                <button type="button" class="btn" data-target="#modal-list-add" data-toggle="modal">
+                <button type="button" class="btn" data-target="#modal-list-add" data-toggle="modal" data-context="selection">
                     {{ 'bloc.banner-tools.list-add'|trans }} <span class="sr-only">{{ 'bloc.banner-tools.list-name'|trans }}</span>
                     <img src="{{ asset('images/icones/icone-caret-bas.svg') }}" alt="" class="icone-caret"/>
                 </button>
