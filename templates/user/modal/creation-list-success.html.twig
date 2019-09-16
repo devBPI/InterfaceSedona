@@ -9,7 +9,12 @@
     </div>
 
     <div class="modal-body">
-        <p>{{ ('modal.list-'~action~'.message-success')|trans({'%name%': title}) }}</p>
+        {% set attr = {} %}
+        {% if title is defined %}
+            {% set attr = {'%name%': title} %}
+        {% endif %}
+
+        <p>{{ ('modal.list-'~action~'.message-success')|trans(attr) }}</p>
     </div>
 
     <div class="modal-footer">

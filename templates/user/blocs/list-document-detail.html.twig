@@ -17,19 +17,21 @@
         {{ document.author }}
     </td>
     <td class="table__body-type">
-        {{ document.documentType }}
-        <img src="{{ asset('images/types/type-musique.svg') }}" alt="" class="icone-type-document table__type"/>
+        <img src="{{ asset('images/types/type-'~ document.documentType|lower ~'.svg') }}"
+             alt="{{ document.documentType|lower }}" class="icone-type-document table__type"/>
     </td>
     <td>{{ document.creationDate|date('d/m/Y') }}</td>
     <td class="table__body-edit">
         {% if document.comment is not empty and document.comment|split("\n").0 is defined %}
             {{ document.comment|split("\n").0|trim }}
-            <button data-content="{{ '<p>'~document.comment|nl2br~'</p>' }}" data-target="#modal-comments-view" data-toggle="modal">
+            <button data-content="{{ '<p>'~document.comment|nl2br~'</p>' }}" data-target="#modal-comments-view"
+                    data-toggle="modal">
                 <span class="sr-only">{{ 'bloc.list-user.comments-see'|trans }}</span>
                 <img src="{{ asset('images/icones/icone-oeil.svg') }}" alt="" class="icone-oeil"/>
             </button>
         {% endif %}
-        <button data-remote="{{ path('user_selection_list_document_comment_edit', {'document': document.id}) }}" data-target="#modal-list-edit" data-toggle="modal">
+        <button data-remote="{{ path('user_selection_list_document_comment_edit', {'document': document.id}) }}"
+                data-target="#modal-list-edit" data-toggle="modal">
             <span class="sr-only">{{ 'bloc.list-user.comments-edit'|trans }}</span>
             <img src="{{ asset('images/icones/icone-crayon-noir.svg') }}" alt="" class="icone-crayon"/>
         </button>

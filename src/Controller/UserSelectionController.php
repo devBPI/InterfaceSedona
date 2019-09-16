@@ -89,6 +89,7 @@ class UserSelectionController extends AbstractController
 
             $param = [
                 'error' => 'modal.list-create.mandatory-field',
+                'documents' => $request->get(UserSelectionController::INPUT_NAME)[UserSelectionController::INPUT_DOCUMENT]
             ];
         }
 
@@ -108,7 +109,7 @@ class UserSelectionController extends AbstractController
             try {
                 $this->selectionService->addDocumentToLists($request);
 
-                return $this->render('user/modal/add-list-success.html.twig');
+                return $this->render('user/modal/creation-list-success.html.twig', ['action' => 'add']);
             } catch (\Exception $e) {
                 $params = [
                     'error' => $e->getMessage(),
