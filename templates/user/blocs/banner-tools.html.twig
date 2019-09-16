@@ -6,36 +6,50 @@
             <label class="form-check-label"
                    for="account-{{ type }}-select-all">{{ 'bloc.banner-tools.select-all'|trans }}</label>
         </div>
-        <button class="banner-tools__link">{{ 'bloc.banner-tools.select-cancel'|trans }}</button>
+        <button class="banner-tools__link" data-toggle="disable-if-no-found-modal"
+                data-spy=':checkbox' data-target='input[type="checkbox"]:checked'>
+            {{ 'bloc.banner-tools.select-cancel'|trans }}</button>
     </div>
 </div>
 
 {% if type == constant('App\\Controller\\UserSelectionController::INPUT_NAME') %}
-<div class="col-12 col-md-auto">
-    <div class="banner-tools__list">
-        <p class="banner-tools__infos">{{ 'bloc.banner-tools.selected-list'|trans }} <span>({{ selectedList|default(0) }})</span></p>
-        <p class="banner-tools__infos">{{ 'bloc.banner-tools.selected-document'|trans }} <span>({{ selectedDocs|default(0) }})</span></p>
+    <div class="col-12 col-md-auto">
+        <div class="banner-tools__list">
+            <p class="banner-tools__infos">{{ 'bloc.banner-tools.selected-list'|trans }}
+                <span>({{ selectedList|default(0) }})</span></p>
+            <p class="banner-tools__infos">{{ 'bloc.banner-tools.selected-document'|trans }}
+                <span>({{ selectedDocs|default(0) }})</span></p>
+        </div>
     </div>
-</div>
 {% endif %}
 
 <div class="col-12 col-md-auto">
     <ul class="banner-tools__list mb-0">
         {% if type == constant('App\\Controller\\UserSelectionController::INPUT_NAME') %}
             <li class="banner-tools__item banner-tools__item-add">
-                <button type="button" class="btn" data-target="#modal-list-add" data-toggle="modal" data-context="selection">
-                    {{ 'bloc.banner-tools.list-add'|trans }} <span class="sr-only">{{ 'bloc.banner-tools.list-name'|trans }}</span>
+                <button type="button" class="btn" data-href="#modal-list-add" data-toggle="disable-if-no-found-modal"
+                        data-spy='[name="{{ constant('App\\Controller\\UserSelectionController::INPUT_NAME') }}[{{ constant('App\\Controller\\UserSelectionController::INPUT_DOCUMENT') }}][]"]'
+                        data-target='[name="{{ constant('App\\Controller\\UserSelectionController::INPUT_NAME') }}[{{ constant('App\\Controller\\UserSelectionController::INPUT_DOCUMENT') }}][]"]:checked'
+                        data-context="selection">
+                    {{ 'bloc.banner-tools.list-add'|trans }}
+                    <span class="sr-only">{{ 'bloc.banner-tools.list-name'|trans }}</span>
                     <img src="{{ asset('images/icones/icone-caret-bas.svg') }}" alt="" class="icone-caret"/>
                 </button>
             </li>
             <li class="banner-tools__item banner-tools__item-top">
-                <button name="action" value="moveUp" type="submit" class="btn">
-                    {{ 'bloc.banner-tools.list-up'|trans }} <span class="sr-only">{{ 'bloc.banner-tools.list-name'|trans }}</span>
+                <button name="action" value="moveUp" type="submit" class="btn" data-toggle="disable-if-no-found"
+                        data-spy='[name="{{ constant('App\\Controller\\UserSelectionController::INPUT_NAME') }}[{{ constant('App\\Controller\\UserSelectionController::INPUT_LIST') }}][]"]'
+                        data-target='[name="{{ constant('App\\Controller\\UserSelectionController::INPUT_NAME') }}[{{ constant('App\\Controller\\UserSelectionController::INPUT_LIST') }}][]"]:checked'>
+                    {{ 'bloc.banner-tools.list-up'|trans }}
+                    <span class="sr-only">{{ 'bloc.banner-tools.list-name'|trans }}</span>
                     <img src="{{ asset('images/icones/icone-caret-bas.svg') }}" alt="" class="icone-caret"/>
                 </button>
             </li>
             <li class="banner-tools__item banner-tools__item-bottom">
-                <button name="action" value="moveDown" type="submit" class="btn">{{ 'bloc.banner-tools.list-down'|trans }}
+                <button name="action" value="moveDown" type="submit" class="btn" data-toggle="disable-if-no-found"
+                        data-spy='[name="{{ constant('App\\Controller\\UserSelectionController::INPUT_NAME') }}[{{ constant('App\\Controller\\UserSelectionController::INPUT_LIST') }}][]"]'
+                        data-target='[name="{{ constant('App\\Controller\\UserSelectionController::INPUT_NAME') }}[{{ constant('App\\Controller\\UserSelectionController::INPUT_LIST') }}][]"]:checked'>
+                    {{ 'bloc.banner-tools.list-down'|trans }}
                     <span class="sr-only">{{ 'bloc.banner-tools.list-name'|trans }}</span>
                     <img src="{{ asset('images/icones/icone-caret-bas.svg') }}" alt="" class="icone-caret"/>
                 </button>
@@ -43,8 +57,11 @@
         {% endif %}
 
         <li class="banner-tools__item banner-tools__item-btn">
-            <button type="button" class="btn" data-target="#modal-list-remove" data-toggle="modal">
-                {{ 'bloc.banner-tools.list-remove'|trans }} <span class="sr-only">{{ 'bloc.banner-tools.list-name'|trans }}</span>
+            <button type="button" class="btn" data-href="#modal-list-remove" data-toggle="disable-if-no-found-modal"
+                    data-spy=':checkbox'
+                    data-target='input[type="checkbox"]:checked'>
+                {{ 'bloc.banner-tools.list-remove'|trans }}
+                <span class="sr-only">{{ 'bloc.banner-tools.list-name'|trans }}</span>
                 <img src="{{ asset('images/icones/icone-croix-noire.svg') }}" alt="" class="icone-croix"/>
             </button>
         </li>

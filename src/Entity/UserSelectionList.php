@@ -50,11 +50,13 @@ class UserSelectionList
      * UserSelectionList constructor.
      * @param LdapUser $user
      * @param string $title
+     * @param int $position
      */
-    public function __construct(LdapUser $user, string $title)
+    public function __construct(LdapUser $user, string $title, int $position = 0)
     {
         $this->user_uid = $user->getUid();
         $this->title = $title;
+        $this->position = $position;
         $this->documents = new ArrayCollection();
     }
 

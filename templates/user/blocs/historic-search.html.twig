@@ -23,15 +23,15 @@
             <tbody class="table__body">
             {% for history in histories %}
                 <tr>
-                    <td>
+                    <td data-order="false">
                         <input type="checkbox" name="{{ constant('App\\Controller\\UserHistoryController::INPUT_NAME') }}[]" value="{{ history.id }}"
                                aria-label="{{ 'bloc.historic-search.select-ligne'|trans({'%title%': history.title}) }}">
                     </td>
                     <td>
                         <p>{{ history.title }}</p>
                     </td>
-                    <td>{{ history.lastViewDate|date('d/m/Y \\à H:i') }}</td>
-                    <td class="table__body-search">
+                    <td data-order="{{ history.lastViewDate|date('Ymd') }}">{{ history.lastViewDate|date('d/m/Y \\à H:i') }}</td>
+                    <td class="table__body-search" data-order="false">
                         <a href="{{ path('search', {'savedId': history.url}) }}" role="button">
                             <span class="sr-only">{{ 'bloc.historic-search.reload'|trans({'%title%': history.title}) }}</span>
                             <img src="{{ asset('images/icones/icone-loupe-noire.svg') }}" alt="" class="icone-loupe"/>

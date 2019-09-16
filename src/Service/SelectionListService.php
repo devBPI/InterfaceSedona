@@ -161,7 +161,7 @@ final class SelectionListService
      */
     private function createList(string $title): UserSelectionList
     {
-        $list = new UserSelectionList($this->tokenStorage->getToken()->getUser(), $title);
+        $list = new UserSelectionList($this->tokenStorage->getToken()->getUser(), $title, count($this->getLists()));
         $this->entityManager->persist($list);
 
         return $list;
@@ -230,10 +230,11 @@ final class SelectionListService
     /**
      * @param int $listId
      * @param bool $up
+     * @return bool
      * @throws \Doctrine\ORM\ORMException
      * @throws \Doctrine\ORM\OptimisticLockException
      */
-    private function moveList(int $listId, bool $up = true)
+    private function moveList(int $listId, bool $up = true): bool
     {
         $currentObj = $this->entityManager->getRepository(UserSelectionList::class)->find($listId);
         $currentPosition = $currentObj->getPosition();
@@ -241,28 +242,39 @@ final class SelectionListService
 
         $allList = $this->getLists();
 
-        $previous = array_filter($allList, function ($list) use ($currentPosition) {
+        $previous = array_filter($allList, function (UserSelectionList $list) use ($currentPosition) {
             return $list->getPosition() < $currentPosition;
         });
-        $next = array_filter($allList, function ($list) use ($currentPosition) {
+        $next = array_filter($allList, function (UserSelectionList $list) use ($currentPosition) {
             return $list->getPosition() > $currentPosition;
         });
 
         if ($up) {
+            if (!is_array($previous) || count($previous) === 0) {
+                return false;
+            }
+
             $last = [end($previous)];
             array_pop($previous);
             $newList = array_merge($previous, $current, $last, $next);
         } else {
+            if (!is_array($next) || count($next) === 0) {
+                return false;
+            }
+
             $first = [reset($next)];
             array_shift($next);
             $newList = array_merge($previous, $first, $current, $next);
         }
 
         foreach ($newList as $i => $list) {
+            /** @var UserSelectionList $list */
             $list->setPosition($i);
         }
 
         $this->entityManager->flush();
+
+        return true;
     }
 
     /**

@@ -13,7 +13,7 @@ const $ = require('jquery');
 
 require('bootstrap');
 
-import dataToggle from './dataToggle.js';
+import dataToggle from './data-toggle.js';
 
 const routes = require('../../public/js/fos_js_routes.json');
 
