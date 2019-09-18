@@ -2,39 +2,34 @@
 
 namespace App\Model;
 
+use App\Model\Interfaces\AuthorityInterface;
+use App\Model\Interfaces\NoticeInterface;
 use JMS\Serializer\Annotation as JMS;
 
 /**
  * Class IndiceCdu
  * @package App\Model
  */
-class IndiceCdu implements AuthorityInterface
+class IndiceCdu  extends Cdu implements AuthorityInterface, NoticeInterface
 {
     /**
      * @var string
      * @JMS\Type("string")
      * @JMS\SerializedName("permalink")
      */
+    private $permalink;
+
+    /**
+     * @var int
+     * @JMS\Type("int")
+     * @JMS\SerializedName("id")
+     */
     private $id;
 
     /**
-     * @var string
-     * @JMS\Type("string")
+     * @return int|null
      */
-    private $cote;
-
-    /**
-     * @var string
-     * @JMS\Type("string")
-     * @JMS\SerializedName("libelle")
-     */
-    private $name;
-
-
-    /**
-     * @return string
-     */
-    public function getId(): string
+    public function getId(): ?int
     {
         return $this->id;
     }
@@ -42,18 +37,27 @@ class IndiceCdu implements AuthorityInterface
     /**
      * @return string
      */
-    public function getCote(): string
+    public function getPermalink(): string
     {
-        return $this->cote;
+        return $this->permalink;
     }
+
 
     /**
      * @return string
      */
-    public function getName(): string
+    public function getType(): string
     {
-        return trim($this->name, '[]');
+        return self::class;
     }
 
-
+    /**
+     *
+     * @return string
+     */
+    public function getTitle(): string
+    {
+        return $this->getName();
+    }
 }
+

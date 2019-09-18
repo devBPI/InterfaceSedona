@@ -4,6 +4,10 @@ declare(strict_types=1);
 namespace App\Twig;
 
 
+use App\Model\Authority;
+use App\Service\BreadcrumbBuilder;
+use App\Service\NavigationService;
+use App\Utils\BreadcrumbNavigation;
 use App\WordsList;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Twig\Extension\AbstractExtension;
@@ -38,7 +42,11 @@ class SearchFiltersExtension extends AbstractExtension
         return [
             new TwigFunction('search_words', [$this, 'getSearchWords']),
             new TwigFunction('words_operators', [$this, 'getSearchOperators']),
-            new TwigFunction('get_value_by_field_name', [$this, 'getValueByFieldName'])
+            new TwigFunction('get_value_by_field_name', [$this, 'getValueByFieldName']),
+            new TwigFunction('check_value_exist', [$this, 'isValueExist']),
+            new TwigFunction('sameInstance', [$this, 'sameInstance']),
+            new TwigFunction('route_by_object', [$this, 'getRouteByObject']),
+            new TwigFunction('breadcrumb_navigation', [$this, 'getBreadcrumb']),
         ];
     }
 
@@ -89,4 +97,47 @@ class SearchFiltersExtension extends AbstractExtension
 
         return null;
     }
+
+    /**
+     * @param string $key
+     * @param $searchValue
+     * @param array|null $array
+     * @return bool
+     */
+    public function isValueExist(string $key,  $searchValue, array $array=null):bool
+    {
+        if (empty($array[$key])){
+            return false;
+        }
+
+        foreach ($array[$key] as $index => $value){
+
+             if ($value === $searchValue){
+                 return true;
+             }
+         }
+
+         return false;
+    }
+
+    /**
+     * @param $object
+     * @param $class
+     * @return bool
+     */
+    public function sameInstance($object, $class)
+    {
+        return $object instanceof $class;
+    }
+
+    /**
+     * @param $object
+     * @return string
+     */
+    public function getRouteByObject($object)
+    {
+        return NavigationService::getRouteByObject($object);
+    }
+
 }
+

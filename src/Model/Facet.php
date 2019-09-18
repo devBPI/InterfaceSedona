@@ -1,15 +1,35 @@
 <?php
+declare(strict_types=1);
 
 namespace App\Model;
 
+use App\Model\Search\FromArrayInterface;
 use JMS\Serializer\Annotation as JMS;
 
 /**
  * Class Facet
  * @package App\Model
  */
-class Facet
+class Facet implements FromArrayInterface
 {
+       const MANDATORY_KEYS = [
+        'name',
+        'label',
+        'countOnline',
+        'countOffline' ,
+        'values',
+        'general' ,
+        'page' ,
+        'rows',
+        'title' ,
+        'realisateur',
+        'subject' ,
+        'theme',
+        'publicationDate' ,
+        'publicationDateStart',
+        'publicationDateEnd' ,
+        'sort',
+    ];
     /**
      * @var string
      * @JMS\Type("string")
@@ -82,4 +102,13 @@ class Facet
         return $this->values;
     }
 
+
+    /**
+     * @param array $array
+     * @return mixed
+     */
+    public static function fromArray($array)
+    {
+
+    }
 }

@@ -4,8 +4,10 @@ declare(strict_types=1);
 namespace App\Service\Provider;
 
 use App\Model\Exception\NoResultException;
+use App\Model\Facets;
 use App\Model\Notice;
 use App\Model\Results;
+use App\Model\Search;
 use App\Model\Search\Criteria;
 use App\Model\Search\FacetFilter;
 use App\Service\APIClient\CatalogClient;
@@ -48,10 +50,14 @@ class SearchProvider extends AbstractProvider
      */
     public function getListBySearch(Criteria $criteria, FacetFilter $facets): Results
     {
+        //dump($this->serializer->serialize($criteria, 'xml'), $this->templating->render('search/facet-filters.xml.twig', ['attributes' => $facets->getAttributes(), 'translateNames'=>false]));
         /** @var Results $searchResult */
         $searchResult = $this->hydrateFromResponse('/search/all', [
             'criters' => $this->serializer->serialize($criteria, 'xml'),
-            'facets' => $this->templating->render('search/facet-filters.xml.twig', ['attributes' => $facets->getAttributes()])
+            'facets' => $this->templating->render('search/facet-filters.xml.twig', ['attributes' => $facets->getAttributes(), 'translateNames'=>false]),
+            'page' => $criteria->getPage(),
+            'sort' => $criteria->getSort()??'DEFAULT',
+            'rows' => $criteria->getRows(),
         ]);
 
         foreach ($searchResult->getNotices()->getNoticesList() as $notice) {
@@ -60,6 +66,9 @@ class SearchProvider extends AbstractProvider
         foreach ($searchResult->getNoticesOnline()->getNoticesList() as $notice) {
             $this->getImagesForNotice($notice);
         }
+        $searchResult
+            ->setCriteria($criteria)
+        ;
 
         return $searchResult;
     }
@@ -109,5 +118,5 @@ class SearchProvider extends AbstractProvider
 
         return $content;
     }
-
 }
+

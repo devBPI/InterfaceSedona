@@ -5,7 +5,7 @@
 {% block searchextended %}
 	<div class="row justify-content-sm-between">
 		<div class="col-12 col-sm-auto">
-			{% include "search/blocs-searchextended/search-corrector.html.twig" %}
+			{% include "search/blocs-searchextended/search-corrector.html.twig" with {'suggestionList': objSearch.suggestionList} %}
 		</div>
 		
 		<div class="col-auto">
@@ -19,7 +19,7 @@
 
 	<div class="row mb-3">
 		<div class="col-12 col-sm-10 pr-sm-0">
-			{% include "search/blocs-searchextended/filters-search.html.twig" %}
+			{% include "search/blocs-searchextended/filters-search.html.twig"   %}
 		</div>
 
 		<div class="col-12 col-sm-2 pl-sm-0">
@@ -55,12 +55,11 @@
 				{% include 'search/blocs-results/docs-container.html.twig' with {'type': 'online', 'notices': objSearch.noticesOnline} %}
 			</div>
 		{% endblock %}
-
 	</div>
 
 	<div class="row">
 		{# Include Pagination #}
-		{% include "search/blocs-results/search-footer.html.twig" %}
+		{% include "search/blocs-results/search-footer.html.twig" with {'criteria':objSearch.criteria, 'pagesTotal': objSearch.pageTotal, 'page':  objSearch.page} %}
 	</div>
 
 	<!-- Include modal formulaire pour être prevenu du retour du document en rayon -->

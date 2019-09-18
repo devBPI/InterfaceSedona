@@ -11,5 +11,20 @@
             <span class="list-information__label">{{ type|trans }}</span>
             <span class="list-information__sub-list">{{ items }}</span>
         {% endif %}
+
+        {#{% if type != 'no-label' %}#}
+            {#<span class="list-information__label">{{ ('bloc.autority-result-information.'~type)|trans }}</span>#}
+        {#{% endif %}#}
+        {#<ul class="list-information__sub-list" lang="fr">#}
+            {#{% for label, link in items %}#}
+                {#<li class="list-information__sub-item">#}
+                    {#{% if link and link |length>4 and label is not empty %}#}
+                        {#<a href="{{ link }}" aria-label="{{ 'bloc.autority-result-information.search-with'|trans({'%theme%': label }) }}">{{ label }}</a>#}
+                    {#{% else %}#}
+                        {#{{ label }}#}
+                    {#{% endif %}#}
+                {#</li>#}
+            {#{% endfor %}#}
+        {#</ul>#}
     </li>
 {% endfor %}

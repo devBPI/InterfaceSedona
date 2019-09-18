@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Class SearchEngine
  * @package App\Entity
- *
+ * @deprecated  class non utilisé
  * @ORM\Entity()
  */
 class SearchEngine

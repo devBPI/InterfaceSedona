@@ -4,17 +4,20 @@
 namespace App\Controller;
 
 use App\Model\Exception\SearchHistoryException;
+use App\Model\Search;
 use App\Model\Search\Criteria;
 use App\Model\Search\FacetFilter;
 use App\Model\SuggestionList;
 use App\Service\HistoricService;
 use App\Service\Provider\AdvancedSearchProvider;
 use App\Service\Provider\SearchProvider;
+use JMS\Serializer\SerializerInterface;
 use Knp\Bundle\SnappyBundle\Snappy\Response\PdfResponse;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
@@ -40,61 +43,96 @@ class SearchController extends AbstractController
      * @var HistoricService
      */
     private $historicService;
+    /**
+     * @var SerializerInterface
+     */
+    private $serializer;
 
     /**
      * SearchController constructor.
      * @param SearchProvider $searchProvider
      * @param AdvancedSearchProvider $advancedSearchProvider
      * @param HistoricService $historicService
+     * @param SerializerInterface $serializer
      */
     public function __construct(
         SearchProvider $searchProvider,
         AdvancedSearchProvider $advancedSearchProvider,
-        HistoricService $historicService
+        HistoricService $historicService,
+        SerializerInterface $serializer
     ) {
         $this->searchProvider = $searchProvider;
         $this->advancedSearchProvider = $advancedSearchProvider;
         $this->historicService = $historicService;
+        $this->serializer = $serializer;
     }
 
     /**
      * @Route("/recherche/{savedId}", defaults={"savedId" = null}, methods={"GET", "POST"}, name="search")
      * @param string $savedId
      * @param Request $request
+     * @param SessionInterface $session
      * @return \Symfony\Component\HttpFoundation\Response
      * @throws \Doctrine\ORM\ORMException
      * @throws \Twig\Error\LoaderError
      * @throws \Twig\Error\RuntimeError
      * @throws \Twig\Error\SyntaxError
      */
-    public function indexAction(string $savedId = null, Request $request)
+    public function indexAction(string $savedId = null, Request $request, SessionInterface $session)
     {
-        $params = [];
-        $title = '';
-        $savedSearch = false;
-
-        try {
-            if ($savedId !== null && ($searchHistory = $this->historicService->getSearchHistoryByHash($savedId))) {
-                $params = $searchHistory->getQueries();
-                $title = $searchHistory->getTitle();
-                $savedSearch = true;
-            }
-        } catch (SearchHistoryException $exception) {
-            // log
+        if ($request->get('searchToken')){
+            $search = $this
+                ->serializer
+                ->deserialize(
+                    $session->get($request->get('searchToken')),
+                    Search::class,
+                    'json'
+                )
+            ;
+        } else {
+            $search = new Search(new Criteria($request), new FacetFilter($request));
         }
 
-        if (!$savedSearch) {
-            $params = $request->request->all();
-            $title = $this->historicService->setTitleFromRequest($request);
+        $search->getCriteria()->setSort($request->get('sort', Criteria::SORT_DEFAULT));
+        $search->getCriteria()->setRows($request->get('rows', Criteria::ROWS_DEFAULT));
+        $search->getCriteria()->setPage($request->get('page', 1));
 
-            if ($request->request->count() > 0) {
-                $this->historicService->saveMyHistoric($request);
-            }
-        }
+        $objSearch  = $this->searchProvider->getListBySearch($search->getCriteria(), $search->getFacets());
+        $title      = 'page.search.title';
+        $title      .= $request->get(WordsList::ADVANCED_SEARCH_LABEL) === WordsList::CLICKED ?'advanced' : 'simple';
+        $hash       = \spl_object_hash($search);
+        $session->set($hash, $this->serializer->serialize($search, 'json'));
 
-        $criteria = new Criteria($params);
-        $facets = new FacetFilter($params);
-        $objSearch = $this->searchProvider->getListBySearch($criteria, $facets);
+//        $params = [];
+//        $title = '';
+//        $savedSearch = false;
+//
+//        try {
+//            if ($savedId !== null && ($searchHistory = $this->historicService->getSearchHistoryByHash($savedId))) {
+//                $params = $searchHistory->getQueries();
+//                $title = $searchHistory->getTitle();
+//                $savedSearch = true;
+//            }
+//        } catch (SearchHistoryException $exception) {
+//            // log
+//        }
+//
+//        if (!$savedSearch) {
+//            $params = $request->request->all();
+//            $title = $this->historicService->setTitleFromRequest($request);
+//
+//            if ($request->request->count() > 0) {
+//                $this->historicService->saveMyHistoric($request);
+//            }
+//        }
+//
+//        $criteria = new Criteria($params);
+//        $facets = new FacetFilter($params);
+//        $objSearch = $this->searchProvider->getListBySearch($criteria, $facets);
+//
+//        $title = 'page.search.title';
+//        $title .= $request->get(WordsList::ADVANCED_SEARCH_LABEL) === WordsList::CLICKED ?
+//            'advanced' : 'simple';
 
         return $this->render(
             'search/index.html.twig',
@@ -103,6 +141,7 @@ class SearchController extends AbstractController
                 'toolbar' => 'search',
                 'objSearch' => $objSearch,
                 'printRoute' => $this->generateUrl('search_pdf', ['format' => 'pdf']),
+                'searchToken' => $hash
             ]
         );
     }
@@ -187,23 +226,19 @@ class SearchController extends AbstractController
 
             $objSearch = $this->searchProvider->findNoticeAutocomplete($query, SuggestionList::class);
 
-            return new JsonResponse(
-                [
-                    'html' => $this->renderView(
-                        'search/autocompletion.html.twig',
-                        [
-                            'words' => $objSearch->getSuggestions(),
-                        ]
-                    ),
-                ]
-            );
+            return new JsonResponse([
+                'html' => $this->renderView(
+                    'search/autocompletion.html.twig',
+                    [
+                        'words' => $objSearch->getSuggestions(),
+                    ]
+                ),
+            ]);
         } catch (\Exception $exception) {
-            return new JsonResponse(
-                [
-                    'code' => $exception->getCode(),
-                    'message' => $exception->getMessage(),
-                ]
-            );
+            return new JsonResponse([
+                'code' => $exception->getCode(),
+                'message' => $exception->getMessage(),
+            ]);
         }
     }
 

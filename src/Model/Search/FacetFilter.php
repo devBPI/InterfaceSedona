@@ -2,6 +2,7 @@
 
 namespace App\Model\Search;
 
+use JMS\Serializer\Annotation as JMS;
 
 /**
  * Class FacetFilter
@@ -13,6 +14,7 @@ class FacetFilter
 
     /**
      * @var array
+     * @JMS\Type("array")
      */
     private $attributes = [];
 

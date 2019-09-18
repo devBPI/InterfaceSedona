@@ -53,7 +53,7 @@ abstract class AbstractProvider implements ApiProvider
         if ($debug) {
             dump($response, $response->getBody()->getContents());die('end');
         }
-
+//dump(  $response->getBody()->getContents()); die;
         return $this->serializer->deserialize(
             $response->getBody()->getContents(),
             $model ?? $this->modelName,

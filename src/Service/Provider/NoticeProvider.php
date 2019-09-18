@@ -3,10 +3,15 @@ declare(strict_types=1);
 
 namespace App\Service\Provider;
 
+use App\Model\Author;
+use App\Model\Authority;
 use App\Model\Exception\NoResultException;
 use App\Model\ListNotices;
 use App\Model\ListOnlineNotices;
 use App\Model\Notice;
+use App\Model\NoticeMappedAuthority;
+use App\Model\Notices;
+use App\Model\NoticeThemed;
 
 /**
  * Class NoticeProvider
@@ -104,20 +109,17 @@ EOF;
 
     public function getNotice(string $query)
     {
-        /** @var ListNotices $notices */
+        $notices = [];
         try{
-            $notices = $this->arrayFromResponse('/details/notice-themed/', [
-                'permalink' => $query
-            ], Notice::class);
+            $notices = $this->hydrateFromResponse(sprintf('/details/notice-themed/%s', $query), [], NoticeThemed::class);
+          //  $notices = $this->hydrateFromResponse(sprintf('/details/authority/%s', $query), [], NoticeThemed::class);
+
         }catch(NoResultException $e){
             dump("la ressource n'est plus disponible page 404 customisé à faire");
         }
 
-/*
-        foreach ($notices->getNoticesList() as $notice) {
-            $this->getImagesForNotice($notice);
-        }
-*/
+        return $notices;
     }
+
 }
 
