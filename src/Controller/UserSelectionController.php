@@ -88,8 +88,7 @@ class UserSelectionController extends AbstractController
             }
 
             $param = [
-                'error' => 'modal.list-create.mandatory-field',
-                'documents' => $request->get(UserSelectionController::INPUT_NAME)[UserSelectionController::INPUT_DOCUMENT]
+                'error' => 'modal.list-create.mandatory-field'
             ];
         }
 

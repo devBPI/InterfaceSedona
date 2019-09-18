@@ -29,8 +29,7 @@
             <li class="banner-tools__item banner-tools__item-add">
                 <button type="button" class="btn" data-href="#modal-list-add" data-toggle="disable-if-no-found-modal"
                         data-spy='[name="{{ constant('App\\Controller\\UserSelectionController::INPUT_NAME') }}[{{ constant('App\\Controller\\UserSelectionController::INPUT_DOCUMENT') }}][]"]'
-                        data-target='[name="{{ constant('App\\Controller\\UserSelectionController::INPUT_NAME') }}[{{ constant('App\\Controller\\UserSelectionController::INPUT_DOCUMENT') }}][]"]:checked'
-                        data-context="selection">
+                        data-target='[name="{{ constant('App\\Controller\\UserSelectionController::INPUT_NAME') }}[{{ constant('App\\Controller\\UserSelectionController::INPUT_DOCUMENT') }}][]"]:checked'>
                     {{ 'bloc.banner-tools.list-add'|trans }}
                     <span class="sr-only">{{ 'bloc.banner-tools.list-name'|trans }}</span>
                     <img src="{{ asset('images/icones/icone-caret-bas.svg') }}" alt="" class="icone-caret"/>

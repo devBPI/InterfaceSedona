@@ -8,13 +8,7 @@
 	</div>
 
 	<div class="modal-body d-none">
-		<div id="resume-container">
-            {% if documents is defined %}
-                {% for doc in documents %}
-                    <input type="hidden" name="{{ constant('App\\Controller\\UserSelectionController::INPUT_NAME') }}[{{ constant('App\\Controller\\UserSelectionController::INPUT_DOCUMENT') }}][]" value="{{ doc }}">
-                {% endfor %}
-            {% endif %}
-        </div>
+		<div id="resume-container"></div>
 	</div>
 
     {# Création d'une liste  #}

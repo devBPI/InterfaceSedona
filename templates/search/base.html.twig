@@ -2,9 +2,8 @@
 
 {% block javascripts %}
 	{{ parent() }}
-
+    
     {% if app.environment != 'test' %}
-        {{ encore_entry_script_tags('admin') }}
-        {{ encore_entry_script_tags('datatable') }}
+        {{ encore_entry_script_tags('search') }}
     {% endif %}
 {% endblock %}

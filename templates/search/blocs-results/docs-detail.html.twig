@@ -8,11 +8,15 @@
             <span class="sr-only">{{ 'bloc.notice-simple.result'|trans }} </span> {{ index }}
             <span class="sr-only">, {{ 'bloc.notice-simple.select'|trans }} {{ notice.frontTitle }}</span>
         </label>
-        <input type="hidden" name="{{ constant('App\\Controller\\UserSelectionController::INPUT_DOCUMENT') }}[__item__][id]" value="{{ notice.id }}">
-        <input type="hidden" name="{{ constant('App\\Controller\\UserSelectionController::INPUT_DOCUMENT') }}[__item__][url]" value="{{ path('record_bibliographic', {'ark': notice.id}) }}">
-        <input type="hidden" name="{{ constant('App\\Controller\\UserSelectionController::INPUT_DOCUMENT') }}[__item__][name]" value="{{ notice.frontTitle }}">
-        <input type="hidden" name="{{ constant('App\\Controller\\UserSelectionController::INPUT_DOCUMENT') }}[__item__][author]" value="{{ notice.frontAuthor }}">
-        <input type="hidden" name="{{ constant('App\\Controller\\UserSelectionController::INPUT_DOCUMENT') }}[__item__][type]" value="{{ notice.type }}">
+
+        {% from 'search/blocs-results/macros.html.twig' import add_to_list_form %}
+        {{ add_to_list_form(
+            notice.id,
+            path('record_bibliographic', {'ark': notice.id}),
+            notice.frontTitle,
+            notice.frontAuthor,
+            notice.type
+        ) }}
     </div>
     <div class="list-result__content-body">
         <div class="list-result__content-image">

@@ -7,11 +7,14 @@
             <span class="sr-only">{{ 'bloc.preview-authority.first'|trans({'%%name%': '*Insert titre*'}) }}</span>
         </label>
 
-        <input type="hidden" name="item[__item__][id]" value="{{ author.id }}">
-        <input type="hidden" name="item[__item__][url]" value="{{ path('record_authority', {'ark': author.id}) }}">
-        <input type="hidden" name="item[__item__][name]" value="{{ author.name }}">
-        <input type="hidden" name="item[__item__][author]" value="">
-        <input type="hidden" name="item[__item__][type]" value="author">
+        {% from 'search/blocs-results/macros.html.twig' import add_to_list_form %}
+		{{ add_to_list_form(
+			author.id,
+			path('record_authority', {'ark': author.id}),
+			author.name,
+			"",
+			"author"
+		) }}
 	</div>
 </div>
 

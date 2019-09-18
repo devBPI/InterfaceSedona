@@ -130,12 +130,18 @@
                     window.location.reload();
                 } else {
                     $form.replaceWith(data);
-                    $parentModal.trigger('loaded.bs.modal');
+                    $parentModal
+                        .trigger('loaded.bs.modal')
+                        .trigger('show.bs.modal')
+                        .trigger('shown.bs.modal');
                 }
             }).fail(function (data) {
                 $form.replaceWith(data);
             });
             return false;
+        })
+        .on('shown.bs.modal', '.modal', function () {
+            $(this).find( 'input:visible:first').focus();
         })
         .on('click', '[data-toggle=modal]', function(e) {
             var $this = $(this),
