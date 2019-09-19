@@ -1,59 +1,61 @@
-<div class="col-12">
-	<div>
-        <input type="checkbox" id="related-notice-result-{{ i }}" class="addableInList"
-               name="{{ constant('App\\Controller\\SearchController::INPUT_AUTHOR') }}[]" value="{{ author.id }}">
-        <label for="related-notice-result-{{ i }}">
-            <span class="sr-only">{{ 'bloc.preview-authority.first'|trans({'%%name%': '*Insert titre*'}) }}</span>
-        </label>
+{% if author is not empty %}
+    <div class="col-12">
+        <div>
+            <input type="checkbox" id="related-notice-result-{{ i }}" class="addableInList"
+                   name="{{ constant('App\\Controller\\SearchController::INPUT_AUTHOR') }}[]" value="{{ author.id }}">
+            <label for="related-notice-result-{{ i }}">
+                <span class="sr-only">{{ 'bloc.preview-authority.first'|trans({'%%name%': '*Insert titre*'}) }}</span>
+            </label>
 
-        {% from 'search/blocs-results/macros.html.twig' import add_to_list_form %}
-		{{ add_to_list_form(
-			author.id,
-			path('record_authority', {'ark': author.id}),
-			author.name,
-			"",
-			"author"
-		) }}
-	</div>
-</div>
+            {% from 'search/blocs-results/macros.html.twig' import add_to_list_form %}
+            {{ add_to_list_form(
+                author.id,
+                path('record_authority', {'ark': author.id}),
+                author.name,
+                "",
+                "author"
+            ) }}
+        </div>
+    </div>
 
-<div class="col-12 col-md-2">
-	<div class="search-result__image">
-		<img src="{{ asset('images/types-autorite/autorite-personne.svg') }}" alt="" class="img-fluid" />
-	</div>
-</div>
+    <div class="col-12 col-md-2">
+        <div class="search-result__image">
+            <img src="{{ asset('images/types-autorite/autorite-personne.svg') }}" alt="" class="img-fluid" />
+        </div>
+    </div>
 
-<div class="col-12 col-md-10">
-	{% if level == 2 %}<div class="search-result__body">{% endif %}
-		{% if author is not empty %}
-			<h{{ level }} lang="fr" class="n{{ level }} search-result__title">
-				{% if author.cote is defined and author.cote is not null %}
-					<a
-							href="{{ path('record_indice_cdu', {'permalink':author.permalink, 'searchToken': searchToken}) }}"
-							title="*Insert Name identité* - {{ 'global.new-windows'|trans }}"
-					>
-                        {{ author.name }}
-						<span class="n2"></span>
-					</a>
-				{% else %}
-					<a
-							href="{{ path('record_authority', {'permalink':author.permalink, 'searchToken': searchToken}) }}"
-							title="*Insert Name identité* - {{ 'global.new-windows'|trans }}"
-					>
-                        {{ author.name }}
-						<span class="n2"></span>
-					</a>
-				{% endif %}
-			</h{{ level }}>
-		{% endif %}
+    <div class="col-12 col-md-10">
+        {% if level == 2 %}<div class="search-result__body">{% endif %}
+            {% if author is not empty %}
+                <h{{ level }} lang="fr" class="n{{ level }} search-result__title">
+                    {% if author.cote is defined and author.cote is not null %}
+                        <a
+                                href="{{ path('record_indice_cdu', {'permalink':author.permalink, 'searchToken': searchToken}) }}"
+                                title="*Insert Name identité* - {{ 'global.new-windows'|trans }}"
+                        >
+                            {{ author.name }}
+                            <span class="n2"></span>
+                        </a>
+                    {% else %}
+                        <a
+                                href="{{ path('record_authority', {'permalink':author.permalink, 'searchToken': searchToken}) }}"
+                                title="*Insert Name identité* - {{ 'global.new-windows'|trans }}"
+                        >
+                            {{ author.name }}
+                            <span class="n2"></span>
+                        </a>
+                    {% endif %}
+                </h{{ level }}>
+            {% endif %}
 
-	<ul class="list-information search-result__list">
-		{% include 'common/informations-authority.html.twig'
-			with {
-				'prefix': 'bloc.autority-result-information.',
-            	'author': author,
-			}
-		%}
-	</ul>
-	{% if level == 2 %}</div>{% endif %}
-</div>
+        <ul class="list-information search-result__list">
+            {% include 'common/informations-authority.html.twig'
+                with {
+                    'prefix': 'bloc.autority-result-information.',
+                    'author': author,
+                }
+            %}
+        </ul>
+        {% if level == 2 %}</div>{% endif %}
+    </div>
+{% endif %}

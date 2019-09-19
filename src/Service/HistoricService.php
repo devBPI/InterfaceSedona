@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace App\Service;
 
+use App\Controller\SearchController;
 use App\Entity\SearchHistory;
 use App\Entity\UserHistory;
 use App\Model\Exception\SearchHistoryException;
@@ -60,31 +61,36 @@ final class HistoricService
      */
     public function saveMyHistoric(Request $request): void
     {
-        $searchHash = SearchHistory::getSearchHash($request->request->all());
-        $searchHistory = $this->entityManager->getRepository(SearchHistory::class)->find($searchHash);
-        if (!$searchHistory instanceof SearchHistory) {
-            $searchHistory = new SearchHistory(
-                $this->setTitleFromRequest($request),
-                $request->request->all()
-            );
-            $this->entityManager->persist($searchHistory);
-        }
-
         if (
-            $this->tokenStorage->getToken() instanceof TokenInterface &&
-            $this->tokenStorage->getToken()->getUser() instanceof LdapUser
+            $request->get(WordsList::ADVANCED_SEARCH_ACTION) === WordsList::CLICKED ||
+            $request->get(WordsList::SIMPLE_SEARCH_ACTION) === WordsList::CLICKED
         ) {
-            $userHistory = $this->getUserHistory($searchHistory);
-            if ($userHistory instanceof UserHistory) {
-                $userHistory->incrementCount();
-            } else {
-                $userHistory = new UserHistory($searchHistory);
-                $userHistory->setUserUid($this->tokenStorage->getToken()->getUser()->getUid());
-                $this->entityManager->persist($userHistory);
+            $searchHash = SearchHistory::getSearchHash($request->query->all());
+            $searchHistory = $this->entityManager->getRepository(SearchHistory::class)->find($searchHash);
+            if (!$searchHistory instanceof SearchHistory) {
+                $searchHistory = new SearchHistory(
+                    $this->setTitleFromRequest($request),
+                    $request->query->all()
+                );
+                $this->entityManager->persist($searchHistory);
             }
-        }
 
-        $this->entityManager->flush();
+            if (
+                $this->tokenStorage->getToken() instanceof TokenInterface &&
+                $this->tokenStorage->getToken()->getUser() instanceof LdapUser
+            ) {
+                $userHistory = $this->getUserHistory($searchHistory);
+                if ($userHistory instanceof UserHistory) {
+                    $userHistory->incrementCount();
+                } else {
+                    $userHistory = new UserHistory($searchHistory);
+                    $userHistory->setUserUid($this->tokenStorage->getToken()->getUser()->getUid());
+                    $this->entityManager->persist($userHistory);
+                }
+            }
+
+            $this->entityManager->flush();
+        }
     }
 
     /**

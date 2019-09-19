@@ -26,7 +26,7 @@ class FacetFilter
     {
         if (array_key_exists(self::QUERY_NAME, $request)) {
             foreach ($request[self::QUERY_NAME] as $name => $values) {
-                $this->attributes[$name] = $values;
+                $this->set($name, $values);
             }
         }
     }
@@ -37,6 +37,15 @@ class FacetFilter
     public function getAttributes(): array
     {
         return $this->attributes;
+    }
+
+    /**
+     * @param $name
+     * @param $values
+     */
+    public function set($name, $values)
+    {
+        $this->attributes[$name] = $values;
     }
 
 }

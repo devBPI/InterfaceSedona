@@ -41,24 +41,14 @@ class SearchProvider extends AbstractProvider
     }
 
     /**
-     * @param Criteria $criteria
-     * @param FacetFilter $facets
+     * @param Search $search
      * @return mixed
-     * @throws \Twig\Error\LoaderError
-     * @throws \Twig\Error\RuntimeError
-     * @throws \Twig\Error\SyntaxError
      */
-    public function getListBySearch(Criteria $criteria, FacetFilter $facets): Results
+    public function getListBySearch(Search $search): Results
     {
         //dump($this->serializer->serialize($criteria, 'xml'), $this->templating->render('search/facet-filters.xml.twig', ['attributes' => $facets->getAttributes(), 'translateNames'=>false]));
         /** @var Results $searchResult */
-        $searchResult = $this->hydrateFromResponse('/search/all', [
-            'criters' => $this->serializer->serialize($criteria, 'xml'),
-            'facets' => $this->templating->render('search/facet-filters.xml.twig', ['attributes' => $facets->getAttributes(), 'translateNames'=>false]),
-            'page' => $criteria->getPage(),
-            'sort' => $criteria->getSort()??'DEFAULT',
-            'rows' => $criteria->getRows(),
-        ]);
+        $searchResult = $this->hydrateFromResponse('/search/all', $this->serializer->toArray($search));
 
         foreach ($searchResult->getNotices()->getNoticesList() as $notice) {
             $this->getImagesForNotice($notice);
@@ -66,9 +56,6 @@ class SearchProvider extends AbstractProvider
         foreach ($searchResult->getNoticesOnline()->getNoticesList() as $notice) {
             $this->getImagesForNotice($notice);
         }
-        $searchResult
-            ->setCriteria($criteria)
-        ;
 
         return $searchResult;
     }

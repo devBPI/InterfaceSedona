@@ -1,7 +1,7 @@
 <!-- Début - Bloc 15 Navigation dans les résultats -->
 {% if navigation is defined  and navigation is not null %}
 	<div class="col-auto">
-		<a href="{{ path('search', {'searchToken':navigation.hash}) }}" class="link link--icone mb-3 mb-md-0">
+		<a href="{{ path('back_search', {'token': navigation.hash}) }}" class="link link--icone mb-3 mb-md-0">
 			<img src="{{ asset('images/icones/icone-chevron-gauche.svg') }}" alt="" class="icone-chevron"/>
 			<span>{{ 'bloc.results-navigation.return-to-result'|trans }}</span>
 		</a>

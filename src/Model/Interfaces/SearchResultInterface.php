@@ -16,5 +16,5 @@ interface SearchResultInterface
     /**
      * @return Criteria|null
      */
-    public function getCriteria(): Criteria;
+    public function getCriteria(): ?Criteria;
 }
