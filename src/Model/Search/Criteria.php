@@ -12,26 +12,8 @@ use Symfony\Component\HttpFoundation\Request;
  * @package App\Model\Search
  * @JMS\XmlRoot("search-criterias")
  */
-class Criteria implements ToJsonInterface, FromArrayInterface
+class Criteria
 {
-    const MANDATORY_KEYS = [
-        'and',
-        'or',
-        'author',
-        'collection' ,
-        'editor',
-        'general' ,
-        'page' ,
-        'rows',
-        'title' ,
-        'realisateur',
-        'subject' ,
-        'theme',
-        'publicationDate' ,
-        'publicationDateStart',
-        'publicationDateEnd' ,
-        'sort',
-    ];
     const QUERY_NAME    = 'criteria';
     const SORT_DEFAULT ='DEFAULT' ;
     const SORT = [
@@ -210,64 +192,6 @@ class Criteria implements ToJsonInterface, FromArrayInterface
             $type = $keywordRow[WordsList::FIELD_LABEL];
             $this->$type = $keywordRow[WordsList::TEXT_LABEL];
         }
-    }
-
-    /**
-     * @param array $array
-     * @return Criteria|mixed
-     */
-    public static function fromArray($array){
-        $criteria =  new Criteria();
-
-        if (!is_array($array) ||  count($array)==0){
-            return $criteria;
-        }
-
-        ArrayConstructibleDTO::checkRequiredKeys(self::MANDATORY_KEYS, $array);
-
-        $criteria
-            ->setAnd(self::fromArray($array['and']))
-            ->setAuthor($array ['author'])
-            ->setCollection($array ['collection'])
-            ->setEditor($array ['editor'])
-            ->setGeneral($array ['general'])
-            ->setOr(self::fromArray($array ['or']))
-            ->setPage($array ['page'])
-            ->setRows($array ['rows'])
-            ->setTitle($array ['title'])
-            ->setRealisator($array ['realisateur'])
-            ->setSubject($array ['subject'])
-            ->setTheme($array ['theme'])
-            ->setPublicationDate($array ['publicationDate'])
-            ->setPublicationDateStart($array ['publicationDateStart'])
-            ->setPublicationDateEnd($array ['publicationDateEnd'])
-            ->setSort($array ['sort'])
-        ;
-
-        return $criteria;
-    }
-
-    public function __toArray(){
-
-        return [
-            'and' => $this->getAnd()?$this->getAnd()->__toArray():[],
-            'or' => $this->getOr()?$this->getOr()->__toArray():[],
-            'author' => $this->getAuthor(),
-            'collection' => $this->getCollection(),
-            'editor' => $this->getEditor(),
-            'general' => $this->getGeneral(),
-            'page' => $this->getPage()??1,
-            'rows' => $this->getRows(),
-            'title' => $this->getTitle(),
-            'realisateur' => $this->getRealisator(),
-            'subject' => $this->getSubject(),
-            'theme' => $this->getTheme(),
-            'publicationDate' => $this->getPublicationDate(),
-            'publicationDateStart' => $this->getPublicationDateStart(),
-            'publicationDateEnd' => $this->getPublicationDateEnd(),
-            'sort'=> $this->getSort()
-        ]
-            ;
     }
 
     /**
@@ -542,16 +466,6 @@ class Criteria implements ToJsonInterface, FromArrayInterface
         $this->general = $general;
         return $this;
     }
-
-    /**
-     * @return string
-     */
-    public function toJson(): string
-    {
-        return \json_encode($this->__toArray());
-
-    }
-
     /**
      * @param string|null $sort
      * @return $this
