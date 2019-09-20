@@ -2,15 +2,15 @@
     <div class="col-12">
         <div>
             <input type="checkbox" id="related-notice-result-{{ i }}" class="addableInList"
-                   name="{{ constant('App\\Controller\\SearchController::INPUT_AUTHOR') }}[]" value="{{ author.id }}">
+                   name="{{ constant('App\\Controller\\SearchController::INPUT_AUTHOR') }}[]" value="{{ author.permalink }}">
             <label for="related-notice-result-{{ i }}">
                 <span class="sr-only">{{ 'bloc.preview-authority.first'|trans({'%%name%': '*Insert titre*'}) }}</span>
             </label>
 
             {% from 'search/blocs-results/macros.html.twig' import add_to_list_form %}
             {{ add_to_list_form(
-                author.id,
-                path('record_authority', {'ark': author.id}),
+                author.permalink,
+                path('record_authority', {'permalink': author.permalink}),
                 author.name,
                 "",
                 "author"
@@ -29,18 +29,14 @@
             {% if author is not empty %}
                 <h{{ level }} lang="fr" class="n{{ level }} search-result__title">
                     {% if author.cote is defined and author.cote is not null %}
-                        <a
-                                href="{{ path('record_indice_cdu', {'permalink':author.permalink, 'searchToken': searchToken}) }}"
-                                title="*Insert Name identité* - {{ 'global.new-windows'|trans }}"
-                        >
+                        <a href="{{ path('record_indice_cdu', {'permalink':author.permalink, 'searchToken': searchToken}) }}"
+                                title="*Insert Name identité* - {{ 'global.new-windows'|trans }}">
                             {{ author.name }}
                             <span class="n2"></span>
                         </a>
                     {% else %}
-                        <a
-                                href="{{ path('record_authority', {'permalink':author.permalink, 'searchToken': searchToken}) }}"
-                                title="*Insert Name identité* - {{ 'global.new-windows'|trans }}"
-                        >
+                        <a href="{{ path('record_authority', {'permalink':author.permalink, 'searchToken': searchToken}) }}"
+                                title="*Insert Name identité* - {{ 'global.new-windows'|trans }}">
                             {{ author.name }}
                             <span class="n2"></span>
                         </a>

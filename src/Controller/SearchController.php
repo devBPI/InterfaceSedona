@@ -3,23 +3,21 @@
 
 namespace App\Controller;
 
-use App\Entity\SearchHistory;
-use App\Model\Exception\SearchHistoryException;
-use App\Model\Search;
 use App\Model\Search\Criteria;
 use App\Model\Search\FacetFilter;
+use App\Model\Search\FiltersQuery;
+use App\Model\Search\SearchQuery;
 use App\Model\SuggestionList;
 use App\Service\HistoricService;
 use App\Service\Provider\AdvancedSearchProvider;
 use App\Service\Provider\SearchProvider;
-use App\WordsList;
+use App\Service\SearchService;
 use JMS\Serializer\SerializerInterface;
 use Knp\Bundle\SnappyBundle\Snappy\Response\PdfResponse;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\HttpFoundation\Session\Storage\SessionStorageInterface;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -54,11 +52,16 @@ class SearchController extends AbstractController
      * @var SessionStorageInterface
      */
     private $sessionStorage;
+    /**
+     * @var SearchService
+     */
+    private $searchService;
 
     /**
      * SearchController constructor.
      * @param SearchProvider $searchProvider
      * @param AdvancedSearchProvider $advancedSearchProvider
+     * @param SearchService $searchService
      * @param HistoricService $historicService
      * @param SerializerInterface $serializer
      * @param SessionStorageInterface $sessionStorage
@@ -66,6 +69,7 @@ class SearchController extends AbstractController
     public function __construct(
         SearchProvider $searchProvider,
         AdvancedSearchProvider $advancedSearchProvider,
+        SearchService $searchService,
         HistoricService $historicService,
         SerializerInterface $serializer,
         SessionStorageInterface $sessionStorage
@@ -75,12 +79,12 @@ class SearchController extends AbstractController
         $this->historicService = $historicService;
         $this->serializer = $serializer;
         $this->sessionStorage = $sessionStorage;
+        $this->searchService = $searchService;
     }
 
     /**
-     * @Route("/recherche/{token}", defaults={"token"=null}, methods={"GET", "POST"}, name="search")
+     * @Route("/recherche", methods={"GET", "POST"}, name="search")
      *
-     * @param string $token
      * @param Request $request
      * @return \Symfony\Component\HttpFoundation\Response
      * @throws \Doctrine\ORM\ORMException
@@ -88,61 +92,110 @@ class SearchController extends AbstractController
      * @throws \Twig\Error\RuntimeError
      * @throws \Twig\Error\SyntaxError
      */
-    public function indexAction(string $token = null, Request $request)
+    public function indexAction(Request $request): Response
     {
-        if ($token !== null && $request->getSession()->get($token)) {
-            $search = $this->serializer->deserialize(
-                $request->getSession()->get($token),
-                Search::class,
-                'json'
-            );
+        $keyword = $request->get(Criteria::SIMPLE_SEARCH_KEYWORD, '');
+        $criteria = new Criteria();
+        $criteria->setSimpleSearch($request->get(Criteria::SIMPLE_SEARCH_TYPE), $keyword);
 
-            foreach ($request->query->all() as $query => $value) {
-                $search->getFacets()->set($query, $value);
-            }
-        } else {
-            $params = $request->query->all();
-            $title = $this->historicService->setTitleFromRequest($request);
+        $title = $this->searchService->getSimpleTitle($keyword);
 
-            $this->historicService->saveMyHistoric($request);
+        $search = new SearchQuery($title, $criteria);
 
-
-            $search = new Search($title, new Criteria($params), new FacetFilter($params));
-        }
-        $search->setSort($request->get('sort', Criteria::SORT_DEFAULT));
-        $search->setRows($request->get('rows', Criteria::ROWS_DEFAULT));
-        $search->setPage($request->get('page', 1));
-
-
-        $hash = \spl_object_hash($search);
-        $request->getSession()->set($hash, $this->serializer->serialize($search, 'json'));
-
-        return $this->displaySearch($search, $hash);
+        return $this->displaySearch($search, $title, $request);
     }
 
     /**
-     * @Route("/recherche-sauvegardee/{savedId}", methods={"GET"}, name="saved_search")
-     * @param string $savedId
+     * @Route("/recherche-avancée", methods={"GET", "POST"}, name="advanced_search")
      *
      * @param Request $request
      * @return \Symfony\Component\HttpFoundation\Response
+     * @throws \Doctrine\ORM\ORMException
+     * @throws \Twig\Error\LoaderError
+     * @throws \Twig\Error\RuntimeError
+     * @throws \Twig\Error\SyntaxError
+     */
+    public function advancedSearchAction(Request $request): Response
+    {
+        $criteria = new Criteria();
+        $criteria->setAdvancedSearch($request->query->all());
+
+        $title = $this->searchService->getAdvancedTitleFromRequest($request);
+
+        $search = new SearchQuery($title, $criteria, new FacetFilter($request->query->all()));
+
+        return $this->displaySearch($search, $title, $request);
+    }
+
+    /**
+     * @Route("/recherche-affinee", methods={"GET"}, name="refined_search")
+     *
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\Response
+     * @throws \Doctrine\ORM\ORMException
+     * @throws \Twig\Error\LoaderError
+     * @throws \Twig\Error\RuntimeError
+     * @throws \Twig\Error\SyntaxError
+     */
+    public function refinedSearchAction(Request $request): Response
+    {
+        /** @var SearchQuery $search */
+        $search = $this
+            ->serializer
+            ->deserialize(
+                $request->getSession()->get($request->get('searchToken')),
+                SearchQuery::class,
+                'json'
+            )
+        ;
+        $title = $this->searchService->getTitleFromSearchQuery($search);
+
+
+        $search->setFacets(new FacetFilter($request->query->all()));
+
+        return $this->displaySearch($search, $title, $request);
+    }
+
+    /**
+     * @param SearchQuery $search
+     * @param string $title
+     * @param Request $request
+     * @return Response
      * @throws \Doctrine\ORM\ORMException
      * @throws \Doctrine\ORM\OptimisticLockException
      * @throws \Twig\Error\LoaderError
      * @throws \Twig\Error\RuntimeError
      * @throws \Twig\Error\SyntaxError
      */
-    public function savedSearchAction(string $savedId, Request $request)
+    private function displaySearch(SearchQuery $search, string $title, Request $request): Response
     {
-        $searchHistory = $this->historicService->getSearchHistoryByHash($savedId);
-        $params = $searchHistory->getQueries();
-        $title = $searchHistory->getTitle();
 
-        $search = new Search($title, new Criteria($params), new FacetFilter($params));
-        $hash       = \spl_object_hash($search);
+        if ($request->get('action', null) !== null) {
+            $request->query->remove('action');
+            $this->historicService->saveMyHistoric($request, $title);
+        }
+
+        $search->setSort($request->get(FiltersQuery::SORT_LABEL, SearchQuery::SORT_DEFAULT));
+        $search->setRows($request->get(FiltersQuery::ROWS_LABEL, SearchQuery::ROWS_DEFAULT));
+        $search->setPage($request->get(FiltersQuery::PAGE_LABEL, 1));
+
+
+        $hash = \spl_object_hash($search);
         $request->getSession()->set($hash, $this->serializer->serialize($search, 'json'));
 
-        return $this->displaySearch($search, $hash);
+        $objSearch = $this->searchProvider->getListBySearch($search);
+
+        return $this->render(
+            'search/index.html.twig',
+            [
+                'title' => $title,
+                'toolbar' => 'search',
+                'objSearch' => $objSearch,
+                'printRoute' => $this->generateUrl('search_pdf', ['format' => 'pdf']),
+                'searchToken' => $hash,
+                'searchContext'   => $this->serializer->serialize($search, 'json')
+            ]
+        );
     }
 
 
@@ -163,29 +216,28 @@ class SearchController extends AbstractController
 //    }
 
     /**
-     * @param Search $search
-     * @param string $title
-     * @param string $hash
-     * @return Response
+     * @Route("/recherche-sauvegardee/{savedId}", methods={"GET"}, name="saved_search")
+     * @param string $savedId
+     *
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\Response
+     * @throws \Doctrine\ORM\ORMException
+     * @throws \Doctrine\ORM\OptimisticLockException
      * @throws \Twig\Error\LoaderError
      * @throws \Twig\Error\RuntimeError
      * @throws \Twig\Error\SyntaxError
      */
-    private function displaySearch(Search $search, string $hash): Response
+    public function savedSearchAction(string $savedId, Request $request)
     {
-        $objSearch = $this->searchProvider->getListBySearch($search);
+        $searchHistory = $this->historicService->getSearchHistoryByHash($savedId);
+        $params = $searchHistory->getQueries();
+        $title = $searchHistory->getTitle();
 
-        return $this->render(
-            'search/index.html.twig',
-            [
-                'search' => $search,
-                'title' => $search->getTitle(),
-                'toolbar' => 'search',
-                'objSearch' => $objSearch,
-                'printRoute' => $this->generateUrl('search_pdf', ['format' => 'pdf']),
-                'searchToken' => $hash
-            ]
-        );
+        $search = new SearchQuery($title, new Criteria($params), new FacetFilter($params));
+        $hash = \spl_object_hash($search);
+        $request->getSession()->set($hash, $this->serializer->serialize($search, 'json'));
+
+        return $this->displaySearch($search, $hash);
     }
 
     /**

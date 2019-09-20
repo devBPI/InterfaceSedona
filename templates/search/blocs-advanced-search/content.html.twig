@@ -22,10 +22,10 @@
             </div>
         </div>
         <ul role="group" aria-label="{{ 'modal.advanced-search.base.in'|trans }}" class="search-base__list">
-            {% for i, base in criteria.bases %}
+            {% for i, base in criteria.configurationName %}
                 <li class="form-check search-base__item">
                     <input type="checkbox" id="adv-search-bdd-{{ i }}" class="form-check-input"
-                           name="{{ constant('App\\Model\\Search\\FacetFilter::QUERY_NAME') }}[bases][]">
+                           name="{{ constant('App\\Model\\Search\\FacetFilter::QUERY_NAME') }}[configuration_name][]">
                     <label for="adv-search-bdd-{{ i }}" class="form-check-label"><span
                                 class="sr-only">{{ 'modal.advanced-search.base.in'|trans }} </span>{{ base }}</label>
                 </li>
@@ -80,7 +80,7 @@
                 Français
             </button>
             <ul class="dropdown-menu" aria-labelledby="adv-search-langage" role="listbox" tabindex="-1">
-                {% for lang in criteria.languages %}
+                {% for lang in criteria.language %}
                     <li class="dropdown-item" role="option">
                         <a href="#">{{ lang }}</a>
                     </li>
@@ -90,17 +90,7 @@
     </div>
 </div>
 
-{% for key in [
-    'documentType',
-    'supports',
-    'genreMusic',
-    'genreFilm',
-    'genreBook',
-    'publicTarget',
-    'sector',
-    'mediation',
-    'content'
-] if attribute(criteria, key)|length > 0 %}
+{% for key in criteria.facets if attribute(criteria, key)|length > 0 %}
     <div class="modal-body">
         <div class="search-facette">
             <button type="button" class="search-facette__button btn {% if key in filters|keys %}collapsed{% endif %}" data-toggle="collapse" aria-expanded="{{ key in filters|keys ? 'true' : 'false' }}"

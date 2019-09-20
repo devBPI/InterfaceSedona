@@ -67,6 +67,12 @@ class Results implements SearchResultInterface
      */
     private $pageTotal;
     /**
+     * @var int
+     * @JMS\Type("int")
+     */
+    private $rows;
+
+    /**
      * @return RankedAuthority[]|array
      */
     public function getAuthoritiesList()
@@ -170,6 +176,14 @@ class Results implements SearchResultInterface
     public function getFacets(): Facets
     {
         return $this->facets;
+    }
+
+    /**
+     * @return int
+     */
+    public function getRows(): int
+    {
+        return $this->rows;
     }
 
 }

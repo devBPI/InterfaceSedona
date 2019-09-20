@@ -31,10 +31,6 @@ final class HistoricService
      */
     private $translator;
     /**
-     * @var string
-     */
-    private $searchTitle = null;
-    /**
      * @var TokenStorageInterface
      */
     private $tokenStorage;
@@ -57,80 +53,39 @@ final class HistoricService
 
     /**
      * @param Request $request
+     * @param string $title
      * @throws \Doctrine\ORM\ORMException
+     * @throws \Doctrine\ORM\OptimisticLockException
      */
-    public function saveMyHistoric(Request $request): void
+    public function saveMyHistoric(Request $request, string $title): void
     {
+        $searchHash = SearchHistory::getSearchHash($request->query->all());
+        $searchHistory = $this->entityManager->getRepository(SearchHistory::class)->find($searchHash);
+        if (!$searchHistory instanceof SearchHistory) {
+            $searchHistory = new SearchHistory(
+                $title,
+                $request->query->all()
+            );
+            $this->entityManager->persist($searchHistory);
+        }
+
         if (
-            $request->get(WordsList::ADVANCED_SEARCH_ACTION) === WordsList::CLICKED ||
-            $request->get(WordsList::SIMPLE_SEARCH_ACTION) === WordsList::CLICKED
+            $this->tokenStorage->getToken() instanceof TokenInterface &&
+            $this->tokenStorage->getToken()->getUser() instanceof LdapUser
         ) {
-            $searchHash = SearchHistory::getSearchHash($request->query->all());
-            $searchHistory = $this->entityManager->getRepository(SearchHistory::class)->find($searchHash);
-            if (!$searchHistory instanceof SearchHistory) {
-                $searchHistory = new SearchHistory(
-                    $this->setTitleFromRequest($request),
-                    $request->query->all()
-                );
-                $this->entityManager->persist($searchHistory);
+            $userHistory = $this->getUserHistory($searchHistory);
+            if ($userHistory instanceof UserHistory) {
+                $userHistory->incrementCount();
+            } else {
+                $userHistory = new UserHistory($searchHistory);
+                $userHistory->setUserUid($this->tokenStorage->getToken()->getUser()->getUid());
+                $this->entityManager->persist($userHistory);
             }
-
-            if (
-                $this->tokenStorage->getToken() instanceof TokenInterface &&
-                $this->tokenStorage->getToken()->getUser() instanceof LdapUser
-            ) {
-                $userHistory = $this->getUserHistory($searchHistory);
-                if ($userHistory instanceof UserHistory) {
-                    $userHistory->incrementCount();
-                } else {
-                    $userHistory = new UserHistory($searchHistory);
-                    $userHistory->setUserUid($this->tokenStorage->getToken()->getUser()->getUid());
-                    $this->entityManager->persist($userHistory);
-                }
-            }
-
-            $this->entityManager->flush();
-        }
-    }
-
-    /**
-     * @param Request $request
-     * @return string
-     */
-    public function setTitleFromRequest(Request $request): string
-    {
-        if ($this->searchTitle === null) {
-            $searchInput = '';
-            if ($request->get(WordsList::ADVANCED_SEARCH_ACTION) === WordsList::CLICKED) {
-                foreach ($request->get(WordsList::ADVANCED_SEARCH_LABEL) as $queries) {
-                    $searchInput .= $queries[WordsList::TEXT_LABEL];
-                }
-            } elseif (
-                $request->get(WordsList::SIMPLE_SEARCH_LABEL, null) !== null &&
-                isset($request->get(WordsList::SIMPLE_SEARCH_LABEL, null)[WordsList::TEXT_LABEL])
-            ) {
-                $searchInput = $request->get(WordsList::SIMPLE_SEARCH_LABEL, null)[WordsList::TEXT_LABEL];
-            }
-
-            $mode = $this->translator->trans(
-                'page.search.mode.'.($request->get(
-                    WordsList::ADVANCED_SEARCH_ACTION
-                ) === WordsList::CLICKED ? '1' : '0')
-            );
-
-            $this->searchTitle = $this->translator->trans(
-                'page.search.title',
-                [
-                    '%mode%' => $mode,
-                    '%searchInput%' => $searchInput,
-                    '%currentPage%' => '2',
-                    '%nbPage%' => '5',
-                ]
-            );
         }
 
-        return $this->searchTitle;
+        $this->entityManager->flush();
     }
+
 
     /**
      * @param SearchHistory $searchHistory

@@ -1,0 +1,31 @@
+<div class="search-facette">
+    <button type="button" class="search-facette__button btn" data-toggle="collapse" aria-expanded="false"
+            aria-controls="rfn-search-{{ facet.name }}" data-target="#rfn-search-{{ facet.name }}">{{ facet.label }}
+        <span>({{ facet.values | length }})</span></button>
+    <div class="collapse search-facette__body" id="rfn-search-{{ facet.name }}" role="group"
+         aria-label="{{ facet.label }}">
+        <div class="search-facette__content">
+            <div class="search-facette__item search-facette__item--button">
+                <button class="btn js-delete-filter" data-name="{{ facet.name }}" type="button">
+                    {{ 'modal.refine-search.filter-delete'|trans }}
+                    <span class="sr-only"> : {{ facet.label }}</span>
+                </button>
+            </div>
+            {% for index, facetChild in facet.values %}
+                <div class="form-check search-facette__item">
+                    <input
+                        type="checkbox"
+                        class="form-check-input input-{{ facet.name }}"
+                        id="rfn-{{ facet.name }}-{{ index }}"
+                        name="facets[{{ facet.name }}][]"
+                        value="{{ facetChild.name }}"
+                        {% if app.request.query.has('facets') and
+                            check_value_exist(facet.name, facetChild.name, app.request.query.get('facets')) %}
+                            checked="checked"
+                        {% endif %}>
+                    <label class="form-check-label" for="rfn-{{ facet.name }}-{{ index }}">{{ facetChild.name }}</label>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>

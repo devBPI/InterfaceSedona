@@ -4,10 +4,7 @@ declare(strict_types=1);
 namespace App\Twig;
 
 
-use App\Model\Authority;
-use App\Service\BreadcrumbBuilder;
 use App\Service\NavigationService;
-use App\Utils\BreadcrumbNavigation;
 use App\WordsList;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Twig\Extension\AbstractExtension;
@@ -87,7 +84,7 @@ class SearchFiltersExtension extends AbstractExtension
             if (
                 is_array($context_queries) &&
                 array_key_exists($index, $context_queries) &&
-                array_key_exists($index, $context_queries[$index])
+                array_key_exists($field, $context_queries[$index])
             ) {
                 return $context_queries[$index][$field];
             }
@@ -104,20 +101,20 @@ class SearchFiltersExtension extends AbstractExtension
      * @param array|null $array
      * @return bool
      */
-    public function isValueExist(string $key,  $searchValue, array $array=null):bool
+    public function isValueExist(string $key, $searchValue, array $array = null): bool
     {
-        if (empty($array[$key])){
+        if (empty($array[$key])) {
             return false;
         }
 
-        foreach ($array[$key] as $index => $value){
+        foreach ($array[$key] as $index => $value) {
 
-             if ($value === $searchValue){
-                 return true;
-             }
-         }
+            if ($value === $searchValue) {
+                return true;
+            }
+        }
 
-         return false;
+        return false;
     }
 
     /**

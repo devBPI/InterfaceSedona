@@ -6,21 +6,13 @@
 		{{ 'bloc.search-header-footer.header.aria-label'|trans({'%nb%': 10}) }}
 		</button>
 		<ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown-number-items" role="listbox" tabindex="-1">
-			<li class="dropdown-item" role="option">
-				<a href="{{ path('search', {'searchToken': searchToken, 'rows': 10}) }}" {% if search.rows == 10 %}class="text-bold" {% endif %}>
-					{{ 'bloc.search-header-footer.header.nb-result-by-col'|trans({'%nb%': 10 }) }}
-				</a>
-			</li>
-			<li class="dropdown-item" role="option" >
-				<a href="{{ path('search', {'searchToken': searchToken, 'rows': 25}) }}" {% if search.rows == 25 %}class="text-bold" {% endif %}>
-					{{ 'bloc.search-header-footer.header.nb-result-by-col'|trans({'%nb%': 25 }) }}
-				</a>
-			</li>
-			<li class="dropdown-item" role="option">
-				<a href="{{ path('search', {'searchToken': searchToken, 'rows': 50}) }}" {% if search.rows == 50 %}class="text-bold" {% endif %}>
-					{{ 'bloc.search-header-footer.header.nb-result-by-col'|trans({'%nb%': 50}) }}
-				</a>
-			</li>
+			{% for count in [10, 25, 50] %}
+				<li class="dropdown-item" role="option">
+					<a href="{{ add_rows_to_uri(count) }}" {% if objSearch.rows == count %}class="text-bold" {% endif %}>
+						{{ 'bloc.search-header-footer.header.nb-result-by-col'|trans({'%nb%': count }) }}
+					</a>
+				</li>
+			{% endfor %}
 		</ul>
 	</div>
 

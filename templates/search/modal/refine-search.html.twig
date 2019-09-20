@@ -2,7 +2,11 @@
 <div role="dialog" aria-modal="true" aria-labelledby="modal-refine-search-title" class="modal fade" id="modal-refine-search">
 	<div class="modal-dialog modal-dialog-centered">
 		<div class="modal-content">
-			<form class="modal-form"  method="get" action="{{ path('search', {"searchToken":searchToken}) }}">
+			<form class="modal-form" method="get" action="{{ path('refined_search') }}">
+                {% if searchToken is defined %}
+                    <input type="hidden" name="searchToken" value="{{ searchToken }}">
+                {% endif %}
+
 				<div class="modal-header">
 					<h1 class="n1 modal-header__title" id="modal-refine-search-title">{{ 'modal.refine-search.title'|trans }}</h1>
 					<button class="close" type="button" aria-label="{{ 'global.modal-close'|trans }}" data-dismiss="modal">
@@ -10,85 +14,17 @@
 						<img src="{{ asset('images/icones/icone-croix-blanc.svg') }}" alt="" />
 					</button>
 				</div>
-                <!-- a merger avec ci dessous --->
-                {#% for facet in facets %}
-                    <div class="modal-body">
-                        <div class="search-facette">
-                            <div>
-                                <button type="button" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="rfn-search-{{ facet.name }}" data-target="#rfn-search-available"><img src="https://via.placeholder.com/15x15" alt="" class="icone-caret"/> {{ facet.label }}</button>
-                                <div class="collapse" id="rfn-search-{{ facet.name }}" role="group" aria-label="{{ facet.label|lower }}">
-                                    <button>Supprimer le filtre<span class="sr-only"> : {{ facet.label }}</span></button>
-                                    {% for i, value in facet.values %}
-                                        <div class="form-check">
-                                            <input type="checkbox" class="form-check-input" id="rfn-{{ facet.name }}-{{ i }}" name="{{ facet.name }}[]" value="{{ value.name }}">
-                                            <label class="form-check-label" for="rfn-{{ facet.name }}-{{ i }}">{{ value.name }}</label>
-                                        </div>
-                                    {% endfor %}
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                {% endfor %#}
-                <!-- a merger avec ci dessous --->
 
 				{% for facet in objSearch.facets.facets %}
-					<div class="modal-body">
-						<div class="search-facette">
-							<button type="button" class="search-facette__button btn" data-toggle="collapse" aria-expanded="false" aria-controls="rfn-search-{{facet.name}}" data-target="#rfn-search-{{facet.name}}">{{ facet.label }} <span>({{ facet.values | length }})</span></button>
-							<div class="collapse search-facette__body" id="rfn-search-{{facet.name}}" role="group" aria-label="{{ facet.label }}">
-								<div class="search-facette__content">
-									<div class="search-facette__item search-facette__item--button">
-										<button class="btn js-delete-filter" data-name="{{ facet.name }}" type="button">
-											{{ 'modal.refine-search.filter-delete'|trans }}
-											<span class="sr-only"> : {{ facet.label }}</span>
-										</button>
-									</div>
-									{% for index, facetChild in facet.values %}
-										<div class="form-check search-facette__item">
-											<input
-													type="checkbox"
-													class="form-check-input input-{{ facet.name }}"
-													id="rfn-{{ facet.name }}-{{ index }}"
-													name="facets[{{ facet.name }}][]"
-													value="{{ facetChild.name }}"
-													{% if app.request.query.get('facets') is defined and check_value_exist(facet.name,  facetChild.name, app.request.query.get('facets')) %}checked{% endif %}
-											>
-											<label class="form-check-label" for="rfn-{{ facet.name }}-{{ index }}">{{ facetChild.name }}</label>
-										</div>
-									{% endfor %}
-								</div>
-							</div>
-						</div>
-					</div>
+                <div class="modal-body">
+                    {#{% if facet.name == 'date_publishing' %}#}
+                        {#{% include 'search/blocs-refined-search/date-content.html.twig' %}#}
+                    {#{% else %}#}
+                        {% include 'search/blocs-refined-search/content.html.twig' %}
+                    {#{% endif %}#}
+                </div>
 				{% endfor %}
 
-				{#<div class="modal-body">
-					<div class="search-facette">
-						<button type="button" class="search-facette__button btn" data-toggle="collapse" aria-expanded="false" aria-controls="rfn-search-date" data-target="#rfn-search-date">Date</button>
-						<div class="collapse search-facette__body" id="rfn-search-date" role="group" aria-label="Date">
-							<div class="search-facette__content">
-								<div class="search-facette__item search-facette__item--button">
-									<button class="btn">{{ 'modal.refine-search.filter-delete'|trans }}<span class="sr-only"> : Date</span></button>
-								</div>
-								<div class="search-facette__date">
-									<div>
-										<label for="rfn-search-date-1" class="sr-only">Entrez une première date</label>
-										<input type="text" class="form-control" id="rfn-search-date-1" placeholder="AAAA">
-									</div>
-									<div class="mx-3">
-										*Insert Slider*
-									</div>
-									<div>
-										<label for="rfn-search-date-2" class="sr-only">Entrez une deuxième date</label>
-										<input type="text" class="form-control" id="rfn-search-date-2" placeholder="AAAA">
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>#}
-
-				<input type="hidden" name="searchToken" value="{{ searchToken}}">
 				<div class="modal-footer">
 					<button type="submit" aria-label="{{ 'modal.refine-search.submit-aria'|trans }}" class="btn btn-lg btn-primary btn-img">
 						<span>{{ 'modal.refine-search.submit'|trans }}</span><img src="{{ asset('images/icones/icone-loupe.svg') }}" alt="" class="icone-loupe"/></button>

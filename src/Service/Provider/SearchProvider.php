@@ -4,12 +4,9 @@ declare(strict_types=1);
 namespace App\Service\Provider;
 
 use App\Model\Exception\NoResultException;
-use App\Model\Facets;
 use App\Model\Notice;
 use App\Model\Results;
-use App\Model\Search;
-use App\Model\Search\Criteria;
-use App\Model\Search\FacetFilter;
+use App\Model\Search\SearchQuery;
 use App\Service\APIClient\CatalogClient;
 use App\Service\ImageService;
 use JMS\Serializer\SerializerInterface;
@@ -41,14 +38,22 @@ class SearchProvider extends AbstractProvider
     }
 
     /**
-     * @param Search $search
+     * @param SearchQuery $search
      * @return mixed
+     * @throws \Twig\Error\LoaderError
+     * @throws \Twig\Error\RuntimeError
+     * @throws \Twig\Error\SyntaxError
      */
-    public function getListBySearch(Search $search): Results
+    public function getListBySearch(SearchQuery $search): Results
     {
-        //dump($this->serializer->serialize($criteria, 'xml'), $this->templating->render('search/facet-filters.xml.twig', ['attributes' => $facets->getAttributes(), 'translateNames'=>false]));
         /** @var Results $searchResult */
-        $searchResult = $this->hydrateFromResponse('/search/all', $this->serializer->toArray($search));
+        $searchResult = $this->hydrateFromResponse('/search/all',  [
+            'criters' => $this->serializer->serialize($search->getCriteria(), 'xml'),
+            'facets' => $this->templating->render('search/facet-filters.xml.twig', ['attributes' => $search->getFacets()->getAttributes(), 'translateNames'=>true]),
+            'page' => $search->getPage(),
+            'sort' => $search->getSort()??'DEFAULT',
+            'rows' => $search->getRows()
+        ]);
 
         foreach ($searchResult->getNotices()->getNoticesList() as $notice) {
             $this->getImagesForNotice($notice);

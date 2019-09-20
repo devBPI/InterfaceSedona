@@ -1,11 +1,9 @@
 <?php
 
-namespace App\Model;
+namespace App\Model\Search;
 
 
 use App\Model\Interfaces\SearchResultInterface;
-use App\Model\Search\Criteria;
-use App\Model\Search\FacetFilter;
 use App\Model\Traits\SearchResultTrait;
 use JMS\Serializer\Annotation as JMS;
 
@@ -13,8 +11,21 @@ use JMS\Serializer\Annotation as JMS;
  * Class Search
  * @package App\Model
  */
-class Search implements SearchResultInterface
+class SearchQuery implements SearchResultInterface
 {
+
+    const SORT_DEFAULT = 'DEFAULT';
+    const SORT = [
+        'default' => self::SORT_DEFAULT,
+        'tile_a_z' => 'TITRE_A_Z',
+        'tile_z_a' => 'TITRE_Z_A',
+        'author_a_z' => 'AUTHEUR_A_Z',
+        'author_z_a' => 'AUTHEUR_Z_A',
+        'older' => 'OLDER',
+        'younger' => 'YOUNGER',
+    ];
+    const ROWS_DEFAULT = 10;
+
     use SearchResultTrait;
 
     /**
@@ -22,12 +33,6 @@ class Search implements SearchResultInterface
      * @JMS\Type("App\Model\Search\FacetFilter")
      */
     private $facets;
-
-    /**
-     * @var string
-     * @JMS\Type("string")
-     */
-    private $title;
 
     /**
      * @var int
@@ -47,16 +52,22 @@ class Search implements SearchResultInterface
     private $page;
 
     /**
+     * @var string
+     * @JMS\Exclude
+     */
+    private $title;
+
+    /**
      * Search constructor.
      * @param string $title
      * @param Criteria $criteria
      * @param FacetFilter $facets
      */
-    public function __construct(string $title, Criteria $criteria, FacetFilter $facets)
+    public function __construct(string $title, Criteria $criteria, FacetFilter $facets = null)
     {
         $this->title = $title;
         $this->criteria = $criteria;
-        $this->facets = $facets;
+        $this->facets = $facets ?? new FacetFilter();
     }
 
     /**
@@ -127,10 +138,17 @@ class Search implements SearchResultInterface
      */
     public function setPage($page): self
     {
-        $this->page = $page;
+        $this->page = $page > 1 ? $page : 1;
 
         return $this;
     }
 
+    /**
+     * @param FacetFilter $facets
+     */
+    public function setFacets(FacetFilter $facets)
+    {
+        $this->facets = $facets;
+    }
 
 }

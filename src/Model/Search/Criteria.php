@@ -14,17 +14,15 @@ use JMS\Serializer\Annotation as JMS;
 class Criteria
 {
     const QUERY_NAME = 'criteria';
-    const SORT_DEFAULT = 'DEFAULT';
-    const SORT = [
-        'default' => self::SORT_DEFAULT,
-        'tile_a_z' => 'TITRE_A_Z',
-        'tile_z_a' => 'TITRE_Z_A',
-        'author_a_z' => 'AUTHEUR_A_Z',
-        'author_z_a' => 'AUTHEUR_Z_A',
-        'older' => 'OLDER',
-        'younger' => 'YOUNGER',
-    ];
-    const ROWS_DEFAULT = 15;
+
+    const SIMPLE_SEARCH_KEYWORD = 'mot';
+    const SIMPLE_SEARCH_TYPE = 'type';
+
+    const ADVANCED_SEARCH_LABEL = 'advanced_search';
+    const ADVANCED_SEARCH_OPERATOR = 'advanced_search_operator';
+    const FIELD_LABEL = 'field';
+    const TEXT_LABEL = 'text';
+
 
     /**
      * @var string
@@ -114,29 +112,27 @@ class Criteria
     private $or;
 
     /**
-     * Criteria constructor.
+     * @param $type
+     * @param $keyword
+     */
+    public function setSimpleSearch($type, $keyword)
+    {
+        $this->$type = $keyword;
+    }
+
+    /**
      * @param array $request
      */
-    public function __construct(array $request = [])
+    public function setAdvancedSearch(array $request = [])
     {
-        if (
-            array_key_exists(WordsList::ADVANCED_SEARCH_ACTION, $request) &&
-            $request[WordsList::ADVANCED_SEARCH_ACTION] === WordsList::CLICKED
-        ) {
-            foreach ($request[self::QUERY_NAME] as $name => $value) {
-                $this->$name = $value;
-            }
-
-            $this->setKeywords(
-                $request[WordsList::ADVANCED_SEARCH_LABEL],
-                $request[WordsList::ADVANCED_SEARCH_OPERATOR]
-            );
-        } elseif (
-            array_key_exists(WordsList::SIMPLE_SEARCH_LABEL, $request) &&
-            $request[WordsList::SIMPLE_SEARCH_LABEL] !== null
-        ) {
-            $this->setFieldByKeywordRow($request[WordsList::SIMPLE_SEARCH_LABEL]);
+        foreach ($request[self::QUERY_NAME] as $name => $value) {
+            $this->$name = $value;
         }
+
+        $this->setKeywords(
+            $request[self::ADVANCED_SEARCH_LABEL],
+            isset($request[self::ADVANCED_SEARCH_OPERATOR]) ? $request[self::ADVANCED_SEARCH_OPERATOR] : []
+        );
     }
 
     /**
@@ -172,12 +168,26 @@ class Criteria
     private function setFieldByKeywordRow(array $keywordRow): void
     {
         if (
-            is_array($keywordRow) && array_key_exists(WordsList::FIELD_LABEL, $keywordRow) &&
-            array_key_exists(WordsList::TEXT_LABEL, $keywordRow)
+            is_array($keywordRow) && array_key_exists(self::FIELD_LABEL, $keywordRow) &&
+            array_key_exists(self::TEXT_LABEL, $keywordRow)
         ) {
-            $type = $keywordRow[WordsList::FIELD_LABEL];
-            $this->$type = $keywordRow[WordsList::TEXT_LABEL];
+            $type = $keywordRow[self::FIELD_LABEL];
+            $this->$type = $keywordRow[self::TEXT_LABEL];
         }
     }
 
+    /**
+     * @return array
+     */
+    public function getKeywords(): array
+    {
+        $keywords = [];
+        foreach (WordsList::$words[WordsList::THEME_DEFAULT] as $field) {
+            if (!empty($this->$field)) {
+                $keywords[] = $this->$field;
+            }
+        }
+
+        return $keywords;
+    }
 }

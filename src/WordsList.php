@@ -9,15 +9,6 @@ namespace App;
  */
 final class WordsList
 {
-    public const SIMPLE_SEARCH_ACTION = 'simple_search_action';
-    public const SIMPLE_SEARCH_LABEL = 'simple_search';
-    public const ADVANCED_SEARCH_ACTION = 'advanced_search_action';
-    public const ADVANCED_SEARCH_LABEL = 'advanced_search';
-    public const ADVANCED_SEARCH_OPERATOR = 'advanced_search_operator';
-    public const FIELD_LABEL = 'field';
-    public const TEXT_LABEL = 'text';
-    public const CLICKED = 'clicked';
-
     public const THEME_DEFAULT = 'general';
     public const THEME_PRESS = 'presse';
     public const THEME_CINEMA = 'cinema';

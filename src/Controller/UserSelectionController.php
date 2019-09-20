@@ -96,7 +96,6 @@ class UserSelectionController extends AbstractController
     }
 
     /**
-     * @Security("has_role('ROLE_USER')")
      * @Route("/list/ajout-documents", methods={"GET","POST"}, name="_list_add")
      * @param Request $request
      * @return Response

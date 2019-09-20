@@ -12,11 +12,11 @@
         {{ 'bloc.header-docs.order-choice'|trans }}
 	</button>
 	<ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown-trie-{{ type }}" role="listbox" tabindex="-1">
-{% for index, value in constant('App\\Model\\Search\\Criteria::SORT') %}
+	{% for index, value in constant('App\\Model\\Search\\SearchQuery::SORT') %}
 		<li class="dropdown-item" role="option">
-			<a href="{{ path('search', {'searchToken': searchToken, 'sort': value}) }}">{{ ('bloc.header-docs.order-'~ index) |trans }}</a>
+			<a href="{{ add_sorting_to_uri(value) }}">{{ ('bloc.header-docs.order-'~ index) |trans }}</a>
 		</li>
-{% endfor %}
+	{% endfor %}
 	</ul>
 </div>
 <!-- Fin - Bloc 12 En-tête des résultats -->

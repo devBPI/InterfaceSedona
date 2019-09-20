@@ -242,15 +242,15 @@ modal:
       in-shelf: Disponible en rayon
       in-ligne: Consultable en ligne
     facette:
-      documentType: Type de documents
-      supports: Supports
-      genreMusic: Genre musical
+      type: Type de documents
+      materialSupport: Supports
+      genreMusical: Genre musical
       genreFilm: Genre film
-      genreBook: Genre littéraire
-      publicTarget: Public destinataire
-      sector: Secteur
+      genreLitteraire: Genre littéraire
+      audience: Public destinataire
+      secteur: Secteur
       mediation: Médiation
-      content: Contenu
+      contenu: Contenu
       available: Disponibilité
       theme: Thèmes
       author: Auteur(s)
@@ -282,10 +282,10 @@ page:
   bibiographic:
     title: Document %title%
   search:
-    title: Résultats recherche %mode% - %searchInput% - page %currentPage% sur %nbPage%
-    mode:
-      0: simple
-      1: avancée
+    title:
+      simple: Résultats recherche simple - %keyword%
+      advanced: Résultats recherche avancée - %keyword%
+      page: page %current% sur %total%
   login:
     title: Authentification
     login: Adresse e-mail

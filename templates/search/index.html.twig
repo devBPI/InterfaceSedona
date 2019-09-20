@@ -1,6 +1,6 @@
 {% extends 'search/base.html.twig' %}
 
-{% block title %}{{ title ?? 'page.search.title'|trans({'%mode%': false, '%searchInput%': 'mot clé saisie dans la recherche', '%currentPage%': '2', '%nbPage%': '5'}) }}{% endblock %}
+{% block title %}{{ title ~ ' - ' ~ 'page.search.title.page'|trans({'%current%': objSearch.page, '%total%': objSearch.pageTotal}) }}{% endblock %}
 
 {% block searchextended %}
 	<div class="row justify-content-sm-between">

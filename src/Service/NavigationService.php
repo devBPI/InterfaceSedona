@@ -1,18 +1,13 @@
 <?php
 declare(strict_types=1);
-/**
- * Created by PhpStorm.
- * User: infra
- * Date: 11/09/19
- * Time: 10:36
- */
+
 namespace App\Service;
 
 use App\Model\Authority;
 use App\Model\IndiceCdu;
 use App\Model\Notice;
 use App\Model\RankedAuthority;
-use App\Model\Search;
+use App\Model\Search\SearchQuery;
 use App\Service\Provider\SearchProvider;
 use App\Utils\NavigationNotice;
 
@@ -57,16 +52,16 @@ class NavigationService
 
     /**
      * @param SearchProvider $searchProvider
-     * @param Search $search
+     * @param SearchQuery $search
      * @param $type
      * @return \App\Model\RankedAuthority[]|\App\Model\Subject[]|array
      * @throws \Twig\Error\LoaderError
      * @throws \Twig\Error\RuntimeError
      * @throws \Twig\Error\SyntaxError
      */
-    private function getNoticeList(SearchProvider $searchProvider, Search $search, $type)
+    private function getNoticeList(SearchProvider $searchProvider, SearchQuery $search, $type)
     {
-        $searchResultNotices = $searchProvider->getListBySearch($search->getCriteria(), $search->getFacets());
+        $searchResultNotices = $searchProvider->getListBySearch($search);
 
         if ($type === RankedAuthority::class){
 

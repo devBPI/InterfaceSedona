@@ -34,7 +34,7 @@ final class SelectionListService
     private $session;
 
     /**
-     * HistoricService constructor.
+     * SelectionListService constructor.
      * @param EntityManager $entityManager
      * @param TokenStorageInterface $tokenStorage
      * @param RequestStack $requestStack
