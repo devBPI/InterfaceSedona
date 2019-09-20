@@ -24,10 +24,33 @@ class Value implements ValueBPIInterface
     private $value;
 
     /**
+     * @var string
+     * @JMS\Type("string")
+     */
+    private $complement;
+
+    /**
      * @return string
      */
     public function getValue(): string
     {
         return $this->value;
     }
+
+    /**
+     * @return null|string
+     */
+    public function getComplement(): ?string
+    {
+        return $this->complement;
+    }
+
+    public function __toString()
+    {
+        return $this->getValue();
+    }
+
+
+
+
 }

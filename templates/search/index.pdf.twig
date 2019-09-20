@@ -1,273 +1,101 @@
 {% extends 'base.pdf.twig' %}
 
 {% block title %}Résultats de recherche{% endblock %}
-
 {% block body %}
-	
+	<div class="print__bloc print__bloc--rayon">
+		<div class="print__header">
+			<h2 class="n1">Notice d'autorité</h2>
+		</div>
+
+		{% for element in printNoticeWrapper.noticeAuthority %}
+			<div class="print__item">
+				<div class="row">
+					<div class="col-12">
+						<h2 class="n1">{{ loop.index }}) {{ element.title }}</h2>
+					</div>
+					<div class="col-3">
+						<img src="{{ absolute_url(asset('images/types-autorite/autorite-personne.svg')) }}" alt="" class="print__image" />
+					</div>
+					<div class="col">
+						<ul class="print__list">
+							{% include "common/authority.pdf.twig" with {'notice': element} %}
+						</ul>
+					</div>
+				</div>
+			</div>
+		{% endfor %}
+
+	</div>
+	<div class="print__bloc ptrin__bloc--online">
+		<div class="print__header">
+			<h2 class="n1">Indice CDU</h2>
+		</div>
+		{% for element in printNoticeWrapper.noticeIndice %}
+			<div class="print__item">
+				<div class="row">
+					<div class="col-12">
+						<h2 class="n1">{{ loop.index }}) {{ element.title }} </h2>
+					</div>
+					{% if includeImage %}
+						<div class="col-3">
+							<img src="{% if element.picture %}{{ element.picture.url }}{% else %}{{ asset('images/couvertures-generiques/cg-musique.svg') }}{% endif %}" class="img-fluid" alt="" />
+						</div>
+					{% endif %}
+
+					<div class="col">
+						<ul class="print__list">
+							{% include "common/authority.pdf.twig" with {'notice': element} %}
+						</ul>
+					</div>
+				</div>
+			</div>
+		{% endfor %}
+	</div>
 	<div class="print__bloc print__bloc--rayon">
 		<div class="print__header">
 			<h2 class="n1">Documents en rayon</h2>
 		</div>
-		<div class="print__item">
+		{% for element in printNoticeWrapper.noticeOnShelves %}
+			<div class="print__item">
 			<div class="row">
 				<div class="col-12">
-					<h2 class="n1">1) The other Straus : symphonic, vocal and chamber music</h2>
+					<h2 class="n1">{{ loop.index }}) {{ element.title }}</h2>
 				</div>
-				{% if includeImage %}
+                {% if includeImage %}
 					<div class="col-3">
-						<img src="{{ absolute_url(asset('images/couvertures-generiques/cg-musique.svg')) }}" alt="" class="print__image" />
+						<img src="{% if element.picture %}{{ element.picture.url }}{% else %}{{ asset('images/couvertures-generiques/cg-image.svg') }}{% endif %}" class="img-fluid" alt="" />
 					</div>
 				{% endif %}
 				<div class="col">
 					<ul class="print__list">
-						<li>Musique;</li>
-						{% if isPrintLong %}
-							<li>XXX(sans libellé);</li>
-							<li>Traduit de : XXX;</li>
-						{% endif %}
-
-						<li>dans XXX; dans XXX</li>
-
-						<li>{% if isPrintLong %}Auteur(s) : {% else %}par : {% endif %}XXX; {% if isPrintLong %}Auteur(s), compositeur(s), interprète(s) : XXX; Réalisateur(s) : {% else %}par : {% endif %}XXX;</li>
-
-						{% if isPrintLong %}
-							<li>Résumé : XXX; Pistes: XXX;</li>
-							<li>Autre(s) auteur(s) : XXX; Autre(s) auteur(s), compositeur(s), interprète(s) : XXX;</li>
-							<li>Contributeur(s) : XXX; Contributeur(s) : XXX;</li>
-						{% endif %}
-
-						<li>{% if isPrintLong %}Editeur(s) : {% endif %}XXX;</li>
-						<li>{% if isPrintLong %}Date(s) : {% endif %}XXX;{% if isPrintLong %} Date d'édition papier : XXX;{% endif %}</li>
-
-						<li>XXX(durée, sans libellé);</li>
-
-						{% if isPrintLong %}
-							<li>Périodicité : XXX;</li>
-							<li>Oeuvre(s) : XXX;</li>
-							<li>Autre(s) forme(s) de titre  : XXX;</li>
-							<li>Contenu : XXX;</li>
-							<li>Notes : XXX;</li>
-							<li>Résumé : XXX;</li>
-							<li>Langue(s) : XXX; XXX(langues originales);</li>
-							<li>Description matérielle : XXX;</li>
-							<li>Série / Collection : XXX;</li>
-							<li>Titre(s) d'ensemble : XXX;</li>
-							<li>Titre(s) en relation : XXX;</li>
-							<li>Réunit : XXX;</li>
-							<li>Autre(s) édition(s): XXX;</li>
-							<li>Conservation : XXX;</li>
-							<li>Sujet(s) : XXX;</li>
-							<li>Epoque : XXX;</li>
-							<li>Lieu : XXX;</li>
-							<li>Genre : XXX;</li>
-							<li>Thème(s) : XXX;</li>
-							<li>ISBN : XXX;</li>
-							<li>ISSN : XXX;</li>
-							<li>Numéros commerciaux : XXX;</li>
-							<li>Indice : XXX;</li>
-							<li>Public : XXXX;</li>
-							<li>Droits : XXX;</li>
-							<li>Lieu de la manifestation : XXX;</li>
-							<li>Origine de la notice : XXX;</li>
-						{% endif %}
-
-						<li>Résultat de : XXX;</li>
-
-						{% if isPrintLong %}
-							<li><a href="#">Lien vers la notice</a>;</li>
-						{% endif %}
-
-						<li>{# Documents en rayon #}Disponible / Indisponible;</li>
-						<li>{# Documents en rayon #}78 STRA.R 4 disque 1;</li>
-						<li>{# Documents en ligne #}Consultable à la Bpi;</li>
-						<li>{# Documents en ligne #}Niveau 3 - Musiques et documents parlés;</li>
+						{% include "common/notice.pdf.twig" with {'notice': element} %}
 					</ul>
 				</div>
 			</div>
 		</div>
-		<div class="print__item">
-			<div class="row">
-				<div class="col-12">
-					<h2 class="n1">1) Georges VI, roi de Grande-Bretagne (1895-1952)</h2>
-				</div>
-				{% if includeImage %}
-					<div class="col-3">
-						<img src="{{ absolute_url(asset('images/types-autorite/autorite-personne.svg')) }}" alt="" class="print__image" />
-					</div>
-				{% endif %}
-				<div class="col">
-					<ul class="print__list">
-						<li>XXX(Forme retenue, sans libellé);</li>
-						<li>Type d'autorité : XXX;</li>
-						<li>XXX(Indice et label de l'indice, sans libellé);</li>
-						<li>Type d'autorité : XXX;</li>
-						<li>Autre(s) nom(s) : XXX;</li>
-
-						{% if not isPrintLong %}
-							<li>Date(s) : XXX;</li>
-						{% endif %}
-
-						{% if isPrintLong %}
-							<li>XXX(Formes parallèles, sans libellé);</li>
-						{% endif %}
-
-						<li>Pays : XXX;</li>
-						<li>Langue(s) : XXX;</li>
-
-						{% if isPrintLong %}
-							<li>Genre musical : XXX;</li>
-							<li>Date(s) : XXX; Naissance : XXX;</li>
-							<li>Mort : XXX;</li>
-						{% endif %}
-
-						<li>Activité(s) principale(s) : XXX;</li>
-
-						{% if isPrintLong %}
-							<li>Notes : XXX;</li>
-							<li>Autre(s) nom(s) : XXX; Employé pour : XXX;</li>
-							<li>Nom(s) associé(s) / Nom(s) lié(s) : XXX;</li>
-							<li>Notes sur le classement : XXX;</li>
-							<li>ISNI : XXX;</li>
-							<li>Origine de la notice : XXX;</li>
-						{% endif %}
-						<li><a href="#">Lien de la notice</a></li>
-					</ul>
-				</div>
-			</div>
-		</div>
+		{% endfor %}
 	</div>
-
 	<div class="print__bloc ptrin__bloc--online">
 		<div class="print__header">
 			<h2 class="n1">Documents en ligne</h2>
 		</div>
-		<div class="print__item">
+		{% for element in printNoticeWrapper.noticeOnLine %}
+			<div class="print__item">
 			<div class="row">
 				<div class="col-12">
-					<h2 class="n1">1) The other Straus : symphonic, vocal and chamber music</h2>
+					<h2 class="n1">{{ loop.index }}) {{ element.title }} </h2>
 				</div>
-				{% if includeImage %}
-					<div class="col-3">
-						<img src="{{ absolute_url(asset('images/couvertures-generiques/cg-musique.svg')) }}" alt="" class="print__image" />
+				<div class="col-3">
+						<img src="{% if element.picture %}{{ element.picture.url }}{% else %}{{ asset('images/couvertures-generiques/cg-image.svg') }}{% endif %}" class="img-fluid" alt="" />
 					</div>
-				{% endif %}
 				<div class="col">
 					<ul class="print__list">
-						<li>Musique;</li>
-						{% if isPrintLong %}
-							<li>XXX(sans libellé);</li>
-							<li>Traduit de : XXX;</li>
-						{% endif %}
-
-						<li>dans XXX; dans XXX</li>
-
-						<li>{% if isPrintLong %}Auteur(s) : {% else %}par : {% endif %}XXX; {% if isPrintLong %}Auteur(s), compositeur(s), interprète(s) : XXX; Réalisateur(s) : {% else %}par : {% endif %}XXX;</li>
-
-						{% if isPrintLong %}
-							<li>Résumé : XXX; Pistes: XXX;</li>
-							<li>Autre(s) auteur(s) : XXX; Autre(s) auteur(s), compositeur(s), interprète(s) : XXX;</li>
-							<li>Contributeur(s) : XXX; Contributeur(s) : XXX;</li>
-						{% endif %}
-
-						<li>{% if isPrintLong %}Editeur(s) : {% endif %}XXX;</li>
-						<li>{% if isPrintLong %}Date(s) : {% endif %}XXX;{% if isPrintLong %} Date d'édition papier : XXX;{% endif %}</li>
-
-						<li>XXX(durée, sans libellé);</li>
-
-						{% if isPrintLong %}
-							<li>Périodicité : XXX;</li>
-							<li>Oeuvre(s) : XXX;</li>
-							<li>Autre(s) forme(s) de titre  : XXX;</li>
-							<li>Contenu : XXX;</li>
-							<li>Notes : XXX;</li>
-							<li>Résumé : XXX;</li>
-							<li>Langue(s) : XXX; XXX(langues originales);</li>
-							<li>Description matérielle : XXX;</li>
-							<li>Série / Collection : XXX;</li>
-							<li>Titre(s) d'ensemble : XXX;</li>
-							<li>Titre(s) en relation : XXX;</li>
-							<li>Réunit : XXX;</li>
-							<li>Autre(s) édition(s): XXX;</li>
-							<li>Conservation : XXX;</li>
-							<li>Sujet(s) : XXX;</li>
-							<li>Epoque : XXX;</li>
-							<li>Lieu : XXX;</li>
-							<li>Genre : XXX;</li>
-							<li>Thème(s) : XXX;</li>
-							<li>ISBN : XXX;</li>
-							<li>ISSN : XXX;</li>
-							<li>Numéros commerciaux : XXX;</li>
-							<li>Indice : XXX;</li>
-							<li>Public : XXXX;</li>
-							<li>Droits : XXX;</li>
-							<li>Lieu de la manifestation : XXX;</li>
-							<li>Origine de la notice : XXX;</li>
-						{% endif %}
-
-						<li>Résultat de : XXX;</li>
-
-						{% if isPrintLong %}
-							<li><a href="#">Lien vers la notice</a>;</li>
-						{% endif %}
-
-						<li>{# Documents en rayon #}Disponible / Indisponible;</li>
-						<li>{# Documents en rayon #}78 STRA.R 4 disque 1;</li>
-						<li>{# Documents en ligne #}Consultable à la Bpi;</li>
-						<li>{# Documents en ligne #}Niveau 3 - Musiques et documents parlés;</li>
+                        {% include "common/notice.pdf.twig" with {'notice': element} %}
 					</ul>
+
 				</div>
 			</div>
 		</div>
-		<div class="print__item">
-			<div class="row">
-				<div class="col-12">
-					<h2 class="n1">1) Georges VI, roi de Grande-Bretagne (1895-1952)</h2>
-				</div>
-				{% if includeImage %}
-					<div class="col-3">
-						<img src="{{ absolute_url(asset('images/types-autorite/autorite-personne.svg')) }}" alt="" class="print__image" />
-					</div>
-				{% endif %}
-				<div class="col">
-					<ul class="print__list">
-						<li>XXX(Forme retenue, sans libellé);</li>
-						<li>Type d'autorité : XXX;</li>
-						<li>XXX(Indice et label de l'indice, sans libellé);</li>
-						<li>Type d'autorité : XXX;</li>
-						<li>Autre(s) nom(s) : XXX;</li>
-
-						{% if not isPrintLong %}
-							<li>Date(s) : XXX;</li>
-						{% endif %}
-
-						{% if isPrintLong %}
-							<li>XXX(Formes parallèles, sans libellé);</li>
-						{% endif %}
-
-						<li>Pays : XXX;</li>
-						<li>Langue(s) : XXX;</li>
-
-						{% if isPrintLong %}
-							<li>Genre musical : XXX;</li>
-							<li>Date(s) : XXX; Naissance : XXX;</li>
-							<li>Mort : XXX;</li>
-						{% endif %}
-
-						<li>Activité(s) principale(s) : XXX;</li>
-
-						{% if isPrintLong %}
-							<li>Notes : XXX;</li>
-							<li>Autre(s) nom(s) : XXX; Employé pour : XXX;</li>
-							<li>Nom(s) associé(s) / Nom(s) lié(s) : XXX;</li>
-							<li>Notes sur le classement : XXX;</li>
-							<li>ISNI : XXX;</li>
-							<li>Origine de la notice : XXX;</li>
-						{% endif %}
-						<li><a href="#">Lien de la notice</a></li>
-					</ul>
-				</div>
-			</div>
-		</div>
+		{% endfor %}
 	</div>
-
 {% endblock %}

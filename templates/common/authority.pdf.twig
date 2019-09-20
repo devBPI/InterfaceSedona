@@ -1,0 +1,48 @@
+{% if sameInstance(notice,'App\\Model\\Authority') %}
+	<li>{{ notice.name }}</li>
+{% endif %}
+
+<li>Type d'autorité : {{ notice.type }};</li>
+{% if  sameInstance(notice,'App\\Model\\Authority') and sameInstance(notice,'App\\Model\\IndiceCdu') %}
+	<li>{{ notice.name }} {{ notice.cote }} </li>
+{% endif %}
+
+{% if sameInstance(notice,'App\\Model\\Authority') and notice.otherNames  %}
+	{{ pdf_occurence (element, 'getOtherNames', 'Autre(s) nom(s) ') | raw }}
+    {% if not isPrintLong and notice.dates  is not null %}
+
+		<li>Date(s) :
+            {% for element in notice.dates %}
+                {{ element }}
+                {% if loop.first %}-{%endif%}
+            {% endfor%}
+		</li>
+    {% endif %}
+
+    {{ pdf_occurence (element, 'getFormParalella', '') | raw }}
+
+    {{ pdf_occurence (element, 'getMusicalKinds', 'Genre musical') | raw }}
+{% endif %}
+    {{ pdf_occurence (element, 'getCountries', 'Pays') | raw }}
+    {{ pdf_occurence (element, 'getLanguages', 'Langue(s)') | raw }}
+    {{ pdf_occurence (element, 'getBirthDate', 'Date(s)') | raw }}
+    {{ pdf_occurence (element, 'getBirthLocation', 'Naissance') | raw }}
+    {{ pdf_occurence (element, 'getDeathDate', 'Mort') | raw }}
+    {{ pdf_occurence (element, 'getDeathLocation', '') | raw }}
+    {{ pdf_occurence (element, 'getPrincipalActivities', 'Activité(s) principale(s)') | raw }}
+{% if sameInstance(notice,'App\\Model\\Authority') and notice.otherNames  %}
+    {{ pdf_occurence (element, 'getNotes', 'Notes') | raw }}
+    {{ pdf_occurence (element, 'getOtherNames', 'Autre(s) nom(s)') | raw }}
+    {{ pdf_occurence (element, 'getEmployedFor', 'Employé pour') | raw }}
+    {{ pdf_occurence (element, 'getAssocietedForm', 'Nom(s) associé(s) / Nom(s) lié(s)') | raw }}
+    {{ pdf_occurence (element, 'getClassifiedNote', 'Notes sur le classement') | raw }}
+    {{ pdf_occurence (element, 'getIsni', 'ISNI') | raw }}
+    {{ pdf_occurence (element, 'getOrigins', 'Origine de la notice') | raw }}
+{% endif %}
+<li>
+    {%  if sameInstance(notice,'App\\Model\\Authority') %}
+		<a href="{{ path('record_authority', {"permalink":notice.permalink}) }}">Lien de la notice</a>
+    {% elseif sameInstance(notice,'App\\Model\\IndiceCdu') %}
+		<a href="{{ path('record_indice_cdu', {"permalink":notice.permalink}) }}">Lien de la notice</a>
+    {% endif %}
+</li>

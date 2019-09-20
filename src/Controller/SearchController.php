@@ -8,7 +8,10 @@ use App\Model\Search\Criteria;
 use App\Model\Search\FacetFilter;
 use App\Model\SuggestionList;
 use App\Service\Provider\AdvancedSearchProvider;
+use App\Service\Provider\NoticeAuthorityProvider;
+use App\Service\Provider\NoticeProvider;
 use App\Service\Provider\SearchProvider;
+use App\Utils\PrintNoticeWrapper;
 use App\WordsList;
 use JMS\Serializer\SerializerInterface;
 use Knp\Bundle\SnappyBundle\Snappy\Response\PdfResponse;
@@ -39,18 +42,36 @@ class SearchController extends AbstractController
      * @var SerializerInterface
      */
     private $serializer;
+    /**
+     * @var NoticeProvider
+     */
+    private $noticeProvider;
+    /**
+     * @var NoticeAuthorityProvider
+     */
+    private $noticeAuhtority;
 
     /**
      * SearchController constructor.
      * @param SearchProvider $searchProvider
      * @param AdvancedSearchProvider $advancedSearchProvider
      * @param SerializerInterface $serializer
+     * @param NoticeProvider $noticeProvider
+     * @param NoticeAuthorityProvider $noticeAuhtority
      */
-    public function __construct(SearchProvider $searchProvider, AdvancedSearchProvider $advancedSearchProvider, SerializerInterface $serializer )
+    public function __construct(
+        SearchProvider $searchProvider,
+        AdvancedSearchProvider $advancedSearchProvider,
+        SerializerInterface $serializer,
+        NoticeProvider $noticeProvider,
+        NoticeAuthorityProvider $noticeAuhtority
+    )
     {
         $this->searchProvider = $searchProvider;
         $this->advancedSearchProvider = $advancedSearchProvider;
         $this->serializer = $serializer;
+        $this->noticeProvider = $noticeProvider;
+        $this->noticeAuhtority = $noticeAuhtority;
     }
 
     /**
@@ -85,17 +106,19 @@ class SearchController extends AbstractController
         $objSearch  = $this->searchProvider->getListBySearch($search->getCriteria(), $search->getFacets());
         $title      = 'page.search.title';
         $title      .= $request->get(WordsList::ADVANCED_SEARCH_LABEL) === WordsList::CLICKED ?'advanced' : 'simple';
+
         $hash       = \spl_object_hash($search);
+
         $session->set($hash, $this->serializer->serialize($search, 'json'));
 
         return $this->render(
             'search/index.html.twig',
             [
-                'title' => $title,
-                'toolbar' => 'search',
-                'objSearch' => $objSearch,
-                'printRoute' => $this->generateUrl('search_pdf', ['format' => 'pdf']),
-                'searchToken' => $hash
+                'title'         => $title,
+                'toolbar'       => 'search',
+                'objSearch'     => $objSearch,
+                'printRoute'    => $this->generateUrl('search_pdf', ['format' => 'pdf']),
+                'searchToken'   => $hash
             ]
         );
     }
@@ -126,13 +149,21 @@ class SearchController extends AbstractController
      */
     public function printAction(Request $request, \Knp\Snappy\Pdf $knpSnappy, $format)
     {
+        $authorities=[];
+        $notices=[];
+        parse_str(urldecode($request->get('authorities', null)),$authorities);
+        parse_str(urldecode($request->get('notices', null)),$notices);
+        $printNoticeWrapper = new PrintNoticeWrapper();
+
         $content = $this->renderView(
             "search/index.".($format == 'txt' ? 'txt' : 'pdf').".twig",
             [
-                'isPrintLong' => $request->get('print-type', 'print-long') == 'print-long',
-                'includeImage' => $request->get('print-image', null) == 'print-image',
+                'isPrintLong'   => $request->get('print-type', 'print-long') == 'print-long',
+                'includeImage'  => $request->get('print-image', null) == 'print-image',
+                'printNoticeWrapper'=> $printNoticeWrapper($authorities+$notices, $this->noticeProvider, $this->noticeAuhtority)
             ]
         );
+
         $filename = 'search-'.date('Y-m-d_h-i-s');
 
         if ($format == 'txt') {
@@ -177,7 +208,6 @@ class SearchController extends AbstractController
     {
         try {
             $query = $request->get('word');
-
             $objSearch = $this->searchProvider->findNoticeAutocomplete($query, SuggestionList::class);
 
             return new JsonResponse([

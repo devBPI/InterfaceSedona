@@ -62,10 +62,9 @@ class RecordController extends AbstractController
     public function bibliographicRecordAction(Request $request, string $permalink, SessionInterface $session)
     {
         $searchToken = $request->get('searchToken');
-
         $object = $this->noticeProvider->getNotice($permalink);
-
         $navigation = null;
+
         if ($session->has($searchToken)){
             $navigation =
                 new NavigationService(
@@ -73,17 +72,16 @@ class RecordController extends AbstractController
                     $permalink,
                     $this->serializer->deserialize($session->get($searchToken),  Search::class, 'json'),
                     $searchToken,
-                    $object->getNotice()->isOnLigne()?Notice::ON_LIGNE:Notice::ON_SHELF
+                    $object->getNotice()->isOnLine()?Notice::ON_LIGNE:Notice::ON_SHELF
                 );
         }
 
-
         return $this->render('record/bibliographic.html.twig', [
-            'object'        => $object,
-            'notice'=> $object->getNotice(),
-            'toolbar'       => 'document',
-            'navigation'    => $navigation,
-            'printRoute'    => $this->generateUrl('record_bibliographic_pdf',['format'=> 'pdf'])
+            'object'            => $object,
+            'notice'            => $object->getNotice(),
+            'toolbar'           => 'document',
+            'navigation'        => $navigation,
+            'printRoute'        => $this->generateUrl('record_bibliographic_pdf',['format'=> 'pdf'])
         ]);
     }
 
@@ -92,9 +90,13 @@ class RecordController extends AbstractController
      */
     public function bibliographicRecordPDFAction(Request $request, \Knp\Snappy\Pdf $knpSnappy, $format = "pdf")
     {
+        $object = $this->noticeProvider->getNotice($request->get('permalink'));
+
         $content = $this->renderView("record/bibliographic.".($format == 'txt' ? 'txt': 'pdf').".twig", [
             'isPrintLong'   => $request->get('print-type', 'print-long') == 'print-long',
             'includeImage'  => $request->get('print-image', null) == 'print-image',
+            'notice' => $object->getNotice(),
+            'noticeThemed' => $object->getNoticesSameTheme(),
         ]);
         $filename = 'bibliographic'.date('Y-m-d_h-i-s');
 
@@ -130,8 +132,8 @@ class RecordController extends AbstractController
         $subject = $this->noticeAuhtority->getSubjectNotice($id);
         $authors = $this->noticeAuhtority->getAuthorsNotice($id);
         $searchToken = $request->get('searchToken');
-
         $navigation = null;
+
 
         if ($session->has($searchToken)) {
             $navigation = new NavigationService(
@@ -193,14 +195,22 @@ class RecordController extends AbstractController
         );
     }
     /**
-     * @Route("/print/notice-autorite.{format}", name="record_authority_pdf", requirements={"format" = "html|pdf|txt"}, defaults={"format" = "pdf"})
+     * @Route("/print/notice-autorite.{format}", name="record_authority_pdf", requirements={"format" = "html|pdf|txt|xml"}, defaults={"format" = "pdf"})
      */
-    public function authorityRecordPDFAction(Request $request, \Knp\Snappy\Pdf $knpSnappy, $format = "pdf")
+    public function authorityRecordPDFAction(Request $request, \Knp\Snappy\Pdf $knpSnappy, $format='pdf')
     {
+        $object             = $this->noticeAuhtority->getAuthority($request->get('permalink'));
+        $relatedDocuments   = $this->noticeAuhtority->getSubjectNotice($object->getId());
+        $noticeAuthors      = $this->noticeAuhtority->getAuthorsNotice($object->getId());
+
         $content = $this->renderView("record/authority.".($format == 'txt' ? 'txt': 'pdf').".twig", [
-            'isPrintLong'   => $request->get('print-type', 'print-long') == 'print-long',
-            'includeImage'  => $request->get('print-image', null) == 'print-image',
+            'isPrintLong'       => $request->get('print-type', 'print-long') == 'print-long',
+            'includeImage'      => $request->get('print-image', null) == 'print-image',
+            'notice'            => $object,
+            'relatedDocuments'  => $relatedDocuments,
+            'noticeAuthors'     => $noticeAuthors,
         ]);
+
         $filename = 'authority_'.date('Y-m-d_h-i-s');
 
         if ($format == 'txt') {

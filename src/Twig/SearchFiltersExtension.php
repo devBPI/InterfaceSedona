@@ -5,6 +5,7 @@ namespace App\Twig;
 
 
 use App\Model\Authority;
+use App\Model\Interfaces\NoticeInterface;
 use App\Service\BreadcrumbBuilder;
 use App\Service\NavigationService;
 use App\Utils\BreadcrumbNavigation;
@@ -47,6 +48,7 @@ class SearchFiltersExtension extends AbstractExtension
             new TwigFunction('sameInstance', [$this, 'sameInstance']),
             new TwigFunction('route_by_object', [$this, 'getRouteByObject']),
             new TwigFunction('breadcrumb_navigation', [$this, 'getBreadcrumb']),
+            new TwigFunction('pdf_occurence', [$this, 'getPdfOccurence']),
         ];
     }
 
@@ -138,5 +140,32 @@ class SearchFiltersExtension extends AbstractExtension
         return NavigationService::getRouteByObject($object);
     }
 
+    /**
+     * @param $object
+     * @param $method
+     * @param $label
+     * @return string
+     */
+    public function getPdfOccurence($object, $method, $label){
+
+        $payload = "";
+        if (method_exists($object, $method) && $object->{$method}() ){
+            if (is_array($object->{$method}())){
+                foreach ($object->{$method}() as $value){
+                    $payload .= $value. ' ';
+                }
+
+            }else{
+                $payload .= $object->{$method}();
+            }
+            if ($label){
+                return sprintf("<li> %s : %s</li>", $label, $payload);
+            }
+
+            return $payload;
+        }
+
+        return "";
+    }
 }
 

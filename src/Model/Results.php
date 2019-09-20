@@ -90,8 +90,6 @@ class Results implements SearchResultInterface
         return $this->pageTotal;
     }
 
-
-
     /**
      * @return Authority[]
      */

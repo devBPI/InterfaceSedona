@@ -1,6 +1,12 @@
 <div class="col-12">
 	<div>
-		<input type="checkbox" id="related-notice-result-{{ i }}">
+		<input
+				id="related-notice-result-{{ i }}"
+				class="js-athority"
+				type="checkbox"
+				name="{% if  author.cote is defined and author.cote is not null  %}indice[]{% else %}authority[]{% endif %}"
+			   	value="{{ author.permalink }}"
+		>
 		<label for="related-notice-result-{{ i }}"><span class="sr-only">{{ 'bloc.preview-authority.first'|trans({'%%name%': '*Insert titre*'}) }}</span></label>
 	</div>
 </div>
