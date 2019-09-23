@@ -204,6 +204,11 @@
             }
 
             $(selector).attr('checked', $(this).is(':checked'));
+            if ($(this).is(':checked')) {
+                $(selector).parents('div.check').addClass('checked');
+            } else {
+                $(selector).parents('div.check').removeClass('checked');
+            }
         })
         .ready(function () {
             $('[data-toggle*="-if-no-found"]').ifNoFound();

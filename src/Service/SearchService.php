@@ -74,7 +74,7 @@ final class SearchService
         $title = $this->getTitleFromSearchQuery($search);
         if ($request->get('action', null) !== null) {
             $request->query->remove('action');
-            $this->historicService->saveMyHistoric($request, $title);
+            $this->historicService->saveMyHistoric($title, $this->serializer->serialize($search, 'json'));
         }
 
         $search->setSort($request->get(FiltersQuery::SORT_LABEL, SearchQuery::SORT_DEFAULT));
@@ -109,19 +109,15 @@ final class SearchService
     }
 
     /**
-     * @param string $savedId
+     * @param string $object
      * @return SearchQuery
-     * @throws \Doctrine\ORM\ORMException
-     * @throws \Doctrine\ORM\OptimisticLockException
      */
-    public function getSearchQueryFromHistoryId(string $savedId): SearchQuery
+    public function deserializeSearchQuery(string $object): SearchQuery
     {
-        $searchHistory = $this->historicService->getSearchHistoryByHash($savedId);
-
         return $this
             ->serializer
             ->deserialize(
-                $searchHistory->getQueries(),
+                $object,
                 SearchQuery::class,
                 'json'
             );

@@ -3,6 +3,7 @@
 
 namespace App\Controller;
 
+use App\Entity\SearchHistory;
 use App\Model\Search\Criteria;
 use App\Model\Search\FacetFilter;
 use App\Model\Search\SearchQuery;
@@ -176,9 +177,9 @@ class SearchController extends AbstractController
     }
 
     /**
-     * @Route("/recherche-sauvegardee/{savedId}", methods={"GET"}, name="saved_search")
-     * @param string $savedId
+     * @Route("/recherche-sauvegardee/{id}", methods={"GET"}, name="saved_search")
      *
+     * @param SearchHistory $searchHistory
      * @param Request $request
      * @return \Symfony\Component\HttpFoundation\Response
      * @throws \Doctrine\ORM\ORMException
@@ -187,10 +188,10 @@ class SearchController extends AbstractController
      * @throws \Twig\Error\RuntimeError
      * @throws \Twig\Error\SyntaxError
      */
-    public function savedSearchAction(string $savedId, Request $request)
+    public function savedSearchAction(SearchHistory $searchHistory, Request $request)
     {
         return $this->displaySearch(
-            $this->searchService->getSearchQueryFromHistoryId($savedId),
+            $this->searchService->deserializeSearchQuery($searchHistory->getQueryString()),
             $request
         );
     }

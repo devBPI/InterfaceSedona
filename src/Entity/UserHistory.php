@@ -26,7 +26,7 @@ class UserHistory
     private $user_uid;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\SearchHistory", inversedBy="userHistories")
+     * @ORM\ManyToOne(targetEntity="App\Entity\SearchHistory")
      * @var SearchHistory
      */
     private $Search;
