@@ -1,39 +1,73 @@
 <!-- Début - Bloc 24 Barre des tâches -->
 <div class="col-12 col-md-auto">
-	<div class="banner-tools__list">
-		<div class="form-check banner-tools__link">
-			<input class="form-check-input" type="checkbox" id="account-{{ type }}-select-all">
-			<label class="form-check-label" for="account-{{ type }}-select-all">{{ 'bloc.banner-tools.select-all'|trans }}</label>
-		</div>
-		<a href="#" class="banner-tools__link">{{ 'bloc.banner-tools.select-cancel'|trans }}</a>
-	</div>
+    <div class="banner-tools__list">
+        <div class="form-check banner-tools__link">
+            <input class="form-check-input" type="checkbox" id="account-{{ type }}-select-all" data-toggle="check-all">
+            <label class="form-check-label"
+                   for="account-{{ type }}-select-all">{{ 'bloc.banner-tools.select-all'|trans }}</label>
+        </div>
+        <button class="banner-tools__link" data-toggle="disable-if-no-found-modal"
+                data-spy=':checkbox' data-target='input[type="checkbox"]:checked'>
+            {{ 'bloc.banner-tools.select-cancel'|trans }}</button>
+    </div>
 </div>
 
-<div class="col-12 col-md-auto">
-	<div class="banner-tools__list">
-		<p class="banner-tools__infos">{{ 'bloc.banner-tools.selected-list'|trans }} <span>(123)</span></p>
-		<p class="banner-tools__infos">{{ 'bloc.banner-tools.selected-document'|trans }} <span>(123)</span></p>
-	</div>
-</div>
+{% if type == constant('App\\Controller\\UserSelectionController::INPUT_NAME') %}
+    <div class="col-12 col-md-auto">
+        <div class="banner-tools__list">
+            <p class="banner-tools__infos">{{ 'bloc.banner-tools.selected-list'|trans }}
+                <span>({{ selectedList|default(0) }})</span></p>
+            <p class="banner-tools__infos">{{ 'bloc.banner-tools.selected-document'|trans }}
+                <span>({{ selectedDocs|default(0) }})</span></p>
+        </div>
+    </div>
+{% endif %}
 
 <div class="col-12 col-md-auto">
-	<ul class="banner-tools__list mb-0">
-		<li class="banner-tools__item banner-tools__item-add">
-			<button class="btn" data-target="#modal-list-add" data-toggle="modal">{{ 'bloc.banner-tools.list-add'|trans }} <span class="sr-only">{{ 'bloc.banner-tools.list-name'|trans }}</span><img src="{{ asset('images/icones/icone-caret-bas.svg') }}" alt="" class="icone-caret"/></button>
-		</li>
-		<li class="banner-tools__item banner-tools__item-top">
-			<button class="btn">{{ 'bloc.banner-tools.list-up'|trans }} <span class="sr-only">{{ 'bloc.banner-tools.list-name'|trans }}</span><img src="{{ asset('images/icones/icone-caret-bas.svg') }}" alt="" class="icone-caret"/></button>
-		</li>
-		<li class="banner-tools__item banner-tools__item-bottom">
-			<button class="btn">{{ 'bloc.banner-tools.list-down'|trans }} <span class="sr-only">{{ 'bloc.banner-tools.list-name'|trans }}</span><img src="{{ asset('images/icones/icone-caret-bas.svg') }}" alt="" class="icone-caret"/></button>
-		</li>
-		<li class="banner-tools__item banner-tools__item-btn">
-			<button class="btn" data-target="#modal-list-remove" data-toggle="modal">{{ 'bloc.banner-tools.list-remove'|trans }} <span class="sr-only">{{ 'bloc.banner-tools.list-name'|trans }}</span><img src="{{ asset('images/icones/icone-croix-noire.svg') }}" alt="" class="icone-croix"/></button>
-		</li>
-	</ul>
+    <ul class="banner-tools__list mb-0">
+        {% if type == constant('App\\Controller\\UserSelectionController::INPUT_NAME') %}
+            <li class="banner-tools__item banner-tools__item-add">
+                <button type="button" class="btn" data-href="#modal-list-add" data-toggle="disable-if-no-found-modal"
+                        data-spy='[name="{{ constant('App\\Controller\\UserSelectionController::INPUT_NAME') }}[{{ constant('App\\Controller\\UserSelectionController::INPUT_DOCUMENT') }}][]"]'
+                        data-target='[name="{{ constant('App\\Controller\\UserSelectionController::INPUT_NAME') }}[{{ constant('App\\Controller\\UserSelectionController::INPUT_DOCUMENT') }}][]"]:checked'>
+                    {{ 'bloc.banner-tools.list-add'|trans }}
+                    <span class="sr-only">{{ 'bloc.banner-tools.list-name'|trans }}</span>
+                    <img src="{{ asset('images/icones/icone-caret-bas.svg') }}" alt="" class="icone-caret"/>
+                </button>
+            </li>
+            <li class="banner-tools__item banner-tools__item-top">
+                <button name="action" value="moveUp" type="submit" class="btn" data-toggle="disable-if-no-found"
+                        data-spy='[name="{{ constant('App\\Controller\\UserSelectionController::INPUT_NAME') }}[{{ constant('App\\Controller\\UserSelectionController::INPUT_LIST') }}][]"]'
+                        data-target='[name="{{ constant('App\\Controller\\UserSelectionController::INPUT_NAME') }}[{{ constant('App\\Controller\\UserSelectionController::INPUT_LIST') }}][]"]:checked'>
+                    {{ 'bloc.banner-tools.list-up'|trans }}
+                    <span class="sr-only">{{ 'bloc.banner-tools.list-name'|trans }}</span>
+                    <img src="{{ asset('images/icones/icone-caret-bas.svg') }}" alt="" class="icone-caret"/>
+                </button>
+            </li>
+            <li class="banner-tools__item banner-tools__item-bottom">
+                <button name="action" value="moveDown" type="submit" class="btn" data-toggle="disable-if-no-found"
+                        data-spy='[name="{{ constant('App\\Controller\\UserSelectionController::INPUT_NAME') }}[{{ constant('App\\Controller\\UserSelectionController::INPUT_LIST') }}][]"]'
+                        data-target='[name="{{ constant('App\\Controller\\UserSelectionController::INPUT_NAME') }}[{{ constant('App\\Controller\\UserSelectionController::INPUT_LIST') }}][]"]:checked'>
+                    {{ 'bloc.banner-tools.list-down'|trans }}
+                    <span class="sr-only">{{ 'bloc.banner-tools.list-name'|trans }}</span>
+                    <img src="{{ asset('images/icones/icone-caret-bas.svg') }}" alt="" class="icone-caret"/>
+                </button>
+            </li>
+        {% endif %}
+
+        <li class="banner-tools__item banner-tools__item-btn">
+            <button type="button" class="btn" data-href="#modal-list-remove" data-toggle="disable-if-no-found-modal"
+                    data-spy=':checkbox'
+                    data-target='input[type="checkbox"]:checked'>
+                {{ 'bloc.banner-tools.list-remove'|trans }}
+                <span class="sr-only">{{ 'bloc.banner-tools.list-name'|trans }}</span>
+                <img src="{{ asset('images/icones/icone-croix-noire.svg') }}" alt="" class="icone-croix"/>
+            </button>
+        </li>
+    </ul>
 </div>
 
 <div class="col-12">
-	<hr class="border-thin">
+    <hr class="border-thin">
 </div>
 <!-- Fin - Bloc 24 Barre des tâches -->

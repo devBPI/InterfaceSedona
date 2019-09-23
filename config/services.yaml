@@ -38,3 +38,30 @@ services:
 
   App\Service\ImageService:
     arguments: ['%kernel.project_dir%/public/']
+  App\Service\HistoricService:
+    arguments: ['@doctrine.orm.entity_manager']
+  App\Service\SelectionListService:
+    arguments: ['@doctrine.orm.entity_manager']
+
+
+  Symfony\Component\Ldap\Ldap:
+    arguments: ['@Symfony\Component\Ldap\Adapter\ExtLdap\Adapter']
+  Symfony\Component\Ldap\Adapter\ExtLdap\Adapter:
+    arguments:
+    -   host: sldap-bpi.bpi.fr
+        port: 389
+#        encryption: tls
+        options:
+          protocol_version: 3
+          referrals: false
+
+
+  App\Provider\BpiLdapUserProvider:
+    arguments:
+      - '@Symfony\Component\Ldap\Ldap'
+      - "dc=bpi,dc=fr"
+      - "ou=lecture,ou=applications,dc=bpi,dc=fr"
+      - mio1eThe
+      - ['ROLE_USER']
+      - ['mail', 'sn','cn', 'pseudo', 'uid', 'entryUUID']
+      - mail

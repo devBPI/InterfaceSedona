@@ -99,8 +99,9 @@ footer:
 modal:
   list-create:          #Modal 01  Création d'une liste
     title: Créer une nouvelle liste
+    mandatory-field: La saisie du titre de la liste est obligatoire
     field-title: Titre
-    message-success: Vous avez bien créé la liste « %name% » avec les document sélectionnés.
+    message-success: Vous avez bien créé la liste « %name% » avec les documents sélectionnés.
     submit: Valider
     submit-sr-only:  la création de la liste
   list-add:             #Modal 02 ajout à ma sélection
@@ -117,16 +118,20 @@ modal:
     btn-register: Créer mon compte
     submit: Valider
     submit-sr-only:  la création de la liste
+    message-success: Les documents ont bien été ajoutés à vos listes
+    message-error:
+      no-list: Aucune liste n'a été sélectionnée. Veuillez en sélectionner une ou en créer une nouvelle.
   list-edit:          #Modal 03 edition d'une liste
     title: Modification de la liste
     field-title: Titre
     submit: Valider
     submit-sr-only: la modification de la liste
-  list-remove:      #Modal 04 supperions d'une liste
-    title: Liste "%name%"
-    message-confirmation: Voulez-vous vraiment supprimer cette liste ?
+    message-success: La liste « %name% » a bien été modifiée.
+  list-remove:      #Modal 04 supperions de listes
+    title: Suppression des listes et des documents
+    message-confirmation: Voulez-vous vraiment supprimer les listes et documents sélectionnés ?
     submit: Confirmer
-    submit-sr-only:  la suppression de la liste "%name%"
+    submit-sr-only:  la suppression des listes et documents sélectionnés
   export:           #Modal 05 export
     title: Courriel
     subtitle: Paramétrer la pièce jointe
@@ -220,7 +225,6 @@ modal:
     base:
       label: Recherche dans
       all: Tout
-      all-aria: Recherche dans toutes les bases de données
       in: Recherche dans
       name: Base de données %name%
     date:
@@ -237,15 +241,15 @@ modal:
       in-shelf: Disponible en rayon
       in-ligne: Consultable en ligne
     facette:
-      documentType: Type de documents
-      supports: Supports
-      genreMusic: Genre musical
+      type: Type de documents
+      materialSupport: Supports
+      genreMusical: Genre musical
       genreFilm: Genre film
-      genreBook: Genre littéraire
-      publicTarget: Public destinataire
-      sector: Secteur
+      genreLitteraire: Genre littéraire
+      audience: Public destinataire
+      secteur: Secteur
       mediation: Médiation
-      content: Contenu
+      contenu: Contenu
       available: Disponibilité
       theme: Thèmes
       author: Auteur(s)
@@ -254,9 +258,7 @@ modal:
       date: Date
       subject: Sujets
     clear-search: Effacer ma recherche
-    clear-search-aria: Effacer mes critères de recherche
     submit: Rechercher
-    submit-aria: Lancer ma recherche
   refine-search:  #Modal 14 affiné la recheche
     title: Affiner ma recherche
     filter-delete: Supprimer le filtre
@@ -278,8 +280,9 @@ page:
     title: Document %title%
   search:
     title:
-      simple: Résultats recherche simple - %termes% - page %currentPage% sur %nbPage%
-      advanced: Résultats recherche avancée - %termes% - page %currentPage% sur %nbPage%
+      simple: Résultats recherche simple - %keyword%
+      advanced: Résultats recherche avancée - %keyword%
+      page: page %current% sur %total%
   login:
     title: Authentification
     login: Adresse e-mail
@@ -362,14 +365,20 @@ bloc:
       order: Choix du trie des documents en ligne
       order-aria: menu-trie-document-ligne
     order-choice: Trier par
-    order-asc: Ordre ASC
-    order-desc: Ordre DESC
+    order-default: DEFAULT
+    order-tile_a_z: TITRE_A_Z
+    order-tile_z_a: TITRE_Z_A
+    order-author_a_z: AUTHEUR_A_Z
+    order-author_z_a: AUTHEUR_Z_A
+    order-older: OLDER
+    order-younger: YOUNGER
+
   notice-simple:          #Bloc 13 Notices simples en 2 colonnes
     result: Résultat numéro
     select: sélectionner
     access-to-bdd: Acceder à %name%
     result-of-bdd: Résultat de
-    last-publication: 'Dernier numéro reçu : N°%number%, %pulication-date%'
+    last-publication: 'Dernier numéro reçu :'
     document-available: Disponible
     document-unavailable: Indisponible
     notification-availablity: Document indisponible, être prévenu de son retour en rayon - ouverture formulaire
@@ -408,6 +417,7 @@ bloc:
     indice: 'Indice :'
     publication-receve: 'Numéros reçus :'
     authority-type: "Type d'autorité :"
+    other-names: "Autre(s) nom(s) : "
     country: 'Pays :'
     born-date: 'Naissance :'
     dead-date: 'Mort :'

@@ -1,4 +1,4 @@
-{% extends 'base.html.twig' %}
+{% extends 'user/base.html.twig' %}
 
 {% block title %}{{ 'page.personal-data.title-connected'|trans }}{% endblock %}
 
@@ -8,84 +8,34 @@
 
 	<div>
 		<nav>
-			<ul class="nav nav-tabs" id="user-navigation" role="tablist">
+			<ul class="nav nav-tabs">
+                {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+					<li class="nav-item">
+						<a href="{{ path('user_personal_data') }}" class="nav-link {% if not lists is defined and not histories is defined %}active{% endif %}">{{ 'page.personal-data.profil.title'|trans }}</a>
+					</li>
+				{% endif %}
 				<li class="nav-item">
-					<a href="#informations" class="nav-link active" id="user-informations" data-toggle="tab" role="tab" aria-controls="informations" aria-selected="true">{{ 'page.personal-data.profil.title'|trans }}</a>
+					<a href="{{ path('user_selection_index') }}" class="nav-link {% if lists is defined %}active{% endif %}">{{ 'page.personal-data.selection.title'|trans }}</a>
 				</li>
 				<li class="nav-item">
-					<a href="#selection" class="nav-link" id="user-selection" data-toggle="tab" role="tab" aria-controls="selection" aria-selected="false">{{ 'page.personal-data.selection.title'|trans }}</a>
-				</li>
-				<li class="nav-item">
-					<a href="#historique" class="nav-link" id="user-historique" data-toggle="tab" role="tab" aria-controls="historique" aria-selected="false">{{ 'page.personal-data.historic.title'|trans }}</a>
+					<a href="{{ path('user_historic_index') }}" class="nav-link {% if histories is defined %}active{% endif %}">{{ 'page.personal-data.historic.title'|trans }}</a>
 				</li>
 			</ul>
 		</nav>
 	</div>
 
-	<div class="tab-content" id="user-content">
-		<div class="tab-pane fade show active" id="informations" role="tabpanel" aria-labelledby="user-informations">
+	<div class="tab-pane">
+		{% block content %}
+			{% if is_granted('IS_AUTHENTICATED_FULLY') %}
+				<h2 class="n1 title-icone">
+					<span class="icone-square"><img src="{{ asset('images/icones/icone-user.svg') }}" alt="" class="icone-user"/></span><span>{{ 'page.personal-data.profil.title'|trans }}</span>
+				</h2>
 
-			<h2 class="n1 title-icone">
-				<span class="icone-square"><img src="{{ asset('images/icones/icone-user.svg') }}" alt="" class="icone-user"/></span><span>{{ 'page.personal-data.profil.title'|trans }}</span>
-			</h2>
-
-			<div>
-				{% include "user/blocs/user-informations.html.twig" %}
-			</div>
-
-		</div>
-		<div class="tab-pane fade" id="selection" role="tabpanel" aria-labelledby="user-selection">
-
-			<h2 class="n1 title-icone">
-				<span class="icone-square"><img src="{{ asset('images/icones/icone-coeur.svg') }}" alt="" class="icone-coeur"/></span><span>{{ 'page.personal-data.selection.title'|trans }}</span>
-			</h2>
-
-			<div class="row justify-content-md-between banner-tools">
-				{% include "user/blocs/banner-tools.html.twig" with {'type':'selection'} %}
-			</div>
-
-			<div>
-				{% include "user/blocs/list-user.html.twig" %}
-			</div>
-
-		</div>
-		<div class="tab-pane fade" id="historique" role="tabpanel" aria-labelledby="user-historique">
-
-			<h2 class="n1 title-icone">
-				<span class="icone-square"><img src="{{ asset('images/icones/icone-horloge.svg') }}" alt="" class="icone-horloge"/></span><span>{{ 'page.personal-data.historic.title'|trans }}</span>
-			</h2>
-
-			<p class="sr-only">{{ 'page.personal-data.historic.notice'|trans }}</p>
-
-			<div class="row justify-content-md-between banner-tools">
-				{% include "user/blocs/banner-tools.html.twig" with {'type':'historique'} %}
-			</div>
-
-			<div>
-				{% include "user/blocs/historic-search.html.twig" %}
-			</div>
-
-		</div>
+				<div>
+					{% include "user/blocs/user-informations.html.twig" %}
+				</div>
+			{% endif %}
+		{% endblock %}
 	</div>
-
-	<!-- Début - Modal création d'une nouvelle liste -->
-	{% include "user/modal/list_create.html.twig" %}
-	<!-- Fin - Modal création d'une nouvelle liste -->
-
-	<!-- Début - Modal édition liste -->
-	{% include "user/modal/list_edit.html.twig" %}
-	<!-- Fin - Modal édition liste -->
-
-	<!-- Début - Modal suppression liste -->
-	{% include "user/modal/list_remove.html.twig" %}
-	<!-- Fin - Modal suppression liste -->
-
-	<!-- Début - Modal commentaires view -->
-	{% include "user/modal/comments-edit.html.twig" %}
-	<!-- Fin - Modal commentaires view -->
-
-	<!-- Début - Modal commentaires edit -->
-	{% include "user/modal/comments-view.html.twig" %}
-	<!-- Fin - Modal commentaires edit -->
 
 {% endblock %}

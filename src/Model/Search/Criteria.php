@@ -1,10 +1,10 @@
 <?php
+declare(strict_types=1);
 
 namespace App\Model\Search;
 
 use App\WordsList;
 use JMS\Serializer\Annotation as JMS;
-use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Class Criteria
@@ -15,23 +15,20 @@ class Criteria
 {
     const QUERY_NAME = 'criteria';
 
+    const SIMPLE_SEARCH_KEYWORD = 'mot';
+    const SIMPLE_SEARCH_TYPE = 'type';
+
+    const ADVANCED_SEARCH_LABEL = 'advanced_search';
+    const ADVANCED_SEARCH_OPERATOR = 'advanced_search_operator';
+    const FIELD_LABEL = 'field';
+    const TEXT_LABEL = 'text';
+
+
     /**
      * @var string
      * @JMS\Type("string")
      */
     private $general;
-
-    /**
-     * @var string
-     * @JMS\Type("number")
-     */
-    private $rows;
-
-    /**
-     * @var string
-     * @JMS\Type("number")
-     */
-    private $page;
 
     /**
      * @var string
@@ -83,21 +80,21 @@ class Criteria
 
     /**
      * @var integer
-     * @JMS\Type("number")
+     * @JMS\Type("int")
      * @JMS\SerializedName("date-publication")
      */
     private $publicationDate;
 
     /**
      * @var integer
-     * @JMS\Type("number")
+     * @JMS\Type("int")
      * @JMS\SerializedName("date-publication-start")
      */
     private $publicationDateStart;
 
     /**
      * @var integer
-     * @JMS\Type("number")
+     * @JMS\Type("int")
      * @JMS\SerializedName("date-publication-fin")
      */
     private $publicationDateEnd;
@@ -115,25 +112,27 @@ class Criteria
     private $or;
 
     /**
-     * Criteria constructor.
-     * @param Request $request
+     * @param $type
+     * @param $keyword
      */
-    public function __construct(Request $request = null)
+    public function setSimpleSearch($type, $keyword)
     {
-        if ($request instanceof Request) {
-            if ($request->get(WordsList::ADVANCED_SEARCH_ACTION) === WordsList::CLICKED) {
-                foreach ($request->get(self::QUERY_NAME, []) as $name => $value) {
-                    $this->$name = $value;
-                }
+        $this->$type = $keyword;
+    }
 
-                $this->setKeywords(
-                    $request->get(WordsList::ADVANCED_SEARCH_LABEL, []),
-                    $request->get(WordsList::ADVANCED_SEARCH_OPERATOR, [])
-                );
-            } elseif ($request->get(WordsList::SIMPLE_SEARCH_LABEL, null) !== null) {
-                $this->setFieldByKeywordRow($request->get(WordsList::SIMPLE_SEARCH_LABEL, []));
-            }
+    /**
+     * @param array $request
+     */
+    public function setAdvancedSearch(array $request = [])
+    {
+        foreach ($request[self::QUERY_NAME] as $name => $value) {
+            $this->$name = $value;
         }
+
+        $this->setKeywords(
+            $request[self::ADVANCED_SEARCH_LABEL],
+            isset($request[self::ADVANCED_SEARCH_OPERATOR]) ? $request[self::ADVANCED_SEARCH_OPERATOR] : []
+        );
     }
 
     /**
@@ -169,11 +168,27 @@ class Criteria
     private function setFieldByKeywordRow(array $keywordRow): void
     {
         if (
-            is_array($keywordRow) && array_key_exists(WordsList::FIELD_LABEL, $keywordRow) &&
-            array_key_exists(WordsList::TEXT_LABEL, $keywordRow)
+            is_array($keywordRow) && array_key_exists(self::FIELD_LABEL, $keywordRow) &&
+            array_key_exists(self::TEXT_LABEL, $keywordRow)
         ) {
-            $type = $keywordRow[WordsList::FIELD_LABEL];
-            $this->$type = $keywordRow[WordsList::TEXT_LABEL];
+            $type = $keywordRow[self::FIELD_LABEL];
+            $this->$type = $keywordRow[self::TEXT_LABEL];
         }
     }
+
+    /**
+     * @return array
+     */
+    public function getKeywords(): array
+    {
+        $keywords = [];
+        foreach (WordsList::$words[WordsList::THEME_DEFAULT] as $field) {
+            if (!empty($this->$field)) {
+                $keywords[$field] = $this->$field;
+            }
+        }
+
+        return $keywords;
+    }
+
 }

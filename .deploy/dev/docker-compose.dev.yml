@@ -2,10 +2,13 @@ version: '3.5'
 services:
   app:
     image: registry.sedona.fr/images/php:7-fpm
-    user: '$UID:$UID'
+#    user: '$UID:$UID'
     networks:
-      - default
-      - bpi_network_btw
+      default: ~
+      public: ~
+      bpi_network_btw:
+        aliases:
+        - $PROJECT_HOSTNAME
     environment:
       - COMPOSER_HOME=$COMPOSER_CONTAINER_HOME
       - POSTGRES_HOST

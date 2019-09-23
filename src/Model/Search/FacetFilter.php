@@ -2,7 +2,7 @@
 
 namespace App\Model\Search;
 
-use Symfony\Component\HttpFoundation\Request;
+use JMS\Serializer\Annotation as JMS;
 
 /**
  * Class FacetFilter
@@ -14,17 +14,20 @@ class FacetFilter
 
     /**
      * @var array
+     * @JMS\Type("array")
      */
     private $attributes = [];
 
     /**
      * FacetFilter constructor.
-     * @param Request $request
+     * @param array $request
      */
-    public function __construct(Request $request)
+    public function __construct(array $request = [])
     {
-        foreach ($request->get(self::QUERY_NAME, []) as $name => $values) {
-            $this->attributes[$name] = $values;
+        if (array_key_exists(self::QUERY_NAME, $request)) {
+            foreach ($request[self::QUERY_NAME] as $name => $values) {
+                $this->set($name, $values);
+            }
         }
     }
 
@@ -34,6 +37,15 @@ class FacetFilter
     public function getAttributes(): array
     {
         return $this->attributes;
+    }
+
+    /**
+     * @param $name
+     * @param $values
+     */
+    public function set($name, $values)
+    {
+        $this->attributes[$name] = $values;
     }
 
 }

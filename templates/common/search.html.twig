@@ -1,49 +1,50 @@
+<!-- Début - Bloc B Zone de recherche simple -->
 <form method="get" role="search" id="form-search" action="{{ path('search') }}">
-    <!-- Début - Bloc B Zone de recherche simple -->
     <div class="sr-only" id="autocompletion-infos">{{ 'bloc.search-zone.autocompletion-notice'|trans }}</div>
     <div class="search-banner" role="combobox" aria-expanded="false" aria-owns="autocompletion-list"
          aria-haspopup="listbox" id="search-banner">
         <div class="input-group search-banner__input">
             <label for="search-input" id="search-label"
                    class="sr-only">{{ 'bloc.search-zone.input-sr-only'|trans }}</label>
-            {% set field_name = constant('App\\WordsList::SIMPLE_SEARCH_LABEL')~'['~constant('App\\WordsList::TEXT_LABEL')~']' %}
-            <input name="{{ field_name }}"
+            {% set field_name = constant('App\\Model\\Search\\Criteria::SIMPLE_SEARCH_KEYWORD') %}
+            <input name="{{ field_name }}" autocomplete="off"
                    type="text" aria-autocomplete="list" aria-controls="autocompletion-list"
                    id="search-input" data-url-autocomplete="{{ path('search_autocompletion') }}"
                    placeholder="{{ 'bloc.search-zone.input-placeholder'|trans }}"
-                   value="{{ get_value_by_field_name(constant('App\\WordsList::SIMPLE_SEARCH_LABEL'), constant('App\\WordsList::TEXT_LABEL')) }}"
+                   value="{{ objSearch is defined ? objSearch.simpleSearchKeyword : '' }}"
                 />
         </div>
         <div class="form-group search-banner__select">
             <label for="search-words" class="sr-only">{{ 'bloc.search-zone.type-label'|trans }}</label>
-            {% set select_name = constant('App\\WordsList::SIMPLE_SEARCH_LABEL')~'['~constant('App\\WordsList::FIELD_LABEL')~']' %}
+            {% set select_name = constant('App\\Model\\Search\\Criteria::SIMPLE_SEARCH_TYPE') %}
             <select name="{{ select_name }}" class="form-control" id="search-words">
                 {% for word in search_words() %}
                     <option value="{{ word }}"
-                        {% if get_value_by_field_name(constant('App\\WordsList::SIMPLE_SEARCH_LABEL'), constant('App\\WordsList::FIELD_LABEL')) == word %}selected="selected"{% endif %}>
+                        {% if objSearch is defined and objSearch.simpleSearchType == word %}selected="selected"{% endif %}>
                         {{ ('modal.advanced-search.keyword.type.'~word)|trans }}</option>
                 {% endfor %}
             </select>
         </div>
-        <button type="submit" class="search-banner__submit" name="{{ constant('App\\WordsList::SIMPLE_SEARCH_ACTION') }}" value="{{ constant('App\\WordsList::CLICKED') }}">
+        <button type="submit" class="search-banner__submit" name="action">
             <img src="{{ asset('images/icones/icone-loupe.svg') }}" alt="" class="icone-loupe"/>
             <span class="sr-only">{{ 'bloc.search-zone.submit'|trans }}</span>
         </button>
         <button type="button" data-target="#modal-search-advanced"
-                aria-label="{{ 'bloc.search-zone.advanced-sr-only'|trans }}" data-toggle="modal"
-                class="search-banner__modal">{{ 'bloc.search-zone.advanced-title'|trans }}</button>
+            aria-label="{{ 'bloc.search-zone.advanced-sr-only'|trans }}" data-toggle="modal"
+            class="search-banner__modal">{{ 'bloc.search-zone.advanced-title'|trans }}</button>
     </div>
-    <div aria-labelledby="search-label" aria-describedby="autocompletion-infos" id="autocompletion-list"
-         class="search-autocomplet" style="display: none;">
-        <p class="sr-only"
-           aria-live="assertive">{{ 'bloc.search-zone.autocompletion-nb-result'|trans({'%nb%': '*Insert nombre de résultats*'}) }}</p>
-        <ul role="listbox" class="listbox search-autocomplet__list">
-            {% include "search/autocompletion.html.twig" %}
-        </ul>
-    </div>
-    <!-- Fin - Bloc B Zone de recherche simple -->
-
-	<!-- Début - Modal Recherche Avancée -->
-	{% include "search/modal/advanced-search.html.twig" %}
-	<!-- Fin - Modal Recherche Avancée -->
 </form>
+<div aria-labelledby="search-label" aria-describedby="autocompletion-infos" id="autocompletion-list"
+     class="search-autocomplet" style="display: none;">
+    <p class="sr-only"
+       aria-live="assertive">{{ 'bloc.search-zone.autocompletion-nb-result'|trans({'%nb%': '*Insert nombre de résultats*'}) }}</p>
+    <ul role="listbox" class="listbox search-autocomplet__list">
+        {% include "search/autocompletion.html.twig" %}
+    </ul>
+</div>
+<!-- Fin - Bloc B Zone de recherche simple -->
+
+
+<!-- Début - Modal Recherche Avancée -->
+{% include "search/modal/advanced-search.html.twig" %}
+<!-- Fin - Modal Recherche Avancée -->

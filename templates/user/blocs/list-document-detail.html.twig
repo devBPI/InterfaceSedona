@@ -1,0 +1,39 @@
+<tr>
+    <td>
+        <input class="table__input" type="checkbox" value="{{ document.id }}"
+               name="{{ constant('App\\Controller\\UserSelectionController::INPUT_NAME') }}[{{ constant('App\\Controller\\UserSelectionController::INPUT_DOCUMENT') }}][]"
+               aria-label="{{ 'bloc.list-user.select-ligne'|trans(
+                   {
+                       '%title%': document.title,
+                       '%auteur%': document.author,
+                       '%document-type%': document.documentType
+                   }) }}">
+    </td>
+    <td>
+        <a href="{{ document.url }}" aria-label="{{ 'bloc.list-user.link'|trans({'%title%': document.title}) }}">
+            {{ document.title }}</a>
+    </td>
+    <td>
+        {{ document.author }}
+    </td>
+    <td class="table__body-type" data-order="{{ document.documentType }}">
+        <img src="{{ asset('images/types/type-'~ document.documentType|lower ~'.svg') }}"
+             alt="{{ document.documentType|lower }}" class="icone-type-document table__type"/>
+    </td>
+    <td data-order="{{ document.creationDate|date('Ymd') }}">{{ document.creationDate|date('d/m/Y') }}</td>
+    <td class="table__body-edit" data-order="false">
+        {% if document.comment is not empty and document.comment|split("\n").0 is defined %}
+            {{ document.comment|split("\n").0|trim }}
+            <button data-content="{{ '<p>'~document.comment|nl2br~'</p>' }}" data-target="#modal-comments-view"
+                    data-toggle="modal">
+                <span class="sr-only">{{ 'bloc.list-user.comments-see'|trans }}</span>
+                <img src="{{ asset('images/icones/icone-oeil.svg') }}" alt="" class="icone-oeil"/>
+            </button>
+        {% endif %}
+        <button data-remote="{{ path('user_selection_list_document_comment_edit', {'document': document.id}) }}"
+                data-target="#modal-list-edit" data-toggle="modal">
+            <span class="sr-only">{{ 'bloc.list-user.comments-edit'|trans }}</span>
+            <img src="{{ asset('images/icones/icone-crayon-noir.svg') }}" alt="" class="icone-crayon"/>
+        </button>
+    </td>
+</tr>

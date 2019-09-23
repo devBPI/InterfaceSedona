@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace App\Model;
 
@@ -10,6 +11,7 @@ use JMS\Serializer\Annotation as JMS;
  */
 class Facet
 {
+
     /**
      * @var string
      * @JMS\Type("string")
@@ -81,5 +83,4 @@ class Facet
     {
         return $this->values;
     }
-
 }

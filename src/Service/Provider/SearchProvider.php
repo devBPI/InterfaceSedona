@@ -6,8 +6,7 @@ namespace App\Service\Provider;
 use App\Model\Exception\NoResultException;
 use App\Model\Notice;
 use App\Model\Results;
-use App\Model\Search\Criteria;
-use App\Model\Search\FacetFilter;
+use App\Model\Search\SearchQuery;
 use App\Service\APIClient\CatalogClient;
 use App\Service\ImageService;
 use JMS\Serializer\SerializerInterface;
@@ -39,19 +38,21 @@ class SearchProvider extends AbstractProvider
     }
 
     /**
-     * @param Criteria $criteria
-     * @param FacetFilter $facets
+     * @param SearchQuery $search
      * @return mixed
      * @throws \Twig\Error\LoaderError
      * @throws \Twig\Error\RuntimeError
      * @throws \Twig\Error\SyntaxError
      */
-    public function getListBySearch(Criteria $criteria, FacetFilter $facets): Results
+    public function getListBySearch(SearchQuery $search): Results
     {
         /** @var Results $searchResult */
-        $searchResult = $this->hydrateFromResponse('/search/all', [
-            'criters' => $this->serializer->serialize($criteria, 'xml'),
-            'facets' => $this->templating->render('search/facet-filters.xml.twig', ['attributes' => $facets->getAttributes()])
+        $searchResult = $this->hydrateFromResponse('/search/all',  [
+            'criters' => $this->serializer->serialize($search->getCriteria(), 'xml'),
+            'facets' => $this->templating->render('search/facet-filters.xml.twig', ['attributes' => $search->getFacets()->getAttributes(), 'translateNames'=>true]),
+            'page' => $search->getPage(),
+            'sort' => $search->getSort()??'DEFAULT',
+            'rows' => $search->getRows()
         ]);
 
         foreach ($searchResult->getNotices()->getNoticesList() as $notice) {
@@ -103,11 +104,9 @@ class SearchProvider extends AbstractProvider
     public function findNoticeAutocomplete(string $query, string $model)
     {
         /** @var Results $searchResult */
-        $content = $this->hydrateFromResponse('/autocomplete/notices',
+        return $this->hydrateFromResponse('/autocomplete/notices',
             ['word' => $query,],
             $model);
-
-        return $content;
     }
-
 }
+

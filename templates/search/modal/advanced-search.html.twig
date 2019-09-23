@@ -13,20 +13,21 @@
                 </button>
             </div>
 
-            {{ render(controller('App\\Controller\\SearchController::advancedSearchContent', {'request': app.request})) }}
+            <form action="{{ path('advanced_search') }}" method="get">
 
-            <div class="modal-footer">
-                <button type="button" aria-label="{{ 'modal.advanced-search.clear-search-aria'|trans }}" class="btn-link btn">
-                    {{ 'modal.advanced-search.clear-search'|trans }}
-                </button>
-                <button type="submit" aria-label="{{ 'modal.advanced-search.submit-aria'|trans }}"
-                        name="{{ constant('App\\WordsList::ADVANCED_SEARCH_LABEL') }}"
-                        value="{{ constant('App\\WordsList::CLICKED') }}"
-                        class="btn btn-lg btn-primary btn-img">
-                    <span>{{ 'modal.advanced-search.submit'|trans }}</span>
-                    <img src="{{ asset('images/icones/icone-loupe.svg') }}" alt="" class="icone-loupe"/>
-                </button>
-            </div>
+                {{ render(controller('App\\Controller\\SearchController::advancedSearchContent', {'request': app.request})) }}
+
+                <div class="modal-footer">
+                    <button type="button" aria-label="{{ 'modal.advanced-search.clear-search-aria'|trans }}" class="btn-link btn">
+                        {{ 'modal.advanced-search.clear-search'|trans }}
+                    </button>
+                    <button type="submit" aria-label="{{ 'modal.advanced-search.submit-aria'|trans }}"
+                        name="action" class="btn btn-lg btn-primary btn-img">
+                        <span>{{ 'modal.advanced-search.submit'|trans }}</span>
+                        <img src="{{ asset('images/icones/icone-loupe.svg') }}" alt="" class="icone-loupe"/>
+                    </button>
+                </div>
+            </form>
         </div>
     </div>
 </div>

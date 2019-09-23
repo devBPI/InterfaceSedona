@@ -15,22 +15,26 @@
 				</button>
 			</li>
 		{% else %}
-			<li class="toolbar__item toolbar__item--disabled">
-				<p>
+			<li class="toolbar__item">
+				<button data-href="#modal-list-add" data-toggle="disable-if-no-found-modal"
+						data-spy='.addableInList'
+						data-target='.addableInList:checked'>
 					<img src="{{ asset('images/icones/icone-coeur.svg') }}" alt="" class="icone-coeur"/>
-					<span>{{ 'bloc.toolbar.my_selection'|trans }}</span>
-				</p>
+					<span><span class="sr-only">{{ 'bloc.toolbar.add_to'|trans }} </span>{{ 'bloc.toolbar.my_selection'|trans }}</span>
+				</button>
 			</li>
-			<li class="toolbar__item toolbar__item--disabled">
-				<p>
+			<li class="toolbar__item">
+				<button data-href="#modal-list-add" data-toggle="disable-if-no-found-modal"
+						data-spy='.addableInList'
+						data-target='.addableInList:checked'>
 					<img src="{{ asset('images/icones/icone-fichier.svg') }}" alt="" class="icone-fichier"/>
 					<span>{{ 'bloc.toolbar.export'|trans }}</span>
-				</p>
+				</button>
 			</li>
 		{% endif %}
 		{% if printRoute is defined %}
 			<li class="toolbar__item">
-				<button data-target="#modal-print" data-toggle="modal">
+				<button id="print-action" data-target="#modal-print" data-toggle="modal">
 					<img src="{{ asset('images/icones/icone-imprimante.svg') }}" alt="" class="icone-imprimante"/>
 					<span>{{ 'bloc.toolbar.print'|trans }}</span>
 				</button>

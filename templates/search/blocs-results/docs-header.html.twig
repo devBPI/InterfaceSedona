@@ -2,7 +2,7 @@
 
 <div class="list-result__header-informations">
 	<label for="all-document-{{ type }}" class="sr-only">{{ ('bloc.header-docs.'~type~'.title-sr-only')|trans }}</label>
-	<input type="checkbox" id="all-document-{{ type }}" class="list-result__header-checkbox">
+	<input type="checkbox" id="all-document-{{ type }}" class="list-result__header-checkbox" data-toggle="check-all" data-target=".notice_{{ type }}">
 	<h3 class="n2 list-result__header-title">{{ ('bloc.header-docs.'~type~'.in-ligne')|trans }} : <span>{{ notices.totalCount }}</span></h3>
 	<a href="#" class="list-result__header-link">{{ ('bloc.header-docs.'~type~'.see-more')|trans }} <span class="sr-only sr-only-focusable">{{ ('bloc.header-docs.'~type~'.see-more-sr-only')|trans }}</span></a>
 </div>
@@ -12,12 +12,11 @@
         {{ 'bloc.header-docs.order-choice'|trans }}
 	</button>
 	<ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown-trie-{{ type }}" role="listbox" tabindex="-1">
+	{% for index, value in constant('App\\Model\\Search\\SearchQuery::SORT') %}
 		<li class="dropdown-item" role="option">
-			<a href="#">{{ 'bloc.header-docs.order-asc'|trans }}</a>
+			<a href="{{ add_sorting_to_uri(value) }}">{{ ('bloc.header-docs.order-'~ index) |trans }}</a>
 		</li>
-		<li class="dropdown-item" role="option">
-			<a href="#">{{ 'bloc.header-docs.order-desc'|trans }}</a>
-		</li>
+	{% endfor %}
 	</ul>
 </div>
 <!-- Fin - Bloc 12 En-tête des résultats -->

@@ -1,4 +1,7 @@
- make assets
+#!/bin/sh
+
+make assets
+#dpkg --configure -a
 
 if ! [ -x "$(command -v wkhtmltopdf)" ]; then
   echo 'Install wkhtmltopdf and xvfb'

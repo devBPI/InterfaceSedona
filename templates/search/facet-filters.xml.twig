@@ -4,7 +4,7 @@
         <facets>
             {% for name, values in attributes %}
                 <facet>
-                    <name>{{ ('filters.mapping.'~name)|trans({}, 'facets') }}</name>
+                    <name>{{ name }}</name>
                     <values>
                         {% for value in values %}
                             <value>{{ value }}</value>

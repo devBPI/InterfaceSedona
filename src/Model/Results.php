@@ -3,14 +3,18 @@
 namespace App\Model;
 
 
+use App\Model\Interfaces\SearchResultInterface;
+use App\Model\Search\Criteria;
+use App\Model\Traits\SearchResultTrait;
 use JMS\Serializer\Annotation as JMS;
 
 /**
  * Class Results
  * @package App\Model
  */
-class Results
+class Results implements SearchResultInterface
 {
+    use SearchResultTrait;
     /**
      * @var Facets
      * @JMS\Type("App\Model\Facets")
@@ -44,6 +48,53 @@ class Results
      * @JMS\Type("App\Model\NoticesOnline")
      */
     private $noticesOnline;
+    /**
+     * @var SuggestionList
+     * @JMS\Type("App\Model\SuggestionList")
+     * @JMS\SerializedName("suggestions-list")
+     */
+    private $suggestionList;
+    /**
+     * @var int
+     * @JMS\Type("int")
+     * @JMS\SerializedName("page")
+     */
+    private $page;
+    /**
+     * @var int
+     * @JMS\Type("int")
+     * @JMS\SerializedName("num-pages")
+     */
+    private $pageTotal;
+    /**
+     * @var int
+     * @JMS\Type("int")
+     */
+    private $rows;
+
+    /**
+     * @return RankedAuthority[]|array
+     */
+    public function getAuthoritiesList()
+    {
+        return $this->authoritiesList;
+    }
+
+    /**
+     * @return int
+     */
+    public function getPage(): int
+    {
+        return $this->page;
+    }
+
+    /**
+     * @return int
+     */
+    public function getPageTotal(): int
+    {
+        return $this->pageTotal;
+    }
 
     /**
      * @return Authority[]
@@ -54,9 +105,9 @@ class Results
     }
 
     /**
-     * @return AuthorityInterface|null
+     * @return AuthorityInterface|Authority|null
      */
-    public function getMainAuthor(): ?AuthorityInterface
+    public function getMainAuthor()
     {
         if (count($this->authoritiesList) === 0) {
             return null;
@@ -92,6 +143,32 @@ class Results
     }
 
     /**
+     * @return string[]|array
+     */
+    public function getLinkedSubjects(): array
+    {
+        return $this->linkedSubjects;
+    }
+
+    /**
+     * @return SuggestionList
+     */
+    public function getSuggestionList(): SuggestionList
+    {
+        return $this->suggestionList;
+    }
+
+    /**
+     * @param Criteria|null $criteria
+     * @return Results
+     */
+    public function setCriteria(Criteria $criteria): Results
+    {
+        $this->criteria = $criteria;
+        return $this;
+    }
+
+    /**
      * @return Facets
      */
     public function getFacets(): Facets
@@ -100,11 +177,12 @@ class Results
     }
 
     /**
-     * @return string[]|array
+     * @return int
      */
-    public function getLinkedSubjects(): array
+    public function getRows(): int
     {
-        return $this->linkedSubjects;
+        return $this->rows;
     }
 
 }
+

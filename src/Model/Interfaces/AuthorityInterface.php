@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Model;
+namespace App\Model\Interfaces;
 
 /**
- * Interface AuthorityInterface
+ * Interfaces AuthorityInterface
  * @package App\Model
  */
 interface AuthorityInterface

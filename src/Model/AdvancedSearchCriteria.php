@@ -16,7 +16,7 @@ class AdvancedSearchCriteria
      * @JMS\SerializedName("bases-recherche")
      * @JMS\XmlList(entry="base-recherche")
      */
-    private $bases;
+    private $configuration_name;
 
     /**
      * @var array
@@ -24,7 +24,7 @@ class AdvancedSearchCriteria
      * @JMS\SerializedName("langues")
      * @JMS\XmlList(entry="langue")
      */
-    private $languages;
+    private $language;
 
     /**
      * @var array
@@ -32,7 +32,7 @@ class AdvancedSearchCriteria
      * @JMS\SerializedName("types")
      * @JMS\XmlList(entry="type")
      */
-    private $documentType;
+    private $type;
 
     /**
      * @var array
@@ -40,7 +40,7 @@ class AdvancedSearchCriteria
      * @JMS\SerializedName("supports")
      * @JMS\XmlList(entry="support")
      */
-    private $supports;
+    private $material_support;
 
     /**
      * @var array
@@ -48,7 +48,7 @@ class AdvancedSearchCriteria
      * @JMS\SerializedName("genres-musicaux")
      * @JMS\XmlList(entry="genre-musical")
      */
-    private $genreMusic;
+    private $genre_musical;
 
     /**
      * @var array
@@ -56,7 +56,7 @@ class AdvancedSearchCriteria
      * @JMS\SerializedName("genres-films")
      * @JMS\XmlList(entry="genre-film")
      */
-    private $genreFilm;
+    private $genre_film;
 
     /**
      * @var array
@@ -64,7 +64,7 @@ class AdvancedSearchCriteria
      * @JMS\SerializedName("genres-litteraires")
      * @JMS\XmlList(entry="genre-litteraire")
      */
-    private $genreBook;
+    private $genre_litteraire;
 
     /**
      * @var array
@@ -72,7 +72,7 @@ class AdvancedSearchCriteria
      * @JMS\SerializedName("publiques")
      * @JMS\XmlList(entry="publique")
      */
-    private $publicTarget;
+    private $audience;
 
     /**
      * @var array
@@ -80,7 +80,7 @@ class AdvancedSearchCriteria
      * @JMS\SerializedName("secteurs")
      * @JMS\XmlList(entry="secteur")
      */
-    private $sector;
+    private $secteur;
 
     /**
      * @var array
@@ -96,46 +96,46 @@ class AdvancedSearchCriteria
      * @JMS\SerializedName("contenus")
      * @JMS\XmlList(entry="contenu")
      */
-    private $content = [];
+    private $contenu = [];
 
     /**
      * @return array
      */
-    public function getBases(): array
+    public function getConfigurationName(): array
     {
-        return $this->bases;
+        return $this->configuration_name;
     }
 
     /**
      * @return array
      */
-    public function getLanguages(): array
+    public function getLanguage(): array
     {
-        return $this->languages;
+        return $this->language;
     }
 
     /**
      * @return array
      */
-    public function getDocumentType(): array
+    public function getType(): array
     {
-        return $this->documentType;
+        return $this->type;
     }
 
     /**
      * @return array
      */
-    public function getSupports(): array
+    public function getMaterialSupport(): array
     {
-        return $this->supports;
+        return $this->material_support;
     }
 
     /**
      * @return array
      */
-    public function getGenreMusic(): array
+    public function getGenreMusical(): array
     {
-        return $this->genreMusic;
+        return $this->genre_musical;
     }
 
     /**
@@ -143,31 +143,31 @@ class AdvancedSearchCriteria
      */
     public function getGenreFilm(): array
     {
-        return $this->genreFilm;
+        return $this->genre_film;
     }
 
     /**
      * @return array
      */
-    public function getGenreBook(): array
+    public function getGenreLitteraire(): array
     {
-        return $this->genreBook;
+        return $this->genre_litteraire;
     }
 
     /**
      * @return array
      */
-    public function getPublicTarget(): array
+    public function getAudience(): array
     {
-        return $this->publicTarget;
+        return $this->audience;
     }
 
     /**
      * @return array
      */
-    public function getSector(): array
+    public function getSecteur(): array
     {
-        return $this->sector;
+        return $this->secteur;
     }
 
     /**
@@ -181,8 +181,26 @@ class AdvancedSearchCriteria
     /**
      * @return array
      */
-    public function getContent(): array
+    public function getContenu(): array
     {
-        return $this->content;
+        return $this->contenu;
+    }
+
+    /**
+     * @return array
+     */
+    public function getFacets(): array
+    {
+        return [
+            'type',
+            'materialSupport',
+            'genreMusical',
+            'genreFilm',
+            'genreLitteraire',
+            'audience',
+            'secteur',
+            'mediation',
+            'contenu'
+        ];
     }
 }

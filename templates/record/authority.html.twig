@@ -1,19 +1,15 @@
-{% extends 'base.html.twig' %}
+{% extends 'search/base.html.twig' %}
 
 {% block title %}{{ 'page.authority.title'|trans({'%author%': '*Insert nom auteur*'}) }}{% endblock %}
 
 {% block body %}
-
 	<div class="authority-result">
-
 		<div class="row justify-content-between">
-			{% include "record/blocs/results-navigation.html.twig" with {'routeTarget': path('record_authority') } %}
+			{% include "record/blocs/results-navigation.html.twig" with {'routeTarget': path('record_authority', {'permalink':notice.permalink}) } %}
 		</div>
-
 		<div class="row">
-			{% include "record/blocs/detail-authority.html.twig" %}
+			{% include "record/blocs/detail-authority.html.twig" with {'notice': notice } %}
 		</div>
-
 		<div class="row authority-document">
 			<!-- Début - Bloc 19 Liste de documents  -->
 			<div class="col-12">
@@ -22,15 +18,16 @@
 					<li class="authority-document__item"><a href="#carousel-sujets">{{ 'bloc.list-related-documents.carousel-sujets'|trans }}</a></li>
 				</ul>
 			</div>
-			{% include "record/blocs/list-related-documents.html.twig" with {'type': 'auteur', 'routeTarget': path('record_authority') , 'image': 'images/couvertures-generiques/cg-livre.svg' } %}
-			{% include "record/blocs/list-related-documents.html.twig" with {'type': 'sujets', 'routeTarget': path('record_bibliographic') , 'image': 'images/couvertures-generiques/cg-image.svg' } %}
+            {% if authors is defined and authors|length > 0 and authors.mappedNotices is not empty %}
+            	{% include "record/blocs/list-related-documents.html.twig" with {'object': authors, 'type': notice.type, 'image': 'images/couvertures-generiques/cg-livre.svg' } %}
+			{% endif %}
+			{% if subjects is defined and subjects|length > 0 and subjects.mappedNotices is not empty %}
+				{% include "record/blocs/list-related-documents.html.twig" with {'object': subjects, 'type': notice.type, 'image': 'images/couvertures-generiques/cg-image.svg' } %}
+			{% endif %}
 			<!-- Fin - Bloc 19 Liste de documents  -->
 		</div>
-
 		<div class="row">
 			{% include "record/blocs/index-browsing.html.twig" %}
 		</div>
-
 	</div>
-
 {% endblock %}
