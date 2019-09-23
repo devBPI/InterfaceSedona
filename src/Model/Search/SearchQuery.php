@@ -52,20 +52,12 @@ class SearchQuery implements SearchResultInterface
     private $page;
 
     /**
-     * @var string
-     * @JMS\Exclude
-     */
-    private $title;
-
-    /**
-     * Search constructor.
-     * @param string $title
+     * SearchQuery constructor.
      * @param Criteria $criteria
-     * @param FacetFilter $facets
+     * @param FacetFilter|null $facets
      */
-    public function __construct(string $title, Criteria $criteria, FacetFilter $facets = null)
+    public function __construct(Criteria $criteria, FacetFilter $facets = null)
     {
-        $this->title = $title;
         $this->criteria = $criteria;
         $this->facets = $facets ?? new FacetFilter();
     }
@@ -76,14 +68,6 @@ class SearchQuery implements SearchResultInterface
     public function getFacets(): FacetFilter
     {
         return $this->facets;
-    }
-
-    /**
-     * @return string
-     */
-    public function getTitle(): string
-    {
-        return $this->title;
     }
 
     /**

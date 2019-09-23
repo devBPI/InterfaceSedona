@@ -11,9 +11,9 @@
                 '3':{'title': (notice.title |trans) ,'url': path('search', {'searchToken':navigation.hash})},
 
 			}) %}
-		{% elseif searchToken is defined %}
+		{% elseif objSearch is defined and objSearch.contextToken is defined %}
             {% set urlBreadcrumb = urlBreadcrumb |merge({
-                '2': {'title': ('Résultats'|trans) , 'url': path('search', {'searchToken':searchToken})},
+                '2': {'title': ('Résultats'|trans) , 'url': path('search', {'searchToken': objSearch.contextToken})},
             }) %}
 		{% endif %}
 

@@ -184,7 +184,7 @@ class Criteria
         $keywords = [];
         foreach (WordsList::$words[WordsList::THEME_DEFAULT] as $field) {
             if (!empty($this->$field)) {
-                $keywords[] = $this->$field;
+                $keywords[$field] = $this->$field;
             }
         }
 

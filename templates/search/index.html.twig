@@ -1,15 +1,15 @@
 {% extends 'search/base.html.twig' %}
 
-{% block title %}{{ title ~ ' - ' ~ 'page.search.title.page'|trans({'%current%': objSearch.page, '%total%': objSearch.pageTotal}) }}{% endblock %}
+{% block title %}{{ objSearch.title ~ ' - ' ~ 'page.search.title.page'|trans({'%current%': objSearch.results.page, '%total%': objSearch.results.pageTotal}) }}{% endblock %}
 
 {% block searchextended %}
 	<div class="row justify-content-sm-between">
 		<div class="col-12 col-sm-auto">
-			{% include "search/blocs-searchextended/search-corrector.html.twig" with {'suggestionList': objSearch.suggestionList} %}
+			{% include "search/blocs-searchextended/search-corrector.html.twig" with {'suggestionList': objSearch.results.suggestionList} %}
 		</div>
 		
 		<div class="col-auto">
-			{% include "search/blocs-searchextended/related-topics.html.twig" with {'linkedSubjects': objSearch.linkedSubjects} %}
+			{% include "search/blocs-searchextended/related-topics.html.twig" with {'linkedSubjects': objSearch.results.linkedSubjects} %}
 		</div>
 
 		<div class="col-auto">
@@ -26,7 +26,7 @@
 			<div class="search-refine">
 				<button class="search-refine__button" type="button" data-target="#modal-refine-search" data-toggle="modal">Affiner<span class="sr-only"> la recherche</span></button>
 				<!-- Include modal des filtres - Affiner -->
-				{% include "search/modal/refine-search.html.twig" with {'facets': objSearch.facets} %}
+				{% include "search/modal/refine-search.html.twig" with {'facets': objSearch.results.facets} %}
 			</div>
 		</div>
 	</div>
@@ -48,18 +48,18 @@
 
 		{% block result %}
 			<div class="col-12 col-md-6 pr-md-0">
-				{% include 'search/blocs-results/docs-container.html.twig' with {'type': 'rayon', 'notices': objSearch.notices} %}
+				{% include 'search/blocs-results/docs-container.html.twig' with {'type': 'rayon', 'notices': objSearch.results.notices} %}
 			</div>
 
 			<div class="col-12 col-md-6 pl-md-0">
-				{% include 'search/blocs-results/docs-container.html.twig' with {'type': 'online', 'notices': objSearch.noticesOnline} %}
+				{% include 'search/blocs-results/docs-container.html.twig' with {'type': 'online', 'notices': objSearch.results.noticesOnline} %}
 			</div>
 		{% endblock %}
 	</div>
 
 	<div class="row">
 		{# Include Pagination #}
-		{% include "search/blocs-results/search-footer.html.twig" with {'criteria':objSearch.criteria, 'pagesTotal': objSearch.pageTotal, 'page':  objSearch.page} %}
+		{% include "search/blocs-results/search-footer.html.twig" with {'criteria':objSearch.results.criteria, 'pagesTotal': objSearch.results.pageTotal, 'page':  objSearch.results.page} %}
 	</div>
 
 	<!-- Include modal formulaire pour être prevenu du retour du document en rayon -->

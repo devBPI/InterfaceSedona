@@ -29,13 +29,13 @@
             {% if author is not empty %}
                 <h{{ level }} lang="fr" class="n{{ level }} search-result__title">
                     {% if author.cote is defined and author.cote is not null %}
-                        <a href="{{ path('record_indice_cdu', {'permalink':author.permalink, 'searchToken': searchToken}) }}"
+                        <a href="{{ path('record_indice_cdu', {'permalink':author.permalink, 'searchToken': objSearch.contextToken}) }}"
                                 title="*Insert Name identité* - {{ 'global.new-windows'|trans }}">
                             {{ author.name }}
                             <span class="n2"></span>
                         </a>
                     {% else %}
-                        <a href="{{ path('record_authority', {'permalink':author.permalink, 'searchToken': searchToken}) }}"
+                        <a href="{{ path('record_authority', {'permalink':author.permalink, 'searchToken': objSearch.contextToken}) }}"
                                 title="*Insert Name identité* - {{ 'global.new-windows'|trans }}">
                             {{ author.name }}
                             <span class="n2"></span>

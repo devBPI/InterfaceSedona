@@ -3,9 +3,7 @@
 	<div class="modal-dialog modal-dialog-centered">
 		<div class="modal-content">
 			<form class="modal-form" method="get" action="{{ path('refined_search') }}">
-                {% if searchToken is defined %}
-                    <input type="hidden" name="searchToken" value="{{ searchToken }}">
-                {% endif %}
+				<input type="hidden" name="searchToken" value="{{ objSearch.contextToken }}">
 
 				<div class="modal-header">
 					<h1 class="n1 modal-header__title" id="modal-refine-search-title">{{ 'modal.refine-search.title'|trans }}</h1>
@@ -15,7 +13,7 @@
 					</button>
 				</div>
 
-				{% for facet in objSearch.facets.facets %}
+				{% for facet in objSearch.results.facets.facets %}
                 <div class="modal-body">
                     {#{% if facet.name == 'date_publishing' %}#}
                         {#{% include 'search/blocs-refined-search/date-content.html.twig' %}#}
