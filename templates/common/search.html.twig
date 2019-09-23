@@ -11,7 +11,7 @@
                    type="text" aria-autocomplete="list" aria-controls="autocompletion-list"
                    id="search-input" data-url-autocomplete="{{ path('search_autocompletion') }}"
                    placeholder="{{ 'bloc.search-zone.input-placeholder'|trans }}"
-                   value="{{ objSearch.simpleSearchKeyword }}"
+                   value="{{ objSearch is defined ? objSearch.simpleSearchKeyword : '' }}"
                 />
         </div>
         <div class="form-group search-banner__select">
@@ -20,7 +20,7 @@
             <select name="{{ select_name }}" class="form-control" id="search-words">
                 {% for word in search_words() %}
                     <option value="{{ word }}"
-                        {% if objSearch.simpleSearchType == word %}selected="selected"{% endif %}>
+                        {% if objSearch is defined and objSearch.simpleSearchType == word %}selected="selected"{% endif %}>
                         {{ ('modal.advanced-search.keyword.type.'~word)|trans }}</option>
                 {% endfor %}
             </select>
