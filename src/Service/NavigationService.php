@@ -79,13 +79,14 @@ class NavigationService
      * NavigationService constructor.
      * @param SearchProvider $searchProvider
      * @param string $permalink
-     * @param Search|null $search
+     * @param SearchQuery|null $search
      * @param string|null $hash
+     * @param null $type
      * @throws \Twig\Error\LoaderError
      * @throws \Twig\Error\RuntimeError
      * @throws \Twig\Error\SyntaxError
      */
-    public function __construct(SearchProvider $searchProvider, string $permalink, Search $search=null, string $hash=null, $type=null)
+    public function __construct(SearchProvider $searchProvider, string $permalink, SearchQuery $search=null, string $hash=null, $type=null)
     {
 
         if ($search === null){

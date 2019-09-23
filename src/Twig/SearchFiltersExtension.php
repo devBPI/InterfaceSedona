@@ -4,11 +4,7 @@ declare(strict_types=1);
 namespace App\Twig;
 
 
-use App\Model\Authority;
-use App\Model\Interfaces\NoticeInterface;
-use App\Service\BreadcrumbBuilder;
 use App\Service\NavigationService;
-use App\Utils\BreadcrumbNavigation;
 use App\WordsList;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Twig\Extension\AbstractExtension;
@@ -47,7 +43,6 @@ class SearchFiltersExtension extends AbstractExtension
             new TwigFunction('check_value_exist', [$this, 'isValueExist']),
             new TwigFunction('sameInstance', [$this, 'sameInstance']),
             new TwigFunction('route_by_object', [$this, 'getRouteByObject']),
-            new TwigFunction('breadcrumb_navigation', [$this, 'getBreadcrumb']),
             new TwigFunction('pdf_occurence', [$this, 'getPdfOccurence']),
         ];
     }
@@ -145,6 +140,7 @@ class SearchFiltersExtension extends AbstractExtension
      * @param $object
      * @param $method
      * @param $label
+     * @param string $format
      * @return string
      */
     public function getPdfOccurence($object, $method, $label, $format='pdf'){

@@ -2,8 +2,8 @@
     <div class="col-12">
         <div>
             <input type="checkbox" id="related-notice-result-{{ i }}" class="addableInList"
-                   {#name="{% if  author.cote is defined and author.cote is not null  %}indice[]{% else %}authority[]{% endif %}"#}
-                   name="{{ constant('App\\Controller\\SearchController::INPUT_AUTHOR') }}[]" value="{{ author.permalink }}">
+                   name="{% if  author.cote is defined and author.cote is not null  %}indice[]{% else %}authority[]{% endif %}"
+                   value="{{ author.permalink }}">
             <label for="related-notice-result-{{ i }}">
                 <span class="sr-only">{{ 'bloc.preview-authority.first'|trans({'%%name%': '*Insert titre*'}) }}</span>
             </label>

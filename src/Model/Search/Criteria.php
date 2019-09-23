@@ -3,10 +3,8 @@ declare(strict_types=1);
 
 namespace App\Model\Search;
 
-use App\Model\DTO\ArrayConstructibleDTO;
 use App\WordsList;
 use JMS\Serializer\Annotation as JMS;
-use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Class Criteria

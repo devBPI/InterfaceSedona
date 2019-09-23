@@ -5,11 +5,12 @@ namespace App\Controller;
 
 use App\Model\Notice;
 use App\Model\RankedAuthority;
-use App\Model\Search;
+use App\Model\Search\SearchQuery;
 use App\Service\NavigationService;
 use App\Service\Provider\NoticeAuthorityProvider;
 use App\Service\Provider\NoticeProvider;
 use App\Service\Provider\SearchProvider;
+use JMS\Serializer\Serializer;
 use JMS\Serializer\SerializerInterface;
 use Knp\Bundle\SnappyBundle\Snappy\Response\PdfResponse;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -17,8 +18,11 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Annotation\Route;
-use JMS\Serializer\SerializerInterface;
 
+/**
+ * Class RecordController
+ * @package App\Controller
+ */
 class RecordController extends AbstractController
 {
     /**
@@ -79,7 +83,7 @@ class RecordController extends AbstractController
                 new NavigationService(
                     $this->searchProvider,
                     $permalink,
-                    $this->serializer->deserialize($session->get($searchToken), Search::class, 'json'),
+                    $this->serializer->deserialize($session->get($searchToken), SearchQuery::class, 'json'),
                     $searchToken,
                     $object->getNotice()->isOnLigne() ? Notice::ON_LIGNE : Notice::ON_SHELF
                 );
@@ -96,11 +100,15 @@ class RecordController extends AbstractController
 
     /**
      * @Route("/print/notice-bibliographique.{format}", methods={"GET","HEAD"}, name="record_bibliographic_pdf", requirements={"format" = "html|pdf|txt"}, defaults={"format" = "pdf"})
+     * @param Request $request
+     * @param \Knp\Snappy\Pdf $knpSnappy
+     * @param string $format
+     * @return PdfResponse|Response
      */
     public function bibliographicRecordPDFAction(Request $request, \Knp\Snappy\Pdf $knpSnappy, $format = "pdf")
     {
         $object = $this->noticeProvider->getNotice($request->get('permalink'));
-        //dump($object); die;
+
         $content = $this->renderView("record/bibliographic.".($format == 'txt' ? 'txt': 'pdf').".twig", [
             'isPrintLong'   => $request->get('print-type', 'print-long') == 'print-long',
             'includeImage'  => $request->get('print-image', null) == 'print-image',
@@ -147,7 +155,7 @@ class RecordController extends AbstractController
             $navigation = new NavigationService(
                 $this->searchProvider,
                 $permalink,
-                $this->serializer->deserialize($session->get($searchToken, ''), Search::class, 'json'),
+                $this->serializer->deserialize($session->get($searchToken, ''), SearchQuery::class, 'json'),
                 $searchToken,
                 RankedAuthority::class
             );
@@ -186,7 +194,7 @@ class RecordController extends AbstractController
             $navigation = new NavigationService(
                 $this->searchProvider,
                 $permalink,
-                $this->serializer->deserialize($session->get($searchToken, ''), Search::class, 'json'),
+                $this->serializer->deserialize($session->get($searchToken, ''), SearchQuery::class, 'json'),
                 $searchToken,
                 RankedAuthority::class
             );
@@ -204,7 +212,11 @@ class RecordController extends AbstractController
     }
 
     /**
-     * @Route("/print/notice-autorite.{format}", name="record_authority_pdf", requirements={"format" = "html|pdf|txt|xml"}, defaults={"format" = "pdf"})
+     * @Route("/print/notice-autorite.{format}", name="record_authority_pdf", requirements={"format" = "html|pdf|txt"}, defaults={"format" = "pdf"})
+     * @param Request $request
+     * @param \Knp\Snappy\Pdf $knpSnappy
+     * @param string $format
+     * @return PdfResponse|Response
      */
     public function authorityRecordPDFAction(Request $request, \Knp\Snappy\Pdf $knpSnappy, $format='pdf')
     {

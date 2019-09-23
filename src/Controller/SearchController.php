@@ -26,9 +26,6 @@ use Symfony\Component\Routing\Annotation\Route;
  */
 class SearchController extends AbstractController
 {
-    const INPUT_AUTHOR = 'authors';
-    const INPUT_NOTICE = 'notices';
-
     use PrintTrait;
 
     /**
@@ -160,6 +157,7 @@ class SearchController extends AbstractController
 
     /**
      * @Route("/retour-recherche/{token}", methods={"GET"}, name="back_search")
+     *
      * @param string $token
      * @param Request $request
      * @return Response
@@ -234,7 +232,7 @@ class SearchController extends AbstractController
             [
                 'isPrintLong'   => $request->get('print-type', 'print-long') == 'print-long',
                 'includeImage'  => $request->get('print-image', null) == 'print-image',
-                'printNoticeWrapper'=> $printNoticeWrapper($authorities+$notices, $this->noticeProvider, $this->noticeAuhtority)
+                'printNoticeWrapper'=> $printNoticeWrapper($request->query->all(), $this->noticeProvider, $this->noticeAuhtority)
             ]
         );
 

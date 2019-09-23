@@ -3,7 +3,6 @@ declare(strict_types=1);
 
 namespace App\Service;
 
-use App\Model\Search\FacetFilter;
 use App\Model\Search\FiltersQuery;
 use App\Model\Search\ObjSearch;
 use App\Model\Search\SearchQuery;
