@@ -195,7 +195,7 @@
         .on('click', '[data-reload="true"]', function (e) {
             location.reload();
         })
-        .on('click', '[data-toggle="check-all"]', function () {
+        .on('ifChanged click', '[data-toggle="check-all"]', function () {
             let $form = $(this).parents('form'),
                 selector = $form.find(':checkbox')
             ;
