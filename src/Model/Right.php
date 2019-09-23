@@ -64,14 +64,25 @@ class Right
     /**
      * @return string
      */
-    public function __toString()
+    public function __toString():string
     {
         $payload = [];
-        $payload[] = implode(',', $this->getRights());
-        $payload[] = implode(',', $this->getLicence());
-        $payload[] = implode(',', $this->getCopyRight());
+        if (count($this->getRights()) >0){
+            $payload[] = implode(',', $this->getRights());
+        }
+        if (count($this->getLicence()) >0){
+            $payload[] = implode(',', $this->getLicence());
+        }
+        if (count($this->getCopyRight()) >0){
+            $payload[] = implode(',', $this->v());
+        }
 
-        return implode(',', $payload);
+        if (count($payload)>0){
+
+            return implode(',', $payload);
+        }
+
+        return '';
     }
 
 }

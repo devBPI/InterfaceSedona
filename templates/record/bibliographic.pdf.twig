@@ -15,7 +15,7 @@
 				<div class="col">
 					<ul class="print__list">
 						<li>Musique;</li>
-                        {% include "common/notice.pdf.twig" with {'notice': notice} %}
+                        {% include "common/notice.format.twig" with {'notice': notice, 'format': 'pdf'} %}
 					</ul>
 				</div>
 			</div>
@@ -36,7 +36,6 @@
                         	{{ author}}
 						</li>
                             {% endfor %}
-
 					</ul>
 				</div>
 			</div>

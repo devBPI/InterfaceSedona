@@ -91,7 +91,7 @@ class RecordController extends AbstractController
     public function bibliographicRecordPDFAction(Request $request, \Knp\Snappy\Pdf $knpSnappy, $format = "pdf")
     {
         $object = $this->noticeProvider->getNotice($request->get('permalink'));
-
+        //dump($object); die;
         $content = $this->renderView("record/bibliographic.".($format == 'txt' ? 'txt': 'pdf').".twig", [
             'isPrintLong'   => $request->get('print-type', 'print-long') == 'print-long',
             'includeImage'  => $request->get('print-image', null) == 'print-image',

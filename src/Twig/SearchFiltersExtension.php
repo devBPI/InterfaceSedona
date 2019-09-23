@@ -146,7 +146,7 @@ class SearchFiltersExtension extends AbstractExtension
      * @param $label
      * @return string
      */
-    public function getPdfOccurence($object, $method, $label){
+    public function getPdfOccurence($object, $method, $label, $format='pdf'){
 
         $payload = "";
         if (method_exists($object, $method) && $object->{$method}() ){
@@ -155,11 +155,16 @@ class SearchFiltersExtension extends AbstractExtension
                     $payload .= $value. ' ';
                 }
 
-            }else{
+            }elseif (!empty($object->{$method}())  && $object->{$method}()&& $label){
                 $payload .= $object->{$method}();
             }
-            if ($label){
-                return sprintf("<li> %s : %s</li>", $label, $payload);
+
+            if (!empty($label) ){
+                if ( $format=='pdf'){
+                    return sprintf("<li> %s : %s</li>", $label, $payload);
+                }elseif ($format=='txt'){
+                    return sprintf("%s : %s \n", $label, $payload);
+                }
             }
 
             return $payload;

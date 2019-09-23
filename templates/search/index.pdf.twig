@@ -18,7 +18,7 @@
 					</div>
 					<div class="col">
 						<ul class="print__list">
-							{% include "common/authority.pdf.twig" with {'notice': element} %}
+							{% include "common/authority.format.twig" with {'notice': element, 'format':'pdf'} %}
 						</ul>
 					</div>
 				</div>
@@ -44,7 +44,7 @@
 
 					<div class="col">
 						<ul class="print__list">
-							{% include "common/authority.pdf.twig" with {'notice': element} %}
+							{% include "common/authority.format.twig" with {'notice': element, 'format': 'pdf'} %}
 						</ul>
 					</div>
 				</div>
@@ -68,7 +68,7 @@
 				{% endif %}
 				<div class="col">
 					<ul class="print__list">
-						{% include "common/notice.pdf.twig" with {'notice': element} %}
+						{% include "common/notice.format.twig" with {'notice': element, 'format': 'pdf'} %}
 					</ul>
 				</div>
 			</div>
@@ -90,7 +90,7 @@
 					</div>
 				<div class="col">
 					<ul class="print__list">
-                        {% include "common/notice.pdf.twig" with {'notice': element} %}
+                        {% include "common/notice.format.twig" with {'notice': element, 'format': 'pdf'} %}
 					</ul>
 
 				</div>

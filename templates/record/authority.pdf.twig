@@ -14,7 +14,7 @@
             {% endif %}
             <div class="col">
                 <ul class="print__list">
-                    {% include "common/authority.pdf.twig" with {'notice': notice} %}
+                    {% include "common/authority.format.twig" with {'notice': notice, 'format': 'pdf'} %}
                 </ul>
             </div>
         </div>
