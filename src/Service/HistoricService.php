@@ -3,18 +3,14 @@ declare(strict_types=1);
 
 namespace App\Service;
 
-use App\Controller\SearchController;
 use App\Entity\SearchHistory;
 use App\Entity\UserHistory;
 use App\Model\Exception\SearchHistoryException;
 use App\Model\LdapUser;
-use App\WordsList;
 use Doctrine\ORM\EntityManager;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
-use Symfony\Component\Translation\Translator;
-use Symfony\Component\Translation\TranslatorInterface;
 
 /**
  * Class HistoricService
@@ -27,10 +23,6 @@ final class HistoricService
      */
     private $entityManager;
     /**
-     * @var Translator
-     */
-    private $translator;
-    /**
      * @var TokenStorageInterface
      */
     private $tokenStorage;
@@ -39,15 +31,12 @@ final class HistoricService
      * HistoricService constructor.
      * @param EntityManager $entityManager
      * @param TokenStorageInterface $tokenStorage
-     * @param TranslatorInterface $translator
      */
     public function __construct(
         EntityManager $entityManager,
-        TokenStorageInterface $tokenStorage,
-        TranslatorInterface $translator
+        TokenStorageInterface $tokenStorage
     ) {
         $this->entityManager = $entityManager;
-        $this->translator = $translator;
         $this->tokenStorage = $tokenStorage;
     }
 

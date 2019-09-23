@@ -5,9 +5,12 @@ namespace App\Service;
 
 use App\Model\Authority;
 use App\Model\IndiceCdu;
+use App\Model\Interfaces\NoticeInterface;
 use App\Model\Notice;
+use App\Model\NoticeThemed;
 use App\Model\RankedAuthority;
 use App\Model\Search\SearchQuery;
+use App\Model\Subject;
 use App\Service\Provider\SearchProvider;
 use App\Utils\NavigationNotice;
 
@@ -97,8 +100,8 @@ class NavigationService
         $notices = $this->getNoticeList($searchProvider, $search, $type);
         $this->rows = \count($notices);
 
-        $noticesFiltered = array_filter($notices, function($value) use($permalink){
-            if ($value->getPermalink() === $permalink){
+        $noticesFiltered = array_filter($notices, function(NoticeInterface $value) use ($permalink) {
+            if ($value->getPermalink() === $permalink) {
                 return true;
             }
         });

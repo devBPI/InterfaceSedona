@@ -1,11 +1,13 @@
 <?php
 declare(strict_types=1);
+
 namespace App\Model;
 
 use App\Model\Interfaces\AuthorityInterface;
 use App\Model\Interfaces\NoticeInterface;
 use App\Model\Traits\NoticeTrait;
 use JMS\Serializer\Annotation as JMS;
+
 /**
  * Class Authority
  * @package App\Model

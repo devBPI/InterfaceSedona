@@ -13,7 +13,7 @@ use JMS\Serializer\SerializerInterface;
  * Class AbstractProvider
  * @package App\Service\Provider
  */
-abstract class AbstractProvider implements ApiProvider
+abstract class AbstractProvider implements ApiProviderInterface
 {
     /** @var string */
     protected $modelName;
@@ -46,14 +46,10 @@ abstract class AbstractProvider implements ApiProvider
      * @param string|null $model
      * @return object
      */
-    protected function hydrateFromResponse(string $endpoint, array $queries = [], string $model = null, $debug = false)
+    protected function hydrateFromResponse(string $endpoint, array $queries = [], string $model = null)
     {
         $response = $this->arrayFromResponse($endpoint, $queries);
 
-        if ($debug) {
-            dump($response, $response->getBody()->getContents());die('end');
-        }
-//dump(  $response->getBody()->getContents()); die;
         return $this->serializer->deserialize(
             $response->getBody()->getContents(),
             $model ?? $this->modelName,

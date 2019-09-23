@@ -45,8 +45,4 @@ class NoticeThemed
         return $this->notice;
     }
 
-
-
-
-
 }

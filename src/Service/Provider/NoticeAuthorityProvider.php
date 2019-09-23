@@ -3,16 +3,9 @@ declare(strict_types=1);
 
 namespace App\Service\Provider;
 
-use App\Model\Author;
 use App\Model\Authority;
-use App\Model\Exception\NoResultException;
 use App\Model\IndiceCdu;
-use App\Model\ListNotices;
-use App\Model\ListOnlineNotices;
-use App\Model\Notice;
 use App\Model\NoticeMappedAuthority;
-use App\Model\Notices;
-use App\Model\NoticeThemed;
 
 /**
  * Class NoticeProvider
@@ -22,88 +15,59 @@ class NoticeAuthorityProvider extends AbstractProvider
 {
     /**
      * @param int $id
-     * @return
+     * @return NoticeMappedAuthority|object
      */
-    public function getSubjectNotice(int $id)
+    public function getSubjectNotice(int $id): NoticeMappedAuthority
     {
-          try {
-            $content = $this
-                ->hydrateFromResponse('/details/authority/'.$id.'/notices/notices-sujets', [], NoticeMappedAuthority::class)
-                ;
-        } catch (NoResultException $exception) {
-            return '';
-        }
-
-        return $content;
+        return $this->hydrateFromResponse(
+            '/details/authority/'.$id.'/notices/notices-sujets',
+            [],
+            NoticeMappedAuthority::class
+        );
     }
-    /**
-     * @TODO à mettre dans un nouveau provider
-     */
 
     /**
      * @param $id
-     * @return object|string
+     * @return NoticeMappedAuthority|object
      */
-    public function getAuthorsNotice($id)
+    public function getAuthorsNotice(int $id): NoticeMappedAuthority
     {
-        try {
-            $content = $this
-                ->hydrateFromResponse('/details/authority/'.$id.'/notices/notices-auteurs', [], NoticeMappedAuthority::class)
-                ;
-        } catch (NoResultException $exception) {
-            return '';
-        }
-
-        return $content;
+        return $this->hydrateFromResponse(
+            '/details/authority/'.$id.'/notices/notices-auteurs',
+            [],
+            NoticeMappedAuthority::class
+        );
     }
 
     /**
-     * @param $query
-     * @return array|object
+     * @param string $query
+     * @return Authority|object
      */
-    public function getAuthority($query)
+    public function getAuthority(string $query): Authority
     {
-        $notices = [];
-        try{
-            $notices = $this->hydrateFromResponse(sprintf('/details/authority/%s', $query), [], Authority::class);
-
-        }catch(NoResultException $e){
-            dump("la ressource n'est plus disponible page 404 customisé à faire");
-        }
-
-        return $notices;
+        return $this->hydrateFromResponse(sprintf('/details/authority/%s', $query), [], Authority::class);
     }
+
     /**
-     * @param $query
-     * @return array|object
+     * @param string $query
+     * @return IndiceCdu|object
      */
-    public function getIndiceCdu($query)
+    public function getIndiceCdu(string $query): IndiceCdu
     {
-        $notices = [];
-        try{
-            $notices = $this->hydrateFromResponse(sprintf('/details/indice-cdu/%s', $query), [], IndiceCdu::class);
-
-        }catch(NoResultException $e){
-            dump("la ressource n'est plus disponible page 404 customisé à faire");
-        }
-
-        return $notices;
+        return $this->hydrateFromResponse(sprintf('/details/indice-cdu/%s', $query), [], IndiceCdu::class);
     }
+
     /**
      * @param int $id
-     * @return
+     * @return NoticeMappedAuthority|object
      */
-    public function getSubjectIndice(int $id)
+    public function getSubjectIndice(int $id): NoticeMappedAuthority
     {
-        try {
-            $content = $this
-                ->hydrateFromResponse('/details/indice-cdu/'.$id.'/notices/notices-sujets', [], NoticeMappedAuthority::class)
-            ;
-        } catch (NoResultException $exception) {
-            return '';
-        }
-
-        return $content;
+        return $this->hydrateFromResponse(
+            '/details/indice-cdu/'.$id.'/notices/notices-sujets',
+            [],
+            NoticeMappedAuthority::class
+        );
     }
 }
 

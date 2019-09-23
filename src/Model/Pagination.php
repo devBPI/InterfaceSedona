@@ -10,6 +10,10 @@ namespace App\Model;
 
 use JMS\Serializer\Annotation as JMS;
 
+/**
+ * Class Pagination
+ * @package App\Model
+ */
 class Pagination
 {
     /**

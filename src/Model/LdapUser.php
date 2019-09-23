@@ -150,9 +150,7 @@ class LdapUser implements UserInterface
      * @return string|null The salt
      */
     public function getSalt()
-    {
-        // TODO: Implement getSalt() method.
-    }
+    {}
 
     /**
      * Removes sensitive data from the user.
@@ -161,8 +159,6 @@ class LdapUser implements UserInterface
      * the plain-text password is stored on this object.
      */
     public function eraseCredentials()
-    {
-        // TODO: Implement eraseCredentials() method.
-    }
+    {}
 
 }

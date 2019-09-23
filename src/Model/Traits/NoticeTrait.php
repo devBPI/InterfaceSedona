@@ -1,16 +1,15 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: infra
- * Date: 10/09/19
- * Time: 16:03
- */
+
 declare(strict_types=1);
 
 namespace App\Model\Traits;
 
 use JMS\Serializer\Annotation as JMS;
 
+/**
+ * Trait NoticeTrait
+ * @package App\Model\Traits
+ */
 trait NoticeTrait
 {
     /**
@@ -42,4 +41,5 @@ trait NoticeTrait
     {
         return $this->type;
     }
+
 }

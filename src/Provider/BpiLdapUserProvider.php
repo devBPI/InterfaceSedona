@@ -4,7 +4,6 @@ namespace App\Provider;
 
 
 use App\Model\LdapUser;
-use Doctrine\ORM\EntityManager;
 use InvalidArgumentException;
 use Symfony\Component\Ldap\Entry;
 use Symfony\Component\Ldap\Ldap;
@@ -30,10 +29,6 @@ class BpiLdapUserProvider extends LdapUserProvider
     private $passwordAttribute;
 
     /**
-     * @var EntityManager
-     */
-    private $entityManager;
-    /**
      * @var array
      */
     private $fields;
@@ -41,7 +36,6 @@ class BpiLdapUserProvider extends LdapUserProvider
     /**
      * BpiLdapUserProvider constructor.
      * @param LdapInterface $ldap
-     * @param EntityManager $entityManager
      * @param string $baseDn
      * @param string|null $searchDn
      * @param string|null $searchPassword
@@ -53,7 +47,6 @@ class BpiLdapUserProvider extends LdapUserProvider
      */
     public function __construct(
         LdapInterface $ldap,
-        EntityManager $entityManager,
         string $baseDn,
         string $searchDn = null,
         string $searchPassword = null,
@@ -80,7 +73,6 @@ class BpiLdapUserProvider extends LdapUserProvider
         $this->defaultSearch = str_replace('{uid_key}', $uidKey, $filter);
         $this->passwordAttribute = $passwordAttribute;
 
-        $this->entityManager = $entityManager;
         $this->fields = $fields;
     }
 
@@ -90,42 +82,37 @@ class BpiLdapUserProvider extends LdapUserProvider
      */
     public function loadUserByUsername($username)
     {
-        try {
-            $this->ldap->bind($this->searchDn, $this->searchPassword);
-            $username = $this->ldap->escape($username, '', LdapInterface::ESCAPE_FILTER);
-            $query = str_replace('{username}', $username, $this->defaultSearch);
+        $this->ldap->bind($this->searchDn, $this->searchPassword);
+        $username = $this->ldap->escape($username, '', LdapInterface::ESCAPE_FILTER);
+        $query = str_replace('{username}', $username, $this->defaultSearch);
 
-            $options = [];
-            if (!empty($this->fields)) {
-                $options['filter'] = $this->fields;
-            }
-            $search = $this->ldap->query($this->baseDn, $query, $options);
-
-            $entries = $search->execute();
-            $count = \count($entries);
-
-            if (!$count) {
-                throw new UsernameNotFoundException(sprintf('User "%s" not found.', $username));
-            }
-
-            if ($count > 1) {
-                throw new UsernameNotFoundException('More than one user found');
-            }
-
-            $entry = $entries[0];
-
-            try {
-                if (null !== $this->uidKey) {
-                    $username = $this->getAttributeValue($entry, $this->uidKey);
-                }
-            } catch (InvalidArgumentException $e) {
-            }
-
-            return $this->loadUser($username, $entry);
-        } catch (\Exception $exception) {
-            dump(get_class($exception), $exception->getMessage());
-            die('KO');
+        $options = [];
+        if (!empty($this->fields)) {
+            $options['filter'] = $this->fields;
         }
+        $search = $this->ldap->query($this->baseDn, $query, $options);
+
+        $entries = $search->execute();
+        $count = \count($entries);
+
+        if (!$count) {
+            throw new UsernameNotFoundException(sprintf('User "%s" not found.', $username));
+        }
+
+        if ($count > 1) {
+            throw new UsernameNotFoundException('More than one user found');
+        }
+
+        $entry = $entries[0];
+
+        try {
+            if (null !== $this->uidKey) {
+                $username = $this->getAttributeValue($entry, $this->uidKey);
+            }
+        } catch (InvalidArgumentException $e) {
+        }
+
+        return $this->loadUser($username, $entry);
     }
 
     /**
