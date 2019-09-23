@@ -6,7 +6,7 @@
 	<div class="list-result__content">
 		{% for index, notice in notices.noticesList %}
 			{# Include résultat #}
-			{% include "search/blocs-results/docs-detail.html.twig" %}
+			{% include "search/blocs-results/docs-detail.html.twig" with {'type': type } %}
 		{% endfor %}
 	</div>
 </div>

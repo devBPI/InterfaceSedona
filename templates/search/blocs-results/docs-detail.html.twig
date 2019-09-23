@@ -3,6 +3,7 @@
     <div class="list-result__content-item">
         <div class="list-result__content-selector">
             <input type="checkbox" id="result-doc-{{ type }}-{{ index }}" class="addableInList notice_{{ type }}"
+                   {# name="{% if  type == 'online' %}online[]{% else %}onshelves[]{% endif %}" #}
                    name="{{ constant('App\\Controller\\SearchController::INPUT_NOTICE') }}[]" value="{{ notice.permalink }}">
             <label for="result-doc-{{ type }}-{{ index }}">
                 <span class="sr-only">{{ 'bloc.notice-simple.result'|trans }} </span> {{ index }}

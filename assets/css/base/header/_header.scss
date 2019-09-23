@@ -32,6 +32,11 @@
 		@include media-breakpoint-up(md) {
 			height: 100px;
 		}
+
+		@media print {
+			height: auto;
+			margin-top: $spacer;
+		}
 		
 		&-link {
 			display: block;
@@ -47,9 +52,5 @@
 				}
 			}
 		}
-	}
-
-	&__navbar {
-
 	}
 }

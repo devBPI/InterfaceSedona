@@ -59,5 +59,12 @@ class IndiceCdu  extends Cdu implements AuthorityInterface, NoticeInterface
     {
         return $this->getName();
     }
+
+    public function __toString()
+    {
+        return $this->getName();
+    }
+
+
 }
 

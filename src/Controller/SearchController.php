@@ -8,7 +8,10 @@ use App\Model\Search\FacetFilter;
 use App\Model\Search\SearchQuery;
 use App\Model\SuggestionList;
 use App\Service\Provider\AdvancedSearchProvider;
+use App\Service\Provider\NoticeAuthorityProvider;
+use App\Service\Provider\NoticeProvider;
 use App\Service\Provider\SearchProvider;
+use App\Utils\PrintNoticeWrapper;
 use App\Service\SearchService;
 use Knp\Bundle\SnappyBundle\Snappy\Response\PdfResponse;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -40,21 +43,35 @@ class SearchController extends AbstractController
      * @var SearchService
      */
     private $searchService;
+    /**
+     * @var NoticeProvider
+     */
+    private $noticeProvider;
+    /**
+     * @var NoticeAuthorityProvider
+     */
+    private $noticeAuhtority;
 
     /**
      * SearchController constructor.
      * @param SearchProvider $searchProvider
      * @param AdvancedSearchProvider $advancedSearchProvider
      * @param SearchService $searchService
+     * @param NoticeProvider $noticeProvider
+     * @param NoticeAuthorityProvider $noticeAuhtority
      */
     public function __construct(
         SearchProvider $searchProvider,
         AdvancedSearchProvider $advancedSearchProvider,
-        SearchService $searchService
+        SearchService $searchService,
+        NoticeProvider $noticeProvider,
+        NoticeAuthorityProvider $noticeAuhtority
     ) {
         $this->searchProvider = $searchProvider;
         $this->advancedSearchProvider = $advancedSearchProvider;
         $this->searchService = $searchService;
+        $this->noticeProvider = $noticeProvider;
+        $this->noticeAuhtority = $noticeAuhtority;
     }
 
     /**
@@ -206,13 +223,21 @@ class SearchController extends AbstractController
      */
     public function printAction(Request $request, \Knp\Snappy\Pdf $knpSnappy, $format)
     {
+        $authorities=[];
+        $notices=[];
+        parse_str(urldecode($request->get('authorities', null)),$authorities);
+        parse_str(urldecode($request->get('notices', null)),$notices);
+        $printNoticeWrapper = new PrintNoticeWrapper();
+
         $content = $this->renderView(
             "search/index.".($format == 'txt' ? 'txt' : 'pdf').".twig",
             [
-                'isPrintLong' => $request->get('print-type', 'print-long') == 'print-long',
-                'includeImage' => $request->get('print-image', null) == 'print-image',
+                'isPrintLong'   => $request->get('print-type', 'print-long') == 'print-long',
+                'includeImage'  => $request->get('print-image', null) == 'print-image',
+                'printNoticeWrapper'=> $printNoticeWrapper($authorities+$notices, $this->noticeProvider, $this->noticeAuhtority)
             ]
         );
+
         $filename = 'search-'.date('Y-m-d_h-i-s');
 
         if ($format == 'txt') {
@@ -257,26 +282,21 @@ class SearchController extends AbstractController
     {
         try {
             $query = $request->get('word');
-
             $objSearch = $this->searchProvider->findNoticeAutocomplete($query, SuggestionList::class);
 
-            return new JsonResponse(
-                [
-                    'html' => $this->renderView(
-                        'search/autocompletion.html.twig',
-                        [
-                            'words' => $objSearch->getSuggestions(),
-                        ]
-                    ),
-                ]
-            );
+            return new JsonResponse([
+                'html' => $this->renderView(
+                    'search/autocompletion.html.twig',
+                    [
+                        'words' => $objSearch->getSuggestions(),
+                    ]
+                ),
+            ]);
         } catch (\Exception $exception) {
-            return new JsonResponse(
-                [
-                    'code' => $exception->getCode(),
-                    'message' => $exception->getMessage(),
-                ]
-            );
+            return new JsonResponse([
+                'code' => $exception->getCode(),
+                'message' => $exception->getMessage(),
+            ]);
         }
     }
 

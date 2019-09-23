@@ -26,6 +26,7 @@
 /package_info.json
 /web/media/import_file
 .deploy/dev/mysql/
+.DS_Store
 
 
 ###> symfony/framework-bundle ###

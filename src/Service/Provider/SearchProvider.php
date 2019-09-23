@@ -104,11 +104,9 @@ class SearchProvider extends AbstractProvider
     public function findNoticeAutocomplete(string $query, string $model)
     {
         /** @var Results $searchResult */
-        $content = $this->hydrateFromResponse('/autocomplete/notices',
+        return $this->hydrateFromResponse('/autocomplete/notices',
             ['word' => $query,],
             $model);
-
-        return $content;
     }
 }
 

@@ -225,7 +225,6 @@ modal:
     base:
       label: Recherche dans
       all: Tout
-      all-aria: Recherche dans toutes les bases de données
       in: Recherche dans
       name: Base de données %name%
     date:
@@ -259,9 +258,7 @@ modal:
       date: Date
       subject: Sujets
     clear-search: Effacer ma recherche
-    clear-search-aria: Effacer mes critères de recherche
     submit: Rechercher
-    submit-aria: Lancer ma recherche
   refine-search:  #Modal 14 affiné la recheche
     title: Affiner ma recherche
     filter-delete: Supprimer le filtre

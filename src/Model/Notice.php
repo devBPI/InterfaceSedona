@@ -47,13 +47,26 @@ class Notice implements NoticeInterface
      * @JMS\XmlList("epoque")
      */
     private $eras;
-
     /**
      * @var array
      * @JMS\Type("array<string>")
+     * @JMS\SerializedName("volumes")
+     * @JMS\XmlList("volume")
+     */
+    private $volumes;
+
+    /**
+     * @var string
+     * @JMS\Type("string")
      * @JMS\SerializedName("nomPubliqueConfiguration")
      */
     private $configurationName;
+    /**
+     * @var string
+     * @JMS\Type("string")
+     * @JMS\SerializedName("categorie")
+     */
+    private $category;
 
     /**
      * @var array
@@ -150,6 +163,35 @@ class Notice implements NoticeInterface
 
      */
     private $issn;
+    /**
+     * @var array
+     * @JMS\Type("array<string>")
+     * @JMS\SerializedName("issues")
+     * @JMS\XmlList("issue")
+     */
+    private $issues;
+    /**
+     * @var array
+     * @JMS\Type("array<string>")
+     * @JMS\SerializedName("premieresPages")
+     * @JMS\XmlList("premierePage")
+     */
+    private $firstPage;
+    /**
+     * @var array
+     * @JMS\Type("array<string>")
+     * @JMS\SerializedName("dernieresPages")
+     * @JMS\XmlList("dernierePage")
+     */
+    private $lastPage;
+
+    /**
+     * @return array
+     */
+    public function getIssues(): array
+    {
+        return $this->issues;
+    }
 
     /**
      * @var string
@@ -169,7 +211,8 @@ class Notice implements NoticeInterface
      */
     private $periodicity;
     /**
-     * @var string
+     * @var string|null
+     * @JMS\Type("string")
      * @JMS\SerializedName("editeurs")
      * @JMS\XmlList("editeur")
      * @JMS\Type("string")
@@ -191,12 +234,20 @@ class Notice implements NoticeInterface
      */
     private $topics;
     /**
-     * @var array
-     * @JMS\Type("array<string>")
+     * @var array|Value[]
+     * @JMS\Type("array<App\Model\Value>")
      * @JMS\SerializedName("contributeurs")
      * @JMS\XmlList("contributeur")
      */
     private $contributeurs;
+
+    /**
+     * @var array|Value[]
+     * @JMS\Type("array<App\Model\Value>")
+     * @JMS\SerializedName("contributeursVide")
+     * @JMS\XmlList("contributeurVideo")
+     */
+    private $videoContributeurs;
 
     /**
      * @var array
@@ -257,8 +308,8 @@ class Notice implements NoticeInterface
     /**
      * @var array
      * @JMS\Type("array<string>")
-     * @JMS\SerializedName("kinds")
-     * @JMS\XmlList("kind")
+     * @JMS\SerializedName("genres")
+     * @JMS\XmlList("genre")
      */
     private $kinds;
     /**
@@ -270,10 +321,9 @@ class Notice implements NoticeInterface
     private $publics;
 
     /**
-     * @var array
-     * @JMS\Type("array<string>")
-     * @JMS\SerializedName("droits")
-     * @JMS\XmlList("droit")
+     * @var Right
+     * @JMS\Type("App\Model\Right")
+     * @JMS\SerializedName("droits-infos")
      */
     private $rights;
     /**
@@ -334,6 +384,101 @@ class Notice implements NoticeInterface
      */
     private $isni;
 
+
+    /**
+     * @var array|IndiceCdu[]
+     * @JMS\Type("array<App\Model\IndiceCdu>")
+     * @JMS\SerializedName("indices")
+     * @JMS\XmlList("indice")
+     */
+    private $indices;
+    /**
+     * @var array#
+     * @JMS\Type("array<string>")
+     * @JMS\SerializedName("contenus")
+     * @JMS\XmlList("contenu")
+     */
+    private $contents;
+
+    /**
+     * @var array
+     * @JMS\Type("array<string>")
+     * @JMS\SerializedName("realisateurs")
+     * @JMS\XmlList("realisateur")
+     */
+    private $directors;
+
+    /**
+     * @var array
+     * @JMS\Type("array<string>")
+     * @JMS\SerializedName("datesTextuelles")
+     * @JMS\XmlList("dateTextuelle")
+     */
+    private $dates;
+    /**
+     * @var array
+     * @JMS\Type("array<string>")
+     * @JMS\SerializedName("datesPublication")
+     * @JMS\XmlList("datePublication")
+     */
+    private $publishedDates;
+
+    /**
+     * @var array
+     * @JMS\Type("array<string>")
+     * @JMS\SerializedName("autresDates")
+     * @JMS\XmlList("autreDate")
+     */
+    private $otherDates;
+
+    /**
+     * @var array
+     * @JMS\Type("array<string>")
+     * @JMS\SerializedName("resumes")
+     * @JMS\XmlList("resume")
+     */
+    private $resume;
+    /**
+     * @var array
+     * @JMS\Type("array<string>")
+     * @JMS\SerializedName("descriptionsMaterielle")
+     * @JMS\XmlList("descriptionMaterielle")
+     */
+    private $materialDescriptions;
+    /**
+     * @var array
+     * @JMS\Type("array<string>")
+     * @JMS\SerializedName("notes")
+     * @JMS\XmlList("note")
+     */
+    private $notes;
+
+    /**
+     * @var bool
+     * @JMS\Type("bool")
+     * @JMS\SerializedName("is-online")
+     */
+    private $onLine;
+
+    /**
+     * @var NoticeAvailable
+     * @JMS\Type("App\Model\NoticeAvailable")
+     * @JMS\SerializedName("exemplaires")
+     */
+    private $copies;
+
+    /**
+     * @var string
+     * @JMS\Exclude()
+     */
+    private $thumbnail;
+
+    /**
+     * @var string
+     * @JMS\Exclude()
+     */
+    private $cover;
+
     /**
      * @return null|string
      */
@@ -367,9 +512,9 @@ class Notice implements NoticeInterface
     }
 
     /**
-     * @return array
+     * @return Right|null
      */
-    public function getRights(): array
+    public function getRights():?Right
     {
         return $this->rights;
     }
@@ -413,92 +558,7 @@ class Notice implements NoticeInterface
     {
         return $this->contentsTable;
     }
-    /**
-     * @var array|IndiceCdu[]
-     * @JMS\Type("array<App\Model\IndiceCdu>")
-     * @JMS\SerializedName("indices")
-     * @JMS\XmlList("indice")
-     */
-    private $indices;
-    /**
-     * @var array#
-     * @JMS\Type("array<string>")
-     * @JMS\SerializedName("contenus")
-     * @JMS\XmlList("contenu")
-     */
-    private $contents;
 
-    /**
-     * @var array
-     * @JMS\Type("array<string>")
-     * @JMS\SerializedName("realisateurs")
-     * @JMS\XmlList("realisateur")
-     */
-    private $directors;
-
-    /**
-     * @var array
-     * @JMS\Type("array<string>")
-     * @JMS\SerializedName("datesTextuelles")
-     * @JMS\XmlList("dateTextuelle")
-     */
-    private $dates;
-    /**
-     * @var array
-     * @JMS\Type("array<string>")
-     * @JMS\SerializedName("datesPublication")
-     * @JMS\XmlList("datePublication")
-     */
-    private $publishedDates;
-
-    /**
-     * @var array
-     * @JMS\Type("array<string>")
-     * @JMS\SerializedName("datesPublication")
-     * @JMS\XmlList("datePublication")
-     */
-    private $otherDates;
-
-    /**
-     * @var array
-     * @JMS\Type("array<string>")
-     * @JMS\SerializedName("resumes")
-     * @JMS\XmlList("resume")
-     */
-    private $resume;
-    /**
-     * @var array
-     * @JMS\Type("array<string>")
-     * @JMS\SerializedName("descriptionsMaterielle")
-     * @JMS\XmlList("descriptionMaterielle")
-     */
-    private $materialDescriptions;
-    /**
-     * @var array
-     * @JMS\Type("array<string>")
-     * @JMS\SerializedName("notes")
-     * @JMS\XmlList("note")
-     */
-    private $notes;
-
-    /**
-     * @var NoticeAvailable
-     * @JMS\Type("App\Model\NoticeAvailable")
-     * @JMS\SerializedName("exemplaires")
-     */
-    private $copies;
-
-    /**
-     * @var string
-     * @JMS\Exclude()
-     */
-    private $thumbnail;
-
-    /**
-     * @var string
-     * @JMS\Exclude()
-     */
-    private $cover;
     /**
      * @return array
      */
@@ -643,7 +703,16 @@ class Notice implements NoticeInterface
      */
     public function getAuthors(): array
     {
-        return $this->authors;
+        if (count($this->authors)>0 && strlen($this->authors[0]) > 1){
+            return $this->authors;
+        }
+
+        $authors = $this->getAuthorsValue();
+        $payload = [];
+        foreach ($authors as $value){
+            $payload[] = $value->getValue();
+        }
+        return $payload;
     }
 
     /**
@@ -794,9 +863,9 @@ class Notice implements NoticeInterface
     }
 
     /**
-     * @return array
+     * @return null|string
      */
-    public function getConfigurationName(): array
+    public function getConfigurationName(): ?string
     {
         return $this->configurationName;
     }
@@ -810,12 +879,22 @@ class Notice implements NoticeInterface
     }
 
     /**
-     * @return string
+     * @return null|string
      */
-    public function getEditors(): string
+    public function getEditors(): ?string
     {
+
         return $this->editors;
     }
+
+    /**
+     * @return Value[]|array
+     */
+    public function getVideoContributeurs()
+    {
+        return $this->videoContributeurs;
+    }
+
 
     /**
      * @return null|string
@@ -962,11 +1041,13 @@ class Notice implements NoticeInterface
     /**
      * @return bool
      */
-    public function isOnLigne():bool
+    public function isOnLine():bool
     {
-        /**
-         * @TODO ask for a field to specified the type of notice is it's onligne or not
-         */
+
+        if ($this->onLine){
+            return $this->onLine;
+        }
+
         $material = $this->getMaterialDescriptions();
         if (count($material)<1){
             return false;
@@ -986,6 +1067,53 @@ class Notice implements NoticeInterface
          }
 
          return 'Notice sans titre';
+    }
+
+    /**
+     * @return null|string
+     */
+    public function getExportTitle():?string
+    {
+        $payload = [];
+        $payload[] = implode(',', $this->getTitleInformation());
+        $payload[] = implode(',', $this->getIssues());
+        $payload[] = implode(',', $this->getVolumes());
+        $payload[] = implode(',', $this->getFirstPage());
+        $payload[] = implode(',', $this->getLastPage());
+
+        return implode(',', $payload);
+    }
+
+    /**
+     * @return array
+     */
+    public function getFirstPage(): array
+    {
+        return $this->firstPage;
+    }
+
+    /**
+     * @return array
+     */
+    public function getLastPage(): array
+    {
+        return $this->lastPage;
+    }
+
+    /**
+     * @return array
+     */
+    public function getVolumes(): array
+    {
+        return $this->volumes;
+    }
+
+    /**
+     * @return null|string
+     */
+    public function getCategory(): ?string
+    {
+        return $this->category;
     }
 }
 

@@ -1,0 +1,56 @@
+// -------------------------------
+// Slider
+// -------------------------------
+
+.slider {
+
+	&.slider-horizontal {
+
+		.slider-track {
+			height: 6px;
+			margin-top: -4px;
+		}
+
+		.slider-handle {
+			margin-left: -5px;
+		}
+	}
+
+	&-handle {
+		background-image: none;
+		background-color: $black;
+		width: 10px;
+		height: 15px;
+
+		&.min-slider-handle:after,
+		&.max-slider-handle:after {
+			content: "";
+			position: absolute;
+			left: 0;
+			bottom: 0;
+			width: 0;
+			height: 0;
+			border-top: 6px solid $black;
+			border-left: 5px solid transparent;
+			border-right: 5px solid transparent;
+			margin-bottom: -6px;
+		}
+	}
+	
+	&-track-low,
+	&-track-high,
+	&-selection {
+		border-radius: 0;
+	}
+
+	&-track-low,
+	&-track-high {
+		background-image: none;
+		background-color: $grey;
+	}
+
+	&-selection {
+		background-image: none;
+		background-color: $red;
+	}
+}

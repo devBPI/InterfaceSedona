@@ -5,6 +5,7 @@ namespace App\Controller;
 
 use App\Model\Notice;
 use App\Model\RankedAuthority;
+use App\Model\Search;
 use App\Service\NavigationService;
 use App\Service\Provider\NoticeAuthorityProvider;
 use App\Service\Provider\NoticeProvider;
@@ -16,11 +17,10 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Annotation\Route;
+use JMS\Serializer\SerializerInterface;
 
 class RecordController extends AbstractController
 {
-    /** @var Serializer */
-    protected $serializer;
     /**
      * @var NoticeProvider
      */
@@ -29,6 +29,11 @@ class RecordController extends AbstractController
      * @var NoticeAuthorityProvider
      */
     private $noticeAuhtority;
+
+    /**
+     * @var Serializer
+     */
+    protected $serializer;
     /**
      * @var SearchProvider
      */
@@ -66,10 +71,9 @@ class RecordController extends AbstractController
     public function bibliographicRecordAction(Request $request, string $permalink, SessionInterface $session)
     {
         $searchToken = $request->get('searchToken');
-
         $object = $this->noticeProvider->getNotice($permalink);
-
         $navigation = null;
+
         if ($session->has($searchToken)) {
             $navigation =
                 new NavigationService(
@@ -81,17 +85,13 @@ class RecordController extends AbstractController
                 );
         }
 
-
-        return $this->render(
-            'record/bibliographic.html.twig',
-            [
-                'object' => $object,
-                'notice' => $object->getNotice(),
-                'toolbar' => 'document',
-                'navigation' => $navigation,
-                'printRoute' => $this->generateUrl('record_bibliographic_pdf', ['format' => 'pdf']),
-            ]
-        );
+        return $this->render('record/bibliographic.html.twig', [
+            'object'            => $object,
+            'notice'            => $object->getNotice(),
+            'toolbar'           => 'document',
+            'navigation'        => $navigation,
+            'printRoute'        => $this->generateUrl('record_bibliographic_pdf',['format'=> 'pdf'])
+        ]);
     }
 
     /**
@@ -99,22 +99,21 @@ class RecordController extends AbstractController
      */
     public function bibliographicRecordPDFAction(Request $request, \Knp\Snappy\Pdf $knpSnappy, $format = "pdf")
     {
-        $content = $this->renderView(
-            "record/bibliographic.".($format == 'txt' ? 'txt' : 'pdf').".twig",
-            [
-                'isPrintLong' => $request->get('print-type', 'print-long') == 'print-long',
-                'includeImage' => $request->get('print-image', null) == 'print-image',
-            ]
-        );
+        $object = $this->noticeProvider->getNotice($request->get('permalink'));
+        //dump($object); die;
+        $content = $this->renderView("record/bibliographic.".($format == 'txt' ? 'txt': 'pdf').".twig", [
+            'isPrintLong'   => $request->get('print-type', 'print-long') == 'print-long',
+            'includeImage'  => $request->get('print-image', null) == 'print-image',
+            'notice' => $object->getNotice(),
+            'noticeThemed' => $object->getNoticesSameTheme(),
+        ]);
         $filename = 'bibliographic'.date('Y-m-d_h-i-s');
 
         if ($format == 'txt') {
-            return new Response(
-                $content, 200, [
+            return new Response($content,200,[
                 'Content-Type' => 'application/force-download',
-                'Content-Disposition' => 'attachment; filename="'.$filename.'.txt"',
-            ]
-            );
+                'Content-Disposition' => 'attachment; filename="'.$filename.'.txt"'
+            ]);
         } elseif ($format == 'html') {
             return new Response($content);
         }
@@ -142,7 +141,6 @@ class RecordController extends AbstractController
         $subject = $this->noticeAuhtority->getSubjectNotice($id);
         $authors = $this->noticeAuhtority->getAuthorsNotice($id);
         $searchToken = $request->get('searchToken');
-
         $navigation = null;
 
         if ($session->has($searchToken)) {
@@ -155,16 +153,14 @@ class RecordController extends AbstractController
             );
         }
 
-        return $this->render(
-            'record/authority.html.twig',
-            [
-                'toolbar' => 'document',
-                'printRoute' => $this->generateUrl('record_authority_pdf'),
-                'subjects' => $subject,
-                'authors' => $authors,
-                'notice' => $object,
-                'navigation' => $navigation,
-            ]
+        return $this->render('record/authority.html.twig', [
+                  'toolbar'         => 'document',
+                  'printRoute'      => $this->generateUrl('record_authority_pdf'),
+                  'subjects'        => $subject,
+                  'authors'         => $authors,
+                  'notice'          => $object,
+                  'navigation'     => $navigation,
+              ]
         );
     }
 
@@ -196,28 +192,34 @@ class RecordController extends AbstractController
             );
         }
 
-        return $this->render(
-            'record/authority.html.twig',
-            [
-                'toolbar' => 'document',
-                'printRoute' => $this->generateUrl('record_authority_pdf'),
-                'subjects' => $subject,
-                'authors' => $authors,
-                'notice' => $object,
-                'navigation' => $navigation,
-            ]
+        return $this->render('record/authority.html.twig', [
+                  'toolbar'         => 'document',
+                  'printRoute'      => $this->generateUrl('record_authority_pdf'),
+                  'subjects'        => $subject,
+                  'authors'         => $authors,
+                  'notice'          => $object,
+                  'navigation'      => $navigation,
+              ]
         );
     }
 
     /**
-     * @Route("/print/notice-autorite.{format}", name="record_authority_pdf", requirements={"format" = "html|pdf|txt"}, defaults={"format" = "pdf"})
+     * @Route("/print/notice-autorite.{format}", name="record_authority_pdf", requirements={"format" = "html|pdf|txt|xml"}, defaults={"format" = "pdf"})
      */
-    public function authorityRecordPDFAction(Request $request, \Knp\Snappy\Pdf $knpSnappy, $format = "pdf")
+    public function authorityRecordPDFAction(Request $request, \Knp\Snappy\Pdf $knpSnappy, $format='pdf')
     {
+        $object             = $this->noticeAuhtority->getAuthority($request->get('permalink'));
+        $relatedDocuments   = $this->noticeAuhtority->getSubjectNotice($object->getId());
+        $noticeAuthors      = $this->noticeAuhtority->getAuthorsNotice($object->getId());
+
         $content = $this->renderView("record/authority.".($format == 'txt' ? 'txt': 'pdf').".twig", [
-            'isPrintLong'   => $request->get('print-type', 'print-long') == 'print-long',
-            'includeImage'  => $request->get('print-image', null) == 'print-image',
+            'isPrintLong'       => $request->get('print-type', 'print-long') == 'print-long',
+            'includeImage'      => $request->get('print-image', null) == 'print-image',
+            'notice'            => $object,
+            'relatedDocuments'  => $relatedDocuments,
+            'noticeAuthors'     => $noticeAuthors,
         ]);
+
         $filename = 'authority_'.date('Y-m-d_h-i-s');
 
         if ($format == 'txt') {
