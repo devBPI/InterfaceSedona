@@ -1,12 +1,20 @@
 {% if sameInstance(notice,'App\\Model\\Authority', format) %}
     {{ pdf_occurence (element, 'getName', '', format) | raw }}
 {% endif %}
+{% if sameInstance(notice,'App\\Model\\Authority', format) %}
+    {{ pdf_occurence (element, 'getType', "Type d'autorité", format) | raw }}
+{% else %}
+    {% if format =='pdf' %}
+        <li>
+            {{  "Type d'autorité"| trans }}: {{ "Indice de classement" | trans}}
+        </li>
+    {% else %}
+        {{  "Type d'autorité"| trans }}: {{ "Indice de classement" | trans}}
+    {% endif %}
 
-{{ pdf_occurence (element, 'getType', "Type d'autorité", format) | raw }}
-
-{% if  sameInstance(notice,'App\\Model\\Authority', format) and sameInstance(notice,'App\\Model\\IndiceCdu', format) %}
-    {{ pdf_occurence (element, 'getCote',{{ notice.name }}, format) | raw }}
-
+{% endif %}
+{% if sameInstance(notice,'App\\Model\\IndiceCdu') %}
+    {{ pdf_occurence (element, 'getCote',notice.name, format) | raw }}
 {% endif %}
 
 {% if sameInstance(notice,'App\\Model\\Authority', format) and notice.otherNames  %}
@@ -39,12 +47,14 @@
     {{ pdf_occurence (element, 'getIsni', 'ISNI', format) | raw }}
     {{ pdf_occurence (element, 'getOrigins', 'Origine de la notice', format) | raw }}
 {% endif %}
-<li>
-    {% if format == 'pdf' %}
+{% if format == 'pdf' %}
+    <li>
         {%  if sameInstance(notice,'App\\Model\\Authority', format) %}
             <a href="{{ path('record_authority', {"permalink":notice.permalink}) }}">Lien de la notice</a>
         {% elseif sameInstance(notice,'App\\Model\\IndiceCdu', format) %}
             <a href="{{ path('record_indice_cdu', {"permalink":notice.permalink}) }}">Lien de la notice</a>
         {% endif %}
-    {% endif %}
-</li>
+    </li>
+
+{% endif %}
+

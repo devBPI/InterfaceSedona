@@ -100,7 +100,7 @@ class NavigationService
         $notices = $this->getNoticeList($searchProvider, $search, $type);
         $this->rows = \count($notices);
 
-        $noticesFiltered = array_filter($notices, function(NoticeInterface $value) use ($permalink) {
+        $noticesFiltered = array_filter($notices, function( $value) use ($permalink) {
             if ($value->getPermalink() === $permalink) {
                 return true;
             }

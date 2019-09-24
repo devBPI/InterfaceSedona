@@ -117,11 +117,12 @@ class SearchController extends AbstractController
     }
 
     /**
-     * @Route("/recherche-avancée", methods={"GET", "POST"}, name="advanced_search")
+     * @Route("/recherche-avancee", methods={"GET", "POST"}, name="advanced_search")
      *
      * @param Request $request
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @return Response
      * @throws \Doctrine\ORM\ORMException
+     * @throws \Doctrine\ORM\OptimisticLockException
      * @throws \Twig\Error\LoaderError
      * @throws \Twig\Error\RuntimeError
      * @throws \Twig\Error\SyntaxError
@@ -226,13 +227,12 @@ class SearchController extends AbstractController
         parse_str(urldecode($request->get('authorities', null)),$authorities);
         parse_str(urldecode($request->get('notices', null)),$notices);
         $printNoticeWrapper = new PrintNoticeWrapper();
-
         $content = $this->renderView(
             "search/index.".($format == 'txt' ? 'txt' : 'pdf').".twig",
             [
                 'isPrintLong'   => $request->get('print-type', 'print-long') == 'print-long',
                 'includeImage'  => $request->get('print-image', null) == 'print-image',
-                'printNoticeWrapper'=> $printNoticeWrapper($request->query->all(), $this->noticeProvider, $this->noticeAuhtority)
+                'printNoticeWrapper'=> $printNoticeWrapper($authorities+$notices, $this->noticeProvider, $this->noticeAuhtority)
             ]
         );
 
