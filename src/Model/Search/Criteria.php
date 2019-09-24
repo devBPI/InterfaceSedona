@@ -125,14 +125,18 @@ class Criteria
      */
     public function setAdvancedSearch(array $request = [])
     {
-        foreach ($request[self::QUERY_NAME] as $name => $value) {
-            $this->$name = $value;
+        if (array_key_exists(self::QUERY_NAME, $request)) {
+            foreach ($request[self::QUERY_NAME] as $name => $value) {
+                $this->$name = $value;
+            }
         }
 
-        $this->setKeywords(
-            $request[self::ADVANCED_SEARCH_LABEL],
-            isset($request[self::ADVANCED_SEARCH_OPERATOR]) ? $request[self::ADVANCED_SEARCH_OPERATOR] : []
-        );
+        if (array_key_exists(self::ADVANCED_SEARCH_LABEL, $request)) {
+            $this->setKeywords(
+                $request[self::ADVANCED_SEARCH_LABEL],
+                isset($request[self::ADVANCED_SEARCH_OPERATOR]) ? $request[self::ADVANCED_SEARCH_OPERATOR] : []
+            );
+        }
     }
 
     /**
@@ -169,22 +173,55 @@ class Criteria
     {
         if (
             is_array($keywordRow) && array_key_exists(self::FIELD_LABEL, $keywordRow) &&
-            array_key_exists(self::TEXT_LABEL, $keywordRow)
+            array_key_exists(self::TEXT_LABEL, $keywordRow) &&
+            trim($keywordRow[self::TEXT_LABEL]) !== ''
         ) {
             $type = $keywordRow[self::FIELD_LABEL];
-            $this->$type = $keywordRow[self::TEXT_LABEL];
+            $this->$type = trim($keywordRow[self::TEXT_LABEL]);
         }
+    }
+
+    /**
+     * @param bool $first
+     * @return array
+     */
+    public function getKeywords($first = true): array
+    {
+        $keywords = [];
+        foreach (WordsList::$words[WordsList::THEME_DEFAULT] as $field) {
+            if (!empty($this->$field)) {
+                if ($first) {
+                    $keywords[] = [$field => $this->$field];
+                } else {
+                    $keywords[$field] = $this->$field;
+                }
+            }
+        }
+
+        foreach (WordsList::$operators as $operator) {
+            if ($this->$operator instanceof Criteria) {
+                $keywords[$operator] = $this->$operator->getKeywords(false);
+            }
+        }
+
+        return $keywords;
     }
 
     /**
      * @return array
      */
-    public function getKeywords(): array
+    public function getKeywordsTitles(): array
     {
         $keywords = [];
         foreach (WordsList::$words[WordsList::THEME_DEFAULT] as $field) {
             if (!empty($this->$field)) {
-                $keywords[$field] = $this->$field;
+                $keywords[] = $this->$field;
+            }
+        }
+
+        foreach (WordsList::$operators as $operator) {
+            if ($this->$operator instanceof Criteria) {
+                $keywords = array_merge($keywords, $this->$operator->getKeywordsTitles());
             }
         }
 

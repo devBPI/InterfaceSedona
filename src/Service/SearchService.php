@@ -50,9 +50,9 @@ final class SearchService
      * @param SearchQuery $searchQuery
      * @return string
      */
-    public function getTitleFromSearchQuery(SearchQuery $searchQuery): string
+    private function getTitleFromSearchQuery(SearchQuery $searchQuery): string
     {
-        $keywords = array_values($searchQuery->getCriteria()->getKeywords());
+        $keywords = $searchQuery->getCriteria()->getKeywordsTitles();
         if (count($keywords) > 1) {
             return $this->translator->trans('page.search.title.advanced', ['%keyword%' => implode(', ', $keywords)]);
         } elseif (!isset($keywords[0])) {
@@ -85,8 +85,10 @@ final class SearchService
         $hash = \spl_object_hash($search);
         $request->getSession()->set($hash, $this->serializer->serialize($search, 'json'));
 
-        $objSearch = new ObjSearch($title, $search->getCriteria()->getKeywords());
-        $objSearch->setContext($hash, $this->serializer->serialize($search, 'json'));
+        $objSearch = new ObjSearch($search);
+        $objSearch
+            ->setTitle($title)
+            ->setContext($hash, $this->serializer->serialize($search, 'json'));
 
         return $objSearch;
     }

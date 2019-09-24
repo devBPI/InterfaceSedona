@@ -47,5 +47,4 @@ class FacetFilter
     {
         $this->attributes[$name] = $values;
     }
-
 }

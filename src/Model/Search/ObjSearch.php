@@ -29,16 +29,31 @@ final class ObjSearch
      * @var array
      */
     private $keywords;
+    /**
+     * @var SearchQuery
+     */
+    private $searchQuery;
 
     /**
      * ObjSearch constructor.
-     * @param string $title
-     * @param array $keywords
+     *
+     * @param SearchQuery $searchQuery
      */
-    public function __construct(string $title, array $keywords = [])
+    public function __construct(SearchQuery $searchQuery)
+    {
+        $this->searchQuery = $searchQuery;
+        $this->keywords = $searchQuery->getCriteria()->getKeywords();
+    }
+
+    /**
+     * @param string $title
+     * @return self
+     */
+    public function setTitle(string $title): self
     {
         $this->title = $title;
-        $this->keywords = $keywords;
+
+        return $this;
     }
 
     /**
@@ -124,6 +139,14 @@ final class ObjSearch
     }
 
     /**
+     * @return array
+     */
+    public function getKeywords(): array
+    {
+        return $this->keywords;
+    }
+
+    /**
      * @param Results $results
      * @return ObjSearch
      */
@@ -132,5 +155,14 @@ final class ObjSearch
         $this->results = $results;
         return $this;
     }
+
+    /**
+     * @return array
+     */
+    public function getSearchFilters(): array
+    {
+        return $this->searchQuery->getFacets()->getAttributes();
+    }
+
 
 }
