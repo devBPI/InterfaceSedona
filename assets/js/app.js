@@ -49,3 +49,14 @@ $('.dropdown-link .nav-link').on('focus', function() {
     $('.dropdown-menu').removeClass('show');
     $(this).siblings('.dropdown-menu').addClass('show');
 });
+
+$(document).on('click', '#print-action', function () {
+    let permalinkAuthority = $('.js-authority:checked');
+
+    let permalinkNotice = $('.js-notice:checked');
+    console.log(permalinkNotice.serialize())
+
+    $('.js-print-authorities').val(permalinkAuthority.serialize());
+    $('.js-print-notices').val(permalinkNotice.serialize())
+
+});

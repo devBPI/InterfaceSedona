@@ -39,7 +39,7 @@ class SearchProvider extends AbstractProvider
 
     /**
      * @param SearchQuery $search
-     * @return mixed
+     * @return Results
      * @throws \Twig\Error\LoaderError
      * @throws \Twig\Error\RuntimeError
      * @throws \Twig\Error\SyntaxError

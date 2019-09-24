@@ -14,12 +14,11 @@
             {% endif %}
             <div class="col">
                 <ul class="print__list">
-                    {% include "common/authority.format.twig" with {'notice': notice, 'format': 'pdf'} %}
+                    {% include "common/authority.format.twig" with {'element': notice, 'format': 'pdf'} %}
                 </ul>
             </div>
         </div>
     </div>
-
     {% if relatedDocuments.mappedNotices  is defined %}
         {% for  object in relatedDocuments.mappedNotices %}
             <div class="print__item">
