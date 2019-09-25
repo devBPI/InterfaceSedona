@@ -235,7 +235,7 @@ class SearchController extends AbstractController
                 'isPrintLong' => $request->get('print-type', 'print-long') == 'print-long',
                 'includeImage' => $request->get('print-image', null) == 'print-image',
                 'printNoticeWrapper' => $printNoticeWrapper(
-                    $request->query->all(),
+                    $authorities + $notices,
                     $this->noticeProvider,
                     $this->noticeAuhtority
                 ),
