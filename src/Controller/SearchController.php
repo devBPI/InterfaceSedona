@@ -118,11 +118,12 @@ class SearchController extends AbstractController
     }
 
     /**
-     * @Route("/recherche-avancée", methods={"GET", "POST"}, name="advanced_search")
+     * @Route("/recherche-avancee", methods={"GET", "POST"}, name="advanced_search")
      *
      * @param Request $request
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @return Response
      * @throws \Doctrine\ORM\ORMException
+     * @throws \Doctrine\ORM\OptimisticLockException
      * @throws \Twig\Error\LoaderError
      * @throws \Twig\Error\RuntimeError
      * @throws \Twig\Error\SyntaxError
@@ -297,23 +298,19 @@ class SearchController extends AbstractController
             $query = $request->get('word');
             $objSearch = $this->searchProvider->findNoticeAutocomplete($query, SuggestionList::class);
 
-            return new JsonResponse(
-                [
-                    'html' => $this->renderView(
-                        'search/autocompletion.html.twig',
-                        [
-                            'words' => $objSearch->getSuggestions(),
-                        ]
-                    ),
-                ]
-            );
+            return new JsonResponse([
+                'html' => $this->renderView(
+                    'search/autocompletion.html.twig',
+                    [
+                        'words' => $objSearch->getSuggestions(),
+                    ]
+                ),
+            ]);
         } catch (\Exception $exception) {
-            return new JsonResponse(
-                [
-                    'code' => $exception->getCode(),
-                    'message' => $exception->getMessage(),
-                ]
-            );
+            return new JsonResponse([
+                'code' => $exception->getCode(),
+                'message' => $exception->getMessage(),
+            ]);
         }
     }
 

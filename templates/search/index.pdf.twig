@@ -24,7 +24,6 @@
 				</div>
 			</div>
 		{% endfor %}
-
 	</div>
 	<div class="print__bloc ptrin__bloc--online">
 		<div class="print__header">
@@ -38,7 +37,7 @@
 					</div>
 					{% if includeImage %}
 						<div class="col-3">
-							<img src="{% if element.picture %}{{ element.picture.url }}{% else %}{{ asset('images/couvertures-generiques/cg-musique.svg') }}{% endif %}" class="img-fluid" alt="" />
+							<img src="{{ asset('images/couvertures-generiques/cg-musique.svg') }}" class="img-fluid" alt="" />
 						</div>
 					{% endif %}
 

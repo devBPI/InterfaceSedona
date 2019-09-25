@@ -1,4 +1,4 @@
-{% set isPrintLong = true %}
+{{ dump(isPrintLong, includeImage) }}
 	{% if  isPrintLong  %}
         {{ pdf_occurence (notice, 'getTitleForm', '', format) | raw }}
     {% endif %}

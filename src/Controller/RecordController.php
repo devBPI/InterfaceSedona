@@ -62,6 +62,7 @@ class RecordController extends AbstractController
         $this->searchProvider = $searchProvider;
     }
 
+
     /**
      * @Route("/notice-bibliographique/{permalink}", methods={"GET","HEAD"}, name="record_bibliographic", requirements={"permalink"=".+"})
      * @param Request $request
@@ -75,6 +76,7 @@ class RecordController extends AbstractController
     public function bibliographicRecordAction(Request $request, string $permalink, SessionInterface $session)
     {
         $searchToken = $request->get('searchToken');
+
         $object = $this->noticeProvider->getNotice($permalink);
         $navigation = null;
 
@@ -85,7 +87,7 @@ class RecordController extends AbstractController
                     $permalink,
                     $this->serializer->deserialize($session->get($searchToken), SearchQuery::class, 'json'),
                     $searchToken,
-                    $object->getNotice()->isOnLigne() ? Notice::ON_LIGNE : Notice::ON_SHELF
+                    $object->getNotice()->isOnLine() ? Notice::ON_LIGNE : Notice::ON_SHELF
                 );
         }
 
@@ -94,18 +96,18 @@ class RecordController extends AbstractController
             'notice'            => $object->getNotice(),
             'toolbar'           => 'document',
             'navigation'        => $navigation,
-            'printRoute'        => $this->generateUrl('record_bibliographic_pdf',['format'=> 'pdf'])
+            'printRoute'        => $this->generateUrl('record_bibliographic_pdf',['permalink'=> $object->getNotice()->getPermalink() ,'format'=> 'pdf'])
         ]);
     }
 
     /**
-     * @Route("/print/notice-bibliographique.{format}", methods={"GET","HEAD"}, name="record_bibliographic_pdf", requirements={"format" = "html|pdf|txt"}, defaults={"format" = "pdf"})
+     * @Route("/print/notice-bibliographique.{format}/{permalink}", methods={"GET","HEAD"}, name="record_bibliographic_pdf", requirements={"permalink"=".+", "format"="html|pdf|txt"}, defaults={"format" = "pdf"})
      * @param Request $request
      * @param \Knp\Snappy\Pdf $knpSnappy
      * @param string $format
      * @return PdfResponse|Response
      */
-    public function bibliographicRecordPDFAction(Request $request, \Knp\Snappy\Pdf $knpSnappy, $format = "pdf")
+    public function bibliographicRecordPDFAction(Request $request, \Knp\Snappy\Pdf $knpSnappy,$format='pdf')
     {
         $object = $this->noticeProvider->getNotice($request->get('permalink'));
 
@@ -163,7 +165,7 @@ class RecordController extends AbstractController
 
         return $this->render('record/authority.html.twig', [
                   'toolbar'         => 'document',
-                  'printRoute'      => $this->generateUrl('record_authority_pdf'),
+                  'printRoute'      => $this->generateUrl('record_authority_pdf', ['permalink'=>$permalink, 'format'=>'pdf']),
                   'subjects'        => $subject,
                   'authors'         => $authors,
                   'notice'          => $object,
@@ -202,7 +204,7 @@ class RecordController extends AbstractController
 
         return $this->render('record/authority.html.twig', [
                   'toolbar'         => 'document',
-                  'printRoute'      => $this->generateUrl('record_authority_pdf'),
+                  'printRoute'      => $this->generateUrl('record_authority_pdf',  ['permalink'=>$permalink, 'format'=>'pdf']),
                   'subjects'        => $subject,
                   'authors'         => $authors,
                   'notice'          => $object,
@@ -212,7 +214,7 @@ class RecordController extends AbstractController
     }
 
     /**
-     * @Route("/print/notice-autorite.{format}", name="record_authority_pdf", requirements={"format" = "html|pdf|txt"}, defaults={"format" = "pdf"})
+     * @Route("/print/notice-autorite.{format}/{permalink}", name="record_authority_pdf", requirements={"permalink"=".+", "format" = "html|pdf|txt"}, defaults={"format" = "pdf"})
      * @param Request $request
      * @param \Knp\Snappy\Pdf $knpSnappy
      * @param string $format
@@ -248,7 +250,5 @@ class RecordController extends AbstractController
             $filename.".pdf"
         );
     }
-
-
 }
 
