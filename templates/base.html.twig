@@ -9,6 +9,14 @@
             	{{ encore_entry_link_tags('app') }}
 			{% endif %}
         {% endblock %}
+		<link rel="stylesheet" href="https://unpkg.com/orejime@1.1.1/dist/orejime.css" />
+		<script src="https://unpkg.com/orejime@1.1.1/dist/orejime.js"></script>
+
+		<script
+				   type="opt-in"
+				   data-name="google-tag-manager">
+    (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push [...]
+</script>
 	</head>
 	<body>
 		
@@ -113,7 +121,6 @@
 				</div>
 				<div class="footer__bottom">
 					<div class="row">
-
 						<div class="col-12 col-md-6">
 							<div id="partenaires" class="partenaires">
 								{% include "footer/partenaires.html.twig" %}
@@ -121,7 +128,6 @@
 						</div>
 
 						<div class="col-12 col-md-6">
-
 							<div class="row justify-content-end align-items-center align-items-md-start">
 								<div class="col-6 col-md-4">
 									<div class="partenaires__rs">
@@ -145,6 +151,11 @@
 					<p>© Copyright XXX</p>
 				</div>
 			</div>
+
+
+			<div id="app">
+			</div>
+
 
 		</footer>
 
