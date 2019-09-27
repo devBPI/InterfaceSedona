@@ -34,15 +34,7 @@ $('input').iCheck({
     focusClass: 'focus'
 });
 
-// $('#modal-refine-search').on('show.bs.modal', function (e) {
-//     var sliderDate = new Slider('#rfn-date-slider', {
-//         min: 1900,
-//         max: 2010,
-//         step: 5,
-//         value: [1945,1980],
-//         handle: 'square'
-//     });
-// })
+
 
 // Gestion navigation focus - Menu principal ---------------------------------------------------------
 $('.dropdown-link .nav-link').on('focus', function() {

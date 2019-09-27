@@ -56,7 +56,11 @@
                             <div lang="fr" class="list-result__content-state d-flex align-items-center">
                                 <img src="{{ asset('images/icones/icone-map-rouge.svg') }}" alt="" class="icone-map"/>
                                 <p>Indisponible</p>
-                                <button class="btn list-result__content-button" data-toggle="modal"
+                                <button
+
+                                        class="btn list-result__content-button js-envelope"
+                                        data-url="{{ path('notice_availablity_request', {"sourceId": notice.sourceId, 'configurationId':notice.configurationId}) }}"
+                                        data-toggle="modal"
                                         data-target="#modal-notified"><img
                                             src="{{ asset('images/icones/icone-enveloppe.svg') }}" alt=""
                                             class="icone-enveloppe"/> <span class="sr-only">
@@ -79,7 +83,6 @@
                     <p lang="fr">Effet de serre, réchauffement climatique, paléoclimatologie...exemples de questions traitées dans ce dossier multimédia et auxquelles répondent des chercheurs du CNRS et de l'INSU. Pour tous, du lecteur curieux au public averti.</p>
                 </div>
             {% endif %}
-
         </div>
     </div>
 {% endif %}
