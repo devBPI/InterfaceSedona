@@ -5,6 +5,7 @@ namespace App\Model;
 use App\Model\Interfaces\NoticeInterface;
 use App\Model\Traits\NoticeMappedTrait;
 use App\Model\Traits\NoticeTrait;
+use App\Model\Traits\OriginTrait;
 use JMS\Serializer\Annotation as JMS;
 
 /**
@@ -13,6 +14,8 @@ use JMS\Serializer\Annotation as JMS;
  */
 class Notice implements NoticeInterface
 {
+    use OriginTrait;
+
     private const SEPARATOR = ' ; ';
     public const ON_LIGNE = 'en ligne';
     public const ON_SHELF = 'en rayon';
@@ -26,13 +29,7 @@ class Notice implements NoticeInterface
      */
     private $collectionSeries;
 
-    /**
-     * @var array
-     * @JMS\Type("array<string>")
-     * @JMS\SerializedName("origines")
-     * @JMS\XmlList("origine")
-     */
-    private $origins;
+
     /**
      * @var array
      * @JMS\Type("array<string>")
@@ -461,9 +458,10 @@ class Notice implements NoticeInterface
     private $onLine;
 
     /**
-     * @var NoticeAvailable
-     * @JMS\Type("App\Model\NoticeAvailable")
+     * @var NoticeAvailable[]|array
+     * @JMS\Type("array<App\Model\NoticeAvailable>")
      * @JMS\SerializedName("exemplaires")
+     * @JMS\XmlList("exemplaire")
      */
     private $copies;
 
@@ -637,12 +635,13 @@ class Notice implements NoticeInterface
     }
 
     /**
-     * @return NoticeAvailable|null
+     * @return NoticeAvailable[]|array
      */
-    public function getCopies():?NoticeAvailable
+    public function getCopies()
     {
         return $this->copies;
     }
+
 
     /**
      * @return string
@@ -868,14 +867,6 @@ class Notice implements NoticeInterface
     public function getConfigurationName(): ?string
     {
         return $this->configurationName;
-    }
-
-    /**
-     * @return array
-     */
-    public function getOrigins(): array
-    {
-        return $this->origins;
     }
 
     /**

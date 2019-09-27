@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace App\Service\Provider;
 
+use App\Model\AroundIndex;
 use App\Model\Authority;
 use App\Model\IndiceCdu;
 use App\Model\NoticeMappedAuthority;
@@ -68,6 +69,22 @@ class NoticeAuthorityProvider extends AbstractProvider
             [],
             NoticeMappedAuthority::class
         );
+    }
+
+    /**
+     * @param $cote
+     * @return AroundIndex|object
+     */
+    public function getIndiceCduAroundOf($cote):AroundIndex
+    {
+        return $this->hydrateFromResponse(
+            '/cdu-indexes/around',
+            [
+                "cduindex"=> $cote
+            ],
+            AroundIndex::class
+        );
+
     }
 }
 

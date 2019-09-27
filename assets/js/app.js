@@ -50,13 +50,37 @@ $('.dropdown-link .nav-link').on('focus', function() {
     $(this).siblings('.dropdown-menu').addClass('show');
 });
 
+
 $(document).on('click', '#print-action', function () {
     let permalinkAuthority = $('.js-authority:checked');
-
     let permalinkNotice = $('.js-notice:checked');
     console.log(permalinkNotice.serialize())
 
     $('.js-print-authorities').val(permalinkAuthority.serialize());
     $('.js-print-notices').val(permalinkNotice.serialize())
 
+});
+
+/**
+ *
+ */
+$(document).on('click', '.js-5-indices-around', function (event) {
+    let $this = $(this);
+    let url = $this.data('url');
+    /**
+     * send the form
+     */
+    $.ajax({
+        url: url,
+        type:"POST",
+        beforeSend: function() {
+            // put a spinner
+        },
+        success: function(response) {
+            $('#around-index-wrapper').html(response.html);
+        },
+        error: function (response) {
+                // put an error message here
+            }
+        });
 });

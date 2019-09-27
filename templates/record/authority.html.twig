@@ -26,8 +26,8 @@
 			{% endif %}
 			<!-- Fin - Bloc 19 Liste de documents  -->
 		</div>
-		<div class="row">
-			{% include "record/blocs/index-browsing.html.twig" %}
+		<div class="row" id="around-index-wrapper">
+			{% include "record/blocs/index-browsing.html.twig" with {"indexList": notice.aroundIndex} %}
 		</div>
 	</div>
 {% endblock %}

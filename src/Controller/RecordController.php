@@ -14,6 +14,7 @@ use JMS\Serializer\Serializer;
 use JMS\Serializer\SerializerInterface;
 use Knp\Bundle\SnappyBundle\Snappy\Response\PdfResponse;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
@@ -241,7 +242,7 @@ class RecordController extends AbstractController
                 'Content-Type' => 'application/force-download',
                 'Content-Disposition' => 'attachment; filename="'.$filename.'.txt"'
             ]);
-        } elseif ($format == 'html') {
+        } elseif ($format === 'html') {
             return new Response($content);
         }
 
@@ -249,6 +250,30 @@ class RecordController extends AbstractController
             $knpSnappy->getOutputFromHtml($content),
             $filename.".pdf"
         );
+    }
+
+    /**
+     * @Route("indice-cdu/around/{cote}", name="indice_around_indexes", requirements={"cote"=".+"})
+     * @param $cote
+     * @return JsonResponse
+     */
+    public function aroundIndexesAction($cote): JsonResponse
+    {
+        try{
+            $indiceCdu = $this->noticeAuhtority->getIndiceCduAroundOf($cote);
+            return new JsonResponse([
+                'html'=> $this->renderView('record/blocs/index-browsing.html.twig',
+                    ['indexList'=> $indiceCdu]
+                )
+            ]);
+
+        }catch (\Exception $e){
+             return new JsonResponse([
+                'message'=> $e->getMessage(),
+                'code'=> $e->getCode()
+            ]);
+
+        }
     }
 }
 
