@@ -113,7 +113,7 @@ final class ObjSearch
     public function getSimpleSearchKeyword(): ?string
     {
         if ($this->isSimpleMode()) {
-            return array_values($this->keywords)[0];
+            return array_values($this->keywords[0])[0];
         }
 
         return null;
@@ -124,7 +124,7 @@ final class ObjSearch
     public function getSimpleSearchType(): ?string
     {
         if ($this->isSimpleMode()) {
-            return array_keys($this->keywords)[0];
+            return array_keys($this->keywords[0])[0];
         }
 
         return null;
