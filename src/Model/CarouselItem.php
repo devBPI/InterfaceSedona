@@ -20,6 +20,12 @@ class CarouselItem
      * @var string
      * @JMS\Type("string")
      */
+    private $creator;
+
+    /**
+     * @var string
+     * @JMS\Type("string")
+     */
     private $description;
 
     /**
@@ -32,20 +38,28 @@ class CarouselItem
      * @var string
      * @JMS\Type("string")
      */
-    private $photoCredit;
+    private $type;
 
     /**
      * @var string
      * @JMS\Type("string")
      */
-    private $link;
+    private $permalink;
 
     /**
      * @return string
      */
-    public function getTitle(): ?string
+    public function getTitle(): string
     {
         return $this->title;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCreator(): ?string
+    {
+        return $this->creator;
     }
 
     /**
@@ -57,7 +71,7 @@ class CarouselItem
     }
 
     /**
-     * @return null|string
+     * @return string
      */
     public function getImagePath(): ?string
     {
@@ -67,17 +81,17 @@ class CarouselItem
     /**
      * @return string
      */
-    public function getPhotoCredit(): ?string
+    public function getType(): ?string
     {
-        return $this->photoCredit;
+        return $this->type;
     }
 
     /**
      * @return string
      */
-    public function getLink(): ?string
+    public function getPermalink(): ?string
     {
-        return $this->link;
+        return $this->permalink;
     }
 
     /**

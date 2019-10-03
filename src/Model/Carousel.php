@@ -13,16 +13,16 @@ class Carousel
     /**
      * @var array|CarouselItem[]
      * @JMS\Type("array<App\Model\CarouselItem>")
-     * @JMS\XmlList(entry="element")
+     * @JMS\XmlList(entry="notice")
      */
-    private $elements = [];
+    private $notices = [];
 
     /**
      * @return array|CarouselItem[]
      */
     public function getElements(): array
     {
-        return $this->elements;
+        return $this->notices;
     }
 
 }
