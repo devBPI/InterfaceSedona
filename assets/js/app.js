@@ -55,7 +55,6 @@ $(document).on('click', '.js-print-action', function () {
 });
 
 $(document).on('click', '.js-export-form', function(e){
-    let self = this;
     let permalinkAuthority = $('.js-authority:checked');
     let permalinkNotice = $('.js-notice:checked');
     $('.js-print-authorities').val(permalinkAuthority.serialize());

@@ -81,9 +81,10 @@ class NoticeBuildFileService
             parse_str(urldecode($attachement->getAuthorities()), $authorities);
             parse_str(urldecode($attachement->getNotices()), $notices);
 
-            $attachement->setObject('Recherche des notices');
         }catch (\Exception $e){
-
+            /**
+             * lunch an custom exception
+             */
         }
         return  $this->templating->render(
             "search/index.".$format.".twig",

@@ -66,7 +66,7 @@ class MailSenderService
         } else {
             $message->setBody($textBody);
         }
-        if ($attachment===null){
+        if ($attachment!==null){
             $message->attach($attachment);
         }
 

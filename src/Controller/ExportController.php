@@ -53,7 +53,7 @@ class ExportController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()){
             $object = $form->getData();
             $object->setObject('partage par mail de la recherche des notices ');
-            $filename = 'search-'.date('Y-m-d_h-i-s');
+            $filename = 'search-'.date('Y-m-d_h-i-s').'.'.$object->getFormatType();
             $content = $this->buildFileContent->buildContent($object, $type, $object->getFormatType());
             $attachment = new \Swift_Attachment($content, $filename, sprintf('application/%s', $object->getFormatType()));
 
@@ -102,7 +102,7 @@ class ExportController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()){
             /** @var ExportNotice $object */
             $object = $form->getData();
-            $filename = 'notice-'.date('Y-m-d_h-i-s');
+            $filename = 'notice-'.date('Y-m-d_h-i-s').'.'.$object->getFormatType();
             $object
                 ->setNotices($permalink)
                 ->setAuthorities($permalink);

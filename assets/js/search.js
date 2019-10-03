@@ -19,7 +19,7 @@ $(document)
         if ( $this.hasClass('btn-see-more--more') ) {
             $this
                 .text('Voir moins')
-                .removeClass('btn-see-mPermalienore--more')
+                .removeClass('btn-see-more--more')
                 .addClass('btn-see-more--less');
         } else {
             $this
