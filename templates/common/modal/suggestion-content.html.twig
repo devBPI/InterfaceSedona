@@ -1,0 +1,41 @@
+
+<!-- Début - Modal 08 suggestion d'achats -->
+
+<form class="modal-form" method="post" novalidate="novalidate" action="{{ path('suggest_by_mail') }}" data-toggle="form-remote">
+	<div class="modal-header">
+		<h1 class="n1 modal-header__title" id="modal-suggest-title">{{ 'modal.suggestion.title'|trans }}</h1>
+		<button class="close" type="button" aria-label="{{ 'global.modal-close'|trans }}" data-dismiss="modal">
+			<span aria-hidden="true" class="sr-only">X</span>
+			<img src="{{ asset('images/icones/icone-croix-blanc.svg') }}" alt="" />
+		</button>
+	</div>
+	{% if form.vars.errors|length > 0 %}
+		<div class="modal-body">
+			{{ form_errors(form) }}
+		</div>
+	{% endif %}
+	<div class="modal-body">
+		<small class="modal-form__indication"><span>*</span> {{ 'global.form-mandatory-field'|trans }}</small>
+		{{ form_row(form.title,{ 'label': 'modal.suggestion.field.title'|trans }) }}
+		{{ form_row(form.author,{ 'label': 'modal.suggestion.field.author'|trans }) }}
+		{{ form_row(form.editor, { 'label': 'modal.suggestion.field.editor'|trans }) }}
+		{{ form_row(form.documentType,{ 'label': 'modal.suggestion.field.document-type'|trans }) }}
+	</div>
+
+	<div class="modal-body">
+
+		<h2 class="n1">{{ 'modal.suggestion.subtitle'|trans }}</h2>
+		{{ form_row(form.lastName,{ 'label': 'modal.suggestion.field.last-name'|trans }) }}
+		{{ form_row(form.firstName,{ 'label': 'modal.suggestion.field.first-name'|trans }) }}
+		{{ form_row(form.email,{ 'label': 'modal.suggestion.field.email'|trans }) }}
+		<div>
+			<i>*Insert captcha*</i>
+		</div>
+	</div>
+
+	<div class="modal-footer">
+		<button type="button" data-dismiss="modal" class="btn btn-lg btn-secondary">{{ 'global.modal-cancel'|trans }}</button>
+		<button type="submit" class="btn btn-lg btn-primary">{{ 'modal.suggestion.submit'|trans }}<span class="sr-only"> {{ 'modal.suggestion.submit-sr-only'|trans }}</span></button>
+	</div>
+</form>
+<!-- Fin - Modal 08 suggestion d'achats -->

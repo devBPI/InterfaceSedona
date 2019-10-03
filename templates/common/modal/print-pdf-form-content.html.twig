@@ -1,0 +1,24 @@
+<form class="modal-form" method="get" action="{{ printRoute }}">
+	<div class="modal-header">
+		<h1 class="n1 modal-header__title" id="modal-print-title">{{ 'modal.print.title'|trans }}</h1>
+		<button class="close" type="button" aria-label="{{ 'global.modal-close'|trans }}" data-dismiss="modal">
+			<span aria-hidden="true" class="sr-only">X</span>
+			<img src="{{ asset('images/icones/icone-croix-blanc.svg') }}" alt="" />
+		</button>
+	</div>
+
+	<div class="modal-body">
+        {{ form_row(form.shortType) }}
+        {{ form_row(form.image,{ 'label':  'modal.export.field.img'|trans  }) }}
+
+		<div>
+			<i>*Insert captcha*</i>
+		</div>
+	</div>
+
+
+	<div class="modal-footer">
+		<button type="button" data-dismiss="modal" class="btn btn-lg btn-secondary">{{ 'global.modal-cancel'|trans }}</button>
+		<button type="submit" class="btn btn-lg btn-primary">{{ 'modal.print.submit'|trans }}</button>
+	</div>
+</form>

@@ -20,6 +20,7 @@ class Notice implements NoticeInterface
     public const ON_LIGNE = 'en ligne';
     public const ON_SHELF = 'en rayon';
 
+
     use NoticeMappedTrait, NoticeTrait;
     /**
      * @var array|Value[]

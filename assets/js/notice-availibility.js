@@ -70,7 +70,6 @@ $(document).on('click', '.js-notice-available', function (event) {
 
     let formValue = form.find("input");
 
-    $('#modal-notified').closest('.modal').off('hide.bs.modal');
 
     if(!validateMailForm(formValue.val())){
         form.find('.error-message').show();
@@ -106,7 +105,8 @@ $(document).on('click', '.js-notice-available', function (event) {
             $('.error-message').show();
         }
     });
-    $('#modal-notified').hide();
+
+    //$('#modal-notified').hide();
 
 });
 
@@ -114,4 +114,3 @@ $(document).on('click', '.js-envelope', function (event) {
     let url = $(this).data('url');
     $('#form-availability').attr('action', url);
 });
-console.log('toto');

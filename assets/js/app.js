@@ -21,6 +21,7 @@ const routes = require('../../public/js/fos_js_routes.json');
 
 import Routing from '../../vendor/friendsofsymfony/jsrouting-bundle/Resources/public/js/router.min.js';
 
+
 Routing.setRoutingData(routes);
 
 $('[data-toggle="tooltip"]').tooltip({
@@ -43,15 +44,25 @@ $('.dropdown-link .nav-link').on('focus', function() {
 });
 
 
-$(document).on('click', '#print-action', function () {
+$(document).on('click', '.js-print-action', function () {
     let permalinkAuthority = $('.js-authority:checked');
     let permalinkNotice = $('.js-notice:checked');
-    console.log(permalinkNotice.serialize())
+
 
     $('.js-print-authorities').val(permalinkAuthority.serialize());
     $('.js-print-notices').val(permalinkNotice.serialize())
 
 });
+
+$(document).on('click', '.js-export-form', function(e){
+    let self = this;
+    let permalinkAuthority = $('.js-authority:checked');
+    let permalinkNotice = $('.js-notice:checked');
+    $('.js-print-authorities').val(permalinkAuthority.serialize());
+    $('.js-print-notices').val(permalinkNotice.serialize());
+
+});
+
 
 /**
  *
@@ -76,3 +87,38 @@ $(document).on('click', '.js-5-indices-around', function (event) {
             }
         });
 });
+
+/**
+ *
+ * @param element
+ */
+let copyToClipboard = function (element) {
+    let $input = $("<input>");
+    $input
+        .css(
+            {
+                'position': 'fixed',
+                'top':'0',
+                'left':'0',
+                'width':'2em',
+                'height':'2em',
+                'padding':'0',
+                'border':'none',
+                'outline':'none',
+                'boxShadow':'none',
+                'background':'transparent',
+            }
+        );
+
+    $('body').append($input);
+    $input.val(element).select();
+
+    document.execCommand("copy");
+
+    $input.remove();
+};
+
+$(document).on('click', '.js-copy_to_clipboard', function (e) {
+    let url =  $('.js-url-to-copy').val();
+    copyToClipboard(url);
+}).css( 'cursor', 'pointer' );

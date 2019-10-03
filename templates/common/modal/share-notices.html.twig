@@ -1,0 +1,30 @@
+<form class="modal-form" method="post" novalidate="novalidate" action="{{ action_route }}" data-toggle="form-remote">
+	<div class="modal-header">
+		<h1 class="n1 modal-header__title" id="modal-export-title">{{ 'modal.export.title'|trans }}</h1>
+		<button class="close" type="button" aria-label="{{ 'global.modal-close'|trans }}" data-dismiss="modal">
+			<span aria-hidden="true" class="sr-only">X</span>
+			<img src="{{ asset('images/icones/icone-croix-blanc.svg') }}" alt="" />
+		</button>
+	</div>
+
+	<div class="modal-body">
+		<h2 class="n2">{{ 'modal.export.subtitle'|trans }}</h2>
+		<small class="modal-form__indication"><span>*</span> {{ 'global.form-mandatory-field'|trans }}</small>
+		{{ form_row(form.reciever,{ 'label':  'modal.share.field.recipient'|trans }) }}
+        {{ form_row(form.message,{ 'label':   'modal.export.field.comments'|trans  }) }}
+        {{ form_row(form.shortFormat) }}
+        {{ form_row(form.formatType) }}
+        {{ form_row(form.image,{ 'label':  'modal.export.field.img'|trans  }) }}
+        {{ form_row(form.notices) }}
+        {{ form_row(form.authorities) }}
+		<div>
+			<i>*Insert captcha*</i>
+		</div>
+
+	</div>
+
+	<div class="modal-footer">
+		<button type="button" data-dismiss="modal" class="btn btn-lg btn-secondary">{{ 'global.modal-cancel'|trans }}</button>
+		<button type="submit" class="js-export-form btn btn-lg btn-primary">{{ 'modal.export.submit'|trans }}</button>
+	</div>
+</form>

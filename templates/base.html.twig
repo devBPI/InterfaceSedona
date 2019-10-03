@@ -4,6 +4,8 @@
 		<meta charset="UTF-8">
 		<title>{% block title %}Titre{% endblock %} {{ 'global.site-title'|trans }}</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<!-- Go to www.addthis.com/dashboard to customize your tools -->
+
         {% block stylesheets %}
 			{% if app.environment != 'test' %}
             	{{ encore_entry_link_tags('app') }}
@@ -11,8 +13,9 @@
         {% endblock %}
 	</head>
 	<body>
-		
-		<div id="menu-evitement" class="menu-evitement">
+
+	<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5d8e40891e23b4a0"></script>
+	<div id="menu-evitement" class="menu-evitement">
 			{% include "header/navbar-evitement.html.twig" %}
 		</div>
 		
@@ -63,7 +66,6 @@
 				{% block search %}{% include "common/search.html.twig" %}{% endblock %}
 				{% block searchextended %}{% endblock %}
 				{% include "common/toolbar.html.twig" %}
-
 
 				{% block body %}{% endblock %}
 			</div>

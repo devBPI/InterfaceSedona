@@ -1,3 +1,5 @@
+import * as util from './notice-availibility.js'
+
 // Ajout boutton "Voir plus" suivant nombres d'informations - Notice Bibliographique ---------------------------------------------------------
 $('.js-list-information ul.list-information__sub-list').each( function() {
     var $list = $(this),
@@ -17,7 +19,7 @@ $(document)
         if ( $this.hasClass('btn-see-more--more') ) {
             $this
                 .text('Voir moins')
-                .removeClass('btn-see-more--more')
+                .removeClass('btn-see-mPermalienore--more')
                 .addClass('btn-see-more--less');
         } else {
             $this
