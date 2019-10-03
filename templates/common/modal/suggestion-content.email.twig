@@ -1,0 +1,19 @@
+{% block subject %}
+    {{ data.title }}
+{% endblock %}
+
+{% block body_html %}
+
+    Auteur             : {{ data.author }}
+    Titre              : {{ data.title }}
+    Editeur            : {{ data.editor }}
+    Type de document   : {{ data.documentType }}
+    E-mail             : {{ data.email }}
+    Nom                : {{ data.lastName }}
+    Prenom             : {{ data.firstName }}
+
+{% endblock %}
+
+{% block body_text %}
+{% endblock %}
+

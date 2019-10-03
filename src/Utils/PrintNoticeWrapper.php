@@ -37,6 +37,21 @@ class PrintNoticeWrapper
     private $noticeIndice=[];
 
     /**
+     * PrintNoticeWrapper constructor.
+     * @param array $noticeOnline
+     * @param array $noticeAuthority
+     * @param array $noticeOnShelves
+     * @param array $noticeIndice
+     */
+    public function __construct(array $noticeOnline, array $noticeAuthority, array $noticeOnShelves, array $noticeIndice)
+    {
+        $this->noticeOnline = $noticeOnline;
+        $this->noticeAuthority = $noticeAuthority;
+        $this->noticeOnShelves = $noticeOnShelves;
+        $this->noticeIndice = $noticeIndice;
+    }
+
+    /**
      * @return array
      */
     public function getNoticeOnline(): array
@@ -68,45 +83,7 @@ class PrintNoticeWrapper
         return $this->noticeIndice;
     }
 
-    /**
-     * @param $array
-     * @param NoticeProvider $noticeProvider
-     * @param NoticeAuthorityProvider $provider
-     * @return PrintNoticeWraper
-     */
-    public function __invoke($array, NoticeProvider $noticeProvider, NoticeAuthorityProvider $provider):PrintNoticeWrapper
-    {
 
-        if (array_key_exists('onshelves', $array)){
-            foreach ($array['onshelves'] as $value){
-                if (($notice=$noticeProvider->getNotice($value)->getNotice()) instanceof Notice) {
-                    $this->noticeOnShelves[] = $notice;
-                }
-            }
-        }        
-        if (array_key_exists('online', $array)){
-            foreach ($array['online'] as $value){
-                if (($notice=$noticeProvider->getNotice($value)->getNotice()) instanceof Notice){
-                    $this->noticeOnline[] = $notice;
-                }
-            }
-        }        
-        if (array_key_exists('authority', $array)){
-            foreach ($array['authority'] as $value){
-                if (($notice=$provider->getAuthority($value)) instanceof Authority) {
-                    $this->noticeAuthority[] = $notice;
-                }
-            }
-        }        
-        if (array_key_exists('indice', $array)){
-            foreach ($array['indice'] as $value){
-                if (($notice=$provider->getIndiceCdu($value)) instanceof IndiceCdu){
-                    $this->noticeIndice[] =$notice;
-                }
-            }
-        }
 
-        return $this;
 
-    }
 }

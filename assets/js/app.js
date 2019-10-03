@@ -21,6 +21,7 @@ const routes = require('../../public/js/fos_js_routes.json');
 
 import Routing from '../../vendor/friendsofsymfony/jsrouting-bundle/Resources/public/js/router.min.js';
 
+
 Routing.setRoutingData(routes);
 
 $('[data-toggle="tooltip"]').tooltip({
@@ -34,15 +35,7 @@ $('input').iCheck({
     focusClass: 'focus'
 });
 
-// $('#modal-refine-search').on('show.bs.modal', function (e) {
-//     var sliderDate = new Slider('#rfn-date-slider', {
-//         min: 1900,
-//         max: 2010,
-//         step: 5,
-//         value: [1945,1980],
-//         handle: 'square'
-//     });
-// })
+
 
 // Gestion navigation focus - Menu principal ---------------------------------------------------------
 $('.dropdown-link .nav-link').on('focus', function() {
@@ -50,13 +43,81 @@ $('.dropdown-link .nav-link').on('focus', function() {
     $(this).siblings('.dropdown-menu').addClass('show');
 });
 
-$(document).on('click', '#print-action', function () {
-    let permalinkAuthority = $('.js-authority:checked');
 
+$(document).on('click', '.js-print-action', function () {
+    let permalinkAuthority = $('.js-authority:checked');
     let permalinkNotice = $('.js-notice:checked');
-    console.log(permalinkNotice.serialize())
+
 
     $('.js-print-authorities').val(permalinkAuthority.serialize());
     $('.js-print-notices').val(permalinkNotice.serialize())
 
 });
+
+$(document).on('click', '.js-export-form', function(e){
+    let permalinkAuthority = $('.js-authority:checked');
+    let permalinkNotice = $('.js-notice:checked');
+    $('.js-print-authorities').val(permalinkAuthority.serialize());
+    $('.js-print-notices').val(permalinkNotice.serialize());
+
+});
+
+
+/**
+ *
+ */
+$(document).on('click', '.js-5-indices-around', function (event) {
+    let $this = $(this);
+    let url = $this.data('url');
+    /**
+     * send the form
+     */
+    $.ajax({
+        url: url,
+        type:"POST",
+        beforeSend: function() {
+            // put a spinner
+        },
+        success: function(response) {
+            $('#around-index-wrapper').html(response.html);
+        },
+        error: function (response) {
+                // put an error message here
+            }
+        });
+});
+
+/**
+ *
+ * @param element
+ */
+let copyToClipboard = function (element) {
+    let $input = $("<input>");
+    $input
+        .css(
+            {
+                'position': 'fixed',
+                'top':'0',
+                'left':'0',
+                'width':'2em',
+                'height':'2em',
+                'padding':'0',
+                'border':'none',
+                'outline':'none',
+                'boxShadow':'none',
+                'background':'transparent',
+            }
+        );
+
+    $('body').append($input);
+    $input.val(element).select();
+
+    document.execCommand("copy");
+
+    $input.remove();
+};
+
+$(document).on('click', '.js-copy_to_clipboard', function (e) {
+    let url =  $('.js-url-to-copy').val();
+    copyToClipboard(url);
+}).css( 'cursor', 'pointer' );

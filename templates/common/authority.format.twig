@@ -1,8 +1,8 @@
 {% if sameInstance(notice,'App\\Model\\Authority', format) %}
-    {{ pdf_occurence (element, 'getName', '', format) | raw }}
+    {{ pdf_occurence (notice, 'getName', '', format) | raw }}
 {% endif %}
 {% if sameInstance(notice,'App\\Model\\Authority', format) %}
-    {{ pdf_occurence (element, 'getType', "Type d'autorité", format) | raw }}
+    {{ pdf_occurence (notice, 'getType', "Type d'autorité", format) | raw }}
 {% else %}
     {% if format =='pdf' %}
         <li>
@@ -14,11 +14,11 @@
 
 {% endif %}
 {% if sameInstance(notice,'App\\Model\\IndiceCdu') %}
-    {{ pdf_occurence (element, 'getCote',notice.name, format) | raw }}
+    {{ pdf_occurence (notice, 'getCote',notice.name, format) | raw }}
 {% endif %}
 
 {% if sameInstance(notice,'App\\Model\\Authority', format) and notice.otherNames  %}
-	{{ pdf_occurence (element, 'getOtherNames', 'Autre(s) nom(s) ', format) | raw }}
+	{{ pdf_occurence (notice, 'getOtherNames', 'Autre(s) nom(s) ', format) | raw }}
     {% if not isPrintLong and notice.dates  is not null %}
         {% if format =='pdf' %}<li>{% endif %}
         Date(s) :
@@ -28,24 +28,24 @@
         {% endfor%}
         {% if format =='pdf' %}<li>{% endif %}
     {% endif %}
-    {{ pdf_occurence (element, 'getFormParalella', '', format) | raw }}
-    {{ pdf_occurence (element, 'getMusicalKinds', 'Genre musical', format) | raw }}
+    {{ pdf_occurence (notice, 'getFormParalella', '', format) | raw }}
+    {{ pdf_occurence (notice, 'getMusicalKinds', 'Genre musical', format) | raw }}
 {% endif %}
-    {{ pdf_occurence (element, 'getCountries', 'Pays', format) | raw }}
-    {{ pdf_occurence (element, 'getLanguages', 'Langue(s)', format) | raw }}
-    {{ pdf_occurence (element, 'getBirthDate', 'Date(s)', format) | raw }}
-    {{ pdf_occurence (element, 'getBirthLocation', 'Naissance', format) | raw }}
-    {{ pdf_occurence (element, 'getDeathDate', 'Mort', format) | raw }}
-    {{ pdf_occurence (element, 'getDeathLocation', '', format) | raw }}
-    {{ pdf_occurence (element, 'getPrincipalActivities', 'Activité(s) principale(s)', format) | raw }}
+    {{ pdf_occurence (notice, 'getCountries', 'Pays', format) | raw }}
+    {{ pdf_occurence (notice, 'getLanguages', 'Langue(s)', format) | raw }}
+    {{ pdf_occurence (notice, 'getBirthDate', 'Date(s)', format) | raw }}
+    {{ pdf_occurence (notice, 'getBirthLocation', 'Naissance', format) | raw }}
+    {{ pdf_occurence (notice, 'getDeathDate', 'Mort', format) | raw }}
+    {{ pdf_occurence (notice, 'getDeathLocation', '', format) | raw }}
+    {{ pdf_occurence (notice, 'getPrincipalActivities', 'Activité(s) principale(s)', format) | raw }}
 {% if sameInstance(notice,'App\\Model\\Authority', format) and notice.otherNames  %}
-    {{ pdf_occurence (element, 'getNotes', 'Notes', format) | raw }}
-    {{ pdf_occurence (element, 'getOtherNames', 'Autre(s) nom(s)', format) | raw }}
-    {{ pdf_occurence (element, 'getEmployedFor', 'Employé pour', format) | raw }}
-    {{ pdf_occurence (element, 'getAssocietedForm', 'Nom(s) associé(s) / Nom(s) lié(s)', format) | raw }}
-    {{ pdf_occurence (element, 'getClassifiedNote', 'Notes sur le classement', format) | raw }}
-    {{ pdf_occurence (element, 'getIsni', 'ISNI', format) | raw }}
-    {{ pdf_occurence (element, 'getOrigins', 'Origine de la notice', format) | raw }}
+    {{ pdf_occurence (notice, 'getNotes', 'Notes', format) | raw }}
+    {{ pdf_occurence (notice, 'getOtherNames', 'Autre(s) nom(s)', format) | raw }}
+    {{ pdf_occurence (notice, 'getEmployedFor', 'Employé pour', format) | raw }}
+    {{ pdf_occurence (notice, 'getAssocietedForm', 'Nom(s) associé(s) / Nom(s) lié(s)', format) | raw }}
+    {{ pdf_occurence (notice, 'getClassifiedNote', 'Notes sur le classement', format) | raw }}
+    {{ pdf_occurence (notice, 'getIsni', 'ISNI', format) | raw }}
+    {{ pdf_occurence (notice, 'getOrigins', 'Origine de la notice', format) | raw }}
 {% endif %}
 {% if format == 'pdf' %}
     <li>

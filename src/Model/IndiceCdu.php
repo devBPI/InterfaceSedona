@@ -5,13 +5,14 @@ namespace App\Model;
 use App\Model\Interfaces\AuthorityInterface;
 use App\Model\Interfaces\NoticeInterface;
 use JMS\Serializer\Annotation as JMS;
-
+use App\Model\Traits\OriginTrait;
 /**
  * Class IndiceCdu
  * @package App\Model
  */
 class IndiceCdu  extends Cdu implements AuthorityInterface, NoticeInterface
 {
+    use OriginTrait;
     /**
      * @var string
      * @JMS\Type("string")
@@ -25,6 +26,21 @@ class IndiceCdu  extends Cdu implements AuthorityInterface, NoticeInterface
      * @JMS\SerializedName("id")
      */
     private $id;
+
+    /**
+     *
+     * @JMS\Type("App\Model\AroundIndex")
+     * @JMS\SerializedName("around-indexes-list")
+     */
+    private $aroundIndex;
+
+    /**
+     * @return AroundIndex
+     */
+    public function getAroundIndex(): AroundIndex
+    {
+        return $this->aroundIndex;
+    }
 
     /**
      * @return int|null
@@ -64,7 +80,5 @@ class IndiceCdu  extends Cdu implements AuthorityInterface, NoticeInterface
     {
         return $this->getName();
     }
-
-
 }
 
