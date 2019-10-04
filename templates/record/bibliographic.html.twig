@@ -16,10 +16,10 @@
 				<div class="carousel__header">
 					<h2 class="n1">{{ ('bloc.list-related-documents.carousel-'~object.notice.type)|trans }}</h2>
 					<div>
-						<a href="#" class="link link--icone-end">
+						<a href="{{ path('search', {'mot':notice.indice, 'type':constant('App\\WordsList::INDICE_COTE_WORD')}) }}" class="link link--icone-end">
 							{{ "bloc.list-related-documents.see-more"|trans }}
 							<span class="sr-only">{{ "bloc.list-related-documents.see-more-sr-only"|trans }} </span>
-							<span>(*Insert number*)</span>
+							<span>({{ object.results}})</span>
 							<img src="{{ asset('images/icones/icone-chevron-gauche.svg') }}" alt="" class="icone-chevron-right"/>
 						</a>
 					</div>

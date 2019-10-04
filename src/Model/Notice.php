@@ -30,7 +30,6 @@ class Notice implements NoticeInterface
      */
     private $collectionSeries;
 
-
     /**
      * @var array
      * @JMS\Type("array<string>")
@@ -370,7 +369,6 @@ class Notice implements NoticeInterface
      * @var string
      * @JMS\Type("string")
      * @JMS\SerializedName("table-des-matieres")
-
      */
     private $contentsTable;
 
@@ -381,6 +379,7 @@ class Notice implements NoticeInterface
      * @JMS\SerializedName("isni")
      */
     private $isni;
+
 
 
     /**
@@ -465,7 +464,21 @@ class Notice implements NoticeInterface
      * @JMS\XmlList("exemplaire")
      */
     private $copies;
+    /**
+     * @var Link[]|array
+     * @JMS\Type("array<App\Model\Link>")
+     * @JMS\SerializedName("liens")
+     * @JMS\XmlList("lien")
+     */
+    private $links;
 
+    /**
+     * @return Link[]|array
+     */
+    public function getLinks()
+    {
+        return $this->links;
+    }
     /**
      * @var string
      * @JMS\Exclude()
@@ -500,6 +513,18 @@ class Notice implements NoticeInterface
     public function getTopics(): array
     {
         return $this->topics;
+    }
+    /**
+     * @return string|null
+     */
+    public function getTopic(): string
+    {
+        $payload = '';
+        if (count($this->topics) > 0){
+            $payload = $this->topics[0];
+        }
+
+        return $payload;
     }
 
     /**
@@ -865,6 +890,15 @@ class Notice implements NoticeInterface
     /**
      * @return null|string
      */
+    public function getIndice(): string
+    {
+        return count($this->indices)>0?($this->indices[0])->getCote():'';
+    }
+
+
+    /**
+     * @return null|string
+     */
     public function getConfigurationName(): ?string
     {
         return $this->configurationName;
@@ -1107,5 +1141,7 @@ class Notice implements NoticeInterface
     {
         return $this->category;
     }
+
+
 }
 
