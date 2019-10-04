@@ -30,7 +30,6 @@ class Notice implements NoticeInterface
      */
     private $collectionSeries;
 
-
     /**
      * @var array
      * @JMS\Type("array<string>")
@@ -465,7 +464,21 @@ class Notice implements NoticeInterface
      * @JMS\XmlList("exemplaire")
      */
     private $copies;
+    /**
+     * @var Link[]|array
+     * @JMS\Type("array<App\Model\Link>")
+     * @JMS\SerializedName("liens")
+     * @JMS\XmlList("lien")
+     */
+    private $links;
 
+    /**
+     * @return Link[]|array
+     */
+    public function getLinks()
+    {
+        return $this->links;
+    }
     /**
      * @var string
      * @JMS\Exclude()

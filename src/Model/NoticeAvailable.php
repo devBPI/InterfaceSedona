@@ -11,6 +11,8 @@ use JMS\Serializer\Annotation as JMS;
 class NoticeAvailable
 {
     private const LABEL_AVAILABLE = 'Disponible';
+    const AVAILABLE = 'Disponible';
+    const UNAVAILABLE = 'Indisponible';
 
     /**
      * @var string
@@ -161,7 +163,7 @@ class NoticeAvailable
      */
     public function getCote(): ?string
     {
-        return $this->cote;
+        return $this->cote??$this->getCallNum();
     }
 
 }
