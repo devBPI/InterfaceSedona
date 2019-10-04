@@ -6,7 +6,7 @@
          data-count="{{ objSearch.keywords|length > 0 ? objSearch.keywords|length : 1 }}">
 
         {% from 'search/blocs-advanced-search/macros.html.twig' import display_keyword_form %}
-        {{ display_keyword_form(objSearch.keywords|default([1])) }}
+        {{ display_keyword_form(objSearch.keywords|default({'': {'': ''}})) }}
 
     </div>
     <div class="col-12 text-right">

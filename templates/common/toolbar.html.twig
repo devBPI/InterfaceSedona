@@ -80,7 +80,9 @@
 
 {% include "user/modal/list_add.html.twig" %}
 
-{% include "common/modal/export.html.twig" with {'toolbar': toolbar }%}
+{% if toolbar is defined %}
+	{% include "common/modal/export.html.twig" with {'toolbar': toolbar }%}
+{% endif %}
 
 {% if printRoute is defined %}{% include "common/modal/print.html.twig" %}{% endif %}
 
