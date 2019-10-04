@@ -369,7 +369,6 @@ class Notice implements NoticeInterface
      * @var string
      * @JMS\Type("string")
      * @JMS\SerializedName("table-des-matieres")
-
      */
     private $contentsTable;
 
@@ -380,6 +379,7 @@ class Notice implements NoticeInterface
      * @JMS\SerializedName("isni")
      */
     private $isni;
+
 
 
     /**
@@ -513,6 +513,18 @@ class Notice implements NoticeInterface
     public function getTopics(): array
     {
         return $this->topics;
+    }
+    /**
+     * @return string|null
+     */
+    public function getTopic(): string
+    {
+        $payload = '';
+        if (count($this->topics) > 0){
+            $payload = $this->topics[0];
+        }
+
+        return $payload;
     }
 
     /**
@@ -878,6 +890,15 @@ class Notice implements NoticeInterface
     /**
      * @return null|string
      */
+    public function getIndice(): string
+    {
+        return count($this->indices)>0?($this->indices[0])->getCote():'';
+    }
+
+
+    /**
+     * @return null|string
+     */
     public function getConfigurationName(): ?string
     {
         return $this->configurationName;
@@ -1120,5 +1141,7 @@ class Notice implements NoticeInterface
     {
         return $this->category;
     }
+
+
 }
 
