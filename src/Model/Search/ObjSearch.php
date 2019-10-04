@@ -164,5 +164,26 @@ final class ObjSearch
         return $this->searchQuery->getFacets()->getAttributes();
     }
 
+    /**
+     * @return array
+     */
+    public function getAdvancedCriteria(): array
+    {
+        if ($this->isSimpleMode()) {
+            return [];
+        }
 
+        $criteria = [];
+        foreach ($this->searchQuery->getCriteria()->getKeywordsTitles(true) as $field => $keyword) {
+            $criteria[$field] = $keyword;
+        }
+
+        foreach ($this->getSearchFilters() as $filters) {
+            foreach ($filters as $filter) {
+                $criteria[] = $filter;
+            }
+        }
+
+        return $criteria;
+    }
 }
