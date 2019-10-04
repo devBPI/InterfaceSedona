@@ -1,3 +1,4 @@
+{% import "common/notice-available-macro.html.twig" as macros %}
 <!-- Début - Bloc 16 Notice bibliographique -->
 <div class="col-12">
 	{% for title in notice.titles  %}
@@ -184,11 +185,12 @@
     {% endif %}
 
 	{# Pour les documents en rayon indispo #}
-	<div lang="fr" class="bibliographic-result__availability">
-		<div class="availability availability--false availability--rayon">
-			<p class="availability__status"><span>{{ 'bloc.notice-simple.document-unavailable'|trans }}</span> - En commande</p>
-		</div>
-	</div>
+	{% for available in notice.copies %}
+		{{ macros.availibility(available, notice)}}
+	{% endfor %}
+    {% for link in notice.links %}
+		{{ macros.availibility(link, notice) }}
+    {% endfor %}
 
 	{# Pour les documents en ligne consultable #}
 	<div lang="fr" class="bibliographic-result__availability">
@@ -204,5 +206,6 @@
 		</div>
 	</div>
 </div>
+{% include "search/modal/notified-form.html.twig" %}
 
 <!-- Fin - Bloc 16 Notice bibliographique -->
