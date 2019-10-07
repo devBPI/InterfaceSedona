@@ -59,19 +59,21 @@ class HomeController extends AbstractController
      */
     public function thematicAction(string $thematic): Response
     {
-        $attr = [
-            'title' => $thematic
-        ];
+        $carousel = null;
+
         try {
-            $attr['carousel'] = $this->carouselProvider->getListByThematic($thematic);
+            $carousel = $this->carouselProvider->getListByThematic($thematic);
         } catch (XmlErrorException $exception) {
         }
-
-        $thematic = $this->getDoctrine()->getRepository(Thematic::class)->findOneBy(['slug'=>$thematic]);
+        $object = $this->getDoctrine()->getRepository(Thematic::class)->findOneBy(['type'=>$thematic]);
 
         return $this->render(
             'home/thematic.html.twig',
-            $attr + ['thematic'=>$thematic]
+            [
+                'title' => $thematic,
+                'thematic' => $object,
+                'carousel' => $carousel,
+            ]
         );
     }
 }

@@ -22,11 +22,6 @@ class Thematic
 
     /**
      * @var string
-     * @ORM\Column(type="string", length=250)
-     */
-    private $slug;
-    /**
-     * @var string
      * @ORM\Column(type="string", length=250, nullable=false)
      */
     private $type;
@@ -118,12 +113,5 @@ class Thematic
         return $this->words;
     }
 
-    /**
-     * @return string
-     */
-    public function getSlug(): string
-    {
-        return $this->slug;
-    }
 }
 

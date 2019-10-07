@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20190925094708 extends AbstractMigration
+final class Version20190924154703 extends AbstractMigration
 {
     public function getDescription() : string
     {
@@ -21,12 +21,8 @@ final class Version20190925094708 extends AbstractMigration
     {
         // this up() migration is auto-generated, please modify it to your needs
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'postgresql', 'Migration can only be executed safely on \'postgresql\'.');
-
-        $this->addSql('ALTER TABLE thematic ADD type VARCHAR(250) NOT NULL');
-        $this->addSql('ALTER TABLE theme ADD url JSONB NOT NULL');
-        $this->addSql('COMMENT ON COLUMN theme.url IS \'(DC2Type:json_array)\'');
-
-
+        $this->addSql('ALTER TABLE search_history ALTER query_string TYPE TEXT');
+        $this->addSql('ALTER TABLE search_history ALTER query_string DROP DEFAULT');
     }
 
     public function down(Schema $schema) : void
@@ -34,6 +30,8 @@ final class Version20190925094708 extends AbstractMigration
         // this down() migration is auto-generated, please modify it to your needs
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'postgresql', 'Migration can only be executed safely on \'postgresql\'.');
 
-        $this->addSql('ALTER TABLE thematic DROP type');
+        $this->addSql('CREATE SCHEMA public');
+        $this->addSql('ALTER TABLE search_history ALTER query_string TYPE VARCHAR(250)');
+        $this->addSql('ALTER TABLE search_history ALTER query_string DROP DEFAULT');
     }
 }
