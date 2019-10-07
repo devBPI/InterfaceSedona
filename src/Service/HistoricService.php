@@ -8,6 +8,7 @@ use App\Entity\UserHistory;
 use App\Model\Exception\SearchHistoryException;
 use App\Model\LdapUser;
 use Doctrine\ORM\EntityManager;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 
@@ -25,18 +26,25 @@ final class HistoricService
      * @var TokenStorageInterface
      */
     private $tokenStorage;
+    /**
+     * @var SessionInterface
+     */
+    private $session;
 
     /**
      * HistoricService constructor.
      * @param EntityManager $entityManager
      * @param TokenStorageInterface $tokenStorage
+     * @param SessionInterface $session
      */
     public function __construct(
         EntityManager $entityManager,
-        TokenStorageInterface $tokenStorage
+        TokenStorageInterface $tokenStorage,
+        SessionInterface $session
     ) {
         $this->entityManager = $entityManager;
         $this->tokenStorage = $tokenStorage;
+        $this->session = $session;
     }
 
     /**
@@ -57,18 +65,13 @@ final class HistoricService
             $this->entityManager->persist($searchHistory);
         }
 
-        if (
-            $this->tokenStorage->getToken() instanceof TokenInterface &&
-            $this->tokenStorage->getToken()->getUser() instanceof LdapUser
-        ) {
-            $userHistory = $this->getUserHistory($searchHistory);
-            if ($userHistory instanceof UserHistory) {
-                $userHistory->incrementCount();
-            } else {
-                $userHistory = new UserHistory($searchHistory);
-                $userHistory->setUserUid($this->tokenStorage->getToken()->getUser()->getUid());
-                $this->entityManager->persist($userHistory);
-            }
+        $userHistory = $this->getUserHistoryOfSearchHistory($searchHistory);
+        if ($userHistory instanceof UserHistory) {
+            $userHistory->incrementCount();
+        } else {
+            $userHistory = new UserHistory($searchHistory);
+            $userHistory->setUserUid($this->getUserId());
+            $this->entityManager->persist($userHistory);
         }
 
         $this->entityManager->flush();
@@ -79,11 +82,24 @@ final class HistoricService
      * @param SearchHistory $searchHistory
      * @return UserHistory|null
      */
-    private function getUserHistory(SearchHistory $searchHistory): ?UserHistory
+    private function getUserHistoryOfSearchHistory(SearchHistory $searchHistory): ?UserHistory
     {
         return $this->entityManager->getRepository(UserHistory::class)->findOneBy(
-            ['Search' => $searchHistory, 'user_uid' => $this->tokenStorage->getToken()->getUser()->getUid()]
+            ['Search' => $searchHistory, 'user_uid' => $this->getUserId()]
         );
+    }
+
+    /**
+     * @return string
+     */
+    private function getUserId(): string
+    {
+        if ($this->tokenStorage->getToken() instanceof TokenInterface &&
+            $this->tokenStorage->getToken()->getUser() instanceof LdapUser) {
+            return $this->tokenStorage->getToken()->getUser()->getUid();
+        }
+
+        return $this->session->getId();
     }
 
     /**
@@ -91,16 +107,9 @@ final class HistoricService
      */
     public function getHistory(): array
     {
-        if (
-            $this->tokenStorage->getToken() instanceof TokenInterface &&
-            $this->tokenStorage->getToken()->getUser() instanceof LdapUser
-        ) {
-            return $this->entityManager->getRepository(UserHistory::class)->findBy(
-                ['user_uid' => $this->tokenStorage->getToken()->getUser()->getUid()]
-            );
-        }
-
-        return $this->entityManager->getRepository(UserHistory::class)->findAll();
+        return $this->entityManager->getRepository(UserHistory::class)->findBy(
+            ['user_uid' => $this->getUserId()]
+        );
     }
 
     /**
@@ -116,15 +125,23 @@ final class HistoricService
             throw new SearchHistoryException('No search for hash '.$hash);
         }
 
-        if (
-            $this->tokenStorage->getToken() instanceof TokenInterface &&
-            $this->tokenStorage->getToken()->getUser() instanceof LdapUser
-        ) {
-            $this->getUserHistory($searchHistory)->incrementCount();
-            $this->entityManager->flush();
-        }
+        $this->getUserHistoryOfSearchHistory($searchHistory)->incrementCount();
+        $this->entityManager->flush();
 
         return $searchHistory;
+    }
+
+    /**
+     * @param $action
+     * @param $listObj
+     * @throws \Doctrine\ORM\ORMException
+     * @throws \Doctrine\ORM\OptimisticLockException
+     */
+    public function applyAction($action, $listObj): void
+    {
+        if ($action === 'delete') {
+            $this->deleteHistories($listObj);
+        }
     }
 
     /**
@@ -139,18 +156,5 @@ final class HistoricService
         }
 
         $this->entityManager->flush();
-    }
-
-    /**
-     * @param $action
-     * @param $listObj
-     * @throws \Doctrine\ORM\ORMException
-     * @throws \Doctrine\ORM\OptimisticLockException
-     */
-    public function applyAction($action, $listObj): void
-    {
-        if ($action === 'delete') {
-            $this->deleteHistories($listObj);
-        }
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Repository;
 
+use App\Entity\UserSelectionDocument;
 use App\Entity\UserSelectionList;
 use Doctrine\DBAL\Connection;
 use Doctrine\ORM\EntityRepository;
@@ -38,5 +39,21 @@ class UserSelectionListRepository extends EntityRepository
             ->getQuery()
             ->setParameter('ids', $ids, Connection::PARAM_INT_ARRAY)
             ->getResult();
+    }
+
+    /**
+     * @param string $uid
+     * @return mixed
+     * @throws \Doctrine\ORM\NonUniqueResultException
+     */
+    public function getCountDocuments(string $uid): int
+    {
+        return $this->createQueryBuilder('list')
+            ->join(UserSelectionDocument::class, 'doc')
+            ->where('list.user_uid = :user')
+            ->select('count(doc.id)')
+            ->getQuery()
+            ->setParameter('user', $uid)
+            ->getSingleScalarResult();
     }
 }

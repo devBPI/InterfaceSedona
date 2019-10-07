@@ -7,12 +7,10 @@ use App\Controller\UserSelectionController;
 use App\Entity\UserSelectionDocument;
 use App\Entity\UserSelectionList;
 use App\Model\Exception\SelectionCategoryException;
-use App\Model\LdapUser;
 use Doctrine\ORM\EntityManager;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\RequestStack;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
-use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 
 /**
  * Class SelectionListService
@@ -20,14 +18,12 @@ use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
  */
 final class SelectionListService
 {
+    use AuthenticationTrait;
+
     /**
      * @var EntityManager
      */
     private $entityManager;
-    /**
-     * @var TokenStorageInterface
-     */
-    private $tokenStorage;
     /**
      * @var null|\Symfony\Component\HttpFoundation\Session\SessionInterface
      */
@@ -37,38 +33,16 @@ final class SelectionListService
      * SelectionListService constructor.
      * @param EntityManager $entityManager
      * @param TokenStorageInterface $tokenStorage
-     * @param RequestStack $requestStack
+     * @param SessionInterface $session
      */
     public function __construct(
         EntityManager $entityManager,
         TokenStorageInterface $tokenStorage,
-        RequestStack $requestStack
+        SessionInterface $session
     ) {
         $this->entityManager = $entityManager;
         $this->tokenStorage = $tokenStorage;
-        $this->session = $requestStack->getMasterRequest()->getSession();
-    }
-
-    /**
-     * @param array|null $ids
-     * @return array|UserSelectionList[]
-     */
-    public function getLists(array $ids = []): array
-    {
-        if (
-            $this->tokenStorage->getToken() instanceof TokenInterface &&
-            $this->tokenStorage->getToken()->getUser() instanceof LdapUser
-        ) {
-            $uid = $this->tokenStorage->getToken()->getUser()->getUid();
-        } else {
-            $uid = $this->session->getId();
-        }
-
-        if (count($ids) > 0) {
-            return $this->entityManager->getRepository(UserSelectionList::class)->findByIds($ids);
-        }
-
-        return $this->entityManager->getRepository(UserSelectionList::class)->findAllOrderedByPosition($uid);
+        $this->session = $session;
     }
 
     /**
@@ -155,13 +129,37 @@ final class SelectionListService
     }
 
     /**
+     * @param array|null $ids
+     * @return array|UserSelectionList[]
+     */
+    public function getLists(array $ids = []): array
+    {
+        if ($this->hasConnectedUser()) {
+            if (count($ids) > 0) {
+                return $this->entityManager->getRepository(UserSelectionList::class)->findByIds($ids);
+            }
+
+            return $this->entityManager->getRepository(UserSelectionList::class)->findAllOrderedByPosition(
+                $this->getUser()->getUid()
+            );
+        }
+
+        return array_map(
+            function ($document) {
+                return new UserSelectionDocument($document);
+            },
+            $this->session->get(UserSelectionController::SESSION_SELECTION_ID, [])
+        );
+    }
+
+    /**
      * @param string $title
      * @return UserSelectionList
      * @throws \Doctrine\ORM\ORMException
      */
     private function createList(string $title): UserSelectionList
     {
-        $list = new UserSelectionList($this->tokenStorage->getToken()->getUser(), $title, count($this->getLists()));
+        $list = new UserSelectionList($this->getUser(), $title, count($this->getLists()));
         $this->entityManager->persist($list);
 
         return $list;
@@ -278,11 +276,18 @@ final class SelectionListService
     }
 
     /**
-     * @param $lists
      * @return int
+     * @throws \Doctrine\ORM\NonUniqueResultException
      */
-    public function getCountSelectedDocs($lists): int
+    public function getCountDocuments(): int
     {
-        return $this->entityManager->getRepository(UserSelectionDocument::class)->count(['List' => $lists]);
+        if ($this->hasConnectedUser()) {
+            return $this->entityManager->getRepository(UserSelectionList::class)
+                ->getCountDocuments($this->getUser()->getUid());
+        }
+
+        return count($this->session->get(UserSelectionController::SESSION_SELECTION_ID));
     }
+
+
 }

@@ -125,16 +125,13 @@ class CatalogClient
         switch ($exception->getCode()) {
             case 403:
                 throw new AccessDeniedException('Access Denied', $exception);
-                break;
             case 404:
                 throw new NoResultException();
-                break;
             case 400:
             case 500:
             default:
                 $error_message = new ErrorApiResponse(json_decode($exception->getResponse()->getBody()->getContents()));
                 throw new ApiException($error_message->getMessage());
-                break;
         }
     }
 
@@ -146,10 +143,8 @@ class CatalogClient
         switch ($response->getStatusCode()) {
             case 403:
                 throw new AccessDeniedException('Access Denied');
-                break;
             case 404:
                 throw new NotFoundHttpException();
-                break;
             default:
                 break;
         }

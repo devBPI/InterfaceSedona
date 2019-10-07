@@ -1,4 +1,6 @@
 import * as util from './notice-availibility.js'
+import Routing from '../../vendor/friendsofsymfony/jsrouting-bundle/Resources/public/js/router.min.js';
+
 
 // Ajout boutton "Voir plus" suivant nombres d'informations - Notice Bibliographique ---------------------------------------------------------
 $('.js-list-information ul.list-information__sub-list').each( function() {
@@ -117,6 +119,18 @@ $(document)
                 card = card.innerHTML.replace(/__item__/gi, key);
                 $inputContainer.append(card);
             }
+        }
+
+        if (user_connected !== "1") {
+            let datas = $inputContainer.parents('form:first').serializeArray();
+
+            $.ajax({
+                method: "POST",
+                url: Routing.generate('user_selection_list_add_session'),
+                data: datas,
+            }).done(function (data) {
+                // stop the spinner
+            });
         }
     })
 ;

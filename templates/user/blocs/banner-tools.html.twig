@@ -25,7 +25,7 @@
 
 <div class="col-12 col-md-auto">
     <ul class="banner-tools__list mb-0">
-        {% if type == constant('App\\Controller\\UserSelectionController::INPUT_NAME') %}
+        {% if app.user and type == constant('App\\Controller\\UserSelectionController::INPUT_NAME') %}
             <li class="banner-tools__item banner-tools__item-add">
                 <button type="button" class="btn" data-href="#modal-list-add" data-toggle="disable-if-no-found-modal"
                         data-spy='[name="{{ constant('App\\Controller\\UserSelectionController::INPUT_NAME') }}[{{ constant('App\\Controller\\UserSelectionController::INPUT_DOCUMENT') }}][]"],[data-toggle="check-all"]'

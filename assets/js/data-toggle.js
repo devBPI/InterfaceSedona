@@ -216,7 +216,7 @@
                 newWidget = $prototype.data('prototype'),
                 widgetCount = $prototype.data('count');
 
-            if ($this.data('limit') != undefined && $prototype.children().length > $this.data('limit')) {
+            if ($this.data('limit') != undefined && $prototype.children().length >= $this.data('limit')) {
                 alert('Limite atteinte : '+$this.data('limit'));
                 return false;
             }
@@ -240,7 +240,7 @@
             if ($this.data('modal'))
                 $('#'+$this.data('modal')).modal('show');
 
-            if ($this.data('limit') != undefined && $prototype.children().length > $this.data('limit')) {
+            if ($this.data('limit') != undefined && $prototype.children().length >= $this.data('limit')) {
                 $this.attr('disabled', true);
             }
 

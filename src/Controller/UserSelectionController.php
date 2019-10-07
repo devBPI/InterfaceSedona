@@ -8,6 +8,7 @@ use App\Entity\UserSelectionDocument;
 use App\Service\SelectionListService;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -26,6 +27,8 @@ class UserSelectionController extends AbstractController
     const INPUT_LIST_TITLE = 'selection_list_title';
     const INPUT_DOCUMENT = 'document';
     const INPUT_DOC_COMMENT = 'selection_document_comment';
+
+    const SESSION_SELECTION_ID = 'selection_session';
 
     /**
      * @var SelectionListService
@@ -59,8 +62,7 @@ class UserSelectionController extends AbstractController
 
         $lists = $this->selectionService->getLists();
         return $this->render( 'user/selection.html.twig',[
-            'lists' => $lists,
-            'selectedDocs' => $this->selectionService->getCountSelectedDocs($lists)
+            'lists' => $lists
         ]);
     }
 
@@ -121,6 +123,22 @@ class UserSelectionController extends AbstractController
         ];
 
         return $this->render('user/modal/add-list-content.html.twig', $params);
+    }
+
+    /**
+     * @Route("/list/ajout-documents-en-session", methods={"POST"}, name="_list_add_session", options={"expose"=true})
+     * @param Request $request
+     * @return Response
+     */
+    public function addDocumentListInSessionAction(Request $request): Response
+    {
+        $list = array_merge(
+            $request->getSession()->get(self::SESSION_SELECTION_ID, []),
+            $request->get(self::INPUT_DOCUMENT, [])
+        );
+        $request->getSession()->set(self::SESSION_SELECTION_ID, $list);
+
+        return new JsonResponse();
     }
 
     /**
