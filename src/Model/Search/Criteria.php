@@ -23,6 +23,8 @@ class Criteria
     const FIELD_LABEL = 'field';
     const TEXT_LABEL = 'text';
 
+    const ADVANCED_KEYWORDS_LIMIT = 3;
+
 
     /**
      * @var string

@@ -11,7 +11,7 @@
     </div>
     <div class="col-12 text-right">
         <button type="button" class="btn search-keyword__button search-keyword__button--add"
-                data-toggle="collection-add" data-target=".search-keyword" data-limit="10">
+                data-toggle="collection-add" data-target=".search-keyword" data-limit="{{ constant('App\\Model\\Search\\Criteria::ADVANCED_KEYWORDS_LIMIT') }}">
             <span>{{ 'modal.advanced-search.keyword.add-ligne'|trans }}</span>
         </button>
     </div>
