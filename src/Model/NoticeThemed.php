@@ -25,9 +25,15 @@ class NoticeThemed
      * @var Notice
      *
      * @JMS\Type("App\Model\Notice")
-     *
      */
     private $notice;
+    /**
+     * @var array
+     * @JMS\Type("array<int>")
+     * @JMS\SerializedName("notices-same-theme")
+     * @JMS\XmlList(entry="results")
+     */
+    private $results;
 
     /**
      * @return Notices
@@ -43,6 +49,14 @@ class NoticeThemed
     public function getNotice(): Notice
     {
         return $this->notice;
+    }
+
+    /**
+     * @return int
+     */
+    public function getResults():int
+    {
+        return count($this->results)>0?$this->results[0]:0;
     }
 
 }

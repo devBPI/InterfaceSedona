@@ -3,10 +3,16 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
+use App\Form\ExportNoticeType;
+use App\Model\Authority;
+use App\Model\From\ExportNotice;
+use App\Model\IndiceCdu;
 use App\Model\Notice;
 use App\Model\RankedAuthority;
 use App\Model\Search\SearchQuery;
+use App\Service\MailSenderService;
 use App\Service\NavigationService;
+use App\Service\NoticeBuildFileService;
 use App\Service\Provider\NoticeAuthorityProvider;
 use App\Service\Provider\NoticeProvider;
 use App\Service\Provider\SearchProvider;
@@ -14,6 +20,8 @@ use JMS\Serializer\Serializer;
 use JMS\Serializer\SerializerInterface;
 use Knp\Bundle\SnappyBundle\Snappy\Response\PdfResponse;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Form\FormError;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
@@ -42,6 +50,10 @@ class RecordController extends AbstractController
      * @var SearchProvider
      */
     private $searchProvider;
+    /**
+     * @var NoticeBuildFileService
+     */
+    private $buildFileContent;
 
     /**
      * RecordController constructor.
@@ -49,18 +61,23 @@ class RecordController extends AbstractController
      * @param NoticeAuthorityProvider $noticeAuhtority
      * @param SerializerInterface $serializer
      * @param SearchProvider $searchProvider
+     * @param NoticeBuildFileService $service
      */
     public function __construct(
         NoticeProvider $noticeProvider,
         NoticeAuthorityProvider $noticeAuhtority,
         SerializerInterface $serializer,
-        SearchProvider $searchProvider
+        SearchProvider $searchProvider,
+        NoticeBuildFileService $service
     ) {
         $this->noticeProvider = $noticeProvider;
         $this->noticeAuhtority = $noticeAuhtority;
         $this->serializer = $serializer;
         $this->searchProvider = $searchProvider;
+        $this->buildFileContent = $service;
+
     }
+
 
     /**
      * @Route("/notice-bibliographique/{permalink}", methods={"GET","HEAD"}, name="record_bibliographic", requirements={"permalink"=".+"})
@@ -75,6 +92,7 @@ class RecordController extends AbstractController
     public function bibliographicRecordAction(Request $request, string $permalink, SessionInterface $session)
     {
         $searchToken = $request->get('searchToken');
+
         $object = $this->noticeProvider->getNotice($permalink);
         $navigation = null;
 
@@ -85,51 +103,40 @@ class RecordController extends AbstractController
                     $permalink,
                     $this->serializer->deserialize($session->get($searchToken), SearchQuery::class, 'json'),
                     $searchToken,
-                    $object->getNotice()->isOnLigne() ? Notice::ON_LIGNE : Notice::ON_SHELF
+                    $object->getNotice()->isOnLine() ? Notice::ON_LIGNE : Notice::ON_SHELF
                 );
         }
-
         return $this->render('record/bibliographic.html.twig', [
             'object'            => $object,
             'notice'            => $object->getNotice(),
-            'toolbar'           => 'document',
+            'toolbar'           => Notice::class,
             'navigation'        => $navigation,
-            'printRoute'        => $this->generateUrl('record_bibliographic_pdf',['format'=> 'pdf'])
+            'printRoute'        => $this->generateUrl('record_bibliographic_pdf',['permalink'=> $object->getNotice()->getPermalink() ,'format'=> 'pdf'])
         ]);
     }
 
     /**
-     * @Route("/print/notice-bibliographique.{format}", methods={"GET","HEAD"}, name="record_bibliographic_pdf", requirements={"format" = "html|pdf|txt"}, defaults={"format" = "pdf"})
+     * @Route("/print/notice-bibliographique.{format}/{permalink}", methods={"GET","HEAD"}, name="record_bibliographic_pdf", requirements={"permalink"=".+", "format"="html|pdf|txt"}, defaults={"format" = "pdf"})
      * @param Request $request
      * @param \Knp\Snappy\Pdf $knpSnappy
      * @param string $format
      * @return PdfResponse|Response
+     * @throws \Twig\Error\LoaderError
+     * @throws \Twig\Error\RuntimeError
+     * @throws \Twig\Error\SyntaxError
      */
-    public function bibliographicRecordPDFAction(Request $request, \Knp\Snappy\Pdf $knpSnappy, $format = "pdf")
+    public function bibliographicRecordPDFAction(Request $request, \Knp\Snappy\Pdf $knpSnappy,$format='pdf')
     {
-        $object = $this->noticeProvider->getNotice($request->get('permalink'));
+        $sendAttachement = new ExportNotice();
 
-        $content = $this->renderView("record/bibliographic.".($format == 'txt' ? 'txt': 'pdf').".twig", [
-            'isPrintLong'   => $request->get('print-type', 'print-long') == 'print-long',
-            'includeImage'  => $request->get('print-image', null) == 'print-image',
-            'notice' => $object->getNotice(),
-            'noticeThemed' => $object->getNoticesSameTheme(),
-        ]);
-        $filename = 'bibliographic'.date('Y-m-d_h-i-s');
+        $sendAttachement
+            ->setNotices($request->get('permalink'))
+            ->setImage($request->get('print-image', null) === 'print-image')
+            ->setFormatType($format)
+            ->setShortFormat($request->get('print-type', 'print-long') !== 'print-long')
+        ;
 
-        if ($format == 'txt') {
-            return new Response($content,200,[
-                'Content-Type' => 'application/force-download',
-                'Content-Disposition' => 'attachment; filename="'.$filename.'.txt"'
-            ]);
-        } elseif ($format == 'html') {
-            return new Response($content);
-        }
-
-        return new PdfResponse(
-            $knpSnappy->getOutputFromHtml($content),
-            $filename.".pdf"
-        );
+        return  $this->buildFileContent->buildFile($sendAttachement, Notice::class, $format);
     }
 
     /**
@@ -162,8 +169,8 @@ class RecordController extends AbstractController
         }
 
         return $this->render('record/authority.html.twig', [
-                  'toolbar'         => 'document',
-                  'printRoute'      => $this->generateUrl('record_authority_pdf'),
+                  'toolbar'         => Authority::class,
+                  'printRoute'      => $this->generateUrl('record_authority_pdf', ['permalink'=>$permalink, 'format'=>'pdf']),
                   'subjects'        => $subject,
                   'authors'         => $authors,
                   'notice'          => $object,
@@ -201,8 +208,8 @@ class RecordController extends AbstractController
         }
 
         return $this->render('record/authority.html.twig', [
-                  'toolbar'         => 'document',
-                  'printRoute'      => $this->generateUrl('record_authority_pdf'),
+                  'toolbar'         => IndiceCdu::class,
+                  'printRoute'      => $this->generateUrl('record_authority_pdf',  ['permalink'=>$permalink, 'format'=>'pdf']),
                   'subjects'        => $subject,
                   'authors'         => $authors,
                   'notice'          => $object,
@@ -212,43 +219,51 @@ class RecordController extends AbstractController
     }
 
     /**
-     * @Route("/print/notice-autorite.{format}", name="record_authority_pdf", requirements={"format" = "html|pdf|txt"}, defaults={"format" = "pdf"})
+     * @Route("/print/notice-autorite.{format}/{permalink}", name="record_authority_pdf", requirements={"permalink"=".+", "format" = "html|pdf|txt"}, defaults={"format" = "pdf"})
+
      * @param Request $request
-     * @param \Knp\Snappy\Pdf $knpSnappy
      * @param string $format
-     * @return PdfResponse|Response
+     * @return mixed|string
+     * @throws \Twig\Error\LoaderError
+     * @throws \Twig\Error\RuntimeError
+     * @throws \Twig\Error\SyntaxError
      */
-    public function authorityRecordPDFAction(Request $request, \Knp\Snappy\Pdf $knpSnappy, $format='pdf')
+    public function authorityRecordPDFAction(Request $request, $format='pdf')
     {
-        $object             = $this->noticeAuhtority->getAuthority($request->get('permalink'));
-        $relatedDocuments   = $this->noticeAuhtority->getSubjectNotice($object->getId());
-        $noticeAuthors      = $this->noticeAuhtority->getAuthorsNotice($object->getId());
+        $sendAttachement = new ExportNotice();
 
-        $content = $this->renderView("record/authority.".($format == 'txt' ? 'txt': 'pdf').".twig", [
-            'isPrintLong'       => $request->get('print-type', 'print-long') == 'print-long',
-            'includeImage'      => $request->get('print-image', null) == 'print-image',
-            'notice'            => $object,
-            'relatedDocuments'  => $relatedDocuments,
-            'noticeAuthors'     => $noticeAuthors,
-        ]);
+        $sendAttachement
+            ->setAuthorities($request->get('permalink'))
+            ->setImage($request->get('print-image', null) === 'print-image')
+            ->setFormatType($format)
+            ->setShortFormat($request->get('print-type', 'print-long') !== 'print-long')
+        ;
 
-        $filename = 'authority_'.date('Y-m-d_h-i-s');
-
-        if ($format == 'txt') {
-            return new Response($content,200,[
-                'Content-Type' => 'application/force-download',
-                'Content-Disposition' => 'attachment; filename="'.$filename.'.txt"'
-            ]);
-        } elseif ($format == 'html') {
-            return new Response($content);
-        }
-
-        return new PdfResponse(
-            $knpSnappy->getOutputFromHtml($content),
-            $filename.".pdf"
-        );
+        return  $this->buildFileContent->buildFile($sendAttachement, Authority::class, $format);
     }
 
+    /**
+     * @Route("indice-cdu/around/{cote}", name="indice_around_indexes", requirements={"cote"=".+"})
+     * @param $cote
+     * @return JsonResponse
+     */
+    public function aroundIndexesAction($cote): JsonResponse
+    {
+        try{
+            $indiceCdu = $this->noticeAuhtority->getIndiceCduAroundOf($cote);
+            return new JsonResponse([
+                'html'=> $this->renderView('record/blocs/index-browsing.html.twig',
+                    ['indexList'=> $indiceCdu]
+                )
+            ]);
 
+        }catch (\Exception $e){
+             return new JsonResponse([
+                'message'=> $e->getMessage(),
+                'code'=> $e->getCode()
+            ]);
+
+        }
+    }
 }
 

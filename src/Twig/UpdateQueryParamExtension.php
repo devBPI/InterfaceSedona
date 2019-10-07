@@ -36,6 +36,7 @@ class UpdateQueryParamExtension extends AbstractExtension
     {
         return [
             new TwigFunction('add_page_to_uri', [$this, 'changePageParamToUri']),
+            new TwigFunction('add_see_all_into_uri', [$this, 'changeSeeAllParamIntoUri']),
             new TwigFunction('add_filter_to_uri', [$this, 'addFilterToUri']),
             new TwigFunction('add_sorting_to_uri', [$this, 'addSortingToUri']),
             new TwigFunction('add_rows_to_uri', [$this, 'addRowsToUri']),
@@ -60,6 +61,18 @@ class UpdateQueryParamExtension extends AbstractExtension
         $filtersQuery = new FiltersQuery($this->requestStack->getMasterRequest());
 
         $filtersQuery->setPage($page);
+
+        return $filtersQuery->toUrl();
+    }
+    /**
+     * @param string|null $page
+     *
+     * @return string
+     */
+    public function changeSeeAllParamIntoUri($seeAll = null): string
+    {
+        $filtersQuery = new FiltersQuery($this->requestStack->getMasterRequest());
+        $filtersQuery->setSeeAll($seeAll);
 
         return $filtersQuery->toUrl();
     }

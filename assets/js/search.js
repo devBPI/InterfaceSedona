@@ -1,3 +1,5 @@
+import * as util from './notice-availibility.js'
+
 // Ajout boutton "Voir plus" suivant nombres d'informations - Notice Bibliographique ---------------------------------------------------------
 $('.js-list-information ul.list-information__sub-list').each( function() {
     var $list = $(this),
@@ -89,15 +91,13 @@ $(document)
     .on('change','.js-pagination-select', function (e) {
         let $this = $(this);
         let page = $this.val();
+        window.location = $this.data('url').replace(-1, page);
 
-        let url = $this.data('url').replace(0, page);
-        window.location = url;
+
     })
     .on('click', '.js-delete-filter',  function(e){
         e.preventDefault();
         let $this = $(this);
-        console.log($this.data('name'));
-
         $('.input-'+$this.data('name')).prop('checked', false);
     })
     .on('show.bs.modal', '#modal-list-add,#modal-list-create', function (e) {

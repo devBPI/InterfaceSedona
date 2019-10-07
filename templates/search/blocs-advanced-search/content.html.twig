@@ -1,13 +1,19 @@
 <div class="modal-body">
     <p tabindex="0">{{ 'modal.advanced-search.keyword.label'|trans }}</p>
 
-    <div class="search-keyword">
-        {% for i in 1..2 %}
-            {% include 'search/blocs-advanced-search/keyword.html.twig' with {
-                first: loop.first,
-                last: loop.last
-            } %}
-        {% endfor %}
+    <div class="search-keyword"
+         data-prototype="{{ include('search/blocs-advanced-search/keyword-row.html.twig', {index: '__index__', first: false})|escape }}"
+         data-count="{{ objSearch.keywords|length > 0 ? objSearch.keywords|length : 1 }}">
+
+        {% from 'search/blocs-advanced-search/macros.html.twig' import display_keyword_form %}
+        {{ display_keyword_form(objSearch.keywords|default({'': {'': ''}})) }}
+
+    </div>
+    <div class="col-12 text-right">
+        <button type="button" class="btn search-keyword__button search-keyword__button--add"
+                data-toggle="collection-add" data-target=".search-keyword" data-limit="10">
+            <span>{{ 'modal.advanced-search.keyword.add-ligne'|trans }}</span>
+        </button>
     </div>
 </div>
 
@@ -93,10 +99,10 @@
 {% for key in criteria.facets if attribute(criteria, key)|length > 0 %}
     <div class="modal-body">
         <div class="search-facette">
-            <button type="button" class="search-facette__button btn {% if key in filters|keys %}collapsed{% endif %}" data-toggle="collapse" aria-expanded="{{ key in filters|keys ? 'true' : 'false' }}"
+            <button type="button" class="search-facette__button btn {% if key in objSearch.searchFilters|keys %}collapsed{% endif %}" data-toggle="collapse" aria-expanded="{{ key in objSearch.searchFilters|keys ? 'true' : 'false' }}"
                     aria-controls="adv-search-{{ key }}"
                     data-target="#adv-search-{{ key }}">{{ ('modal.advanced-search.facette.'~key)|trans }}</button>
-            <div class="collapse search-facette__body {% if key in filters|keys %}collapse show{% endif %}" id="adv-search-{{ key }}" role="group"
+            <div class="collapse search-facette__body {% if key in objSearch.searchFilters|keys %}collapse show{% endif %}" id="adv-search-{{ key }}" role="group"
                  aria-label="{{ ('modal.advanced-search.facette.'~key)|trans }}">
                 <div class="search-facette__content">
 
@@ -104,7 +110,7 @@
                         <div class="form-check search-facette__item">
                             <input type="checkbox" name="{{ constant('App\\Model\\Search\\FacetFilter::QUERY_NAME') ~'['~ key~'][]' }}" class="form-check-input"
                                    id="{{ key }}-{{ i }}" value="{{ value }}"
-                                {% if key in filters|keys and value in filters[key] %}
+                                {% if key in objSearch.searchFilters|keys and value in objSearch.searchFilters[key] %}
                                     checked="checked"
                                 {% endif %}>
                             <label class="form-check-label" for="{{ key }}-{{ i }}">{{ value }}</label>

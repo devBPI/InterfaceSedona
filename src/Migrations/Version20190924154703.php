@@ -21,6 +21,7 @@ final class Version20190924154703 extends AbstractMigration
     {
         // this up() migration is auto-generated, please modify it to your needs
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'postgresql', 'Migration can only be executed safely on \'postgresql\'.');
+
         $this->addSql('ALTER TABLE search_history ALTER query_string TYPE TEXT');
         $this->addSql('ALTER TABLE search_history ALTER query_string DROP DEFAULT');
     }

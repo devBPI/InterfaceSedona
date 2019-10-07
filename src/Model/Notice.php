@@ -5,6 +5,7 @@ namespace App\Model;
 use App\Model\Interfaces\NoticeInterface;
 use App\Model\Traits\NoticeMappedTrait;
 use App\Model\Traits\NoticeTrait;
+use App\Model\Traits\OriginTrait;
 use JMS\Serializer\Annotation as JMS;
 
 /**
@@ -13,9 +14,12 @@ use JMS\Serializer\Annotation as JMS;
  */
 class Notice implements NoticeInterface
 {
+    use OriginTrait;
+
     private const SEPARATOR = ' ; ';
     public const ON_LIGNE = 'en ligne';
     public const ON_SHELF = 'en rayon';
+
 
     use NoticeMappedTrait, NoticeTrait;
     /**
@@ -26,13 +30,6 @@ class Notice implements NoticeInterface
      */
     private $collectionSeries;
 
-    /**
-     * @var array
-     * @JMS\Type("array<string>")
-     * @JMS\SerializedName("origines")
-     * @JMS\XmlList("origine")
-     */
-    private $origins;
     /**
      * @var array
      * @JMS\Type("array<string>")
@@ -372,7 +369,6 @@ class Notice implements NoticeInterface
      * @var string
      * @JMS\Type("string")
      * @JMS\SerializedName("table-des-matieres")
-
      */
     private $contentsTable;
 
@@ -383,6 +379,7 @@ class Notice implements NoticeInterface
      * @JMS\SerializedName("isni")
      */
     private $isni;
+
 
 
     /**
@@ -461,12 +458,27 @@ class Notice implements NoticeInterface
     private $onLine;
 
     /**
-     * @var NoticeAvailable
-     * @JMS\Type("App\Model\NoticeAvailable")
+     * @var NoticeAvailable[]|array
+     * @JMS\Type("array<App\Model\NoticeAvailable>")
      * @JMS\SerializedName("exemplaires")
+     * @JMS\XmlList("exemplaire")
      */
     private $copies;
+    /**
+     * @var Link[]|array
+     * @JMS\Type("array<App\Model\Link>")
+     * @JMS\SerializedName("liens")
+     * @JMS\XmlList("lien")
+     */
+    private $links;
 
+    /**
+     * @return Link[]|array
+     */
+    public function getLinks()
+    {
+        return $this->links;
+    }
     /**
      * @var string
      * @JMS\Exclude()
@@ -501,6 +513,18 @@ class Notice implements NoticeInterface
     public function getTopics(): array
     {
         return $this->topics;
+    }
+    /**
+     * @return string|null
+     */
+    public function getTopic(): string
+    {
+        $payload = '';
+        if (count($this->topics) > 0){
+            $payload = $this->topics[0];
+        }
+
+        return $payload;
     }
 
     /**
@@ -637,12 +661,13 @@ class Notice implements NoticeInterface
     }
 
     /**
-     * @return NoticeAvailable|null
+     * @return NoticeAvailable[]|array
      */
-    public function getCopies():?NoticeAvailable
+    public function getCopies()
     {
         return $this->copies;
     }
+
 
     /**
      * @return string
@@ -865,17 +890,18 @@ class Notice implements NoticeInterface
     /**
      * @return null|string
      */
+    public function getIndice(): string
+    {
+        return count($this->indices)>0?($this->indices[0])->getCote():'';
+    }
+
+
+    /**
+     * @return null|string
+     */
     public function getConfigurationName(): ?string
     {
         return $this->configurationName;
-    }
-
-    /**
-     * @return array
-     */
-    public function getOrigins(): array
-    {
-        return $this->origins;
     }
 
     /**
@@ -1115,5 +1141,7 @@ class Notice implements NoticeInterface
     {
         return $this->category;
     }
+
+
 }
 

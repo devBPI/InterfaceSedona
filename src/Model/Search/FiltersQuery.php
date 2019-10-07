@@ -13,9 +13,10 @@ use Symfony\Component\HttpFoundation\Request;
  */
 class FiltersQuery
 {
-    public const PAGE_LABEL = 'page';
-    public const SORT_LABEL = 'sort';
-    public const ROWS_LABEL = 'rows';
+    public const PAGE_LABEL     = 'page';
+    private const SEE_ALL_LABEL  = 'see-all';
+    public const SORT_LABEL     = 'sort';
+    public const ROWS_LABEL     = 'rows';
 
     /**
      * @var string
@@ -35,12 +36,7 @@ class FiltersQuery
     {
         $this->baseUri = $request->getPathInfo();
 
-        if ($request->query->has(self::PAGE_LABEL)) {
-            $currentPage = (int)$request->get(self::PAGE_LABEL);
-            $request->query->remove(self::PAGE_LABEL);
-        }
         $this->params = new ArrayCollection($request->query->all());
-
         if (isset($currentPage)) {
             $this->setPage($currentPage);
         }
@@ -55,6 +51,14 @@ class FiltersQuery
     }
 
     /**
+     * @param string|null $page
+     */
+    public function setSeeAll(string $seeAll=null): void
+    {
+        $this->params->set(self::SEE_ALL_LABEL, $seeAll);
+    }
+
+    /**
      * @return ArrayCollection
      */
     public function getParams(): ArrayCollection
@@ -66,6 +70,7 @@ class FiltersQuery
      */
     public function setSorting(string $field): void
     {
+        $this->params->set(self::SEE_ALL_LABEL, 0);
         $this->params->set(self::SORT_LABEL, $field);
     }
 
@@ -74,6 +79,7 @@ class FiltersQuery
      */
     public function setRows(int $count): void
     {
+        $this->params->set(self::SEE_ALL_LABEL, 0);
         $this->params->set(self::ROWS_LABEL, $count);
     }
 
@@ -90,3 +96,4 @@ class FiltersQuery
         return $url.'?'.http_build_query($this->params->toArray());
     }
 }
+

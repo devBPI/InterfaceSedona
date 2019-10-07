@@ -1,25 +1,23 @@
 {% extends 'base.pdf.twig' %}
-
 {% block title %}Vos références bibliographiques{% endblock %}
-
 {% block body %}
-		<div class="print__item">
-			<div class="row">
-				<div class="col-12">
-					<h2 class="n1">1) {{ notice.title}}</h2>
-				</div>
-				<div class="col-3">
-					<img src="{% if notice.picture %}{{ notice.picture.url }}{% else %}{{ asset('images/couvertures-generiques/cg-image.svg') }}{% endif %}" class="img-fluid" alt="" />
-				</div>
+	<div class="print__item">
+		<div class="row">
+			<div class="col-12">
+				<h2 class="n1">1) {{ notice.title}}</h2>
+			</div>
+			<div class="col-3">
+				<img src="{% if notice.picture %}{{ notice.picture.url }}{% else %}{{ asset('images/couvertures-generiques/cg-image.svg') }}{% endif %}" class="img-fluid" alt="" />
+			</div>
 
-				<div class="col">
-					<ul class="print__list">
-						<li>Musique;</li>
-                        {% include "common/notice.format.twig" with {'notice': notice, 'format': 'pdf'} %}
-					</ul>
-				</div>
+			<div class="col">
+				<ul class="print__list">
+					<li>Musique;</li>
+					{% include "common/notice.format.twig" with {'notice': notice, 'format': 'pdf'} %}
+				</ul>
 			</div>
 		</div>
+	</div>
     {% for  object in noticeThemed.noticesList %}
 		<div class="print__item">
 			<div class="row">
@@ -32,10 +30,10 @@
 				<div class="col">
 					<ul class="print__list">
                         {% for author in object.authors %}
-						<li>
-                        	{{ author}}
-						</li>
-                            {% endfor %}
+							<li>
+								{{ author}}
+							</li>
+						{% endfor %}
 					</ul>
 				</div>
 			</div>

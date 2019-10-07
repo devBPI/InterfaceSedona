@@ -35,29 +35,39 @@ class MailSenderService
      * @param $context
      * @param $fromEmail
      * @param $toEmail
+     * @param null $copyTo
      * @return int
      * @throws \Throwable
      * @throws \Twig\Error\LoaderError
      * @throws \Twig\Error\SyntaxError
      */
-    public function sendMail($templateName, $context, $fromEmail, $toEmail)
+    public function sendMail($templateName, $context, $fromEmail, $toEmail, $replyTo=null, \Swift_Attachment $attachment=null)
     {
-        $context = $this->twig->mergeGlobals($context);
-        $template = $this->twig->createTemplate($templateName);
-        $subject = $template->renderBlock('subject', $context);
-        $textBody = $template->renderBlock('body_text', $context);
-        $htmlBody = $template->renderBlock('body_html', $context);
+        $context    = $this->twig->mergeGlobals($context);
+        $template   = $this->twig->resolveTemplate($templateName);
+
+        $subject    = $template->renderBlock('subject', $context);
+        $textBody   = $template->renderBlock('body_text', $context);
+        $htmlBody   = $template->renderBlock('body_html', $context);
 
         $message = (new \Swift_Message($subject))
             ->setSubject($subject)
             ->setFrom($fromEmail)
-            ->setTo($toEmail);
+            ->setTo($toEmail)
+        ;
+
+        if ($replyTo!==null){
+            $message->setReplyTo($replyTo);
+        }
 
         if (!empty($htmlBody)) {
             $message->setBody($htmlBody, 'text/html')
                 ->addPart($textBody, 'text/plain');
         } else {
             $message->setBody($textBody);
+        }
+        if ($attachment!==null){
+            $message->attach($attachment);
         }
 
         return $this->mailer->send($message);

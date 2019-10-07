@@ -3,16 +3,20 @@
 
 namespace App\Controller;
 
+use App\Entity\SearchHistory;
+use App\Model\From\ExportNotice;
 use App\Model\Search\Criteria;
 use App\Model\Search\FacetFilter;
+use App\Model\Search\ObjSearch;
 use App\Model\Search\SearchQuery;
 use App\Model\SuggestionList;
+use App\Service\NoticeBuildFileService;
 use App\Service\Provider\AdvancedSearchProvider;
 use App\Service\Provider\NoticeAuthorityProvider;
 use App\Service\Provider\NoticeProvider;
 use App\Service\Provider\SearchProvider;
-use App\Utils\PrintNoticeWrapper;
 use App\Service\SearchService;
+use App\Utils\PrintNoticeWrapper;
 use Knp\Bundle\SnappyBundle\Snappy\Response\PdfResponse;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -48,6 +52,10 @@ class SearchController extends AbstractController
      * @var NoticeAuthorityProvider
      */
     private $noticeAuhtority;
+    /**
+     * @var NoticeBuildFileService
+     */
+    private $buildFileContent;
 
     /**
      * SearchController constructor.
@@ -56,19 +64,22 @@ class SearchController extends AbstractController
      * @param SearchService $searchService
      * @param NoticeProvider $noticeProvider
      * @param NoticeAuthorityProvider $noticeAuhtority
+     * @param NoticeBuildFileService $service
      */
     public function __construct(
         SearchProvider $searchProvider,
         AdvancedSearchProvider $advancedSearchProvider,
         SearchService $searchService,
         NoticeProvider $noticeProvider,
-        NoticeAuthorityProvider $noticeAuhtority
+        NoticeAuthorityProvider $noticeAuhtority,
+        NoticeBuildFileService $service
     ) {
         $this->searchProvider = $searchProvider;
         $this->advancedSearchProvider = $advancedSearchProvider;
         $this->searchService = $searchService;
         $this->noticeProvider = $noticeProvider;
         $this->noticeAuhtority = $noticeAuhtority;
+        $this->buildFileContent = $service;
     }
 
     /**
@@ -108,7 +119,8 @@ class SearchController extends AbstractController
         return $this->render(
             'search/index.html.twig',
             [
-                'toolbar' => 'search',
+                'toolbar' => ObjSearch::class,
+                'seeAll'=> $request->get('see-all', 'all'),
                 'objSearch' => $objSearch,
                 'printRoute' => $this->generateUrl('search_pdf', ['format' => 'pdf']),
             ]
@@ -116,11 +128,12 @@ class SearchController extends AbstractController
     }
 
     /**
-     * @Route("/recherche-avancée", methods={"GET", "POST"}, name="advanced_search")
+     * @Route("/recherche-avancee", methods={"GET", "POST"}, name="advanced_search")
      *
      * @param Request $request
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @return Response
      * @throws \Doctrine\ORM\ORMException
+     * @throws \Doctrine\ORM\OptimisticLockException
      * @throws \Twig\Error\LoaderError
      * @throws \Twig\Error\RuntimeError
      * @throws \Twig\Error\SyntaxError
@@ -176,9 +189,9 @@ class SearchController extends AbstractController
     }
 
     /**
-     * @Route("/recherche-sauvegardee/{savedId}", methods={"GET"}, name="saved_search")
-     * @param string $savedId
+     * @Route("/recherche-sauvegardee/{id}", methods={"GET"}, name="saved_search")
      *
+     * @param SearchHistory $searchHistory
      * @param Request $request
      * @return \Symfony\Component\HttpFoundation\Response
      * @throws \Doctrine\ORM\ORMException
@@ -187,10 +200,10 @@ class SearchController extends AbstractController
      * @throws \Twig\Error\RuntimeError
      * @throws \Twig\Error\SyntaxError
      */
-    public function savedSearchAction(string $savedId, Request $request)
+    public function savedSearchAction(SearchHistory $searchHistory, Request $request): Response
     {
         return $this->displaySearch(
-            $this->searchService->getSearchQueryFromHistoryId($savedId),
+            $this->searchService->deserializeSearchQuery($searchHistory->getQueryString()),
             $request
         );
     }
@@ -200,12 +213,12 @@ class SearchController extends AbstractController
      * @param Request $request
      * @return Response
      */
-    public function searchAllAction(Request $request)
+    public function searchAllAction(Request $request): Response
     {
         return $this->render(
             'search/index-all.html.twig',
             [
-                'toolbar' => 'search',
+                'toolbar' => ObjSearch::class,
                 'printRoute' => $this->generateUrl('search_pdf', ['format' => 'pdf']),
             ]
         );
@@ -213,59 +226,50 @@ class SearchController extends AbstractController
 
     /**
      * @Route("/print/recherche.{format}", methods={"GET","HEAD"}, name="search_pdf", requirements={"format" = "html|pdf|txt"}, defaults={"format" = "pdf"})
+     *
      * @param Request $request
-     * @param \Knp\Snappy\Pdf $knpSnappy
      * @param $format
      * @return PdfResponse|Response
+     * @throws \Twig\Error\LoaderError
+     * @throws \Twig\Error\RuntimeError
+     * @throws \Twig\Error\SyntaxError
      */
-    public function printAction(Request $request, \Knp\Snappy\Pdf $knpSnappy, $format)
+    public function printAction(Request $request, $format)
     {
-        $authorities=[];
-        $notices=[];
-        parse_str(urldecode($request->get('authorities', null)),$authorities);
-        parse_str(urldecode($request->get('notices', null)),$notices);
-        $printNoticeWrapper = new PrintNoticeWrapper();
+        $sendAttachement = new ExportNotice();
+        $sendAttachement
+            ->setAuthorities($request->get('authorities', ''))
+            ->setNotices($request->get('notices', ''))
+            ->setImage($request->get('print-image', null) === 'print-image')
+            ->setFormatType($format)
+            ->setShortFormat($request->get('print-type', 'print-long') !== 'print-long')
+      ;
+      return  $this->buildFileContent->buildFile($sendAttachement, ObjSearch::class, $format);
 
-        $content = $this->renderView(
-            "search/index.".($format == 'txt' ? 'txt' : 'pdf').".twig",
-            [
-                'isPrintLong'   => $request->get('print-type', 'print-long') == 'print-long',
-                'includeImage'  => $request->get('print-image', null) == 'print-image',
-                'printNoticeWrapper'=> $printNoticeWrapper($request->query->all(), $this->noticeProvider, $this->noticeAuhtority)
-            ]
-        );
-
-        $filename = 'search-'.date('Y-m-d_h-i-s');
-
-        if ($format == 'txt') {
-            return new Response(
-                $content, 200, [
-                    'Content-Type' => 'application/force-download',
-                    'Content-Disposition' => 'attachment; filename="'.$filename.'.txt"',
-                ]
-            );
-        } elseif ($format == 'html') {
-            return new Response($content);
-        }
-
-        return new PdfResponse(
-            $knpSnappy->getOutputFromHtml($content),
-            $filename.".pdf"
-        );
     }
 
     /**
      * @param Request $request
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @return Response
      */
-    public function advancedSearchContent(Request $request)
+    public function advancedSearchContent(Request $request): Response
     {
+        if ($request->get('searchToken') !== null) {
+            $searchQuery = $this->searchService->getSearchQueryFromToken($request->get('searchToken'), $request);
+        } else {
+            $criteria = new Criteria();
+            $criteria->setAdvancedSearch($request->query->all());
+            $searchQuery = new SearchQuery($criteria, new FacetFilter($request->query->all()));
+        }
+
+        $searchQuery->getCriteria()->setAdvancedSearch($request->query->all());
+        $objSearch = new ObjSearch($searchQuery);
+
         return $this->render(
             'search/blocs-advanced-search/content.html.twig',
             [
                 'criteria' => $this->advancedSearchProvider->getAdvancedSearchCriteria(),
-                'queries' => $request->get(Criteria::QUERY_NAME, []),
-                'filters' => $request->get(FacetFilter::QUERY_NAME, []),
+                'objSearch' => $objSearch
             ]
         );
     }

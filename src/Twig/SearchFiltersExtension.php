@@ -38,6 +38,7 @@ class SearchFiltersExtension extends AbstractExtension
     {
         return [
             new TwigFunction('search_words', [$this, 'getSearchWords']),
+            new TwigFunction('is_search_word', [$this, 'isSearchWord']),
             new TwigFunction('words_operators', [$this, 'getSearchOperators']),
             new TwigFunction('get_value_by_field_name', [$this, 'getValueByFieldName']),
             new TwigFunction('check_value_exist', [$this, 'isValueExist']),
@@ -61,6 +62,15 @@ class SearchFiltersExtension extends AbstractExtension
     public function getSearchWords(): array
     {
         return WordsList::$words[$this->requestStack->getMasterRequest()->get('thematic', WordsList::THEME_DEFAULT)];
+    }
+
+    /**
+     * @param string $word
+     * @return bool
+     */
+    public function isSearchWord(string $word): bool
+    {
+        return in_array($word, $this->getSearchWords(), true);
     }
 
     /**

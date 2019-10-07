@@ -1,44 +1,66 @@
 <?php
+/**
+ * Created by PhpStorm.
+ * User: infra
+ * Date: 01/10/19
+ * Time: 11:57
+ */
 
 
 namespace App\Form;
 
+use App\Model\From\SuggestByMail;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints as Asset;
 
-class SuggestionType extends AbstractType
+class SuggestByMailType extends AbstractType
 {
+
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('object', TextType::class,[
+            ->add('title', TextType::class,[
                 'required'  => true,
-                'label'     => 'modal.report.field.object',
-                'constraints'=> [ new Asset\NotBlank() ]
             ])
-            ->add('message', TextareaType::class,[
+            ->add('author', TextareaType::class,[
                 'required'  => false,
-                'label'     => 'modal.report.field.message'
             ])
+            ->add('documentType', ChoiceType::class,[
+                    'required'=> true,
+                    'multiple' => false,
+                    'choices'=> SuggestByMail::DOCUMENT_TYPE
+                ])
             ->add('lastName', TextType::class,[
                 'required'  => false,
-                'label'     => 'modal.report.field.last-name',
                 'attr'      => ['autocomplete'=> 'family-name' ]
             ])
             ->add('firstName', TextType::class,[
                 'required'  => false,
-                'label'     => 'modal.report.field.first-name',
+            ])
+            ->add('editor', TextType::class,[
+                'required'  => false,
                 'attr'      => ['autocomplete'=> 'name' ]
             ])
             ->add('email', EmailType::class,[
                 'required'  => false,
-                'label'     => 'modal.report.field.email',
                 'constraints'=> [ new Asset\Email() ]
             ])
         ;
+    }
+    /**
+     * @param OptionsResolver $resolver
+     */
+    public function configureOptions(OptionsResolver $resolver)
+    {
+        $resolver->setDefaults([
+            'data_class' => SuggestByMail::class,
+            'csrf_protection' => false,
+        ]);
     }
 }

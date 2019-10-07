@@ -2,7 +2,7 @@
 <div role="dialog" aria-modal="true" aria-labelledby="modal-notified-title" class="modal fade" id="modal-notified">
 	<div class="modal-dialog modal-dialog-centered">
 		<div class="modal-content">
-			<form class="modal-form">
+			<form class="modal-form" id="form-availability" >
 				<div class="modal-header">
 					<h1 class="n1 modal-header__title" id="modal-notified-title">{{ 'modal.notifed-form.title'|trans }}</h1>
 					<button class="close" type="button" aria-label="{{ 'global.modal-close'|trans }}" data-dismiss="modal">
@@ -12,13 +12,13 @@
 				</div>
 
 				<div class="modal-body">
-					
+
 					<small class="modal-form__indication">* {{ 'global.form-mandatory-field'|trans }}</small>
 
 					<div class="form-group row">
 						<label for="notified-email" class="col-12 col-sm-4">{{ 'modal.notifed-form.field-email'|trans }} <span>*</span></label>
 						<div class="col-12 col-sm-8">
-							<input type="email" class="form-control" id="notified-email" autocomplete="email">
+							<input type="email" class="form-control" name="email" id="notified-email" autocomplete="email">
 						</div>
 					</div>
 
@@ -26,10 +26,12 @@
 						<i>*Insert captcha*</i>	
 					</div>
 				</div>
-
+				<div class="error-message alert alert-danger d-none" role="alert" >
+                    {{ "Veuillez renseigner les informations obligatoires " |trans }}
+				</div>
 				<div class="modal-footer">
-					<button type="button" data-dismiss="modal" class="btn btn-lg btn-secondary">{{ 'global.modal-cancel'|trans }}</button>
-					<button type="submit" class="btn btn-lg btn-primary">{{ 'modal.notifed-form.submit'|trans }}<span class="sr-only"> {{ 'modal.notifed-form.submit-sr-only'|trans }}</span></button>
+					<button type="button" data-dismiss="modal" class=" btn btn-lg btn-secondary">{{ 'global.modal-cancel'|trans }}</button>
+					<button type="submit" class="js-notice-available btn btn-lg btn-primary">{{ 'modal.notifed-form.submit'|trans }}<span class="sr-only"> {{ 'modal.notifed-form.submit-sr-only'|trans }}</span></button>
 				</div>
 			</form>
 		</div>

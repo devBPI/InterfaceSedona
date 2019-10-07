@@ -10,15 +10,23 @@
 		<div class="slick-carousel js-carousel-primary" role="region" aria-roledescription="carrousel">
             {% for item in carousel.elements %}
 				<div class="carousel__slide">
-					<a href="{{ item.link }}" class="carousel__slide-link">
-						<span class="sr-only">{{ 'bloc.carousel.item_desciption'|trans({'%index%': loop.index ,'%nb%' : carousel.elements|length , '%title%' : item.title , '%auteur%' : item.description }) }}</span>
+					<a href="{{ path('record_bibliographic', {'permalink': item.permalink}) }}" class="carousel__slide-link">
+						<span class="sr-only">{{ 'bloc.carousel.item_desciption'|trans({'%index%': loop.index ,'%nb%' : carousel.elements|length , '%title%' : item.title , '%auteur%' : item.creator }) }}</span>
 					</a>
 					<div class="carousel__slide-image">
-						<img src="{{ item.imagePath }}" class="img-fluid" alt="" />
-                        {% if item.photoCredit %}<p lang="fr"> &copy; {{ item.photoCredit }}</p>{% endif %}
+						{% if item.imagePath is not empty %}
+                            {% set imagePath = item.imagePath %}
+						{% else %}
+                            {% set imagePath = 'images/couvertures-generiques/cg-'~(item.type|lower)~'.svg' %}
+						{% endif %}
+
+						<img src="{{ asset(imagePath) }}" alt="" class="img-fluid" width="223"/>
+                        {#{% if item.photoCredit %}<p lang="fr"> &copy; {{ item.photoCredit }}</p>{% endif %}#}
 					</div>
 					<p class="n1 carousel__slide-title">{{ item.title }}</p>
-					<p class="n2 carousel__slide-subtitle">{{ item.description }}</p>
+					{% if item.creator is not empty %}
+						<p class="n2 carousel__slide-subtitle">{{ item.creator }}</p>
+					{% endif %}
 				</div>
 			{% endfor %}
 		</div>

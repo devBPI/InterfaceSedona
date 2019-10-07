@@ -29,16 +29,31 @@ final class ObjSearch
      * @var array
      */
     private $keywords;
+    /**
+     * @var SearchQuery
+     */
+    private $searchQuery;
 
     /**
      * ObjSearch constructor.
-     * @param string $title
-     * @param array $keywords
+     *
+     * @param SearchQuery $searchQuery
      */
-    public function __construct(string $title, array $keywords = [])
+    public function __construct(SearchQuery $searchQuery)
+    {
+        $this->searchQuery = $searchQuery;
+        $this->keywords = $searchQuery->getCriteria()->getKeywords();
+    }
+
+    /**
+     * @param string $title
+     * @return self
+     */
+    public function setTitle(string $title): self
     {
         $this->title = $title;
-        $this->keywords = $keywords;
+
+        return $this;
     }
 
     /**
@@ -98,7 +113,7 @@ final class ObjSearch
     public function getSimpleSearchKeyword(): ?string
     {
         if ($this->isSimpleMode()) {
-            return array_values($this->keywords)[0];
+            return array_values($this->keywords[0])[0];
         }
 
         return null;
@@ -109,7 +124,7 @@ final class ObjSearch
     public function getSimpleSearchType(): ?string
     {
         if ($this->isSimpleMode()) {
-            return array_keys($this->keywords)[0];
+            return array_keys($this->keywords[0])[0];
         }
 
         return null;
@@ -124,6 +139,14 @@ final class ObjSearch
     }
 
     /**
+     * @return array
+     */
+    public function getKeywords(): array
+    {
+        return $this->keywords;
+    }
+
+    /**
      * @param Results $results
      * @return ObjSearch
      */
@@ -133,4 +156,34 @@ final class ObjSearch
         return $this;
     }
 
+    /**
+     * @return array
+     */
+    public function getSearchFilters(): array
+    {
+        return $this->searchQuery->getFacets()->getAttributes();
+    }
+
+    /**
+     * @return array
+     */
+    public function getAdvancedCriteria(): array
+    {
+        if ($this->isSimpleMode()) {
+            return [];
+        }
+
+        $criteria = [];
+        foreach ($this->searchQuery->getCriteria()->getKeywordsTitles(true) as $field => $keyword) {
+            $criteria[$field] = $keyword;
+        }
+
+        foreach ($this->getSearchFilters() as $filters) {
+            foreach ($filters as $filter) {
+                $criteria[] = $filter;
+            }
+        }
+
+        return $criteria;
+    }
 }

@@ -25,35 +25,30 @@ class SearchHistory
     private $title;
 
     /**
-     * @ORM\Column(type="json_array", nullable=false, options={"jsonb": true})
-     * @var array
+     * @ORM\Column(type="text", nullable=false)
+     * @var string
      */
-    private $queries;
-
-    /**
-     * @ORM\OneToMany(targetEntity="App\Entity\UserHistory", mappedBy="Search")
-     */
-    private $userHistories;
+    private $queryString;
 
     /**
      * SearchHistory constructor.
      * @param string $title
-     * @param array $queries
+     * @param string $queryString
      */
-    public function __construct(string $title, array $queries = [])
+    public function __construct(string $title, string $queryString)
     {
-        $this->id = self::getSearchHash($queries);
+        $this->id = self::getSearchHash($queryString);
         $this->title = $title;
-        $this->queries = $queries;
+        $this->queryString = $queryString;
     }
 
     /**
-     * @param array $queries
+     * @param string $queryString
      * @return string
      */
-    public static function getSearchHash(array $queries): string
+    public static function getSearchHash(string $queryString): string
     {
-        return sha1(serialize($queries));
+        return sha1($queryString);
     }
 
     /**
@@ -73,11 +68,11 @@ class SearchHistory
     }
 
     /**
-     * @return array
+     * @return string
      */
-    public function getQueries(): array
+    public function getQueryString(): string
     {
-        return $this->queries;
+        return $this->queryString;
     }
 
 }
