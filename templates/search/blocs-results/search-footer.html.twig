@@ -16,7 +16,7 @@
 			<li class="page-item">
 				<div class="page-link page-link--reset">
 					<label for="pagination-select" class="sr-only">{{ 'bloc.search-header-footer.footer.select-sr-only'|trans({'%nb%': 5 }) }}</label>
-					<select id="pagination-select" class="js-pagination-select" data-url="{{ path('search', {'searchToken': objSearch.contextToken, 'page':0 }) }}">
+					<select id="pagination-select" class="js-pagination-select" data-url="{{ path('search', {'see-all':seeAll is defined?seeAll:null, 'searchToken': objSearch.contextToken, 'page':-1 }) }}">
 						{% for i in (page - 10)..(page + 10) if i > 0 and i <= pagesTotal %}
 							<option value="{{ i }}" {% if i == page %}selected{% endif %}>{{ i }}</option>
 						{% endfor %}
