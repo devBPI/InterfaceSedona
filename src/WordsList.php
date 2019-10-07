@@ -57,7 +57,7 @@ final class WordsList
         ]
     ];
     public static $operators = [
-        'and', 'or'/*, 'not' */
+        'and', 'or', 'not'
     ];
 
     const GENERAL_WORD = 'general';

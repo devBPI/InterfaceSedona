@@ -110,6 +110,19 @@ class Criteria
      * @JMS\Type("App\Model\Search\Criteria")
      */
     private $or;
+    /**
+     * @var self
+     * @JMS\Type("App\Model\Search\Criteria")
+     * @JMS\Accessor(getter="setNotSubCriteria")
+     */
+    private $not;
+
+    /**
+     * @var string
+     * @JMS\SerializedName("not")
+     * @JMS\Type("string")
+     */
+    private $notLabel;
 
     /**
      * @param $type
@@ -208,24 +221,43 @@ class Criteria
     }
 
     /**
+     * @param bool $withFields
      * @return array
      */
-    public function getKeywordsTitles(): array
+    public function getKeywordsTitles(bool $withFields = false): array
     {
         $keywords = [];
         foreach (WordsList::$words[WordsList::THEME_DEFAULT] as $field) {
             if (!empty($this->$field)) {
-                $keywords[] = $this->$field;
+                if ($withFields) {
+                    $keywords[$field] = $this->$field;
+                } else {
+                    $keywords[] = $this->$field;
+                }
             }
         }
 
         foreach (WordsList::$operators as $operator) {
             if ($this->$operator instanceof Criteria) {
-                $keywords = array_merge($keywords, $this->$operator->getKeywordsTitles());
+                $keywords = array_merge($keywords, $this->$operator->getKeywordsTitles($withFields));
             }
         }
 
         return $keywords;
     }
 
+    /**
+     * @return Criteria
+     */
+    public function setNotSubCriteria(): ?Criteria
+    {
+        if ($this->not instanceof Criteria) {
+            $criteria = $this->not;
+            $criteria->notLabel = 'true';
+            $this->not = null;
+            return $this->and = $criteria;
+        }
+
+        return $this->not;
+    }
 }
