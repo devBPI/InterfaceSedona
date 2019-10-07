@@ -35,4 +35,36 @@ class ThemeLevel
      * @ORM\ManyToOne(targetEntity="App\Entity\Theme", inversedBy="levels", cascade={"all"})
      */
     private $Parent;
+
+    /**
+     * @return mixed
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * @return string
+     */
+    public function getTitle($locale='fr'): string
+    {
+        return $this->title[$locale];
+    }
+
+    /**
+     * @return string
+     */
+    public function getUrl($locale='fr'): string
+    {
+        return $this->url[$locale];
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getParent()
+    {
+        return $this->Parent;
+    }
 }

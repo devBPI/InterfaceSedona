@@ -1,31 +1,39 @@
 <!-- Début - Bloc 5 Accès rapide -->
 
 <!-- Bloc avec un lien sur le titre (car pas de liens sous l'image) -->
-{% for i in 1..4 %}
+{#% for element  in thematic.themes %}
 	<div class="col-12 col-sm-6 col-lg-3">
 		<div lang="fr" class="card">
-			<a href="#" class="card__link"><span class="sr-only">{{ "bloc.preview-thematic-links.link-sr-only"|trans({'%name%' : '*Insert nom du thème*' }) }}</span></a>
-			<img src="{{ asset('images/parcours/actu-revues/ar-revues-musique.jpg') }}" alt="" class="img-fluid card-img-top" />
+			<a href="{{ element.url }}" class="card__link"><span class="sr-only">{{ "bloc.preview-thematic-links.link-sr-only"|trans({'%name%' : '*Insert nom du thème*' }) }}</span></a>
+			<img src="{{ asset('images/parcours/'~thematic.type~'/'~element.image) }}" alt="" class="img-fluid card-img-top" />
 			<div class="card-body">
-				<h3 class="n2 card__title">Revues sur la musique</h3>
+				<h3 class="n2 card__title">{{ element.title }}</h3>
 			</div>
 		</div>
 	</div>
-{% endfor %}
+{% endfor %#}
 
 <!-- Bloc avec des liens sous l'image, donc pas de lien sur le titre -->
-{% for i in 1..4 %}
+
+{% for element in thematic.themes %}
 	<div class="col-12 col-sm-6 col-lg-3">
 		<div lang="fr" class="card">
-			<img src="{{ asset('images/parcours/actu-revues/ar-revues-loisirs.jpg') }}" alt="" class="img-fluid card-img-top" />
+            {% if  element.levels.count ==0 %}
+				<a href="{{ element.url }}" class="card__link"><span class="sr-only">{{ "bloc.preview-thematic-links.link-sr-only"|trans({'%name%' : element.title }) }}</span></a>
+            {% endif %}
+			<img src="{{ asset('images/parcours/'~thematic.type~'/'~element.image) }}" alt="" class="img-fluid card-img-top" />
 			<div class="card-body">
-				<h3 class="n2 card__title">Revues sur les loisirs</h3>
-				<ul class="card__list">
-					<li class="card__item"><a href="#">Sports, jeux, tourisme</a></li>
-					<li class="card__item"><a href="#">Vie pratique</a></li>
-					<li class="card__item"><a href="#">Culture geek</a></li>
-					<li class="card__item"><a href="#">Déco - brico - cuisine</a></li>
-				</ul>
+				<h3 class="n2 card__title">{{ element.title }}</h3>
+                {% if  element.levels.count> 0 %}
+					<ul class="card__list">
+						{% for level in element.levels %}
+							<li class="card__item">
+								<a href="{{ level.url}}">{{ level.title }}</a>
+							</li>
+						{% endfor %}
+					</ul>
+                {% endif %}
+
 			</div>
 		</div>
 	</div>
