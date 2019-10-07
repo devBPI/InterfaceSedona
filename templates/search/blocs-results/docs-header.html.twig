@@ -1,11 +1,17 @@
 <!-- Début - Bloc 12 En-tête des résultats -->
+	<div class="list-result__header-informations">
+		<label for="all-document-{{ type }}" class="sr-only">{{ ('bloc.header-docs.'~type~'.title-sr-only')|trans }}</label>
+		<input type="checkbox" id="all-document-{{ type }}" class="list-result__header-checkbox" data-toggle="check-all" data-target=".notice_{{ type }}">
+		<h3 class="n2 list-result__header-title">{{ ('bloc.header-docs.'~type~'.in-ligne')|trans }} : <span>{{ notices.totalCount }}</span></h3>
+		{% if seeAll is defined and (seeAll in ['rayon', 'online']) %}
+			<a href="{{ add_see_all_into_uri('all') }}" class="list-result__header-link">{{ ('bloc.header-docs.'~type~'.see-more')|trans }} <span class="sr-only sr-only-focusable">{{ ('bloc.header-docs.'~type~'.see-more-sr-only')|trans }}</span></a>
+		{% else %}
+			<a href="{{ add_see_all_into_uri(type) }}" class="list-result__header-link">{{ ('bloc.header-docs.'~type~'.see-more')|trans }} <span class="sr-only sr-only-focusable">{{ ('bloc.header-docs.'~type~'.see-more-sr-only')|trans }}</span></a>
 
-<div class="list-result__header-informations">
-	<label for="all-document-{{ type }}" class="sr-only">{{ ('bloc.header-docs.'~type~'.title-sr-only')|trans }}</label>
-	<input type="checkbox" id="all-document-{{ type }}" class="list-result__header-checkbox" data-toggle="check-all" data-target=".notice_{{ type }}">
-	<h3 class="n2 list-result__header-title">{{ ('bloc.header-docs.'~type~'.in-ligne')|trans }} : <span>{{ notices.totalCount }}</span></h3>
-	<a href="#" class="list-result__header-link">{{ ('bloc.header-docs.'~type~'.see-more')|trans }} <span class="sr-only sr-only-focusable">{{ ('bloc.header-docs.'~type~'.see-more-sr-only')|trans }}</span></a>
-</div>
+		{% endif %}
+
+	</div>
+
 <div class="dropdown">
 	<span class="sr-only" aria-label="{{ ('bloc.header-docs.'~type~'.order-aria')|trans }}">{{ ('bloc.header-docs.'~type~'.order')|trans }}</span>
 	<button class="dropdown-toggle" type="button" id="dropdown-trie-{{ type }}" data-toggle="dropdown" aria-haspopup="listbox" aria-expanded="false">
@@ -19,4 +25,5 @@
 	{% endfor %}
 	</ul>
 </div>
+
 <!-- Fin - Bloc 12 En-tête des résultats -->

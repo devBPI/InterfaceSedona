@@ -120,6 +120,7 @@ class SearchController extends AbstractController
             'search/index.html.twig',
             [
                 'toolbar' => ObjSearch::class,
+                'seeAll'=> $request->get('see-all', 'all'),
                 'objSearch' => $objSearch,
                 'printRoute' => $this->generateUrl('search_pdf', ['format' => 'pdf']),
             ]
@@ -225,9 +226,13 @@ class SearchController extends AbstractController
 
     /**
      * @Route("/print/recherche.{format}", methods={"GET","HEAD"}, name="search_pdf", requirements={"format" = "html|pdf|txt"}, defaults={"format" = "pdf"})
+     *
      * @param Request $request
      * @param $format
      * @return PdfResponse|Response
+     * @throws \Twig\Error\LoaderError
+     * @throws \Twig\Error\RuntimeError
+     * @throws \Twig\Error\SyntaxError
      */
     public function printAction(Request $request, $format)
     {
