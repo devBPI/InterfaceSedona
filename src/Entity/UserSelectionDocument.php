@@ -85,6 +85,10 @@ class UserSelectionDocument
      */
     public function getId()
     {
+        if (empty($this->id)) {
+            return $this->permalink;
+        }
+
         return $this->id;
     }
 

@@ -16,21 +16,18 @@ use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInt
  * Class SelectionListService
  * @package App\Service
  */
-final class SelectionListService
+final class SelectionListService extends AuthenticationService
 {
-    use AuthenticationTrait;
+    const SESSION_SELECTION_ID = 'selection_session';
 
     /**
      * @var EntityManager
      */
     private $entityManager;
-    /**
-     * @var null|\Symfony\Component\HttpFoundation\Session\SessionInterface
-     */
-    private $session;
 
     /**
      * SelectionListService constructor.
+     *
      * @param EntityManager $entityManager
      * @param TokenStorageInterface $tokenStorage
      * @param SessionInterface $session
@@ -41,8 +38,8 @@ final class SelectionListService
         SessionInterface $session
     ) {
         $this->entityManager = $entityManager;
-        $this->tokenStorage = $tokenStorage;
-        $this->session = $session;
+
+        parent::__construct($tokenStorage, $session);
     }
 
     /**
@@ -62,11 +59,11 @@ final class SelectionListService
      * @throws \Doctrine\ORM\ORMException
      * @throws \Doctrine\ORM\OptimisticLockException
      */
-    public function addDocumentToLists(Request $request)
+    public function addDocumentsToLists(Request $request)
     {
-        $documents = $this->createDocumentsByRequest($request);
+        $documents = $this->createDocumentsFromRequest($request);
 
-        foreach ($this->getListsByRequest($request) as $userSelectionCategory) {
+        foreach ($this->getListsFromRequest($request) as $userSelectionCategory) {
             foreach ($documents as $document) {
                 $userSelectionCategory->addDocument(clone $document);
             }
@@ -79,7 +76,7 @@ final class SelectionListService
      * @param Request $request
      * @return array
      */
-    private function createDocumentsByRequest(Request $request): array
+    private function createDocumentsFromRequest(Request $request): array
     {
         $documents = [];
 
@@ -90,7 +87,8 @@ final class SelectionListService
         foreach ($request->get(UserSelectionController::INPUT_NAME, []) as $key => $param) {
             if ($key === UserSelectionController::INPUT_DOCUMENT) {
                 foreach ($param as $item) {
-                    $documents[] = $this->entityManager->getRepository(UserSelectionDocument::class)->find($item);
+                    $documents[] = $this->entityManager->getRepository(UserSelectionDocument::class)
+                        ->find($item);
                 }
             }
         }
@@ -103,13 +101,14 @@ final class SelectionListService
      * @return array
      * @throws \Doctrine\ORM\ORMException
      */
-    private function getListsByRequest(Request $request): array
+    private function getListsFromRequest(Request $request): array
     {
         $lists = [];
 
         $listIds = $request->get(UserSelectionController::INPUT_LIST, []);
         if (count($listIds) > 0) {
-            $lists = $this->getLists($listIds);
+            $lists = $this->entityManager->getRepository(UserSelectionList::class)
+                ->findByIds($listIds, $this->getUser()->getUid());
         }
 
         if ($request->get(UserSelectionController::CHECK_NEW_LIST, false) === '1') {
@@ -129,40 +128,29 @@ final class SelectionListService
     }
 
     /**
-     * @param array|null $ids
-     * @return array|UserSelectionList[]
-     */
-    public function getLists(array $ids = []): array
-    {
-        if ($this->hasConnectedUser()) {
-            if (count($ids) > 0) {
-                return $this->entityManager->getRepository(UserSelectionList::class)->findByIds($ids);
-            }
-
-            return $this->entityManager->getRepository(UserSelectionList::class)->findAllOrderedByPosition(
-                $this->getUser()->getUid()
-            );
-        }
-
-        return array_map(
-            function ($document) {
-                return new UserSelectionDocument($document);
-            },
-            $this->session->get(UserSelectionController::SESSION_SELECTION_ID, [])
-        );
-    }
-
-    /**
      * @param string $title
      * @return UserSelectionList
      * @throws \Doctrine\ORM\ORMException
      */
     private function createList(string $title): UserSelectionList
     {
-        $list = new UserSelectionList($this->getUser(), $title, count($this->getLists()));
+        $list = new UserSelectionList($this->getUser(), $title, count($this->getListsOfCurrentUser()));
         $this->entityManager->persist($list);
 
         return $list;
+    }
+
+    /**
+     * @return array|UserSelectionList[]
+     */
+    public function getListsOfCurrentUser(): array
+    {
+        if ($this->hasConnectedUser()) {
+            return $this->entityManager->getRepository(UserSelectionList::class)
+                ->findAllOrderedByPosition($this->getUser()->getUid());
+        }
+
+        return [];
     }
 
     /**
@@ -186,7 +174,11 @@ final class SelectionListService
     public function applyAction($action, $listObj): void
     {
         if ($action === 'delete') {
-            $this->deleteListsAndDocuments($listObj);
+            if ($this->hasConnectedUser()) {
+                $this->deleteListsAndDocuments($listObj);
+            } elseif (array_key_exists(UserSelectionController::INPUT_DOCUMENT, $listObj)) {
+                $this->deleteDocumentsFromSession($listObj[UserSelectionController::INPUT_DOCUMENT]);
+            }
         }
 
         if ($action === 'moveUp') {
@@ -238,14 +230,20 @@ final class SelectionListService
         $currentPosition = $currentObj->getPosition();
         $current = [$currentObj];
 
-        $allList = $this->getLists();
+        $allList = $this->getListsOfCurrentUser();
 
-        $previous = array_filter($allList, function (UserSelectionList $list) use ($currentPosition) {
-            return $list->getPosition() < $currentPosition;
-        });
-        $next = array_filter($allList, function (UserSelectionList $list) use ($currentPosition) {
-            return $list->getPosition() > $currentPosition;
-        });
+        $previous = array_filter(
+            $allList,
+            function (UserSelectionList $list) use ($currentPosition) {
+                return $list->getPosition() < $currentPosition;
+            }
+        );
+        $next = array_filter(
+            $allList,
+            function (UserSelectionList $list) use ($currentPosition) {
+                return $list->getPosition() > $currentPosition;
+            }
+        );
 
         if ($up) {
             if (!is_array($previous) || count($previous) === 0) {
@@ -286,8 +284,53 @@ final class SelectionListService
                 ->getCountDocuments($this->getUser()->getUid());
         }
 
-        return count($this->session->get(UserSelectionController::SESSION_SELECTION_ID));
+        return count($this->getSession(self::SESSION_SELECTION_ID));
     }
 
+    /**
+     * @return array
+     */
+    public function getSelectionObjects(): array
+    {
+        if ($this->hasConnectedUser()) {
+            return ['lists' => $this->getListsOfCurrentUser()];
+        }
 
+        return ['documents' => $this->getDocumentsFromSession()];
+    }
+
+    /**
+     * @return array|UserSelectionDocument[]
+     */
+    public function getDocumentsFromSession(): array
+    {
+        return array_map(
+            function ($document) {
+                return new UserSelectionDocument($document);
+            },
+            $this->getSession(self::SESSION_SELECTION_ID)
+        );
+    }
+
+    /**
+     * @param array $docIds
+     */
+    private function deleteDocumentsFromSession(array $docIds = []): void
+    {
+        $newDocs = array_filter(
+            $this->session->get(self::SESSION_SELECTION_ID, []),
+            function (array $doc) use ($docIds) {
+                return !in_array($doc['id'], $docIds);
+        });
+
+        $this->setSession(self::SESSION_SELECTION_ID, $newDocs);
+    }
+
+    /**
+     * @param array $documents
+     */
+    public function addDocumentsInSession(array $documents = [])
+    {
+        $this->appendSession(self::SESSION_SELECTION_ID, $documents);
+    }
 }

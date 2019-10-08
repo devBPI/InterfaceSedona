@@ -8,4 +8,8 @@ $(document)
 			$inputContainer.append(card);
 		}
 	})
+    .on('ifChanged click', ':checkbox', function () {
+    	$('#countSelectionList span').html('('+$('[name="selection[list][]"]:checked').length+')')
+    	$('#countSelectionDocument span').html('('+$('[name="selection[document][]"]:checked').length+')')
+    })
 ;

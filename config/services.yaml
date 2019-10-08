@@ -38,7 +38,7 @@ services:
 
   App\Service\ImageService:
     arguments: ['%kernel.project_dir%/public/']
-  App\Service\HistoricService:
+  App\Service\HistoryService:
     arguments: ['@doctrine.orm.entity_manager']
   App\Service\SelectionListService:
     arguments: ['@doctrine.orm.entity_manager']

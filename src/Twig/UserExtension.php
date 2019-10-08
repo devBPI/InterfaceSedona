@@ -36,7 +36,8 @@ class UserExtension extends AbstractExtension
     public function getFunctions(): array
     {
         return [
-            new TwigFunction('count_selection_documents', [$this, 'getCountSelectionDocuments']),
+            new TwigFunction('has_selection_documents', [$this, 'checkSelectionDocuments']),
+            new TwigFunction('count_selection_documents', [$this, 'getCountSelectionDocuments'])
         ];
     }
 
@@ -46,6 +47,14 @@ class UserExtension extends AbstractExtension
     public function getName(): string
     {
         return 'user_extension';
+    }
+
+    /**
+     * @return bool
+     */
+    public function checkSelectionDocuments(): bool
+    {
+        return $this->getCountSelectionDocuments() > 0;
     }
 
     /**

@@ -1,3 +1,4 @@
+{% set currentPage = 'history' %}
 {% extends 'user/personal-data.html.twig' %}
 
 {% block content %}
@@ -7,14 +8,14 @@
 
     <p class="sr-only">{{ 'page.personal-data.historic.notice'|trans }}</p>
 
-    <form action="{{ path('user_historic_index') }}" method="post">
+    <form action="{{ path('user_history_index') }}" method="post">
 
         <div class="row justify-content-md-between banner-tools">
             {% include "user/blocs/banner-tools.html.twig" with {'type': constant('App\\Controller\\UserHistoryController::INPUT_NAME')} %}
         </div>
 
         <div>
-            {% include "user/blocs/historic-search.html.twig" %}
+            {% include "user/blocs/history-search.html.twig" %}
         </div>
 
 

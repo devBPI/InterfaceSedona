@@ -3,13 +3,13 @@
 
 namespace App\Controller;
 
-use App\Service\HistoricService;
+use App\Service\HistoryService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @Route("/historique", name="user_historic")
+ * @Route("/historique", name="user_history")
  *
  * Class UserHistoryController
  * @package App\Controller
@@ -19,17 +19,18 @@ class UserHistoryController extends AbstractController
     const INPUT_NAME = 'history';
 
     /**
-     * @var HistoricService
+     * @var HistoryService
      */
-    private $historicService;
+    private $historyService;
 
     /**
      * UserHistoryController constructor.
-     * @param HistoricService $historicService
+     *
+     * @param HistoryService $historyService
      */
-    public function __construct(HistoricService $historicService)
+    public function __construct(HistoryService $historyService)
     {
-        $this->historicService = $historicService;
+        $this->historyService = $historyService;
     }
 
     /**
@@ -39,17 +40,17 @@ class UserHistoryController extends AbstractController
      * @throws \Doctrine\ORM\ORMException
      * @throws \Doctrine\ORM\OptimisticLockException
      */
-    public function historicAction(Request $request)
+    public function indexAction(Request $request)
     {
         if (count($request->request->all()) > 0) {
             $listObj = $request->get(self::INPUT_NAME);
             $action = $request->get('action');
 
-            $this->historicService->applyAction($action, $listObj);
+            $this->historyService->applyAction($action, $listObj);
         }
 
-        return $this->render('user/historic.html.twig', [
-            'histories' => $this->historicService->getHistory()
+        return $this->render('user/history.html.twig', [
+            'histories' => $this->historyService->getHistory()
         ]);
     }
 

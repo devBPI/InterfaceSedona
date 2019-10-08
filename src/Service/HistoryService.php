@@ -6,33 +6,24 @@ namespace App\Service;
 use App\Entity\SearchHistory;
 use App\Entity\UserHistory;
 use App\Model\Exception\SearchHistoryException;
-use App\Model\LdapUser;
 use Doctrine\ORM\EntityManager;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
-use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 
 /**
- * Class HistoricService
+ * Class HistoryService
  * @package App\Service
  */
-final class HistoricService
+final class HistoryService extends AuthenticationService
 {
     /**
      * @var EntityManager
      */
     private $entityManager;
-    /**
-     * @var TokenStorageInterface
-     */
-    private $tokenStorage;
-    /**
-     * @var SessionInterface
-     */
-    private $session;
 
     /**
-     * HistoricService constructor.
+     * HistoryService constructor.
+     *
      * @param EntityManager $entityManager
      * @param TokenStorageInterface $tokenStorage
      * @param SessionInterface $session
@@ -43,8 +34,8 @@ final class HistoricService
         SessionInterface $session
     ) {
         $this->entityManager = $entityManager;
-        $this->tokenStorage = $tokenStorage;
-        $this->session = $session;
+
+        parent::__construct($tokenStorage, $session);
     }
 
     /**
@@ -53,10 +44,11 @@ final class HistoricService
      * @throws \Doctrine\ORM\ORMException
      * @throws \Doctrine\ORM\OptimisticLockException
      */
-    public function saveMyHistoric(string $title, string $data): void
+    public function saveUserHistory(string $title, string $data): void
     {
         $searchHash = SearchHistory::getSearchHash($data);
-        $searchHistory = $this->entityManager->getRepository(SearchHistory::class)->find($searchHash);
+        $searchHistory = $this->entityManager->getRepository(SearchHistory::class)
+            ->find($searchHash);
         if (!$searchHistory instanceof SearchHistory) {
             $searchHistory = new SearchHistory(
                 $title,
@@ -70,7 +62,7 @@ final class HistoricService
             $userHistory->incrementCount();
         } else {
             $userHistory = new UserHistory($searchHistory);
-            $userHistory->setUserUid($this->getUserId());
+            $userHistory->setUserUid($this->getUserIdOrSessionId());
             $this->entityManager->persist($userHistory);
         }
 
@@ -85,18 +77,17 @@ final class HistoricService
     private function getUserHistoryOfSearchHistory(SearchHistory $searchHistory): ?UserHistory
     {
         return $this->entityManager->getRepository(UserHistory::class)->findOneBy(
-            ['Search' => $searchHistory, 'user_uid' => $this->getUserId()]
+            ['Search' => $searchHistory, 'user_uid' => $this->getUserIdOrSessionId()]
         );
     }
 
     /**
      * @return string
      */
-    private function getUserId(): string
+    private function getUserIdOrSessionId(): string
     {
-        if ($this->tokenStorage->getToken() instanceof TokenInterface &&
-            $this->tokenStorage->getToken()->getUser() instanceof LdapUser) {
-            return $this->tokenStorage->getToken()->getUser()->getUid();
+        if ($this->hasConnectedUser()) {
+            return $this->getUser()->getUid();
         }
 
         return $this->session->getId();
@@ -108,7 +99,7 @@ final class HistoricService
     public function getHistory(): array
     {
         return $this->entityManager->getRepository(UserHistory::class)->findBy(
-            ['user_uid' => $this->getUserId()]
+            ['user_uid' => $this->getUserIdOrSessionId()]
         );
     }
 
@@ -151,7 +142,9 @@ final class HistoricService
      */
     public function deleteHistories(array $list): void
     {
-        foreach ($this->entityManager->getRepository(UserHistory::class)->findBy(['id' => $list]) as $history) {
+        $histories = $this->entityManager->getRepository(UserHistory::class)
+            ->findBy(['id' => $list]);
+        foreach ($histories as $history) {
             $this->entityManager->remove($history);
         }
 
