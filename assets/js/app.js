@@ -121,9 +121,3 @@ $(document).on('click', '.js-copy_to_clipboard', function (e) {
     let url =  $('.js-url-to-copy').val();
     copyToClipboard(url);
 }).css( 'cursor', 'pointer' );
-
-
-
-
-
-

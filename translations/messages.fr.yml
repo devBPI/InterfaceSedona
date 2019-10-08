@@ -375,7 +375,7 @@ bloc:
       nb-result-title: Sélectionner le nombre de résultat par colonne
       nb-result-by-col: '%nb% résultats par colonne'
       order: Choix du tri des documents
-      order-aria: dropdown-trie-result
+      order-aria: dropdown-tri-result
       order-choice: Trier par
       order-pertinence: Pertinence
       order-title-asc: Titre A-Z

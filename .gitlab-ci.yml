@@ -58,6 +58,7 @@ quality:w3c:
 
 compileJS:
   stage: compileJS
+  needs: ["quality:sonar","quality:insight","quality:w3c"]
   image: node:10-alpine
   cache:
     key: "$CI_PIPELINE_ID-$CI_COMMIT_REF_SLUG"
