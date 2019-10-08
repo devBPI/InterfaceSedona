@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <p>
+        Cette ressource n’est plus disponible. Vous allez être redirigé vers la page d’accueil du catalogue de la Bpi
+    </p>
+    <p>
+         <a href="{{ path('home') }}">Pour revenir à la page d'accueil </a>
+    </p>
+
+   redirection automatique au bout de <a href ="{{ path('home') }}"  id="countdown" class="timer"></a>
+{% endblock %}
