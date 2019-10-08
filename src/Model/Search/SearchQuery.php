@@ -16,15 +16,21 @@ class SearchQuery implements SearchResultInterface
 
     const SORT_DEFAULT = 'DEFAULT';
     const SORT = [
-        'default' => self::SORT_DEFAULT,
-        'tile_a_z' => 'TITRE_A_Z',
-        'tile_z_a' => 'TITRE_Z_A',
-        'author_a_z' => 'AUTHEUR_A_Z',
-        'author_z_a' => 'AUTHEUR_Z_A',
-        'older' => 'OLDER',
-        'younger' => 'YOUNGER',
+        'pertinence' => self::SORT_DEFAULT,
+        'title-asc' => 'TITRE_A_Z',
+        'title-desc' => 'TITRE_Z_A',
+        'author-asc' => 'AUTHEUR_A_Z',
+        'author-desc' => 'AUTHEUR_Z_A',
+        'least-recent' => 'OLDER',
+        'most-recent' => 'YOUNGER',
     ];
+
     const ROWS_DEFAULT = 10;
+    const ROWS = [
+        self::ROWS_DEFAULT,
+        25,
+        50
+    ];
 
     use SearchResultTrait;
 
