@@ -4,49 +4,29 @@
 namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
+/**
+ * Class UserController
+ * @package App\Controller
+ */
 class UserController extends AbstractController
 {
     /**
-     * @Route("/authentification", methods={"GET","HEAD"}, name="user_login")
+     * @Route("/authentification", methods={"GET","POST"}, name="user_login")
+     * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function loginAction(Request $request)
+    public function loginAction()
     {
-        return $this->render('user/login.html.twig', []);
+        return $this->render('user/login.html.twig');
     }
 
     /**
      * @Route("/compte", methods={"GET","HEAD"}, name="user_personal_data")
+     * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function personalDataAction(Request $request)
+    public function personalDataAction()
     {
-        return $this->render('user/personal-data.html.twig', []);
+        return $this->render('user/personal-data.html.twig');
     }
-
-    /**
-     * @Route("/list/cree", methods={"GET","HEAD"}, name="user_list_add")
-     */
-    public function addListAction(Request $request)
-    {
-        return $this->render('user/modal/list_add.html.twig', []);
-    }
-
-    /**
-     * @Route("/list/modifier", methods={"GET","HEAD"}, name="user_list_edit")
-     */
-    public function editListAction(Request $request)
-    {
-        return $this->render('user/modal/list_edit.html.twig', []);
-    }
-
-    /**
-     * @Route("/list/supprimer", methods={"GET","HEAD"}, name="user_list_remove")
-     */
-    public function removeListAction(Request $request)
-    {
-        return $this->render('user/modal/list_remove.html.twig', []);
-    }
-
 }

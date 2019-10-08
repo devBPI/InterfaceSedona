@@ -99,8 +99,9 @@ footer:
 modal:
   list-create:          #Modal 01  Création d'une liste
     title: Créer une nouvelle liste
+    mandatory-field: La saisie du titre de la liste est obligatoire
     field-title: Titre
-    message-success: Vous avez bien créé la liste « %name% » avec les document sélectionnés.
+    message-success: Vous avez bien créé la liste « %name% » avec les documents sélectionnés.
     submit: Valider
     submit-sr-only:  la création de la liste
   list-add:             #Modal 02 ajout à ma sélection
@@ -112,21 +113,25 @@ modal:
     add-to-tempory: .. à Ma sélection temporaire.
     btn-return: Retourner à la liste des résultats
     btn-selection: Aller dans ma sélection
-    btn-login: Pour la conserver, connectez-vous à Mon compote.
+    btn-login: Pour la conserver, connectez-vous à Mon compte.
     btn-login2: Me connecter
     btn-register: Créer mon compte
     submit: Valider
     submit-sr-only:  la création de la liste
+    message-success: Les documents ont bien été ajoutés à vos listes
+    message-error:
+      no-list: Aucune liste n'a été sélectionnée. Veuillez en sélectionner une ou en créer une nouvelle.
   list-edit:          #Modal 03 edition d'une liste
     title: Modification de la liste
     field-title: Titre
     submit: Valider
     submit-sr-only: la modification de la liste
-  list-remove:      #Modal 04 supperions d'une liste
-    title: Liste "%name%"
-    message-confirmation: Voulez-vous vraiment supprimer cette liste ?
+    message-success: La liste « %name% » a bien été modifiée.
+  list-remove:      #Modal 04 supperions de listes
+    title: Suppression des listes et des documents
+    message-confirmation: Voulez-vous vraiment supprimer les listes et documents sélectionnés ?
     submit: Confirmer
-    submit-sr-only:  la suppression de la liste "%name%"
+    submit-sr-only:  la suppression des listes et documents sélectionnés
   export:           #Modal 05 export
     title: Courriel
     subtitle: Paramétrer la pièce jointe
@@ -201,12 +206,22 @@ modal:
       notice: Pour rechercher une expression exacte, mettez les mots entre "guillemets".
       label: Rechercher par mots clés
       type:
-        autor: Auteur
-        publication-date: Date de publication
+        general: Tous les mots
         title: Titre
-      group-or: Ou
-      group-and: Et
+        author: Auteur
+        realisator: Réalisateur
+        subject: Sujet
+        theme: Thème
+        editor: Editeur
+        publication-date: Date de publication
+        isbn-issn-numcommercial: ISBN, ISSN, numéros commerciaux
+        indice-cote: Indice / Cote
+      group:
+        or: Ou
+        and: Et
+        not: Sauf
       add-ligne: Ajouter un champs de recherche
+
     base:
       label: Recherche dans
       all: Tout
@@ -226,15 +241,15 @@ modal:
       in-shelf: Disponible en rayon
       in-ligne: Consultable en ligne
     facette:
-      document-type: Type de documents
-      supports: Supports
-      genre-music: Genre musical
-      genre-film: Genre film
-      genre-book: Genre littéraire
-      public-target: Public destinataire
-      sector: Secteur
+      type: Type de documents
+      materialSupport: Supports
+      genreMusical: Genre musical
+      genreFilm: Genre film
+      genreLitteraire: Genre littéraire
+      audience: Public destinataire
+      secteur: Secteur
       mediation: Médiation
-      content: Contenu
+      contenu: Contenu
       available: Disponibilité
       theme: Thèmes
       author: Auteur(s)
@@ -264,7 +279,10 @@ page:
   bibiographic:
     title: Document %title%
   search:
-    title: Résultats recherche - %termes% - page %currentPage% sur %nbPage%
+    title:
+      simple: Résultats recherche simple - %keyword%
+      advanced: Résultats recherche avancée - %keyword%
+      page: page %current% sur %total%
   login:
     title: Authentification
     login: Adresse e-mail
@@ -347,7 +365,7 @@ bloc:
     select: sélectionner
     access-to-bdd: Acceder à %name%
     result-of-bdd: Résultat de
-    last-publication: 'Dernier numéro reçu : N°%number%, %pulication-date%'
+    last-publication: 'Dernier numéro reçu :'
     document-available: Disponible
     document-unavailable: Indisponible
     notification-availablity: Document indisponible, être prévenu de son retour en rayon - ouverture formulaire
@@ -355,9 +373,9 @@ bloc:
     header:
       nb-result-aria: dropdown-number-items
       nb-result-title: Sélectionner le nombre de résultat par colonne
-      nb-result-by-col: %nb% résultats par colonne
-      order: Choix du trie des documents
-      order-aria: dropdown-trie-result
+      nb-result-by-col: '%nb% résultats par colonne'
+      order: Choix du tri des documents
+      order-aria: dropdown-tri-result
       order-choice: Trier par
       order-pertinence: Pertinence
       order-title-asc: Titre A-Z
@@ -397,6 +415,7 @@ bloc:
     indice: 'Indice :'
     publication-receve: 'Numéros reçus :'
     authority-type: "Type d'autorité :"
+    other-names: "Autre(s) nom(s) : "
     country: 'Pays :'
     born-date: 'Naissance :'
     dead-date: 'Mort :'
@@ -450,6 +469,7 @@ bloc:
     link: Accéder à %title%
     comments-see: Voir le commentaire
     comments-edit: Modifier le commentaire
+    comments-disabled: Veuillez-vous connecter afin de saisir un commentaire
     new-list: Créer une nouvelle liste
   historic-search:      #Bloc 26 Historique des recherches
     title: Mon historique
@@ -459,6 +479,6 @@ bloc:
     select-ligne: 'Sélectionner la ligne : %title%'
     reload: Relancer la recherche %title%'
 
-
-
-
+error:
+  page_not_available: 'Cette page n’est pas accessible.'
+  page_not_found: 'Page introuvable'

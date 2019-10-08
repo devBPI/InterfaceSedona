@@ -1,0 +1,21 @@
+<form class="modal-form" method="post" novalidate="novalidate" action="{{ path('share_by_mail') }}" data-toggle="form-remote">
+	{% if form.vars.errors|length > 0 %}
+		<div class="modal-body">
+			{{ form_errors(form) }}
+		</div>
+	{% endif %}
+
+	<div class="modal-body">
+		{{ form_row(form.sender,{ 'label': 'modal.share.field.expeditor'|trans }) }}
+		{{ form_row(form.reciever,{ 'label':  'modal.share.field.recipient'|trans }) }}
+		{{ form_row(form.object,{ 'label': 'modal.share.field.title'|trans }) }}
+		{{ form_row(form.message,{ 'label':  'modal.share.field.text'|trans  }) }}
+		<div>
+			<i>*Insert captcha*</i>
+		</div>
+	</div>
+	<div class="modal-footer">
+		<button type="button" data-dismiss="modal" class="btn btn-lg btn-secondary">{{ 'global.modal-cancel'|trans }}</button>
+		<button type="submit" class="btn btn-lg btn-primary">{{ 'modal.share.submit'|trans }}</button>
+	</div>
+</form>

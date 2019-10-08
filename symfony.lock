@@ -395,6 +395,9 @@
     "symfony/intl": {
         "version": "v3.4.24"
     },
+    "symfony/ldap": {
+        "version": "v3.4.30"
+    },
     "symfony/monolog-bridge": {
         "version": "v3.4.24"
     },
@@ -438,6 +441,9 @@
     },
     "symfony/property-access": {
         "version": "v3.4.24"
+    },
+    "symfony/property-info": {
+        "version": "v3.4.27"
     },
     "symfony/routing": {
         "version": "3.3",

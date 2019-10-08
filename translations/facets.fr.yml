@@ -1,0 +1,13 @@
+filters:
+  mapping:
+    documentType: type
+    bases: configuration_name
+    supports: material_support
+    languages: language
+    genreMusic: genre_musical
+    genreFilm: genre_film
+    genreBook: genre_litteraire
+    publicTarget: audience
+    sector: secteur
+    mediation: mediation
+    content: contenu

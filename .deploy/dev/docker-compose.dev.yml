@@ -2,10 +2,13 @@ version: '3.5'
 services:
   app:
     image: registry.sedona.fr/images/php:7-fpm
-    user: '$UID:$UID'
+#    user: '$UID:$UID'
     networks:
-      - default
-      - bpi_network_btw
+      default: ~
+      public: ~
+      bpi_network_btw:
+        aliases:
+        - $PROJECT_HOSTNAME
     environment:
       - COMPOSER_HOME=$COMPOSER_CONTAINER_HOME
       - POSTGRES_HOST
@@ -22,7 +25,7 @@ services:
     volumes:
       - ./:/var/www/html/
       - $COMPOSER_LOCAL_HOME:$COMPOSER_CONTAINER_HOME
-      - .deploy/dev/app:/sedona
+      - .deploy/dev/app:/docker-entrypoint-init.d
 
   web:
     image: registry.sedona.fr/images/httpd:24
@@ -46,12 +49,11 @@ services:
     user: "$UID:$UID"
     volumes:
       - .:/app
+      - ./var/cache/npm:/.npm
       - .deploy/dev/encore/docker-entrypoint.sh:/usr/local/bin/docker-entrypoint.sh
     working_dir: /app
     depends_on:
       - app
-    environment:
-      PATH: "./node_modules/.bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
     labels:
       traefik.enable: false
     networks:

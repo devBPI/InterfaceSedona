@@ -1,33 +1,79 @@
 <?php
+declare(strict_types=1);
 
 namespace App\Controller;
 
-use Symfony\Component\HttpFoundation\Request;
+use App\Entity\Thematic;
+use App\Service\Provider\CarouselProvider;
+use Doctrine\Common\Collections\ArrayCollection;
+use JMS\Serializer\Exception\XmlErrorException;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
+/**
+ * Class HomeController
+ * @package App\Controller
+ */
 class HomeController extends AbstractController
 {
+    /**
+     * @var CarouselProvider
+     */
+    private $carouselProvider;
+
+    /**
+     * HomeController constructor.
+     * @param CarouselProvider $carouselProvider
+     */
+    public function __construct(CarouselProvider $carouselProvider)
+    {
+        $this->carouselProvider = $carouselProvider;
+    }
+
     /**
      * @Route("", methods={"GET","HEAD"}, name="home")
      * @Route("/", methods={"GET","HEAD"}, name="home2")
      */
-    public function indexAction(Request $request)
+    public function indexAction(): Response
     {
-        return $this->render('home/default.html.twig', []);
+        $attr = [];
+        try {
+            $attr['carousel'] = $this->carouselProvider->getHomeList();
+
+        } catch (XmlErrorException $exception) {
+        }
+        $thematic = $this->getDoctrine()->getRepository(Thematic::class)->findAll();
+
+        return $this->render(
+            'home/default.html.twig',
+            $attr+['thematic'=>$thematic]
+        );
     }
 
     /**
-     * @Route("/accueil/autoformation", methods={"GET","HEAD"}, name="home_autoformation")
-     * @Route("/accueil/presse", methods={"GET","HEAD"}, name="home_presse")
-     * @Route("/accueil/cinema", methods={"GET","HEAD"}, name="home_cinema")
+     * @Route("/accueil/{thematic}", methods={"GET","HEAD"}, name="home_thematic", requirements={"theme"="autoformation|presse|cinema"})
+     *
+     * @param string $thematic
+     * @return Response
      */
-    public function thematicAction(Request $request)
+    public function thematicAction(string $thematic): Response
     {
-        $theme = substr($request->getPathInfo(), strrpos($request->getPathInfo(), '/') + 1);
-        return $this->render('home/thematic.html.twig', [
-            'title' => $theme
-        ]);
+        $carousel = null;
+
+        try {
+            $carousel = $this->carouselProvider->getListByThematic($thematic);
+        } catch (XmlErrorException $exception) {
+        }
+        $object = $this->getDoctrine()->getRepository(Thematic::class)->findOneBy(['type'=>$thematic]);
+
+        return $this->render(
+            'home/thematic.html.twig',
+            [
+                'title' => $thematic,
+                'thematic' => $object,
+                'carousel' => $carousel,
+            ]
+        );
     }
 }

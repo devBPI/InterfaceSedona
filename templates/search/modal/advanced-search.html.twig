@@ -1,179 +1,34 @@
 <!-- Début - Modal 13 recheche avancé -->
-<div role="dialog" aria-modal="true" aria-labelledby="modal-search-advanced-title" class="modal fade modal--filter" id="modal-search-advanced">
-	<div class="modal-dialog modal-dialog-centered">
-		<div class="modal-content">
-			<div class="modal-header">
-				<h1 class="n1 modal-header__title" id="modal-search-advanced-title">{{ 'modal.advanced-search.title'|trans }}</h1>
-				<button class="close" type="button" aria-label="{{ 'global.modal-close'|trans }}" data-dismiss="modal">
-					<span aria-hidden="true" class="sr-only">X</span>
-					<img src="{{ asset('images/icones/icone-croix-blanc.svg') }}" alt="" />
-				</button>
-			</div>
+<div role="dialog" aria-modal="true" aria-labelledby="modal-search-advanced-title" class="modal fade modal--filter"
+     id="modal-search-advanced">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="n1 modal-header__title" id="modal-search-advanced-title">
+                    {{ 'modal.advanced-search.title'|trans }}
+                </h1>
+                <button class="close" type="button" aria-label="{{ 'global.modal-close'|trans }}" data-dismiss="modal">
+                    <span aria-hidden="true" class="sr-only">X</span>
+                    <img src="{{ asset('images/icones/icone-croix-blanc.svg') }}" alt=""/>
+                </button>
+            </div>
 
-			<div class="modal-body">
-				<p tabindex="0">{{ 'modal.advanced-search.keyword.label'|trans }}</p>
+            <form action="{{ path('advanced_search') }}" method="get">
 
-				<div class="search-keyword">
-					<div  class="search-keyword__group row">
-						<div class="col-3 col-sm-2 search-keyword__condition"></div>
-						<div class="col-9 search-keyword__input">
-							<label for="adv-search-txt-1" class="sr-only">{{ 'modal.advanced-search.keyword.label'|trans }}</label>
-							<input type="text" id="adv-search-txt-1" class="form-control">
-						</div>
-						<div class="col-12 col-sm-4 pr-sm-0">
-							<label for="adv-search-choice-1" class="sr-only"> // </label>
-							<select class="form-control" id="adv-search-choice-1">
-								<option>Tous les mots</option>
-								<option>Titre</option>
-								<option>Auteur</option>
-								<option>Réalisateur</option>
-								<option>Sujet</option>
-								<option>Thème</option>
-								<option>Editeur</option>
-								<option>Date de publication</option>
-								<option>ISBN, ISSN, numéros commerciaux</option>
-								<option>Indice / Cote</option>
-							</select>
-						</div>
-						<div class="col-12 col-sm-1 text-right pr-sm-0"></div>
-					</div>
+                {{ render(controller('App\\Controller\\SearchController::advancedSearchContent', {'request': app.request})) }}
 
-					<div class="search-keyword__group row">
-						<div class="col-3 col-sm-2 search-keyword__condition">
-							<label for="adv-search-condition-2" class="sr-only"> // </label>
-							<select class="form-control" id="adv-search-condition-2">
-								<option>{{ 'modal.advanced-search.keyword.group-and'|trans }}</option>
-								<option>{{ 'modal.advanced-search.keyword.group-or'|trans }}</option>
-							</select>
-						</div>
-						<div class="col-9 search-keyword__input">
-							<label for="adv-search-txt-2" class="sr-only">{{ 'modal.advanced-search.keyword.label'|trans }}</label>
-							<input type="text" id="adv-search-txt-2" class="form-control">
-						</div>
-						<div class="col-12 col-sm-4 pr-sm-0">
-							<label for="adv-search-choice-2" class="sr-only"> // </label>
-							<select class="form-control" id="adv-search-choice-2">
-								<option>Tous les mots</option>
-								<option>Titre</option>
-								<option>Auteur</option>
-								<option>Réalisateur</option>
-								<option>Sujet</option>
-								<option>Thème</option>
-								<option>Editeur</option>
-								<option>Date de publication</option>
-								<option>ISBN, ISSN, numéros commerciaux</option>
-								<option>Indice / Cote</option>
-							</select>
-						</div>
-						<div class="col-12 col-sm-1 text-right pr-sm-0">
-							<button type="button" class="btn search-keyword__button search-keyword__button--add">
-								<span>{{ 'modal.advanced-search.keyword.add-ligne'|trans }}</span>
-							</button>
-						</div>
-					</div>
-
-
-				</div>
-			</div>
-
-			<div class="modal-body">
-				<div class="search-base">
-					<div class="search-base__group">
-						<p class="search-base__label">{{ 'modal.advanced-search.base.label'|trans }}</p>
-						<div class="form-check search-base__label">
-							<input type="checkbox" id="adv-search-bdd-all" class="form-check-input">
-							<label for="adv-search-bdd-all" class="form-check-label">{{ 'modal.advanced-search.base.all'|trans }}</label>
-						</div>
-					</div>
-					<ul role="group" aria-label="{{ 'modal.advanced-search.base.in'|trans }}" class="search-base__list">
-						{% for i in 1..5 %}
-							<li class="form-check search-base__item">
-								<input type="checkbox" id="adv-search-bdd-{{ i }}" class="form-check-input">
-								<label for="adv-search-bdd-{{ i }}" class="form-check-label"><span class="sr-only">{{ 'modal.advanced-search.base.in'|trans }} </span>{{ 'modal.advanced-search.base.name'|trans({'%name%': i}) }}</label>
-							</li>
-						{% endfor %}
-					</ul>
-				</div>
-			</div>
-
-			<div class="modal-body">
-				<div>
-					<p>{{ 'modal.advanced-search.date.title'|trans }}</p>
-					<div role="group" aria-label="{{ 'modal.advanced-search.date.title-sr-only'|trans }}" class="search-date">
-						<div class="search-date__group">
-							<div class="search-date__radio form-check form-check-inline">
-								<input class="form-check-input" type="radio" id="adv-search-label-date" name="adv-search-date" value="Date" checked>
-								<label class="form-check-label" for="adv-search-label-date">{{ 'modal.advanced-search.date.by-date'|trans }}</label>
-							</div>
-							<div class="search-date__radio search-date__radio--period form-check form-check-inline">
-								<input class="form-check-input" type="radio" id="adv-search-label-period" name="adv-search-date" value="Periode">
-								<label class="form-check-label" for="adv-search-label-period">{{ 'modal.advanced-search.date.by-periode'|trans }}</label>
-							</div>
-						</div>
-						<div class="search-date__group">
-							<div class="search-date__date form-group">
-								<label for="adv-search-date-1" class="sr-only">{{ 'modal.advanced-search.date.date-start'|trans }}</label>
-								<input type="text" class="form-control" id="adv-search-date-1" placeholder="AAAA">
-							</div>
-							<div class="search-date__date search-date__date--second form-group d-none">
-								<label for="adv-search-date-2" class="sr-only">{{ 'modal.advanced-search.date.date-end'|trans }}</label>
-								<input type="text" class="form-control" id="adv-search-date-2" placeholder="AAAA">
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-
-			<div class="modal-body">
-				<div>
-					<p>{{ 'modal.advanced-search.langage.title'|trans }}</p>
-					<div class="dropdown">
-						<button type="button" id="adv-search-langage" data-toggle="dropdown" aria-haspopup="listbox" aria-expanded="false" aria-label="{{ 'modal.advanced-search.langage.select-aria'|trans }}" class="dropdown-toggle">
-						Français
-						</button>
-						<ul class="dropdown-menu" aria-labelledby="adv-search-langage" role="listbox" tabindex="-1">
-							<li class="dropdown-item" role="option">
-								<a href="#">*Insert autres langues*</a>
-							</li>
-						</ul>
-					</div>
-				</div>
-			</div>
-
-			{% for key in [
-				'document-type',
-				'supports',
-				'genre-music',
-				'genre-film',
-				'genre-book',
-				'public-target',
-				'sector',
-				'mediation',
-				'content'
-			] %}
-				<div class="modal-body">
-					<div class="search-facette">
-						<button type="button" class="search-facette__button btn" data-toggle="collapse" aria-expanded="false" aria-controls="adv-search-{{ key }}" data-target="#adv-search-{{ key }}">{{ ('modal.advanced-search.facette.'~key)|trans }}</button>
-						<div class="collapse search-facette__body" id="adv-search-{{ key }}" role="group" aria-label="{{ ('modal.advanced-search.facette.'~key)|trans }}">
-							<div class="search-facette__content">
-								{% for i in 1..24 %}
-									<div class="form-check search-facette__item">
-										<input type="checkbox" class="form-check-input" id="{{ key }}-{{ i }}">
-										<label class="form-check-label" for="{{ key }}-{{ i }}">*Insert Label {{ i }}*</label>
-									</div>
-								{% endfor %}
-							</div>
-						</div>
-					</div>
-				</div>
-			{% endfor %}
-
-			<div class="modal-footer">
-				<button type="button" class="btn-link btn">{{ 'modal.advanced-search.clear-search'|trans }}</button>
-				<button type="submit" class="btn btn-lg btn-primary btn-img">
-					<span>{{ 'modal.advanced-search.submit'|trans }}</span><img src="{{ asset('images/icones/icone-loupe.svg') }}" alt="" class="icone-loupe"/></button>
-			</div>
-		</div>
-	</div>
+                <div class="modal-footer">
+                    <button type="button" aria-label="{{ 'modal.advanced-search.clear-search-aria'|trans }}" class="btn-link btn">
+                        {{ 'modal.advanced-search.clear-search'|trans }}
+                    </button>
+                    <button type="submit" aria-label="{{ 'modal.advanced-search.submit-aria'|trans }}"
+                        name="action" class="btn btn-lg btn-primary btn-img">
+                        <span>{{ 'modal.advanced-search.submit'|trans }}</span>
+                        <img src="{{ asset('images/icones/icone-loupe.svg') }}" alt="" class="icone-loupe"/>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
 </div>
 <!-- Fin - Modal 13 recheche avancé -->

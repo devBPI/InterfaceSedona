@@ -2,7 +2,7 @@
 set -e
 
 echo "NPM install ----- "
-npm install
+yarn install
 
 echo "Encore Start "
 yarn encore dev

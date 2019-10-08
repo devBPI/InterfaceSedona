@@ -2,7 +2,9 @@
 <div role="dialog" aria-modal="true" aria-labelledby="modal-refine-search-title" class="modal fade" id="modal-refine-search">
 	<div class="modal-dialog modal-dialog-centered">
 		<div class="modal-content">
-			<form class="modal-form"  method="get" action="{{ path('search') }}">
+			<form class="modal-form" method="get" action="{{ path('refined_search') }}">
+				<input type="hidden" name="searchToken" value="{{ objSearch.contextToken }}">
+
 				<div class="modal-header">
 					<h1 class="n1 modal-header__title" id="modal-refine-search-title">{{ 'modal.refine-search.title'|trans }}</h1>
 					<button class="close" type="button" aria-label="{{ 'global.modal-close'|trans }}" data-dismiss="modal">
@@ -11,61 +13,16 @@
 					</button>
 				</div>
 
-				{% for key in [
-					'document-type',
-					'available',
-					'theme',
-					'author',
-					'bdd',
-					'langue',
-					'subject'
-				] %}
-					<div class="modal-body">
-						<div class="search-facette">
-							<button type="button" class="search-facette__button btn" data-toggle="collapse" aria-expanded="false" aria-controls="rfn-search-{{ key }}" data-target="#rfn-search-{{ key }}">{{ ('modal.advanced-search.facette.'~key)|trans }} <span>(12)</span></button>
-							<div class="collapse search-facette__body" id="rfn-search-{{ key }}" role="group" aria-label="{{ ('modal.advanced-search.facette.'~key)|trans }}">
-								<div class="search-facette__content">
-									<div class="search-facette__item search-facette__item--button">
-										<button class="btn">{{ 'modal.refine-search.filter-delete'|trans }}<span class="sr-only"> : {{ ('modal.advanced-search.facette.'~key)|trans }}</span></button>
-									</div>
-									{% for i in 1..6 %}
-										<div class="form-check search-facette__item">
-											<input type="checkbox" class="form-check-input" id="rfn-{{ key }}-{{ i }}">
-											<label class="form-check-label" for="rfn-{{ key }}-{{ i }}">*Insert Label {{ i }}*</label>
-										</div>
-									{% endfor %}
-								</div>
-							</div>
-						</div>
-					</div>
+				{% for facet in objSearch.results.facets.facets %}
+                <div class="modal-body">
+                    {#{% if facet.name == 'date_publishing' %}#}
+                        {#{% include 'search/blocs-refined-search/date-content.html.twig' %}#}
+                    {#{% else %}#}
+                        {% include 'search/blocs-refined-search/content.html.twig' %}
+                    {#{% endif %}#}
+                </div>
 				{% endfor %}
 
-				<div class="modal-body">
-					<div class="search-facette">
-						<button type="button" class="search-facette__button btn" data-toggle="collapse" aria-expanded="false" aria-controls="rfn-search-date" data-target="#rfn-search-date">Date</button>
-						<div class="collapse search-facette__body" id="rfn-search-date" role="group" aria-label="Date">
-							<div class="search-facette__content">
-								<div class="search-facette__item search-facette__item--button">
-									<button class="btn">{{ 'modal.refine-search.filter-delete'|trans }}<span class="sr-only"> : Date</span></button>
-								</div>
-								<div class="search-facette__date">
-									<div class="mr-3">
-										<label for="rfn-search-date-1" class="sr-only">Entrez une première date</label>
-										<input type="text" class="form-control" id="rfn-search-date-1" placeholder="AAAA">
-									</div>
-									<div class="mr-3 d-none d-sm-block">
-										<input id="rfn-date-slider" type="text" value="">
-									</div>
-									<div>
-										<label for="rfn-search-date-2" class="sr-only">Entrez une deuxième date</label>
-										<input type="text" class="form-control" id="rfn-search-date-2" placeholder="AAAA">
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				
 				<div class="modal-footer">
 					<button type="submit" aria-label="{{ 'modal.refine-search.submit-aria'|trans }}" class="btn btn-lg btn-primary btn-img">
 						<span>{{ 'modal.refine-search.submit'|trans }}</span><img src="{{ asset('images/icones/icone-loupe.svg') }}" alt="" class="icone-loupe"/></button>

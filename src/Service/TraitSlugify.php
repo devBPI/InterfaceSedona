@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: bdemalglaive
- * Date: 24/07/18
- * Time: 21:06
- */
 
 namespace App\Service;
 
@@ -20,7 +14,6 @@ trait TraitSlugify
      */
     protected function slugify($text)
     {
-        $original = $text;
         // convert vowel with accent to vowel without accent
         $text = str_replace(
             ['À','Á','Â','Ã','Ä','Å','Æ','Ç', 'È','É','Ê','Ë','Ì','Í','Î','Ï','Ð','Ñ','Ò','Ó','Ô','Õ','Ö','Ø','Ù','Ú','Û','Ü','Ý','à','á','â','ã','ä','å','æ', 'ç','è','é','ê','ë','ì','í','î','ï','ñ','ò','ó','ô','õ','ö','ø','ù','ú','û','ü','ý','ÿ'],

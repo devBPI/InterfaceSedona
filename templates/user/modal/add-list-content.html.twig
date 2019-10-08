@@ -1,0 +1,116 @@
+<form id="list_add_form" class="modal-form list-docs" action="{{ path('user_selection_list_add') }}"
+      method="post" data-toggle="form-remote">
+    <div class="modal-header">
+        <h1 class="n1 modal-header__title" id="modal-list-add-title">{{ 'modal.list-add.title'|trans }}</h1>
+        <button class="close" type="button" aria-label="{{ 'global.modal-close'|trans }}"
+                data-dismiss="modal">
+            <span aria-hidden="true" class="sr-only">X</span>
+            <img src="{{ asset('images/icones/icone-croix-blanc.svg') }}" alt=""/>
+        </button>
+    </div>
+
+
+    {% if error is defined %}
+        <div class="modal-body">
+            <span class="invalid-feedback d-block">{{ error|trans }}</span>
+        </div>
+    {% endif %}
+
+    <div class="modal-body">
+        <div class="list-result border-0 list-result--modal"
+             {% if current is not defined %}id="resume-container"{% endif %}>
+            {% if current is defined %}
+                {% include 'search/blocs-results/docs-detail.html.twig' with {'notice': current.object} %}
+            {% endif %}
+        </div>
+    </div>
+
+    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+        {# Authentifié #}
+        <div class="modal-body">
+            <div class="search-base">
+                <p class="search-base__label">{{ 'modal.list-add.add-to-profile'|trans }}</p>
+                <ul class="search-base__list">
+                    {% for i, list in lists %}
+                        <li class="search-base__item form-check">
+                            <input type="checkbox" id="list-{{ i }}" class="form-check-input"
+                                   name="{{ constant('App\\Controller\\UserSelectionController::INPUT_LIST') }}[]"
+                                   value="{{ list.id }}">
+                            <label for="list-{{ i }}" class="form-check-label">
+                                {{ 'modal.list-add.list'|trans({'%name%': list.title }) }}
+                            </label>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+
+        <div class="modal-body">
+
+            <small class="modal-form__indication"><span>*</span> {{ 'global.form-mandatory-field'|trans }}
+            </small>
+
+            <div class="form-group form-check">
+                <input type="checkbox" id="list-add-new" class="form-check-input"
+                       name="{{ constant('App\\Controller\\UserSelectionController::CHECK_NEW_LIST') }}" value="1">
+                <label for="list-add-new"
+                       class="form-check-label">{{ 'modal.list-add.new-list'|trans }}</label>
+            </div>
+
+            <div class="form-group row">
+                <label for="list-add-title" class="col-12 col-sm-4">{{ 'modal.list-add.field-title'|trans }}
+                    <span>*</span></label>
+                <div class="col-12 col-sm-8">
+                    <input type="text" class="form-control" id="list-add-title"
+                           name="{{ constant('App\\Controller\\UserSelectionController::INPUT_LIST_TITLE') }}">
+                </div>
+            </div>
+        </div>
+        {# Authentifié #}
+    {% else %}
+        {# Pas authentifié #}
+        <div class="modal-body">
+            <p class="mb-0">{{ 'modal.list-add.add-to-tempory'|trans }}</p>
+        </div>
+
+        <div class="modal-body">
+            <div class="button-arrow">
+                <a href="#" class="button-arrow__button" data-dismiss="modal">
+                    {{ 'modal.list-add.btn-return'|trans }}</a>
+                <a href="{{ path('user_selection_index') }}" class="button-arrow__button">
+                    {{ 'modal.list-add.btn-selection'|trans }}</a>
+            </div>
+        </div>
+        {# Pas authentifié #}
+    {% endif %}
+
+
+    <div class="modal-footer">
+        {% if not is_granted('IS_AUTHENTICATED_FULLY') %}
+            {# Pas authentifié #}
+            <p class="modal-footer__quote">{{ 'modal.list-add.btn-login'|trans }}</p>
+        {% endif %}
+
+        {# Authentifié + Pas authentifié #}
+        <button type="button" data-dismiss="modal"
+                class="btn btn-lg btn-secondary">{{ 'global.modal-cancel'|trans }}</button>
+
+        {% if not is_granted('IS_AUTHENTICATED_FULLY') %}
+            {# Pas authentifié #}
+            <a href="{{ path('user_login') }}" class="btn btn-lg btn-primary">
+                {{ 'modal.list-add.btn-login2'|trans }}</a>
+            <a href="https://www.bpi.fr/formulaire-inscription-bpi" target="_blank"
+               class="btn btn-lg btn-primary">{{ 'modal.list-add.btn-register'|trans }}</a>
+        {% else %}
+            {# Authentifié #}
+            <button type="submit" class="btn btn-lg btn-primary">
+                {{ 'modal.list-add.submit'|trans }}
+                <span class="sr-only"> {{ 'modal.list-add.submit-sr-only'|trans }}</span>
+            </button>
+        {% endif %}
+    </div>
+</form>
+
+<script type="text/javascript">
+    const user_connected = "{{ is_granted('IS_AUTHENTICATED_FULLY') }}";
+</script>

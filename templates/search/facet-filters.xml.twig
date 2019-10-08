@@ -1,0 +1,17 @@
+{% spaceless %}
+    <?xml version="1.0" encoding="UTF-8"?>
+    <facets-wrap>
+        <facets>
+            {% for name, values in attributes %}
+                <facet>
+                    <name>{{ name }}</name>
+                    <values>
+                        {% for value in values %}
+                            <value>{{ value }}</value>
+                        {% endfor %}
+                    </values>
+                </facet>
+            {% endfor %}
+        </facets>
+    </facets-wrap>
+{% endspaceless %}

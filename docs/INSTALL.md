@@ -22,6 +22,11 @@ $ docker login registry.sedona.fr
 * Sur windows .... changer d'OS 
 
 
+### 3) Activer le VPN
+Lancer le VPN avec OpenVPN
+Les données sonr dan temapass
+Attention, penser à lancer le VPN avant de lancer l'instance docker (app) car le LDAP utilise le VPN pour accéder au serveru de BPI.
+Sinon la connexion échouera
 
 ##  3) Télécharger le projet en local 
 et lancer les commandes suivantes dans le dossier d'installation
@@ -39,8 +44,9 @@ et lancer les commandes suivantes dans le dossier d'installation
 
 (/etc/hosts)
 ```
-127.0.0.1    e-salon.saintgobain.docker
+127.0.0.1    catalogue.bpi.docker
 ```
+
 
 
 [Retour au README.md](../README.md) 

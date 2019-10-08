@@ -1,0 +1,106 @@
+{{ dump(isPrintLong, includeImage) }}
+	{% if  isPrintLong  %}
+        {{ pdf_occurence (notice, 'getTitleForm', '', format) | raw }}
+    {% endif %}
+    {{ pdf_occurence (notice, 'getTranslatedBy', 'Traduit de', format) | raw }}
+	{{ pdf_occurence (notice, 'getAlternatifTitle', 'Dans', format) | raw }}
+	{{ pdf_occurence (notice, 'getAnalyliticalTitle', 'Dans', format) | raw }}
+	{{ pdf_occurence (notice, 'getExportTitle', 'Dans', format) | raw }}
+	{{ pdf_occurence (notice, 'getAuthors', 'Auteur(s)', format) | raw }}
+	{% if  isPrintLong  %}
+		{% if notice.directors|length>0 %}
+			{{ pdf_occurence (notice,'getAuthors', 'Auteur(s), compositeur(s), interprète(s)', format) | raw }}
+			{{ pdf_occurence (notice,'getDirectors', 'Réalisateur(s)', format) | raw }}
+		{% else %}
+			{{ pdf_occurence (notice, 'getAuthors', 'Auteur(s)', format) | raw }}
+		{% endif %}
+
+		{{ pdf_occurence (notice, 'getResume', 'Résumé(s)', format) | raw }}
+		{{ pdf_occurence (notice, 'getContents', 'Pistes', format) | raw }}
+
+		{% if notice.directors|length>0 %}
+            {{ pdf_occurence (notice, 'otherAuthors', 'Autre(s) auteur(s), compositeur(s), interprète(s)', format) | raw }}
+		{% else %}
+            {{ pdf_occurence (notice, 'getOtherAuthors', 'Autre(s) auteur(s)', format) | raw }}
+		{% endif %}
+		{% if notice.directors|length>0 %}
+			Contributeur(s) :
+            {{ pdf_occurence (notice, 'getContributeurs', '', format) | raw }}
+            {{ pdf_occurence (notice, 'getAuthors', '', format) | raw }}
+            {{ pdf_occurence (notice, 'getOtherAuthors', '', format) | raw }}
+			{% else %}
+                {{ pdf_occurence (notice, 'getContributeurs', 'Contributeur(s)', format) | raw }}
+        {% endif %}
+        {{ pdf_occurence (notice, 'getEditors', 'Editeur(s)', format) | raw }}
+        {{ pdf_occurence (notice, 'getPublishedDates', 'Date(s)', format) | raw }}
+        {{ pdf_occurence (notice, 'getEditors', 'Editeur(s)', format) | raw }}
+        {{ pdf_occurence (notice, 'getOtherDates', "Date d'édition papier(s)", format) | raw }}
+    {% endif %}
+	{% if isPrintLong %}
+		{{ pdf_occurence (notice, 'getPeriodicity', "Périodicité", format) | raw }}
+		{{ pdf_occurence (notice, 'getUniformTitle', "Oeuvre(s)", format) | raw }}
+		{{ pdf_occurence (notice, 'getAlternatifTitle', "Autre(s) forme(s) de titre", format) | raw }}
+		{{ pdf_occurence (notice, 'getContents', "Contenu", format) | raw }}
+		{{ pdf_occurence (notice, 'getNotes', "Notes", format) | raw }}
+		{{ pdf_occurence (notice, 'getResume', "Résumé", format) | raw }}
+		{% if format =='pdf' %}<li>{% endif %}
+			Langue(s) :
+			{% for element in notice.languages %}
+				{{ element }} {% if not loop.last %};{% endif %}
+			{% endfor %}
+			{% for element in notice.originalLanguages %}
+				{{ element }} {% if not loop.last %};{% endif %}
+			{% endfor %}
+		{% if format =='pdf' %}</li>{% endif %}
+		{{ pdf_occurence (notice, 'getMaterialDescriptions', "Description matérielle", format) | raw }}
+		{{ pdf_occurence (notice, 'getCollectionSeries', "Série / Collection", format) | raw }}
+		{{ pdf_occurence (notice, 'getTogetherTitle', "Titre(s) d'ensemble", format) | raw }}
+		{{ pdf_occurence (notice, 'getInRelationTitle', "Titre(s) en relation", format) | raw }}
+		{{ pdf_occurence (notice, 'getMeeting', "Réunit", format) | raw }}
+		{{ pdf_occurence (notice, 'getOtherEdition', "Autre(s) édition(s)", format) | raw }}
+		{{ pdf_occurence (notice, 'getConservations', "Conservation", format) | raw }}
+		{#
+				to put
+					"<liens>
+			<lien>
+			<accessDateFirstIssueOnline>***</accessDateFirstIssueOnline>
+			<accessDateLastIssueOnline>***</accessDateLastIssueOnline>
+			<accessNumFirstIssueOnline>***</accessNumFirstIssueOnline>
+			<accessNumFirstVolOnline>***</accessNumFirstVolOnline>
+			<accessNumLastIssueOnline>***</accessNumLastIssueOnline>
+			<accessNumLastVolOnline>***</accessNumLastVolOnline>
+			<url>***</url>
+			</lien>
+			</liens>"
+		#}
+		{{ pdf_occurence (notice, 'getSubject', "Sujets", format) | raw }}
+		{{ pdf_occurence (notice, 'getEras', "Epoque", format) | raw }}
+		{{ pdf_occurence (notice, 'getLocations', "Lieu ", format) | raw }}
+		{{ pdf_occurence (notice, 'getKinds', "Genre", format) | raw }}
+		{{ pdf_occurence (notice, 'getTopics', "Thème(s)", format) | raw }}
+		{{ pdf_occurence (notice, 'getIsbn', "ISBN ", format) | raw }}
+		{{ pdf_occurence (notice, 'getIssn', "ISSN", format) | raw }}
+		{{ pdf_occurence (notice, 'getCommercialNumbers', "Numéros commerciaux", format) | raw }}
+		{{ pdf_occurence (notice, 'getIndices', "Indice", format) | raw }}
+		{{ pdf_occurence (notice, 'getPublics', "Public", format) | raw }}
+		{{ pdf_occurence (notice, 'getRights', "Droits", format) | raw }}
+		{{ pdf_occurence (notice, 'getPlacesEvents', "Lieu de la manifestation", format) | raw }}
+		{{ pdf_occurence (notice, 'getOrigins', "Origine de la notice", format) | raw }}
+	{% endif %}
+	{% if format =='pdf' %}<li>{% endif %}
+		Résultat de : {%for element in notice.configurationName %}{{ element }}{%endfor%}
+	{% if format =='pdf' %}</li>{% endif %}
+	{# à vérifier avec le gabarit#}
+	{% if notice.isOnLine() == false %}
+		{{ pdf_occurence (notice.copies, 'getAvailibility', "", format) | raw }}
+		{{ pdf_occurence (notice.copies, 'getCote', "", format) | raw }}
+		{{ pdf_occurence (notice.copies, 'getSupport', "", format) | raw }}
+	{% else %}
+		{{ pdf_occurence (notice.copies, 'getAvailibility', "", format) | raw }}
+	{% endif %}
+    {{ pdf_occurence (notice, 'getNotes', "", format) | raw }}
+    {{ pdf_occurence (notice, 'getLocations', "", format) | raw }}
+    {{ pdf_occurence (notice, 'getCategory', "", format) | raw }}
+	{% if isPrintLong  and format =='pdf' %}
+		<li><a href="{{ path('record_bibliographic', {"permalink":notice.permalink}) }}">Lien vers la notice</a>;</li>
+    {% endif %}

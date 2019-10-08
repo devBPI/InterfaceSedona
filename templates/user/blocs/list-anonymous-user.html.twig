@@ -1,0 +1,18 @@
+<!-- Début - Bloc 25 Liste des documents présents dans Ma sélection -->
+
+<div class="selection">
+    <div class="table-group">
+        <div class="table-responsive">
+            <table class="table table-striped table-group__table">
+                {% include 'user/blocs/list-table-header.html.twig' %}
+
+                <tbody class="table__body">
+                {% for document in documents %}
+                    {% include 'user/blocs/list-document-detail.html.twig' %}
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<!-- Fin - Bloc 25 Liste des documents présents dans Ma sélection -->

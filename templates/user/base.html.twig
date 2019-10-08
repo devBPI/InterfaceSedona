@@ -1,0 +1,10 @@
+{% extends 'base.html.twig' %}
+
+{% block javascripts %}
+	{{ parent() }}
+
+    {% if app.environment != 'test' %}
+        {{ encore_entry_script_tags('admin') }}
+        {{ encore_entry_script_tags('datatable') }}
+    {% endif %}
+{% endblock %}

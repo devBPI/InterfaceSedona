@@ -1,0 +1,9 @@
+{% extends 'base.html.twig' %}
+
+{% block javascripts %}
+	{{ parent() }}
+    
+    {% if app.environment != 'test' %}
+        {{ encore_entry_script_tags('search') }}
+    {% endif %}
+{% endblock %}

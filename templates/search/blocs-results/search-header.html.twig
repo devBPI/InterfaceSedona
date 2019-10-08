@@ -7,43 +7,29 @@
 			{{ 'bloc.search-header-footer.header.order-choice'|trans }}
 		</button>
 		<ul class="dropdown-menu" aria-labelledby="{{ ('bloc.search-header-footer.header.order-aria')|trans }}" role="listbox" tabindex="-1">
-			<li class="dropdown-item" role="option">
-				<a href="#">{{ 'bloc.search-header-footer.header.order-pertinence'|trans }}</a>
-			</li>
-			<li class="dropdown-item" role="option">
-				<a href="#">{{ 'bloc.search-header-footer.header.order-title-asc'|trans }}</a>
-			</li>
-			<li class="dropdown-item" role="option">
-				<a href="#">{{ 'bloc.search-header-footer.header.order-title-desc'|trans }}</a>
-			</li>
-			<li class="dropdown-item" role="option">
-				<a href="#">{{ 'bloc.search-header-footer.header.order-author-asc'|trans }}</a>
-			</li>
-			<li class="dropdown-item" role="option">
-				<a href="#">{{ 'bloc.search-header-footer.header.order-author-desc'|trans }}</a>
-			</li>
-			<li class="dropdown-item" role="option">
-				<a href="#">{{ 'bloc.search-header-footer.header.order-most-recent'|trans }}</a>
-			</li>
-			<li class="dropdown-item" role="option">
-				<a href="#">{{ 'bloc.search-header-footer.header.order-least-recent'|trans }}</a>
-			</li>
+            {% for index, value in constant('App\\Model\\Search\\SearchQuery::SORT') %}
+                <li class="dropdown-item" role="option">
+                    <a href="{{ add_sorting_to_uri(value) }}">{{ ('bloc.search-header-footer.header.order-'~ index)|trans }}</a>
+                </li>
+            {% endfor %}
 		</ul>
 	</div>
 </div>
+
 <div class="col-sm">
 	<div class="dropdown text-sm-right mt-3">
 		<span class="sr-only" aria-label="{{ ('bloc.search-header-footer.header.nb-result-aria')|trans }}">{{ 'bloc.search-header-footer.header.nb-result-title'|trans }}</span>
 		<button class="dropdown-toggle" type="button" id="{{ ('bloc.search-header-footer.header.nb-result-aria')|trans }}" data-toggle="dropdown" aria-haspopup="listbox" aria-expanded="false">
-		{{ 'bloc.search-header-footer.header.nb-result-by-col'|trans({'%nb%': 10}) }}
+		{{ 'bloc.search-header-footer.header.nb-result-by-col'|trans({'%nb%': (objSearch.results.rows ?? constant('App\\Model\\Search\\SearchQuery::DEFAULT_ROWS'))}) }}
 		</button>
 		<ul class="dropdown-menu dropdown-menu-right" aria-labelledby="{{ ('bloc.search-header-footer.header.nb-result-aria')|trans }}" role="listbox" tabindex="-1">
-			<li class="dropdown-item" role="option">
-				<a href="#">{{ 'bloc.search-header-footer.header.nb-result-by-col'|trans({'%nb%': 25 }) }}</a>
-			</li>
-			<li class="dropdown-item" role="option">
-				<a href="#">{{ 'bloc.search-header-footer.header.nb-result-by-col'|trans({'%nb%': 50}) }}</a>
-			</li>
+            {% for count in constant('App\\Model\\Search\\SearchQuery::ROWS') if objSearch.results.rows != count %}
+                <li class="dropdown-item" role="option">
+                    <a href="{{ add_rows_to_uri(count) }}">
+                        {{ 'bloc.search-header-footer.header.nb-result-by-col'|trans({'%nb%': count }) }}
+                    </a>
+                </li>
+            {% endfor %}
 		</ul>
 	</div>
 </div>

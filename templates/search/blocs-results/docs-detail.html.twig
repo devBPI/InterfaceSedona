@@ -1,29 +1,89 @@
 <!-- Début - Bloc 13 Notices simples en 2 colonnes -->
+{% if notice is not empty %}
+    <div class="list-result__content-item">
+        <div class="list-result__content-selector">
+            <input type="checkbox" id="result-doc-{{ type }}-{{ index }}" class="js-notice addableInList notice_{{ type }}"
+                    name="{% if  type == 'online' %}online[]{% else %}onshelves[]{% endif %}"
+                    value="{{ notice.permalink }}">
+            <label for="result-doc-{{ type }}-{{ index }}">
+                <span class="sr-only">{{ 'bloc.notice-simple.result'|trans }} </span> {{ index }}
+                <span class="sr-only">, {{ 'bloc.notice-simple.select'|trans }} {{ notice.frontTitle }}</span>
+            </label>
 
-<div class="list-result__content-item">
-	<div class="list-result__content-selector">
-		<input type="checkbox" id="result-doc-{{ type }}-{{ i }}">
-		<label for="result-doc-{{ type }}-{{ i }}"><span class="sr-only">{{ 'bloc.notice-simple.result'|trans }} </span> {{ i }}<span class="sr-only">, {{ 'bloc.notice-simple.select'|trans }} *Insert titre*</span></label>
-	</div>
-	<div class="list-result__content-body">
-		<div class="list-result__content-image">
-			<img src="{{ asset('images/couvertures-generiques/cg-journal.svg') }}" alt="" class="img-fluid" />
-		</div>
-		<div class="list-result__content-infos">
-			<a href="{{ path('record_bibliographic') }}" lang="fr" aria-label="*Insert titre* - {{ 'global.new-windows'|trans }}" class="n2 list-result__content-title"><img src="{{ asset('images/types/type-journal.svg') }}" alt="" class="list-result__content-type"/><span>Caravelle : cahiers du monde hispanique et brésilien</span></a>
-			<p lang="fr">par Institut pluridisciplinaire d'étude sur l'Amérique latine (Toulouse)</p>
+            {% from 'search/blocs-results/macros.html.twig' import add_to_list_form %}
+            {{ add_to_list_form(
+                notice.permalink,
+                path('record_bibliographic', {'permalink': notice.permalink}),
+                notice.frontTitle,
+                notice.frontAuthor,
+                notice.type
+            ) }}
+        </div>
+        <div class="list-result__content-body">
+            <div class="list-result__content-image">
+                {% set image = notice.thumbnail ?? 'images/couvertures-generiques/cg-'~notice.type~'.svg' %}
+                <img src="{{ asset(image) }}" alt="" class="img-fluid"/>
+            </div>
+            <div class="list-result__content-infos">
+                <a href="{{ path('record_bibliographic', {'permalink': notice.permalink, 'searchToken': objSearch.contextToken}) }}"
+                   lang="fr"
+                   aria-label="{{ notice.frontTitle }} - {{ 'global.new-windows'|trans }}"
+                   class="n2 list-result__content-title"
+                >
+                    <img src="{{ asset('images/types/type-journal.svg') }}" alt=""
+                         class="list-result__content-type"/>
+                    <span>{{ notice.frontTitle }}</span></a>
+                <p lang="fr">par {{ notice.frontAuthor }} {% if notice.dates[0] is defined %}{{ notice.dates[0] }}{% endif %}</p>
+                {% if notice.frontAnalyticalTitle is not empty %}
+                    <p lang="fr">par {{ notice.frontAnalyticalTitle }}</p>
+                {% endif %}
+                <p lang="fr">{{ notice.frontDate }} - résumé <img title="{{ notice.frontResume }}"
+                                                                  src="https://via.placeholder.com/15x15" alt=""
+                                                                  class="icone-indice"/></p>
+                <p lang="fr">Résultat de (*Insert Base de donnée*)</p>
+                {% block availability %}
+                    {# #### notices en rayon #### #}
+                    {% for copy in notice.copies %}
+                        {% if copy.available %}
+                            <!-- Document disponible -->
+                            <div class="list-result__content-state">
+                                <img src="{{ asset('images/icones/icone-map-vert.svg') }}" alt="" class="icone-map"/>
+                                <p><span>Disponible</span> - {{ copy.availability }}</p>
+                                <p lang="fr">{{ copy.location }} - {{ copy.category }}</p>
+                            </div>
+                        {% else %}
+                            <!-- Document indisponible -->
+                            <div lang="fr" class="list-result__content-state d-flex align-items-center">
+                                <img src="{{ asset('images/icones/icone-map-rouge.svg') }}" alt="" class="icone-map"/>
+                                <p>Indisponible</p>
+                                <button
 
-			{% block availability %} {# block a déplacer aprés dynamisation #}
-			{% endblock %}
-		</div>
+                                        class="btn list-result__content-button js-envelope"
+                                        data-url="{{ path('notice_availablity_request', {"sourceId": notice.sourceId, 'configurationId':notice.configurationId}) }}"
+                                        data-toggle="modal"
+                                        data-target="#modal-notified"><img
+                                            src="{{ asset('images/icones/icone-enveloppe.svg') }}" alt=""
+                                            class="icone-enveloppe"/> <span class="sr-only">
+                                        Document indisponible, être prévenu de son retour en rayon - ouverture formulaire
+                                    </span>
+                                </button>
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                    {# #### notices en ligne #### #}
+                    <!-- Pour les documents en ligne consultable -->
+                    <p><a href="#" lang="fr">Accéder à *Insert nom du document*</a></p>
+                    <!-- Pour les documents en ligne non consultable -->
+                    <p lang="fr">Consultable à la Bpi</p>
+                {% endblock %}
+            </div>
 
-		{% if mode is defined and mode == 'full' %}
-			<div class="list-result__content-txt">
-				<p lang="fr">Effet de serre, réchauffement climatique, paléoclimatologie...exemples de questions traitées dans ce dossier multimédia et auxquelles répondent des chercheurs du CNRS et de l'INSU. Pour tous, du lecteur curieux au public averti.</p>
-			</div>
-		{% endif %}
-
-	</div>
-</div>
-
+            {% if mode is defined and mode == 'full' %}
+                <div class="list-result__content-txt">
+                    <p lang="fr">Effet de serre, réchauffement climatique, paléoclimatologie...exemples de questions traitées dans ce dossier multimédia et auxquelles répondent des chercheurs du CNRS et de l'INSU. Pour tous, du lecteur curieux au public averti.</p>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+{% endif %}
 <!-- Fin - Bloc 13 Notices simples en 2 colonnes -->

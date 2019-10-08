@@ -1,12 +1,12 @@
-<li class="search-autocomplet__item" role="option" aria-selected="false">
-	<a href="#" class="search-autocomplet__item-content">Proposition 1</a>
-</li>
-<li class="search-autocomplet__item" role="option" aria-selected="false">
-	<a href="#" class="search-autocomplet__item-content">Proposition 2</a>
-</li>
-<li class="search-autocomplet__item" role="option" aria-selected="false">
-	<a href="#" class="search-autocomplet__item-content">Proposition 3</a>
-</li>
-<li class="search-autocomplet__item" role="option" aria-selected="false">
-	<a href="#" class="search-autocomplet__item-content">Proposition 4</a>
-</li>
+<p class="sr-only" aria-live="assertive">{{ 'bloc.search-zone.autocompletion-nb-result'|trans({'%nb%': '*Insert nombre de résultats*'})}}</p>
+<ul role="listbox" class="listbox search-autocomplet__list">
+	{% if words is defined %}
+		{%  for word in words %}
+			<li class="search-autocomplet__item" role="option" aria-selected="false">
+				<a href="#" class="search-autocomplet__item-content">{{ word }}</a>
+			</li>
+		{% endfor %}
+	{% else %}
+
+	{% endif %}
+</ul>

@@ -1,4 +1,4 @@
-{% extends 'base.html.twig' %}
+{% extends 'home/base.html.twig' %}
 
 {% block title %}{{ 'page.home.page_title'|trans }}{% endblock %}
 
@@ -10,7 +10,7 @@
 	<div class="card-container card-container--individual">
 
 		<h2 class="n1">{{ 'page.home.thematic'|trans }}</h2>
-		
+
 		<div class="row">
 			{% include "home/blocs/preview-thematic.html.twig" %}
 		</div>

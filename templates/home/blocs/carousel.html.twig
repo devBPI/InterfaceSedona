@@ -1,28 +1,36 @@
 <!-- Début - Bloc 1 diaporama nouveautés et/ou articles -->
-
+{% if carousel is defined and carousel.elements|length > 0 %}
 <div class="carousel carousel--primary">
 	<div class="carousel-wrapper">
-		
 		<div class="carousel__control">
 			<button class="carousel__button carousel__button--pause" type="button" aria-label="Mettre en pause le carousel">
 			</button>
 		</div>
 
 		<div class="slick-carousel js-carousel-primary" role="region" aria-roledescription="carrousel">
-			{% for i in 1..24 %}
+            {% for item in carousel.elements %}
 				<div class="carousel__slide">
-					<a href="#" class="carousel__slide-link">
-						<span class="sr-only">{{ 'bloc.carousel.item_desciption'|trans({'%index%': i ,'%nb%' : 24 , '%title%' : '*Insert titre*', '%auteur%' : '*Insert auteur*' }) }}</span>
+					<a href="{{ path('record_bibliographic', {'permalink': item.permalink}) }}" class="carousel__slide-link">
+						<span class="sr-only">{{ 'bloc.carousel.item_desciption'|trans({'%index%': loop.index ,'%nb%' : carousel.elements|length , '%title%' : item.title , '%auteur%' : item.creator }) }}</span>
 					</a>
 					<div class="carousel__slide-image">
-						<img src="{{ asset('images/couvertures-generiques/cg-video.svg') }}" class="img-fluid" alt="" />
+						{% if item.imagePath is not empty %}
+                            {% set imagePath = item.imagePath %}
+						{% else %}
+                            {% set imagePath = 'images/couvertures-generiques/cg-'~(item.type|lower)~'.svg' %}
+						{% endif %}
+
+						<img src="{{ asset(imagePath) }}" alt="" class="img-fluid" width="223"/>
+                        {#{% if item.photoCredit %}<p lang="fr"> &copy; {{ item.photoCredit }}</p>{% endif %}#}
 					</div>
-					<p class="n1 carousel__slide-title">Le Climat, les hommes et la mer</p>
-					<p class="n2 carousel__slide-subtitle">Cousin, Christophe</p>
+					<p class="n1 carousel__slide-title">{{ item.title }}</p>
+					{% if item.creator is not empty %}
+						<p class="n2 carousel__slide-subtitle">{{ item.creator }}</p>
+					{% endif %}
 				</div>
 			{% endfor %}
 		</div>
 	</div>
 </div>
-
+{% endif %}
 <!-- Fin - Bloc 1 diaporama nouveautés et/ou articles -->
