@@ -75,7 +75,7 @@ compileJS:
 
 build:package:
   stage: build
-  needs: ["compileJS"]
+  needs: ["quality:sonar","quality:insight","quality:w3c","compileJS"]
   image: registry.sedona.fr/images/php:7
   cache:
     key: "$CI_PIPELINE_ID-$CI_COMMIT_REF_SLUG"
@@ -91,7 +91,7 @@ build:package:
 
 build:image:
   stage: build
-  needs: ["compileJS"]
+  needs: ["quality:sonar","quality:insight","quality:w3c","compileJS"]
   only:
     - tags
     - master
