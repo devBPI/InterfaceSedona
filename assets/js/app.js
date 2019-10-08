@@ -127,9 +127,10 @@ $(document).on('click', '.js-copy_to_clipboard', function (e) {
 
 
 var seconds = 10;
-
-let secondPassed = function () {
+/*
+let bSecondPassed = function () {
     var minutes = Math.round((seconds - 30)/60);
+
     var remainingSeconds = seconds % 60;
     if (remainingSeconds < 10) {
         remainingSeconds = "0" + remainingSeconds;
@@ -141,5 +142,19 @@ let secondPassed = function () {
         seconds--;
     }
 }
+*/
+let secondPassed = function(){
+    console.log(seconds);
+    $('#countdown').html(seconds);
+    if (seconds <= 0){
+        window.location.href = $('#countdown').attr('href');
+    }
+    seconds--;
+}
 
-let countdownTimer = window.setInterval(secondPassed(), 1000);
+window.setInterval(
+    function(){secondPassed()}
+    ,1000
+);
+
+
