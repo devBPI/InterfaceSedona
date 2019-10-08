@@ -12,16 +12,16 @@ services:
       POSTGRES_PASSWORD: Welcome09
       POSTGRES_DB: catalogue
     volumes:
-    - db_data:/var/lib/mysql
+      - db_data:/var/lib/mysql
 
   app:
     image: registry.sedona.fr/bpi/catalogue/bpi-catalogue/site:latest
     depends_on:
-    - db
-    networks:
-    - default
+      - db
+    network_mode: container:vpn
     labels:
       balance: https
+      io.rancher.sidekicks: vpn
       io.rancher.container.hostname_override: container_name
       io.rancher.container.pull_image: always
     environment:
@@ -41,7 +41,7 @@ services:
   smtp:
     image: mailhog/mailhog:latest
     networks:
-    - default
+      - default
     labels:
       balance: http
       io.rancher.container.hostname_override: container_name
@@ -49,6 +49,19 @@ services:
   redis:
     labels:
       io.rancher.container.hostname_override: container_name
+
+  vpn:
+    privileged: true
+    image: dperson/openvpn-client
+    environment:
+      TZ: Europe/Paris
+    stdin_open: true
+    volumes:
+      - /dev/net:/dev/net:z
+      - OpenVPN:/vpn
+    tty: true
+    labels:
+      io.rancher.container.pull_image: always
 
 volumes:
   db_data:
