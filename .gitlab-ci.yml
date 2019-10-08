@@ -43,22 +43,22 @@ quality:insight:
   artifacts:
     paths: [gl-code-quality-report.json]
 
-quality:w3c:
-  stage: quality
-  image: registry.sedona.fr/images/php:7
-  script:
-    - make dotenv-make c-install behat-w3c
-  artifacts:
-    name: "test"
-    paths:
-      - build/
-    when: on_failure
-    expire_in: 20 minutes
-    untracked: true
+#quality:w3c:
+#  stage: quality
+#  image: registry.sedona.fr/images/php:7
+#  script:
+#    - make dotenv-make c-install behat-w3c
+#  artifacts:
+#    name: "test"
+#    paths:
+#      - build/
+#    when: on_failure
+#    expire_in: 20 minutes
+#    untracked: true
 
 compileJS:
   stage: compileJS
-  needs: ["quality:sonar","quality:insight","quality:w3c"]
+  needs: ["quality:sonar","quality:insight"]
   image: node:10-alpine
   cache:
     key: "$CI_PIPELINE_ID-$CI_COMMIT_REF_SLUG"
@@ -75,7 +75,7 @@ compileJS:
 
 build:package:
   stage: build
-  needs: ["quality:sonar","quality:insight","quality:w3c","compileJS"]
+  needs: ["quality:sonar","quality:insight","compileJS"]
   image: registry.sedona.fr/images/php:7
   cache:
     key: "$CI_PIPELINE_ID-$CI_COMMIT_REF_SLUG"
@@ -91,7 +91,7 @@ build:package:
 
 build:image:
   stage: build
-  needs: ["quality:sonar","quality:insight","quality:w3c","compileJS"]
+  needs: ["quality:sonar","quality:insight","compileJS"]
   only:
     - tags
     - master
