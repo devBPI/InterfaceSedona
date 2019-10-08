@@ -1,0 +1,18 @@
+{# templates/bundles/TwigBundle/Exception/error404.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>404 - {{ 'error.page_not_found' |trans }}</h1>
+    <span>{{ 'error.page_not_available' | trans }}</span>
+
+    {% if app.session.get('searchToken') is defined and app.session.get('searchToken') is not null %}
+        <p>
+            <a href="{{ path('search', {'searchToken': app.session.get('searchToken') }) }}">Pour revenir en arrière </a>
+        </p>
+    {% endif %}
+    <p>
+         <a href="{{ path('home') }}">Pour revenir à la page d'accueil </a>
+    </p>
+    Formulaire de contact:
+    {{ render(controller('App\\Controller\\CommonController::reportErrorPageAction')) }}
+{% endblock %}

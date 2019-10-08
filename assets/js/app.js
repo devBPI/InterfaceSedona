@@ -121,3 +121,24 @@ $(document).on('click', '.js-copy_to_clipboard', function (e) {
     let url =  $('.js-url-to-copy').val();
     copyToClipboard(url);
 }).css( 'cursor', 'pointer' );
+
+
+
+
+
+var seconds = 10;
+
+let secondPassed = function(){
+    $('#countdown').html(seconds);
+    if (seconds <= 0){
+        window.location.href = $('#countdown').attr('href');
+    }
+    seconds--;
+}
+
+window.setInterval(
+    function(){secondPassed()}
+    ,1000
+);
+
+

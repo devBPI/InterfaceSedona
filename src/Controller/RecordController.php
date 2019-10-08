@@ -5,6 +5,7 @@ namespace App\Controller;
 
 use App\Form\ExportNoticeType;
 use App\Model\Authority;
+use App\Model\Exception\NoResultException;
 use App\Model\From\ExportNotice;
 use App\Model\IndiceCdu;
 use App\Model\Notice;
@@ -91,21 +92,26 @@ class RecordController extends AbstractController
      */
     public function bibliographicRecordAction(Request $request, string $permalink, SessionInterface $session)
     {
-        $searchToken = $request->get('searchToken');
+        try {
+            $searchToken = $request->get('searchToken');
 
-        $object = $this->noticeProvider->getNotice($permalink);
-        $navigation = null;
+            $object = $this->noticeProvider->getNotice($permalink);
+            $navigation = null;
 
-        if ($session->has($searchToken)) {
-            $navigation =
-                new NavigationService(
-                    $this->searchProvider,
-                    $permalink,
-                    $this->serializer->deserialize($session->get($searchToken), SearchQuery::class, 'json'),
-                    $searchToken,
-                    $object->getNotice()->isOnLine() ? Notice::ON_LIGNE : Notice::ON_SHELF
-                );
+            if ($session->has($searchToken)) {
+                $navigation =
+                    new NavigationService(
+                        $this->searchProvider,
+                        $permalink,
+                        $this->serializer->deserialize($session->get($searchToken), SearchQuery::class, 'json'),
+                        $searchToken,
+                        $object->getNotice()->isOnLine() ? Notice::ON_LIGNE : Notice::ON_SHELF
+                    );
+            }
+        }catch(NoResultException $e){
+            return $this->render('common/error.html.twig');
         }
+
         return $this->render('record/bibliographic.html.twig', [
             'object'            => $object,
             'notice'            => $object->getNotice(),
@@ -118,25 +124,27 @@ class RecordController extends AbstractController
     /**
      * @Route("/print/notice-bibliographique.{format}/{permalink}", methods={"GET","HEAD"}, name="record_bibliographic_pdf", requirements={"permalink"=".+", "format"="html|pdf|txt"}, defaults={"format" = "pdf"})
      * @param Request $request
-     * @param \Knp\Snappy\Pdf $knpSnappy
      * @param string $format
      * @return PdfResponse|Response
      * @throws \Twig\Error\LoaderError
      * @throws \Twig\Error\RuntimeError
      * @throws \Twig\Error\SyntaxError
      */
-    public function bibliographicRecordPDFAction(Request $request, \Knp\Snappy\Pdf $knpSnappy,$format='pdf')
+    public function bibliographicRecordPDFAction(Request $request, $format='pdf')
     {
-        $sendAttachement = new ExportNotice();
+        try {
+            $sendWithAttachement = new ExportNotice();
 
-        $sendAttachement
-            ->setNotices($request->get('permalink'))
-            ->setImage($request->get('print-image', null) === 'print-image')
-            ->setFormatType($format)
-            ->setShortFormat($request->get('print-type', 'print-long') !== 'print-long')
-        ;
-
-        return  $this->buildFileContent->buildFile($sendAttachement, Notice::class, $format);
+            $sendWithAttachement
+                ->setNotices($request->get('permalink'))
+                ->setImage($request->get('print-image', null) === 'print-image')
+                ->setFormatType($format)
+                ->setShortFormat($request->get('print-type', 'print-long') !== 'print-long')
+            ;
+        }catch(NoResultException $e){
+            return $this->render('common/error.html.twig');
+        }
+        return  $this->buildFileContent->buildFile($sendWithAttachement, Notice::class, $format);
     }
 
     /**
@@ -151,21 +159,27 @@ class RecordController extends AbstractController
      */
     public function authorityRecordAction(Request $request, string $permalink, SessionInterface $session)
     {
-        $object = $this->noticeAuhtority->getAuthority($permalink);
-        $id = $object->getId();
-        $subject = $this->noticeAuhtority->getSubjectNotice($id);
-        $authors = $this->noticeAuhtority->getAuthorsNotice($id);
-        $searchToken = $request->get('searchToken');
-        $navigation = null;
+        try{
 
-        if ($session->has($searchToken)) {
-            $navigation = new NavigationService(
-                $this->searchProvider,
-                $permalink,
-                $this->serializer->deserialize($session->get($searchToken, ''), SearchQuery::class, 'json'),
-                $searchToken,
-                RankedAuthority::class
-            );
+
+            $object = $this->noticeAuhtority->getAuthority($permalink);
+            $id = $object->getId();
+            $subject = $this->noticeAuhtority->getSubjectNotice($id);
+            $authors = $this->noticeAuhtority->getAuthorsNotice($id);
+            $searchToken = $request->get('searchToken');
+            $navigation = null;
+
+            if ($session->has($searchToken)) {
+                $navigation = new NavigationService(
+                    $this->searchProvider,
+                    $permalink,
+                    $this->serializer->deserialize($session->get($searchToken, ''), SearchQuery::class, 'json'),
+                    $searchToken,
+                    RankedAuthority::class
+                );
+            }
+        }catch(NoResultException $e){
+            return $this->render('common/error.html.twig');
         }
 
         return $this->render('record/authority.html.twig', [
@@ -191,22 +205,27 @@ class RecordController extends AbstractController
      */
     public function cduIndiceRecordAction(Request $request, string $permalink, SessionInterface $session)
     {
-        $object = $this->noticeAuhtority->getIndiceCdu($permalink);
-        $id = $object->getId();
-        $subject = $this->noticeAuhtority->getSubjectNotice($id);
-        $authors = [];
-        $searchToken = $request->get('searchToken');
-        $navigation = null;
-        if ($session->has($searchToken)) {
-            $navigation = new NavigationService(
-                $this->searchProvider,
-                $permalink,
-                $this->serializer->deserialize($session->get($searchToken, ''), SearchQuery::class, 'json'),
-                $searchToken,
-                RankedAuthority::class
-            );
-        }
+        try{
 
+
+            $object = $this->noticeAuhtority->getIndiceCdu($permalink);
+            $id = $object->getId();
+            $subject = $this->noticeAuhtority->getSubjectNotice($id);
+            $authors = [];
+            $searchToken = $request->get('searchToken');
+            $navigation = null;
+            if ($session->has($searchToken)) {
+                $navigation = new NavigationService(
+                    $this->searchProvider,
+                    $permalink,
+                    $this->serializer->deserialize($session->get($searchToken, ''), SearchQuery::class, 'json'),
+                    $searchToken,
+                    RankedAuthority::class
+                );
+            }
+        }catch(NoResultException $e){
+            return $this->render('common/error.html.twig');
+        }
         return $this->render('record/authority.html.twig', [
                   'toolbar'         => IndiceCdu::class,
                   'printRoute'      => $this->generateUrl('record_authority_pdf',  ['permalink'=>$permalink, 'format'=>'pdf']),
@@ -230,14 +249,18 @@ class RecordController extends AbstractController
      */
     public function authorityRecordPDFAction(Request $request, $format='pdf')
     {
-        $sendAttachement = new ExportNotice();
+        try{
+            $sendAttachement = new ExportNotice();
 
-        $sendAttachement
-            ->setAuthorities($request->get('permalink'))
-            ->setImage($request->get('print-image', null) === 'print-image')
-            ->setFormatType($format)
-            ->setShortFormat($request->get('print-type', 'print-long') !== 'print-long')
-        ;
+            $sendAttachement
+                ->setAuthorities($request->get('permalink'))
+                ->setImage($request->get('print-image', null) === 'print-image')
+                ->setFormatType($format)
+                ->setShortFormat($request->get('print-type', 'print-long') !== 'print-long')
+            ;
+        }catch(NoResultException $e){
+            return $this->render('common/error.html.twig');
+        }
 
         return  $this->buildFileContent->buildFile($sendAttachement, Authority::class, $format);
     }
