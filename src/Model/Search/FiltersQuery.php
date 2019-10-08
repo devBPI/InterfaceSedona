@@ -34,12 +34,8 @@ class FiltersQuery
      */
     public function __construct(Request $request)
     {
-        $this->baseUri = $request->getPathInfo();
-
         $this->params = new ArrayCollection($request->query->all());
-        if (isset($currentPage)) {
-            $this->setPage($currentPage);
-        }
+        $this->baseUri = $request->getPathInfo();
     }
 
     /**
@@ -70,7 +66,7 @@ class FiltersQuery
      */
     public function setSorting(string $field): void
     {
-        $this->params->set(self::SEE_ALL_LABEL, 0);
+        $this->params->set(self::PAGE_LABEL, 0);
         $this->params->set(self::SORT_LABEL, $field);
     }
 
@@ -79,7 +75,7 @@ class FiltersQuery
      */
     public function setRows(int $count): void
     {
-        $this->params->set(self::SEE_ALL_LABEL, 0);
+        $this->params->set(self::PAGE_LABEL, 0);
         $this->params->set(self::ROWS_LABEL, $count);
     }
 
