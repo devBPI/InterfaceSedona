@@ -1,5 +1,6 @@
 stages:
   - quality
+  - compileJS
   - build
   - publish
   - deploy
@@ -15,6 +16,7 @@ cache:
   untracked: false
   paths:
     - build/
+    - public/build/
     - gl-code-quality-report.json
 
 quality:sonar:
@@ -54,32 +56,51 @@ quality:w3c:
     expire_in: 20 minutes
     untracked: true
 
-build:package:
-  stage: build
-  image: registry.sedona.fr/images/php:7
-  only:
-    - master
-    - tags
+compileJS:
+  stage: compileJS
+  image: node:10-alpine
   cache:
     key: "$CI_PIPELINE_ID-$CI_COMMIT_REF_SLUG"
     untracked: true
     policy: push
     paths:
-      - build/
+      - public/build/
   artifacts:
     untracked: false
-    expire_in: 30 mins
+    expire_in: 90 mins
+  script:
+    - npm install
+    - yarn encore production
+
+build:package:
+  stage: build
+  needs: ["compileJS"]
+  image: registry.sedona.fr/images/php:7
+  cache:
+    key: "$CI_PIPELINE_ID-$CI_COMMIT_REF_SLUG"
+    untracked: true
     paths:
       - build/
+      - public/build/
+  artifacts:
+    untracked: false
+    expire_in: 90 mins
   script:
     - make dotenv-make default clean
 
 build:image:
   stage: build
-  image: docker:latest
+  needs: ["compileJS"]
   only:
     - tags
     - master
+  image: docker:latest
+  cache:
+    key: "$CI_PIPELINE_ID-$CI_COMMIT_REF_SLUG"
+    untracked: true
+    policy: pull
+    paths:
+      - public/build/
   before_script:
     - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN registry.sedona.fr
     - apk update
@@ -92,18 +113,14 @@ build:image:
 
 publish:package:
   stage: publish
+  needs: ["build:package"]
   image: "registry.sedona.fr/images/maven:latest-gitlab-ci"
-  only:
-    - master
-    - tags
   cache:
     key: "$CI_PIPELINE_ID-$CI_COMMIT_REF_SLUG"
     untracked: true
     policy: pull
     paths:
       - build/
-  dependencies:
-    - build:package
   script:
     - GROUP_ID=$(make show-var-GROUP_ID)
     - ARTIFACT_ID=$(make show-var-ARTIFACT_ID)
@@ -115,11 +132,10 @@ publish:package:
 
 publish:image:
   stage: publish
+  needs: ["build:image"]
   only:
     - tags
     - master
-  dependencies:
-    - build:image
   before_script:
     - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN registry.sedona.fr
     - apk update
@@ -133,14 +149,15 @@ publish:image:
 
 deploy:rancher_dev:
   stage: deploy
-  image:
-    name: "rancher/cli:$RANCHER_CLI_VERSION"
-    entrypoint: ["/bin/sh", "-c"]
+  needs: ["publish:image"]
   dependencies:
-    - build:image
+    - publish:image
   only:
     - tags
     - master
+  image:
+    name: "rancher/cli:$RANCHER_CLI_VERSION"
+    entrypoint: ["/bin/sh", "-c"]
   when: manual
   environment:
     name: dev-rancher
