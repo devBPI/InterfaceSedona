@@ -479,3 +479,7 @@ bloc:
       date: Recherché le
     select-ligne: 'Sélectionner la ligne : %title%'
     reload: Relancer la recherche %title%'
+
+error:
+  page_not_available: 'Cette page n’est pas accessible.'
+  page_not_found: 'Page introuvable'

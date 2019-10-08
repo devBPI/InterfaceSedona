@@ -121,3 +121,25 @@ $(document).on('click', '.js-copy_to_clipboard', function (e) {
     let url =  $('.js-url-to-copy').val();
     copyToClipboard(url);
 }).css( 'cursor', 'pointer' );
+
+
+
+
+
+var seconds = 10;
+
+let secondPassed = function () {
+    var minutes = Math.round((seconds - 30)/60);
+    var remainingSeconds = seconds % 60;
+    if (remainingSeconds < 10) {
+        remainingSeconds = "0" + remainingSeconds;
+    }
+    document.getElementById('countdown').innerHTML = minutes + ":" + remainingSeconds;
+    if (seconds === 0) {
+        window.location.href = document.getElementById('countdown').href;
+    } else {
+        seconds--;
+    }
+}
+
+let countdownTimer = window.setInterval(secondPassed(), 1000);
