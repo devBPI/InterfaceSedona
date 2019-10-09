@@ -65,3 +65,7 @@ services:
       - ['ROLE_USER']
       - ['mail', 'sn','cn', 'pseudo', 'uid', 'entryUUID']
       - mail
+
+  App\EventListener\AuthenticationListener:
+    tags:
+    - { name: 'kernel.event_listener', event: 'security.interactive_login' }

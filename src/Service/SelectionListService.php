@@ -7,6 +7,7 @@ use App\Controller\UserSelectionController;
 use App\Entity\UserSelectionDocument;
 use App\Entity\UserSelectionList;
 use App\Model\Exception\SelectionCategoryException;
+use App\Model\LdapUser;
 use Doctrine\ORM\EntityManager;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
@@ -108,7 +109,7 @@ final class SelectionListService extends AuthenticationService
         $listIds = $request->get(UserSelectionController::INPUT_LIST, []);
         if (count($listIds) > 0) {
             $lists = $this->entityManager->getRepository(UserSelectionList::class)
-                ->findByIds($listIds, $this->getUser()->getUid());
+                ->findByIds($this->getUser(), $listIds);
         }
 
         if ($request->get(UserSelectionController::CHECK_NEW_LIST, false) === '1') {
@@ -128,13 +129,46 @@ final class SelectionListService extends AuthenticationService
     }
 
     /**
+     * @return bool
+     * @throws \Doctrine\ORM\ORMException
+     */
+    public function saveDocumentsInSession(): bool
+    {
+        if ($this->hasSession(SelectionListService::SESSION_SELECTION_ID)) {
+            $listTitle = UserSelectionList::DEFAULT_TITLE . ' '.date('d/m/Y H:i:s');
+
+            $list = $this->createList($listTitle);
+            foreach ($this->getSession(SelectionListService::SESSION_SELECTION_ID) as $document) {
+                $list->addDocument(new UserSelectionDocument($document));
+            }
+
+            $this->entityManager->persist($list);
+
+            return true;
+        }
+
+        return false;
+    }
+
+    /**
+     * @param LdapUser $user
+     * @return int
+     * @throws \Doctrine\ORM\NonUniqueResultException
+     */
+    private function getNextPosition(LdapUser $user): int
+    {
+        return $this->entityManager->getRepository(UserSelectionList::class)
+            ->getMaxPositionOfUserList($user) + 1;
+    }
+
+    /**
      * @param string $title
      * @return UserSelectionList
      * @throws \Doctrine\ORM\ORMException
      */
     private function createList(string $title): UserSelectionList
     {
-        $list = new UserSelectionList($this->getUser(), $title, count($this->getListsOfCurrentUser()));
+        $list = new UserSelectionList($this->getUser(), $title, $this->getNextPosition($this->getUser()));
         $this->entityManager->persist($list);
 
         return $list;
@@ -147,7 +181,7 @@ final class SelectionListService extends AuthenticationService
     {
         if ($this->hasConnectedUser()) {
             return $this->entityManager->getRepository(UserSelectionList::class)
-                ->findAllOrderedByPosition($this->getUser()->getUid());
+                ->findAllOrderedByPosition($this->getUser());
         }
 
         return [];
@@ -281,7 +315,7 @@ final class SelectionListService extends AuthenticationService
     {
         if ($this->hasConnectedUser()) {
             return $this->entityManager->getRepository(UserSelectionList::class)
-                ->getCountDocuments($this->getUser()->getUid());
+                ->getCountDocuments($this->getUser());
         }
 
         return count($this->getSession(self::SESSION_SELECTION_ID));

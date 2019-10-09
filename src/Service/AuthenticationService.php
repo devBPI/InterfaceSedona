@@ -57,6 +57,15 @@ abstract class AuthenticationService
 
     /**
      * @param string $key
+     * @return bool
+     */
+    protected function hasSession(string $key): bool
+    {
+        return $this->session->has($key);
+    }
+
+    /**
+     * @param string $key
      * @return array
      */
     protected function getSession(string $key): array
