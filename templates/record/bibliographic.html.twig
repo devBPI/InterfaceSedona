@@ -12,9 +12,9 @@
 		</div>
 		<div class="row">
 			<!-- Début - Bloc 17 Documents liés -->
-			<div id="carousel-{{ object.notice.type }}" class="carousel carousel--secondary {{ class|default('') }} col-12">
+			<div id="carousel-theme" class="carousel carousel--secondary {{ class|default('') }} col-12">
 				<div class="carousel__header">
-					<h2 class="n1">{{ ('bloc.list-related-documents.carousel-'~object.notice.type)|trans }}</h2>
+					<h2 class="n1">{{ 'bloc.list-related-documents.carousel-theme'|trans }}</h2>
 				</div>
 				<div class="carousel-wrapper">
 					<div class="slick-carousel js-carousel-secondary" role="region" aria-roledescription="carrousel">
@@ -48,6 +48,8 @@
 				</div>
 			</div>
 			<!-- Fin - Bloc 17 Documents liés -->
+
+			{# TODO : Include record/blocs/list-related-documents.html.twig like authority.html.twig #}
 		</div>
 	</div>
 {% endblock %}

@@ -4,6 +4,15 @@
 
 .bibliographic-result {
 
+	.link {
+		color: $black;
+
+		&:hover,
+		&:focus {
+			color: $red;
+		}
+	}
+
 	&__author {
 
 		@include media-breakpoint-up(md) {
