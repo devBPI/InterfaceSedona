@@ -6,6 +6,7 @@
 	padding: $spacer 0;
 	display: flex;
 	border-top: $border-default;
+	height: 100%;
 
 	@include media-breakpoint-up(sm) {
 		border-bottom: $border-default;

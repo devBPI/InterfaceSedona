@@ -47,6 +47,7 @@
 	// Gestion Contenu
 	&__slide {
 		display: inline-block;
+		vertical-align: top;
 		position: relative;
 		padding: $spacer $spacer*3;
 
@@ -113,6 +114,7 @@
 			display: inline-block;
 			border: 1px solid $red;
 			margin-left: 5px;
+			background: transparent;
 		
 			&:hover {
 				cursor: pointer;
@@ -133,7 +135,6 @@
 		width: 15px;
 		height: 15px;
 		margin-right: $spacer;
-		margin-bottom: 5px;
 		z-index: 100;
 	}
 
