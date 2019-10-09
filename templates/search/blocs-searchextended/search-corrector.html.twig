@@ -1,10 +1,17 @@
 <!-- Début - Bloc 7 Orthographe -->
-<p class="mb-3">
-    {% if suggestionList.suggestions is defined and  suggestionList.suggestions|length >0 %}
-        {{ 'bloc.search-correct.text'|trans }}
-        {% for suggestion in suggestionList.suggestions %}
-            <a href="{{ path('search', {'simple_search[text]':suggestion}) }}" aria-label="{{ 'bloc.search-correct.text'|trans }} {{ suggestion }}" lang="fr">{{ suggestion }}</a>
-        {% endfor %}
-    {% endif %}
-</p>
+{% if suggestionList.suggestions is defined and  suggestionList.suggestions|length >0 %}
+    <div class="dropdown mb-3" aria-label="{{ 'bloc.search-correct.title-aria'|trans }}">
+        <span class="sr-only">{{ 'bloc.search-correct.title-sr-only'|trans }}</span>
+        <button type="button" id="dropdown-corrector" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="listbox" aria-expanded="false">
+            {{ 'bloc.search-correct.text'|trans }}
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="dropdown-corrector" role="listbox" tabindex="-1">
+            {% for suggestion in suggestionList.suggestions %}
+                <li class="dropdown-item" role="option">
+                    <a href="{{ path('search', {'simple_search[text]':suggestion}) }}" aria-label="{{ 'bloc.search-correct.text'|trans }} {{ suggestion }}" lang="fr">{{ suggestion }}</a>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endif %}
 <!-- Fin - Bloc 7 Orthographe -->

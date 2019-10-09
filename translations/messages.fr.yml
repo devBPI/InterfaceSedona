@@ -334,6 +334,8 @@ bloc:
   preview-thematic-links: #Bloc 05 Accès rapide
     link-sr-only: Les thèmes les plus consultés, %name%
   search-correct:         #Bloc 07 Orthographe
+    title-sr-only: Choix de la correction orthographique
+    title-aria: menu-correction
     text: Essayez avec l'orthographe
   related-topics:         #Bloc 08 Sujets Liés
     title-sr-only: Choix d'un sujet lié
