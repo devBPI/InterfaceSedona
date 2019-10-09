@@ -1,3 +1,5 @@
+{% import "common/notice-available-macro.html.twig" as macros %}
+
 <!-- Début - Bloc 13 Notices simples en 2 colonnes -->
 {% if notice is not empty %}
     <div class="list-result__content-item">
@@ -41,41 +43,48 @@
                                                                   src="https://via.placeholder.com/15x15" alt=""
                                                                   class="icone-indice"/></p>
                 <p lang="fr">Résultat de (*Insert Base de donnée*)</p>
-                {% block availability %}
-                    {# #### notices en rayon #### #}
-                    {% for copy in notice.copies %}
-                        {% if copy.available %}
-                            <!-- Document disponible -->
-                            <div class="list-result__content-state">
-                                <img src="{{ asset('images/icones/icone-map-vert.svg') }}" alt="" class="icone-map"/>
-                                <p><span>Disponible</span> - {{ copy.availability }}</p>
-                                <p lang="fr">{{ copy.location }} - {{ copy.category }}</p>
-                            </div>
-                        {% else %}
-                            <!-- Document indisponible -->
-                            <div lang="fr" class="list-result__content-state d-flex align-items-center">
-                                <img src="{{ asset('images/icones/icone-map-rouge.svg') }}" alt="" class="icone-map"/>
-                                <p>Indisponible</p>
-                                <button
 
-                                        class="btn list-result__content-button js-envelope"
-                                        data-url="{{ path('notice_availablity_request', {"sourceId": notice.sourceId, 'configurationId':notice.configurationId}) }}"
-                                        data-toggle="modal"
-                                        data-target="#modal-notified"><img
-                                            src="{{ asset('images/icones/icone-enveloppe.svg') }}" alt=""
-                                            class="icone-enveloppe"/> <span class="sr-only">
-                                        Document indisponible, être prévenu de son retour en rayon - ouverture formulaire
-                                    </span>
-                                </button>
-                            </div>
-                        {% endif %}
-                    {% endfor %}
+                {% for available in notice.copies %}
+                    {{ macros.availibility(available, notice)}}
+                {% endfor %}
+                {% for link in notice.links %}
+                    {{ macros.availibility(link, notice) }}
+                {% endfor %}
+                {#{% block availability %}#}
+                    {# #### notices en rayon #### #}
+                    {#{% for copy in notice.copies %}#}
+                        {#{% if copy.available %}#}
+                            {#<!-- Document disponible -->#}
+                            {#<div class="list-result__content-state">#}
+                                {#<img src="{{ asset('images/icones/icone-map-vert.svg') }}" alt="" class="icone-map"/>#}
+                                {#<p><span>Disponible</span> - {{ copy.availability }}</p>#}
+                                {#<p lang="fr">{{ copy.location }} - {{ copy.category }}</p>#}
+                            {#</div>#}
+                        {#{% else %}#}
+                            {#<!-- Document indisponible -->#}
+                            {#<div lang="fr" class="list-result__content-state d-flex align-items-center">#}
+                                {#<img src="{{ asset('images/icones/icone-map-rouge.svg') }}" alt="" class="icone-map"/>#}
+                                {#<p>Indisponible</p>#}
+                                {#<button#}
+
+                                        {#class="btn list-result__content-button js-envelope"#}
+                                        {#data-url="{{ path('notice_availablity_request', {"sourceId": notice.sourceId, 'configurationId':notice.configurationId}) }}"#}
+                                        {#data-toggle="modal"#}
+                                        {#data-target="#modal-notified"><img#}
+                                            {#src="{{ asset('images/icones/icone-enveloppe.svg') }}" alt=""#}
+                                            {#class="icone-enveloppe"/> <span class="sr-only">#}
+                                        {#Document indisponible, être prévenu de son retour en rayon - ouverture formulaire#}
+                                    {#</span>#}
+                                {#</button>#}
+                            {#</div>#}
+                        {#{% endif %}#}
+                    {#{% endfor %}#}
                     {# #### notices en ligne #### #}
-                    <!-- Pour les documents en ligne consultable -->
-                    <p><a href="#" lang="fr">Accéder à *Insert nom du document*</a></p>
-                    <!-- Pour les documents en ligne non consultable -->
-                    <p lang="fr">Consultable à la Bpi</p>
-                {% endblock %}
+                    {#<!-- Pour les documents en ligne consultable -->#}
+                    {#<p><a href="#" lang="fr">Accéder à *Insert nom du document*</a></p>#}
+                    {#<!-- Pour les documents en ligne non consultable -->#}
+                    {#<p lang="fr">Consultable à la Bpi</p>#}
+                {#{% endblock %}#}
             </div>
 
             {% if mode is defined and mode == 'full' %}

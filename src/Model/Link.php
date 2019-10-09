@@ -4,10 +4,12 @@ namespace App\Model;
 
 use JMS\Serializer\Annotation as JMS;
 
-
+/**
+ * Class Link
+ * @package App\Model
+ */
 class Link
 {
-
     /**
      * @var string
      * @JMS\Type("string")
@@ -83,7 +85,7 @@ class Link
     /**
      * @return string
      */
-    public function getMedia(): string
+    public function getMedia(): ?string
     {
         return $this->media;
     }
