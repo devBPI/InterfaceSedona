@@ -18,7 +18,7 @@
 			'logo-philharmonie.jpg': 'La médiathèque de la Philharmonie de Paris'
 		} %}
 			<li class="dropdown-item" role="option">
-				<a href="#" target="_blank" lang="fr" aria-labelledby="dropdown-recherche"><img src="{{ asset('images/logos/'~image) }}" alt="" class="dropdown-image-start" />{{ name }}</a>
+				<a href="#" target="_blank" lang="fr" aria-labelledby="dropdown-recherche" title="{{ name }} - {{ 'global.new-windows'|trans }}"><img src="{{ asset('images/logos/'~image) }}" alt="" class="dropdown-image-start" />{{ name }}</a>
 			</li>
 		{% endfor %}
 	</ul>
