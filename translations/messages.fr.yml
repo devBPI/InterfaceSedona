@@ -129,13 +129,13 @@ modal:
     submit-sr-only:  la suppression de la liste "%name%"
   export:           #Modal 05 export
     title: Courriel
-    subtitle: Paramétrer la pièce jointe
+    subtitle: Paramétrer l'export
     field:
       recipient: Destinataire(s)
-      comments: Commentaires
-      abstract: Notices abrégés
-      long: Notices longues
-      pdf: Format PDF
+      comments: Message
+      abstract: Notices abrégées
+      long: Notices complètes
+      pdf: Mettre PDF en pièce jointe
       txt: Format texte brute
       img: Exporter les images
     submit: Envoyer
