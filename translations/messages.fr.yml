@@ -214,7 +214,7 @@ modal:
         theme: Thème
         editor: Editeur
         publication-date: Date de publication
-        isbn-issn-numcommercial: ISBN, ISSN, numéros commerciaux
+        isbn-issn-numcommercial: ISBN, ISSN...
         indice-cote: Indice / Cote
       group:
         or: Ou
