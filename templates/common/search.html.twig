@@ -12,7 +12,7 @@
                    id="search-input" data-url-autocomplete="{{ path('search_autocompletion') }}"
                    placeholder="{{ 'bloc.search-zone.input-placeholder'|trans }}"
                    value="{{ objSearch is defined ? objSearch.simpleSearchKeyword : '' }}"
-                />
+            />
         </div>
         <div class="form-group search-banner__select">
             <label for="search-words" class="sr-only">{{ 'bloc.search-zone.type-label'|trans }}</label>
@@ -20,7 +20,7 @@
             <select name="{{ select_name }}" class="form-control" id="search-words">
                 {% for word in search_words() %}
                     <option value="{{ word }}"
-                        {% if objSearch is defined and objSearch.simpleSearchType == word %}selected="selected"{% endif %}>
+                            {% if objSearch is defined and objSearch.simpleSearchType == word %}selected="selected"{% endif %}>
                         {{ ('modal.advanced-search.keyword.type.'~word)|trans }}</option>
                 {% endfor %}
             </select>
@@ -30,8 +30,8 @@
             <span class="sr-only">{{ 'bloc.search-zone.submit'|trans }}</span>
         </button>
         <button type="button" data-target="#modal-search-advanced"
-            aria-label="{{ 'bloc.search-zone.advanced-sr-only'|trans }}" data-toggle="modal"
-            class="search-banner__modal">{{ 'bloc.search-zone.advanced-title'|trans }}</button>
+                aria-label="{{ 'bloc.search-zone.advanced-sr-only'|trans }}" data-toggle="modal"
+                class="search-banner__modal">{{ 'bloc.search-zone.advanced-title'|trans }}</button>
     </div>
 </form>
 <div aria-labelledby="search-label" aria-describedby="autocompletion-infos" id="autocompletion-list"

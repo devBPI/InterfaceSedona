@@ -8,11 +8,10 @@
 			'//www.bpi.fr/espace-presse': 'footer.sitemap.bpi.espace-presse'|trans
 		},
 		'balises' : {
-			'/': 'footer.sitemap.bpi.Catalogue'|trans,
-			'//www.bpi.fr/agenda': 'footer.sitemap.bpi.agenda'|trans,
-			'//www.bpi.fr/la-bibliotheque': 'footer.sitemap.bpi.la-bibliotheque'|trans,
-			'//www.bpi.fr/informations-pratiques': 'footer.sitemap.bpi.informations-pratiques'|trans,
-			'//www.bpi.fr/espace-presse': 'footer.sitemap.bpi.espace-presse'|trans
+			'//www.webtv.bpi.fr': 'footer.sitemap.balises.webtv'|trans,
+			'//www.bpi.fr/sites/Balises/home/exploration.html': 'footer.sitemap.balises.exploration'|trans,
+			'//www.bpi.fr/sites/Balises/home/ma-une.html': 'footer.sitemap.balises.ma-une'|trans,
+			'//www.bpi.fr/sites/Balises/home/qui-sommes-nous.html': 'footer.sitemap.balises.qui-sommes-nous'|trans
 		},
 		'professionnels' : {
 			'//www.bpi.fr/sites/Professionnels/home/collections-et-services.html': 'footer.sitemap.professionnels.collections-et-services'|trans,
@@ -27,7 +26,7 @@
 			<ul class="nav-sitemap__list">
 				{% for link, title in items %}
 					<li class="nav-sitemap__item">
-						<a href="{{ link }}" title="{{ title }} - {{ 'global.new-windows'|trans }}">{{ title }}</a>
+						<a href="{{ link }}" title="{{ title }} - {{ 'global.new-windows'|trans }}" target="_blank">{{ title }}</a>
 					</li>
 				{% endfor %}
 			</ul>

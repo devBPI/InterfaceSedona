@@ -25,8 +25,9 @@ class RepportErrorType extends AbstractType
                 'label'     => 'modal.report.field.object'
             ])
             ->add('message', TextareaType::class,[
-                'required'  => false,
-                'label'     => 'modal.report.field.message'
+                'required'  => true,
+                'label'     => 'modal.report.field.message',
+                'constraints'=> [ new Asset\NotBlank() ]
             ])
             ->add('lastName', TextType::class,[
                 'required'  => false,
