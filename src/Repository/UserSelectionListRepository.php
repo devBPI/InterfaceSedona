@@ -52,7 +52,7 @@ class UserSelectionListRepository extends EntityRepository
     public function getCountDocuments(string $uid): int
     {
         return $this->createQueryBuilder('list')
-            ->join(UserSelectionDocument::class, 'doc')
+            ->join('list.documents', 'doc')
             ->where('list.user_uid = :user')
             ->select('count(doc.id)')
             ->getQuery()
