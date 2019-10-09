@@ -150,4 +150,15 @@ final class HistoryService extends AuthenticationService
 
         $this->entityManager->flush();
     }
+
+    /**
+     * @param \DateTime $date
+     * @return \App\Entity\UserSelectionList[]
+     */
+    public function deleteHistoriesOlderThanDate(\DateTime $date)
+    {
+        return $this->entityManager->getRepository(UserHistory::class)
+            ->deleteOlderHistories($date);
+    }
+
 }
