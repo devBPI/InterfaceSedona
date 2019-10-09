@@ -6,9 +6,11 @@
             <label class="form-check-label"
                    for="account-{{ type }}-select-all">{{ 'bloc.banner-tools.select-all'|trans }}</label>
         </div>
-        <button class="banner-tools__link" data-toggle="disable-if-no-found-modal"
-                data-spy=':checkbox' data-target='input[type="checkbox"]:checked'>
-            {{ 'bloc.banner-tools.select-cancel'|trans }}</button>
+        <div class="banner-tools__link">
+            <button class="btn-small-link" data-toggle="disable-if-no-found-modal"
+                    data-spy=':checkbox' data-target='input[type="checkbox"]:checked'>
+                {{ 'bloc.banner-tools.select-cancel'|trans }}</button>
+        </div>
     </div>
 </div>
 

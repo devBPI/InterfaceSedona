@@ -4,6 +4,15 @@
 
 .bibliographic-result {
 
+	.link {
+		color: $black;
+
+		&:hover,
+		&:focus {
+			color: $red;
+		}
+	}
+
 	&__author {
 
 		@include media-breakpoint-up(md) {
@@ -29,6 +38,7 @@
 		margin-bottom: $spacer;
 		padding-bottom: $spacer;
 		border-bottom: $border-thin;
+		text-align: justify;
 
 		@include media-breakpoint-up(md) {
 			column-count: 2;

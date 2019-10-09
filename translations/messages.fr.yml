@@ -334,6 +334,8 @@ bloc:
   preview-thematic-links: #Bloc 05 Accès rapide
     link-sr-only: Les thèmes les plus consultés, %name%
   search-correct:         #Bloc 07 Orthographe
+    title-sr-only: Choix de la correction orthographique
+    title-aria: menu-correction
     text: Essayez avec l'orthographe
   related-topics:         #Bloc 08 Sujets Liés
     title-sr-only: Choix d'un sujet lié
@@ -432,8 +434,8 @@ bloc:
     link-title: Actualité %current% sur %nb%, %name%
     see-more: Voir tout
     see-more-sr-only: les résultats
-    carousel-auteur: Auteur
-    carousel-sujets: Sujets
+    carousel-auteur: Est auteur de
+    carousel-sujets: Est sujet de
     carousel-theme: Sur le même thème
   index:                  #Bloc 20 Feuilletage d'index
     title: Feuilletage d'indices

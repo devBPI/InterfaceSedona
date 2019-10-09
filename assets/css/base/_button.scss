@@ -79,12 +79,23 @@
 	}
 
 	&-small-link {
+		background: transparent;
+		border: 0;
 		padding: 0;
 		color: $blue;
 
 		&:hover {
 			color: $red;
 			text-decoration: underline;
+		}
+
+		&[disabled='disabled'] {
+			color: $grey-disabled;
+
+			&:hover {
+				color: $grey-disabled;
+				text-decoration: none;
+			}
 		}
 	}
 }

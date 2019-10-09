@@ -16,23 +16,24 @@
 	// Gestion Carousel Secondary
 	&--secondary {
 
-		.carousel-wrapper {
+		.carousel__footer {
 			border-bottom: $border-default;
 		}
 
 		&:last-child {
 
-			.carousel-wrapper {
+			.carousel__footer {
 				border-bottom: 0;
 			}
 		}
 	}
 
 	// Gestion Header
-	&__header {
+	&__footer {
+		margin-top: $spacer;
+		padding-bottom: $spacer;
 		display: flex;
-		justify-content: space-between;
-		align-items: baseline;
+		justify-content: flex-end;
 	}
 
 	&--double {
@@ -47,6 +48,7 @@
 	// Gestion Contenu
 	&__slide {
 		display: inline-block;
+		vertical-align: top;
 		position: relative;
 		padding: $spacer $spacer*3;
 
@@ -113,6 +115,7 @@
 			display: inline-block;
 			border: 1px solid $red;
 			margin-left: 5px;
+			background: transparent;
 		
 			&:hover {
 				cursor: pointer;
@@ -133,7 +136,6 @@
 		width: 15px;
 		height: 15px;
 		margin-right: $spacer;
-		margin-bottom: 5px;
 		z-index: 100;
 	}
 

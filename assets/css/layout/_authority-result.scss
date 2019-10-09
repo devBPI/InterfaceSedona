@@ -4,9 +4,17 @@
 
 .authority-result {
 
+	.link {
+		color: $black;
+
+		&:hover,
+		&:focus {
+			color: $red;
+		}
+	}
+	
 	&__body {
 		height: 100%;
-		border-bottom: $border-thin;
 	}
 
 	&__image {
@@ -16,15 +24,6 @@
 		@include media-breakpoint-up(md) {
 			max-width: 100%;
 			margin-bottom: 0;
-		}
-	}
-
-	&__resume {
-		margin-top: $spacer;
-
-		@include media-breakpoint-up(md) {
-			column-count: 2;
-			column-gap: $spacer * 2;
 		}
 	}
 }
