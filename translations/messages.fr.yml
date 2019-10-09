@@ -140,10 +140,10 @@ modal:
       img: Exporter les images
     submit: Envoyer
   print:            #Modal 06 imprimer
-    title: Paramétrer le PDF
+    title: Paramétrer l'impression
     field:
-      abstract: Notices abrégés
-      long: Notices longues
+      abstract: Notices abrégées
+      long: Notices complètes
       img: Exporter les images
     submit: Imprimer
   share:            #Modal 07 fin
