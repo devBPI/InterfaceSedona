@@ -15,14 +15,6 @@
 			<div id="carousel-{{ object.notice.type }}" class="carousel carousel--secondary {{ class|default('') }} col-12">
 				<div class="carousel__header">
 					<h2 class="n1">{{ ('bloc.list-related-documents.carousel-'~object.notice.type)|trans }}</h2>
-					<div>
-						<a href="{{ path('search', {'mot':notice.indice, 'type':constant('App\\WordsList::INDICE_COTE_WORD')}) }}" class="link link--icone-end">
-							{{ "bloc.list-related-documents.see-more"|trans }}
-							<span class="sr-only">{{ "bloc.list-related-documents.see-more-sr-only"|trans }} </span>
-							<span>({{ object.results}})</span>
-							<img src="{{ asset('images/icones/icone-chevron-gauche.svg') }}" alt="" class="icone-chevron-right"/>
-						</a>
-					</div>
 				</div>
 				<div class="carousel-wrapper">
 					<div class="slick-carousel js-carousel-secondary" role="region" aria-roledescription="carrousel">
@@ -45,6 +37,14 @@
 							</div>
                         {% endfor %}
 					</div>
+				</div>
+				<div class="carousel__footer">
+					<a href="{{ path('search', {'mot':notice.indice, 'type':constant('App\\WordsList::INDICE_COTE_WORD')}) }}" class="link link--icone-end">
+						{{ "bloc.list-related-documents.see-more"|trans }}
+						<span class="sr-only">{{ "bloc.list-related-documents.see-more-sr-only"|trans }} </span>
+						<span>({{ object.results}})</span>
+						<img src="{{ asset('images/icones/icone-chevron-gauche.svg') }}" alt="" class="icone-chevron-right"/>
+					</a>
 				</div>
 			</div>
 			<!-- Fin - Bloc 17 Documents liés -->

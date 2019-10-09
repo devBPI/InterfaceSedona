@@ -29,6 +29,7 @@
 		margin-bottom: $spacer;
 		padding-bottom: $spacer;
 		border-bottom: $border-thin;
+		text-align: justify;
 
 		@include media-breakpoint-up(md) {
 			column-count: 2;

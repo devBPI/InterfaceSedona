@@ -16,23 +16,24 @@
 	// Gestion Carousel Secondary
 	&--secondary {
 
-		.carousel-wrapper {
+		.carousel__footer {
 			border-bottom: $border-default;
 		}
 
 		&:last-child {
 
-			.carousel-wrapper {
+			.carousel__footer {
 				border-bottom: 0;
 			}
 		}
 	}
 
 	// Gestion Header
-	&__header {
+	&__footer {
+		margin-top: $spacer;
+		padding-bottom: $spacer;
 		display: flex;
-		justify-content: space-between;
-		align-items: baseline;
+		justify-content: flex-end;
 	}
 
 	&--double {

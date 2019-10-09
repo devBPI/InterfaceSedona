@@ -33,3 +33,11 @@
 		{% endif %}
 	</div>
 {% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+
+    {% if app.environment != 'test' %}
+        {{ encore_entry_script_tags('carousel') }}
+    {% endif %}
+{% endblock %}
