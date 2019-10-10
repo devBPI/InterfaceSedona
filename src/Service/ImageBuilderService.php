@@ -65,13 +65,5 @@ final class ImageBuilderService
         $fs->dumpFile($this->imageDir.self::PARENT_FOLDER.DIRECTORY_SEPARATOR.$localPath, $content);
     }
 
-    /**
-     * @param string $content
-     * @return string
-     */
-    public function getDefaultImage(string $content)
-    {
-        return sprintf(ImageBuilderService::DEFAULT_PICTURE, $content);
-    }
 }
 

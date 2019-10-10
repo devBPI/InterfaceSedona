@@ -11,7 +11,6 @@ home:
     _controller: FrameworkBundle:Redirect:urlRedirect
     path: "/%locale%"
     permanent: true
-      * @Route("", methods={"GET"}, name="binary_picture_notice_content", requirements={"content"=".*"})
 
 binary_image:
   path: "/imported_images/{content}"

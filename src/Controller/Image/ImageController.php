@@ -38,11 +38,6 @@ class ImageController extends AbstractController
     {
         $filePath = $this->imageService->buildImage($content);
         $filePath  = ImageBuilderService::PARENT_FOLDER.DIRECTORY_SEPARATOR.$filePath;
-/*
-        if (!file_exists($filePath)){
-            $filePath = $this->imageService->getDefaultImage($content);
-        }
-*/
         $mimeTypeGuesser = new FileinfoMimeTypeGuesser();
 
         $headers = [
