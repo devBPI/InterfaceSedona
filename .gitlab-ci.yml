@@ -23,6 +23,12 @@ quality:sonar:
   stage: quality
   image: "registry.sedona.fr/images/maven:latest-gitlab-ci"
   script:
+    - GROUP_ID=$(make show-var-GROUP_ID)
+    - ARTIFACT_ID=$(make show-var-ARTIFACT_ID)
+    - CLIENT_NAME=$(make show-var-CLIENT_NAME)
+    - COMPOSER_PROJECT_DESCRIPTION=$(make show-var-COMPOSER_PROJECT_DESCRIPTION)
+    - sed -i -E "s/sonar.projectKey=[^)]+/sonar.projectKey=$GROUP_ID:$ARTIFACT_ID/g" sonar-project.properties
+    - sed -i -E "s/sonar.projectName=[^)]+/sonar.projectName=[$CLIENT_NAME] $COMPOSER_PROJECT_DESCRIPTION /g" sonar-project.properties
     - sed -i -E "s/sonar.projectVersion=[^)]+/sonar.projectVersion=$CI_COMMIT_REF_NAME/g" sonar-project.properties
     - 'sonar-scanner'
 
