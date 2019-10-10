@@ -64,7 +64,6 @@ quality:insight:
 
 compileJS:
   stage: compileJS
-  needs: ["quality:sonar","quality:insight"]
   image: node:10-alpine
   cache:
     key: "$CI_PIPELINE_ID-$CI_COMMIT_REF_SLUG"
@@ -81,7 +80,9 @@ compileJS:
 
 build:package:
   stage: build
-  needs: ["quality:sonar","quality:insight","compileJS"]
+  needs: ["compileJS"]
+  dependencies:
+    - compileJS
   image: registry.sedona.fr/images/php:7
   cache:
     key: "$CI_PIPELINE_ID-$CI_COMMIT_REF_SLUG"
@@ -97,7 +98,9 @@ build:package:
 
 build:image:
   stage: build
-  needs: ["quality:sonar","quality:insight","compileJS"]
+  needs: ["compileJS"]
+  dependencies:
+    - compileJS
   only:
     - feature-coloriage
   image: docker:latest
@@ -120,6 +123,8 @@ build:image:
 publish:package:
   stage: publish
   needs: ["build:package"]
+  dependencies:
+    - build:package
   image: "registry.sedona.fr/images/maven:latest-gitlab-ci"
   cache:
     key: "$CI_PIPELINE_ID-$CI_COMMIT_REF_SLUG"
@@ -139,6 +144,8 @@ publish:package:
 publish:image:
   stage: publish
   needs: ["build:image"]
+  dependencies:
+    - build:image
   only:
     - feature-coloriage
   before_script:
