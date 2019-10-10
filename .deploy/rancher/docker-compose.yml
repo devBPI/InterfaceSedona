@@ -53,6 +53,19 @@ services:
     labels:
       io.rancher.container.hostname_override: container_name
 
+  vpn:
+    privileged: true
+    image: dperson/openvpn-client
+    environment:
+      TZ: Europe/Paris
+    stdin_open: true
+    volumes:
+      - /dev/net:/dev/net:z
+      - OpenVPN:/vpn
+    tty: true
+    labels:
+      io.rancher.container.pull_image: always
+
 volumes:
   db_data:
     driver: rancher-nfs
