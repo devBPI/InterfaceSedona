@@ -53,7 +53,6 @@ final class Version20190913124941 extends AbstractMigration
         $this->addSql('CREATE TABLE user_selection_document (id INT NOT NULL, list_id INT DEFAULT NULL, title VARCHAR(250) NOT NULL, author VARCHAR(250) NOT NULL, document_type VARCHAR(50) DEFAULT NULL, creation_date TIMESTAMP(0) WITHOUT TIME ZONE NOT NULL, permalink VARCHAR(255) NOT NULL, url VARCHAR(255) NOT NULL, comment TEXT DEFAULT NULL, PRIMARY KEY(id))');
         $this->addSql('CREATE INDEX IDX_A38819C53DAE168B ON user_selection_document (list_id)');
         $this->addSql('CREATE TABLE search_history (id VARCHAR(40) NOT NULL, title VARCHAR(250) NOT NULL, query_string TEXT, PRIMARY KEY(id))');
-        $this->addSql('COMMENT ON COLUMN search_history.queries IS \'(DC2Type:json_array)\'');
         $this->addSql('CREATE TABLE user_history (id INT NOT NULL, search_id VARCHAR(40) DEFAULT NULL, user_uid VARCHAR(50) DEFAULT NULL, creation_date TIMESTAMP(0) WITHOUT TIME ZONE NOT NULL, last_view_date TIMESTAMP(0) WITHOUT TIME ZONE NOT NULL, count INT NOT NULL, PRIMARY KEY(id))');
         $this->addSql('CREATE INDEX IDX_7FB76E41650760A9 ON user_history (search_id)');
         $this->addSql('ALTER TABLE theme_level ADD CONSTRAINT FK_C2C847F6727ACA70 FOREIGN KEY (parent_id) REFERENCES theme (id) NOT DEFERRABLE INITIALLY IMMEDIATE');

@@ -20,7 +20,7 @@
                             {% set imagePath = 'images/couvertures-generiques/cg-'~(item.type|lower)~'.svg' %}
 						{% endif %}
 
-						<img src="{{ asset(imagePath) }}" alt="" class="img-fluid" width="223"/>
+						<img src="{{ asset(imagePath) }}" alt="" class="img-fluid" />
                         {#{% if item.photoCredit %}<p lang="fr"> &copy; {{ item.photoCredit }}</p>{% endif %}#}
 					</div>
 					<p class="n1 carousel__slide-title">{{ item.title }}</p>

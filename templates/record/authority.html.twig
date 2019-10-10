@@ -19,10 +19,10 @@
 				</ul>
 			</div>
             {% if authors is defined and authors|length > 0 and authors.mappedNotices is not empty %}
-            	{% include "record/blocs/list-related-documents.html.twig" with {'object': authors, 'type': notice.type, 'image': 'images/couvertures-generiques/cg-livre.svg' } %}
+            	{% include "record/blocs/list-related-documents.html.twig" with {'object': authors, 'type': 'auteur', 'image': 'images/couvertures-generiques/cg-livre.svg' } %}
 			{% endif %}
 			{% if subjects is defined and subjects|length > 0 and subjects.mappedNotices is not empty %}
-				{% include "record/blocs/list-related-documents.html.twig" with {'object': subjects, 'type': notice.type, 'image': 'images/couvertures-generiques/cg-image.svg' } %}
+				{% include "record/blocs/list-related-documents.html.twig" with {'object': subjects, 'type': 'sujets', 'image': 'images/couvertures-generiques/cg-image.svg' } %}
 			{% endif %}
 			<!-- Fin - Bloc 19 Liste de documents  -->
 		</div>
@@ -32,4 +32,12 @@
 			</div>
 		{% endif %}
 	</div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+
+    {% if app.environment != 'test' %}
+        {{ encore_entry_script_tags('carousel') }}
+    {% endif %}
 {% endblock %}

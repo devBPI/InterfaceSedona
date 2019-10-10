@@ -6,6 +6,7 @@ namespace App\Command;
 use App\Service\HistoryService;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 
 /**
@@ -38,8 +39,16 @@ class CleanUserHistoryCommand extends Command
     {
         $this
             ->setDescription(
-                'Clean user history older than '
-            );
+                'Clean user history older than x months'
+            )
+            ->addOption(
+                'count-month',
+                'nb',
+                InputOption::VALUE_OPTIONAL,
+                'Number of months since deleting user histories',
+                4
+            )
+        ;
     }
 
     /**
@@ -48,7 +57,14 @@ class CleanUserHistoryCommand extends Command
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $output->writeln('Begin clean history...');
+        $output->writeln('Begin clean history command');
+
+        $date = new \DateTime('-'.$input->getOption('count-month').' month');
+        $output->writeln('Clean histories older than '.$date->format('d/m/Y'));
+
+        $deleted = $this->historyService->deleteHistoriesOlderThanDate($date);
+
+        $output->writeln($deleted.' histories deleted.');
     }
 
 }

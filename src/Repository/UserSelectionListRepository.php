@@ -2,8 +2,8 @@
 
 namespace App\Repository;
 
-use App\Entity\UserSelectionDocument;
 use App\Entity\UserSelectionList;
+use App\Model\LdapUser;
 use Doctrine\DBAL\Connection;
 use Doctrine\ORM\EntityRepository;
 
@@ -14,25 +14,25 @@ use Doctrine\ORM\EntityRepository;
 class UserSelectionListRepository extends EntityRepository
 {
     /**
-     * @param string $uid
+     * @param LdapUser $user
      * @return UserSelectionList[]
      */
-    public function findAllOrderedByPosition(string $uid): array
+    public function findAllOrderedByPosition(LdapUser $user): array
     {
         return $this->createQueryBuilder('list')
             ->where('list.user_uid = :user')
             ->orderBy('list.position')
             ->getQuery()
-            ->setParameter('user', $uid)
+            ->setParameter('user', $user->getUid())
             ->getResult();
     }
 
     /**
+     * @param LdapUser $user
      * @param array $ids
-     * @param string $uid
      * @return UserSelectionList[]
      */
-    public function findByIds(array $ids, string $uid): array
+    public function findByIds(LdapUser $user, array $ids): array
     {
         return $this->createQueryBuilder('list')
             ->where('list.id IN (:ids)')
@@ -45,18 +45,33 @@ class UserSelectionListRepository extends EntityRepository
     }
 
     /**
-     * @param string $uid
+     * @param LdapUser $user
      * @return mixed
      * @throws \Doctrine\ORM\NonUniqueResultException
      */
-    public function getCountDocuments(string $uid): int
+    public function getMaxPositionOfUserList(LdapUser $user): int
     {
         return $this->createQueryBuilder('list')
-            ->join(UserSelectionDocument::class, 'doc')
+            ->where('list.user_uid = :user')
+            ->select('max(list.position)')
+            ->getQuery()
+            ->setParameter('user', $user->getUid())
+            ->getSingleScalarResult();
+    }
+
+    /**
+     * @param LdapUser $user
+     * @return mixed
+     * @throws \Doctrine\ORM\NonUniqueResultException
+     */
+    public function getCountDocuments(LdapUser $user): int
+    {
+        return $this->createQueryBuilder('list')
+            ->join('list.documents', 'doc')
             ->where('list.user_uid = :user')
             ->select('count(doc.id)')
             ->getQuery()
-            ->setParameter('user', $uid)
+            ->setParameter('user', $user->getUid())
             ->getSingleScalarResult();
     }
 }
