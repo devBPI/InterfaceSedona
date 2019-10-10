@@ -93,8 +93,7 @@ build:image:
   stage: build
   needs: ["quality:sonar","quality:insight","compileJS"]
   only:
-    - tags
-    - master
+    - feature-coloriage
   image: docker:latest
   cache:
     key: "$CI_PIPELINE_ID-$CI_COMMIT_REF_SLUG"
@@ -135,8 +134,7 @@ publish:image:
   stage: publish
   needs: ["build:image"]
   only:
-    - tags
-    - master
+    - feature-coloriage
   before_script:
     - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN registry.sedona.fr
     - apk update
@@ -154,8 +152,7 @@ deploy:rancher_dev:
   dependencies:
     - publish:image
   only:
-    - tags
-    - master
+    - feature-coloriage
   image:
     name: "rancher/cli:$RANCHER_CLI_VERSION"
     entrypoint: ["/bin/sh", "-c"]
