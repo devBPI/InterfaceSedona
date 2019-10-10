@@ -161,7 +161,7 @@ publish:image:
 
 deploy:rancher_dev:
   stage: deploy
-  needs: ["compileJS", "publish:image"]
+  needs: ["compileJS", "build:image", "publish:image"]
   dependencies:
     - publish:image
   only:
