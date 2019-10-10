@@ -18,10 +18,10 @@ services:
     image: registry.sedona.fr/bpi/catalogue/bpi-catalogue/site:latest
     depends_on:
       - db
-    networks:
-      - default
+    network_mode: container:vpn
     labels:
       balance: https
+      io.rancher.sidekicks: vpn
       io.rancher.container.hostname_override: container_name
       io.rancher.container.pull_image: always
     environment:
