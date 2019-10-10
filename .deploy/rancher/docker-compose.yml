@@ -47,21 +47,11 @@ services:
       io.rancher.container.hostname_override: container_name
 
   redis:
+    image: registry.sedona.fr/images/redis:3.2
+    networks:
+      - default
     labels:
       io.rancher.container.hostname_override: container_name
-
-  vpn:
-    privileged: true
-    image: dperson/openvpn-client
-    environment:
-      TZ: Europe/Paris
-    stdin_open: true
-    volumes:
-      - /dev/net:/dev/net:z
-      - OpenVPN:/vpn
-    tty: true
-    labels:
-      io.rancher.container.pull_image: always
 
 volumes:
   db_data:
