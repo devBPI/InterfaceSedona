@@ -132,13 +132,13 @@ final class SelectionListService extends AuthenticationService
      * @return bool
      * @throws \Doctrine\ORM\ORMException
      */
-    public function saveDocumentsInSession(): bool
+    public function saveDocumentsFromSession(): bool
     {
-        if ($this->hasSession(SelectionListService::SESSION_SELECTION_ID)) {
+        if ($this->hasSession(self::SESSION_SELECTION_ID)) {
             $listTitle = UserSelectionList::DEFAULT_TITLE . ' '.date('d/m/Y H:i:s');
 
             $list = $this->createList($listTitle);
-            foreach ($this->getSession(SelectionListService::SESSION_SELECTION_ID) as $document) {
+            foreach ($this->getSession(self::SESSION_SELECTION_ID) as $document) {
                 $list->addDocument(new UserSelectionDocument($document));
             }
 
@@ -318,7 +318,8 @@ final class SelectionListService extends AuthenticationService
                 ->getCountDocuments($this->getUser());
         }
 
-        return count($this->getSession(self::SESSION_SELECTION_ID));
+        $docs = $this->getSession(self::SESSION_SELECTION_ID) ?? [];
+        return count($docs);
     }
 
     /**
