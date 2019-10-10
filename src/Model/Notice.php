@@ -16,7 +16,7 @@ use JMS\Serializer\Annotation as JMS;
  */
 class Notice extends AbstractImage implements NoticeInterface
 {
-    use OriginTrait, TraitSlugify, NoticeMappedTrait, NoticeTrait;
+    use OriginTrait, TraitSlugify, NoticeMappedTrait, NoticeTrait, ImageIsbnTrait;
 
     private const SEPARATOR = ' ; ';
     public const ON_LIGNE = 'en ligne';
@@ -150,6 +150,13 @@ class Notice extends AbstractImage implements NoticeInterface
      * @JMS\Type("array<string>")
      * @JMS\SerializedName("isbns")
      * @JMS\XmlList("isbn")
+     */
+    private $isbns;
+    /**
+     * @var string|null
+     * @JMS\Type("string")
+     * @JMS\SerializedName("isbn")
+     *
      */
     private $isbn;
     /**
@@ -601,10 +608,14 @@ class Notice extends AbstractImage implements NoticeInterface
     }
 
     /**
-     * @return null|string
+     * @return string|null
      */
-    public function getIsbn()
+    public function getIsbn():?string
     {
+        if (count($this->isbns)>0 && !empty($this->isbns[0])){
+            return $this->isbns[0];
+        }
+
         return $this->isbn;
     }
 
@@ -1149,6 +1160,8 @@ class Notice extends AbstractImage implements NoticeInterface
     {
         if ($this->getPicture() instanceof Picture && !empty($this->getPicture()->getContent())){
             return $this->getPicture()->getContent();
+        }elseif (!empty($this->getIsbn())){
+            return $this->getIsbnCover() ;
         }
 
         return sprintf(ImageBuilderService::DEFAULT_PICTURE, $this->slugify($this->getType()));

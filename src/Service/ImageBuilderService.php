@@ -6,40 +6,24 @@ namespace App\Service;
 use Symfony\Component\Filesystem\Filesystem;
 
 /**
- * Class ImageService
+ * Class ImageBuilderService
  * @package App\Service
  */
 final class ImageBuilderService
 {
-
     public  const PARENT_FOLDER              = 'imported_images';
     public const BPI_FOLDER_NAME_ELECTRE     = 'electre';
     public const DEFAULT_PICTURE             = 'couvertures-generiques/cg-%s.svg';
-    public  const  ITEM                      = 'article';
-    public  const  BD                        = 'bd';
-    public  const  CARD                      = 'carte';
-    public  const   DEBATE                   = 'debat';
-    public  const  PRESS_PACK                = 'dossier-presse';
-    public  const  EVENT                     = 'evenement';
-    public  const   FORMATION                = 'formation';
-    public  const   IMAGE                    = 'image';
-    public  const   JOURNAL                  = 'journal';
-    public  const   JOURNAL_MAGAZINE         = 'revue-journal';
-    public  const   BOOK                     = 'livre';
-    public  const   AUDIO_BOOK               = 'livre-audio';
-    public  const   DIGITAL_BOOK             = 'livre-numerique';
-    public  const   MUSIQUE                  = 'musique';
-    public  const   PARTITION                = 'parition';
-    public  const   DIGITAL_MAGAZINE         = 'revue-numerique';
-    public  const   SITE                     = 'site';
-    public  const   VIDEO                    = 'video';
+    public const THUMBNAIL = 'vignette';
+    public  const COVER = 'couverture';
 
     /** @var string */
     private $imageDir;
 
     public static $url = 'http://10.1.2.120:8080';
+
     /**
-     * ImageService constructor.
+     * ImageBuilderService constructor.
      * @param string $imageDir
      */
     public function __construct(string $imageDir)
