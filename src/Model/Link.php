@@ -1,13 +1,16 @@
 <?php
+declare(strict_types=1);
 
 namespace App\Model;
 
 use JMS\Serializer\Annotation as JMS;
 
-
+/**
+ * Class Link
+ * @package App\Model
+ */
 class Link
 {
-
     /**
      * @var string
      * @JMS\Type("string")
@@ -49,49 +52,49 @@ class Link
     private $usedrofil;
 
     /**
-     * @return string
+     * @return null|string
      */
-    public function getObjectType(): string
+    public function getObjectType(): ?string
     {
         return $this->objectType;
     }
 
     /**
-     * @return string
+     * @return null|string
      */
-    public function getTitle(): string
+    public function getTitle(): ?string
     {
         return $this->title;
     }
 
     /**
-     * @return string
+     * @return null|string
      */
-    public function getRight(): string
+    public function getRight(): ?string
     {
         return $this->right;
     }
 
     /**
-     * @return string
+     * @return null|string
      */
-    public function getAvailability(): string
+    public function getAvailability(): ?string
     {
         return $this->availability;
     }
 
     /**
-     * @return string
+     * @return null|string
      */
-    public function getMedia(): string
+    public function getMedia(): ?string
     {
         return $this->media;
     }
 
     /**
-     * @return string
+     * @return null|string
      */
-    public function getUsedrofil(): string
+    public function getUsedrofil(): ?string
     {
         return $this->usedrofil;
     }

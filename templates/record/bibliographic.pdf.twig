@@ -7,7 +7,7 @@
 				<h2 class="n1">1) {{ notice.title}}</h2>
 			</div>
 			<div class="col-3">
-				<img src="{% if notice.picture %}{{ notice.picture.url }}{% else %}{{ asset('images/couvertures-generiques/cg-image.svg') }}{% endif %}" class="img-fluid" alt="" />
+				<img src="{{ path("binary_image", {"content":notice.image}) }}" class="img-fluid" alt="" />
 			</div>
 
 			<div class="col">
@@ -25,7 +25,7 @@
 						<h2 class="n1">{{ loop.index}}) {{ object.titles[0] }}</h2>
 					</div>
 					<div class="col-3">
-						<img src="{% if object.picture %}{{ object.picture.url }}{% else %}{{ asset('images/couvertures-generiques/cg-image.svg') }}{% endif %}" class="img-fluid" alt="" />
+						<img src="{{ path('binary_image', {'content':object.image}) }}" class="img-fluid" alt="" />
 					</div>
 				<div class="col">
 					<ul class="print__list">

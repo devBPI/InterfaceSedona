@@ -6,22 +6,22 @@ use App\Model\Interfaces\NoticeInterface;
 use App\Model\Traits\NoticeMappedTrait;
 use App\Model\Traits\NoticeTrait;
 use App\Model\Traits\OriginTrait;
+use App\Service\ImageBuilderService;
+use App\Service\TraitSlugify;
 use JMS\Serializer\Annotation as JMS;
 
 /**
  * Class NoticeDetail
  * @package App\Model
  */
-class Notice implements NoticeInterface
+class Notice extends AbstractImage implements NoticeInterface
 {
-    use OriginTrait;
+    use OriginTrait, TraitSlugify, NoticeMappedTrait, NoticeTrait;
 
     private const SEPARATOR = ' ; ';
     public const ON_LIGNE = 'en ligne';
     public const ON_SHELF = 'en rayon';
 
-
-    use NoticeMappedTrait, NoticeTrait;
     /**
      * @var array|Value[]
      * @JMS\Type("array<App\Model\Value>")
@@ -1142,6 +1142,16 @@ class Notice implements NoticeInterface
         return $this->category;
     }
 
+    /**
+     * @return string
+     */
+    public function getImage(): string
+    {
+        if ($this->getPicture() instanceof Picture && !empty($this->getPicture()->getContent())){
+            return $this->getPicture()->getContent();
+        }
 
+        return sprintf(ImageBuilderService::DEFAULT_PICTURE, $this->slugify($this->getType()));
+    }
 }
 

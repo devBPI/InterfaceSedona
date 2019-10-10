@@ -9,12 +9,14 @@ declare(strict_types=1);
 
 namespace App\Model;
 use App\Model\Interfaces\PictureInterface;
+use App\Service\ImageBuilderService;
 use JMS\Serializer\Annotation as JMS;
 
 
 class Picture implements PictureInterface
 {
 
+    use PathToContentTrait;
     /**
      * @var string
      * @JMS\TYPE("string")
@@ -45,4 +47,11 @@ class Picture implements PictureInterface
         return $this->url;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getContent()
+    {
+        $this->pathToContent($this->url);
+    }
 }
