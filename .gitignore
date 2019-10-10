@@ -24,7 +24,6 @@
 /phpunit.xml
 /composer.phar
 /package_info.json
-/web/media/import_file
 .deploy/dev/mysql/
 .DS_Store
 
@@ -52,3 +51,6 @@ behat.yml
 npm-debug.log
 yarn-error.log
 ###< symfony/webpack-encore-bundle ###
+
+/auth.txt
+/bpi.ovpn
