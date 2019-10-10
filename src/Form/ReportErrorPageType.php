@@ -1,5 +1,10 @@
 <?php
-
+/**
+ * Created by PhpStorm.
+ * User: infra
+ * Date: 08/10/19
+ * Time: 12:02
+ */
 
 namespace App\Form;
 
@@ -11,8 +16,9 @@ use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 
-class RepportErrorType extends AbstractType
+class ReportErrorPageType extends AbstractType
 {
+
     /**
      * @param FormBuilderInterface $builder
      * @param array $options
@@ -28,30 +34,10 @@ class RepportErrorType extends AbstractType
                 'required'  => false,
                 'label'     => 'modal.report.field.message'
             ])
-            ->add('lastName', TextType::class,[
-                'required'  => false,
-                'label'     => 'modal.report.field.last-name',
-                'attr'      => ['autocomplete'=> 'family-name' ]
-            ])
-            ->add('firstName', TextType::class,[
-                'required'  => false,
-                'label'     => 'modal.report.field.first-name',
-                'attr'      => ['autocomplete'=> 'name' ]
-            ])
             ->add('email', EmailType::class,[
                 'required'  => false,
                 'label'     => 'modal.report.field.email'
             ])
         ;
     }
-//
-//    /**
-//     * @param OptionsResolver $resolver
-//     */
-//    public function configureOptions(OptionsResolver $resolver)
-//    {
-//        $resolver->setDefaults([
-//            'data_class' => ReportError::class,
-//        ]);
-//    }
 }

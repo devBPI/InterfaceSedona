@@ -1,7 +1,6 @@
 import * as util from './notice-availibility.js'
 import Routing from '../../vendor/friendsofsymfony/jsrouting-bundle/Resources/public/js/router.min.js';
 
-
 // Ajout boutton "Voir plus" suivant nombres d'informations - Notice Bibliographique ---------------------------------------------------------
 $('.js-list-information ul.list-information__sub-list').each( function() {
     var $list = $(this),
@@ -10,7 +9,8 @@ $('.js-list-information ul.list-information__sub-list').each( function() {
 
     if ( $children_length > 4 ) {
         $children.eq(4).nextAll().addClass('d-none');
-        $children.eq(4).after('<li><button type="button" class="btn btn-small-link js-btn js-btn--more">Voir tout</button></li>');
+        $children.eq(4)
+            .after('<li><button type="button" class="btn btn-small-link js-btn js-btn--more">Voir tout<span class="sr-only"> les résultats</span></button></li>');
     }
 });
 
@@ -129,6 +129,25 @@ $(document)
             }).done(function (data) {
                 // stop the spinner
             });
+        }
+    })
+    .on('show.bs.modal', '#modal-refine-search', function (e) {
+        var sliderDate = new Slider('#rfn-date-slider', {
+            min: 1900,
+            max: 2010,
+            step: 5,
+            value: [1945,1980],
+            handle: 'square'
+        });
+    })
+    // Affichage champs date - Modal recherche avancée ---------------------------------------------------------
+    .on('change', '.search-date__group', function() {
+        var $input_period = $('.search-date__date--second');
+
+        if ( $('.search-date__radio--period .check--radio').hasClass('checked') ) {
+            $input_period.removeClass('d-none');
+        } else {
+            $input_period.addClass('d-none');
         }
     })
 ;

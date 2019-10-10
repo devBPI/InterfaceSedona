@@ -13,19 +13,18 @@ use Symfony\Component\Validator\Constraints as Asset;
 trait PersonneTrait
 {
     /**
-     * @Asset\NotBlank();
      * @var string
      */
     private $lastName;
 
     /**
-     * @Asset\NotBlank();
      * @var string
      */
     private $firstName;
 
     /**
      * @var string
+     * @Asset\NotBlank();
      * @Asset\Email();
      */
     private $email;

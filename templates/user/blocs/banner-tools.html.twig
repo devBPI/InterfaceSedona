@@ -15,10 +15,10 @@
 {% if type == constant('App\\Controller\\UserSelectionController::INPUT_NAME') %}
     <div class="col-12 col-md-auto">
         <div class="banner-tools__list">
-            <p class="banner-tools__infos">{{ 'bloc.banner-tools.selected-list'|trans }}
-                <span>({{ selectedList|default(0) }})</span></p>
-            <p class="banner-tools__infos">{{ 'bloc.banner-tools.selected-document'|trans }}
-                <span>({{ selectedDocs|default(0) }})</span></p>
+            {% if app.user %}
+                <p class="banner-tools__infos" id="countSelectionList">{{ 'bloc.banner-tools.selected-list'|trans }} <span>(0)</span></p>
+            {% endif %}
+            <p class="banner-tools__infos" id="countSelectionDocument">{{ 'bloc.banner-tools.selected-document'|trans }} <span>(0)</span></p>
         </div>
     </div>
 {% endif %}

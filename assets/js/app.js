@@ -82,9 +82,9 @@ $(document).on('click', '.js-5-indices-around', function (event) {
             $('#around-index-wrapper').html(response.html);
         },
         error: function (response) {
-                // put an error message here
-            }
-        });
+            // put an error message here
+        }
+    });
 });
 
 /**

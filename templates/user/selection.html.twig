@@ -1,3 +1,4 @@
+{% set currentPage = 'selection' %}
 {% extends 'user/personal-data.html.twig' %}
 
 {% block content %}
@@ -20,15 +21,14 @@
         <div>
             {% if app.user %}
                 {% include "user/blocs/list-user.html.twig" %}
-
-                <!-- Début - Modal suppression liste -->
-                {% include "user/modal/list_remove.html.twig" %}
-                <!-- Fin - Modal suppression liste -->
             {% else %}
                 {% include "user/blocs/list-anonymous-user.html.twig" %}
             {% endif %}
         </div>
 
+        <!-- Début - Modal suppression liste -->
+        {% include "user/modal/list_remove.html.twig" %}
+        <!-- Fin - Modal suppression liste -->
 
     </form>
 

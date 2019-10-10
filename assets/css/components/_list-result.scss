@@ -53,6 +53,13 @@
 			}
 		}
 
+		.list-result__header {
+
+			@include media-breakpoint-up(md) {
+				padding-right: $spacer;
+			}
+		}
+
 		.list-result__content-infos {
 
 			@include media-breakpoint-up(md) {

@@ -22,7 +22,7 @@ final class SearchService
      */
     private $translator;
     /**
-     * @var HistoricService
+     * @var HistoryService
      */
     private $historicService;
     /**
@@ -34,12 +34,12 @@ final class SearchService
      * SearchService constructor.
      * @param TranslatorInterface $translator
      * @param SerializerInterface $serializer
-     * @param HistoricService $historicService
+     * @param HistoryService $historicService
      */
     public function __construct(
         TranslatorInterface $translator,
         SerializerInterface $serializer,
-        HistoricService $historicService
+        HistoryService $historicService
     ) {
         $this->translator = $translator;
         $this->serializer = $serializer;
@@ -74,7 +74,7 @@ final class SearchService
         $title = $this->getTitleFromSearchQuery($search);
         if ($request->get('action', null) !== null) {
             $request->query->remove('action');
-            $this->historicService->saveMyHistoric($title, $this->serializer->serialize($search, 'json'));
+            $this->historicService->saveUserHistory($title, $this->serializer->serialize($search, 'json'));
         }
 
         $search->setSort($request->get(FiltersQuery::SORT_LABEL, SearchQuery::SORT_DEFAULT));

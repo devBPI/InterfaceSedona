@@ -1,8 +1,12 @@
 {% extends 'search/index.html.twig' %}
-
 {% block result %}
-	<div class="col-12">
-        {% include 'search/blocs-results/docs-container.html.twig' with {'type': 'rayon', 'notices': objSearch.notices, 'classColl': 'full'} %}
+	<div class="row">
+		<div class="col-12">
+            {% include 'search/blocs-results/docs-container.html.twig' with {'type': 'rayon', 'notices': objSearch.notices, 'classColl': 'full'} %}
+		</div>
 	</div>
-
+	<div class="row">
+		{# Include Pagination #}
+		{% include "search/blocs-results/search-footer.html.twig" with {'criteria':objSearch.results.criteria, 'pagesTotal': objSearch.results.pageTotal, 'page':  objSearch.results.page} %}
+	</div>
 {% endblock %}

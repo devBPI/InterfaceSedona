@@ -28,8 +28,6 @@ class UserSelectionController extends AbstractController
     const INPUT_DOCUMENT = 'document';
     const INPUT_DOC_COMMENT = 'selection_document_comment';
 
-    const SESSION_SELECTION_ID = 'selection_session';
-
     /**
      * @var SelectionListService
      */
@@ -60,10 +58,8 @@ class UserSelectionController extends AbstractController
             $this->selectionService->applyAction($action, $listObj);
         }
 
-        $lists = $this->selectionService->getLists();
-        return $this->render( 'user/selection.html.twig',[
-            'lists' => $lists
-        ]);
+        return $this->render( 'user/selection.html.twig',
+            $this->selectionService->getSelectionObjects());
     }
 
 
@@ -81,7 +77,7 @@ class UserSelectionController extends AbstractController
         $title = $request->get(self::INPUT_LIST_TITLE, null);
         if ($title !== null) {
             if ($title !== '') {
-                $this->selectionService->addDocumentToLists($request);
+                $this->selectionService->addDocumentsToLists($request);
 
                 return $this->render('user/modal/creation-list-success.html.twig', [
                     'title' => $title,
@@ -107,7 +103,7 @@ class UserSelectionController extends AbstractController
         $params = [];
         if ($request->request->count() > 0) {
             try {
-                $this->selectionService->addDocumentToLists($request);
+                $this->selectionService->addDocumentsToLists($request);
 
                 return $this->render('user/modal/creation-list-success.html.twig', ['action' => 'add']);
             } catch (\Exception $e) {
@@ -118,7 +114,7 @@ class UserSelectionController extends AbstractController
         }
 
         $params += [
-            'lists' => $this->selectionService->getLists(),
+            'lists' => $this->selectionService->getListsOfCurrentUser(),
             'object' => $request->get('current', null),
         ];
 
@@ -132,11 +128,7 @@ class UserSelectionController extends AbstractController
      */
     public function addDocumentListInSessionAction(Request $request): Response
     {
-        $list = array_merge(
-            $request->getSession()->get(self::SESSION_SELECTION_ID, []),
-            $request->get(self::INPUT_DOCUMENT, [])
-        );
-        $request->getSession()->set(self::SESSION_SELECTION_ID, $list);
+        $this->selectionService->addDocumentsInSession($request->get(self::INPUT_DOCUMENT, []));
 
         return new JsonResponse();
     }

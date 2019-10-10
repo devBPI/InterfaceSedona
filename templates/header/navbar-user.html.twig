@@ -6,14 +6,14 @@
 			</div>
 			<a href="{{ path('user_selection_index') }}">
 				{{ 'header.navbar-user.selection'|trans }}
-				{% if app.user %}<span>({{ count_selection_documents() }})</span>{% endif %}
+				{% if has_selection_documents() %}<span>({{ count_selection_documents() }})</span>{% endif %}
 			</a>
 		</li>
 		<li class="menu-user__list-item">
 			<div class="menu-user__icone">
 				<img src="{{ asset('images/icones/icone-horloge.svg') }}" alt="" class="icone-horloge"/>
 			</div>
-			<a href="{{ path('user_historic_index') }}">{{ 'header.navbar-user.history'|trans }}</a>
+			<a href="{{ path('user_history_index') }}">{{ 'header.navbar-user.history'|trans }}</a>
 		</li>
 	</ul>
 </div>

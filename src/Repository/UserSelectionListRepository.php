@@ -29,15 +29,18 @@ class UserSelectionListRepository extends EntityRepository
 
     /**
      * @param array $ids
+     * @param string $uid
      * @return UserSelectionList[]
      */
-    public function findByIds(array $ids): array
+    public function findByIds(array $ids, string $uid): array
     {
         return $this->createQueryBuilder('list')
             ->where('list.id IN (:ids)')
+            ->andWhere('list.user_uid = :user')
             ->orderBy('list.position')
             ->getQuery()
             ->setParameter('ids', $ids, Connection::PARAM_INT_ARRAY)
+            ->setParameter('user', $uid)
             ->getResult();
     }
 

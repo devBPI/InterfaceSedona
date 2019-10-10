@@ -2,17 +2,14 @@
 
 namespace App\Controller;
 
+use App\Form\ReportErrorPageType;
 use App\Form\RepportErrorType;
-use App\Form\ExportNoticeType;
 use App\Form\ShareByMailType;
 use App\Form\SuggestByMailType;
 use App\Model\From\ReportError;
-use App\Model\From\ExportNotice;
 use App\Model\From\ShareByMail;
 use App\Model\From\SuggestByMail;
 use App\Service\MailSenderService;
-use http\Exception\InvalidArgumentException;
-use spec\Behat\MinkExtension\ServiceContainer\Driver\SeleniumFactorySpec;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\FormError;
 use Symfony\Component\HttpFoundation\Request;
@@ -57,6 +54,42 @@ class CommonController extends AbstractController
 
         return $this->render(
             'common/modal/report-error-content.html.twig',
+            [
+                'form' => $form->createView(),
+            ]
+        );
+    }
+
+    /**
+     * @Route("/page-error-reporting", name="common-repport-error-page")
+     * @param Request $request
+     * @param MailSenderService $mailSenderService
+     * @return \Symfony\Component\HttpFoundation\Response
+     * @throws \Throwable
+     * @throws \Twig\Error\LoaderError
+     * @throws \Twig\Error\SyntaxError
+     */
+    public function reportErrorPageAction(Request $request, MailSenderService $mailSenderService)
+    {
+        $form = $this->createForm(ReportErrorPageType::class, new ReportError());
+        $form->handleRequest($request);
+                if ($form->isSubmitted() && $form->isValid()) {
+            $repportError = $form->getData();
+
+            $fromEmail = empty($repportError->getEmail()) ? 'cataloge@sedona.fr' : $repportError->getEmail();
+            if ($mailSenderService->sendMail(
+                'common/modal/content.email.twig', ['data' => $repportError], $fromEmail, 'catalogue.public@bpi.fr'
+            )) {
+                return $this->render('common/modal/report-page-error-success.html.twig');
+            } else {
+                $form->addError(
+                    new FormError("Une erreur est survenue lors de l'envoie de l'e-mail \n veuillez reessayer plus tard SVP.")
+                );
+            }
+        }
+
+        return $this->render(
+            'common/modal/report-page-error-content.html.twig',
             [
                 'form' => $form->createView(),
             ]
