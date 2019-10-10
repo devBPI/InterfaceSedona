@@ -83,8 +83,8 @@ footer:
     actualite: L'actualité de la Bpi
     magazine: Le magazine de la Bpi
   partenaires:
-    eurekoi: Aller sur le site d'Eurèkoi
-    culture: Ministère de la culture
+    eurekoi: Eurêkoi
+    culture: Ministère de la Culture
     pompidou: Centre Pompidou
     ircam: Ircam
     franceculture: France Culture
@@ -134,21 +134,21 @@ modal:
     submit-sr-only:  la suppression des listes et documents sélectionnés
   export:           #Modal 05 export
     title: Courriel
-    subtitle: Paramétrer la pièce jointe
+    subtitle: Paramétrer l'export
     field:
       recipient: Destinataire(s)
-      comments: Commentaires
-      abstract: Notices abrégés
-      long: Notices longues
-      pdf: Format PDF
+      comments: Message
+      abstract: Notices abrégées
+      long: Notices complètes
+      pdf: Mettre PDF en pièce jointe
       txt: Format texte brute
       img: Exporter les images
     submit: Envoyer
   print:            #Modal 06 imprimer
-    title: Paramétrer le PDF
+    title: Paramétrer l'impression
     field:
-      abstract: Notices abrégés
-      long: Notices longues
+      abstract: Notices abrégées
+      long: Notices complètes
       img: Exporter les images
     submit: Imprimer
   share:            #Modal 07 fin
@@ -214,7 +214,7 @@ modal:
         theme: Thème
         editor: Editeur
         publication-date: Date de publication
-        isbn-issn-numcommercial: ISBN, ISSN, numéros commerciaux
+        isbn-issn-numcommercial: ISBN, ISSN...
         indice-cote: Indice / Cote
       group:
         or: Ou
@@ -270,7 +270,7 @@ page:
   breadcrumb: Fil d'ariane
   home:
     page_title: Accueil
-    title: Accueil - Catalogue de la BPI
+    title: Accueil - Catalogue de la Bpi
     thematic: Découvrir les parcours
   thematic:
     theme: Les thèmes les plus consultés
@@ -334,6 +334,8 @@ bloc:
   preview-thematic-links: #Bloc 05 Accès rapide
     link-sr-only: Les thèmes les plus consultés, %name%
   search-correct:         #Bloc 07 Orthographe
+    title-sr-only: Choix de la correction orthographique
+    title-aria: menu-correction
     text: Essayez avec l'orthographe
   related-topics:         #Bloc 08 Sujets Liés
     title-sr-only: Choix d'un sujet lié
@@ -432,8 +434,8 @@ bloc:
     link-title: Actualité %current% sur %nb%, %name%
     see-more: Voir tout
     see-more-sr-only: les résultats
-    carousel-auteur: Auteur
-    carousel-sujets: Sujets
+    carousel-auteur: Est auteur de
+    carousel-sujets: Est sujet de
     carousel-theme: Sur le même thème
   index:                  #Bloc 20 Feuilletage d'index
     title: Feuilletage d'indices

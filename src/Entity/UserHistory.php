@@ -2,13 +2,14 @@
 
 namespace App\Entity;
 
+use App\Model\LdapUser;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Class UserHistory
  * @package App\Entity
  *
- * @ORM\Entity()
+ * @ORM\Entity(repositoryClass="App\Repository\UserHistoryRepository")
  */
 class UserHistory
 {
@@ -78,12 +79,12 @@ class UserHistory
     }
 
     /**
-     * @param string $user_uid
+     * @param LdapUser $user
      * @return self
      */
-    public function setUserUid($user_uid): self
+    public function setUser(LdapUser $user): self
     {
-        $this->user_uid = $user_uid;
+        $this->user_uid = $user->getUid();
 
         return $this;
     }
@@ -148,5 +149,24 @@ class UserHistory
         }
 
         return null;
+    }
+
+    /**
+     * @return SearchHistory
+     */
+    public function getSearch(): SearchHistory
+    {
+        return $this->Search;
+    }
+
+    /**
+     * @param SearchHistory $Search
+     * @return self
+     */
+    public function setSearch(SearchHistory $Search): self
+    {
+        $this->Search = $Search;
+
+        return $this;
     }
 }

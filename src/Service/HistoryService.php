@@ -6,9 +6,11 @@ namespace App\Service;
 use App\Entity\SearchHistory;
 use App\Entity\UserHistory;
 use App\Model\Exception\SearchHistoryException;
+use App\Model\Search\ObjSearch;
 use Doctrine\ORM\EntityManager;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
+use Symfony\Component\Security\Core\Exception\AuthenticationException;
 
 /**
  * Class HistoryService
@@ -16,6 +18,8 @@ use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInt
  */
 final class HistoryService extends AuthenticationService
 {
+    const SESSION_HISTORY_ID = 'history_session6';
+
     /**
      * @var EntityManager
      */
@@ -39,87 +43,95 @@ final class HistoryService extends AuthenticationService
     }
 
     /**
-     * @param string $title
-     * @param string $data
-     * @throws \Doctrine\ORM\ORMException
-     * @throws \Doctrine\ORM\OptimisticLockException
+     * @return array|UserHistory[]
      */
-    public function saveUserHistory(string $title, string $data): void
+    public function getHistory(): array
     {
-        $searchHash = SearchHistory::getSearchHash($data);
-        $searchHistory = $this->entityManager->getRepository(SearchHistory::class)
-            ->find($searchHash);
-        if (!$searchHistory instanceof SearchHistory) {
-            $searchHistory = new SearchHistory(
-                $title,
-                $data
+        if ($this->hasConnectedUser()) {
+            return $this->entityManager->getRepository(UserHistory::class)->findBy(
+                ['user_uid' => $this->getUserId()]
             );
-            $this->entityManager->persist($searchHistory);
         }
 
-        $userHistory = $this->getUserHistoryOfSearchHistory($searchHistory);
-        if ($userHistory instanceof UserHistory) {
-            $userHistory->incrementCount();
-        } else {
-            $userHistory = new UserHistory($searchHistory);
-            $userHistory->setUserUid($this->getUserIdOrSessionId());
-            $this->entityManager->persist($userHistory);
-        }
-
-        $this->entityManager->flush();
-    }
-
-
-    /**
-     * @param SearchHistory $searchHistory
-     * @return UserHistory|null
-     */
-    private function getUserHistoryOfSearchHistory(SearchHistory $searchHistory): ?UserHistory
-    {
-        return $this->entityManager->getRepository(UserHistory::class)->findOneBy(
-            ['Search' => $searchHistory, 'user_uid' => $this->getUserIdOrSessionId()]
-        );
+        return $this->getHistoryFromSession();
     }
 
     /**
      * @return string
      */
-    private function getUserIdOrSessionId(): string
+    private function getUserId(): string
     {
-        if ($this->hasConnectedUser()) {
-            return $this->getUser()->getUid();
+        if (!$this->hasConnectedUser()) {
+            throw new AuthenticationException('Not connected');
         }
 
-        return $this->session->getId();
+        return $this->getUser()->getUid();
     }
 
     /**
-     * @return array|UserHistory[]
+     * @return array|SearchHistory[]
      */
-    public function getHistory(): array
+    public function getHistoryFromSession(): array
     {
-        return $this->entityManager->getRepository(UserHistory::class)->findBy(
-            ['user_uid' => $this->getUserIdOrSessionId()]
+        return array_map(
+            function ($document) {
+                return unserialize($document);
+            },
+            $this->getSession(self::SESSION_HISTORY_ID)
         );
     }
 
     /**
-     * @param string $hash
-     * @return SearchHistory
+     * @param SearchHistory $searchHistory
+     * @return UserHistory
      * @throws \Doctrine\ORM\ORMException
-     * @throws \Doctrine\ORM\OptimisticLockException
      */
-    public function getSearchHistoryByHash(string $hash): SearchHistory
+    private function findOrCreateUserHistory(SearchHistory $searchHistory): UserHistory
     {
-        $searchHistory = $this->entityManager->getRepository(SearchHistory::class)->find($hash);
-        if (!$searchHistory instanceof SearchHistory) {
-            throw new SearchHistoryException('No search for hash '.$hash);
+        if ($this->hasConnectedUser()) {
+            $userHistory = $this->getUserHistoryFromSearchContext($searchHistory);
+        } else {
+            $userHistory = $this->getUserHistoryFromSession($searchHistory);
         }
 
-        $this->getUserHistoryOfSearchHistory($searchHistory)->incrementCount();
-        $this->entityManager->flush();
+        if ($userHistory instanceof UserHistory) {
+            $userHistory->incrementCount();
 
-        return $searchHistory;
+            return $userHistory;
+        }
+
+        $userHistory = new UserHistory($searchHistory);
+        if ($this->hasConnectedUser()) {
+            $userHistory->setUser($this->getUser());
+            $this->entityManager->persist($userHistory);
+        }
+
+        return $userHistory;
+    }
+
+    /**
+     * @param SearchHistory $searchHistory
+     * @return UserHistory|null
+     */
+    private function getUserHistoryFromSearchContext(SearchHistory $searchHistory): ?UserHistory
+    {
+        return $this->entityManager->getRepository(UserHistory::class)->findOneBy(
+            ['Search' => $searchHistory, 'user_uid' => $this->getUserId()]
+        );
+    }
+
+    /**
+     * @param SearchHistory $searchHistory
+     * @return UserHistory|null
+     */
+    private function getUserHistoryFromSession(SearchHistory $searchHistory): ?UserHistory
+    {
+        $histories = $this->getSession(self::SESSION_HISTORY_ID);
+        if (array_key_exists($searchHistory->getId(), $histories)) {
+            return unserialize($histories[$searchHistory->getId()]);
+        }
+
+        return null;
     }
 
     /**
@@ -150,4 +162,108 @@ final class HistoryService extends AuthenticationService
 
         $this->entityManager->flush();
     }
+
+    /**
+     * @param \DateTime $date
+     * @return \App\Entity\UserSelectionList[]
+     */
+    public function deleteHistoriesOlderThanDate(\DateTime $date)
+    {
+        return $this->entityManager->getRepository(UserHistory::class)
+            ->deleteOlderHistories($date);
+    }
+
+    /**
+     * @param ObjSearch $objSearch
+     * @param string $serializedData
+     * @param bool $savedHistory
+     * @throws \Doctrine\ORM\ORMException
+     * @throws \Doctrine\ORM\OptimisticLockException
+     */
+    public function saveCurrentSearchInSession(ObjSearch $objSearch, string $serializedData, $savedHistory = false)
+    {
+        $hash = SearchHistory::getSearchHash($serializedData);
+        $this->setSession($hash, $serializedData);
+
+        $objSearch->setContext($hash, $serializedData);
+
+        if ($savedHistory) {
+            $this->saveUserHistory($objSearch);
+        }
+
+    }
+
+    /**
+     * @param ObjSearch $objSearch
+     * @throws \Doctrine\ORM\ORMException
+     * @throws \Doctrine\ORM\OptimisticLockException
+     */
+    public function saveUserHistory(ObjSearch $objSearch): void
+    {
+        $searchHistory = $this->findOrCreateSearchHistory($objSearch->getTitle(), $objSearch->getContextConfig());
+
+        $userHistory = $this->findOrCreateUserHistory($searchHistory);
+
+        if (!$this->hasConnectedUser()) {
+            $this->appendSession(self::SESSION_HISTORY_ID, [$objSearch->getContextToken() => serialize($userHistory)]);
+        } else {
+            $this->entityManager->flush();
+        }
+
+    }
+
+    /**
+     * @param string $title
+     * @param string $data
+     * @return SearchHistory
+     * @throws \Doctrine\ORM\ORMException
+     */
+    private function findOrCreateSearchHistory(string $title, string $data): SearchHistory
+    {
+        $searchHash = SearchHistory::getSearchHash($data);
+        $searchHistory = $this->entityManager->getRepository(SearchHistory::class)
+            ->find($searchHash);
+
+        if ($searchHistory instanceof SearchHistory) {
+            return $searchHistory;
+        }
+
+        $searchHistory = new SearchHistory($title, $data);
+        $this->entityManager->persist($searchHistory);
+
+        return $searchHistory;
+    }
+
+    /**
+     * @return bool
+     * @throws \Doctrine\ORM\ORMException
+     */
+    public function saveHistoriesFromSession(): bool
+    {
+        if ($this->hasSession(self::SESSION_HISTORY_ID)) {
+            foreach ($this->getSession(self::SESSION_HISTORY_ID) as $history) {
+                /** @var UserHistory $userHistory */
+                $userHistory = unserialize($history);
+                $userHistory->setUser($this->getUser());
+
+                $searchHistory = $this->entityManager->getRepository(SearchHistory::class)
+                    ->find($userHistory->getUrl());
+                if (!$searchHistory instanceof SearchHistory) {
+                    $searchHistory = new SearchHistory(
+                        $userHistory->getTitle(),
+                        $userHistory->getSearch()->getQueryString()
+                    );
+                    $this->entityManager->persist($searchHistory);
+                }
+                $userHistory->setSearch($searchHistory);
+
+                $this->entityManager->persist($userHistory);
+            }
+
+            return true;
+        }
+
+        return false;
+    }
+
 }

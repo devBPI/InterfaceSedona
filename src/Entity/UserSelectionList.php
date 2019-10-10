@@ -15,6 +15,8 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class UserSelectionList
 {
+    const DEFAULT_TITLE = 'A trier';
+
     /**
      * @ORM\Id
      * @ORM\GeneratedValue

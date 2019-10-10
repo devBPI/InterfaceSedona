@@ -1,19 +1,6 @@
 import * as util from './notice-availibility.js'
 import Routing from '../../vendor/friendsofsymfony/jsrouting-bundle/Resources/public/js/router.min.js';
 
-// Ajout boutton "Voir plus" suivant nombres d'informations - Notice Bibliographique ---------------------------------------------------------
-$('.js-list-information ul.list-information__sub-list').each( function() {
-    var $list = $(this),
-        $children = $list.children(),
-        $children_length = $children.length;
-
-    if ( $children_length > 4 ) {
-        $children.eq(4).nextAll().addClass('d-none');
-        $children.eq(4)
-            .after('<li><button type="button" class="btn btn-small-link js-btn js-btn--more">Voir tout<span class="sr-only"> les résultats</span></button></li>');
-    }
-});
-
 $(document)
 // Bouton "Voir plus" / "Voir moins" -----------------------------------------------------------------------------------
     .on('click', '.btn-see-more', function() {

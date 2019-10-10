@@ -12,16 +12,14 @@
             <div lang="fr" class="bibliographic-result__availability">
                 <div class="availability availability--false availability--rayon">
                     <p class="availability__status">
+                        <span>{{ 'bloc.notice-simple.document-unavailable'|trans }}</span> - En commande</p>
 
-                        <button
-
-                                class="btn list-result__content-button js-envelope"
-                                data-url="{{ path('notice_availablity_request', {"sourceId": notice.sourceId, 'configurationId':notice.configurationId}) }}"
-                                data-toggle="modal"
-                                data-target="#modal-notified"><img
-                                    src="{{ asset('images/icones/icone-enveloppe.svg') }}" alt=""
-                                    class="icone-enveloppe"/>
-                            <span>{{ object.availability }}: </span> -{{ object.labelDisponibility }}
+                        <button class="btn list-result__content-button js-envelope"
+                            data-url="{{ path('notice_availablity_request', {"sourceId": notice.sourceId, 'configurationId':notice.configurationId}) }}"
+                            data-toggle="modal"
+                            data-target="#modal-notified">
+                            <img src="{{ asset('images/icones/icone-enveloppe.svg') }}" alt="" class="icone-enveloppe"/>
+                            <span class="sr-only">Document indisponible, être prévenu de son retour en rayon - ouverture formulaire</span>
                         </button>
                     </p>
                 </div>
@@ -29,28 +27,16 @@
         {% endif %}
     {% elseif sameInstance(object, "App\\Model\\Link") %}
        {% if object.media is  defined and object.media is not null  %}
-           <div lang="fr" class="bibliographic-result__availability">
-               <div class="availability availability--true availability--online">
-                   <p class="availability__status">
-                       Accéder à {{ notice.title }}  <a href="#{#{ object.media }#}">Play</a>
-                   </p>
-               </div>
+           <div class="availability availability--true availability--online">
+               Accéder à {{ notice.title }} <a href="{{ path('media-link', {'ark': object.media}) }}">Play</a>
            </div>
-       {% elseif object.url is defined and  object.url is not null   %}
-           <div lang="fr" class="bibliographic-result__availability">
-               <div class="availability availability--true availability--online">
-                   <p class="availability__status">
-                       Accéder à {{ notice.title }}  <a href="#{#{ object.url }#}">Play</a>
-                   </p>
-               </div>
+       {% elseif object.url is defined and object.url is not null   %}
+           <div class="availability availability--true availability--online">
+               <a href="{{ object.url }}">Accéder à {{ notice.title }}</a>
            </div>
        {% else %}
-           <div lang="fr" class="bibliographic-result__availability">
-               <div class="availability availability--false availability--online">
-                   <p class="availability__status">
-                       <span> Consultable à la BPI  </span>
-                   </p>
-               </div>
+           <div class="availability availability--false availability--online">
+               <p class="mb-0">Consultable à la BPI</p>
            </div>
        {% endif %}
     {% endif %}

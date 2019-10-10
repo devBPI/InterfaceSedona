@@ -16,7 +16,6 @@ use App\Service\Provider\NoticeAuthorityProvider;
 use App\Service\Provider\NoticeProvider;
 use App\Service\Provider\SearchProvider;
 use App\Service\SearchService;
-use App\Utils\PrintNoticeWrapper;
 use Knp\Bundle\SnappyBundle\Snappy\Response\PdfResponse;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -115,6 +114,8 @@ class SearchController extends AbstractController
     {
         $objSearch = $this->searchService->createObjSearch($search, $request);
         $objSearch->setResults($this->searchProvider->getListBySearch($search));
+
+        $request->query->remove('action');
 
         return $this->render(
             'search/index.html.twig',

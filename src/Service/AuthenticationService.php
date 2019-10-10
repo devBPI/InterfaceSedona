@@ -57,6 +57,15 @@ abstract class AuthenticationService
 
     /**
      * @param string $key
+     * @return bool
+     */
+    protected function hasSession(string $key): bool
+    {
+        return $this->session->has($key);
+    }
+
+    /**
+     * @param string $key
      * @return array
      */
     protected function getSession(string $key): array
@@ -66,9 +75,9 @@ abstract class AuthenticationService
 
     /**
      * @param string $key
-     * @param array $values
+     * @param mixed $values
      */
-    protected function setSession(string $key, array $values = []): void
+    protected function setSession(string $key, $values): void
     {
         $this->session->set($key, $values);
     }
