@@ -22,4 +22,6 @@ services:
   redis:
     scale: 1
     start_on_create: true
-
+  vpn:
+    scale: 1
+    start_on_create: true
