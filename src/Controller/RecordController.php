@@ -132,6 +132,7 @@ class RecordController extends AbstractController
      */
     public function bibliographicRecordPDFAction(Request $request, $format='pdf')
     {
+        //$format = 'html';
         try {
             $sendWithAttachement = new ExportNotice();
 
@@ -144,6 +145,7 @@ class RecordController extends AbstractController
         }catch(NoResultException $e){
             return $this->render('common/error.html.twig');
         }
+
         return  $this->buildFileContent->buildFile($sendWithAttachement, Notice::class, $format);
     }
 
@@ -160,8 +162,6 @@ class RecordController extends AbstractController
     public function authorityRecordAction(Request $request, string $permalink, SessionInterface $session)
     {
         try{
-
-
             $object = $this->noticeAuhtority->getAuthority($permalink);
             $id = $object->getId();
             $subject = $this->noticeAuhtority->getSubjectNotice($id);

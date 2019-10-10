@@ -4,8 +4,10 @@ declare(strict_types=1);
 namespace App\Twig;
 
 
+use App\Service\ImageBuilderService;
 use App\Service\NavigationService;
 use App\WordsList;
+use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFunction;
@@ -20,15 +22,21 @@ class SearchFiltersExtension extends AbstractExtension
      * @var RequestStack
      */
     private $requestStack;
+    /**
+     * @var ImageBuilderService
+     */
+    private $imageService;
 
     /**
      * SearchFiltersExtension constructor.
      *
      * @param RequestStack $requestStack
+     * @param ImageBuilderService $imageService
      */
-    public function __construct(RequestStack $requestStack)
+    public function __construct(RequestStack $requestStack, ImageBuilderService $imageService)
     {
         $this->requestStack = $requestStack;
+        $this->imageService = $imageService;
     }
 
     /**
@@ -45,6 +53,8 @@ class SearchFiltersExtension extends AbstractExtension
             new TwigFunction('sameInstance', [$this, 'sameInstance']),
             new TwigFunction('route_by_object', [$this, 'getRouteByObject']),
             new TwigFunction('pdf_occurence', [$this, 'getPdfOccurence']),
+            new TwigFunction('image_to_base64', [$this, 'image64']),
+
         ];
     }
 
@@ -178,6 +188,13 @@ class SearchFiltersExtension extends AbstractExtension
         }
 
         return "";
+    }
+
+    public function image64($path)
+    {
+        return $this->imageService->getimage64($path);
+
+
     }
 }
 

@@ -8,7 +8,6 @@
 
 namespace App\Controller\Image;
 
-
 use App\Service\ImageBuilderService;
 use Symfony\Component\HttpFoundation\File\MimeType\FileinfoMimeTypeGuesser;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -41,7 +40,7 @@ class ImageController extends AbstractController
         $mimeTypeGuesser = new FileinfoMimeTypeGuesser();
 
         $headers = [
-            'Content-Type'        => $mimeTypeGuesser->guess( $filePath),
+            'Content-Type'        => $mimeTypeGuesser->guess($filePath),
             'Content-Disposition' => 'inline; filename="2-07-021151-7"'
         ];
 

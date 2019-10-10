@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace App\Service;
 
 use Symfony\Component\Filesystem\Filesystem;
+use Symfony\Component\HttpFoundation\File\File;
 
 /**
  * Class ImageBuilderService
@@ -65,5 +66,21 @@ final class ImageBuilderService
         $fs->dumpFile($this->imageDir.self::PARENT_FOLDER.DIRECTORY_SEPARATOR.$localPath, $content);
     }
 
+    public function getimage64($path)
+    {
+        try {
+            $file = new File($this->imageDir.$path, true);
+        } catch (\Exception $e) {
+
+        }
+
+        if (isset($file) && (!$file->isFile() || 0 !== strpos($file->getMimeType(), 'image/'))) {
+            return null;
+        }
+
+        $binary = file_get_contents($this->imageDir.$path);
+
+        return sprintf('data:image/%s;base64,%s', $file->guessExtension(), base64_encode($binary));
+    }
 }
 
