@@ -1,14 +1,13 @@
 {% import "common/notice-available-macro.html.twig" as macros %}
-
 <!-- Début - Bloc 16 Notice bibliographique -->
 <div class="col-12">
-    {% for title in notice.titles %}
+    {% for title in notice.titles  %}
         <h1 class="n1 bibliographic-result__title" lang="fr">
             {{ title }}
         </h1>
     {% endfor %}
     {% if notice.titleForm %}
-        {% for title in notice.titleForm %}
+        {% for title in notice.titleForm  %}
             <h1 class="n1 bibliographic-result__title" lang="fr">
                 {{ title }}
             </h1>
@@ -20,7 +19,7 @@
             <ul class="list-information__sub-list" lang="fr">
                 {% for element in notice.translatedBy %}
                     <li class="list-information__sub-item">
-                        <a href="{{ path('search', {'simple_search[text]':element}) }}">
+                        <a href="{{ path('search', {'simple_search[text]':element}) }}" >
                             {{ element }},
                         </a>
                     </li>
@@ -34,7 +33,7 @@
             <ul class="list-information__sub-list" lang="fr">
                 {% for element in notice.analyticalTitles %}
                     <li class="list-information__sub-item">
-                        <a href="{{ path('search', {'simple_search[text]':element}) }}">
+                        <a href="{{ path('search', {'simple_search[text]':element}) }}" >
                             {{ element }},
                         </a>
                     </li>
@@ -48,7 +47,7 @@
             <ul class="list-information__sub-list" lang="fr">
                 {% for element in notice.directors %}
                     <li class="list-information__sub-item">
-                        <a href="{{ path('search', {'simple_search[text]':element}) }}">
+                        <a href="{{ path('search', {'simple_search[text]':element}) }}" >
                             {{ element }},
                         </a>
                     </li>
@@ -61,7 +60,7 @@
         <div class="col-12 col-md-6">
             {% for author in notice.authorsValue %}
                 <p lang="fr" class="bibliographic-result__author">
-                    {% if loop.first %}
+                    {% if loop.first  %}
                         {{ 'bloc.autority-result-information.autor'|trans }}
                     {% endif %}
                     <a href=" {{ path('search', {'simple_search[text]':author.value}) }}">{{ author.value }}</a>
@@ -74,10 +73,11 @@
         </div>
         <div class="col-6 col-md-2">
             <div class="bibliographic-result__type">
-                <img src="{{ asset('images/types/type-' ~ notice.type ~ '.svg') }}" alt="{{ notice.type }}" title="{{ notice.type }}" />
+                <img src="{{ path('binary_image', {"content":notice.image}) }}" alt="{{ notice.type }}"  title="{{ notice.type }}" />
             </div>
         </div>
     </div>
+
 
 
 </div>
@@ -103,13 +103,31 @@
 {% endif %}
 <div class="col-12 col-md-3">
     <div class="bibliographic-result__image">
-        <img src="{% if object.notice.picture %}{{ object.notice.picture.url }}{% else %}{{ asset('images/couvertures-generiques/cg-musique.svg') }}{% endif %}"
-             alt="{% if object.notice.picture %}{{ object.notice.picture.description }}{% endif %}" class="img-fluid"/>
+        <img src="{{ path('binary_image', {"content":object.notice.image}) }}" alt="{% if object.notice.picture %}{{ object.notice.picture.description }}{% endif %}" class="img-fluid" />
     </div>
 </div>
-
 <div class="col-12 col-md-9">
     <ul class="list-information bibliographic-result__infos js-list-information">
+        {#'ouvre': {
+        'Strauss,  Richard (1864-1949) . Taillefer . TrV 207': '#',
+        'Strauss,  Richard (1864-1949) . Wandrers Sturmlied . TrV 131\'': '#',
+        'Strauss,  Richard (1864-1949) . Die Tageszeiten . TrV 256\'': '#',
+        'Strauss,  Richard (1864-1949) . Deutsche Motette . TrV 230\'': '#',
+        'Strauss,  Richard (1864-1949) . Festliches Präludium . TrV 229\'': '#',
+        'Strauss,  Richard (1864-1949) . 2 Gesänge . TrV182\'': '#',
+        'Strauss,  Richard (1864-1949) . Guntram . TrV 168\'': '#',
+        'Strauss,  Richard (1864-1949) . Die schweigsame Frau . TrV 265\'': '#',
+        'Strauss,  Richard (1864-1949) . Symphonische Fantasie . TrV 234a\'': '#',
+        'Strauss,  Richard (1864-1949) . Sonates . Piano, violon . TrV 151 . Mi bémol majeur\'': '#',
+        'Strauss,  Richard (1864-1949) . Sonates . Piano, violoncelle . TrV 115 . Fa majeur\'': '#',
+        'Strauss,  Richard (1864-1949) . Romances . Violoncelle, orchestre . TrV 118 . Fa majeur\'': '#',
+        'Strauss,  Richard (1864-1949) . An einsamer Quelle . TrV 127, no 2\'': '#',
+        'Strauss,  Richard (1864-1949) . Der Rosenkavalier . TrV 227': '#',
+        'support', { '3 disques compacts + 1 brochure': '', '034200': '', 'Juke-box': ''},
+            'genre' : { 'Musiques > Classique > Documents en juke-box': '#'},
+            'comercial-number' : { 'Warner Classic 2564634928': ''}
+        },
+        #}
         {% include 'common/informations-bibliographic.html.twig' with {
             'notice': notice,
             'prefix': 'bloc.autority-result-information.',
@@ -120,59 +138,63 @@
     </ul>
 </div>
 <div class="col-12">
+    {# Pour les documents en rayon dispo #}
+    {% if sameInstance(notice.copies,'App\\Model\\NoticeAvailable') %}
+        <div lang="fr" class="bibliographic-result__availability bibliographic-result--list">
+            <div>
+                <div class="availability availability--true availability--rayon">
+                    {% for exemplaire in notice.copies %}
+                        {%  if loop.first %}
+                            <p class="availability__status"><span>{{ 'bloc.notice-simple.document-available'|trans }}</span> {{ exemplaire.category}}</p>
+                            <p>{#Niveau 3 - Musiques et documents parlés#}{{ exemplaire.location }} {% for support in exemplaire.support %} - {{ support }} {% endfor %}</p>
+                            {# Dans le cas où il a + d'1 exemplaire #}
+                            <button type="button" class="btn btn-small-link availability__button btn-see-more btn-see-more--more" data-toggle="collapse" data-target="#availabity-items" aria-expanded="false" aria-controls="availabity-items">Voir plus</button>
+                        {% endif %}
+                        {% if loop.first %}
+                            <div class="collapse" id="availabity-items">
+                        {% endif %}
+                        {% if  not loop.first %}
+                            <p class="availability__status"><span>{{ 'bloc.notice-simple.document-available'|trans }}</span> - {{ exemplaire.category}}</p>
+                            <p>{{ exemplaire.location }} {% for support in exemplaire.support %} - {{ support }} {% endfor %}</p>
+                        {% endif %}
+                        {% if loop.first %}
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+            {# Pour les revues/journaux .. #}
+            <div>
+                {% if notice.copies.lastNumber %}
+                    <p>{{ 'bloc.notice-simple.last-publication'|trans }} {{  notice.copies.lastNumber}}</p>
+                {% endif %}
+                {% if  notice.copies.valuesReciviedNumber is defined and notice.copies.valuesReciviedNumber |length >0 %}
+                    <p class="n5 mt-3">{{ 'bloc.autority-result-information.publication-receve'|trans }}</p>
+                    <ul class="list-information list-information--sub-list">
+                        {%
+                            include 'common/informations-list.html.twig' with {'details': {
+                            'no-label':notice.copies.valuesReciviedNumber,
+                        }
+                        }
+                        %}
+                    </ul>
+                {% endif %}
+            </div>
+        </div>
+    {% endif %}
+
     {# Pour les documents en rayon indispo #}
     {% for available in notice.copies %}
-        {{ macros.availibility(available, notice) }}
-
-        {% if loop.first and not loop.last %}
-            <button type="button" class="btn btn-small-link" data-toggle="collapse"
-                    data-target="#availabity-items" aria-expanded="false"
-                    aria-controls="availabity-items">Voir plus
-            </button>
-            <div class="collapse" id="availabity-items">
-        {% endif %}
-
-        {% if not loop.first and loop.last %}
-            </div>
-        {% endif %}
+        {{ macros.availibility(available, notice)}}
     {% endfor %}
-
     {% for link in notice.links %}
         {{ macros.availibility(link, notice) }}
-
-        {% if loop.first and not loop.last %}
-            <button type="button" class="btn btn-small-link" data-toggle="collapse"
-                    data-target="#links-items" aria-expanded="false"
-                    aria-controls="links-items">Voir plus
-            </button>
-            <div class="collapse" id="links-items">
-        {% endif %}
-
-        {% if not loop.first and loop.last %}
-            </div>
-        {% endif %}
     {% endfor %}
-
-    {# Pour les revues/journaux ..
-    <div>
-        {% if notice.copies.lastNumber %}
-            <p>{{ 'bloc.notice-simple.last-publication'|trans }} {{ notice.copies.lastNumber }}</p>
-        {% endif %}
-        {% if  notice.copies.valuesReciviedNumber is defined and notice.copies.valuesReciviedNumber |length >0 %}
-            <p class="n5 mt-3">{{ 'bloc.autority-result-information.publication-receve'|trans }}</p>
-            <ul class="list-information list-information--sub-list">
-                {% include 'common/informations-list.html.twig' with {'details': {
-                    'no-label':notice.copies.valuesReciviedNumber,
-                }
-                } %}
-            </ul>
-        {% endif %}
-    </div> #}
 
     {# Pour les documents en ligne consultable #}
     <div lang="fr" class="bibliographic-result__availability">
         <div class="availability availability--true availability--online">
-            <a href="#">{{ 'bloc.autority-result-information.access-document.in-ligne'|trans({'%name%': notice.title}) }}</a>
+            <a href="#">{{ 'bloc.autority-result-information.access-document.in-ligne'|trans({'%name%': '*Insert nom du document*'}) }}</a>
         </div>
     </div>
 
