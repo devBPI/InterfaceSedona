@@ -484,3 +484,7 @@ bloc:
 error:
   page_not_available: 'Cette page n’est pas accessible.'
   page_not_found: 'Page introuvable'
+  page_boken: Oops! Une erreur est survenue
+  page_broken_message: |
+    Le site rencontre actuellement un problème technique, merci de renouveller votre visite ultèrieurement.
+    Nous allons le réparer dès que possible. Désolé pour tout inconvénient causé.

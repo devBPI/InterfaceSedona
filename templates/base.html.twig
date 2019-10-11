@@ -62,12 +62,14 @@
 
 		<main role="main" id="contenu-site">
 			<div class="container">
-				{% include "common/breadcrumb.html.twig" %}
-				{% block search %}{% include "common/search.html.twig" %}{% endblock %}
-				{% block searchextended %}{% endblock %}
-				{% include "common/toolbar.html.twig" %}
+				{% block container %}
+					{% include "common/breadcrumb.html.twig" %}
+					{% block search %}{% include "common/search.html.twig" %}{% endblock %}
+					{% block searchextended %}{% endblock %}
+					{% include "common/toolbar.html.twig" %}
 
-				{% block body %}{% endblock %}
+					{% block body %}{% endblock %}
+				{% endblock %}
 			</div>
 		</main>
 
