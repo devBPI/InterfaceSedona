@@ -31,13 +31,7 @@ class CarouselProvider extends AbstractProvider
         /** @var $carousel Carousel */
         $carousel = $this->hydrateFromResponse('/carousel/'.$theme);
 
-        foreach ($carousel->getElements() as $carouselItem) {
-            /** @var $carouselItem CarouselItem */
-            if (!empty($carouselItem->getImagePath())) {
-                $carouselItem->setImagePath($this->saveLocalImageFromUrl($carouselItem->getImagePath(),'carousel-'.$theme ));
-            }
-        }
-
         return $carousel;
     }
 }
+

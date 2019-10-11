@@ -24,8 +24,7 @@
         </div>
         <div class="list-result__content-body">
             <div class="list-result__content-image">
-                {% set image = notice.thumbnail ?? 'images/couvertures-generiques/cg-'~notice.type~'.svg' %}
-                <img src="{{ asset(image) }}" alt="" class="img-fluid"/>
+                <img src="{{ path('binary_image', {"content":notice.image})}}" alt="" class="img-fluid"/>
             </div>
             <div class="list-result__content-infos">
                 <a href="{{ path('record_bibliographic', {'permalink': notice.permalink, 'searchToken': objSearch.contextToken}) }}"

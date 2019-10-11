@@ -13,7 +13,6 @@ use App\Model\SuggestionList;
 use App\Service\NoticeBuildFileService;
 use App\Service\Provider\AdvancedSearchProvider;
 use App\Service\Provider\NoticeAuthorityProvider;
-use App\Service\Provider\NoticeProvider;
 use App\Service\Provider\SearchProvider;
 use App\Service\SearchService;
 use Knp\Bundle\SnappyBundle\Snappy\Response\PdfResponse;
@@ -44,10 +43,6 @@ class SearchController extends AbstractController
      */
     private $searchService;
     /**
-     * @var NoticeProvider
-     */
-    private $noticeProvider;
-    /**
      * @var NoticeAuthorityProvider
      */
     private $noticeAuhtority;
@@ -61,7 +56,6 @@ class SearchController extends AbstractController
      * @param SearchProvider $searchProvider
      * @param AdvancedSearchProvider $advancedSearchProvider
      * @param SearchService $searchService
-     * @param NoticeProvider $noticeProvider
      * @param NoticeAuthorityProvider $noticeAuhtority
      * @param NoticeBuildFileService $service
      */
@@ -69,14 +63,12 @@ class SearchController extends AbstractController
         SearchProvider $searchProvider,
         AdvancedSearchProvider $advancedSearchProvider,
         SearchService $searchService,
-        NoticeProvider $noticeProvider,
         NoticeAuthorityProvider $noticeAuhtority,
         NoticeBuildFileService $service
     ) {
         $this->searchProvider = $searchProvider;
         $this->advancedSearchProvider = $advancedSearchProvider;
         $this->searchService = $searchService;
-        $this->noticeProvider = $noticeProvider;
         $this->noticeAuhtority = $noticeAuhtority;
         $this->buildFileContent = $service;
     }

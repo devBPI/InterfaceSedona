@@ -2,14 +2,17 @@
 
 namespace App\Model;
 
+use App\Service\ImageBuilderService;
+use App\Service\TraitSlugify;
 use JMS\Serializer\Annotation as JMS;
 
 /**
  * Class CarouselItem
  * @package App\Model
  */
-class CarouselItem
+class CarouselItem extends AbstractImage
 {
+    use PathToContentTrait, TraitSlugify;
     /**
      * @var string
      * @JMS\Type("string")
@@ -103,5 +106,17 @@ class CarouselItem
         $this->imagePath = $imagePath;
 
         return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getImage(): string
+    {
+        if ($this->getImagePath()){
+            return $this->pathToContent($this->getImagePath());
+        }
+
+        return sprintf(ImageBuilderService::DEFAULT_PICTURE, $this->slugify($this->getType()));
     }
 }

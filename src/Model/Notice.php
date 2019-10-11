@@ -6,22 +6,22 @@ use App\Model\Interfaces\NoticeInterface;
 use App\Model\Traits\NoticeMappedTrait;
 use App\Model\Traits\NoticeTrait;
 use App\Model\Traits\OriginTrait;
+use App\Service\ImageBuilderService;
+use App\Service\TraitSlugify;
 use JMS\Serializer\Annotation as JMS;
 
 /**
  * Class NoticeDetail
  * @package App\Model
  */
-class Notice implements NoticeInterface
+class Notice extends AbstractImage implements NoticeInterface
 {
-    use OriginTrait;
+    use OriginTrait, TraitSlugify, NoticeMappedTrait, NoticeTrait, ImageIsbnTrait;
 
     private const SEPARATOR = ' ; ';
     public const ON_LIGNE = 'en ligne';
     public const ON_SHELF = 'en rayon';
 
-
-    use NoticeMappedTrait, NoticeTrait;
     /**
      * @var array|Value[]
      * @JMS\Type("array<App\Model\Value>")
@@ -150,6 +150,13 @@ class Notice implements NoticeInterface
      * @JMS\Type("array<string>")
      * @JMS\SerializedName("isbns")
      * @JMS\XmlList("isbn")
+     */
+    private $isbns;
+    /**
+     * @var string|null
+     * @JMS\Type("string")
+     * @JMS\SerializedName("isbn")
+     *
      */
     private $isbn;
     /**
@@ -601,10 +608,14 @@ class Notice implements NoticeInterface
     }
 
     /**
-     * @return null|string
+     * @return string|null
      */
-    public function getIsbn()
+    public function getIsbn():?string
     {
+        if (count($this->isbns)>0 && !empty($this->isbns[0])){
+            return $this->isbns[0];
+        }
+
         return $this->isbn;
     }
 
@@ -1142,6 +1153,18 @@ class Notice implements NoticeInterface
         return $this->category;
     }
 
+    /**
+     * @return string
+     */
+    public function getImage(): string
+    {
+        if ($this->getPicture() instanceof Picture && !empty($this->getPicture()->getContent())){
+            return $this->getPicture()->getContent();
+        }elseif (!empty($this->getIsbn())){
+            return $this->getIsbnCover() ;
+        }
 
+        return sprintf(ImageBuilderService::DEFAULT_PICTURE, $this->slugify($this->getType()));
+    }
 }
 
