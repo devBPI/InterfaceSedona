@@ -107,6 +107,7 @@ class NoticeBuildFileService
              * catch and handle exception to tell
              */
         }
+        $format = 'pdf';
 
         return  $this->templating->render("record/bibliographic.".$format .".twig", [
             'toolbar'           => Notice::class,

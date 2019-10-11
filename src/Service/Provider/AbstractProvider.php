@@ -4,7 +4,6 @@ declare(strict_types=1);
 namespace App\Service\Provider;
 
 use App\Service\APIClient\CatalogClient;
-use App\Service\ImageService;
 use GuzzleHttp\Psr7\Response;
 use JMS\Serializer\Serializer;
 use JMS\Serializer\SerializerInterface;
@@ -24,19 +23,14 @@ abstract class AbstractProvider implements ApiProviderInterface
     /** @var Serializer */
     protected $serializer;
 
-    /** @var ImageService */
-    private $imageService;
-
     /**
      * AbstractProvider constructor.
      * @param CatalogClient $api
-     * @param ImageService $imageService
      * @param SerializerInterface $serializer
      */
-    public function __construct(CatalogClient $api, ImageService $imageService, SerializerInterface $serializer)
+    public function __construct(CatalogClient $api, SerializerInterface $serializer)
     {
         $this->api = $api;
-        $this->imageService = $imageService;
         $this->serializer = $serializer;
     }
 
@@ -65,39 +59,5 @@ abstract class AbstractProvider implements ApiProviderInterface
     protected function arrayFromResponse(string $endpoint, array $queries = []): Response
     {
         return $this->api->get($endpoint, $queries);
-    }
-
-
-    /**
-     * @param string $url
-     * @param string $folderName
-     * @return string
-     */
-    protected function saveLocalImageFromUrl(string $url, string $folderName): string
-    {
-        try {
-            return $this->imageService->getLocalPath(file_get_contents($url), $folderName, $this->imageService->extractPathFromUrl($url));
-        } catch (\ErrorException $exception) {
-            // Log error
-        }
-
-        return $url;
-    }
-
-    /**
-     * @param string $content
-     * @param string $folderName
-     * @param string $fileName
-     * @return string
-     */
-    protected function saveLocalImageFromContent(string $content, string $folderName, string $fileName): string
-    {
-        try {
-            return $this->imageService->getLocalPath($content, $folderName, $fileName);
-        } catch (\ErrorException $exception) {
-            // Log error
-        }
-
-        return '';
     }
 }

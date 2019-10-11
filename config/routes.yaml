@@ -12,6 +12,14 @@ home:
     path: "/%locale%"
     permanent: true
 
+binary_image:
+  path: "/imported_images/{content}"
+  controller: 'App\Controller\Image\ImageController::binaryAction'
+  requirements:
+    _method: GET
+    content: ".*"
+
+
 fos_js_routing:
   resource: "@FOSJsRoutingBundle/Resources/config/routing/routing.xml"
 

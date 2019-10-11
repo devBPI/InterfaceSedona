@@ -74,7 +74,7 @@
         </div>
         <div class="col-6 col-md-2">
             <div class="bibliographic-result__type">
-                <img src="{{ asset('images/types/type-' ~ notice.type ~ '.svg') }}" alt="{{ notice.type }}" title="{{ notice.type }}" />
+                <img src="{{ path('binary_image', {"content":notice.image}) }}" alt="{{ notice.type }}"  title="{{ notice.type }}" />
             </div>
         </div>
     </div>
@@ -103,8 +103,7 @@
 {% endif %}
 <div class="col-12 col-md-3">
     <div class="bibliographic-result__image">
-        <img src="{% if object.notice.picture %}{{ object.notice.picture.url }}{% else %}{{ asset('images/couvertures-generiques/cg-musique.svg') }}{% endif %}"
-             alt="{% if object.notice.picture %}{{ object.notice.picture.description }}{% endif %}" class="img-fluid"/>
+        <img src="{{ path('binary_image', {"content":object.notice.image}) }}" alt="{% if object.notice.picture %}{{ object.notice.picture.description }}{% endif %}" class="img-fluid" />
     </div>
 </div>
 

@@ -36,7 +36,7 @@ services:
     - '@eight_points_guzzle.symfony_log_formatter'
     - '@eight_points_guzzle.logger'
 
-  App\Service\ImageService:
+  App\Service\ImageBuilderService:
     arguments: ['%kernel.project_dir%/public/']
   App\Service\HistoryService:
     arguments: ['@doctrine.orm.entity_manager']

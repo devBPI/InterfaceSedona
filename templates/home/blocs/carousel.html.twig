@@ -14,14 +14,7 @@
 						<span class="sr-only">{{ 'bloc.carousel.item_desciption'|trans({'%index%': loop.index ,'%nb%' : carousel.elements|length , '%title%' : item.title , '%auteur%' : item.creator }) }}</span>
 					</a>
 					<div class="carousel__slide-image">
-						{% if item.imagePath is not empty %}
-                            {% set imagePath = item.imagePath %}
-						{% else %}
-                            {% set imagePath = 'images/couvertures-generiques/cg-'~(item.type|lower)~'.svg' %}
-						{% endif %}
-
-						<img src="{{ asset(imagePath) }}" alt="" class="img-fluid" />
-                        {#{% if item.photoCredit %}<p lang="fr"> &copy; {{ item.photoCredit }}</p>{% endif %}#}
+						<img src="{{ path('binary_image', {'content':item.image}) }}" alt="" class="img-fluid"/>
 					</div>
 					<p class="n1 carousel__slide-title">{{ item.title }}</p>
 					{% if item.creator is not empty %}
