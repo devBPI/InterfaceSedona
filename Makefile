@@ -4,6 +4,7 @@
 # Extract project name from composer.json[name]
 COMPOSER_PROJECT_NAME = $(shell awk 'BEGIN{FS=":"} $$0 ~ /\s*"name"/ {print $$2}' composer.json | head -n1 | cut -d'"' -f2)
 COMPOSER_PROJECT_VERSION = $(shell awk 'BEGIN{FS=":"} $$0 ~ /\s*"version"/ {print $$2}' composer.json | cut -d'"' -f2)
+COMPOSER_PROJECT_DESCRIPTION = $(shell awk 'BEGIN{FS=":"} $$0 ~ /\s*"description"/ {print $$2}' composer.json | cut -d'"' -f2)
 # client/project-module
 CLIENT_NAME = $(firstword $(subst /, ,$(COMPOSER_PROJECT_NAME)))
 PROJECT_NAME = $(firstword $(subst -, ,$(lastword $(subst /, ,$(COMPOSER_PROJECT_NAME)))))
@@ -228,7 +229,7 @@ ifdef CONSOLE
 	else \
 		$(CONSOLE) --env=${APP_ENV} assets:install --symlink  ;\
 	fi
-	$(CONSOLE) --env=${APP_ENV} fos:js-routing:dump --format=json --target=public/js/fos_js_routes.json
+	$(CONSOLE) --env=${APP_ENV} fos:js-routing:dump --format=json --target=assets/js/fos_js_routes.json
 else
 	@printf "Cannot install assets (needs symfony/console)\n"
 endif

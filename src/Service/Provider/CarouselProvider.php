@@ -5,6 +5,8 @@ namespace App\Service\Provider;
 
 use App\Model\Carousel;
 use App\Model\CarouselItem;
+use App\Model\Exception\ErrorAccessApiException;
+use JMS\Serializer\Exception\XmlErrorException;
 
 /**
  * Class CarouselProvider
@@ -17,7 +19,7 @@ class CarouselProvider extends AbstractProvider
     /**
      * @return Carousel
      */
-    public function getHomeList(): Carousel
+    public function getHomeList(): ?Carousel
     {
         return $this->getListByThematic('general');
     }
@@ -26,12 +28,22 @@ class CarouselProvider extends AbstractProvider
      * @param string $theme
      * @return Carousel
      */
-    public function getListByThematic(string $theme): Carousel
+    public function getListByThematic(string $theme): ?Carousel
     {
-        /** @var $carousel Carousel */
-        $carousel = $this->hydrateFromResponse('/carousel/'.$theme);
+        try {
+            /** @var $carousel Carousel */
+            $carousel = $this->hydrateFromResponse('/carousel/'.$theme);
+
+            foreach ($carousel->getElements() as $carouselItem) {
+                /** @var $carouselItem CarouselItem */
+                if (!empty($carouselItem->getImagePath())) {
+                    $carouselItem->setImagePath($this->saveLocalImageFromUrl($carouselItem->getImagePath(),'carousel-'.$theme ));
+                }
+            }
+        } catch (XmlErrorException|ErrorAccessApiException $exception) {
+            return null;
+        }
 
         return $carousel;
     }
 }
-

@@ -37,18 +37,13 @@ class HomeController extends AbstractController
      */
     public function indexAction(): Response
     {
-        $attr = [];
-        try {
-            $attr['carousel'] = $this->carouselProvider->getHomeList();
-
-        } catch (XmlErrorException $exception) {
-        }
+        $carousel = $this->carouselProvider->getHomeList();
         $thematic = $this->getDoctrine()->getRepository(Thematic::class)->findAll();
 
-        return $this->render(
-            'home/default.html.twig',
-            $attr+['thematic'=>$thematic]
-        );
+        return $this->render('home/default.html.twig',[
+                'carousel'  => $carousel,
+                'thematic'  => $thematic
+            ]);
     }
 
     /**
@@ -59,21 +54,13 @@ class HomeController extends AbstractController
      */
     public function thematicAction(string $thematic): Response
     {
-        $carousel = null;
-
-        try {
-            $carousel = $this->carouselProvider->getListByThematic($thematic);
-        } catch (XmlErrorException $exception) {
-        }
+        $carousel = $this->carouselProvider->getListByThematic($thematic);
         $object = $this->getDoctrine()->getRepository(Thematic::class)->findOneBy(['type'=>$thematic]);
 
-        return $this->render(
-            'home/thematic.html.twig',
-            [
-                'title' => $thematic,
-                'thematic' => $object,
-                'carousel' => $carousel,
-            ]
-        );
+        return $this->render('home/thematic.html.twig', [
+                'title'     => $thematic,
+                'thematic'  => $object,
+                'carousel'  => $carousel,
+            ]);
     }
 }

@@ -47,6 +47,9 @@ services:
       io.rancher.container.hostname_override: container_name
 
   redis:
+    image: registry.sedona.fr/images/redis:3.2
+    networks:
+      - default
     labels:
       io.rancher.container.hostname_override: container_name
 

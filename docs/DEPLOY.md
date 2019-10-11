@@ -16,10 +16,21 @@ Dans ce cas :
 
 ![](DEPLOY_int.png)
 
+#  En Pré-production
 
+Pour déployer une "release"
+1. Pour créer une "release", crée un tag GIT qui correspond à la valeur du champ version mise dans le fichier "composer.json"       Exemple : Git Tag  "x.y.z" et "x.y.z" dans champ version de "composer.json"
+2. La CI de GitLab génère une release qui est stoker dans [Artifactory](https://repo.cicd.sedona.fr/artifactory)
+3. A définir...
+
+Pour déployer un "snapshot"
+1. Pour créer un "snapshot", indiquer dans le champ version du "composer.json" la future version suivit de "-dev". 
+Exemple : x.y.z-dev dans champ version de "composer.json"
+2. La CI de GitLab génère un snapshot qui est stoker dans [Artifactory](https://repo.cicd.sedona.fr/artifactory)
+3. A définir...
 
 #  En production
 
 TODO : a définir
 
-[Retour au README.md](../../../../README.md)
+[Retour au README.md](../README.md)

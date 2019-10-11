@@ -15,7 +15,7 @@ require('icheck');
 require('./data-toggle.js');
 
 const Slider = require('bootstrap-slider');
-const routes = require('../../public/js/fos_js_routes.json');
+const routes = require('../../assets/js/fos_js_routes.json');
 
 import Routing from '../../vendor/friendsofsymfony/jsrouting-bundle/Resources/public/js/router.min.js';
 
