@@ -5,7 +5,6 @@ namespace App\Service;
 
 use App\Entity\SearchHistory;
 use App\Entity\UserHistory;
-use App\Model\Exception\SearchHistoryException;
 use App\Model\Search\ObjSearch;
 use Doctrine\ORM\EntityManager;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
@@ -82,59 +81,6 @@ final class HistoryService extends AuthenticationService
     }
 
     /**
-     * @param SearchHistory $searchHistory
-     * @return UserHistory
-     * @throws \Doctrine\ORM\ORMException
-     */
-    private function findOrCreateUserHistory(SearchHistory $searchHistory): UserHistory
-    {
-        if ($this->hasConnectedUser()) {
-            $userHistory = $this->getUserHistoryFromSearchContext($searchHistory);
-        } else {
-            $userHistory = $this->getUserHistoryFromSession($searchHistory);
-        }
-
-        if ($userHistory instanceof UserHistory) {
-            $userHistory->incrementCount();
-
-            return $userHistory;
-        }
-
-        $userHistory = new UserHistory($searchHistory);
-        if ($this->hasConnectedUser()) {
-            $userHistory->setUser($this->getUser());
-            $this->entityManager->persist($userHistory);
-        }
-
-        return $userHistory;
-    }
-
-    /**
-     * @param SearchHistory $searchHistory
-     * @return UserHistory|null
-     */
-    private function getUserHistoryFromSearchContext(SearchHistory $searchHistory): ?UserHistory
-    {
-        return $this->entityManager->getRepository(UserHistory::class)->findOneBy(
-            ['Search' => $searchHistory, 'user_uid' => $this->getUserId()]
-        );
-    }
-
-    /**
-     * @param SearchHistory $searchHistory
-     * @return UserHistory|null
-     */
-    private function getUserHistoryFromSession(SearchHistory $searchHistory): ?UserHistory
-    {
-        $histories = $this->getSession(self::SESSION_HISTORY_ID);
-        if (array_key_exists($searchHistory->getId(), $histories)) {
-            return unserialize($histories[$searchHistory->getId()]);
-        }
-
-        return null;
-    }
-
-    /**
      * @param $action
      * @param $listObj
      * @throws \Doctrine\ORM\ORMException
@@ -143,7 +89,11 @@ final class HistoryService extends AuthenticationService
     public function applyAction($action, $listObj): void
     {
         if ($action === 'delete') {
-            $this->deleteHistories($listObj);
+            if ($this->hasConnectedUser()) {
+                $this->deleteHistories($listObj);
+            } else {
+                $this->deleteHistoriesFromSession($listObj);
+            }
         }
     }
 
@@ -235,6 +185,59 @@ final class HistoryService extends AuthenticationService
     }
 
     /**
+     * @param SearchHistory $searchHistory
+     * @return UserHistory
+     * @throws \Doctrine\ORM\ORMException
+     */
+    private function findOrCreateUserHistory(SearchHistory $searchHistory): UserHistory
+    {
+        if ($this->hasConnectedUser()) {
+            $userHistory = $this->getUserHistoryFromSearchContext($searchHistory);
+        } else {
+            $userHistory = $this->getUserHistoryFromSession($searchHistory);
+        }
+
+        if ($userHistory instanceof UserHistory) {
+            $userHistory->incrementCount();
+
+            return $userHistory;
+        }
+
+        $userHistory = new UserHistory($searchHistory);
+        if ($this->hasConnectedUser()) {
+            $userHistory->setUser($this->getUser());
+            $this->entityManager->persist($userHistory);
+        }
+
+        return $userHistory;
+    }
+
+    /**
+     * @param SearchHistory $searchHistory
+     * @return UserHistory|null
+     */
+    private function getUserHistoryFromSearchContext(SearchHistory $searchHistory): ?UserHistory
+    {
+        return $this->entityManager->getRepository(UserHistory::class)->findOneBy(
+            ['Search' => $searchHistory, 'user_uid' => $this->getUserId()]
+        );
+    }
+
+    /**
+     * @param SearchHistory $searchHistory
+     * @return UserHistory|null
+     */
+    private function getUserHistoryFromSession(SearchHistory $searchHistory): ?UserHistory
+    {
+        $histories = $this->getSession(self::SESSION_HISTORY_ID);
+        if (array_key_exists($searchHistory->getId(), $histories)) {
+            return unserialize($histories[$searchHistory->getId()]);
+        }
+
+        return null;
+    }
+
+    /**
      * @return bool
      * @throws \Doctrine\ORM\ORMException
      */
@@ -266,4 +269,18 @@ final class HistoryService extends AuthenticationService
         return false;
     }
 
+    /**
+     * @param array $keys
+     */
+    private function deleteHistoriesFromSession(array $keys = []): void
+    {
+        $newHists = array_filter(
+            $this->session->get(self::SESSION_HISTORY_ID, []),
+            function ($key) use ($keys) {
+                return !in_array($key, $keys);
+            },
+            ARRAY_FILTER_USE_KEY);
+
+        $this->setSession(self::SESSION_HISTORY_ID, $newHists);
+    }
 }

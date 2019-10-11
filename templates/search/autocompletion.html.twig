@@ -3,7 +3,7 @@
 	{% if words is defined %}
 		{%  for word in words %}
 			<li class="search-autocomplet__item" role="option" aria-selected="false">
-				<a href="#" class="search-autocomplet__item-content">{{ word }}</a>
+				<a href="{{ path('search', {'mot': word, 'type': type}) }}" class="search-autocomplet__item-content">{{ word }}</a>
 			</li>
 		{% endfor %}
 	{% else %}

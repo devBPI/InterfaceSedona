@@ -24,7 +24,7 @@
             {% for history in histories %}
                 <tr>
                     <td data-order="false">
-                        <input type="checkbox" name="{{ constant('App\\Controller\\UserHistoryController::INPUT_NAME') }}[]" value="{{ history.id }}"
+                        <input type="checkbox" name="{{ constant('App\\Controller\\UserHistoryController::INPUT_NAME') }}[]" value="{{ history.id ?? history.url }}"
                                aria-label="{{ 'bloc.historic-search.select-ligne'|trans({'%title%': history.title}) }}">
                     </td>
                     <td>

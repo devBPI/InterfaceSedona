@@ -16,6 +16,7 @@ use App\Service\Provider\NoticeAuthorityProvider;
 use App\Service\Provider\NoticeProvider;
 use App\Service\Provider\SearchProvider;
 use App\Service\SearchService;
+use App\WordsList;
 use Knp\Bundle\SnappyBundle\Snappy\Response\PdfResponse;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -276,21 +277,23 @@ class SearchController extends AbstractController
     }
 
     /**
-     * @Route("/autocompletion", methods={"POST"}, name="search_autocompletion")
+     * @Route("/autocompletion", methods={"GET"}, name="search_autocompletion")
      * @param Request $request
      * @return JsonResponse
      */
     public function autocompletionAction(Request $request): JsonResponse
     {
         try {
-            $query = $request->get('word');
-            $objSearch = $this->searchProvider->findNoticeAutocomplete($query, SuggestionList::class);
+            $type = $request->get('type', WordsList::THEME_DEFAULT);
+            $word = $request->get('word');
+            $objSearch = $this->searchProvider->findNoticeAutocomplete($type, $word, SuggestionList::class);
 
             return new JsonResponse([
                 'html' => $this->renderView(
                     'search/autocompletion.html.twig',
                     [
                         'words' => $objSearch->getSuggestions(),
+                        'type'  => $type
                     ]
                 ),
             ]);
