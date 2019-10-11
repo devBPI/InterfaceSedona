@@ -16,17 +16,14 @@
 !var/SymfonyRequirements.php
 /vendor/
 /public/bundles/
-/public/imported_images/couverture/*
-/public/imported_images/vignette/*
-!/public/imported_images/couverture/.gitkeep
-!/public/imported_images/vignette/.gitkeep
+/public/imported_images/*
+!/public/imported_images/.gitkeep
 /public/assets/
 /public/css
 /public/js
 /phpunit.xml
 /composer.phar
 /package_info.json
-/web/media/import_file
 .deploy/dev/mysql/
 .DS_Store
 
