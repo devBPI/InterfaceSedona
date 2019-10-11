@@ -20,7 +20,7 @@ class MediaController extends AbstractController
      */
     public function displayMediaLinkAction(string $ark): Response
     {
-        if(emtpy($ark)) {
+        if(empty($ark)) {
             throw new NotFoundHttpException('Missing text');
         }
 
@@ -34,5 +34,4 @@ class MediaController extends AbstractController
             ]
         );
     }
-
 }

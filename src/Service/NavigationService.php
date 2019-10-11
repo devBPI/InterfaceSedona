@@ -71,7 +71,7 @@ class NavigationService
 
         $noticesFiltered = array_filter(
             $notices,
-            function ($value) use ($permalink) {
+            function (Notice $value) use ($permalink) {
                 if ($value->getPermalink() === $permalink) {
                     return true;
                 }

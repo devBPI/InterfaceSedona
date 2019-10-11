@@ -99,6 +99,7 @@
         return this;
     };
 
+    let autocompleteRequest;
     $(document)
         .on('focus click loaded.bs.modal', '[data-toggle*="-if-no-found"]', function (e) {
             var $this = $(this);
@@ -262,6 +263,46 @@
             }
             $target.remove();
             $parent.trigger('change');
+        })
+        .on('keyup', '[data-toggle="autocomplete"]', function () {
+            let $this = $(this),
+                $target = $($(this).data('target')),
+                $type = $($(this).data('type')),
+                url =  $this.data('url')
+            ;
+
+            window.clearTimeout(autocompleteRequest);
+            
+            if ($this.val().length >= 3){
+                autocompleteRequest = window.setTimeout(function () {
+                    /**
+                     * send the form
+                     **/
+                    $.ajax({
+                        method: "GET",
+                        url: url,
+                        data: {'word': $this.val(), 'type': $type.val()},
+                    }).done(function (data) {
+                        // stop the spinner
+                        if (data.html) {
+                            $target
+                                .html(data.html)
+                                .show()
+                            ;
+                        }
+                    }).fail(
+                        function (jqXHR, textStatus) {
+                            // handle the message jqXHR.responseJSON.message;
+                            // stop the spinner and show the message
+                        }
+                    );
+                }, 300);
+
+            }
+
+            $type.on('change', function () {
+                $this.trigger('keyup');
+            })
         })
         .ready(function () {
             $('[data-toggle*="-if-no-found"]').ifNoFound();

@@ -1,10 +1,10 @@
 <div class="search-keyword__group row">
     <div class="col-3 col-sm-2 search-keyword__condition">
         {% if not first %}
-            <label for="adv-search-condition-2" class="sr-only"> // </label>
+            <label for="adv-search-condition-{{ index }}" class="sr-only"> // </label>
             {% set operator_name = constant('App\\Model\\Search\\Criteria::ADVANCED_SEARCH_OPERATOR')~'['~index~']' %}
             <select name="{{ operator_name }}" class="form-control"
-                    id="adv-search-condition-2">
+                    id="adv-search-condition-{{ index }}">
                 {% for operator in words_operators() %}
                     <option value="{{ operator }}"
                             {% if current_operator is defined and current_operator == operator %}selected="selected"{% endif %}>
@@ -14,17 +14,19 @@
         {% endif %}
     </div>
     <div class="col-9 search-keyword__input">
-        <label for="adv-search-txt-2" class="sr-only">{{ 'modal.advanced-search.keyword.label'|trans }}</label>
+        <label for="adv-search-txt-{{ index }}" class="sr-only">{{ 'modal.advanced-search.keyword.label'|trans }}</label>
         {% set field_name = constant('App\\Model\\Search\\Criteria::ADVANCED_SEARCH_LABEL')~'['~index~']['~constant('App\\Model\\Search\\Criteria::TEXT_LABEL')~']' %}
-        <input type="text"
-               name="{{ field_name }}"
-               value="{{ current_keyword ?? '' }}"
-               id="adv-search-txt-2" class="form-control">
+        <input type="text" autocomplete="off" aria-autocomplete="list" aria-controls="autocompletion-list"
+               data-url="{{ path('search_autocompletion') }}"
+               data-toggle="autocomplete" data-target="#autocompletion-list"
+               data-type="#adv-search-choice-{{ index }}"
+               name="{{ field_name }}" value="{{ current_keyword ?? '' }}"
+               id="adv-search-txt-{{ index }}" class="form-control">
     </div>
     <div class="col-12 col-sm-4 pr-sm-0">
-        <label for="adv-search-choice-2" class="sr-only"> // </label>
+        <label for="adv-search-choice-{{ index }}" class="sr-only"> // </label>
         {% set select_name = constant('App\\Model\\Search\\Criteria::ADVANCED_SEARCH_LABEL')~'['~index~']['~constant('App\\Model\\Search\\Criteria::FIELD_LABEL')~']' %}
-        <select name="{{ select_name }}" class="form-control" id="adv-search-choice-2">
+        <select name="{{ select_name }}" class="form-control" id="adv-search-choice-{{ index }}">
             {% for word in search_words() %}
                 <option value="{{ word }}"
                         {% if current_type is defined and current_type == word %}selected="selected"{% endif %}>

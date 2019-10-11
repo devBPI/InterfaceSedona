@@ -17,6 +17,7 @@
     </div>
 </div>
 
+{% if criteria.configurationName is defined %}
 <div class="modal-body">
     <div class="search-base">
         <div class="search-base__group">
@@ -39,6 +40,7 @@
         </ul>
     </div>
 </div>
+{% endif %}
 
 <div class="modal-body">
     <div>
@@ -76,6 +78,7 @@
     </div>
 </div>
 
+{% if criteria.language is defined %}
 <div class="modal-body">
     <div>
         <p>{{ 'modal.advanced-search.langage.title'|trans }}</p>
@@ -95,30 +98,32 @@
         </div>
     </div>
 </div>
+{% endif %}
 
-{% for key in criteria.facets if attribute(criteria, key)|length > 0 %}
-    <div class="modal-body">
-        <div class="search-facette">
-            <button type="button" class="search-facette__button btn {% if key in objSearch.searchFilters|keys %}collapsed{% endif %}" data-toggle="collapse" aria-expanded="{{ key in objSearch.searchFilters|keys ? 'true' : 'false' }}"
-                    aria-controls="adv-search-{{ key }}"
-                    data-target="#adv-search-{{ key }}">{{ ('modal.advanced-search.facette.'~key)|trans }}</button>
-            <div class="collapse search-facette__body {% if key in objSearch.searchFilters|keys %}collapse show{% endif %}" id="adv-search-{{ key }}" role="group"
-                 aria-label="{{ ('modal.advanced-search.facette.'~key)|trans }}">
-                <div class="search-facette__content">
+{% if criteria.facets is defined %}
+    {% for key in criteria.facets if attribute(criteria, key)|length > 0 %}
+        <div class="modal-body">
+            <div class="search-facette">
+                <button type="button" class="search-facette__button btn {% if key in objSearch.searchFilters|keys %}collapsed{% endif %}" data-toggle="collapse" aria-expanded="{{ key in objSearch.searchFilters|keys ? 'true' : 'false' }}"
+                        aria-controls="adv-search-{{ key }}"
+                        data-target="#adv-search-{{ key }}">{{ ('modal.advanced-search.facette.'~key)|trans }}</button>
+                <div class="collapse search-facette__body {% if key in objSearch.searchFilters|keys %}collapse show{% endif %}" id="adv-search-{{ key }}" role="group"
+                     aria-label="{{ ('modal.advanced-search.facette.'~key)|trans }}">
+                    <div class="search-facette__content">
 
-                    {% for i, value in attribute(criteria, key) %}
-                        <div class="form-check search-facette__item">
-                            <input type="checkbox" name="{{ constant('App\\Model\\Search\\FacetFilter::QUERY_NAME') ~'['~ key~'][]' }}" class="form-check-input"
-                                   id="{{ key }}-{{ i }}" value="{{ value }}"
-                                {% if key in objSearch.searchFilters|keys and value in objSearch.searchFilters[key] %}
-                                    checked="checked"
-                                {% endif %}>
-                            <label class="form-check-label" for="{{ key }}-{{ i }}">{{ value }}</label>
-                        </div>
-                    {% endfor %}
+                        {% for i, value in attribute(criteria, key) %}
+                            <div class="form-check search-facette__item">
+                                <input type="checkbox" name="{{ constant('App\\Model\\Search\\FacetFilter::QUERY_NAME') ~'['~ key~'][]' }}" class="form-check-input"
+                                       id="{{ key }}-{{ i }}" value="{{ value }}"
+                                    {% if key in objSearch.searchFilters|keys and value in objSearch.searchFilters[key] %}
+                                        checked="checked"
+                                    {% endif %}>
+                                <label class="form-check-label" for="{{ key }}-{{ i }}">{{ value }}</label>
+                            </div>
+                        {% endfor %}
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-
-{% endfor %}
+    {% endfor %}
+{% endif %}

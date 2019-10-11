@@ -13,10 +13,9 @@ use App\Model\SuggestionList;
 use App\Service\NoticeBuildFileService;
 use App\Service\Provider\AdvancedSearchProvider;
 use App\Service\Provider\NoticeAuthorityProvider;
-use App\Service\Provider\NoticeProvider;
 use App\Service\Provider\SearchProvider;
 use App\Service\SearchService;
-use App\Utils\PrintNoticeWrapper;
+use App\WordsList;
 use Knp\Bundle\SnappyBundle\Snappy\Response\PdfResponse;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -45,10 +44,6 @@ class SearchController extends AbstractController
      */
     private $searchService;
     /**
-     * @var NoticeProvider
-     */
-    private $noticeProvider;
-    /**
      * @var NoticeAuthorityProvider
      */
     private $noticeAuhtority;
@@ -62,7 +57,6 @@ class SearchController extends AbstractController
      * @param SearchProvider $searchProvider
      * @param AdvancedSearchProvider $advancedSearchProvider
      * @param SearchService $searchService
-     * @param NoticeProvider $noticeProvider
      * @param NoticeAuthorityProvider $noticeAuhtority
      * @param NoticeBuildFileService $service
      */
@@ -70,14 +64,12 @@ class SearchController extends AbstractController
         SearchProvider $searchProvider,
         AdvancedSearchProvider $advancedSearchProvider,
         SearchService $searchService,
-        NoticeProvider $noticeProvider,
         NoticeAuthorityProvider $noticeAuhtority,
         NoticeBuildFileService $service
     ) {
         $this->searchProvider = $searchProvider;
         $this->advancedSearchProvider = $advancedSearchProvider;
         $this->searchService = $searchService;
-        $this->noticeProvider = $noticeProvider;
         $this->noticeAuhtority = $noticeAuhtority;
         $this->buildFileContent = $service;
     }
@@ -115,6 +107,8 @@ class SearchController extends AbstractController
     {
         $objSearch = $this->searchService->createObjSearch($search, $request);
         $objSearch->setResults($this->searchProvider->getListBySearch($search));
+
+        $request->query->remove('action');
 
         return $this->render(
             'search/index.html.twig',
@@ -275,21 +269,23 @@ class SearchController extends AbstractController
     }
 
     /**
-     * @Route("/autocompletion", methods={"POST"}, name="search_autocompletion")
+     * @Route("/autocompletion", methods={"GET"}, name="search_autocompletion")
      * @param Request $request
      * @return JsonResponse
      */
     public function autocompletionAction(Request $request): JsonResponse
     {
         try {
-            $query = $request->get('word');
-            $objSearch = $this->searchProvider->findNoticeAutocomplete($query, SuggestionList::class);
+            $type = $request->get('type', WordsList::THEME_DEFAULT);
+            $word = $request->get('word');
+            $objSearch = $this->searchProvider->findNoticeAutocomplete($type, $word, SuggestionList::class);
 
             return new JsonResponse([
                 'html' => $this->renderView(
                     'search/autocompletion.html.twig',
                     [
                         'words' => $objSearch->getSuggestions(),
+                        'type'  => $type
                     ]
                 ),
             ]);

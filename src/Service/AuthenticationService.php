@@ -75,9 +75,9 @@ abstract class AuthenticationService
 
     /**
      * @param string $key
-     * @param array $values
+     * @param mixed $values
      */
-    protected function setSession(string $key, array $values = []): void
+    protected function setSession(string $key, $values): void
     {
         $this->session->set($key, $values);
     }

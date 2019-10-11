@@ -71,24 +71,18 @@ final class SearchService
      */
     public function createObjSearch(SearchQuery $search, Request $request): ObjSearch
     {
-        $title = $this->getTitleFromSearchQuery($search);
-        if ($request->get('action', null) !== null) {
-            $request->query->remove('action');
-            $this->historicService->saveUserHistory($title, $this->serializer->serialize($search, 'json'));
-        }
-
         $search->setSort($request->get(FiltersQuery::SORT_LABEL, SearchQuery::SORT_DEFAULT));
         $search->setRows($request->get(FiltersQuery::ROWS_LABEL, SearchQuery::ROWS_DEFAULT));
         $search->setPage($request->get(FiltersQuery::PAGE_LABEL, 1));
 
-
-        $hash = \spl_object_hash($search);
-        $request->getSession()->set($hash, $this->serializer->serialize($search, 'json'));
-
         $objSearch = new ObjSearch($search);
-        $objSearch
-            ->setTitle($title)
-            ->setContext($hash, $this->serializer->serialize($search, 'json'));
+        $objSearch->setTitle($this->getTitleFromSearchQuery($search));
+
+        $this->historicService->saveCurrentSearchInSession(
+            $objSearch,
+            $this->serializer->serialize($search, 'json'),
+            $request->get('action', null) !== null
+        );
 
         return $objSearch;
     }

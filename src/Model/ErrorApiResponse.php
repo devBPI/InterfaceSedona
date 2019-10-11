@@ -18,7 +18,7 @@ class ErrorApiResponse
      * ErrorApiResponse constructor.
      * @param $data
      */
-    public function __construct(\object $data)
+    public function __construct($data)
     {
         if (isset($data->message)) {
             $this->message = $data->message;

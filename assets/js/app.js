@@ -36,56 +36,61 @@ $('input').iCheck({
 });
 
 
-
+$(document)
 // Gestion navigation focus - Menu principal ---------------------------------------------------------
-$('.dropdown-link .nav-link').on('focus', function() {
-    $('.dropdown-menu').removeClass('show');
-    $(this).siblings('.dropdown-menu').addClass('show');
-});
+    .on('focus', '.dropdown-link .nav-link', function() {
+        $('.dropdown-menu').removeClass('show');
+        $(this).siblings('.dropdown-menu').addClass('show');
+    })
+    .on('click', '.js-print-action', function () {
+        let permalinkAuthority = $('.js-authority:checked');
+        let permalinkNotice = $('.js-notice:checked');
 
+        $('.js-print-authorities').val(permalinkAuthority.serialize());
+        $('.js-print-notices').val(permalinkNotice.serialize())
+    })
+    .on('click', '.js-export-form', function(e){
+        let permalinkAuthority = $('.js-authority:checked');
+        let permalinkNotice = $('.js-notice:checked');
+        $('.js-print-authorities').val(permalinkAuthority.serialize());
+        $('.js-print-notices').val(permalinkNotice.serialize());
 
-$(document).on('click', '.js-print-action', function () {
-    let permalinkAuthority = $('.js-authority:checked');
-    let permalinkNotice = $('.js-notice:checked');
+    })
+    .on('click', '.js-5-indices-around', function (event) {
+        let $this = $(this);
+        let url = $this.data('url');
+        /**
+         * send the form
+         */
+        $.ajax({
+            url: url,
+            type:"POST",
+            beforeSend: function() {
+                // put a spinner
+            },
+            success: function(response) {
+                $('#around-index-wrapper').html(response.html);
+            },
+            error: function (response) {
+                // put an error message here
+            }
+        });
+    })
+    // Affichage champs date - Modal recherche avancée ---------------------------------------------------------
+    .on('change', '.search-date__group', function() {
+        var $input_period = $('.search-date__date--second');
 
-
-    $('.js-print-authorities').val(permalinkAuthority.serialize());
-    $('.js-print-notices').val(permalinkNotice.serialize())
-
-});
-
-$(document).on('click', '.js-export-form', function(e){
-    let permalinkAuthority = $('.js-authority:checked');
-    let permalinkNotice = $('.js-notice:checked');
-    $('.js-print-authorities').val(permalinkAuthority.serialize());
-    $('.js-print-notices').val(permalinkNotice.serialize());
-
-});
-
-
-/**
- *
- */
-$(document).on('click', '.js-5-indices-around', function (event) {
-    let $this = $(this);
-    let url = $this.data('url');
-    /**
-     * send the form
-     */
-    $.ajax({
-        url: url,
-        type:"POST",
-        beforeSend: function() {
-            // put a spinner
-        },
-        success: function(response) {
-            $('#around-index-wrapper').html(response.html);
-        },
-        error: function (response) {
-            // put an error message here
+        if ( $('.search-date__radio--period .check--radio').hasClass('checked') ) {
+            $input_period.removeClass('d-none');
+        } else {
+            $input_period.addClass('d-none');
         }
-    });
-});
+    })
+    .on('click', '.js-copy_to_clipboard', function (e) {
+        let url =  $('.js-url-to-copy').val();
+        copyToClipboard(url);
+    })
+;
 
 /**
  *
@@ -117,7 +122,3 @@ let copyToClipboard = function (element) {
     $input.remove();
 };
 
-$(document).on('click', '.js-copy_to_clipboard', function (e) {
-    let url =  $('.js-url-to-copy').val();
-    copyToClipboard(url);
-}).css( 'cursor', 'pointer' );

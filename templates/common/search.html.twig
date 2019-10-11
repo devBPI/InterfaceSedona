@@ -9,7 +9,9 @@
             {% set field_name = constant('App\\Model\\Search\\Criteria::SIMPLE_SEARCH_KEYWORD') %}
             <input name="{{ field_name }}" autocomplete="off"
                    type="text" aria-autocomplete="list" aria-controls="autocompletion-list"
-                   id="search-input" data-url-autocomplete="{{ path('search_autocompletion') }}"
+                   id="search-input" data-url="{{ path('search_autocompletion') }}"
+                   data-toggle="autocomplete" data-target="#autocompletion-list"
+                   data-type="#search-words"
                    placeholder="{{ 'bloc.search-zone.input-placeholder'|trans }}"
                    value="{{ objSearch is defined ? objSearch.simpleSearchKeyword : '' }}"/>
         </div>

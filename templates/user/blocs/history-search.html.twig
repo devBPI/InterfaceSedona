@@ -24,7 +24,7 @@
             {% for history in histories %}
                 <tr>
                     <td data-order="false">
-                        <input type="checkbox" name="{{ constant('App\\Controller\\UserHistoryController::INPUT_NAME') }}[]" value="{{ history.id }}"
+                        <input type="checkbox" name="{{ constant('App\\Controller\\UserHistoryController::INPUT_NAME') }}[]" value="{{ history.id ?? history.url }}"
                                aria-label="{{ 'bloc.historic-search.select-ligne'|trans({'%title%': history.title}) }}">
                     </td>
                     <td>
@@ -32,7 +32,8 @@
                     </td>
                     <td data-order="{{ history.lastViewDate|date('Ymd') }}">{{ history.lastViewDate|date('d/m/Y \\à H:i') }}</td>
                     <td class="table__body-search" data-order="false">
-                        <a href="{{ path('saved_search', {'id': history.url}) }}" role="button">
+                        {% set form_path = app.user ? path('saved_search', {'id': history.url}) : path('back_search', {'token': history.url}) %}
+                        <a href="{{ form_path }}" role="button">
                             <span class="sr-only">{{ 'bloc.historic-search.reload'|trans({'%title%': history.title}) }}</span>
                             <img src="{{ asset('images/icones/icone-loupe-noire.svg') }}" alt="" class="icone-loupe"/>
                         </a>

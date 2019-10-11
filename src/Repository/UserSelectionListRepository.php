@@ -40,7 +40,7 @@ class UserSelectionListRepository extends EntityRepository
             ->orderBy('list.position')
             ->getQuery()
             ->setParameter('ids', $ids, Connection::PARAM_INT_ARRAY)
-            ->setParameter('user', $uid)
+            ->setParameter('user', $user->getUid())
             ->getResult();
     }
 
@@ -56,7 +56,7 @@ class UserSelectionListRepository extends EntityRepository
             ->select('max(list.position)')
             ->getQuery()
             ->setParameter('user', $user->getUid())
-            ->getSingleScalarResult();
+            ->getSingleScalarResult() ?? 0;
     }
 
     /**

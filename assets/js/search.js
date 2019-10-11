@@ -35,48 +35,6 @@ $(document)
                 .addClass('js-btn--more');
         }
     })
-    .on('click', '.search-autocomplet__item-content', function (e) {
-        $('#search-input').val($(this).html());
-        $('#autocompletion-list').hide();
-    })
-    .on('keyup', '#search-input', function (e) {
-        let $this = $(this);
-        /**
-         * @type string
-         */
-        let url =  $this.data('urlAutocomplete');
-
-        /**
-         *
-         * @type {{word: *}}
-         */
-        let datas ={'word': $this.val()};
-
-        if ($this.val().length >= 3){
-            setTimeout(function () {
-                /**
-                 * send the form
-                 **/
-                $.ajax({
-                    method: "POST",
-                    url: url,
-                    data: datas,
-                }).done(function (data) {
-                    // stop the spinner
-                    $('#autocompletion-list')
-                        .html(data.html)
-                        .show()
-                    ;
-                }).fail(
-                    function (jqXHR, textStatus) {
-                        // handle the message jqXHR.responseJSON.message;
-                        // stop the spinner and show the message
-                    }
-                );
-            },300);
-
-        }
-    })
     .on('change','.js-pagination-select', function (e) {
         let $this = $(this);
         let page = $this.val();
@@ -126,15 +84,5 @@ $(document)
             value: [1945,1980],
             handle: 'square'
         });
-    })
-    // Affichage champs date - Modal recherche avancée ---------------------------------------------------------
-    .on('change', '.search-date__group', function() {
-        var $input_period = $('.search-date__date--second');
-
-        if ( $('.search-date__radio--period .check--radio').hasClass('checked') ) {
-            $input_period.removeClass('d-none');
-        } else {
-            $input_period.addClass('d-none');
-        }
     })
 ;

@@ -3,12 +3,10 @@ declare(strict_types=1);
 
 namespace App\Service\Provider;
 
-use App\Model\Exception\NoResultException;
 use App\Model\Notice;
 use App\Model\Results;
 use App\Model\Search\SearchQuery;
 use App\Service\APIClient\CatalogClient;
-use App\Service\ImageService;
 use JMS\Serializer\SerializerInterface;
 use Twig_Environment;
 
@@ -26,13 +24,12 @@ class SearchProvider extends AbstractProvider
     /**
      * SearchProvider constructor.
      * @param CatalogClient $api
-     * @param ImageService $imageService
      * @param SerializerInterface $serializer
      * @param Twig_Environment $templating
      */
-    public function __construct(CatalogClient $api, ImageService $imageService, SerializerInterface $serializer, Twig_Environment $templating)
+    public function __construct(CatalogClient $api, SerializerInterface $serializer, Twig_Environment $templating)
     {
-        parent::__construct($api, $imageService, $serializer);
+        parent::__construct($api, $serializer);
 
         $this->templating = $templating;
     }
@@ -55,57 +52,19 @@ class SearchProvider extends AbstractProvider
             'rows' => $search->getRows()
         ]);
 
-        foreach ($searchResult->getNotices()->getNoticesList() as $notice) {
-            $this->getImagesForNotice($notice);
-        }
-        foreach ($searchResult->getNoticesOnline()->getNoticesList() as $notice) {
-            $this->getImagesForNotice($notice);
-        }
-
         return $searchResult;
     }
-
     /**
-     * @param Notice $notice
-     */
-    private function getImagesForNotice(Notice $notice): void
-    {
-        if (!empty($notice->getIsbn())) {
-
-            $notice
-                ->setThumbnail($this->getImageAndSaveLocal('vignette', 'notice-thumbnail', $notice->getIsbn()))
-                ->setCover($this->getImageAndSaveLocal('couverture', 'notice-cover', $notice->getIsbn()))
-            ;
-        }
-    }
-
-    /**
-     * @param string $category
-     * @param string $folderName
-     * @param string $isbn
-     * @return string
-     */
-    private function getImageAndSaveLocal(string $category, string $folderName, string $isbn): string
-    {
-        try {
-            $content = $this->arrayFromResponse('/electre/'.$category.'/'.$isbn)->getBody()->getContents();
-
-            return $this->saveLocalImageFromContent($content, $folderName, $isbn.'.jpeg');
-        } catch (NoResultException $exception) {
-            return '';
-        }
-    }
-
-    /**
-     * @param string $query
+     * @param string $type
+     * @param string $word
      * @param string $model
      * @return object
      */
-    public function findNoticeAutocomplete(string $query, string $model)
+    public function findNoticeAutocomplete(string $type, string $word, string $model)
     {
         /** @var Results $searchResult */
         return $this->hydrateFromResponse('/autocomplete/notices',
-            ['word' => $query,],
+            ['word' => $word, 'criteria' => $type],
             $model);
     }
 }
