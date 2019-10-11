@@ -132,7 +132,6 @@ class RecordController extends AbstractController
      */
     public function bibliographicRecordPDFAction(Request $request, $format='pdf')
     {
-        //$format = 'html';
         try {
             $sendWithAttachement = new ExportNotice();
 

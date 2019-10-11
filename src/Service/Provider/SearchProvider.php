@@ -54,21 +54,6 @@ class SearchProvider extends AbstractProvider
 
         return $searchResult;
     }
-
-    /**
-     * @param Notice $notice
-     */
-    private function getImagesForNotice(Notice $notice): void
-    {
-        /*if (!empty($notice->getIsbn())) {
-
-            $notice
-                ->setThumbnail($this->getImageAndSaveLocal('vignette', 'notice-thumbnail', $notice->getIsbn()))
-                ->setCover($this->getImageAndSaveLocal('couverture', 'notice-cover', $notice->getIsbn()))
-            ;
-        }*/
-    }
-
     /**
      * @param string $query
      * @param string $model
