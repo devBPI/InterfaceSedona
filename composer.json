@@ -18,6 +18,7 @@
         "knplabs/knp-snappy-bundle": "^1.6",
         "roave/security-advisories": "dev-master",
         "sensio/framework-extra-bundle": "^5.1",
+        "slowprog/composer-copy-file": "^0.3.1",
         "symfony/asset": "3.4.*",
         "symfony/console": "3.4.*",
         "symfony/dotenv": "3.4.*",
@@ -68,10 +69,12 @@
             "assets:install %PUBLIC_DIR%": "symfony-cmd"
         },
         "post-install-cmd": [
-            "@auto-scripts"
+            "@auto-scripts",
+            "SlowProg\\CopyFile\\ScriptHandler::copy"
         ],
         "post-update-cmd": [
-            "@auto-scripts"
+            "@auto-scripts",
+            "SlowProg\\CopyFile\\ScriptHandler::copy"
         ]
     },
     "conflict": {
@@ -81,6 +84,9 @@
         "symfony": {
             "allow-contrib": false,
             "require": "3.4.*"
+        },
+        "copy-file": {
+            "vendor/friendsofsymfony/jsrouting-bundle/Resources/public/js/router.min.js": "assets/js/jsrouting.min.js"
         }
     },
     "require-dev": {

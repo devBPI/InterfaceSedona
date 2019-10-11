@@ -285,6 +285,9 @@
             "config/packages/sensio_framework_extra.yaml"
         ]
     },
+    "slowprog/composer-copy-file": {
+        "version": "0.3.1"
+    },
     "swiftmailer/swiftmailer": {
         "version": "v6.2.0"
     },
