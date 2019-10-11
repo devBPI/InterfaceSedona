@@ -41,8 +41,8 @@ class HomeController extends AbstractController
         $thematic = $this->getDoctrine()->getRepository(Thematic::class)->findAll();
 
         return $this->render('home/default.html.twig',[
-                'carousel' => $carousel,
-                'thematic'=>$thematic
+                'carousel'  => $carousel,
+                'thematic'  => $thematic
             ]);
     }
 
@@ -58,9 +58,9 @@ class HomeController extends AbstractController
         $object = $this->getDoctrine()->getRepository(Thematic::class)->findOneBy(['type'=>$thematic]);
 
         return $this->render('home/thematic.html.twig', [
-                'title' => $thematic,
-                'thematic' => $object,
-                'carousel' => $carousel,
+                'title'     => $thematic,
+                'thematic'  => $object,
+                'carousel'  => $carousel,
             ]);
     }
 }
