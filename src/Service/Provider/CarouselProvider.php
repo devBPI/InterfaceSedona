@@ -33,13 +33,6 @@ class CarouselProvider extends AbstractProvider
         try {
             /** @var $carousel Carousel */
             $carousel = $this->hydrateFromResponse('/carousel/'.$theme);
-
-            foreach ($carousel->getElements() as $carouselItem) {
-                /** @var $carouselItem CarouselItem */
-                if (!empty($carouselItem->getImagePath())) {
-                    $carouselItem->setImagePath($this->saveLocalImageFromUrl($carouselItem->getImagePath(),'carousel-'.$theme ));
-                }
-            }
         } catch (XmlErrorException|ErrorAccessApiException $exception) {
             return null;
         }

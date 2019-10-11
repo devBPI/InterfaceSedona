@@ -11,6 +11,7 @@ use EightPoints\Bundle\GuzzleBundle\Log\Logger;
 use EightPoints\Bundle\GuzzleBundle\Log\LoggerInterface;
 use EightPoints\Bundle\GuzzleBundle\Middleware\LogMiddleware;
 use GuzzleHttp\Client;
+use GuzzleHttp\ClientInterface;
 use GuzzleHttp\Exception\BadResponseException;
 use GuzzleHttp\Exception\ClientException;
 use GuzzleHttp\Exception\ConnectException;
@@ -26,42 +27,18 @@ use Symfony\Component\Security\Core\Exception\AccessDeniedException;
  */
 class CatalogClient
 {
-    const TIMEOUT = 10;
-
     /**
      * @var Client
      */
     private $client;
 
     /**
-     * @var Logger
-     */
-    private $logger;
-
-    /**
-     * @var MessageFormatter
-     */
-    private $formatter;
-
-    /**
-     * @var string
-     */
-    private $api_path;
-
-    /**
      * CatalogClient constructor.
      * @param string $api_path
-     * @param MessageFormatter $formatter
-     * @param Logger $logger
      */
-    public function __construct(
-        string $api_path,
-        MessageFormatter $formatter,
-        Logger $logger
-    ) {
-        $this->api_path = $api_path;
-        $this->formatter = $formatter;
-        $this->logger = $logger;
+    public function __construct(ClientInterface $client)
+    {
+        $this->client = $client;
     }
 
     /**
@@ -76,7 +53,7 @@ class CatalogClient
                 'query' => $query,
             ];
 
-            $response = $this->getClient()->get($uri, $options);
+            $response = $this->client->get($uri, $options);
 
             $this->manageResponseCode($response);
 
@@ -88,34 +65,6 @@ class CatalogClient
         }
     }
 
-    /**
-     * @return Client
-     */
-    private function getClient(): Client
-    {
-        if ($this->client instanceof Client === false) {
-            $stack = \GuzzleHttp\HandlerStack::create();
-
-            // Data collector
-            if ($this->logger instanceof LoggerInterface) {
-                $log = new LogMiddleware($this->logger, $this->formatter);
-                $stack->push($log->log(), 'logger');
-            }
-
-            $headers = ['Content-Type' => "application/xml"];
-
-            $this->client = new Client(
-                [
-                    'base_uri' => $this->api_path."/",
-                    'headers' => $headers,
-                    'timeout' => self::TIMEOUT,
-                    'handler' => $stack,
-                ]
-            );
-        }
-
-        return $this->client;
-    }
 
     /**
      * @param BadResponseException $exception
@@ -129,6 +78,7 @@ class CatalogClient
                 throw new NoResultException();
             case 400:
             case 500:
+                throw new ApiException($exception->getMessage());
             default:
                 $error_message = new ErrorApiResponse(json_decode($exception->getResponse()->getBody()->getContents()));
                 throw new ApiException($error_message->getMessage());
