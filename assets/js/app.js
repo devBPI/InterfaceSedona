@@ -19,7 +19,7 @@ import dataToggle from './data-toggle.js';
 
 const routes = require('../../assets/js/fos_js_routes.json');
 
-import Routing from '../../vendor/friendsofsymfony/jsrouting-bundle/Resources/public/js/router.min.js';
+import Routing from 'jsrouting.min.js';
 
 
 Routing.setRoutingData(routes);
