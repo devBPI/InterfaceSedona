@@ -1,5 +1,5 @@
 import * as util from './notice-availibility.js'
-import Routing from 'jsrouting.min.js';
+import Routing from '../../assets/js/jsrouting.min.js';
 
 $(document)
 // Bouton "Voir plus" / "Voir moins" -----------------------------------------------------------------------------------

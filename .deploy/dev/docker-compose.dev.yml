@@ -47,6 +47,8 @@ services:
   encore:
     image: node:10-alpine
     user: "$UID:$UID"
+    environment:
+      - APP_ENV
     volumes:
       - .:/app
       - ./var/cache/npm:/.npm

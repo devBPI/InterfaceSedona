@@ -19,7 +19,7 @@ import dataToggle from './data-toggle.js';
 
 const routes = require('../../assets/js/fos_js_routes.json');
 
-import Routing from 'jsrouting.min.js';
+import Routing from '../../assets/js/jsrouting.min.js';
 
 
 Routing.setRoutingData(routes);
