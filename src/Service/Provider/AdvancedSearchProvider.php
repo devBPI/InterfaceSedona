@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace App\Service\Provider;
 
 use App\Model\AdvancedSearchCriteria;
+use App\Model\Exception\ErrorAccessApiException;
 
 /**
  * Class AdvancedSearchProvider
@@ -14,11 +15,16 @@ class AdvancedSearchProvider extends AbstractProvider
     protected $modelName = AdvancedSearchCriteria::class;
 
     /**
-     * @return object|AdvancedSearchCriteria
+     * @return array
      */
-    public function getAdvancedSearchCriteria(): AdvancedSearchCriteria
+    public function getAdvancedSearchCriteria(): array
     {
-        return $this->hydrateFromResponse('/advanced-search/list-elements', []);
+        try {
+            return $this->hydrateFromResponse('/advanced-search/list-elements', [])->getSuggestions();
+        } catch (ErrorAccessApiException|XmlErrorException $exception) {
+            return [];
+        }
+
     }
 
 }
