@@ -16,10 +16,8 @@
 !var/SymfonyRequirements.php
 /vendor/
 /public/bundles/
-/public/imported_images/couverture/*
-/public/imported_images/vignette/*
-!/public/imported_images/couverture/.gitkeep
-!/public/imported_images/vignette/.gitkeep
+/public/imported_images/*
+!/public/imported_images/.gitkeep
 /public/assets/
 /public/css
 /public/js
