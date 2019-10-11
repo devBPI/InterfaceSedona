@@ -5,6 +5,7 @@ namespace App\Service\Provider;
 
 use App\Model\Carousel;
 use App\Model\CarouselItem;
+use JMS\Serializer\Exception\XmlErrorException;
 
 /**
  * Class CarouselProvider
@@ -28,14 +29,18 @@ class CarouselProvider extends AbstractProvider
      */
     public function getListByThematic(string $theme): Carousel
     {
-        /** @var $carousel Carousel */
-        $carousel = $this->hydrateFromResponse('/carousel/'.$theme);
+        try {
+            /** @var $carousel Carousel */
+            $carousel = $this->hydrateFromResponse('/carousel/'.$theme);
 
-        foreach ($carousel->getElements() as $carouselItem) {
-            /** @var $carouselItem CarouselItem */
-            if (!empty($carouselItem->getImagePath())) {
-                $carouselItem->setImagePath($this->saveLocalImageFromUrl($carouselItem->getImagePath(),'carousel-'.$theme ));
+            foreach ($carousel->getElements() as $carouselItem) {
+                /** @var $carouselItem CarouselItem */
+                if (!empty($carouselItem->getImagePath())) {
+                    $carouselItem->setImagePath($this->saveLocalImageFromUrl($carouselItem->getImagePath(),'carousel-'.$theme ));
+                }
             }
+        } catch (XmlErrorException $exception) {
+            return null;
         }
 
         return $carousel;
