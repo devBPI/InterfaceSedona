@@ -1,5 +1,5 @@
-var Encore = require('@symfony/webpack-encore');
-var CopyWebpackPlugin = require('copy-webpack-plugin');
+const Encore = require('@symfony/webpack-encore');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 Encore
     // directory where compiled assets will be stored
@@ -8,7 +8,6 @@ Encore
     .setPublicPath('/build')
     // only needed for CDN's or sub-directory deploy
     //.setManifestKeyPrefix('build/')
-
     /*
      * ENTRY CONFIG
      *
@@ -18,22 +17,27 @@ Encore
      * Each entry will result in one JavaScript file (e.g. app.js)
      * and one CSS file (e.g. app.css) if you JavaScript imports CSS.
      */
-    .addEntry('app', './assets/js/app.js')
+    .addEntry('app', './assets/js/app.ts')
     .addEntry('search', './assets/js/search.js')
     .addEntry('admin', './assets/js/admin.js')
     .addEntry('carousel', './assets/js/carousel.js')
     .addEntry('datatable', './assets/js/datatable.js')
     .addEntry('notice', './assets/js/notice-availibility.js')
     .addEntry('error_404', './assets/js/error404.js')
+
     .addEntry('print-css', './assets/css/print.scss')
+
     //.addEntry('page2', './assets/js/page2.js')
 
+    // Enable typescript :-D
+    .enableTypeScriptLoader()
+
     // When enabled, Webpack "splits" your files into smaller pieces for greater optimization.
-    .splitEntryChunks()
+    // .splitEntryChunks()
 
     // will require an extra script tag for runtime.js
     // but, you probably want this, unless you're building a single-page app
-    .enableSingleRuntimeChunk()
+    .disableSingleRuntimeChunk()
 
     /*
      * FEATURE CONFIG

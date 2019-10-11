@@ -61,56 +61,55 @@ $(document).ready(function () {
 /**
  *
  */
-$(document).on('click', '.js-notice-available', function (event) {
+$(document)
+    .on('click', '.js-notice-available', function (event) {
+        event.preventDefault();
+        let $this = $(this);
+        let form = $this.parent().parent('form');
+        let url = form.attr('action');
 
-    event.preventDefault();
-    let $this = $(this);
-    let form = $this.parent().parent('form');
-    let url = form.attr('action');
-
-    let formValue = form.find("input");
+        let formValue = form.find("input");
 
 
-    if(!validateMailForm(formValue.val())){
-        form.find('.error-message').show();
-        return false;
-    }
-
-    /*
-    if (!checkCaptcha(event)){
-        form.find('.error-message').show();
-
-        return false;
-    }
-    */
-
-    captchaValid();
-
-    $('#modal-notified').modal('hide');
-
-    /**
-     * send the form
-     */
-    $.ajax({
-        url: url,
-        type:"POST",
-        data: form.serialize(),
-        beforeSend: function() {
-            // put a spinner
-        },
-        success: function(response) {
-            $('.error-message').hide();
-        },
-        error: function (response) {
-            $('.error-message').show();
+        if(!validateMailForm(formValue.val())){
+            form.find('.error-message').show();
+            return false;
         }
+
+        /*
+        if (!checkCaptcha(event)){
+            form.find('.error-message').show();
+
+            return false;
+        }
+        */
+
+        captchaValid();
+
+        $('#modal-notified').modal('hide');
+
+        /**
+         * send the form
+         */
+        $.ajax({
+            url: url,
+            type:"POST",
+            data: form.serialize(),
+            beforeSend: function() {
+                // put a spinner
+            },
+            success: function(response) {
+                $('.error-message').hide();
+            },
+            error: function (response) {
+                $('.error-message').show();
+            }
+        });
+
+        //$('#modal-notified').hide();
+
+    })
+    .on('click', '.js-envelope', function (event) {
+        let url = $(this).data('url');
+        $('#form-availability').attr('action', url);
     });
-
-    //$('#modal-notified').hide();
-
-});
-
-$(document).on('click', '.js-envelope', function (event) {
-    let url = $(this).data('url');
-    $('#form-availability').attr('action', url);
-});

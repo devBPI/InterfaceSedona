@@ -9,14 +9,12 @@
 require('../css/app.scss');
 
 // Need jQuery? Install it with "yarn add jquery", then uncomment to require it.
-const $ = require('jquery');
-
+require('jquery');
 require('bootstrap');
 require('icheck');
-var Slider = require('bootstrap-slider');
+require('./data-toggle.js');
 
-import dataToggle from './data-toggle.js';
-
+const Slider = require('bootstrap-slider');
 const routes = require('../../public/js/fos_js_routes.json');
 
 import Routing from '../../vendor/friendsofsymfony/jsrouting-bundle/Resources/public/js/router.min.js';
@@ -77,10 +75,11 @@ $(document)
         });
     })
     // Affichage champs date - Modal recherche avancée ---------------------------------------------------------
-    .on('change', '.search-date__group', function() {
+    .on('change', '[name="adv-search-date"]', function() {
+        console.log('change date', $(this).val());
         var $input_period = $('.search-date__date--second');
 
-        if ( $('.search-date__radio--period .check--radio').hasClass('checked') ) {
+        if ( $(this).val() === 'Periode' ) {
             $input_period.removeClass('d-none');
         } else {
             $input_period.addClass('d-none');

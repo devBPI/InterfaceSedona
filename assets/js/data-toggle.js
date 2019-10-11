@@ -143,6 +143,7 @@
         })
         .on('shown.bs.modal', '.modal', function () {
             $(this).find( 'input:visible:first').focus();
+
         })
         .on('click', '[data-toggle=modal]', function(e) {
             var $this = $(this),
