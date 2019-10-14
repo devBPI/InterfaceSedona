@@ -624,7 +624,7 @@ class Notice extends AbstractImage implements NoticeInterface
      */
     public function getType(): string
     {
-        return $this->type;
+        return $this->type ?? '';
     }
 
     /**
@@ -1165,6 +1165,10 @@ class Notice extends AbstractImage implements NoticeInterface
         }
 
         return sprintf(ImageBuilderService::DEFAULT_PICTURE, $this->slugify($this->getType()));
+    }
+
+    public function getSlugifiedType(){
+        return  $this->slugify($this->getType());
     }
 }
 

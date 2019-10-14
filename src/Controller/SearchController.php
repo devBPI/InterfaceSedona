@@ -137,7 +137,10 @@ class SearchController extends AbstractController
         $criteria = new Criteria();
         $criteria->setAdvancedSearch($request->query->all());
 
-        return $this->displaySearch(new SearchQuery($criteria, new FacetFilter($request->query->all())), $request);
+        return $this->displaySearch(
+            new SearchQuery($criteria, new FacetFilter($request->query->all()), SearchQuery::ADVANCED_MODE),
+            $request
+        );
     }
 
     /**

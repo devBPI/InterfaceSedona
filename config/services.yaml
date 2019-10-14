@@ -32,9 +32,7 @@ services:
 
   App\Service\APIClient\CatalogClient:
     arguments:
-    - '%env(CATALOG_API_HOST)%'
-    - '@eight_points_guzzle.symfony_log_formatter'
-    - '@eight_points_guzzle.logger'
+    - '@eight_points_guzzle.client.bpi_catalog'
 
   App\Service\ImageBuilderService:
     arguments: ['%kernel.project_dir%/public/']
@@ -48,8 +46,8 @@ services:
     arguments: ['@Symfony\Component\Ldap\Adapter\ExtLdap\Adapter']
   Symfony\Component\Ldap\Adapter\ExtLdap\Adapter:
     arguments:
-    -   host: sldap-bpi.bpi.fr
-        port: 389
+    -   host: '%env(LDAP_HOST)%'
+        port: '%env(LDAP_PORT)%'
 #        encryption: tls
         options:
           protocol_version: 3
@@ -69,3 +67,4 @@ services:
   App\EventListener\AuthenticationListener:
     tags:
     - { name: 'kernel.event_listener', event: 'security.interactive_login' }
+

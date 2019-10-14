@@ -14,7 +14,6 @@ require('bootstrap');
 require('icheck');
 require('./data-toggle.js');
 
-const Slider = require('bootstrap-slider');
 const routes = require('../../assets/js/fos_js_routes.json');
 
 import Routing from '../../assets/js/jsrouting.min.js';

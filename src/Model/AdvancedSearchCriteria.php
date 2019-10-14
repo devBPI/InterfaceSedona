@@ -16,7 +16,7 @@ class AdvancedSearchCriteria
      * @JMS\SerializedName("bases-recherche")
      * @JMS\XmlList(entry="base-recherche")
      */
-    private $configuration_name;
+    private $configuration_name = [];
 
     /**
      * @var array
@@ -24,7 +24,7 @@ class AdvancedSearchCriteria
      * @JMS\SerializedName("langues")
      * @JMS\XmlList(entry="langue")
      */
-    private $language;
+    private $language = [];
 
     /**
      * @var array
@@ -32,7 +32,7 @@ class AdvancedSearchCriteria
      * @JMS\SerializedName("types")
      * @JMS\XmlList(entry="type")
      */
-    private $type;
+    private $type = [];
 
     /**
      * @var array
@@ -40,7 +40,7 @@ class AdvancedSearchCriteria
      * @JMS\SerializedName("supports")
      * @JMS\XmlList(entry="support")
      */
-    private $material_support;
+    private $material_support = [];
 
     /**
      * @var array
@@ -48,7 +48,7 @@ class AdvancedSearchCriteria
      * @JMS\SerializedName("genres-musicaux")
      * @JMS\XmlList(entry="genre-musical")
      */
-    private $genre_musical;
+    private $genre_musical = [];
 
     /**
      * @var array
@@ -56,7 +56,7 @@ class AdvancedSearchCriteria
      * @JMS\SerializedName("genres-films")
      * @JMS\XmlList(entry="genre-film")
      */
-    private $genre_film;
+    private $genre_film = [];
 
     /**
      * @var array
@@ -64,7 +64,7 @@ class AdvancedSearchCriteria
      * @JMS\SerializedName("genres-litteraires")
      * @JMS\XmlList(entry="genre-litteraire")
      */
-    private $genre_litteraire;
+    private $genre_litteraire = [];
 
     /**
      * @var array
@@ -72,7 +72,7 @@ class AdvancedSearchCriteria
      * @JMS\SerializedName("publiques")
      * @JMS\XmlList(entry="publique")
      */
-    private $audience;
+    private $audience = [];
 
     /**
      * @var array
@@ -80,7 +80,7 @@ class AdvancedSearchCriteria
      * @JMS\SerializedName("secteurs")
      * @JMS\XmlList(entry="secteur")
      */
-    private $secteur;
+    private $secteur = [];
 
     /**
      * @var array
@@ -88,7 +88,7 @@ class AdvancedSearchCriteria
      * @JMS\SerializedName("mediations")
      * @JMS\XmlList(entry="mediation")
      */
-    private $mediation;
+    private $mediation = [];
 
     /**
      * @var array

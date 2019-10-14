@@ -1,5 +1,6 @@
 import * as util from './notice-availibility.js'
 import Routing from '../../assets/js/jsrouting.min.js';
+// var Slider = require('bootstrap-slider');
 
 $(document)
 // Bouton "Voir plus" / "Voir moins" -----------------------------------------------------------------------------------
@@ -76,13 +77,13 @@ $(document)
             });
         }
     })
-    .on('show.bs.modal', '#modal-refine-search', function (e) {
-        var sliderDate = new Slider('#rfn-date-slider', {
-            min: 1900,
-            max: 2010,
-            step: 5,
-            value: [1945,1980],
-            handle: 'square'
-        });
-    })
+    // .on('show.bs.modal', '#modal-refine-search', function (e) {
+    //     var sliderDate = new Slider('#rfn-date-slider', {
+    //         min: 1900,
+    //         max: 2010,
+    //         step: 5,
+    //         value: [1945,1980],
+    //         handle: 'square'
+    //     });
+    // })
 ;

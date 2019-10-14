@@ -15,14 +15,14 @@ class AdvancedSearchProvider extends AbstractProvider
     protected $modelName = AdvancedSearchCriteria::class;
 
     /**
-     * @return array
+     * @return AdvancedSearchCriteria|object
      */
-    public function getAdvancedSearchCriteria(): array
+    public function getAdvancedSearchCriteria(): AdvancedSearchCriteria
     {
         try {
-            return $this->hydrateFromResponse('/advanced-search/list-elements', [])->getSuggestions();
+            return $this->hydrateFromResponse('/advanced-search/list-elements');
         } catch (ErrorAccessApiException|XmlErrorException $exception) {
-            return [];
+            return new AdvancedSearchCriteria();
         }
 
     }

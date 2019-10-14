@@ -2,15 +2,15 @@
 
 namespace App\Model;
 
-use App\Model\Interfaces\AuthorityInterface;
 use App\Model\Interfaces\NoticeInterface;
-use JMS\Serializer\Annotation as JMS;
 use App\Model\Traits\OriginTrait;
+use JMS\Serializer\Annotation as JMS;
+
 /**
  * Class IndiceCdu
  * @package App\Model
  */
-class IndiceCdu  extends Cdu implements AuthorityInterface, NoticeInterface
+class IndiceCdu  extends Cdu implements NoticeInterface
 {
     use OriginTrait;
     /**
@@ -68,7 +68,6 @@ class IndiceCdu  extends Cdu implements AuthorityInterface, NoticeInterface
     }
 
     /**
-     *
      * @return string
      */
     public function getTitle(): string
@@ -76,7 +75,10 @@ class IndiceCdu  extends Cdu implements AuthorityInterface, NoticeInterface
         return $this->getName();
     }
 
-    public function __toString()
+    /**
+     * @return string
+     */
+    public function __toString(): string
     {
         return $this->getName();
     }

@@ -2,14 +2,14 @@
 
 namespace App\Model;
 
-use App\Model\Interfaces\AuthorityInterface;
+use App\Model\Interfaces\NoticeInterface;
 use JMS\Serializer\Annotation as JMS;
 
 /**
  * Class RankedAuthority
  * @package App\Model
  */
-class RankedAuthority
+class RankedAuthority implements NoticeInterface
 {
     /**
      * @var int
@@ -30,11 +30,11 @@ class RankedAuthority
     private $authority;
 
     /**
-     * @return AuthorityInterface|null
+     * @return NoticeInterface|null
      */
-    public function getAuthor(): ?AuthorityInterface
+    public function getAuthor(): ?NoticeInterface
     {
-        if ($this->indiceCdu instanceof IndiceCdu && $this->indiceCdu->getName()) {
+        if ($this->indiceCdu instanceof IndiceCdu && $this->indiceCdu->getTitle()) {
             return $this->indiceCdu;
         }
 
@@ -60,15 +60,31 @@ class RankedAuthority
     /**
      * @return string
      */
-    public function getPermalink():string
+    public function getPermalink(): string
     {
         return $this->getAuthor()->getPermalink();
     }
 
     /**
+     * @return string
+     */
+    public function getTitle(): string
+    {
+        return $this->getAuthor()->getTitle();
+    }
+
+    /**
+     * @return string
+     */
+    public function getType(): string
+    {
+        return $this->getAuthor()->getType();
+    }
+
+    /**
      * @return int
      */
-    public function getRow()
+    public function getRow(): int
     {
         return $this->getRank();
     }
@@ -84,7 +100,7 @@ class RankedAuthority
     /**
      * @return null|string
      */
-    public function getClassName():?string
+    public function getClassName(): ?string
     {
         return get_class($this->getAuthor());
     }

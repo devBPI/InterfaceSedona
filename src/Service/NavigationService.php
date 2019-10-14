@@ -5,6 +5,7 @@ namespace App\Service;
 
 use App\Model\Authority;
 use App\Model\IndiceCdu;
+use App\Model\Interfaces\NoticeInterface;
 use App\Model\Notice;
 use App\Model\RankedAuthority;
 use App\Model\Search\SearchQuery;
@@ -71,7 +72,7 @@ class NavigationService
 
         $noticesFiltered = array_filter(
             $notices,
-            function (Notice $value) use ($permalink) {
+            function (NoticeInterface $value) use ($permalink) {
                 if ($value->getPermalink() === $permalink) {
                     return true;
                 }

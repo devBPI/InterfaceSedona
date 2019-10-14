@@ -1,12 +1,10 @@
-<p class="sr-only" aria-live="assertive">{{ 'bloc.search-zone.autocompletion-nb-result'|trans({'%nb%': '*Insert nombre de résultats*'})}}</p>
-<ul role="listbox" class="listbox search-autocomplet__list">
-	{% if words is defined %}
+{% if words is defined and words %}
+	<p class="sr-only" aria-live="assertive">{{ 'bloc.search-zone.autocompletion-nb-result'|trans({'%nb%': words|length})}}</p>
+	<ul role="listbox" class="listbox search-autocomplet__list">
 		{%  for word in words %}
 			<li class="search-autocomplet__item" role="option" aria-selected="false">
 				<a href="{{ path('search', {'mot': word, 'type': type}) }}" class="search-autocomplet__item-content">{{ word }}</a>
 			</li>
 		{% endfor %}
-	{% else %}
-
-	{% endif %}
-</ul>
+	</ul>
+{% endif %}
