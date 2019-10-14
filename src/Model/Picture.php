@@ -52,6 +52,6 @@ class Picture implements PictureInterface
      */
     public function getContent()
     {
-        $this->pathToContent($this->url);
+     return $this->pathToContent($this->url);
     }
 }
