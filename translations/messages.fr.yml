@@ -220,6 +220,7 @@ modal:
         and: Et
         not: Sauf
       add-ligne: Ajouter un champs de recherche
+      remove-ligne: Supprimer le champs de recherche n°%index%
 
     base:
       title: Base de recherche

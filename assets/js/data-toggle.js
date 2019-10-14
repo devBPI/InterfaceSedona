@@ -263,6 +263,7 @@
             }
             $target.remove();
             $parent.trigger('change');
+            $('[data-toggle="collection-add"]').attr('disabled', false);
         })
         .on('keyup', '[data-toggle="autocomplete"]', function () {
             let $this = $(this),
@@ -272,8 +273,13 @@
             ;
 
             window.clearTimeout(autocompleteRequest);
+
+            $target
+                .addClass('d-none')
+                .html()
+            ;
             
-            if ($this.val().length >= 3){
+            if ($this.val().length >= 3) {
                 autocompleteRequest = window.setTimeout(function () {
                     /**
                      * send the form
@@ -286,8 +292,8 @@
                         // stop the spinner
                         if (data.html) {
                             $target
+                                .removeClass('d-none')
                                 .html(data.html)
-                                .show()
                             ;
                         }
                     }).fail(
