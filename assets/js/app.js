@@ -13,7 +13,6 @@ const $ = require('jquery');
 
 require('bootstrap');
 require('icheck');
-var Slider = require('bootstrap-slider');
 
 import dataToggle from './data-toggle.js';
 

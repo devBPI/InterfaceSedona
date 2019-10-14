@@ -4,7 +4,7 @@
         <facets>
             {% for name, values in attributes %}
                 <facet>
-                    <name>{{ name }}</name>
+                    <name>{{ name|snake }}</name>
                     <values>
                         {% for value in values %}
                             <value>{{ value }}</value>

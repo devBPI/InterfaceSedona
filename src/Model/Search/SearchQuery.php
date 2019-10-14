@@ -32,6 +32,9 @@ class SearchQuery implements SearchResultInterface
         50
     ];
 
+    const SIMPLE_MODE = 'simple';
+    const ADVANCED_MODE = 'advanced';
+
     use SearchResultTrait;
 
     /**
@@ -58,14 +61,22 @@ class SearchQuery implements SearchResultInterface
     private $page;
 
     /**
+     * @var string
+     * @JMS\Type("string")
+     */
+    private $mode;
+
+    /**
      * SearchQuery constructor.
      * @param Criteria $criteria
      * @param FacetFilter|null $facets
+     * @param string $mode
      */
-    public function __construct(Criteria $criteria, FacetFilter $facets = null)
+    public function __construct(Criteria $criteria, FacetFilter $facets = null, string $mode = self::SIMPLE_MODE)
     {
         $this->criteria = $criteria;
         $this->facets = $facets ?? new FacetFilter();
+        $this->mode = $mode;
     }
 
     /**
@@ -141,4 +152,11 @@ class SearchQuery implements SearchResultInterface
         $this->facets = $facets;
     }
 
+    /**
+     * @return string
+     */
+    public function getMode(): ?string
+    {
+        return $this->mode;
+    }
 }

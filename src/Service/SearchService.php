@@ -53,13 +53,11 @@ final class SearchService
     private function getTitleFromSearchQuery(SearchQuery $searchQuery): string
     {
         $keywords = $searchQuery->getCriteria()->getKeywordsTitles();
-        if (count($keywords) > 1) {
-            return $this->translator->trans('page.search.title.advanced', ['%keyword%' => implode(', ', $keywords)]);
-        } elseif (!isset($keywords[0])) {
-            return '';
-        }
 
-        return $this->translator->trans('page.search.title.simple', ['%keyword%' => $keywords[0]]);
+        return $this->translator->trans(
+            'page.search.title.'.strtolower($searchQuery->getMode()), [
+                '%keyword%' => implode(', ', $keywords)
+        ]);
     }
 
     /**

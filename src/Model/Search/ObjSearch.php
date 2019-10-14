@@ -21,6 +21,11 @@ final class ObjSearch
     private $context;
 
     /**
+     * @var boolean
+     */
+    private $advancedMode;
+
+    /**
      * @var Results
      */
     private $results;
@@ -29,6 +34,7 @@ final class ObjSearch
      * @var array
      */
     private $keywords;
+
     /**
      * @var SearchQuery
      */
@@ -42,6 +48,7 @@ final class ObjSearch
     public function __construct(SearchQuery $searchQuery)
     {
         $this->searchQuery = $searchQuery;
+        $this->advancedMode = $searchQuery->getMode() === SearchQuery::ADVANCED_MODE;
         $this->keywords = $searchQuery->getCriteria()->getKeywords();
     }
 
@@ -112,7 +119,7 @@ final class ObjSearch
      */
     public function getSimpleSearchKeyword(): ?string
     {
-        if ($this->isSimpleMode()) {
+        if (!$this->advancedMode) {
             return array_values($this->keywords[0])[0];
         }
 
@@ -123,19 +130,11 @@ final class ObjSearch
      */
     public function getSimpleSearchType(): ?string
     {
-        if ($this->isSimpleMode()) {
+        if (!$this->advancedMode) {
             return array_keys($this->keywords[0])[0];
         }
 
         return null;
-    }
-
-    /**
-     * @return bool
-     */
-    private function isSimpleMode(): bool
-    {
-        return is_array($this->keywords) && count($this->keywords) === 1;
     }
 
     /**
@@ -169,7 +168,7 @@ final class ObjSearch
      */
     public function getAdvancedCriteria(): array
     {
-        if ($this->isSimpleMode()) {
+        if (!$this->advancedMode) {
             return [];
         }
 
@@ -186,4 +185,5 @@ final class ObjSearch
 
         return $criteria;
     }
+
 }
