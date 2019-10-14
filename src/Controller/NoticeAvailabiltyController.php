@@ -37,7 +37,7 @@ class NoticeAvailabiltyController extends AbstractController
 
 
     /**
-     * @Route("/notices/{sourceId}/configurations/{configurationId}/availability", methods={"POST", "GET"}, requirements={", sourceId"="\d+", "configurationId"="\d+"}, name="notice_availablity_request")
+     * @Route("/notices/{sourceId}/availability", methods={"POST", "GET"}, requirements={", sourceId"="\d+", "configurationId"="\d+"}, name="notice_availablity_request")
      * @param int $sourceId
      * @param int $configurationId
      * @return JsonResponse
@@ -46,16 +46,18 @@ class NoticeAvailabiltyController extends AbstractController
     {
         try{
             $user = $this->getUser();
-
+            $configurationId = $request->get('configurationId', null);
             $date = new \DateTime('now');
             $noticeAvailable = new NoticeAvailabilityRequest();
             $noticeAvailable
-                ->setNoticeConfigurationId($configurationId)
                 ->setNoticeSourceId($sourceId)
                 ->setRequestDate($date)
                 ->setModificationDate($date)
                 ->setNotificationEmail($request->get('email'))
             ;
+            if ($configurationId !== null){
+                $noticeAvailable->setNoticeConfigurationId($configurationId);
+            }
             if ($user instanceof  UserInterface){
                $noticeAvailable->setRequester($user->getUsername());
             }

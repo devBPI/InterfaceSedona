@@ -22,22 +22,33 @@ class NoticeAvailable
     private $category;
     /**
      * @var string
+     * @JMS\SerializedName("cote")
+
      * @JMS\Type("string")
      */
     private $cote;
 
     /**
      * @var string
+     * @JMS\SerializedName("call_num")
      * @JMS\Type("string")
      */
     private $callNum;
 
     /**
      * @var string
-     * @JMS\SerializedName("disponibilite")
+     * @JMS\SerializedName("availability")
      * @JMS\Type("string")
      */
     private $availability;
+
+
+    /**
+     * @var string
+     * @JMS\SerializedName("disponibilite")
+     * @JMS\Type("string")
+     */
+    private $disponibilite;
 
     /**
      * @var string
@@ -53,6 +64,13 @@ class NoticeAvailable
      * @JMS\SerializedName("disponibilite-label")
      */
     private $labelDisponibility;
+    /**
+     * @var string
+     *
+     * @JMS\Type("string")
+     * @JMS\SerializedName("availability-label")
+     */
+    private $labelAvailibility;
 
     /**
      * @var string
@@ -107,6 +125,10 @@ class NoticeAvailable
      */
     public function getAvailability(): ?string
     {
+        if ($this->disponibilite && $this->disponibilite !== null){
+            return  $this->disponibilite;
+        }
+
         return $this->availability;
     }
 
@@ -123,8 +145,13 @@ class NoticeAvailable
      */
     public function getLabelDisponibility(): ?string
     {
-        return $this->labelDisponibility;
+       if ($this->labelDisponibility && $this->labelDisponibility !==null){
+           return $this->labelDisponibility;
+       }
+
+       return $this->labelAvailibility;
     }
+
 
     /**
      * @return array
