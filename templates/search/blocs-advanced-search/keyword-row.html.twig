@@ -1,4 +1,4 @@
-<div class="search-keyword__group row">
+<div class="search-keyword__group row" id="keyword-group-{{ index }}">
     <div class="col-3 col-sm-2 search-keyword__condition">
         {% if not first %}
             <label for="adv-search-condition-{{ index }}" class="sr-only"> // </label>
@@ -14,11 +14,12 @@
         {% endif %}
     </div>
     <div class="col-9 search-keyword__input">
-        <label for="adv-search-txt-{{ index }}" class="sr-only">{{ 'modal.advanced-search.keyword.label'|trans }}</label>
+        <label for="adv-search-txt-{{ index }}"
+               class="sr-only">{{ 'modal.advanced-search.keyword.label'|trans }}</label>
         {% set field_name = constant('App\\Model\\Search\\Criteria::ADVANCED_SEARCH_LABEL')~'['~index~']['~constant('App\\Model\\Search\\Criteria::TEXT_LABEL')~']' %}
         <input type="text" autocomplete="off" aria-autocomplete="list" aria-controls="autocompletion-list"
                data-url="{{ path('search_autocompletion') }}"
-               data-toggle="autocomplete" data-target="#autocompletion-list"
+               data-toggle="autocomplete" data-target="#autocompletion-list-{{ index }}"
                data-type="#adv-search-choice-{{ index }}"
                name="{{ field_name }}" value="{{ current_keyword ?? '' }}"
                id="adv-search-txt-{{ index }}" class="form-control">
@@ -34,5 +35,15 @@
             {% endfor %}
         </select>
     </div>
-    <div class="col-12 col-sm-1 text-right"></div>
+    <div class="col-12 col-sm-1 text-right">
+        {% if not first %}
+            <button type="button" class="btn search-keyword__button search-keyword__button--remove"
+                    data-toggle="remove-element" data-parent="#keyword-group-{{ index }}">
+                <span>{{ 'modal.advanced-search.keyword.remove-ligne'|trans({'%index%': index}) }}</span>
+            </button>
+        {% endif %}
+    </div>
+    <div aria-labelledby="search-label" aria-describedby="autocompletion-infos" id="autocompletion-list-{{ index }}"
+         class="search-autocomplet d-none"></div>
 </div>
+

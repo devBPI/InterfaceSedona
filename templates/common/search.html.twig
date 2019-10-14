@@ -36,13 +36,7 @@
     </div>
 </form>
 <div aria-labelledby="search-label" aria-describedby="autocompletion-infos" id="autocompletion-list"
-     class="search-autocomplet" style="display: none;">
-    <p class="sr-only"
-       aria-live="assertive">{{ 'bloc.search-zone.autocompletion-nb-result'|trans({'%nb%': '*Insert nombre de résultats*'}) }}</p>
-    <ul role="listbox" class="listbox search-autocomplet__list">
-        {% include "search/autocompletion.html.twig" %}
-    </ul>
-</div>
+     class="search-autocomplet d-none"></div>
 <!-- Fin - Bloc B Zone de recherche simple -->
 
 
