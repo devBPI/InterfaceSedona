@@ -52,12 +52,35 @@
 					padding: 0 10px;
 				}
 
+				abbr {
+					text-decoration: none;
+					border-bottom: 0;
+
+					&:hover {
+						cursor: default;
+					}
+				}
+
+				&:hover {
+					color: $black;
+					cursor: default;
+				}
+
 				a {
 					color: $black;
 					font-size: 12px;
 
 					&:hover {
 						color: $red;
+					}
+
+					abbr {
+						text-decoration: none;
+						border-bottom: 0;
+
+						&:hover {
+							cursor: pointer;
+						}
 					}
 				}
 			}

@@ -47,6 +47,11 @@
 		display: flex;
 		flex-wrap: wrap;
 		width: 100%;
+
+		.dropdown-menu {
+			max-height: 260px;
+			overflow: auto;
+		}
 	}
 
 	&__item {

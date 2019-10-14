@@ -24,18 +24,22 @@
         </div>
         <div class="list-result__content-body">
             <div class="list-result__content-image">
-                <img src="{{ path('binary_image', {"content":notice.image, 'type': notice.type})}}" alt="" class="img-fluid"/>
+                <a href="{{ path('record_bibliographic', {'permalink': notice.permalink, 'searchToken': objSearch.contextToken}) }}"
+                   aria-label="{{ notice.frontTitle }}"
+                >
+                    <img src="{{ path('binary_image', {"content":notice.image, 'type': notice.type})}}" alt="" class="img-fluid" />
+                </a>
             </div>
             <div class="list-result__content-infos">
                 <a href="{{ path('record_bibliographic', {'permalink': notice.permalink, 'searchToken': objSearch.contextToken}) }}"
                    lang="fr"
-                   aria-label="{{ notice.frontTitle }} - {{ 'global.new-windows'|trans }}"
+                   aria-label="{{ notice.frontTitle }}"
                    class="n2 list-result__content-title"
                 >
                     <img src="{{ asset('images/types/type-journal.svg') }}" alt=""
                          class="list-result__content-type"/>
                     <span>{{ notice.frontTitle }}</span></a>
-                <p lang="fr">par {{ notice.frontAuthor }} {% if notice.dates is defined %}{{ notice.dates|join('-') }}{% endif %}</p>
+                <p lang="fr"><span class="font-italic">par</span> {{ notice.frontAuthor }} {% if notice.dates is defined %}{{ notice.dates|join('-') }}{% endif %}</p>
                 {% if notice.frontAnalyticalTitle is not empty %}
                     <p lang="fr">par {{ notice.frontAnalyticalTitle }}</p>
                 {% endif %}

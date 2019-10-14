@@ -30,37 +30,20 @@
 	}
 
 	&__item {
+		display: inline-block;
+		position: relative;
+		padding-right: 4px;
+		margin-right: 5px;
 
-		a {
-			display: inline-block;
-			position: relative;
-			padding-right: 20px;
-			margin-right: 5px;
-
-			&:before {
-				content: '';
-				position: absolute;
-				width: 10px;
-				height: 10px;
-				background-image: url('/images/icones/icone-croix-rouge.svg');
-				background-size: contain;
-				background-repeat: no-repeat;
-				background-position: center center;
-				top: 50%;
-				right: 5px;
-				transform: translateY(-50%);
-			}
-
-			&:after {
-				content: ',';
-				position: absolute;
-				right: 0;
-			}
+		&:after {
+			content: ',';
+			position: absolute;
+			right: 0;
 		}
 
 		&:last-child {
 
-			a:after {
+			&:after {
 				display: none;
 			}
 		}
