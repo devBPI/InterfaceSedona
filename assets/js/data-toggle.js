@@ -1,3 +1,6 @@
+import Autocomplete from './autocomplete.ts';
+import {CollectionRow} from './collection-row.ts';
+
 (function($) {
     "use strict";
 
@@ -99,7 +102,6 @@
         return this;
     };
 
-    let autocompleteRequest;
     $(document)
         .on('focus click loaded.bs.modal', '[data-toggle*="-if-no-found"]', function (e) {
             var $this = $(this);
@@ -212,108 +214,74 @@
                 $(selector).parents('div.check').removeClass('checked');
             }
         })
-        .on('click', '[data-toggle="collection-add"]', function () {
-            var $this = $(this),
-                $prototype = $this.data('target') != undefined ? $($this.data('target')) : $this,
-                newWidget = $prototype.data('prototype'),
-                widgetCount = $prototype.data('count');
-
-            if ($this.data('limit') != undefined && $prototype.children().length >= $this.data('limit')) {
-                alert('Limite atteinte : '+$this.data('limit'));
-                return false;
-            }
-
-            var protoname = new RegExp($prototype.data('prototype-name') != undefined ? $prototype.data('prototype-name') : '__index__',"g");
-
-            // remplace les "__id__" utilisés dans l'id et le nom du prototype
-            // par un nombre unique pour chaque email
-            // le nom de l'attribut final ressemblera à name="contact[emails][2]"
-            newWidget = newWidget.replace(protoname, widgetCount);
-            widgetCount++;
-
-            // créer une nouvelle liste d'éléments et l'ajoute à notre liste
-            $prototype
-                .append(newWidget)
-                .data('count', widgetCount);
-
-            if ($this.data('placement') && $this.data('placement') == "new")
-                $(document.body).scrollTop($prototype.children().last().offset().top);
-
-            if ($this.data('modal'))
-                $('#'+$this.data('modal')).modal('show');
-
-            if ($this.data('limit') != undefined && $prototype.children().length >= $this.data('limit')) {
-                $this.attr('disabled', true);
-            }
-
-            return false;
-        })
-        .on('click', '[data-toggle="remove-element"]', function (e) {
-            var $this = $(this),
-                $target = $this.data('parent') != undefined ? $this.parents($this.data('parent')).first()  : $this,
-                $parent = $target.parents(':first');
-            if($this.hasClass('btn-confirm')) {
-                $('#confirmation-modal #confirmation-modal-confirm').one('click',function(e){
-                    e.preventDefault();
-                    $target.remove();
-                    $('#confirmation-modal').modal('hide');
-                    $parent.trigger('change');
-                });
-                e.preventDefault();
-                return false;
-            }
-            $target.remove();
-            $parent.trigger('change');
-            $('[data-toggle="collection-add"]').attr('disabled', false);
-        })
-        .on('keyup', '[data-toggle="autocomplete"]', function () {
-            let $this = $(this),
-                $target = $($(this).data('target')),
-                $type = $($(this).data('type')),
-                url =  $this.data('url')
-            ;
-
-            window.clearTimeout(autocompleteRequest);
-
-            $target
-                .addClass('d-none')
-                .html()
-            ;
-            
-            if ($this.val().length >= 3) {
-                autocompleteRequest = window.setTimeout(function () {
-                    /**
-                     * send the form
-                     **/
-                    $.ajax({
-                        method: "GET",
-                        url: url,
-                        data: {'word': $this.val(), 'type': $type.val()},
-                    }).done(function (data) {
-                        // stop the spinner
-                        if (data.html) {
-                            $target
-                                .removeClass('d-none')
-                                .html(data.html)
-                            ;
-                        }
-                    }).fail(
-                        function (jqXHR, textStatus) {
-                            // handle the message jqXHR.responseJSON.message;
-                            // stop the spinner and show the message
-                        }
-                    );
-                }, 300);
-
-            }
-
-            $type.on('change', function () {
-                $this.trigger('keyup');
-            })
-        })
+        // .on('click', '[data-toggle="collection-add"]', function () {
+        //     var $this = $(this),
+        //         $prototype = $this.data('target') != undefined ? $($this.data('target')) : $this,
+        //         newWidget = $prototype.data('prototype'),
+        //         widgetCount = $prototype.data('count');
+        //
+        //     if ($this.data('limit') != undefined && $prototype.children().length >= $this.data('limit')) {
+        //         alert('Limite atteinte : '+$this.data('limit'));
+        //         return false;
+        //     }
+        //
+        //     var protoname = new RegExp($prototype.data('prototype-name') != undefined ? $prototype.data('prototype-name') : '__index__',"g");
+        //
+        //     // remplace les "__id__" utilisés dans l'id et le nom du prototype
+        //     // par un nombre unique pour chaque email
+        //     // le nom de l'attribut final ressemblera à name="contact[emails][2]"
+        //     newWidget = newWidget.replace(protoname, widgetCount);
+        //     widgetCount++;
+        //
+        //     // créer une nouvelle liste d'éléments et l'ajoute à notre liste
+        //     $prototype
+        //         .append(newWidget)
+        //         .data('count', widgetCount);
+        //
+        //     if ($this.data('placement') && $this.data('placement') == "new")
+        //         $(document.body).scrollTop($prototype.children().last().offset().top);
+        //
+        //     if ($this.data('modal'))
+        //         $('#'+$this.data('modal')).modal('show');
+        //
+        //     if ($this.data('limit') != undefined && $prototype.children().length >= $this.data('limit')) {
+        //         $this.attr('disabled', true);
+        //     }
+        //
+        //     return false;
+        // })
+        // .on('click', '[data-toggle="remove-element"]', function (e) {
+        //     var $this = $(this),
+        //         $target = $this.data('parent') != undefined ? $this.parents($this.data('parent')).first()  : $this,
+        //         $parent = $target.parents(':first');
+        //     if($this.hasClass('btn-confirm')) {
+        //         $('#confirmation-modal #confirmation-modal-confirm').one('click',function(e){
+        //             e.preventDefault();
+        //             $target.remove();
+        //             $('#confirmation-modal').modal('hide');
+        //             $parent.trigger('change');
+        //         });
+        //         e.preventDefault();
+        //         return false;
+        //     }
+        //     $target.remove();
+        //     $parent.trigger('change');
+        //     $('[data-toggle="collection-add"]').attr('disabled', false);
+        // })
+        // .on('keyup', '[data-toggle="autocomplete"]', function () {
+        //     new Autocomplete().execute($(this));
+        // })
         .ready(function () {
             $('[data-toggle*="-if-no-found"]').ifNoFound();
         })
     ;
+
+    document.querySelectorAll('[data-toggle="autocomplete"]').forEach(result => {
+        new Autocomplete(result);
+    })
+
+    document.querySelectorAll('[data-toggle="collection-add"]').forEach(result => {
+        new CollectionRow(result);
+    })
 
 })(window.jQuery || window.Zepto);
