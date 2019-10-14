@@ -143,6 +143,7 @@
 		&-title {
 			display: flex;
 			margin-bottom: 5px;
+			color: $blue;
 		}
 
 		&-body {
@@ -201,6 +202,7 @@
 
 		&-type {
 			width: 25px;
+			min-width: 25px;
 			max-height: 25px;
 			margin-right: 5px;
 		}

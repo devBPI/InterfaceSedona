@@ -115,7 +115,6 @@ modal:
     btn-selection: Aller dans ma sélection
     btn-login: Pour la conserver, connectez-vous à Mon compte.
     btn-login2: Me connecter
-    btn-register: Créer mon compte
     submit: Valider
     submit-sr-only:  la création de la liste
     message-success: Les documents ont bien été ajoutés à vos listes
@@ -223,19 +222,22 @@ modal:
       add-ligne: Ajouter un champs de recherche
 
     base:
+      title: Base de recherche
       label: Recherche dans
+      select-aria: Sélectionner les bases de recherche
       all: Tout
       in: Recherche dans
       name: Base de données %name%
     date:
       title: Date de publication
+      select-aria: Sélectionner la date ou la période de publication
       title-sr-only: date de parution
       by-date: Date
       by-periode: Periode
       date-start: Entrer une date de parution
       date-end: Entrer une deuxième date de parution
     langage:
-      title: Langue
+      title: Langues
       select-aria: Sélectionner les langues
     available:
       in-shelf: Disponible en rayon
@@ -459,7 +461,7 @@ bloc:
     list-name: la liste
   list-user:            #Bloc 25 Liste des documents présents dans Ma sélection
     list-select: "Sélectionner la liste : %name%"
-    list-name: Liste %name%
+    list-name: %name%
     list-name-change: Changer le nom de la liste
     col:
       title: Titre
