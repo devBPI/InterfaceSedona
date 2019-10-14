@@ -12,6 +12,7 @@ use App\Service\ImageBuilderService;
 use Symfony\Component\HttpFoundation\File\MimeType\FileinfoMimeTypeGuesser;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
+use Symfony\Component\HttpFoundation\Request;
 
 class ImageController extends AbstractController
 {
@@ -33,12 +34,12 @@ class ImageController extends AbstractController
      * @param $content
      * @return BinaryFileResponse
      */
-    public function binaryAction($content)
+    public function binaryAction(Request $request, $content)
     {
-        $filePath = $this->imageService->buildImage($content);
+        $filePath = $this->imageService->buildImage($content, $request->get('type', null));
+
         $filePath  = ImageBuilderService::PARENT_FOLDER.DIRECTORY_SEPARATOR.$filePath;
         $mimeTypeGuesser = new FileinfoMimeTypeGuesser();
-
         $headers = [
             'Content-Type'        => $mimeTypeGuesser->guess($filePath),
             'Content-Disposition' => 'inline; filename="2-07-021151-7"'

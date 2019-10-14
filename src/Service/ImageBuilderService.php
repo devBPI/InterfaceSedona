@@ -12,7 +12,9 @@ use Symfony\Component\HttpFoundation\File\File;
  */
 final class ImageBuilderService
 {
+ use TraitSlugify;
     public  const PARENT_FOLDER              = 'imported_images';
+    public  const COVER_FOLDER              = 'couvertures-generiques';
     public const BPI_FOLDER_NAME_ELECTRE     = 'electre';
     public const DEFAULT_PICTURE             = 'couvertures-generiques/cg-%s.svg';
     public const THUMBNAIL = 'vignette';
@@ -36,7 +38,7 @@ final class ImageBuilderService
      * @param string $content
      * @return string
      */
-    public function buildImage(string $content): string
+    public function buildImage(string $content, string $type=null): string
     {
         $localFilePath = $content;
 
@@ -46,8 +48,16 @@ final class ImageBuilderService
             $array = explode('/', $content);
             $filename = array_pop($array);
 
+            try{
+
+                $content = file_get_contents(self::$url.DIRECTORY_SEPARATOR.self::BPI_FOLDER_NAME_ELECTRE.DIRECTORY_SEPARATOR.$content);
+            }catch (\ErrorException $e){
+
+             return self::COVER_FOLDER.DIRECTORY_SEPARATOR.'cg-'.$this->slugify($type).'.svg';
+            }
+
             $fs->mkdir(str_replace($filename, '', $this->imageDir.self::PARENT_FOLDER.DIRECTORY_SEPARATOR.$localFilePath));
-            $content = file_get_contents(self::$url.DIRECTORY_SEPARATOR.self::BPI_FOLDER_NAME_ELECTRE.DIRECTORY_SEPARATOR.$content);
+
             $this->saveLocalImage($content, $localFilePath);
         }
 

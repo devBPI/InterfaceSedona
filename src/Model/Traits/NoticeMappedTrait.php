@@ -54,7 +54,7 @@ trait NoticeMappedTrait
     /**
      * @return string
      */
-    public function getConfigurationId(): string
+    public function getConfigurationId(): ?string
     {
         return $this->configurationId;
     }

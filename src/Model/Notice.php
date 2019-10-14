@@ -1166,5 +1166,9 @@ class Notice extends AbstractImage implements NoticeInterface
 
         return sprintf(ImageBuilderService::DEFAULT_PICTURE, $this->slugify($this->getType()));
     }
+
+    public function getSlugifiedType(){
+        return  $this->slugify($this->getType());
+    }
 }
 

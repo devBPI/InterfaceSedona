@@ -4,7 +4,7 @@
             <div lang="fr" class="bibliographic-result__availability">
                 <div class="availability availability--true availability--rayon">
                     <p class="availability__status">
-                        <span>{{ object.availability }}: </span> -{{ object.cote }} - {{ object.location }} - {{ object.category }}
+                        <span>{{ object.availability }}: </span> {% if object.cote %}-{{ object.cote }} {% endif%} {% if object.location %}- {{ object.location }} {% endif %} {% if object.category   %}- {{ object.category }} {% endif %}
                     </p>
                 </div>
             </div>
