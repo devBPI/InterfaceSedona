@@ -20,6 +20,16 @@
 					margin-right: -1px;
 				}
 
+				.nav-link {
+					color: $black;
+
+					&:hover,
+					&:focus {
+						
+						color: $red;
+					}
+				}
+
 				&:last-child {
 
 					.nav-link {
