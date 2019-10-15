@@ -9,7 +9,7 @@
                    name="{% if  type == 'online' %}online[]{% else %}onshelves[]{% endif %}"
                    value="{{ notice.permalink }}">
             <label for="result-doc-{{ type }}-{{ index }}">
-                <span class="sr-only">{{ 'bloc.notice-simple.result'|trans }} </span> {{ index }}
+                <span class="sr-only">{{ 'bloc.notice-simple.result'|trans }} </span> {{ index +1 }}
                 <span class="sr-only">, {{ 'bloc.notice-simple.select'|trans }} {{ notice.frontTitle }}</span>
             </label>
 
