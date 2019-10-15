@@ -16,6 +16,7 @@ export default class Autocomplete {
     private initListener() {
         this.element.addEventListener('keyup', () => this.onKeyUp());
         this.type.addEventListener('change', () => this.onKeyUp());
+        this.target.addEventListener('onblur', () => this.onClickOut())
     }
 
     onKeyUp(): void {
@@ -36,11 +37,9 @@ export default class Autocomplete {
     private async onAutocompleteFetched(result: Response) {
         this.target.classList.remove('d-none');
         this.target.innerHTML = (await result.json()).html;
-
-        this.target.addEventListener('click', () => this.onClickOut())
     }
 
     onClickOut(): void {
-        this.element.classList.add('d-none');
+        this.target.classList.add('d-none');
     }
 }

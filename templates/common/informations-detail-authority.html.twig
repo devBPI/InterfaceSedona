@@ -3,7 +3,7 @@
         <ul class="list-information__sub-list" lang="fr">
             {% if notice.formAdopted is not empty %}
                 <li class="list-information__sub-item">
-                    <span class="list-information__label">{{ ("Type d'autorité:  ")|trans }}{{ notice.formAdopted }}</span>
+                    <span class="list-information__label">{{ "bloc.autority-result-information.authority-type"|trans }}{{ notice.formAdopted }}</span>
                 </li>
             {% endif %}
             {% if notice.type is not empty %}

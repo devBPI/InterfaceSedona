@@ -49,7 +49,10 @@ class SuggestByMailType extends AbstractType
             ])
             ->add('email', EmailType::class,[
                 'required'  => false,
-                'constraints'=> [ new Asset\Email() ]
+                'constraints'=> [ new Asset\Email() ],
+                'attr' => array(
+                                'placeholder' => 'nom@example.com'
+                                )
             ])
         ;
     }

@@ -1,32 +1,22 @@
-{% if  author.cote is defined and author.cote is not null %}
+{% if author.type is defined and author.type is not null %}
     <li class="list-information__item">
-        <span class="list-information__label">{{ author.cote }} {{ author.name }}</span>
+        <span class="list-information__label">{{ 'bloc.autority-result-information.authority-type'|trans }}</span>
         <ul class="list-information__sub-list" lang="fr">
             <li class="list-information__sub-item">
                 {#% if link is not empty and label is not empty %}<a href="{{ link }}" aria-label="{{ 'bloc.autority-result-information.search-with'|trans({'%theme%': label }) }}">{{ label }}</a>{% else %}{{ label }}{% endif %#}
-                {{ author.name }}
+                {{ author.type }}
             </li>
         </ul>
     </li>
 {% endif %}
-{% if  author.cote is defined  and author.cote is not null %}
+{% if  author.cote is defined and author.cote is not null %}
     <li class="list-information__item">
-        <span class="list-information__label">{{ 'bloc.autority-result-information.authority-type'|trans }}</span>
+        <span class="list-information__label">{{ author.cote }} {{ author.title }}</span>
         <ul class="list-information__sub-list" lang="fr">
             <li class="list-information__sub-item">
-                Indice de classement
+                {#% if link is not empty and label is not empty %}<a href="{{ link }}" aria-label="{{ 'bloc.autority-result-information.search-with'|trans({'%theme%': label }) }}">{{ label }}</a>{% else %}{{ label }}{% endif %#}
+                {{ author.title }}
             </li>
-        </ul>
-    </li>
-{% endif %}
-{% if  author.type is defined and author.type is not null %}
-    <li class="list-information__item">
-        <span class="list-information__label">{{ 'bloc.autority-result-information.authority-type'|trans }}</span>
-        <ul class="list-information__sub-list" lang="fr">
-                <li class="list-information__sub-item">
-                    {#% if link is not empty and label is not empty %}<a href="{{ link }}" aria-label="{{ 'bloc.autority-result-information.search-with'|trans({'%theme%': label }) }}">{{ label }}</a>{% else %}{{ label }}{% endif %#}
-                    {{ author.type }}
-                </li>
         </ul>
     </li>
 {% endif %}

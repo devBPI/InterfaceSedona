@@ -19,6 +19,7 @@ class ShareByMailType extends AbstractType
             ->add('object', TextType::class,[
                 'required'  => true,
                 'label'     => 'modal.report.field.object',
+                'data'      => 'Références du catalogue de la Bpi'
             ])
             ->add('message', TextareaType::class,[
                 'required'  => true,
@@ -29,14 +30,20 @@ class ShareByMailType extends AbstractType
                 'required'  => true,
                 'label'     => 'modal.report.field.last-name',
                 'attr'      => ['autocomplete'=> 'family-name' ],
-                'constraints'=> [ new Asset\Email()  ]
+                'constraints'=> [ new Asset\Email()  ],
+                'attr' => array(
+                                'placeholder' => 'nom@example.com'
+                                )
 
             ])
             ->add('reciever', TextType::class,[
                 'required'  => true,
                 'label'     => 'modal.report.field.first-name',
                 'attr'      => ['autocomplete'=> 'name' ],
-                'constraints'=> [ new Asset\Email()  ]
+                'constraints'=> [ new Asset\Email()  ],
+                'attr' => array(
+                                'placeholder' => 'nom@example.com'
+                                )
 
             ])
         ;

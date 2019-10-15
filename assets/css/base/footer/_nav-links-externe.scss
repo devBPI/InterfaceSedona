@@ -26,10 +26,10 @@
 			flex-wrap: wrap;
 			flex-direction: column;
 			color: $black;
-			font-size: 10px;
+			@include font-size(10);
 
 			@include media-breakpoint-up(md) {
-				font-size: 11px;
+				@include font-size(11);
 			}
 
 			&:hover {

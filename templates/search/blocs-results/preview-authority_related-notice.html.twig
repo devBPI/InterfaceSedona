@@ -5,14 +5,14 @@
                    name="{% if  author.cote is defined and author.cote is not null  %}indice[]{% else %}authority[]{% endif %}"
                    value="{{ author.permalink }}">
             <label for="related-notice-result-{{ i }}">
-                <span class="sr-only">{{ 'bloc.preview-authority.first'|trans({'%%name%': '*Insert titre*'}) }}</span>
+                <span class="sr-only">{{ 'bloc.preview-authority.first'|trans({'%name%': author.title}) }}</span>
             </label>
 
             {% from 'search/blocs-results/macros.html.twig' import add_to_list_form %}
             {{ add_to_list_form(
                 author.permalink,
                 path('record_authority', {'permalink': author.permalink}),
-                author.name,
+                author.title,
                 "",
                 "author"
             ) }}
@@ -21,7 +21,7 @@
 
     <div class="col-12 col-md-2">
         <div class="search-result__image">
-            <img src="{{ asset('images/types-autorite/autorite-personne.svg') }}" alt="" class="img-fluid" />
+            <img src="{{ asset('images/types-autorite/autorite-'~ slugify(author.type) ~'.svg') }}" alt="" class="img-fluid" />
         </div>
     </div>
 
@@ -29,19 +29,12 @@
         {% if level == 2 %}<div class="search-result__body">{% endif %}
             {% if author is not empty %}
                 <h{{ level }} lang="fr" class="n{{ level }} search-result__title">
-                    {% if author.cote is defined and author.cote is not null %}
-                        <a href="{{ path('record_indice_cdu', {'permalink':author.permalink, 'searchToken': objSearch.contextToken}) }}"
-                                title="*Insert Name identité* - {{ 'global.new-windows'|trans }}">
-                            {{ author.name }}
-                            <span class="n2"></span>
-                        </a>
-                    {% else %}
-                        <a href="{{ path('record_authority', {'permalink':author.permalink, 'searchToken': objSearch.contextToken}) }}"
-                                title="*Insert Name identité* - {{ 'global.new-windows'|trans }}">
-                            {{ author.name }}
-                            <span class="n2"></span>
-                        </a>
-                    {% endif %}
+                    {% set pathName = author.cote is defined and author.cote is not null ? 'record_indice_cdu' : 'record_authority' %}
+                    <a href="{{ path(pathName, {'permalink':author.permalink, 'searchToken': objSearch.contextToken}) }}"
+                            title="{{ author.title }}">
+                        {{ author.title }}
+                        <span class="n2"></span>
+                    </a>
                 </h{{ level }}>
             {% endif %}
 

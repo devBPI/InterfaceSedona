@@ -20,7 +20,7 @@
 
 		input {
 			width: 100%;
-			height: 45px;
+			min-height: 45px;
 			border: 0;
 			border-bottom: $border-default;
 			padding: 0 10px;
@@ -38,7 +38,7 @@
 	&__select {
 		flex: 0 0 50%;
 		order: 3;
-		height: 45px;
+		min-height: 45px;
 		margin-bottom: 0;
 		border-right: $border-default;
 
@@ -75,7 +75,7 @@
 	&__submit {
 		flex: 0 0 45px;
 		order: 2;
-		height: 45px;
+		min-height: 45px;
 		background: $red;
 		border: 0;
 		border-bottom: $border-default;
@@ -102,7 +102,7 @@
 	&__modal {
 		flex: 0 0 50%;
 		order: 4;
-		height: 45px;
+		min-height: 45px;
 		border: 0;
 		background-color: $white;
 		transition: .15s;

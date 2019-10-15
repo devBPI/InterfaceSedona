@@ -44,7 +44,10 @@ class RepportErrorType extends AbstractType
             ])
             ->add('email', EmailType::class,[
                 'required'  => false,
-                'label'     => 'modal.report.field.email'
+                'label'     => 'modal.report.field.email',
+                'attr' => array(
+                                'placeholder' => 'nom@example.com'
+                                )
             ])
         ;
     }

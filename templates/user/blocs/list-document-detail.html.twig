@@ -17,7 +17,7 @@
         {{ document.author }}
     </td>
     <td class="table__body-type" data-order="{{ document.documentType }}">
-        <img src="{{ asset('images/types/type-'~ document.documentType|lower ~'.svg') }}"
+        <img src="{{ asset('images/types/type-'~ slugify(document.documentType) ~'.svg') }}"
              alt="{{ document.documentType|lower }}" title="{{ document.documentType }}" class="icone-type-document table__type"/>
     </td>
     <td data-order="{{ document.creationDate|date('Ymd') }}">{{ document.creationDate|date('d/m/Y') }}</td>
@@ -37,7 +37,7 @@
                 <img src="{{ asset('images/icones/icone-crayon-noir.svg') }}" alt="" class="icone-crayon"/>
             </button>
         {% else %}
-            <i>{{ 'bloc.list-user.comments-disabled'|trans }}</i>
+            <p>{{ 'bloc.list-user.comments-disabled'|trans }}</p>
         {% endif %}
     </td>
 </tr>

@@ -14,7 +14,7 @@
 	{% endif %}
 
 	<div class="modal-body">
-		<small class="modal-form__indication"><span>*</span> {{ 'global.form-mandatory-field'|trans }}</small>
+		<p class="modal-form__indication"><span>*</span> {{ 'global.form-mandatory-field'|trans }}</p>
 		<div class="row justify-content-center">
 			<div class="col-12 col-md-10">
 				{{ form_row(form.object) }}
@@ -33,7 +33,7 @@
 			</div>
 		</div>
 		<div>
-			<i>*Insert captcha*</i>
+			<p>*Insert captcha*</p>
 		</div>
 
 		{{ form_rest(form) }}

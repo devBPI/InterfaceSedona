@@ -24,7 +24,7 @@
 
 		&__button {
 			position: relative;
-			font-size: 12px;
+			@include font-size(12);
 			margin-left: -1px;
 			margin-right: -1px;
 
@@ -65,9 +65,30 @@
 
 				a {
 					color: $black;
-					font-size: 12px;
+					@include font-size(12);
 
 					&:hover {
+						color: $red;
+					}
+				}
+
+				&--active {
+					position: relative;
+
+					&:after {
+						content: '';
+						position: absolute;
+						width: 0;
+						height: 0;
+						right: 0;
+						bottom: 0;
+						margin-right: 0;
+						margin-bottom: -5px;
+						border-bottom: 10px solid $red;
+						border-left: 10px solid transparent;
+					}
+
+					a {
 						color: $red;
 					}
 				}
