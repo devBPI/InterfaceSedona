@@ -1,18 +1,27 @@
 <?php
+declare(strict_types=1);
 
 
 namespace App\Form;
 
+use App\Form\Type\EmailType;
 use App\Model\From\ShareByMail;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Validator\Constraints as Asset;
 
+/**
+ * Class ShareByMailType
+ * @package App\Form
+ */
 class ShareByMailType extends AbstractType
 {
+    /**
+     * @param FormBuilderInterface $builder
+     * @param array $options
+     */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
@@ -24,26 +33,14 @@ class ShareByMailType extends AbstractType
             ->add('message', TextareaType::class,[
                 'required'  => true,
                 'label'     => 'modal.report.field.message',
-
             ])
-            ->add('sender', TextType::class,[
+            ->add('sender', EmailType::class,[
                 'required'  => true,
-                'label'     => 'modal.report.field.last-name',
-                'attr'      => ['autocomplete'=> 'family-name' ],
-                'constraints'=> [ new Asset\Email()  ],
-                'attr' => array(
-                                'placeholder' => 'nom@example.com'
-                                )
-
+                'label'     => 'modal.share.field.expeditor'
             ])
-            ->add('reciever', TextType::class,[
+            ->add('reciever', EmailType::class,[
                 'required'  => true,
-                'label'     => 'modal.report.field.first-name',
-                'attr'      => ['autocomplete'=> 'name' ],
-                'constraints'=> [ new Asset\Email()  ],
-                'attr' => array(
-                                'placeholder' => 'nom@example.com'
-                                )
+                'label'     => 'modal.share.field.recipient'
 
             ])
         ;

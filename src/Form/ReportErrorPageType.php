@@ -1,24 +1,21 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: infra
- * Date: 08/10/19
- * Time: 12:02
- */
+declare(strict_types=1);
 
 namespace App\Form;
 
 
-
+use App\Form\Type\EmailType;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 
+/**
+ * Class ReportErrorPageType
+ * @package App\Form
+ */
 class ReportErrorPageType extends AbstractType
 {
-
     /**
      * @param FormBuilderInterface $builder
      * @param array $options
@@ -36,10 +33,7 @@ class ReportErrorPageType extends AbstractType
             ])
             ->add('email', EmailType::class,[
                 'required'  => false,
-                'label'     => 'modal.report.field.email',
-                'attr' => array(
-                                'placeholder' => 'nom@example.com'
-                                )
+                'label'     => 'modal.report.field.email'
             ])
         ;
     }

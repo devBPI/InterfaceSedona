@@ -1,27 +1,28 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: infra
- * Date: 01/10/19
- * Time: 11:57
- */
+declare(strict_types=1);
 
 
 namespace App\Form;
 
+use App\Form\Type\EmailType;
 use App\Model\From\SuggestByMail;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
-use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Validator\Constraints as Asset;
 
+/**
+ * Class SuggestByMailType
+ * @package App\Form
+ */
 class SuggestByMailType extends AbstractType
 {
-
+    /**
+     * @param FormBuilderInterface $builder
+     * @param array $options
+     */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
@@ -42,20 +43,17 @@ class SuggestByMailType extends AbstractType
             ])
             ->add('firstName', TextType::class,[
                 'required'  => false,
-            ])
-            ->add('editor', TextType::class,[
-                'required'  => false,
                 'attr'      => ['autocomplete'=> 'name' ]
             ])
+            ->add('editor', TextType::class,[
+                'required'  => false
+            ])
             ->add('email', EmailType::class,[
-                'required'  => false,
-                'constraints'=> [ new Asset\Email() ],
-                'attr' => array(
-                                'placeholder' => 'nom@example.com'
-                                )
+                'required'  => false
             ])
         ;
     }
+
     /**
      * @param OptionsResolver $resolver
      */
