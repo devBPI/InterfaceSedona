@@ -35,6 +35,12 @@ class Criteria
     /**
      * @var string
      * @JMS\Type("string")
+     */
+    private $parcours;
+
+    /**
+     * @var string
+     * @JMS\Type("string")
      * @JMS\SerializedName("titre")
      */
     private $title;
@@ -261,5 +267,24 @@ class Criteria
         }
 
         return $this->not;
+    }
+
+    /**
+     * @return string
+     */
+    public function getParcours(): string
+    {
+        return $this->parcours;
+    }
+
+    /**
+     * @param string|null $parcours
+     * @return Criteria
+     */
+    public function setParcours(string $parcours=null):Criteria
+    {
+        $this->parcours = $parcours;
+
+        return $this;
     }
 }

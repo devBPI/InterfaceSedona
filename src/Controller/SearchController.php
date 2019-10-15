@@ -31,6 +31,7 @@ class SearchController extends AbstractController
 {
     use PrintTrait;
 
+    public const GENERAL ='general';
     /**
      * @var SearchProvider
      */
@@ -75,56 +76,34 @@ class SearchController extends AbstractController
     }
 
     /**
-     * @Route("/recherche", methods={"GET", "POST"}, name="search")
+     * @Route("/recherche/{parcours}", methods={"GET", "POST"}, name="search")
      *
      * @param Request $request
+     * @param string $parcours
      * @return \Symfony\Component\HttpFoundation\Response
      * @throws \Doctrine\ORM\ORMException
+     * @throws \Doctrine\ORM\OptimisticLockException
      * @throws \Twig\Error\LoaderError
      * @throws \Twig\Error\RuntimeError
      * @throws \Twig\Error\SyntaxError
      */
-    public function indexAction(Request $request): Response
+    public function indexAction(Request $request, string $parcours=self::GENERAL): Response
     {
+
         $keyword = $request->get(Criteria::SIMPLE_SEARCH_KEYWORD, '');
         $criteria = new Criteria();
         $criteria->setSimpleSearch($request->get(Criteria::SIMPLE_SEARCH_TYPE), $keyword);
+        $criteria->setParcours($parcours);
 
         return $this->displaySearch(new SearchQuery($criteria), $request);
     }
 
-    /**
-     * @param SearchQuery $search
-     * @param Request $request
-     * @return Response
-     * @throws \Doctrine\ORM\ORMException
-     * @throws \Doctrine\ORM\OptimisticLockException
-     * @throws \Twig\Error\LoaderError
-     * @throws \Twig\Error\RuntimeError
-     * @throws \Twig\Error\SyntaxError
-     */
-    private function displaySearch(SearchQuery $search, Request $request): Response
-    {
-        $objSearch = $this->searchService->createObjSearch($search, $request);
-        $objSearch->setResults($this->searchProvider->getListBySearch($search));
-
-        $request->query->remove('action');
-
-        return $this->render(
-            'search/index.html.twig',
-            [
-                'toolbar' => ObjSearch::class,
-                'seeAll'=> $request->get('see-all', 'all'),
-                'objSearch' => $objSearch,
-                'printRoute' => $this->generateUrl('search_pdf', ['format' => 'pdf']),
-            ]
-        );
-    }
 
     /**
-     * @Route("/recherche-avancee", methods={"GET", "POST"}, name="advanced_search")
+     * @Route("/recherche-avancee/{parcours}", methods={"GET", "POST"}, name="advanced_search")
      *
      * @param Request $request
+     * @param string $parcours
      * @return Response
      * @throws \Doctrine\ORM\ORMException
      * @throws \Doctrine\ORM\OptimisticLockException
@@ -132,11 +111,13 @@ class SearchController extends AbstractController
      * @throws \Twig\Error\RuntimeError
      * @throws \Twig\Error\SyntaxError
      */
-    public function advancedSearchAction(Request $request): Response
+    public function advancedSearchAction(Request $request, string $parcours=self::GENERAL): Response
     {
-        $criteria = new Criteria();
-        $criteria->setAdvancedSearch($request->query->all());
 
+        $criteria = new Criteria();
+
+        $criteria->setAdvancedSearch($request->query->all());
+        $criteria->setParcours($parcours);
         return $this->displaySearch(
             new SearchQuery($criteria, new FacetFilter($request->query->all()), SearchQuery::ADVANCED_MODE),
             $request
@@ -144,7 +125,7 @@ class SearchController extends AbstractController
     }
 
     /**
-     * @Route("/recherche-affinee", methods={"GET"}, name="refined_search")
+     * @Route("/recherche-affinee/{parcours}", methods={"GET"}, name="refined_search")
      *
      * @param Request $request
      * @return \Symfony\Component\HttpFoundation\Response
@@ -153,7 +134,7 @@ class SearchController extends AbstractController
      * @throws \Twig\Error\RuntimeError
      * @throws \Twig\Error\SyntaxError
      */
-    public function refinedSearchAction(Request $request): Response
+    public function refinedSearchAction(Request $request, string $parcours=self::GENERAL): Response
     {
         $search = $this->searchService->getSearchQueryFromToken($request->get('searchToken'), $request);
         $search->setFacets(new FacetFilter($request->query->all()));
@@ -298,6 +279,35 @@ class SearchController extends AbstractController
                 'message' => $exception->getMessage(),
             ]);
         }
+    }
+
+
+    /**
+     * @param SearchQuery $search
+     * @param Request $request
+     * @return Response
+     * @throws \Doctrine\ORM\ORMException
+     * @throws \Doctrine\ORM\OptimisticLockException
+     * @throws \Twig\Error\LoaderError
+     * @throws \Twig\Error\RuntimeError
+     * @throws \Twig\Error\SyntaxError
+     */
+    private function displaySearch(SearchQuery $search, Request $request): Response
+    {
+        $objSearch = $this->searchService->createObjSearch($search, $request);
+        $objSearch->setResults($this->searchProvider->getListBySearch($search));
+
+        $request->query->remove('action');
+
+        return $this->render(
+            'search/index.html.twig',
+            [
+                'toolbar' => ObjSearch::class,
+                'seeAll'=> $request->get('see-all', 'all'),
+                'objSearch' => $objSearch,
+                'printRoute' => $this->generateUrl('search_pdf', ['format' => 'pdf']),
+            ]
+        );
     }
 
 }
