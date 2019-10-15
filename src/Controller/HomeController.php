@@ -47,18 +47,18 @@ class HomeController extends AbstractController
     }
 
     /**
-     * @Route("/accueil/{thematic}", methods={"GET","HEAD"}, name="home_thematic", requirements={"theme"="autoformation|presse|cinema"})
+     * @Route("/accueil/{parcours}", methods={"GET","HEAD"}, name="home_thematic", requirements={"theme"="autoformation|presse|cinema"})
      *
      * @param string $thematic
      * @return Response
      */
-    public function thematicAction(string $thematic): Response
+    public function thematicAction(string $parcours): Response
     {
-        $carousel = $this->carouselProvider->getListByThematic($thematic);
-        $object = $this->getDoctrine()->getRepository(Thematic::class)->findOneBy(['type'=>$thematic]);
+        $carousel = $this->carouselProvider->getListByThematic($parcours);
+        $object = $this->getDoctrine()->getRepository(Thematic::class)->findOneBy(['type'=>$parcours]);
 
         return $this->render('home/thematic.html.twig', [
-                'title'     => $thematic,
+                'title'     => $parcours,
                 'thematic'  => $object,
                 'carousel'  => $carousel,
             ]);

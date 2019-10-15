@@ -20,7 +20,7 @@
 					{% endif %}
 				</li>
 				<li class="page-item">
-					<p class="page-link">{{ 'bloc.results-navigation.result-current'|trans({'%nb%': navigation.rows, '%current%': navigation.row }) }}</p>
+					<p class="page-link">{{ 'bloc.results-navigation.result-current'|trans({'%nb%': navigation.rows, '%current%': navigation.row+1 }) }}</p>
 				</li>
 				<li class="page-item">
 					{% if navigation.nextPermalink is defined and navigation.nextPermalink is not null %}

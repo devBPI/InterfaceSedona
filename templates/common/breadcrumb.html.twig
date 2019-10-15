@@ -1,21 +1,20 @@
 <nav aria-label="{{ 'page.breadcrumb'|trans }}" role="navigation">
 	<p class="breadcrumb">
 		{% set urlBreadcrumb = {
-		'0': {'title': ('page.home.page_title'|trans) , 'url':path('home')},
-		'1':{'title': ('footer.sitemap.bpi.Catalogue'|trans) , 'url':path('search')},
+		'1': {'title': ('page.home.page_title'|trans) , 'url':path('home')},
+		'2':{'title': ('footer.sitemap.bpi.Catalogue'|trans) , 'url':path('search')},
 		} %}
         {% if navigation is defined and sameInstance(navigation,'App\\Service\\NavigationService') and notice is defined and notice is not null  %}
 			{% set urlBreadcrumb = urlBreadcrumb |merge({
-                '2': {'title': ('Résultats'|trans) , 'url': path('search', {'searchToken':navigation.hash})},
-                '3':{'title': (notice.title |trans) ,'url': path('search', {'searchToken':navigation.hash})},
+                '3': {'title': ('Résultats'|trans) , 'url': path('search', {'searchToken':navigation.hash})},
+                '4':{'title': (notice.title |trans) ,'url': path('search', {'searchToken':navigation.hash})},
 
 			}) %}
 		{% elseif objSearch is defined and objSearch.contextToken is defined %}
             {% set urlBreadcrumb = urlBreadcrumb |merge({
-                '2': {'title': ('Résultats'|trans) , 'url': path('search', {'searchToken': objSearch.contextToken})},
+                '3': {'title': ('Résultats'|trans) , 'url': path('search', {'searchToken': objSearch.contextToken})},
             }) %}
 		{% endif %}
-
 		{% for value in  urlBreadcrumb %}
 			<span class="breadcrumb-item">
 				{% if loop.last %}

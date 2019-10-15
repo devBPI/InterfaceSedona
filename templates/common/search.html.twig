@@ -1,8 +1,11 @@
 <!-- Début - Bloc B Zone de recherche simple -->
-<form method="get" role="search" id="form-search" action="{{ path('search') }}">
+{% set searchType =  app.request.attributes.get('parcours')?:constant('App\\\Controller\\SearchController::GENERAL')%}
+
+<form method="get" role="search" id="form-search" action="{{ path('search', {'parcours':searchType}) }}">
     <div class="sr-only" id="autocompletion-infos">{{ 'bloc.search-zone.autocompletion-notice'|trans }}</div>
     <div class="search-banner" role="combobox" aria-expanded="false" aria-owns="autocompletion-list"
          aria-haspopup="listbox" id="search-banner">
+
         <div class="input-group search-banner__input">
             <label for="search-input" id="search-label"
                    class="sr-only">{{ 'bloc.search-zone.input-sr-only'|trans }}</label>
@@ -12,7 +15,7 @@
                    id="search-input" data-url="{{ path('search_autocompletion') }}"
                    data-toggle="autocomplete" data-target="#autocompletion-list"
                    data-type="#search-words"
-                   placeholder="{{ 'bloc.search-zone.input-placeholder'|trans }}"
+                   placeholder="{{ ('bloc.search-zone.input-'~searchType~'-placeholder')|trans}}"
                    value="{{ objSearch is defined ? objSearch.simpleSearchKeyword : '' }}"/>
         </div>
         <div class="form-group search-banner__select">

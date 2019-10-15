@@ -1080,17 +1080,11 @@ class Notice extends AbstractImage implements NoticeInterface
      */
     public function isOnLine():bool
     {
-
         if ($this->onLine){
             return $this->onLine;
         }
 
-        $material = $this->getMaterialDescriptions();
-        if (count($material)<1){
-            return false;
-        }
-
-        return $material[1] !== 'Papier';
+        return false;
     }
 
     /**
