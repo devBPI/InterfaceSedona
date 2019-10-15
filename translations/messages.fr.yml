@@ -107,7 +107,7 @@ modal:
   list-add:             #Modal 02 ajout à ma sélection
     title: Ajouter ..
     add-to-profile: '.. à Mon compte dans :'
-    list: %name%
+    list: '%name%'
     new-list: Nouvelle liste
     field-title: Titre
     add-to-tempory: .. à Ma sélection temporaire.
@@ -203,7 +203,7 @@ modal:
     title: Recherche avancée
     keyword:
       notice: Pour rechercher une expression exacte, mettez les mots entre "guillemets".
-      label: Ajouter le mot clés numéro
+      label: Rechercher par mots clés
       type:
         general: Tous les mots
         title: Titre
@@ -401,7 +401,7 @@ bloc:
     return-to-result: Retour aux résultats
     result-previous: Document précédent
     result-next: Document suivant
-    result-current: %current% sur %nb%
+    result-current: '%current% sur %nb%'
   autority-result-information: #Bloc 16 Notice bibliographique + Bloc 18 Informations de la notice d'autorité
     autor: 'Auteur(s), compositeur(s), interprète(s)'
     autor-dicover: Découvrir l'auteur
@@ -420,6 +420,7 @@ bloc:
     indice: 'Indice'
     publication-receve: 'Numéros reçus'
     authority-type: "Type d'autorité"
+    cote: "Cote"
     other-names: "Autre(s) nom(s)"
     country: 'Pays'
     born-date: 'Naissance'

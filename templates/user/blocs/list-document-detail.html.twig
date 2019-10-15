@@ -17,7 +17,7 @@
         {{ document.author }}
     </td>
     <td class="table__body-type" data-order="{{ document.documentType }}">
-        <img src="{{ asset('images/types/type-'~ slugify(document.documentType) ~'.svg') }}"
+        <img src="{{ asset('images/types/type-'~ (document.documentType|slugify) ~'.svg') }}"
              alt="{{ document.documentType|lower }}" title="{{ document.documentType }}" class="icone-type-document table__type"/>
     </td>
     <td data-order="{{ document.creationDate|date('Ymd') }}">{{ document.creationDate|date('d/m/Y') }}</td>

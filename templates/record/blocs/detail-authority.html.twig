@@ -2,7 +2,7 @@
  
 <div class="col-12 col-md-4">
 	<div class="authority-result__image">
-		<img src="{{ asset('images/types-autorite/autorite-'~ slugify(notice.type) ~'.svg') }}" alt="" class="img-fluid" />
+		<img src="{{ asset('images/types-autorite/autorite-'~ (notice.type|slugify) ~'.svg') }}" alt="" class="img-fluid" />
 	</div>
 </div>
 <div class="col-12 col-md-8">

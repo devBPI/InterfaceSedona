@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace App\Twig;
 
 
+use App\Service\TraitSlugify;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFilter;
 
@@ -13,6 +14,8 @@ use Twig\TwigFilter;
  */
 class StringExtension extends AbstractExtension
 {
+    use TraitSlugify;
+
     /**
      * @return array|TwigFilter[]
      */
@@ -20,6 +23,7 @@ class StringExtension extends AbstractExtension
     {
         return [
             new TwigFilter('snake', [$this, 'toSnakeCase']),
+            new TwigFilter('slugify', [$this, 'toSlugify'])
         ];
     }
 
@@ -40,4 +44,12 @@ class StringExtension extends AbstractExtension
         return strtolower(ltrim(preg_replace('/([A-Z])/', '_\\1', $text), '_'));
     }
 
+    /**
+     * @param string $text
+     * @return string
+     */
+    public function toSlugify(string $text) :string
+    {
+        return $this->slugify($text);
+    }
 }

@@ -13,6 +13,8 @@ use JMS\Serializer\Annotation as JMS;
  */
 class Authority implements NoticeInterface
 {
+    private const DOC_TYPE = 'authority';
+
     use NoticeTrait;
 
     /**
@@ -360,6 +362,22 @@ class Authority implements NoticeInterface
         }
 
         return "Notice d'autorité sans nom";
+    }
+
+    /**
+     * @return bool
+     */
+    public function isIndice(): bool
+    {
+        return false;
+    }
+
+    /**
+     * @return string
+     */
+    public function getDocType(): string
+    {
+        return self::DOC_TYPE;
     }
 }
 

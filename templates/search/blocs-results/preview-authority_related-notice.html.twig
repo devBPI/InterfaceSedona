@@ -2,7 +2,7 @@
     <div class="col-12">
         <div>
             <input type="checkbox" id="related-notice-result-{{ i }}" class="addableInList js-authority"
-                   name="{% if  author.cote is defined and author.cote is not null  %}indice[]{% else %}authority[]{% endif %}"
+                   name="{{ author.docType }}[]"
                    value="{{ author.permalink }}">
             <label for="related-notice-result-{{ i }}">
                 <span class="sr-only">{{ 'bloc.preview-authority.first'|trans({'%name%': author.title}) }}</span>
@@ -21,7 +21,7 @@
 
     <div class="col-12 col-md-2">
         <div class="search-result__image">
-            <img src="{{ asset('images/types-autorite/autorite-'~ slugify(author.type) ~'.svg') }}" alt="" class="img-fluid" />
+            <img src="{{ asset('images/types-autorite/autorite-'~ (author.type|slugify) ~'.svg') }}" alt="" class="img-fluid" />
         </div>
     </div>
 
@@ -29,7 +29,7 @@
         {% if level == 2 %}<div class="search-result__body">{% endif %}
             {% if author is not empty %}
                 <h{{ level }} lang="fr" class="n{{ level }} search-result__title">
-                    {% set pathName = author.cote is defined and author.cote is not null ? 'record_indice_cdu' : 'record_authority' %}
+                    {% set pathName = author.indice ? 'record_indice_cdu' : 'record_authority' %}
                     <a href="{{ path(pathName, {'permalink':author.permalink, 'searchToken': objSearch.contextToken}) }}"
                             title="{{ author.title }}">
                         {{ author.title }}
@@ -39,12 +39,11 @@
             {% endif %}
 
         <ul class="list-information search-result__list">
-            {% include 'common/informations-authority.html.twig'
-                with {
-                    'prefix': 'bloc.autority-result-information.',
-                    'author': author,
-                }
-            %}
+            {% if author.indice %}
+                {% include 'search/blocs-results/indice-detail.html.twig' %}
+            {% else %}
+                {% include 'search/blocs-results/authority-detail.html.twig' %}
+            {% endif %}
         </ul>
         {% if level == 2 %}</div>{% endif %}
     </div>

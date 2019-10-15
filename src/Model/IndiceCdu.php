@@ -12,7 +12,7 @@ use JMS\Serializer\Annotation as JMS;
  */
 class IndiceCdu  extends Cdu implements NoticeInterface
 {
-    private const TYPE = 'indice';
+    private const DOC_TYPE = 'indice';
 
     use OriginTrait;
 
@@ -67,7 +67,7 @@ class IndiceCdu  extends Cdu implements NoticeInterface
      */
     public function getType(): string
     {
-        return self::TYPE;
+        return self::DOC_TYPE;
     }
 
     /**
@@ -84,6 +84,22 @@ class IndiceCdu  extends Cdu implements NoticeInterface
     public function __toString(): string
     {
         return $this->getName();
+    }
+
+    /**
+     * @return bool
+     */
+    public function isIndice(): bool
+    {
+        return true;
+    }
+
+    /**
+     * @return string
+     */
+    public function getDocType(): string
+    {
+        return self::DOC_TYPE;
     }
 }
 
