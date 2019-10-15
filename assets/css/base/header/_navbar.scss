@@ -119,6 +119,7 @@
 			.dropdown-menu {
 				display: flex !important;
 				flex-wrap: wrap;
+				z-index: 1001;
 			}
 		}
 	}

@@ -12,12 +12,16 @@
 
         <small class="modal-form__indication"><span>*</span> {{ 'global.form-mandatory-field'|trans }}</small>
 
-        <div class="form-group row">
-            <label for="comments-text" class="col-12 col-sm-4">{{ 'modal.comments-edit.field-content'|trans }}
-                <span>*</span></label>
-            <div class="col-12 col-sm-8">
-                <textarea class="form-control" id="comments-text" rows="3"
-                          name="{{ constant('App\\Controller\\UserSelectionController::INPUT_DOC_COMMENT') }}">{{ document.comment }}</textarea>
+		<div class="row justify-content-center">
+			<div class="col-12 col-md-10">
+                <div class="form-group row">
+                    <label for="comments-text" class="col-12 col-sm-4">{{ 'modal.comments-edit.field-content'|trans }}
+                        <span>*</span></label>
+                    <div class="col-12 col-sm-8">
+                        <textarea class="form-control" id="comments-text" rows="3"
+                                name="{{ constant('App\\Controller\\UserSelectionController::INPUT_DOC_COMMENT') }}">{{ document.comment }}</textarea>
+                    </div>
+                </div>
             </div>
         </div>
 

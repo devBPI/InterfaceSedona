@@ -13,6 +13,7 @@
 		&:hover,
 		&:focus {
 			background-color: $black;
+			color: $white;
 		}
 
 		@include media-breakpoint-up(md) {
@@ -29,6 +30,7 @@
 		&:hover,
 		&:focus {
 			background-color: $black;
+			color: $white;
 		}
 
 		@include media-breakpoint-up(md) {

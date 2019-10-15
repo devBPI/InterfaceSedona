@@ -15,15 +15,23 @@
 
 	<div class="modal-body">
 		<small class="modal-form__indication"><span>*</span> {{ 'global.form-mandatory-field'|trans }}</small>
-		{{ form_row(form.object) }}
-		{{ form_row(form.message) }}
+		<div class="row justify-content-center">
+			<div class="col-12 col-md-10">
+				{{ form_row(form.object) }}
+				{{ form_row(form.message) }}
+			</div>
+		</div>
 	</div>
 
 	<div class="modal-body">
 		<h2 class="n1">{{ 'modal.report.subtitle'|trans }}</h2>
-		{{ form_row(form.lastName) }}
-		{{ form_row(form.firstName) }}
-		{{ form_row(form.email) }}
+		<div class="row justify-content-center">
+			<div class="col-12 col-md-10">
+				{{ form_row(form.lastName) }}
+				{{ form_row(form.firstName) }}
+				{{ form_row(form.email) }}
+			</div>
+		</div>
 		<div>
 			<i>*Insert captcha*</i>
 		</div>

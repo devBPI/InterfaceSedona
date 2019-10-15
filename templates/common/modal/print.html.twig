@@ -11,25 +11,28 @@
 					</button>
 				</div>
 				<div class="modal-body">
-					<div class="form-group">
-						<div class="form-check form-check-inline">
-							<input class="form-check-input" type="radio" id="print-abstract" value="print-abstract" name="print-type" checked>
-							<label class="form-check-label" for="print-abstract">{{ 'modal.print.field.abstract'|trans }}</label>
-						</div>
+					<div class="row justify-content-center">
+						<div class="col-12 col-md-10">
+							<div class="form-group">
+								<div class="form-check form-check-inline">
+									<input class="form-check-input" type="radio" id="print-abstract" value="print-abstract" name="print-type" checked>
+									<label class="form-check-label" for="print-abstract">{{ 'modal.print.field.abstract'|trans }}</label>
+								</div>
 
-						<div class="form-check form-check-inline">
-							<input class="form-check-input" type="radio" id="print-long" value="print-long" name="print-type">
-							<label class="form-check-label" for="print-long">{{ 'modal.print.field.long'|trans }}</label>
+								<div class="form-check form-check-inline">
+									<input class="form-check-input" type="radio" id="print-long" value="print-long" name="print-type">
+									<label class="form-check-label" for="print-long">{{ 'modal.print.field.long'|trans }}</label>
+								</div>
+							</div>
+
+							<div class="form-group">
+								<div class="form-check">
+									<input class="form-check-input" type="checkbox" id="print-image" value="print-image" name="print-image">
+									<label class="form-check-label" for="print-image">{{ 'modal.print.field.img'|trans }}</label>
+								</div>
+							</div>
 						</div>
 					</div>
-
-					<div class="form-group">
-						<div class="form-check">
-							<input class="form-check-input" type="checkbox" id="print-image" value="print-image" name="print-image">
-							<label class="form-check-label" for="print-image">{{ 'modal.print.field.img'|trans }}</label>
-						</div>
-					</div>
-
 					<div>
 						<i>*Insert captcha*</i>
 					</div>

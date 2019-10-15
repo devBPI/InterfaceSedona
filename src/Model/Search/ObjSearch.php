@@ -119,7 +119,7 @@ final class ObjSearch
      */
     public function getSimpleSearchKeyword(): ?string
     {
-        if (!$this->advancedMode) {
+        if (!$this->advancedMode && isset($this->keywords[0])) {
             return array_values($this->keywords[0])[0];
         }
 
@@ -130,7 +130,7 @@ final class ObjSearch
      */
     public function getSimpleSearchType(): ?string
     {
-        if (!$this->advancedMode) {
+        if (!$this->advancedMode && isset($this->keywords[0])) {
             return array_keys($this->keywords[0])[0];
         }
 
