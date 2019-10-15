@@ -22,6 +22,8 @@
            data-type="#adv-search-choice-{{ index }}"
            name="{{ field_name }}" value="{{ current_keyword ?? '' }}"
            id="adv-search-txt-{{ index }}" class="form-control">
+    <div aria-labelledby="search-label" aria-describedby="autocompletion-infos" id="autocompletion-list-{{ index }}"
+     class="search-autocomplet d-none"></div>
 </div>
 <div class="col-12 col-sm-4 pr-sm-0">
     <label for="adv-search-choice-{{ index }}" class="sr-only"> // </label>
@@ -41,6 +43,4 @@
         </button>
     {% endif %}
 </div>
-<div aria-labelledby="search-label" aria-describedby="autocompletion-infos" id="autocompletion-list-{{ index }}"
-     class="search-autocomplet d-none"></div>
 

@@ -8,8 +8,8 @@ export class CollectionRow {
     private prototype: string;
 
     constructor(private element: HTMLInputElement) {
-        this.limit = 3;
         this.adder = this.element;
+        this.limit = parseInt(this.element.dataset['limit']);
         this.target = document.querySelector(this.element.dataset['target']);
         this.prototype = this.target.dataset['prototype'];
         this.count = this.target.childElementCount;

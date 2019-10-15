@@ -8,6 +8,7 @@ export default class Autocomplete {
         this.url = this.element.dataset['url'];
         this.target = document.querySelector(this.element.dataset['target']);
         this.type = document.querySelector(this.element.dataset['type']);
+
         this.initListener();
     }
 
@@ -35,5 +36,11 @@ export default class Autocomplete {
     private async onAutocompleteFetched(result: Response) {
         this.target.classList.remove('d-none');
         this.target.innerHTML = (await result.json()).html;
+
+        this.target.addEventListener('click', () => this.onClickOut())
+    }
+
+    onClickOut(): void {
+        this.element.classList.add('d-none');
     }
 }
