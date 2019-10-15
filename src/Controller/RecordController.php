@@ -3,7 +3,6 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
-use App\Form\ExportNoticeType;
 use App\Model\Authority;
 use App\Model\Exception\NoResultException;
 use App\Model\From\ExportNotice;
@@ -11,7 +10,6 @@ use App\Model\IndiceCdu;
 use App\Model\Notice;
 use App\Model\RankedAuthority;
 use App\Model\Search\SearchQuery;
-use App\Service\MailSenderService;
 use App\Service\NavigationService;
 use App\Service\NoticeBuildFileService;
 use App\Service\Provider\NoticeAuthorityProvider;
@@ -21,7 +19,6 @@ use JMS\Serializer\Serializer;
 use JMS\Serializer\SerializerInterface;
 use Knp\Bundle\SnappyBundle\Snappy\Response\PdfResponse;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\Form\FormError;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -97,8 +94,8 @@ class RecordController extends AbstractController
 
             $object = $this->noticeProvider->getNotice($permalink);
             $navigation = null;
-
             if ($session->has($searchToken)) {
+
                 $navigation =
                     new NavigationService(
                         $this->searchProvider,
@@ -111,6 +108,7 @@ class RecordController extends AbstractController
         }catch(NoResultException $e){
             return $this->render('common/error.html.twig');
         }
+
 
         return $this->render('record/bibliographic.html.twig', [
             'object'            => $object,
@@ -205,8 +203,6 @@ class RecordController extends AbstractController
     public function cduIndiceRecordAction(Request $request, string $permalink, SessionInterface $session)
     {
         try{
-
-
             $object = $this->noticeAuhtority->getIndiceCdu($permalink);
             $id = $object->getId();
             $subject = $this->noticeAuhtority->getSubjectNotice($id);

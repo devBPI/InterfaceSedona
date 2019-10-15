@@ -21,6 +21,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
@@ -228,11 +229,12 @@ class SearchController extends AbstractController
 
     /**
      * @param Request $request
+     * @param SessionInterface $session
      * @return Response
      */
-    public function advancedSearchContent(Request $request): Response
+    public function advancedSearchContent(Request $request, SessionInterface $session): Response
     {
-        if ($request->get('searchToken') !== null) {
+        if ($request->get('searchToken') !== null && $session->has($request->get('searchToken'))) {
             $searchQuery = $this->searchService->getSearchQueryFromToken($request->get('searchToken'), $request);
         } else {
             $criteria = new Criteria();
