@@ -4,25 +4,9 @@
 
 .availability {
 	
-	&--true,
-	&--false {
-	}
-
-	&__status {
-	}
-
-	&--true {
-
-		.availability__status {
-		}
-	}
-
 	&--false {
 		display: flex;
 		align-items: center;
-
-		.availability__status {
-		}
 	}
 
 	&__place {
@@ -41,5 +25,31 @@
 	}
 
 	&--online {
+
+		&.availability--false {
+			font-weight: $font-bold;
+			color: $green;
+		}
+	}
+
+	&--rayon {
+
+		&.availability--true {
+
+			.availability__status {
+				font-weight: $font-bold;
+				color: $green;
+				text-transform: uppercase;
+			}
+		}
+
+		&.availability--false {
+			font-weight: $font-bold;
+			color: $red;
+
+			.availability__status {
+				text-transform: uppercase;
+			}
+		}
 	}
 }
