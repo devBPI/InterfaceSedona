@@ -22,11 +22,11 @@
             </div>
         {% endif %}
     {% elseif sameInstance(object, "App\\Model\\Link") %}
-       {% if object.media is  defined and object.media is not null  %}
+       {% if object.media is  defined and object.media is not empty %}
            <div class="availability availability--true availability--online">
-               Accéder à {{ notice.title }} <a href="{{ path('media-link', {'ark': object.media}) }}">Play</a>
+               Accéder à {{ notice.title }} <a href="{{ path('media-link', {'permalink': object.media}) }}">Play</a>
            </div>
-       {% elseif object.url is defined and object.url is not null   %}
+       {% elseif object.url is defined and object.url is not empty %}
            <div class="availability availability--true availability--online">
                <a href="{{ object.url }}">Accéder à {{ notice.title }}</a>
            </div>

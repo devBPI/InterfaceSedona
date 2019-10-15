@@ -1,11 +1,5 @@
 <?php
 declare(strict_types=1);
-/**
- * Created by PhpStorm.
- * User: infra
- * Date: 01/10/19
- * Time: 17:24
- */
 
 namespace App\Form;
 
@@ -20,11 +14,18 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
+/**
+ * Class ExportNoticeType
+ * @package App\Form
+ */
 class ExportNoticeType extends AbstractType
 {
+    /**
+     * @param FormBuilderInterface $builder
+     * @param array $options
+     */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-
          $builder
              ->add('shortFormat', ChoiceType::class, [
                  'required'=> true,
@@ -69,7 +70,6 @@ class ExportNoticeType extends AbstractType
                     'data' => 'pdf'
                  ])
              ;
-
 
     }
 

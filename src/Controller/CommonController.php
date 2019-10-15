@@ -3,7 +3,7 @@
 namespace App\Controller;
 
 use App\Form\ReportErrorPageType;
-use App\Form\RepportErrorType;
+use App\Form\ReportErrorType;
 use App\Form\ShareByMailType;
 use App\Form\SuggestByMailType;
 use App\Model\From\ReportError;
@@ -34,7 +34,7 @@ class CommonController extends AbstractController
      */
     public function reportErrorAction(Request $request, MailSenderService $mailSenderService)
     {
-        $form = $this->createForm(RepportErrorType::class, new ReportError());
+        $form = $this->createForm(ReportErrorType::class, new ReportError());
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
