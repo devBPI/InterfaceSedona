@@ -372,7 +372,7 @@ bloc:
   notice-simple:          #Bloc 13 Notices simples en 2 colonnes
     result: Résultat numéro
     select: sélectionner
-    access-to-bdd: Acceder à %name%
+    access-to-bdd: Accès à
     result-of-bdd: Résultat de
     last-publication: 'Dernier numéro reçu :'
     document-available: Disponible
