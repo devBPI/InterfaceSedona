@@ -107,7 +107,7 @@ modal:
   list-add:             #Modal 02 ajout à ma sélection
     title: Ajouter ..
     add-to-profile: '.. à Mon compte dans :'
-    list: Liste %name%
+    list: %name%
     new-list: Nouvelle liste
     field-title: Titre
     add-to-tempory: .. à Ma sélection temporaire.
@@ -117,7 +117,7 @@ modal:
     btn-login2: Me connecter
     submit: Valider
     submit-sr-only:  la création de la liste
-    message-success: Les documents ont bien été ajoutés à vos listes
+    message-success: Les documents ont bien été ajoutés à vos listes.
     message-error:
       no-list: Aucune liste n'a été sélectionnée. Veuillez en sélectionner une ou en créer une nouvelle.
   list-edit:          #Modal 03 edition d'une liste
@@ -203,7 +203,7 @@ modal:
     title: Recherche avancée
     keyword:
       notice: Pour rechercher une expression exacte, mettez les mots entre "guillemets".
-      label: Rechercher par mots clés
+      label: Ajouter le mot clés numéro
       type:
         general: Tous les mots
         title: Titre
@@ -403,33 +403,33 @@ bloc:
     result-next: Document suivant
     result-current: %current% sur %nb%
   autority-result-information: #Bloc 16 Notice bibliographique + Bloc 18 Informations de la notice d'autorité
-    autor: 'Auteur(s), compositeur(s), interprète(s) : '
+    autor: 'Auteur(s), compositeur(s), interprète(s)'
     autor-dicover: Découvrir l'auteur
     tracks: Pistes
-    contributor: 'Contributeur(s) :'
-    editor: 'Éditeur(s) :'
+    contributor: 'Contributeur(s)'
+    editor: 'Éditeur(s)'
     search-with: 'Relancer une recherche avec le terme : %theme%'
-    date: 'Date :'
-    ouvre: 'Oeuvre(s) :'
-    nots: 'Notes :'
-    language: 'Langue(s) :'
-    resume: 'Résumé :'
-    support: 'Description matérielle :'
-    comercial-number: 'Numéros commerciaux :'
-    genre: 'Genre :'
-    indice: 'Indice :'
-    publication-receve: 'Numéros reçus :'
-    authority-type: "Type d'autorité :"
-    other-names: "Autre(s) nom(s) : "
-    country: 'Pays :'
-    born-date: 'Naissance :'
-    dead-date: 'Mort :'
+    date: 'Date'
+    ouvre: 'Oeuvre(s)'
+    nots: 'Notes'
+    language: 'Langue(s)'
+    resume: 'Résumé'
+    support: 'Description matérielle'
+    comercial-number: 'Numéros commerciaux'
+    genre: 'Genre'
+    indice: 'Indice'
+    publication-receve: 'Numéros reçus'
+    authority-type: "Type d'autorité"
+    other-names: "Autre(s) nom(s)"
+    country: 'Pays'
+    born-date: 'Naissance'
+    dead-date: 'Mort'
     born-dead-date: ''
-    activity: 'Activité(s) principale(s) :'
-    name-alias: 'Autre(s) nom(s) :'
-    name-associe: 'Nom(s) associé(s) :'
-    name-link: 'Nom(s) lié(s) :'
-    insi: 'ISNI :'
+    activity: 'Activité(s) principale(s)'
+    name-alias: 'Autre(s) nom(s)'
+    name-associe: 'Nom(s) associé(s)'
+    name-link: 'Nom(s) lié(s)'
+    insi: 'ISNI'
     access-document:
       in-shelf: Consultable à la Bpi
       in-ligne: Accéder à %name%

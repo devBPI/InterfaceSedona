@@ -11,6 +11,7 @@ use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFunction;
+use App\Service\TraitSlugify;
 
 /**
  * Class SearchFiltersExtension
@@ -18,6 +19,8 @@ use Twig\TwigFunction;
  */
 class SearchFiltersExtension extends AbstractExtension
 {
+    use TraitSlugify;
+
     /**
      * @var RequestStack
      */
@@ -54,6 +57,7 @@ class SearchFiltersExtension extends AbstractExtension
             new TwigFunction('route_by_object', [$this, 'getRouteByObject']),
             new TwigFunction('pdf_occurence', [$this, 'getPdfOccurence']),
             new TwigFunction('image_to_base64', [$this, 'image64']),
+            new TwigFunction('slugify', [$this, 'slugifyText']),
 
         ];
     }
@@ -193,8 +197,11 @@ class SearchFiltersExtension extends AbstractExtension
     public function image64($path)
     {
         return $this->imageService->getimage64($path);
+    }
 
-
+    public function slugifyText(string $element=null) :string
+    {
+        return $this->slugify($element);
     }
 }
 

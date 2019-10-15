@@ -33,7 +33,7 @@
 
 			a {
 				color: $black;
-				font-size: 12px;
+				@include font-size(12);
 
 				&:hover,
 				&:focus {

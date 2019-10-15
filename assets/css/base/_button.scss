@@ -39,23 +39,23 @@
 	}
 
 	&-lg {
-		font-size: 15px;
+		@include font-size(15);
 
 		@include media-breakpoint-up(md) {
-			font-size: 21px;
-			line-height: 31px;
+			@include font-size(21);
+			@include line-height(21, 31);
 		}
 	}
 
 	&-link {
-		font-size: 15px;
+		@include font-size(15);
 		font-weight: $font-bold;
 		color: $red;
 		padding: 0;
 		transition: .15s;
 
 		@include media-breakpoint-up(md) {
-			font-size: 18px;
+			@include font-size(18);
 		}
 
 		&:hover,

@@ -3,16 +3,16 @@
 // -------------------------------
 
 .n1 {
-	font-size: 21px;
-	line-height: 23px;
+	@include font-size(21);
+	@include line-height(21, 23);
 	color: $black;
 	font-weight: $font-bold;
 	margin-bottom: $spacer;
 }
 
 .n2 {
-	font-size: 21px;
-	line-height: 23px;
+	@include font-size(21);
+	@include line-height(21, 23);
 	color: $black;
 	font-weight: $font-regular;
 	margin-bottom: $spacer;
@@ -20,46 +20,46 @@
 
 .n3 {
 	text-transform: uppercase;
-	font-size: 13px;
-	line-height: 15px;
+	@include font-size(13);
+	@include line-height(13, 15);
 	color: $blue;
 	font-weight: $font-regular;
 	margin-bottom: $spacer;
 }
 
 .n4 {
-	font-size: 13px;
-	line-height: 15px;
+	@include font-size(13);
+	@include line-height(13, 15);
 	color: $blue;
 	font-weight: $font-bold;
 	margin-bottom: $spacer;
 }
 
 .n5 {
-	font-size: 13px;
-	line-height: 15px;
+	@include font-size(13);
+	@include line-height(13, 15);
 	color: $black;
 	font-weight: $font-bold;
 	margin-bottom: $spacer;
 }
 
 .n6 {
-	font-size: 13px;
-	line-height: 15px;
+	@include font-size(13);
+	@include line-height(13, 15);
 	color: $blue;
 	font-weight: $font-regular;
 	margin-bottom: $spacer;
 }
 
 .n7 {
-	font-size: 13px;
-	line-height: 15px;
+	@include font-size(13);
+	@include line-height(13, 15);
 	color: $black;
 	font-weight: $font-regular;
 }
 
 .n8 {
-	font-size: 9px;
+	@include font-size(9);
 	color: $black;
 	font-weight: $font-regular;
 }

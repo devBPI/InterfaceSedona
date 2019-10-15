@@ -15,7 +15,7 @@
 		border: 0;
 		padding: 0;
 		top: 0;
-		font-size: 15px;
+		@include font-size(15);
 		font-weight: $font-bold;
 		color: $grey-disabled;
 		position: absolute;

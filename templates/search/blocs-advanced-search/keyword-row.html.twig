@@ -15,7 +15,7 @@
     </div>
     <div class="col-9 search-keyword__input">
         <label for="adv-search-txt-{{ index }}"
-               class="sr-only">{{ 'modal.advanced-search.keyword.label'|trans }}</label>
+               class="sr-only">{{ 'modal.advanced-search.keyword.label'|trans }} {{ index }}</label>
         {% set field_name = constant('App\\Model\\Search\\Criteria::ADVANCED_SEARCH_LABEL')~'['~index~']['~constant('App\\Model\\Search\\Criteria::TEXT_LABEL')~']' %}
         <input type="text" autocomplete="off" aria-autocomplete="list" aria-controls="autocompletion-list"
                data-url="{{ path('search_autocompletion') }}"
