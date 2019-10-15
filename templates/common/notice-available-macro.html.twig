@@ -23,7 +23,7 @@
     {% elseif sameInstance(object, "App\\Model\\Link") %}
        {% if object.media is  defined and object.media is not empty %}
            <div class="availability availability--true availability--online">
-               {{ 'bloc.notice-simple.access-to-bdd'|trans }} {{ notice.title }} <a href="{{ path('media-link', {'ark': object.media}) }}">Play</a>
+               {{ 'bloc.notice-simple.access-to-bdd'|trans }} {{ notice.title }} <a href="{{ path('media-link', {'permalink': object.media}) }}">Play</a>
            </div>
        {% elseif object.url is defined and object.url is not empty %}
            <div class="availability availability--true availability--online">
