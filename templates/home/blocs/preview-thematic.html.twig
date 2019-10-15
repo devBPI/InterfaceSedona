@@ -3,7 +3,7 @@
 {% for home in thematic %}
 	<div class="col-12 col-md-4">
 		<div lang="fr" class="card">
-			<a href="{{ path('home_thematic', {'thematic': home.type}) }}" class="card__link"><span class="sr-only">{{ 'bloc.preview-thematic.discover-sr-only'|trans({'%name%': home.title }) }}</span></a>
+			<a href="{{ path('home_thematic', {'parcours': home.type}) }}" class="card__link"><span class="sr-only">{{ 'bloc.preview-thematic.discover-sr-only'|trans({'%name%': home.title }) }}</span></a>
 
 			<img src="{{ asset('images/parcours/parcours-'~home.type~'.jpg') }}" alt="" class="img-fluid card-img-top" />
 
