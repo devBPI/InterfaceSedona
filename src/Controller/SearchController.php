@@ -3,6 +3,7 @@
 
 namespace App\Controller;
 
+use App\Controller\Traits\PrintTrait;
 use App\Entity\SearchHistory;
 use App\Model\From\ExportNotice;
 use App\Model\Search\Criteria;
@@ -283,9 +284,7 @@ class SearchController extends AbstractController
         }
     }
 
-
     /**
-     * @param SearchQuery $search
      * @param Request $request
      * @return Response
      * @throws \Doctrine\ORM\ORMException

@@ -13,7 +13,7 @@
 			<div class="col">
 				<ul class="print__list">
 					<li>Musique;</li>
-					{% include "common/notice.format.twig" with {'notice': notice, 'format': 'pdf'} %}
+					{% include "notice/print-detail.format.twig" with {'notice': notice, 'format': 'pdf'} %}
 				</ul>
 			</div>
 		</div>
@@ -22,8 +22,9 @@
 		<div class="print__item">
 			<div class="row">
 					<div class="col-12">
-						<h2 class="n1">{{ loop.index}}) {{ object.titles[0] }}</h2>
+						<h2 class="n1">{{ loop.index}}) {{ object.titles[0] }} {{object.image  }}</h2>
 					</div>
+
 					<div class="col-3">
 						<img src="{{ image_to_base64(path('binary_image', {'content':object.image, 'type': notice.type})) }}" class="img-fluid" alt="" />
 					</div>

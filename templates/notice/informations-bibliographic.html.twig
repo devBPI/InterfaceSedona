@@ -1,0 +1,141 @@
+{% import "common/detail-macro.html.twig" as notice_macros %}
+
+{{ notice_macros.detail(notice.authorsValue, 'bloc.autority-result-information.other-authors'|trans, true) }}
+{% if notice.type !="Vidéo"%}
+    {{ notice_macros.detail(notice.contributeurs, 'bloc.autority-result-information.contributor'|trans, true) }}
+{% endif %}
+{{ notice_macros.detail(notice.editors, 'bloc.autority-result-information.editor'|trans, true) }}
+{{ notice_macros.detail(notice.publishedDates, 'bloc.autority-result-information.date'|trans, false) }}
+{{ notice_macros.detail(notice.otherDates, 'bloc.autority-result-information.edition-date'|trans, false) }}
+{{ notice_macros.detail(notice.periodicity, 'bloc.autority-result-information.periodicity-date'|trans, false) }}
+{{ notice_macros.detail(notice.uniformTitle, 'bloc.autority-result-information.ouvre'|trans, false) }}
+{{ notice_macros.detail(notice.alternatifTitle, 'bloc.autority-result-information.alternatif-title'|trans, false) }}
+{{ notice_macros.detail(notice.contents, 'modal.comments-edit.field-content'|trans, false) }}
+{{ notice_macros.detail(notice.notes, 'bloc.autority-result-information.nots'|trans, false) }}
+
+
+{#% if notice.resume is not empty %}
+    <li class="list-information__item">
+        <span class="list-information__label">{{ ("Résumé ")|trans }}</span>
+        <ul class="list-information__sub-list" lang="fr">
+            {% for element in notice.resume %}
+                <li class="list-information__sub-item">
+                        {{ element }}
+                </li>
+            {% endfor %}
+        </ul>
+    </li>
+{% endif %#}
+
+
+{% if notice.languages is not empty %}
+    <li class="list-information__item">
+        <span class="list-information__label">{{ 'modal.advanced-search.langage.title'|trans }}</span>
+        <ul class="list-information__sub-list" lang="fr">
+            {% for element in notice.languages %}
+                <li class="list-information__sub-item">
+                        {{ element }}
+                </li>
+            {% endfor %}
+            {% if notice.originalLanguages is not empty %}
+                {% for element in notice.originalLanguages %}
+                    <li class="list-information__sub-item">
+                        {{ (", traduit de : ") }}{{ element }}
+                    </li>
+                {% endfor %}
+            {% endif %}
+        </ul>
+
+    </li>
+{% endif %}
+{{ notice_macros.detail(notice.materialDescriptions, 'modal.advanced-search.facette.materialSupport'|trans, false) }}
+{{ notice_macros.detail(notice.collectionSeries, 'footer.sitemap.professionnels.collections-et-services'|trans, true) }}
+{{ notice_macros.detail(notice.collectionSeries, 'footer.sitemap.professionnels.collections-et-services'|trans, true) }}
+{{ notice_macros.detail(notice.togetherTitle, 'bloc.autority-result-information.title-together'|trans, true) }}
+{{ notice_macros.detail(notice.inRelationTitle, 'bloc.autority-result-information.title-inrelation'|trans, true) }}
+{{ notice_macros.detail(notice.meeting, 'bloc.autority-result-information.meeting'|trans, true) }}
+
+{% if notice.otherEdition%}
+        <span class="list-information__label">{{ 'bloc.autority-result-information.other-edition'|trans }}</span>
+        <ul class="list-information__sub-list" lang="fr">
+            {% for element in notice.otherEdition %}
+                <li class="list-information__sub-item">
+                    <a href="{{ link }}" >
+                                {{ label }}
+                            </a>
+                        {{ element }}
+                </li>
+                {# @TODO gérer la deuxième valeurs conservation car il y a deux définitions différentes voir le fichier XML gabarit V2 onglet notice ligne 51  #}
+                {% if notice.conservations %}
+                    {% for element in conservations %}
+                        <li class="list-information__sub-item">
+                            {{ element }}
+                        </li>
+                    {% endfor %}
+                {% endif %}
+            {% endfor %}
+        </ul>
+    </li>
+{% endif %}
+
+{{ notice_macros.detail(notice.eras , 'bloc.autority-result-information.eras'|trans, true) }}
+{{ notice_macros.detail(notice.locations , 'bloc.autority-result-information.location'|trans, true) }}
+{{ notice_macros.detail(notice.kinds , 'bloc.autority-result-information.kind'|trans, true) }}
+{#gender#}
+{{ notice_macros.detail(notice.topics , 'bloc.autority-result-information.kind'|trans, true) }}
+{{ notice_macros.detail(notice.isbn , 'ISBN', true) }}
+{{ notice_macros.detail(notice.issn , 'ISSN', true) }}
+{{ notice_macros.detail(notice.commercialNumbers , 'bloc.autority-result-information.comercial-number'|trans, false) }}
+{{ notice_macros.detail(notice.indices , 'bloc.autority-result-information.indices'|trans, false) }}
+
+{{ notice_macros.detail(notice.publics , 'bloc.autority-result-information.publics'|trans, false) }}
+
+{#droit#}
+{% if notice.licences or notice.rights or notice.copyright %}
+    <li class="list-information__item">
+    <span class="list-information__label">{{ ("Droits")|trans }}</span>
+        <ul class="list-information__sub-list" lang="fr">
+            {% for element in notice.rights %}
+                <li class="list-information__sub-item">
+                        {{ element.name }},
+                </li>
+            {% endfor %}
+            {% for element in notice.licences %}
+                <li class="list-information__sub-item">
+                        {{ element.name }}
+                </li>
+            {% endfor %}
+            {% for element in notice.copyright %}
+                <li class="list-information__sub-item">
+                        {{ element.name }}
+                </li>
+            {% endfor %}
+        </ul>
+    </li>
+{% endif %}
+
+{{ notice_macros.detail(notice.placesEvents , 'bloc.autority-result-information.manifestation-location'|trans, false) }}
+{{ notice_macros.detail(notice.origins , 'bloc.autority-result-information.origins'|trans, false) }}
+{{ notice_macros.detail(notice.configurationName , 'bloc.autority-result-information.result-de'|trans, false) }}
+
+{#result de quatrieme#}
+{% if notice.fourth %}
+        <li class="list-information__item">
+        <span class="list-information__label">{{ ("Quatrième de couverture")|trans }}</span>
+        <ul class="list-information__sub-list" lang="fr">
+            <li class="list-information__sub-item">
+                <span>{{ 'Presentation' |trans }}</span>
+                {{ notice.fourth.presentation }}
+            </li>
+            <li class="list-information__sub-item">
+                <span>{{ 'Biographie' |trans }}</span>
+                {{ notice.fourth.biography }}
+            </li>
+            <li class="list-information__sub-item">
+                <span>{{ 'Inforamtions editeurs' |trans }}</span>
+                {{ notice.fourth.editorInfo }}
+            </li>
+        </ul>
+    </li>
+{% endif %}
+{{ notice_macros.detail(notice.contentsTable , 'bloc.autority-result-information.content-table'|trans, false) }}

@@ -1,0 +1,22 @@
+    {% if format =='pdf' %}
+        <li>
+            {{  "Type d'autorité"| trans }}: {{ "Indice de classement" | trans}}
+        </li>
+    {% else %}
+        {{  "Type d'autorité"| trans }}: {{ "Indice de classement" | trans}}
+    {% endif %}
+    {{ pdf_occurence (notice, 'getCote',notice.name, format) | raw }}
+    {{ pdf_occurence (notice, 'getCountries', 'Pays', format) | raw }}
+    {{ pdf_occurence (notice, 'getLanguages', 'Langue(s)', format) | raw }}
+    {{ pdf_occurence (notice, 'getBirthDate', 'Date(s)', format) | raw }}
+    {{ pdf_occurence (notice, 'getBirthLocation', 'Naissance', format) | raw }}
+    {{ pdf_occurence (notice, 'getDeathDate', 'Mort', format) | raw }}
+    {{ pdf_occurence (notice, 'getDeathLocation', '', format) | raw }}
+    {{ pdf_occurence (notice, 'getPrincipalActivities', 'Activité(s) principale(s)', format) | raw }}
+
+{% if format == 'pdf' %}
+    <li>
+            <a href="{{ path('record_indice_cdu', {"permalink":notice.permalink}) }}">Lien de la notice</a>
+    </li>
+{% endif %}
+

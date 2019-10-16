@@ -1,7 +1,7 @@
 <?php
 
 
-namespace App\Controller;
+namespace App\Controller\Traits;
 
 
 use Knp\Bundle\SnappyBundle\Snappy\Response\PdfResponse;

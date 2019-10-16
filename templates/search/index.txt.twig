@@ -7,21 +7,21 @@ Notice d'autorité
 =====================
 {% for element in printNoticeWrapper.noticeAuthority %}
     {{ loop.index }}) {{ element.title }}
-    {% include "common/authority.format.twig" with {'notice': element, 'format':'txt'} %}
+    {% include "common/print-detail.format.twig" with {'notice': element, 'format':'txt'} %}
 {% endfor %}
 
 Indice CDU
 =====================
 {% for element in printNoticeWrapper.noticeIndice %}
     {{ loop.index }}) {{ element.title }}
-    {% include "common/authority.format.twig" with {'notice': element, 'format': 'txt'} %}
+    {% include "common/print-detail.format.twig" with {'notice': element, 'format': 'txt'} %}
 {% endfor %}
 
 Documents en rayon
 =====================
 {% for element in printNoticeWrapper.noticeOnShelves %}
     {{ loop.index }}) {{ element.title }}
-    {% include "common/notice.format.twig" with {'notice': element, 'format': 'txt'} %}
+    {% include "common/print-detail.format.twig" with {'notice': element, 'format': 'txt'} %}
 {% endfor %}
 
 Documents en ligne
@@ -29,5 +29,5 @@ Documents en ligne
 
 {% for element in printNoticeWrapper.noticeOnLine %}
     {{ loop.index }}) {{ element.title }}
-    {% include "common/notice.format.twig" with {'notice': element, 'format': 'txt'} %}
+    {% include "common/print-detail.format.twig" with {'notice': element, 'format': 'txt'} %}
 {% endfor %}

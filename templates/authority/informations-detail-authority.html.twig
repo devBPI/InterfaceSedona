@@ -26,7 +26,7 @@
         <ul class="list-information__sub-list" lang="fr">
             {% for element in notice.countries %}
                 <li class="list-information__sub-item">
-                        {{ element }}
+                    {{ element }}
                 </li>
             {% endfor %}
         </ul>
@@ -185,34 +185,3 @@
         </ul>
     </li>
 {% endif %}
-{% if sameInstance(notice,'App\\Model\\IndiceCdu')  %}
-    <li class="list-information__item">
-        <span class="list-information__label">{{ ("Type d'autorité :")|trans }}</span>
-        <ul class="list-information__sub-list" lang="fr">
-            <li class="list-information__sub-item">
-               {{ ("Indice de classement")|trans }}
-            </li>
-        </ul>
-    </li>
-{% endif %}
-{% if sameInstance(notice,'App\\Model\\IndiceCdu')  and notice.cote is not null%}
-    <li class="list-information__item">
-        <span class="list-information__label">{{ ("Cote :")|trans }}</span>
-        <ul class="list-information__sub-list" lang="fr">
-            <li class="list-information__sub-item">
-                {{ notice.cote }}
-            </li>
-        </ul>
-    </li>
-{% endif %}
-{% if sameInstance(notice,'App\\Model\\IndiceCdu')  and notice.name is not null%}
-    <li class="list-information__item">
-        <span class="list-information__label">{{ ("Nom :")|trans }}</span>
-        <ul class="list-information__sub-list" lang="fr">
-            <li class="list-information__sub-item">
-                {{ notice.name }}
-            </li>
-        </ul>
-    </li>
-{% endif %}
-
