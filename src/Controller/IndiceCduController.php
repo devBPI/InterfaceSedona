@@ -107,7 +107,7 @@ class IndiceCduController extends CardController
     {        try{
             $indiceCdu = $this->noticeAuhtority->getIndiceCduAroundOf($cote);
             return new JsonResponse([
-                'html'=> $this->renderView('record/blocs/index-browsing.html.twig',
+                'html'=> $this->renderView('indice/index-browsing.html.twig',
                     ['indexList'=> $indiceCdu]
                 )
             ]);
