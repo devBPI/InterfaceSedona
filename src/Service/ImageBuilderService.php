@@ -38,26 +38,24 @@ final class ImageBuilderService
      * @param string $content
      * @return string
      */
-    public function buildImage(string $content, string $type=null): string
+    public function buildImage(string $content, string $type='livre'): string
     {
         $localFilePath = $content;
 
         $fs = new Filesystem();
 
+
+
         if (!$fs->exists($this->imageDir.$localFilePath)) {
-            $array = explode('/', $content);
-            $filename = array_pop($array);
 
-            try{
-
+            $filename = basename($content);
+                try{
                 $content = file_get_contents(self::$url.DIRECTORY_SEPARATOR.self::BPI_FOLDER_NAME_ELECTRE.DIRECTORY_SEPARATOR.$content);
             }catch (\ErrorException $e){
-
              return self::COVER_FOLDER.DIRECTORY_SEPARATOR.'cg-'.$this->slugify($type).'.svg';
             }
 
             $fs->mkdir(str_replace($filename, '', $this->imageDir.self::PARENT_FOLDER.DIRECTORY_SEPARATOR.$localFilePath));
-
             $this->saveLocalImage($content, $localFilePath);
         }
 
@@ -76,10 +74,14 @@ final class ImageBuilderService
         $fs->dumpFile($this->imageDir.self::PARENT_FOLDER.DIRECTORY_SEPARATOR.$localPath, $content);
     }
 
-    public function getimage64($path)
+    public function getimage64($path, $type=null)
     {
+        if ($type===null){
+            $type='livre';
+        }
+        $filePath = $this->buildImage(str_replace("imported_images/","", $path, $type));
         try {
-            $file = new File($this->imageDir.$path, true);
+            $file = new File($this->imageDir."imported_images/".$filePath, true);
         } catch (\Exception $e) {
 
         }
@@ -88,7 +90,7 @@ final class ImageBuilderService
             return null;
         }
 
-        $binary = file_get_contents($this->imageDir.$path);
+        $binary = file_get_contents($this->imageDir."imported_images/".$filePath);
 
         return sprintf('data:image/%s;base64,%s', $file->guessExtension(), base64_encode($binary));
     }

@@ -195,7 +195,7 @@ class SearchFiltersExtension extends AbstractExtension
      */
     public function image64($path)
     {
-        return $this->imageService->getimage64($path);
+        return $this->imageService->getimage64(substr($path, 1));
     }
 }
 

@@ -8,7 +8,7 @@
 			{% include "record/blocs/results-navigation.html.twig" with {'routeTarget': path('record_authority', {'permalink':notice.permalink}) } %}
 		</div>
 		<div class="row">
-			{% include "record/blocs/detail-authority.html.twig" with {'notice': notice } %}
+			{% include "authority/detail-authority.html.twig" with {'notice': notice } %}
 		</div>
 		<div class="row authority-document">
 			<!-- Début - Bloc 19 Liste de documents  -->
@@ -26,11 +26,6 @@
 			{% endif %}
 			<!-- Fin - Bloc 19 Liste de documents  -->
 		</div>
-		{% if sameInstance(notice, 'App//Model//IndiceCdu') %}
-			<div class="row" id="around-index-wrapper">
-				{% include "record/blocs/index-browsing.html.twig" with {"indexList": notice.aroundIndex} %}
-			</div>
-		{% endif %}
 	</div>
 {% endblock %}
 

@@ -1,5 +1,5 @@
 {% import "common/notice-available-macro.html.twig" as macros %}
-
+{% import "common/detail-macro.html.twig" as notice_macros %}
 <!-- Début - Bloc 16 Notice bibliographique -->
 <div class="col-12">
     {% for title in notice.titles %}
@@ -7,6 +7,7 @@
             {{ title }}
         </h1>
     {% endfor %}
+
     {% if notice.titleForm %}
         {% for title in notice.titleForm %}
             <h1 class="n1 bibliographic-result__title" lang="fr">
@@ -14,49 +15,9 @@
             </h1>
         {% endfor %}
     {% endif %}
-    {% if notice.translatedBy is not empty %}
-        <li class="list-information__item">
-            <span class="list-information__label">{{ ('Traduction de: ')|trans }}</span>
-            <ul class="list-information__sub-list" lang="fr">
-                {% for element in notice.translatedBy %}
-                    <li class="list-information__sub-item">
-                        <a href="{{ path('search', {'simple_search[text]':element}) }}">
-                            {{ element }},
-                        </a>
-                    </li>
-                {% endfor %}
-            </ul>
-        </li>
-    {% endif %}
-    {% if notice.analyticalTitles is not empty %}
-        <li class="list-information__item">
-            <span class="list-information__label">{{ ('dans ')|trans }}</span>
-            <ul class="list-information__sub-list" lang="fr">
-                {% for element in notice.analyticalTitles %}
-                    <li class="list-information__sub-item">
-                        <a href="{{ path('search', {'simple_search[text]':element}) }}">
-                            {{ element }},
-                        </a>
-                    </li>
-                {% endfor %}
-            </ul>
-        </li>
-    {% endif %}
-    {% if notice.directors is not empty %}
-        <li class="list-information__item">
-            <span class="list-information__label">{{ ('Réalisateurs')|trans }}</span>
-            <ul class="list-information__sub-list" lang="fr">
-                {% for element in notice.directors %}
-                    <li class="list-information__sub-item">
-                        <a href="{{ path('search', {'simple_search[text]':element}) }}">
-                            {{ element }},
-                        </a>
-                    </li>
-                {% endfor %}
-            </ul>
-        </li>
-    {% endif %}
-
+    {{ notice_macros.detail(notice.translatedBy, 'bloc.autority-result-information.translated'|trans, true) }}
+    {{ notice_macros.detail(notice.analyticalTitles, 'bloc.autority-result-information.in'|trans, true) }}
+    {{ notice_macros.detail(notice.directors, 'bloc.autority-result-information.directors'|trans, true) }}
     <div class="row align-items-md-center justify-content-between">
         <div class="col-12 col-md-6">
             {% for author in notice.authorsValue %}
@@ -65,7 +26,6 @@
                         {{ 'bloc.autority-result-information.autor'|trans }}
                     {% endif %}
                     <a href=" {{ path('search', {'simple_search[text]':author.value}) }}">{{ author.value }}</a>
-
                 </p>
             {% endfor %}
         </div>
@@ -78,8 +38,6 @@
             </div>
         </div>
     </div>
-
-
 </div>
 {% if  notice.contents %}
     <div class="col-12">
@@ -114,7 +72,7 @@
 
 <div class="col-12 col-md-9">
     <ul class="list-information bibliographic-result__infos js-list-information">
-        {% include 'common/informations-bibliographic.html.twig' with {
+        {% include 'notice/informations-bibliographic.html.twig' with {
             'notice': notice,
             'prefix': 'bloc.autority-result-information.',
             'details': [

@@ -8,7 +8,7 @@
 			{% include "record/blocs/results-navigation.html.twig" with {'routeTarget': path('record_bibliographic',{"permalink":object.notice.permalink}) } %}
 		</div>
 		<div class="row">
-			{% include "record/blocs/detail-bibliographic.html.twig"  with {'notice': object.notice, 'object':object } %}
+			{% include "notice/detail-bibliographic.html.twig"  with {'notice': object.notice, 'object':object } %}
 		</div>
 		<div class="row">
 			<!-- Début - Bloc 17 Documents liés -->
@@ -48,8 +48,6 @@
 				</div>
 			</div>
 			<!-- Fin - Bloc 17 Documents liés -->
-
-			{# TODO : Include record/blocs/list-related-documents.html.twig like authority.html.twig #}
 		</div>
 	</div>
 {% endblock %}

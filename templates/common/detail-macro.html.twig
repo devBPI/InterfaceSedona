@@ -1,0 +1,33 @@
+{% macro detail(object, label, is_linked) %}
+    {% if object is not empty %}
+        <li class="list-information__item">
+            <span class="list-information__label">{{ label }}</span>
+            <ul class="list-information__sub-list" lang="fr">
+                {% if object is iterable %}
+                    {% for element in object %}
+                        <li class="list-information__sub-item">
+                            {% if is_linked == true %}
+                                <a href="{{ path('search', {'simple_search[text]':element}) }}">
+                                    {{ element }},
+                                </a>
+                            {% else %}
+                                {{ element }},
+                            {% endif %}
+                        </li>
+                    {% endfor %}
+                {% else %}
+                    <li class="list-information__sub-item">
+                        {% if is_linked == true %}
+                            <a href="{{ path('search', {'simple_search[text]':element}) }}">
+                                {{ object }},
+                            </a>
+                        {% else %}
+                            {{ object }},
+                        {% endif %}
+                    </li>
+                {% endif %}
+            </ul>
+        </li>
+    {% endif %}
+{% endmacro %}
+
