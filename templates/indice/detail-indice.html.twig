@@ -1,0 +1,45 @@
+<!-- Début - Bloc 18 Informations de la notice d'autorité -->
+
+<div class="col-12 col-md-4">
+	<div class="authority-result__image">
+		<img src="{{ asset('images/types-autorite/autorite-'~ (notice.type|slugify) ~'.svg') }}" alt="" class="img-fluid" />
+	</div>
+</div>
+<div class="col-12 col-md-8">
+	<div class="authority-result__body">
+		<h1 class="n1 authority-result__title" lang="fr">{{ notice.title }}</h1>
+		<ul class="js-list-information list-information">
+			<li class="list-information__item">
+				<span class="list-information__label">{{ "bloc.autority-result-information.authority-type" |trans }}</span>
+				<ul class="list-information__sub-list" lang="fr">
+					<li class="list-information__sub-item">
+                        {{ ('bloc.autority-result-information.type.' ~ notice.type)|trans }}
+					</li>
+				</ul>
+			</li>
+
+            {% if notice.cote is not empty %}
+				<li class="list-information__item">
+					<span class="list-information__label">{{ "bloc.autority-result-information.cote"|trans }}</span>
+					<ul class="list-information__sub-list" lang="fr">
+						<li class="list-information__sub-item">
+                            {{ notice.cote }}
+						</li>
+					</ul>
+				</li>
+            {% endif %}
+
+            {% if notice.name is not empty %}
+				<li class="list-information__item">
+					<span class="list-information__label">{{ "modal.suggestion.field.last-name"|trans }}</span>
+					<ul class="list-information__sub-list" lang="fr">
+						<li class="list-information__sub-item">
+                            {{ notice.name }}
+						</li>
+					</ul>
+				</li>
+            {% endif %}
+		</ul>
+	</div>
+</div>
+<!-- Fin - Bloc 18 Informations de la notice d'autorité -->

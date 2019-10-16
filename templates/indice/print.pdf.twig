@@ -1,0 +1,22 @@
+{% extends 'base.pdf.twig' %}
+
+{% block title %}Vos références{% endblock %}
+{% block body %}
+    <div class="print__item">
+        <div class="row">
+            <div class="col-12">
+                <h2 class="n1">{{notice.title}}</h2>
+            </div>
+            {% if includeImage %}
+                <div class="col-3">
+                    <img src="{{ absolute_url(asset('images/types-autorite/autorite-personne.svg')) }}" alt="" class="print__image" />
+                </div>
+            {% endif %}
+            <div class="col">
+                <ul class="print__list">
+                    {% include "indice/print-detail.format.twig" with {'element': notice, 'format': 'pdf'} %}
+                </ul>
+            </div>
+        </div>
+    </div>
+{% endblock %}

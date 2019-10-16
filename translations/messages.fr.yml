@@ -418,6 +418,7 @@ bloc:
     editor: 'Éditeur(s)'
     search-with: 'Relancer une recherche avec le terme : %theme%'
     date: 'Date'
+    edition-date: Date d'édition papier
     ouvre: 'Oeuvre(s)'
     nots: 'Notes'
     language: 'Langue(s)'
@@ -430,6 +431,7 @@ bloc:
     authority-type: "Type d'autorité"
     cote: "Cote"
     other-names: "Autre(s) nom(s)"
+    other-authors: "Autre(s) auteurs(s)"
     country: 'Pays'
     born-date: 'Naissance'
     dead-date: 'Mort'
@@ -438,12 +440,31 @@ bloc:
     name-alias: 'Autre(s) nom(s)'
     name-associe: 'Nom(s) associé(s)'
     name-link: 'Nom(s) lié(s)'
+    title-together: Titre(s) d'ensemble
+    title-inrelation: Titre(s) en relation
+    meeting: Réunit
+    eras: Epoque
+    location: Lieu
+    kind: Genre
+    indices: Indice(s)
+    topics: Thème(s)
+    other-edition: Autre(s) éditions
     insi: 'ISNI'
     access-document:
       in-shelf: Consultable à la Bpi
       in-ligne: Accéder à %name%
     type:
       indice: 'Indice de classement'
+    publics: 'Public'
+    manifestation-location: 'Lieu de la manifestations'
+    result-de: 'Lieu de la manifestations'
+    origins: 'Origine de la notice'
+    content-table: Tables des matières
+    periodicity-date: Date d'édition papier
+    alternatif-title: Autre(s) forme(s) de titre
+    translated: Traduction de:
+    in: 'dans'
+    directors: 'Réalisateurs'
   list-related-documents:  #Bloc 19 Liste de documents + Bloc 17 Documents liés
     link-title: Actualité %current% sur %nb%, %name%
     see-more: Voir tout
