@@ -18,7 +18,7 @@
                 {% else %}
                     <li class="list-information__sub-item">
                         {% if is_linked == true %}
-                            <a href="{{ path('search', {'simple_search[text]':element}) }}">
+                            <a href="{{ path('search', {'simple_search[text]':object}) }}">
                                 {{ object }},
                             </a>
                         {% else %}
