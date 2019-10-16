@@ -31,3 +31,10 @@
         }
     }
 }
+
+// Convert PX to REM
+$browser-context: 13;
+
+@function rem($pixels, $context: $browser-context) {
+  @return ($pixels / $context) * 1rem;
+}

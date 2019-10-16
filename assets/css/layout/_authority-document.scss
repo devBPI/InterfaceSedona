@@ -16,7 +16,7 @@
 	}
 
 	&__item {
-		padding: 0 $spacer;
+		padding: 0 rem(15);
 		border-right: $border-thin;
 
 		&:last-child {

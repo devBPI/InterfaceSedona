@@ -42,14 +42,14 @@
 				box-shadow: none;
 				border: 0;
 				border-right: 1px solid $grey-border;
-				padding: 20px 0 10px;
+				padding: rem(20) 0 rem(10);
 			}
 
 			&-item {
-					@include font-size(12);
+				@include font-size(12);
 
 				@include media-breakpoint-up(lg) {
-					padding: 0 10px;
+					padding: 0 rem(10);
 				}
 
 				abbr {

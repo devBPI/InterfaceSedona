@@ -54,13 +54,13 @@
 				box-shadow: none;
 				border: 0;
 				transform: translate3d(0, 0 , 0) !important;
-				padding: 20px 0 10px;
+				padding: rem(20) 0 rem(10);
 			}
 
 			&-item {
 
 				@include media-breakpoint-up(lg) {
-					padding: 0 10px;
+					padding: 0 rem(10);
 				}
 
 				a {

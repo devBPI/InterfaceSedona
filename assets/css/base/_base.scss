@@ -59,14 +59,14 @@ select {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	width: 20px;
-	height: 20px;
-	margin-right: 5px;
+	width: rem(20);
+	height: rem(20);
+	margin-right: rem(5);
 	background-color: $black;
 	text-align: center;
 	
 	img {
-		height: 13px;
+		height: rem(13);
 	}
 }
 
