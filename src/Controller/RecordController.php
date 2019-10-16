@@ -5,7 +5,7 @@ namespace App\Controller;
 
 use App\Model\Authority;
 use App\Model\Exception\NoResultException;
-use App\Model\From\ExportNotice;
+use App\Model\Form\ExportNotice;
 use App\Model\IndiceCdu;
 use App\Model\Notice;
 use App\Model\RankedAuthority;

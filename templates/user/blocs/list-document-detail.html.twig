@@ -10,11 +10,12 @@
                    }) }}">
     </td>
     <td>
-        <a href="{{ document.url }}" aria-label="{{ 'bloc.list-user.link'|trans({'%title%': document.title}) }}">
-            {{ document.title }}</a>
+        <a href="{{ document.url }}" title="{{ document.title }}"
+           aria-label="{{ 'bloc.list-user.link'|trans({'%title%': document.title}) }}">
+            {{ document.title|truncate(40) }}</a>
     </td>
-    <td>
-        {{ document.author }}
+    <td title="{{ document.author }}">
+        {{ document.author|truncate(40) }}
     </td>
     <td class="table__body-type" data-order="{{ document.documentType }}">
         <img src="{{ asset('images/types/type-'~ (document.documentType|slugify) ~'.svg') }}"
@@ -24,7 +25,7 @@
     <td class="table__body-edit" data-order="false">
         {% if app.user %}
             {% if document.comment is not empty and document.comment|split("\n").0 is defined %}
-                {{ document.comment|split("\n").0|trim }}
+                {{ document.comment|split("\n").0|trim|truncate(40) }}
                 <button data-content="{{ '<p>'~document.comment|nl2br~'</p>' }}" data-target="#modal-comments-view"
                         data-toggle="modal">
                     <span class="sr-only">{{ 'bloc.list-user.comments-see'|trans }}</span>

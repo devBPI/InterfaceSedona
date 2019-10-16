@@ -16,7 +16,7 @@ export default class Autocomplete {
     private initListener() {
         this.element.addEventListener('keyup', () => this.onKeyUp());
         this.type.addEventListener('change', () => this.onKeyUp());
-        this.target.addEventListener('onblur', () => this.onClickOut())
+        document.addEventListener('click', (event) => this.onClickOut(event))
     }
 
     onKeyUp(): void {
@@ -34,12 +34,23 @@ export default class Autocomplete {
         }
     }
 
-    private async onAutocompleteFetched(result: Response) {
+    async onAutocompleteFetched(result: Response) {
         this.target.classList.remove('d-none');
         this.target.innerHTML = (await result.json()).html;
+        // this.target.querySelectorAll('p').forEach(function (link, ) {
+        //     link.addEventListener('click', () => this.setInput(event))
+        // })
     }
 
-    onClickOut(): void {
-        this.target.classList.add('d-none');
+    onClickOut(event: MouseEvent): void {
+        if (!this.target.contains(event.target as HTMLElement)) {
+            this.target.classList.add('d-none');
+        }
+    }
+
+    setInput(event: MouseEvent) {
+        event.stopPropagation();
+
+        this.element.value = (event.target as HTMLAnchorElement).innerText;
     }
 }

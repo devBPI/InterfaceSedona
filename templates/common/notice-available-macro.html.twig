@@ -27,7 +27,11 @@
            </div>
        {% elseif object.url is defined and object.url is not empty %}
            <div class="availability availability--true availability--online">
-               {{ 'bloc.notice-simple.access-to-bdd'|trans }} <a href="{{ object.url }}" class="link link--icone-end link--inline">{{ notice.title }} <img src="{{ asset('images/icones/icone-chevron-gauche.svg') }}" alt="" aria-hidden="true" /></a>
+               {{ 'bloc.notice-simple.access-to-bdd'|trans }}
+               <a href="{{ object.url }}" class="link link--icone-end link--inline">
+                   {{ notice.title }}
+                   <img src="{{ asset('images/icones/icone-chevron-gauche.svg') }}" alt="" aria-hidden="true" />
+               </a>
            </div>
        {% else %}
            <div class="availability availability--false availability--online">

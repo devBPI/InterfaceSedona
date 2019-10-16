@@ -11,7 +11,7 @@ namespace App\Controller;
 use App\Service\NoticeBuildFileService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use App\Form\ExportNoticeType;
-use App\Model\From\ExportNotice;
+use App\Model\Form\ExportNotice;
 use App\Service\MailSenderService;
 use Symfony\Component\Form\FormError;
 use Symfony\Component\HttpFoundation\Request;
@@ -114,7 +114,7 @@ class ExportController extends AbstractController
                 'common/modal/content.email.twig',
                 ['data' => $object],
                 'no-reply@sedona.fr',
-               $object->getReciever() ,
+               $object->getReceiver() ,
                 'no-reply@sedona.fr',
                 $attachment
             )) {

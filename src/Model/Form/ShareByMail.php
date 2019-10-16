@@ -1,18 +1,13 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: infra
- * Date: 30/09/19
- * Time: 15:34
- */
+declare(strict_types=1);
 
-namespace App\Model\From;
+namespace App\Model\Form;
 
 use Symfony\Component\Validator\Constraints as Asset;
 
 /**
  * Class ShareByMail
- * @package App\Model\From
+ * @package App\Model\Form
  */
 class ShareByMail implements MessageInfoInterface
 {
@@ -21,14 +16,16 @@ class ShareByMail implements MessageInfoInterface
     /**
      * @var string
      * @Asset\NotBlank();
+     * @Asset\Email();
      */
     private $sender;
 
     /**
      * @var string
      * @Asset\NotBlank();
+     * @Asset\Email();
      */
-    private $reciever;
+    private $receiver;
 
     /**
      * @return null|string
@@ -49,20 +46,20 @@ class ShareByMail implements MessageInfoInterface
     }
 
     /**
-     * @param string $reciever
+     * @param string $receiver
      * @return ShareByMail
      */
-    public function setReciever(string $reciever): ShareByMail
+    public function setReceiver(string $receiver): ShareByMail
     {
-        $this->reciever = $reciever;
+        $this->receiver = $receiver;
         return $this;
     }
 
     /**
      * @return null|string
      */
-    public function getReciever(): ?string
+    public function getReceiver(): ?string
     {
-        return $this->reciever;
+        return $this->receiver;
     }
 }

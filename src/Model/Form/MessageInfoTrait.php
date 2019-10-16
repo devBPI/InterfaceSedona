@@ -1,15 +1,12 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: infra
- * Date: 30/09/19
- * Time: 16:53
- */
 
-namespace App\Model\From;
+namespace App\Model\Form;
 use Symfony\Component\Validator\Constraints as Asset;
 
-
+/**
+ * Trait MessageInfoTrait
+ * @package App\Model\Form
+ */
 trait MessageInfoTrait
 {
     /**
@@ -34,7 +31,7 @@ trait MessageInfoTrait
 
     /**
      * @param string $object
-     * @return ReportError
+     * @return MessageInfoInterface|MessageInfoTrait
      */
     public function setObject(string $object): MessageInfoInterface
     {
@@ -53,7 +50,7 @@ trait MessageInfoTrait
 
     /**
      * @param string $message
-     * @return ReportError
+     * @return MessageInfoInterface|MessageInfoTrait
      */
     public function setMessage(string $message): MessageInfoInterface
     {

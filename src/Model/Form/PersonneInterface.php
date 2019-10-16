@@ -1,14 +1,11 @@
 <?php
+
+namespace App\Model\Form;
+
 /**
- * Created by PhpStorm.
- * User: infra
- * Date: 01/10/19
- * Time: 11:27
+ * Interface PersonneInterface
+ * @package App\Model\Form
  */
-
-namespace App\Model\From;
-
-
 interface PersonneInterface
 {
     public function getFirstName(): ?string;

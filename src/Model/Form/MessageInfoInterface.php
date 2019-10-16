@@ -1,14 +1,11 @@
 <?php
+
+namespace App\Model\Form;
+
 /**
- * Created by PhpStorm.
- * User: infra
- * Date: 30/09/19
- * Time: 16:51
+ * Interface MessageInfoInterface
+ * @package App\Model\Form
  */
-
-namespace App\Model\From;
-
-
 interface MessageInfoInterface
 {
     /**

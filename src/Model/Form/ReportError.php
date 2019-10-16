@@ -1,12 +1,11 @@
 <?php
 declare(strict_types=1);
 
-namespace App\Model\From;
-use Symfony\Component\Validator\Constraints as Asset;
+namespace App\Model\Form;
 
 /**
  * Class ReportError
- * @package App\Model\From
+ * @package App\Model\Form
  */
 class ReportError implements MessageInfoInterface, PersonneInterface
 {
