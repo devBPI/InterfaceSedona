@@ -1,16 +1,10 @@
 <?php
 declare(strict_types=1);
-/**
- * Created by PhpStorm.
- * User: infra
- * Date: 15/10/19
- * Time: 16:58
- */
 
 namespace App\Controller;
 
 use App\Model\Exception\NoResultException;
-use App\Model\From\ExportNotice;
+use App\Model\Form\ExportNotice;
 use App\Model\IndiceCdu;
 use App\Model\RankedAuthority;
 use App\Service\NavigationService;
@@ -24,6 +18,10 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Annotation\Route;
 
+/**
+ * Class IndiceCduController
+ * @package App\Controller
+ */
 class IndiceCduController extends CardController
 {
     /**

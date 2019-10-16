@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: infra
- * Date: 15/10/19
- * Time: 17:33
- */
 
 namespace App\Controller;
 
@@ -14,6 +8,10 @@ use App\Service\NavigationService;
 use JMS\Serializer\SerializerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
+/**
+ * Class CardController
+ * @package App\Controller
+ */
 abstract class CardController extends AbstractController
 {
     /**
@@ -43,6 +41,9 @@ abstract class CardController extends AbstractController
      * @param string $searchTokenValue
      * @param $classType
      * @return NavigationService
+     * @throws \Twig\Error\LoaderError
+     * @throws \Twig\Error\RuntimeError
+     * @throws \Twig\Error\SyntaxError
      */
     protected function buildNavigationService(string $permalink,string $searchToken,  string $searchTokenValue, $classType):NavigationService
     {
