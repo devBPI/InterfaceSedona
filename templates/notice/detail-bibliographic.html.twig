@@ -1,6 +1,5 @@
 {% import "common/notice-available-macro.html.twig" as macros %}
 {% import "common/detail-macro.html.twig" as notice_macros %}
-
 <!-- Début - Bloc 16 Notice bibliographique -->
 <div class="col-12">
     {% for title in notice.titles %}
@@ -16,12 +15,9 @@
             </h1>
         {% endfor %}
     {% endif %}
-
-
-{{ notice_macros.detail(notice.translatedBy, 'bloc.autority-result-information.translated'|trans, true) }}
-{{ notice_macros.detail(notice.analyticalTitles, 'bloc.autority-result-information.in'|trans, true) }}
-{{ notice_macros.detail(notice.directors, 'bloc.autority-result-information.directors'|trans, true) }}
-
+    {{ notice_macros.detail(notice.translatedBy, 'bloc.autority-result-information.translated'|trans, true) }}
+    {{ notice_macros.detail(notice.analyticalTitles, 'bloc.autority-result-information.in'|trans, true) }}
+    {{ notice_macros.detail(notice.directors, 'bloc.autority-result-information.directors'|trans, true) }}
     <div class="row align-items-md-center justify-content-between">
         <div class="col-12 col-md-6">
             {% for author in notice.authorsValue %}
@@ -30,7 +26,6 @@
                         {{ 'bloc.autority-result-information.autor'|trans }}
                     {% endif %}
                     <a href=" {{ path('search', {'simple_search[text]':author.value}) }}">{{ author.value }}</a>
-
                 </p>
             {% endfor %}
         </div>
@@ -43,7 +38,6 @@
             </div>
         </div>
     </div>
-
 </div>
 {% if  notice.contents %}
     <div class="col-12">

@@ -122,7 +122,7 @@ class IndiceCduController extends CardController
     }
 
     /**
-     * @Route("/print/indice.{format}/{permalink}", name="indice_pdf", requirements={"permalink"=".+", "format" = "html|pdf|txt"}, defaults={"format" = "pdf"})
+     * @Route("/print/indice.{format}/{permalink}", methods={"GET"}, name="indice_pdf", requirements={"permalink"=".+", "format" = "html|pdf|txt"}, defaults={"format" = "pdf"})
 
      * @param Request $request
      * @param string $format

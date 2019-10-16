@@ -46,10 +46,7 @@ class SearchController extends AbstractController
      * @var SearchService
      */
     private $searchService;
-    /**
-     * @var NoticeAuthorityProvider
-     */
-    private $noticeAuhtority;
+
     /**
      * @var NoticeBuildFileService
      */
@@ -60,20 +57,17 @@ class SearchController extends AbstractController
      * @param SearchProvider $searchProvider
      * @param AdvancedSearchProvider $advancedSearchProvider
      * @param SearchService $searchService
-     * @param NoticeAuthorityProvider $noticeAuhtority
      * @param NoticeBuildFileService $service
      */
     public function __construct(
         SearchProvider $searchProvider,
         AdvancedSearchProvider $advancedSearchProvider,
         SearchService $searchService,
-        NoticeAuthorityProvider $noticeAuhtority,
         NoticeBuildFileService $service
     ) {
         $this->searchProvider = $searchProvider;
         $this->advancedSearchProvider = $advancedSearchProvider;
         $this->searchService = $searchService;
-        $this->noticeAuhtority = $noticeAuhtority;
         $this->buildFileContent = $service;
     }
 
