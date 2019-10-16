@@ -12,11 +12,11 @@
 .account {
 
 	@include media-breakpoint-up(lg) {
-		margin-top: 10px;
+		margin-top: rem(10);
 	}
 
 	&__link {
-		font-size: 12px;
+		@include font-size(12);
 
 		&:hover {
 			color: $red;
@@ -30,7 +30,7 @@
 
 	&__button {
 		position: relative;
-		font-size: 12px;
+		@include font-size(12);
 
 		&:after {
 			content: "";
@@ -51,11 +51,13 @@
 		&-item {
 
 			a {
-				font-size: 12px;
+				@include font-size(12);
 				color: $black;
 
-				&:hover {
+				&:hover,
+				&:focus {
 					color: $red;
+					text-decoration: underline;
 				}
 			}
 		}

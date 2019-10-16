@@ -49,7 +49,7 @@ class Link
      * @JMS\Type("string")
      * @JMS\SerializedName("used-profil")
      */
-    private $usedrofil;
+    private $usedProfil;
 
     /**
      * @return null|string
@@ -94,8 +94,8 @@ class Link
     /**
      * @return null|string
      */
-    public function getUsedrofil(): ?string
+    public function getUsedProfil(): ?string
     {
-        return $this->usedrofil;
+        return $this->usedProfil;
     }
 }

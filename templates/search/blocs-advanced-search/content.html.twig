@@ -2,8 +2,7 @@
     <p tabindex="0">{{ 'modal.advanced-search.keyword.label'|trans }}</p>
 
     <div class="search-keyword"
-         data-prototype="{{ include('search/blocs-advanced-search/keyword-row.html.twig', {index: '__index__', first: false})|escape }}"
-         data-count="{{ objSearch.keywords|length > 0 ? objSearch.keywords|length : 1 }}">
+         data-prototype="{{ include('search/blocs-advanced-search/keyword-row.html.twig', {index: '__index__', first: false})|escape }}">
 
         {% from 'search/blocs-advanced-search/macros.html.twig' import display_keyword_form %}
         {{ display_keyword_form(objSearch.keywords|default({'': {'': ''}})) }}
@@ -12,9 +11,10 @@
     <div class="row justify-content-end mt-3">
         <div class="col-12 col-sm-1">
             <button type="button" class="btn search-keyword__button search-keyword__button--add"
-                data-toggle="collection-add" data-target=".search-keyword" data-limit="{{ constant('App\\Model\\Search\\Criteria::ADVANCED_KEYWORDS_LIMIT') }}">
-            <span>{{ 'modal.advanced-search.keyword.add-ligne'|trans }}</span>
-        </button>
+                    data-toggle="collection-add" data-target=".search-keyword"
+                    data-limit="{{ constant('App\\Model\\Search\\Criteria::ADVANCED_KEYWORDS_LIMIT') }}">
+                <span>{{ 'modal.advanced-search.keyword.add-ligne'|trans }}</span>
+            </button>
         </div>
     </div>
 </div>

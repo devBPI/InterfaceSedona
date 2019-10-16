@@ -11,7 +11,7 @@ namespace App\Service;
 
 
 use App\Model\Authority;
-use App\Model\From\ExportNotice;
+use App\Model\Form\ExportNotice;
 use App\Model\IndiceCdu;
 use App\Model\Notice;
 use App\Model\Search\ObjSearch;
@@ -100,6 +100,7 @@ class NoticeBuildFileService
     {
         try{
             $permalink = $attachement->getNotices();
+
             $object = $this->noticeProvider->getNotice($permalink);
 
         }catch(\Exception $e){
@@ -107,9 +108,8 @@ class NoticeBuildFileService
              * catch and handle exception to tell
              */
         }
-        $format = 'pdf';
 
-        return  $this->templating->render("record/bibliographic.".$format .".twig", [
+        return  $this->templating->render("notice/print.".$format .".twig", [
             'toolbar'           => Notice::class,
             'isPrintLong'       => !$attachement->isShortFormat(),
             'includeImage'      => $attachement->isImage(),
@@ -140,13 +140,39 @@ class NoticeBuildFileService
              */
         }
 
-        return  $this->templating->render("record/authority.".$format .".twig", [
+        return  $this->templating->render("authority/print.".$format .".twig", [
             'toolbar'           => Authority::class,
             'isPrintLong'       => !$attachement->isShortFormat(),
             'includeImage'      => $attachement->isImage(),
             'notice'            => $object,
             'relatedDocuments'  => $relatedDocuments,
             'noticeAuthors'     => $noticeAuthors,
+        ]);
+    }
+    /**
+     * @param ExportNotice $attachement
+     * @param string $format
+     * @return string
+     * @throws \Twig\Error\LoaderError
+     * @throws \Twig\Error\RuntimeError
+     * @throws \Twig\Error\SyntaxError
+     */
+    private function buildFileForIndice(ExportNotice $attachement, string $format)
+    {
+        try{
+            $permalink          = $attachement->getAuthorities();
+            $object             = $this->noticeAuhtority->getIndiceCdu($permalink);
+        }catch(\Exception $e){
+            /**
+             * catch and handle exception to tell
+             */
+        }
+
+        return  $this->templating->render("indice/print.".$format .".twig", [
+            'toolbar'           => Authority::class,
+            'isPrintLong'       => !$attachement->isShortFormat(),
+            'includeImage'      => $attachement->isImage(),
+            'notice'            => $object,
         ]);
     }
 
@@ -206,6 +232,8 @@ class NoticeBuildFileService
                 $content =  $this->buildFileForAuthority($attachement, $format);
                 break;
             case IndiceCdu::class:
+                $content =  $this->buildFileForIndice($attachement, $format);
+                break;
             default:
                 throw new \InvalidArgumentException(sprintf('The type "%s" is not referenced on the app', $type));
                 break;

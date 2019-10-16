@@ -36,12 +36,11 @@
                    aria-label="{{ notice.frontTitle }}"
                    class="n2 list-result__content-title"
                 >
-                    <img src="{{ asset('images/types/type-journal.svg') }}" alt=""
-                         class="list-result__content-type"/>
-                    <span>{{ notice.frontTitle }}</span></a>
-                <p lang="fr"><span class="font-italic">par</span> {{ notice.frontAuthor }} {% if notice.dates is defined %}{{ notice.dates|join('-') }}{% endif %}</p>
-                {% if notice.frontAnalyticalTitle is not empty %}
-                    <p lang="fr">par {{ notice.frontAnalyticalTitle }}</p>
+                    <img src="{{ asset('images/types/type-' ~ notice.slugifiedType ~ '.svg') }}" alt="" class="list-result__content-type" />
+                    <span>{{ notice.frontTitle }}</span>
+                </a>
+                {% if notice.frontAuthor is not empty %}
+                    <p lang="fr"><span class="font-italic">par</span> {{ notice.frontAuthor }}</p>
                 {% endif %}
                 <p lang="fr">{{ notice.frontDate }}
                     {% if notice.frontResume is not empty %}
@@ -70,8 +69,7 @@
                     {% endif %}
                 {% endfor %}
                 {% for link in notice.links %}
-                    {{ macros.availibility(link, notice) }}
-
+                    {{macros.availibility(link, notice) }}
                     {% if loop.first and not loop.last %}
                         <button type="button" class="btn btn-small-link" data-toggle="collapse"
                                 data-target="#links-items-{{ index }}" aria-expanded="false"

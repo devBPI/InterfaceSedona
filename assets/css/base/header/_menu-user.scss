@@ -23,7 +23,7 @@
 		display: flex;
 
 		@include media-breakpoint-up(lg) {
-			margin-top: 10px;
+			margin-top: rem(10);
 		}
 
 		&-item {
@@ -33,7 +33,7 @@
 
 			a {
 				color: $black;
-				font-size: 12px;
+				@include font-size(12);
 
 				&:hover,
 				&:focus {
@@ -52,16 +52,16 @@
 	}
 
 	&__icone {
-		width: 20px;
-		height: 20px;
+		width: rem(20);
+		height: rem(20);
 		background-color: $black;
-		margin-right: 5px;
+		margin-right: rem(5);
 		display: flex;
 		justify-content: center;
 		align-items: center;
 
 		img {
-			max-height: 13px;
+			max-height: rem(13);
 		}
 	}
 }

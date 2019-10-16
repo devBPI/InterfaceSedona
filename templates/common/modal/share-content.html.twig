@@ -8,14 +8,14 @@
 	<div class="modal-body">
 		<div class="row justify-content-center">
 			<div class="col-12 col-md-10">
-				{{ form_row(form.sender,{ 'label': 'modal.share.field.expeditor'|trans }) }}
-				{{ form_row(form.reciever,{ 'label':  'modal.share.field.recipient'|trans }) }}
-				{{ form_row(form.object,{ 'label': 'modal.share.field.title'|trans }) }}
-				{{ form_row(form.message,{ 'label':  'modal.share.field.text'|trans  }) }}
+				{{ form_row(form.sender) }}
+				{{ form_row(form.receiver) }}
+				{{ form_row(form.object) }}
+				{{ form_row(form.message) }}
 			</div>
 		</div>
 		<div>
-			<i>*Insert captcha*</i>
+			<p>*Insert captcha*</p>
 		</div>
 	</div>
 	<div class="modal-footer">

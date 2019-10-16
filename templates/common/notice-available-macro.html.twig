@@ -1,42 +1,45 @@
 {% macro availibility(object, notice ) %}
     {% if sameInstance(object, "App\\Model\\NoticeAvailable")%}
         {% if object.availability == constant('App\\Model\\NoticeAvailable::AVAILABLE') %}
-            <div lang="fr" class="bibliographic-result__availability">
-                <div class="availability availability--true availability--rayon">
-                    <p class="availability__status">
-                        <span>{{ object.availability }}: </span> {% if object.cote %}-{{ object.cote }} {% endif%} {% if object.location %}- {{ object.location }} {% endif %} {% if object.category   %}- {{ object.category }} {% endif %}
-                    </p>
-                </div>
+            <div class="availability availability--true availability--rayon">
+                <p>
+                    <span class="availability__status">{{ object.availability }} : </span>{% if object.cote %}{{ object.cote }}{% endif %}{% if object.location %}{{ object.location }}{% endif %}{% if object.category %}{{ object.category }}{% endif %}
+                </p>
             </div>
         {% else %}
-            <div lang="fr" class="bibliographic-result__availability">
-                <div class="availability availability--false availability--rayon">
-                    <p class="availability__status">
-                        <span>{{ 'bloc.notice-simple.document-unavailable'|trans }}</span> - En commande</p>
+            <div class="availability availability--false availability--rayon">
+                <p class="availability__status">{{ 'bloc.notice-simple.document-unavailable'|trans }} : En commande</p>
 
-                        <button class="btn list-result__content-button js-envelope"
-                            data-url="{{ path('notice_availablity_request', {"sourceId": notice.sourceId, 'configurationId':notice.configurationId}) }}"
-                            data-toggle="modal"
-                            data-target="#modal-notified">
-                            <img src="{{ asset('images/icones/icone-enveloppe.svg') }}" alt="" class="icone-enveloppe"/>
-                            <span class="sr-only">Document indisponible, être prévenu de son retour en rayon - ouverture formulaire</span>
-                        </button>
-                    </p>
-                </div>
+                    <button class="btn list-result__content-button js-envelope"
+                        data-url="{{ path('notice_availablity_request', {"sourceId": notice.sourceId, 'configurationId':notice.configurationId}) }}"
+                        data-toggle="modal"
+                        data-target="#modal-notified">
+                        <img src="{{ asset('images/icones/icone-enveloppe.svg') }}" alt="" class="icone-enveloppe"/>
+                        <span class="sr-only">Document indisponible, être prévenu de son retour en rayon - ouverture formulaire</span>
+                    </button>
+                </p>
             </div>
         {% endif %}
     {% elseif sameInstance(object, "App\\Model\\Link") %}
-       {% if object.media is  defined and object.media is not null  %}
+       {% if object.media is  defined and object.media is not empty %}
            <div class="availability availability--true availability--online">
-               Accéder à {{ notice.title }} <a href="{{ path('media-link', {'ark': object.media}) }}">Play</a>
+               {{ 'bloc.notice-simple.access-to-bdd'|trans }}
+               <a href="{{ path('media-link', {'permalink': object.media}) }}" class="link link--icone-end link--inline">
+                   {{ notice.title }}
+                   <img src="{{ asset('images/icones/icone-chevron-gauche.svg') }}" alt="" aria-hidden="true" />
+               </a>
            </div>
-       {% elseif object.url is defined and object.url is not null   %}
+       {% elseif object.url is defined and object.url is not empty %}
            <div class="availability availability--true availability--online">
-               <a href="{{ object.url }}">Accéder à {{ notice.title }}</a>
+               {{ 'bloc.notice-simple.access-to-bdd'|trans }}
+               <a href="{{ object.url }}" class="link link--icone-end link--inline">
+                   {{ notice.title }}
+                   <img src="{{ asset('images/icones/icone-chevron-gauche.svg') }}" alt="" aria-hidden="true" />
+               </a>
            </div>
        {% else %}
            <div class="availability availability--false availability--online">
-               <p class="mb-0">Consultable à la BPI</p>
+               <p class="mb-0 font-weight-bold">Consultable à la BPI</p>
            </div>
        {% endif %}
     {% endif %}

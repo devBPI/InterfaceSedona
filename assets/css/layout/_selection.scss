@@ -11,14 +11,14 @@
 
 	&__button {
 		padding: 0;
-		font-size: 15px;
+		@include font-size(15);
 		font-weight: $font-bold;
 		display: flex;
 		align-items: center;
 
 		img {
-			width: 10px;
-			margin-right: 5px;
+			width: rem(10);
+			margin-right: rem(5);
 		}
 	}
 }

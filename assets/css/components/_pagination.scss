@@ -10,7 +10,7 @@
 	}
 
 	.page-item {
-		margin: 0 5px;
+		margin: 0 rem(5);
 
 		@include media-breakpoint-up(md) {
 			margin: 0;
@@ -24,16 +24,17 @@
 			margin-bottom: 0;
 			line-height: 1.5;
 			display: initial;
+			padding: 0 rem(5);
 
 			&:hover {
 				text-decoration: underline;
 			}
 
 			img {
-				height: 13px;
+				height: rem(13);
 
 				+ span {
-					margin-left: 5px;
+					margin-left: rem(5);
 				}
 			}
 
@@ -41,7 +42,7 @@
 				vertical-align: middle;
 
 				+ img {
-					margin-left: 5px;
+					margin-left: rem(5);
 				}
 			}
 

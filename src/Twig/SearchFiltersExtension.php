@@ -7,7 +7,6 @@ namespace App\Twig;
 use App\Service\ImageBuilderService;
 use App\Service\NavigationService;
 use App\WordsList;
-use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFunction;
@@ -54,7 +53,6 @@ class SearchFiltersExtension extends AbstractExtension
             new TwigFunction('route_by_object', [$this, 'getRouteByObject']),
             new TwigFunction('pdf_occurence', [$this, 'getPdfOccurence']),
             new TwigFunction('image_to_base64', [$this, 'image64']),
-
         ];
     }
 
@@ -67,20 +65,20 @@ class SearchFiltersExtension extends AbstractExtension
     }
 
     /**
-     * @return array
-     */
-    public function getSearchWords(): array
-    {
-        return WordsList::$words[$this->requestStack->getMasterRequest()->get('thematic', WordsList::THEME_DEFAULT)];
-    }
-
-    /**
      * @param string $word
      * @return bool
      */
     public function isSearchWord(string $word): bool
     {
         return in_array($word, $this->getSearchWords(), true);
+    }
+
+    /**
+     * @return array
+     */
+    public function getSearchWords(): array
+    {
+        return WordsList::$words[$this->requestStack->getMasterRequest()->get('thematic', WordsList::THEME_DEFAULT)];
     }
 
     /**
@@ -163,23 +161,24 @@ class SearchFiltersExtension extends AbstractExtension
      * @param string $format
      * @return string
      */
-    public function getPdfOccurence($object, $method, $label, $format='pdf'){
+    public function getPdfOccurence($object, $method, $label, $format = 'pdf')
+    {
 
         $payload = "";
-        if (method_exists($object, $method) && $object->{$method}() ){
-            if (is_array($object->{$method}())){
-                foreach ($object->{$method}() as $value){
-                    $payload .= $value. ' ';
+        if (method_exists($object, $method) && $object->{$method}()) {
+            if (is_array($object->{$method}())) {
+                foreach ($object->{$method}() as $value) {
+                    $payload .= $value.' ';
                 }
 
-            }elseif (!empty($object->{$method}())  && $object->{$method}()&& $label){
+            } elseif (!empty($object->{$method}()) && $object->{$method}() && $label) {
                 $payload .= $object->{$method}();
             }
 
-            if (!empty($label) ){
-                if ( $format=='pdf'){
+            if (!empty($label)) {
+                if ($format == 'pdf') {
                     return sprintf("<li> %s : %s</li>", $label, $payload);
-                }elseif ($format=='txt'){
+                } elseif ($format == 'txt') {
                     return sprintf("%s : %s \n", $label, $payload);
                 }
             }
@@ -190,11 +189,13 @@ class SearchFiltersExtension extends AbstractExtension
         return "";
     }
 
+    /**
+     * @param $path
+     * @return null|string
+     */
     public function image64($path)
     {
-        return $this->imageService->getimage64($path);
-
-
+        return $this->imageService->getimage64(substr($path, 1));
     }
 }
 

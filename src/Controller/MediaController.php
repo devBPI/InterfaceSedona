@@ -14,18 +14,18 @@ use Symfony\Component\Routing\Annotation\Route;
 class MediaController extends AbstractController
 {
     /**
-     * @Route("media/{ark}", name="media-link")
-     * @param string $ark
+     * @Route("media/{permalink}", name="media-link", requirements={"permalink"=".+"})
+     * @param string $permalink
      * @return Response
      */
-    public function displayMediaLinkAction(string $ark): Response
+    public function displayMediaLinkAction(string $permalink): Response
     {
-        if(empty($ark)) {
+        if(empty($permalink)) {
             throw new NotFoundHttpException('Missing text');
         }
 
         return new Response(
-            "<media><id_objet>999999</id_objet><nom_bdm>".$ark."</nom_bdm></media>",
+            "<media><id_objet>999999</id_objet><nom_bdm>".$permalink."</nom_bdm></media>",
             200,
             [
                 'Content-Type' => 'application/octet-stream',

@@ -2,17 +2,17 @@
     <div class="col-12">
         <div>
             <input type="checkbox" id="related-notice-result-{{ i }}" class="addableInList js-authority"
-                   name="{% if  author.cote is defined and author.cote is not null  %}indice[]{% else %}authority[]{% endif %}"
+                   name="{{ author.docType }}[]"
                    value="{{ author.permalink }}">
             <label for="related-notice-result-{{ i }}">
-                <span class="sr-only">{{ 'bloc.preview-authority.first'|trans({'%%name%': '*Insert titre*'}) }}</span>
+                <span class="sr-only">{{ 'bloc.preview-authority.first'|trans({'%name%': author.title}) }}</span>
             </label>
 
             {% from 'search/blocs-results/macros.html.twig' import add_to_list_form %}
             {{ add_to_list_form(
                 author.permalink,
                 path('record_authority', {'permalink': author.permalink}),
-                author.name,
+                author.title,
                 "",
                 "author"
             ) }}
@@ -21,7 +21,7 @@
 
     <div class="col-12 col-md-2">
         <div class="search-result__image">
-            <img src="{{ asset('images/types-autorite/autorite-personne.svg') }}" alt="" class="img-fluid" />
+            <img src="{{ asset('images/types-autorite/autorite-'~ (author.type|slugify) ~'.svg') }}" alt="" class="img-fluid" />
         </div>
     </div>
 
@@ -29,29 +29,20 @@
         {% if level == 2 %}<div class="search-result__body">{% endif %}
             {% if author is not empty %}
                 <h{{ level }} lang="fr" class="n{{ level }} search-result__title">
-                    {% if author.cote is defined and author.cote is not null %}
-                        <a href="{{ path('record_indice_cdu', {'permalink':author.permalink, 'searchToken': objSearch.contextToken}) }}"
-                                title="*Insert Name identité* - {{ 'global.new-windows'|trans }}">
-                            {{ author.name }}
-                            <span class="n2"></span>
-                        </a>
-                    {% else %}
-                        <a href="{{ path('record_authority', {'permalink':author.permalink, 'searchToken': objSearch.contextToken}) }}"
-                                title="*Insert Name identité* - {{ 'global.new-windows'|trans }}">
-                            {{ author.name }}
-                            <span class="n2"></span>
-                        </a>
-                    {% endif %}
+                    {% set pathName = author.indice ? 'record_indice_cdu' : 'record_authority' %}
+                    <a href="{{ path(pathName, {'permalink':author.permalink, 'searchToken': objSearch.contextToken}) }}"
+                            title="{{ author.title }}">
+                        {{ author.title }}
+                    </a>
                 </h{{ level }}>
             {% endif %}
 
         <ul class="list-information search-result__list">
-            {% include 'common/informations-authority.html.twig'
-                with {
-                    'prefix': 'bloc.autority-result-information.',
-                    'author': author,
-                }
-            %}
+            {% if author.indice %}
+                {% include 'search/blocs-results/indice-detail.html.twig' %}
+            {% else %}
+                {% include 'search/blocs-results/authority-detail.html.twig' %}
+            {% endif %}
         </ul>
         {% if level == 2 %}</div>{% endif %}
     </div>

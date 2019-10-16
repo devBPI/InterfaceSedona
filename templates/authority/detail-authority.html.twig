@@ -1,0 +1,16 @@
+<!-- Début - Bloc 18 Informations de la notice d'autorité -->
+
+<div class="col-12 col-md-4">
+	<div class="authority-result__image">
+		<img src="{{ asset('images/types-autorite/autorite-'~ (notice.type|slugify) ~'.svg') }}" alt="" class="img-fluid" />
+	</div>
+</div>
+<div class="col-12 col-md-8">
+	<div class="authority-result__body">
+		<h1 class="n1 authority-result__title" lang="fr">{{ notice.title }}</h1>
+		<ul class="js-list-information list-information">
+			{% include 'authority/informations-detail-authority.html.twig' with {'prefix': 'bloc.autority-result-information.', 'notice':notice} %}
+		</ul>
+	</div>
+</div>
+<!-- Fin - Bloc 18 Informations de la notice d'autorité -->

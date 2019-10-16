@@ -70,3 +70,7 @@ services:
     tags:
     - { name: 'kernel.event_listener', event: 'security.interactive_login' }
 
+  twig.extension.text:
+    class: Twig_Extensions_Extension_Text
+    tags:
+    - { name: twig.extension }

@@ -42,32 +42,40 @@ class NavigationService
      * @var int|null
      */
     private $rows;
+    /**
+     * @var SearchProvider
+     */
+    private $searchProvider;
+    /**
+     * @var SearchQuery|null
+     */
+    private $search;
 
     /**
      * NavigationService constructor.
      * @param SearchProvider $searchProvider
+     */
+    public function __construct(
+        SearchProvider $searchProvider
+    ) {
+        $this->searchProvider = $searchProvider;
+    }
+
+    /**
      * @param string $permalink
-     * @param SearchQuery|null $search
+     * @param SearchQuery $search
      * @param string|null $hash
      * @param null $type
+     * @return NavigationService
      * @throws \Twig\Error\LoaderError
      * @throws \Twig\Error\RuntimeError
      * @throws \Twig\Error\SyntaxError
      */
-    public function __construct(
-        SearchProvider $searchProvider,
-        string $permalink,
-        SearchQuery $search = null,
-        string $hash = null,
-        $type = null
-    ) {
-
-        if ($search === null) {
-            return;
-        }
+    public function build( string $permalink,  SearchQuery $search, string $hash = null, $type = null):NavigationService
+    {
         $this->hash = $hash;
-
-        $notices = $this->getNoticeList($searchProvider, $search, $type);
+        $this->search = $search;
+        $notices = $this->getNoticeList($this->searchProvider, $this->search, $type);
         $this->rows = \count($notices);
 
         $noticesFiltered = array_filter(
@@ -88,6 +96,7 @@ class NavigationService
                     $notices[$this->row - 1]->getClassName()
                 );
             }
+
             if ($this->row < count($notices) - 1) {
                 $this->nextPermalink = new NavigationNotice(
                     $notices[$this->row + 1]->getPermalink(),
@@ -95,6 +104,8 @@ class NavigationService
                 );
             }
         }
+
+        return $this;
     }
 
     /**

@@ -4,6 +4,7 @@
 
 .list-result {
 	border-bottom: $border-default;
+	height: 100%;
 
 	&--rayon {
 
@@ -137,12 +138,12 @@
 
 		&-selector {
 			width: 100%;
-			margin-bottom: 10px;
+			margin-bottom: rem(10);
 		}
 
 		&-title {
 			display: flex;
-			margin-bottom: 5px;
+			margin-bottom: rem(5);
 			color: $blue;
 		}
 
@@ -201,10 +202,10 @@
 		}
 
 		&-type {
-			width: 25px;
-			min-width: 25px;
-			max-height: 25px;
-			margin-right: 5px;
+			width: rem(25);
+			min-width: rem(25);
+			max-height: rem(25);
+			margin-right: rem(5);
 		}
 
 		&-resume {
@@ -214,21 +215,20 @@
 			line-height: 1;
 			display: inline-block;
 			vertical-align: bottom;
-			margin-left: 5px;
 
 			img {
-				width: 20px;
-				height: 20px;
+				width: rem(20);
+				height: rem(20);
 			}
 		}
 
 		&-button {
 			padding: 0;
-			margin-left: 5px;
+			margin-left: rem(5);
 			line-height: 1;
 
 			img {
-				width: 25px;
+				width: rem(25);
 			}
 		}
 	}

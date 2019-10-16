@@ -14,7 +14,7 @@
 
 	&__title {
 		margin: 0 10px 0 5px;
-		font-size: 15px;
+		@include font-size(15);
 	}
 
 	&__link {
@@ -23,7 +23,14 @@
 		background-color: transparent;
 
 		img {
-			width: 15px;
+			width: rem(15);
 		}
+	}
+
+	td {
+		max-width: 350px;
+		overflow: hidden;
+		white-space: nowrap;
+		text-overflow: ellipsis;
 	}
 }

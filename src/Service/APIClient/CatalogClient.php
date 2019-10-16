@@ -18,6 +18,7 @@ use GuzzleHttp\Exception\ConnectException;
 use GuzzleHttp\Exception\ServerException;
 use GuzzleHttp\MessageFormatter;
 use Psr\Http\Message\UriInterface;
+use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
@@ -27,18 +28,28 @@ use Symfony\Component\Security\Core\Exception\AccessDeniedException;
  */
 class CatalogClient
 {
+    private const AUTH_KEY_HEADER = 'AuthOrigin';
+    private const DEFAULT_AUTH_VALUE = 'PUBLIC';
+
     /**
      * @var Client
      */
     private $client;
 
     /**
-     * CatalogClient constructor.
-     * @param string $api_path
+     * @var \Symfony\Component\HttpFoundation\HeaderBag
      */
-    public function __construct(ClientInterface $client)
+    private $httpHeaders;
+
+    /**
+     * CatalogClient constructor.
+     * @param ClientInterface $client
+     * @param RequestStack $requestStack
+     */
+    public function __construct(ClientInterface $client, RequestStack $requestStack)
     {
         $this->client = $client;
+        $this->httpHeaders = $requestStack->getMasterRequest()->headers;
     }
 
     /**
@@ -51,6 +62,7 @@ class CatalogClient
         try {
             $options = [
                 'query' => $query,
+                'headers' => $this->getHeaders()
             ];
 
             $response = $this->client->get($uri, $options);
@@ -63,6 +75,16 @@ class CatalogClient
         } catch (ClientException|ServerException $exception) {
             $this->formatException($exception);
         }
+    }
+
+    /**
+     * @return array
+     */
+    private function getHeaders(): array
+    {
+        return [
+            self::AUTH_KEY_HEADER => $this->httpHeaders->get(self::AUTH_KEY_HEADER, self::DEFAULT_AUTH_VALUE)
+        ];
     }
 
 

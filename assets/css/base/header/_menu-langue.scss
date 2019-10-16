@@ -14,7 +14,7 @@
 
 		&__button {
 			position: relative;
-			font-size: 12px;
+			@include font-size(12);
 
 			&:after {
 				content: "";
@@ -42,14 +42,14 @@
 				box-shadow: none;
 				border: 0;
 				border-right: 1px solid $grey-border;
-				padding: 20px 0 10px;
+				padding: rem(20) 0 rem(10);
 			}
 
 			&-item {
-					font-size: 12px;
+				@include font-size(12);
 
 				@include media-breakpoint-up(lg) {
-					padding: 0 10px;
+					padding: 0 rem(10);
 				}
 
 				abbr {
@@ -68,7 +68,7 @@
 
 				a {
 					color: $black;
-					font-size: 12px;
+					@include font-size(12);
 
 					&:hover {
 						color: $red;

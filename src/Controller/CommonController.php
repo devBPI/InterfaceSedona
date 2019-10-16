@@ -3,12 +3,12 @@
 namespace App\Controller;
 
 use App\Form\ReportErrorPageType;
-use App\Form\RepportErrorType;
+use App\Form\ReportErrorType;
 use App\Form\ShareByMailType;
 use App\Form\SuggestByMailType;
-use App\Model\From\ReportError;
-use App\Model\From\ShareByMail;
-use App\Model\From\SuggestByMail;
+use App\Model\Form\ReportError;
+use App\Model\Form\ShareByMail;
+use App\Model\Form\SuggestByMail;
 use App\Service\MailSenderService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\FormError;
@@ -34,7 +34,7 @@ class CommonController extends AbstractController
      */
     public function reportErrorAction(Request $request, MailSenderService $mailSenderService)
     {
-        $form = $this->createForm(RepportErrorType::class, new ReportError());
+        $form = $this->createForm(ReportErrorType::class, new ReportError());
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -117,12 +117,12 @@ class CommonController extends AbstractController
                 'common/modal/content.email.twig',
                 ['data' => $object],
                 'no-reply@sedona.fr',
-                $object->getReciever(), $object->getSender()
+                $object->getReceiver(), $object->getSender()
             )) {
                 return $this->render('common/modal/share-success.html.twig');
             } else {
                 $form->addError(
-                    new FormError("Une erreur est survenue lors de l'envoie de l'e-mail \n veuillez reessayer plus tard SVP.")
+                    new FormError("Une erreur est survenue lors de l'envoi de l'e-mail \n veuillez réessayer plus tard SVP.")
                 );
             }
         }

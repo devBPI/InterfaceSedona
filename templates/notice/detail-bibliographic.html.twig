@@ -1,0 +1,150 @@
+{% import "common/notice-available-macro.html.twig" as macros %}
+{% import "common/detail-macro.html.twig" as notice_macros %}
+<!-- Début - Bloc 16 Notice bibliographique -->
+<div class="col-12">
+    {% for title in notice.titles %}
+        <h1 class="n1 bibliographic-result__title" lang="fr">
+            {{ title }}
+        </h1>
+    {% endfor %}
+
+    {% if notice.titleForm %}
+        {% for title in notice.titleForm %}
+            <h1 class="n1 bibliographic-result__title" lang="fr">
+                {{ title }}
+            </h1>
+        {% endfor %}
+    {% endif %}
+    {{ notice_macros.detail(notice.translatedBy, 'bloc.autority-result-information.translated'|trans, true) }}
+    {{ notice_macros.detail(notice.analyticalTitles, 'bloc.autority-result-information.in'|trans, true) }}
+    {{ notice_macros.detail(notice.directors, 'bloc.autority-result-information.directors'|trans, true) }}
+    <div class="row align-items-md-center justify-content-between">
+        <div class="col-12 col-md-6">
+            {% for author in notice.authorsValue %}
+                <p lang="fr" class="bibliographic-result__author">
+                    {% if loop.first %}
+                        {{ 'bloc.autority-result-information.autor'|trans }}
+                    {% endif %}
+                    <a href=" {{ path('search', {'simple_search[text]':author.value}) }}">{{ author.value }}</a>
+                </p>
+            {% endfor %}
+        </div>
+        <div class="col-6 col-md-4">
+            <a href="#" class="link">{{ 'bloc.autority-result-information.autor-dicover'|trans }}</a>
+        </div>
+        <div class="col-6 col-md-2">
+            <div class="bibliographic-result__type">
+                <img src="{{ asset('images/types/type-' ~ notice.slugifiedType ~ '.svg') }}" alt="{{ notice.type }}" title="{{ notice.type }}" />
+            </div>
+        </div>
+    </div>
+</div>
+{% if  notice.contents %}
+    <div class="col-12">
+        <h2 class="n1 bibliographic-result__subtitle">{{ 'bloc.autority-result-information.tracks'|trans }}</h2>
+        {% for content in notice.contents %}
+            <p lang="fr" class="bibliographic-result__resume">
+                {{ content }}
+            </p>
+        {% endfor %}
+    </div>
+{% endif %}
+{% if notice.resume %}
+    <div class="col-12">
+        <h2 class="n1 bibliographic-result__subtitle">{{ 'bloc.autority-result-information.resume'|trans }}</h2>
+        {% for resume in notice.resume %}
+            <p lang="fr" class="bibliographic-result__resume">
+                {{ resume }}
+            </p>
+        {% endfor %}
+    </div>
+{% endif %}
+
+<div class="col-12">
+    <hr class="border-thin">
+</div>
+
+<div class="col-12 col-md-3">
+    <div class="bibliographic-result__image">
+        <img src="{{ path('binary_image', {"content":object.notice.image, 'type': object.notice.type}) }}" alt="{% if object.notice.picture %}{{ object.notice.picture.description }}{% endif %}" class="img-fluid" />
+    </div>
+</div>
+
+<div class="col-12 col-md-9">
+    <ul class="list-information bibliographic-result__infos js-list-information">
+        {% include 'notice/informations-bibliographic.html.twig' with {
+            'notice': notice,
+            'prefix': 'bloc.autority-result-information.',
+            'details': [
+                'authors'
+            ]
+        } %}
+    </ul>
+</div>
+<div class="col-12">
+    {# Pour les documents en rayon indispo #}
+    {% for available in notice.copies %}
+        {{ macros.availibility(available, notice) }}
+
+        {% if loop.first and not loop.last %}
+            <button type="button" class="btn btn-small-link" data-toggle="collapse"
+                    data-target="#availabity-items" aria-expanded="false"
+                    aria-controls="availabity-items">Voir plus
+            </button>
+            <div class="collapse" id="availabity-items">
+        {% endif %}
+
+        {% if not loop.first and loop.last %}
+            </div>
+        {% endif %}
+    {% endfor %}
+
+    {% for link in notice.links %}
+        {{ macros.availibility(link, notice) }}
+
+        {% if loop.first and not loop.last %}
+            <button type="button" class="btn btn-small-link" data-toggle="collapse"
+                    data-target="#links-items" aria-expanded="false"
+                    aria-controls="links-items">Voir plus
+            </button>
+            <div class="collapse" id="links-items">
+        {% endif %}
+
+        {% if not loop.first and loop.last %}
+            </div>
+        {% endif %}
+    {% endfor %}
+
+    {# Pour les revues/journaux ..
+    <div>
+        {% if notice.copies.lastNumber %}
+            <p>{{ 'bloc.notice-simple.last-publication'|trans }} {{ notice.copies.lastNumber }}</p>
+        {% endif %}
+        {% if  notice.copies.valuesReciviedNumber is defined and notice.copies.valuesReciviedNumber |length >0 %}
+            <p class="n5 mt-3">{{ 'bloc.autority-result-information.publication-receve'|trans }}</p>
+            <ul class="list-information list-information--sub-list">
+                {% include 'common/informations-list.html.twig' with {'details': {
+                    'no-label':notice.copies.valuesReciviedNumber,
+                }
+                } %}
+            </ul>
+        {% endif %}
+    </div> #}
+
+    {# Pour les documents en ligne consultable #}
+    <div lang="fr" class="bibliographic-result__availability">
+        <div class="availability availability--true availability--online">
+            <a href="#">{{ 'bloc.autority-result-information.access-document.in-ligne'|trans({'%name%': notice.title}) }}</a>
+        </div>
+    </div>
+
+    {# Pour les documents en ligne non consultable #}
+    <div lang="fr" class="bibliographic-result__availability">
+        <div class="availability availability--false availability--online">
+            <p class="mb-0">{{ 'bloc.autority-result-information.access-document.in-shelf'|trans }}</p>
+        </div>
+    </div>
+</div>
+{% include "search/modal/notified-form.html.twig" %}
+
+<!-- Fin - Bloc 16 Notice bibliographique -->

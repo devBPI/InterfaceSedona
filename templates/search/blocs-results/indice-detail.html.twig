@@ -1,0 +1,21 @@
+<li class="list-information__item">
+    <span class="list-information__label">{{ 'bloc.autority-result-information.authority-type'|trans }}</span>
+    <ul class="list-information__sub-list" lang="fr">
+        <li class="list-information__sub-item">
+            {#% if link is not empty and label is not empty %}<a href="{{ link }}" aria-label="{{ 'bloc.autority-result-information.search-with'|trans({'%theme%': label }) }}">{{ label }}</a>{% else %}{{ label }}{% endif %#}
+            {{ 'bloc.autority-result-information.type.indice'|trans }}
+        </li>
+    </ul>
+</li>
+
+{% if author.cote is defined and author.cote is not null %}
+    <li class="list-information__item">
+        <span class="list-information__label">{{ 'bloc.autority-result-information.cote'|trans }}</span>
+        <ul class="list-information__sub-list" lang="fr">
+            <li class="list-information__sub-item">
+                {#% if link is not empty and label is not empty %}<a href="{{ link }}" aria-label="{{ 'bloc.autority-result-information.search-with'|trans({'%theme%': label }) }}">{{ label }}</a>{% else %}{{ label }}{% endif %#}
+                {{ author.cote }}
+            </li>
+        </ul>
+    </li>
+{% endif %}

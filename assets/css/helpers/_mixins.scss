@@ -1,0 +1,40 @@
+// -------------------------------
+// Mixins Custom
+// -------------------------------
+
+
+/// Convert px to rem - Fonts Only
+@mixin font-size($font-size) {
+    //font-size: $font-size;
+    font-size: ($font-size / $font-base) + rem;
+}
+
+// Calcul line-height
+@mixin line-height($font-size-component, $line-height) {
+    line-height: ($line-height / $font-size-component);
+}
+
+/// Allow to add properties to your element on hover, active, focus
+@mixin on-event($self: false) {
+    @if $self {
+        &,
+        &:hover,
+        &:active,
+        &:focus {
+            @content;
+        }
+    } @else {
+        &:hover,
+        &:active,
+        &:focus {
+            @content;
+        }
+    }
+}
+
+// Convert PX to REM
+$browser-context: 13;
+
+@function rem($pixels, $context: $browser-context) {
+  @return ($pixels / $context) * 1rem;
+}

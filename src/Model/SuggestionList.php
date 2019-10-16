@@ -29,7 +29,9 @@ class SuggestionList
      */
     public function getSuggestions()
     {
-        return $this->suggestions;
+        return array_map(function (string $item) {
+            return html_entity_decode($item);
+        }, $this->suggestions);
     }
 
     /**
