@@ -1,30 +1,30 @@
 <?php
 declare(strict_types=1);
-/**
- * Created by PhpStorm.
- * User: infra
- * Date: 01/10/19
- * Time: 17:58
- */
-namespace App\Model\From;
+
+namespace App\Model\Form;
+
 use Symfony\Component\Validator\Constraints as Asset;
 
+/**
+ * Class ExportNotice
+ * @package App\Model\Form
+ */
 class ExportNotice
 {
     /**
      * @var string
+     * @Asset\NotBlank();
      * @Asset\Email();
      */
-    private $reciever;
+    private $receiver;
     /**
      * @var string
      */
     private $message;
     /**
      * @var bool
-     * @Asset\NotBlank();
      */
-    private $shortFormat;
+    private $shortFormat = false;
     /**
      * @var string
      * @Asset\NotBlank();
@@ -33,7 +33,7 @@ class ExportNotice
     /**
      * @var bool
      */
-    private $image;
+    private $image = false;
 
     /**
      * @var string
@@ -66,9 +66,9 @@ class ExportNotice
 
     /**
      * @param string|null $notices
-     * @return $thi
+     * @return ExportNotice
      */
-    public function setNotices(string $notices=null)
+    public function setNotices(string $notices=null): ExportNotice
     {
         $this->notices = $notices;
         return $this;
@@ -84,9 +84,9 @@ class ExportNotice
 
     /**
      * @param string|null $authorities
-     * @return $this
+     * @return ExportNotice
      */
-    public function setAuthorities(string $authorities=null)
+    public function setAuthorities(string $authorities=null): ExportNotice
     {
         $this->authorities = $authorities;
         return $this;
@@ -96,18 +96,18 @@ class ExportNotice
     /**
      * @return null|string
      */
-    public function getReciever(): ?string
+    public function getReceiver(): ?string
     {
-        return $this->reciever;
+        return $this->receiver;
     }
 
     /**
-     * @param string $reciever
+     * @param string $receiver
      * @return ExportNotice
      */
-    public function setReciever(string $reciever): ExportNotice
+    public function setReceiver(string $receiver): ExportNotice
     {
-        $this->reciever = $reciever;
+        $this->receiver = $receiver;
         return $this;
     }
 
@@ -150,9 +150,9 @@ class ExportNotice
     }
 
     /**
-     * @return bool|null
+     * @return bool
      */
-    public function isImage(): ?bool
+    public function isImage(): bool
     {
         return $this->image;
     }
@@ -179,19 +179,18 @@ class ExportNotice
     }
 
     /**
-     * @return bool|null
+     * @return bool
      */
-    public function isShortFormat(): ?bool
+    public function isShortFormat(): bool
     {
         return $this->shortFormat;
-
     }
 
     /**
      * @param bool $shortFormat
      * @return $this
      */
-    public function setShortFormat(bool $shortFormat)
+    public function setShortFormat(bool $shortFormat): ExportNotice
     {
         $this->shortFormat = $shortFormat;
 

@@ -4,11 +4,12 @@ declare(strict_types=1);
 namespace App\Form;
 
 
-use App\Form\Type\EmailType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Validator\Constraints as Asset;
 
 /**
  * Class ReportErrorPageType
@@ -33,7 +34,8 @@ class ReportErrorPageType extends AbstractType
             ])
             ->add('email', EmailType::class,[
                 'required'  => false,
-                'label'     => 'modal.report.field.email'
+                'label'     => 'modal.report.field.email',
+                'constraints' => [ new Asset\Email() ]
             ])
         ;
     }

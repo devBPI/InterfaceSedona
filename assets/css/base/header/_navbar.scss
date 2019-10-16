@@ -225,7 +225,8 @@
 					}
 				}
 
-				&:hover {
+				&:hover,
+				&:focus {
 					color: $red;
 				}
 			}
@@ -263,7 +264,8 @@
 					}
 				}
 
-				&:hover {
+				&:hover,
+				&:focus {
 					color: $red;
 				}
 			}

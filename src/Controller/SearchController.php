@@ -5,7 +5,7 @@ namespace App\Controller;
 
 use App\Controller\Traits\PrintTrait;
 use App\Entity\SearchHistory;
-use App\Model\From\ExportNotice;
+use App\Model\Form\ExportNotice;
 use App\Model\Search\Criteria;
 use App\Model\Search\FacetFilter;
 use App\Model\Search\ObjSearch;

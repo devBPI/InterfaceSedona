@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace App\Form;
 
-use App\Form\Type\EmailType;
-use App\Model\From\ShareByMail;
+use App\Model\Form\ShareByMail;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -27,21 +27,20 @@ class ShareByMailType extends AbstractType
         $builder
             ->add('object', TextType::class,[
                 'required'  => true,
-                'label'     => 'modal.report.field.object',
-                'data'      => 'Références du catalogue de la Bpi'
+                'label'     => 'modal.share.field.title',
+                'data'      => 'modal.share.field.title_value'
             ])
             ->add('message', TextareaType::class,[
                 'required'  => true,
-                'label'     => 'modal.report.field.message',
+                'label'     => 'modal.share.field.text',
             ])
             ->add('sender', EmailType::class,[
                 'required'  => true,
                 'label'     => 'modal.share.field.expeditor'
             ])
-            ->add('reciever', EmailType::class,[
+            ->add('receiver', EmailType::class,[
                 'required'  => true,
                 'label'     => 'modal.share.field.recipient'
-
             ])
         ;
     }

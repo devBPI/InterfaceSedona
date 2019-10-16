@@ -1,16 +1,10 @@
 <?php
 declare(strict_types=1);
-/**
- * Created by PhpStorm.
- * User: infra
- * Date: 15/10/19
- * Time: 16:58
- */
 
 namespace App\Controller;
 
 use App\Model\Exception\NoResultException;
-use App\Model\From\ExportNotice;
+use App\Model\Form\ExportNotice;
 use App\Model\Notice;
 use App\Service\NavigationService;
 use App\Service\NoticeBuildFileService;
