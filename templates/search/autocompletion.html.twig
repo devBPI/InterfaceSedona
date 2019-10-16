@@ -3,7 +3,8 @@
 	<ul role="listbox" class="listbox search-autocomplet__list">
 		{%  for word in words %}
 			<li class="search-autocomplet__item" role="option" aria-selected="false">
-				<a href="{{ path('search', {'mot': word, 'type': type}) }}" class="search-autocomplet__item-content">{{ word }}</a>
+				<p class="search-autocomplet__item-content">{{ word }}</p>
+				{#<a href="{{ path('search', {'mot': word, 'type': type}) }}" class="search-autocomplet__item-content">{{ word }}</a>#}
 			</li>
 		{% endfor %}
 	</ul>

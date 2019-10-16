@@ -1,15 +1,12 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: infra
- * Date: 01/10/19
- * Time: 11:28
- */
 
-namespace App\Model\From;
+namespace App\Model\Form;
 use Symfony\Component\Validator\Constraints as Asset;
 
-
+/**
+ * Trait PersonneTrait
+ * @package App\Model\Form
+ */
 trait PersonneTrait
 {
     /**

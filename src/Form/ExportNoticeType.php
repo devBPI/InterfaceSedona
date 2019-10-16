@@ -4,13 +4,13 @@ declare(strict_types=1);
 namespace App\Form;
 
 
-use App\Model\From\ExportNotice;
+use App\Model\Form\ExportNotice;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -38,7 +38,8 @@ class ExportNoticeType extends AbstractType
                  'data' => true
              ])
              ->add('image', CheckboxType::class,[
-                 'required' => false
+                 'required' => false,
+                 'label' => 'modal.export.field.img'
              ])
              ->add('notices', HiddenType::class,[
                  'required' => false,
@@ -52,12 +53,13 @@ class ExportNoticeType extends AbstractType
                      'class' => 'js-print-authorities'
                  ]
              ])
-             ->add(
-                 'reciever', TextType::class, [
-                 'required' => true,
+             ->add('receiver', EmailType::class, [
+                    'required' => true,
+                    'label' => 'modal.share.field.recipient'
                  ])
              ->add('message', TextareaType::class,[
-                     'required' => false
+                    'required' => false,
+                    'label' => 'modal.export.field.comments'
                  ])
              ->add('formatType', ChoiceType::class, [
                      'required' => true,
@@ -70,7 +72,6 @@ class ExportNoticeType extends AbstractType
                     'data' => 'pdf'
                  ])
              ;
-
     }
 
     /**

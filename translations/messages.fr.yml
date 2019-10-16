@@ -6,6 +6,9 @@ global:
   modal-btn-close: Fermer
   list-ordering: ": activer pour trier par ordre ascendant/descendant"
   site-title: "| Catalogue Bpi"
+  form:
+    email:
+      placeholder: 'nom@example.com'
 
 header:
   logo_title: Aller à l'accueil du catalogue Bibliothèque Publique d'Information Centre Pompidou
@@ -160,6 +163,7 @@ modal:
     field:
       text: Texte
       title: Titre
+      title_value: Références du catalogue de la Bpi
       recipient: Destinataire
       expeditor: Expéditeur
     submit: Envoyer

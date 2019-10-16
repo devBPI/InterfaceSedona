@@ -1,15 +1,13 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: infra
- * Date: 01/10/19
- * Time: 11:32
- */
 
+namespace App\Model\Form;
 
-namespace App\Model\From;
 use Symfony\Component\Validator\Constraints as Asset;
 
+/**
+ * Class SuggestByMail
+ * @package App\Model\Form
+ */
 class SuggestByMail implements PersonneInterface
 {
     use PersonneTrait;
