@@ -184,7 +184,6 @@ class ExportNotice
     public function isShortFormat(): bool
     {
         return $this->shortFormat;
-
     }
 
     /**
