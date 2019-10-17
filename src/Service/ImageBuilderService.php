@@ -13,10 +13,11 @@ use Symfony\Component\HttpFoundation\File\File;
 final class ImageBuilderService
 {
  use TraitSlugify;
-    public  const PARENT_FOLDER              = 'imported_images';
+    public  const PARENT_FOLDER             = 'imported_images';
     public  const COVER_FOLDER              = 'couvertures-generiques';
-    public const BPI_FOLDER_NAME_ELECTRE     = 'electre';
-    public const DEFAULT_PICTURE             = 'couvertures-generiques/cg-%s.svg';
+    private const IMAGE_FOLDER              = 'images';
+    public const BPI_FOLDER_NAME_ELECTRE    = 'electre';
+    public const DEFAULT_PICTURE            = 'couvertures-generiques/cg-%s.svg';
     public const THUMBNAIL = 'vignette';
     public  const COVER = 'couverture';
 
@@ -40,11 +41,9 @@ final class ImageBuilderService
      */
     public function buildImage(string $content, string $type='livre'): string
     {
-        $localFilePath = $content;
+        $localFilePath = $this->slugify($type).DIRECTORY_SEPARATOR.$content;
 
         $fs = new Filesystem();
-
-
 
         if (!$fs->exists($this->imageDir.$localFilePath)) {
 
@@ -52,16 +51,27 @@ final class ImageBuilderService
                 try{
                 $content = file_get_contents(self::$url.DIRECTORY_SEPARATOR.self::BPI_FOLDER_NAME_ELECTRE.DIRECTORY_SEPARATOR.$content);
             }catch (\ErrorException $e){
-             return self::COVER_FOLDER.DIRECTORY_SEPARATOR.'cg-'.$this->slugify($type).'.svg';
+                return $this->buildGenericPicture($type);
             }
 
             $fs->mkdir(str_replace($filename, '', $this->imageDir.self::PARENT_FOLDER.DIRECTORY_SEPARATOR.$localFilePath));
             $this->saveLocalImage($content, $localFilePath);
         }
 
-        return $localFilePath;
+        return $this->imageDir.self::PARENT_FOLDER.DIRECTORY_SEPARATOR.$localFilePath;
     }
 
+    private function buildGenericPicture(string $type)
+    {
+        $fs = new Filesystem();
+        $filePath = self::PARENT_FOLDER.DIRECTORY_SEPARATOR.$this->slugify($type).DIRECTORY_SEPARATOR.self::COVER_FOLDER.DIRECTORY_SEPARATOR.'cg-'.$this->slugify($type).'.svg';
+        if ($fs->exists($filePath)){
+            return $filePath;
+        }
+        $fs->copy( self::IMAGE_FOLDER.DIRECTORY_SEPARATOR.self::COVER_FOLDER.DIRECTORY_SEPARATOR.'cg-'.$this->slugify($type).'.svg', $filePath);
+
+        return $filePath;
+    }
     /**
      * Save file in local from content
      *
@@ -79,9 +89,10 @@ final class ImageBuilderService
         if ($type===null){
             $type='livre';
         }
-        $filePath = $this->buildImage(str_replace("imported_images/","", $path, $type));
+        $filePath = $this->buildImage(str_replace("imported_images".DIRECTORY_SEPARATOR.$type.DIRECTORY_SEPARATOR,"", $path), $type);
+
         try {
-            $file = new File($this->imageDir."imported_images/".$filePath, true);
+            $file = new File($filePath, true);
         } catch (\Exception $e) {
 
         }
@@ -90,7 +101,7 @@ final class ImageBuilderService
             return null;
         }
 
-        $binary = file_get_contents($this->imageDir."imported_images/".$filePath);
+         $binary = file_get_contents($filePath);
 
         return sprintf('data:image/%s;base64,%s', $file->guessExtension(), base64_encode($binary));
     }

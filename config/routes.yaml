@@ -13,8 +13,8 @@ home:
     permanent: true
 
 binary_image:
-  path: "/imported_images/{content}"
-  controller: 'App\Controller\Image\ImageController::binaryAction'
+  path: "/imported_images/{type}/{content}"
+  controller: 'App\Controller\Image\ImageController::binary'
   requirements:
     _method: GET
     content: ".*"
