@@ -64,7 +64,7 @@ export class CollectionRow {
         if (this.checkLimitChildren()) {
             this.adder.setAttribute('disabled', 'disabled');
         } else {
-            this.adder.removeAttribute('disbaled');
+            this.adder.removeAttribute('disabled');
         }
     }
 }
