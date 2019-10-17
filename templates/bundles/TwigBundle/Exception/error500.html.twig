@@ -1,22 +1,32 @@
 {% extends app.request.isXmlHttpRequest() ? "empty.html.twig" : "base.html.twig" %}
 
+{% block title %} {% endblock %}
+
 {% block container %}
-    <h1>{{ 'error.page_boken'|trans }}</h1>
+    <h1 class="n1">{{ 'error.page_boken'|trans }}</h1>
     <p>{{ 'error.page_broken_message'|trans|nl2br }}</p>
+    
     {% if app.environment == 'dev' or '77.158.146.242' in app.request.clientIps %}
         {# affichage de la raison de l'erreur pour Sedona #}
         <p>Erreur remonté : {{ exception.message }}</p>
         <pre>{{ exception.toarray|json_encode }}</pre>
     {% endif %}
 
-    {% if app.session.get('searchToken') is defined and app.session.get('searchToken') is not null %}
-        <p>
-            <a href="{{ path('search', {'searchToken': app.session.get('searchToken') }) }}">Pour revenir en arrière </a>
-        </p>
-    {% endif %}
-    <p>
-         <a href="{{ path('home') }}">Pour revenir à la page d'accueil </a>
-    </p>
-    Formulaire de contact:
-    {{ render(controller('App\\Controller\\CommonController::reportErrorPageAction')) }}
+        <ul class="list-link">
+        {% if app.session.get('searchToken') is defined and app.session.get('searchToken') is not null %}
+            <li>
+                <a href="{{ path('search', {'searchToken': app.session.get('searchToken') }) }}">Pour revenir en arrière </a>
+            </li>
+        {% endif %}
+        <li>
+            <a href="{{ path('home') }}">{{ 'error.link-home' |trans }}</a>
+        </li>
+    </ul>
+
+    <div class="row justify-content-center">
+        <div class="col-12 col-sm-11 col-md-10">
+            <h2 class="n2">{{ 'error.title-form' |trans }}</h2>
+            {{ render(controller('App\\Controller\\CommonController::reportErrorPageAction')) }}
+        </div>
+    </div>
 {% endblock %}

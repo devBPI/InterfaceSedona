@@ -32,8 +32,10 @@ $('.js-carousel-primary')
         }
     })
     .on('afterChange', function(slick, currentSlide){
-        $('.custom-dots li').attr("aria-selected", "false").removeAttr("role");
-        $('.custom-dots li.slick-active').attr("aria-selected", "true");
+        $('.carousel__pagination li')
+            .attr('aria-selected', 'false')
+            .removeAttr('role');
+        $('.carousel__pagination li.slick-active').attr('aria-selected', 'true');
     })
 ;
 
@@ -57,9 +59,9 @@ $('.carousel__button').on('click', function() {
 
 // Correctif suivant retours RGAA
 $(".js-carousel-primary .slick-slide").removeAttr("role");
-$(".custom-dots").attr("aria-label", "Choix d'un groupe d'actualités à afficher");
-$('.custom-dots li').attr("aria-selected", "false");
-$('.custom-dots li.slick-active').attr("aria-selected", "true");
+$(".carousel__pagination").attr("aria-label", "Choix d'un groupe d'actualités à afficher");
+$('.carousel__pagination li').attr("aria-selected", "false");
+$('.carousel__pagination li.slick-active').attr("aria-selected", "true");
 
 // Configuration Carousel Secondary (Notices) --------------------------------------------------------------------------
 $('.js-carousel-secondary').slick({

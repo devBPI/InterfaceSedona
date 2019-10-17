@@ -518,7 +518,10 @@ bloc:
 
 error:
   page_not_available: 'Cette page n’est pas accessible.'
-  page_not_found: 'Page introuvable'
+  page_not_found: 404 - Page introuvable
+  link-go-back:  Revenir en arrière
+  link-home: Retourner à la page d'accueil
+  title-form: Formulaire de contact
   page_boken: Oops! Une erreur est survenue
   page_broken_message: |
     Le site rencontre actuellement un problème technique, merci de renouveller votre visite ultèrieurement.

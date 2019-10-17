@@ -1,0 +1,14 @@
+// -------------------------------
+// Liste de liens
+// -------------------------------
+
+.list-link {
+    list-style-type: none;
+    padding: 0;
+    margin-bottom: $spacer;
+
+    li {
+        padding-bottom: $spacer;
+        padding-right: rem(15);
+    }
+}
