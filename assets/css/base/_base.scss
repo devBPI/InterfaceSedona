@@ -48,6 +48,12 @@ select {
 .border-double {
 	background-image: url('/images/double-bordure.png');
 	background-repeat: repeat-x;
+
+	&.hr-double {
+		border-top: 0;
+		height: 10px;
+		border: 0;
+	}
 }
 
 .title-icone {
@@ -76,4 +82,8 @@ select {
 
 .form-check {
 	padding-left: 0;
+}
+
+.invalid-feedback {
+	@include font-size(13);
 }

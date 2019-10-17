@@ -4,16 +4,8 @@
 
 .search-result {
 
-	&__image,
 	&__body {
 		margin-top: 5px;
-	}
-
-	&__image {
-		margin-bottom: $spacer;
-		max-width: 200px;
-		margin-right: auto;
-		margin-left: auto;
 	}
 
 	&__title {
@@ -27,50 +19,6 @@
 					color: $red;
 				}
 			}
-		}
-	}
-
-	&__item {
-		padding-right: 25px;
-	}
-
-	&__collapse {
-		border-top: $border-default;
-		border-bottom: $border-default;
-		padding: $spacer 0;
-
-		&-item {
-			position: relative;
-
-			&:after {
-				content: '';
-				width: calc(100% - 30px);
-				height: 1px;
-				background-color: $grey;
-				left: 0;
-				right: 0;
-				bottom: 0;
-				margin-left: auto;
-				margin-right: auto;
-				margin-bottom: $spacer;
-			}
-
-			&:last-child {
-				
-				&:after {
-					display: none;
-				}
-			}
-		}
-	}
-
-	&__button {
-		padding: 0;
-		color: $blue;
-
-		&:hover {
-			color: $red;
-			text-decoration: underline;
 		}
 	}
 }

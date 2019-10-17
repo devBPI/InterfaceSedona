@@ -82,39 +82,41 @@
     </ul>
 </div>
 <div class="col-12">
-    {# Pour les documents en rayon indispo #}
-    {% for available in notice.copies %}
-        {{ macros.availibility(available, notice) }}
+    <div lang="fr" class="bibliographic-result__availability">
+        {% for available in notice.copies %}
+            {{ macros.availibility(available, notice) }}
 
-        {% if loop.first and not loop.last %}
-            <button type="button" class="btn btn-small-link" data-toggle="collapse"
-                    data-target="#availabity-items" aria-expanded="false"
-                    aria-controls="availabity-items">Voir plus
-            </button>
-            <div class="collapse" id="availabity-items">
-        {% endif %}
+            {% if loop.first and not loop.last %}
+                <button type="button" class="btn btn-small-link" data-toggle="collapse"
+                        data-target="#availabity-items" aria-expanded="false"
+                        aria-controls="availabity-items">{{ 'global.see-more'|trans }}
+                </button>
+                <div class="collapse" id="availabity-items">
+            {% endif %}
 
-        {% if not loop.first and loop.last %}
-            </div>
-        {% endif %}
-    {% endfor %}
+            {% if not loop.first and loop.last %}
+                </div>
+            {% endif %}
+        {% endfor %}
 
-    {% for link in notice.links %}
-        {{ macros.availibility(link, notice) }}
+        {% for link in notice.links %}
+            {{ macros.availibility(link, notice) }}
 
-        {% if loop.first and not loop.last %}
-            <button type="button" class="btn btn-small-link" data-toggle="collapse"
-                    data-target="#links-items" aria-expanded="false"
-                    aria-controls="links-items">Voir plus
-            </button>
-            <div class="collapse" id="links-items">
-        {% endif %}
+            {% if loop.first and not loop.last %}
+                <button type="button" class="btn btn-small-link" data-toggle="collapse"
+                        data-target="#links-items" aria-expanded="false"
+                        aria-controls="links-items">{{ 'global.see-more'|trans }}
+                </button>
+                <div class="collapse" id="links-items">
+            {% endif %}
 
-        {% if not loop.first and loop.last %}
-            </div>
-        {% endif %}
-    {% endfor %}
+            {% if not loop.first and loop.last %}
+                </div>
+            {% endif %}
+        {% endfor %}
+    </div>
 
+    {# TODO : vérifier tout les états de disponibilité, s'il y a bien tout les exemplaires d'afficher pour les journaux etc .. #}
     {# Pour les revues/journaux ..
     <div>
         {% if notice.copies.lastNumber %}
@@ -130,20 +132,6 @@
             </ul>
         {% endif %}
     </div> #}
-
-    {# Pour les documents en ligne consultable #}
-    <div lang="fr" class="bibliographic-result__availability">
-        <div class="availability availability--true availability--online">
-            <a href="#">{{ 'bloc.autority-result-information.access-document.in-ligne'|trans({'%name%': notice.title}) }}</a>
-        </div>
-    </div>
-
-    {# Pour les documents en ligne non consultable #}
-    <div lang="fr" class="bibliographic-result__availability">
-        <div class="availability availability--false availability--online">
-            <p class="mb-0">{{ 'bloc.autority-result-information.access-document.in-shelf'|trans }}</p>
-        </div>
-    </div>
 </div>
 {% include "search/modal/notified-form.html.twig" %}
 

@@ -1,7 +1,7 @@
 require('slick-carousel');
 
 // Configuration Carousel Primary (Accueil + Parcours) ----------------------------------------------------------------
-var $slider_items = $(".js-carousel-primary .carousel__slide");
+var $slider_items = $(".js-carousel-primary .carousel__slide, .js-carousel-secondary .carousel__slide");
 
 if ($(window).width() > 576 && $(window).width() < 992) {
     for(var i = 0; i < $slider_items.length; i+=2) {
@@ -64,28 +64,12 @@ $('.custom-dots li.slick-active').attr("aria-selected", "true");
 // Configuration Carousel Secondary (Notices) --------------------------------------------------------------------------
 $('.js-carousel-secondary').slick({
     infinite: false,
-    slidesToShow: 4,
+    slidesToShow: 1,
     slidesToScroll: 1,
     adaptiveHeight: true,
     autoplay: false,
     prevArrow: '<button class="slick-prev" aria-label="Actualité précédente" type="button">Précédent</button>',
     nextArrow: '<button class="slick-next" aria-label="Actualité suivante" type="button">Suivant</button>',
-    responsive: [
-        {
-            breakpoint: 992,
-            settings: 	{
-                slidesToShow: 2,
-                slidesToScroll: 1
-            }
-        },
-        {
-            breakpoint: 576,
-            settings: 	{
-                slidesToShow: 1,
-                slidesToScroll: 1
-            }
-        }
-    ]
 });
 
 // Ajout boutton "Voir plus" suivant nombres d'informations - Notices ---------------------------------------------------------

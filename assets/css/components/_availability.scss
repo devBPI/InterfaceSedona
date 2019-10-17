@@ -3,6 +3,14 @@
 // -------------------------------
 
 .availability {
+
+	p {
+		margin-bottom: 0;
+
+		& + p {
+			margin-bottom: $spacer;
+		}
+	}
 	
 	&--false {
 		display: flex;
@@ -29,6 +37,10 @@
 		&.availability--false {
 			font-weight: $font-bold;
 			color: $green;
+		}
+
+		&.availability--true {
+			font-weight: $font-bold;
 		}
 	}
 

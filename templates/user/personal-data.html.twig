@@ -6,7 +6,7 @@
 
 	<h1 class="n1">{{ 'page.personal-data.title-connected'|trans }}</h1>
 
-	<div>
+	<nav role="navigation">
 		<ul class="nav nav-tabs">
 			{% if is_granted('IS_AUTHENTICATED_FULLY') %}
 				<li class="nav-item">
@@ -20,7 +20,7 @@
 				<a href="{{ path('user_history_index') }}" class="nav-link {% if currentPage is defined and currentPage == 'history' %}active{% endif %}">{{ 'page.personal-data.historic.title'|trans }}</a>
 			</li>
 		</ul>
-	</div>
+	</nav>
 
 	<div class="tab-pane">
 		{% block content %}

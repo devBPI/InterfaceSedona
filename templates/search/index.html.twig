@@ -34,7 +34,8 @@
 
 {% block body %}
 
-	<div class="row search-result">
+	<div class="list-result list-result--authority border-bottom-0">
+		{% include "search/blocs-results/preview-authority_related-notice.html.twig" with {'author': objSearch.results.mainAuthor, 'i':0, 'level': 1 } %}
 		{% include "search/blocs-results/preview-authority.html.twig" %}
     </div>
 
