@@ -26,7 +26,7 @@
                 <a href="{{ path('record_bibliographic', {'permalink': notice.permalink, 'searchToken': objSearch.contextToken}) }}"
                    aria-label="{{ notice.frontTitle }}"
                 >
-                    <img src="{{ path('binary_image', {"content":notice.image, 'type': notice.type})}}" alt="" class="img-fluid" />
+                    <img src="{{ path('binary_image', {"content":notice.image, 'type': notice.type | slugify})}}" alt="" class="img-fluid" />
                 </a>
             </div>
             <div class="list-result__content-infos">
