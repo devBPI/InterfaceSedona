@@ -106,21 +106,26 @@
         <div class="collapse search-facette__body" id="adv-search-language" role="group"
                 aria-label="{{ 'modal.advanced-search.langage.select-aria'|trans }}">
             <div class="search-facette__content">
-
-                <div class="dropdown">
-                    <button type="button" id="adv-search-langage" data-toggle="dropdown" aria-haspopup="listbox"
-                            aria-expanded="false" aria-label="{{ 'modal.advanced-search.langage.select-aria'|trans }}"
-                            class="dropdown-toggle">
-                        Français
-                    </button>
-                    <ul class="dropdown-menu" aria-labelledby="adv-search-langage" role="listbox" tabindex="-1">
-                        {% for lang in criteria.language %}
-                            <li class="dropdown-item" role="option">
-                                <a href="#">{{ lang }}</a>
-                            </li>
-                        {% endfor %}
-                    </ul>
-                </div>
+                <select id="adv-search-langage" multiple="multiple" class="form-control"
+                        data-value="{{ 'modal.advanced-search.langage.select-aria'|trans }}">
+                    {% for lang in criteria.language %}
+                        <option value="{{ lang }}">{{ lang }}</option>
+                    {% endfor %}
+                </select>
+                {#<div class="dropdown">#}
+                    {#<button type="button" id="adv-search-langage" data-toggle="dropdown" aria-haspopup="listbox"#}
+                            {#aria-expanded="false" aria-label="{{ 'modal.advanced-search.langage.select-aria'|trans }}"#}
+                            {#class="dropdown-toggle">#}
+                        {#Français#}
+                    {#</button>#}
+                    {#<ul class="dropdown-menu" aria-labelledby="adv-search-langage" role="listbox" tabindex="-1">#}
+                        {#{% for lang in criteria.language %}#}
+                            {#<li class="dropdown-item" role="option">#}
+                                {#<a href="#">{{ lang }}</a>#}
+                            {#</li>#}
+                        {#{% endfor %}#}
+                    {#</ul>#}
+                {#</div>#}
 
             </div>
         </div>

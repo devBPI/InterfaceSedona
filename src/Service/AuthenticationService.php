@@ -7,6 +7,7 @@ use App\Model\LdapUser;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
+use Symfony\Component\Security\Core\Exception\AuthenticationException;
 
 /**
  * Class AuthenticationService
@@ -52,6 +53,10 @@ abstract class AuthenticationService
      */
     protected function getUser(): LdapUser
     {
+        if (!$this->hasConnectedUser()) {
+            throw new AuthenticationException('User not connected');
+        }
+
         return $this->tokenStorage->getToken()->getUser();
     }
 
