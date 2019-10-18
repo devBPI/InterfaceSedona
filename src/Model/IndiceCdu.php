@@ -10,7 +10,7 @@ use JMS\Serializer\Annotation as JMS;
  * Class IndiceCdu
  * @package App\Model
  */
-class IndiceCdu  extends Cdu implements NoticeInterface
+final class IndiceCdu  extends Cdu implements NoticeInterface
 {
     private const DOC_TYPE = 'indice';
 

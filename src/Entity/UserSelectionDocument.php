@@ -35,6 +35,11 @@ class UserSelectionDocument
      * @var string
      */
     private $author;
+    /**
+     * @ORM\Column(type="string", length=250, nullable=false)
+     * @var string
+     */
+    private $notice_type;
 
     /**
      * @ORM\Column(type="string", length=50, nullable=true)
@@ -77,7 +82,16 @@ class UserSelectionDocument
         $this->document_type = $data['type'];
         $this->permalink = $data['id'];
         $this->url = $data['url'];
+        $this->notice_type = $data['notice_type'];
         $this->creation_date = new \DateTime();
+    }
+
+    /**
+     * @return string
+     */
+    public function getNoticeType(): string
+    {
+        return strtolower($this->notice_type);
     }
 
     /**
@@ -160,6 +174,14 @@ class UserSelectionDocument
         $this->comment = $comment;
 
         return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getPermalink(): string
+    {
+        return $this->permalink;
     }
 
 }

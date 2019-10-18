@@ -19,7 +19,9 @@
                 path('record_bibliographic', {'permalink': notice.permalink}),
                 notice.frontTitle,
                 notice.frontAuthor,
-                notice.type
+                notice.type,
+                class(notice)
+
             ) }}
         </div>
         <div class="list-result__content-body">

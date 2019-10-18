@@ -10,6 +10,7 @@ declare(strict_types=1);
 namespace App\Service;
 
 
+use App\Entity\UserSelectionDocument;
 use App\Model\Authority;
 use App\Model\Form\ExportNotice;
 use App\Model\IndiceCdu;
@@ -234,6 +235,9 @@ class NoticeBuildFileService
             case IndiceCdu::class:
                 $content =  $this->buildFileForIndice($attachement, $format);
                 break;
+            case UserSelectionDocument::class:
+                $content = $this->buildFileForUserSelectionList($attachement, $format);
+                break;
             default:
                 throw new \InvalidArgumentException(sprintf('The type "%s" is not referenced on the app', $type));
                 break;
@@ -284,5 +288,45 @@ class NoticeBuildFileService
         return new PrintNoticeWrapper($noticeOnline, $noticeAuthority, $noticeOnShelves, $noticeIndice);
     }
 
+    /**
+     * @param ExportNotice $attachement
+     * @param string $format
+     * @return string
+     * @throws \Twig\Error\LoaderError
+     * @throws \Twig\Error\RuntimeError
+     * @throws \Twig\Error\SyntaxError
+     */
+    private function buildFileForUserSelectionList(ExportNotice $attachement, string $format)
+    {
+        $a = [];
+        $n = [];
+        try {
+        $permalinkN = json_decode($attachement->getNotices());
+        $permalinkA = json_decode($attachement->getAuthorities());
+
+        foreach ($permalinkA as $value){
+          $a[] = $this->noticeAuhtority->getAuthority($value);
+        }
+        foreach ($permalinkN as $value){
+          $n[] = $this->noticeProvider->getNotice($value);
+        }
+
+        }catch (\Exception $e){
+            /**
+             * lunch an custom exception
+             */
+        }
+
+        return  $this->templating->render(
+            "search/index.".$format.".twig",
+            [
+                'toolbar'           => ObjSearch::class,
+                'isPrintLong'       => !$attachement->isShortFormat(),
+                'includeImage'      => $attachement->isImage(),
+                'printNoticeWrapper'=> new PrintNoticeWrapper($n, $a)
+            ]
+        );
+
+    }
 }
 

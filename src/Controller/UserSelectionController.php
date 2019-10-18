@@ -5,12 +5,16 @@ namespace App\Controller;
 
 use App\Entity\UserSelectionList;
 use App\Entity\UserSelectionDocument;
+use App\Model\Form\ExportNotice;
+use App\Service\NoticeBuildFileService;
 use App\Service\SelectionListService;
+use Knp\Bundle\SnappyBundle\Snappy\Response\PdfResponse;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
@@ -32,10 +36,15 @@ class UserSelectionController extends AbstractController
      * @var SelectionListService
      */
     private $selectionService;
+    /**
+     * @var NoticeBuildFileService
+     */
+    private $buildFileContent;
 
     /**
      * UserSelectionController constructor.
      * @param SelectionListService $selectionListService
+     * @param NoticeBuildFileService $buildFileContent
      */
     public function __construct(SelectionListService $selectionListService)
     {
@@ -49,17 +58,20 @@ class UserSelectionController extends AbstractController
      * @throws \Doctrine\ORM\ORMException
      * @throws \Doctrine\ORM\OptimisticLockException
      */
-    public function selectionAction(Request $request): Response
+    public function selectionAction(Request $request, SessionInterface $session): Response
     {
+      //  $session->remove('selection_session');
         if (count($request->request->all()) > 0) {
             $listObj = $request->get(self::INPUT_NAME, []);
             $action = $request->get('action');
-
             $this->selectionService->applyAction($action, $listObj);
         }
 
         return $this->render( 'user/selection.html.twig',
-            $this->selectionService->getSelectionObjects());
+            $this->selectionService->getSelectionObjects() +[
+                'printRoute'=> $this->generateUrl('selection_print', ['format' => 'pdf'])
+            ]
+        );
     }
 
 
@@ -144,7 +156,7 @@ class UserSelectionController extends AbstractController
      */
     public function editListAction(UserSelectionList $list, Request $request): Response
     {
-        $param = ['list' => $list];
+        $param = [self::INPUT_LIST => $list];
         $title = $request->get(self::INPUT_LIST_TITLE, null);
         if ($title !== null) {
             if ($title !== '') {
@@ -186,4 +198,7 @@ class UserSelectionController extends AbstractController
             'document' => $document
         ]);
     }
+
+
+
 }

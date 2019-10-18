@@ -53,6 +53,8 @@ class SearchFiltersExtension extends AbstractExtension
             new TwigFunction('route_by_object', [$this, 'getRouteByObject']),
             new TwigFunction('pdf_occurence', [$this, 'getPdfOccurence']),
             new TwigFunction('image_to_base64', [$this, 'image64']),
+            new TwigFunction('class', [$this, 'getClass']),
+
         ];
     }
 
@@ -196,6 +198,16 @@ class SearchFiltersExtension extends AbstractExtension
     public function image64($path)
     {
         return $this->imageService->getimage64(substr($path, 1));
+    }
+
+    /**
+     * @param $object
+     * @return string
+     * @throws \ReflectionException
+     */
+    public function getClass($object)
+    {
+        return (new \ReflectionClass($object))->getShortName();
     }
 }
 

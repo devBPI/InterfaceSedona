@@ -339,6 +339,7 @@ final class SelectionListService extends AuthenticationService
      */
     public function getDocumentsFromSession(): array
     {
+
         return array_map(
             function ($document) {
                 return new UserSelectionDocument($document);
