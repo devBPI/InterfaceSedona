@@ -112,9 +112,9 @@
 			@include font-size(15);
 			margin-left: 2px;
 			width: 100%;
-			text-align: right;
 
 			@include media-breakpoint-up(md) {
+				text-align: right;
 				@include font-size(13);
 			}
 		}

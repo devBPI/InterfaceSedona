@@ -10,6 +10,7 @@
 		<div class="row">
 			{% include "notice/detail-bibliographic.html.twig"  with {'notice': object.notice, 'object':object } %}
 		</div>
+		<hr class="hr-double border-double mt-0">
 		<div class="row">
 			<!-- Début - Bloc 17 Documents liés -->
 			<div id="carousel-theme" class="carousel carousel--secondary {{ class|default('') }} col-12">
@@ -26,7 +27,7 @@
 									</span>
 								</a>
 								<div class="carousel__slide-image">
-									<img src="{{ path('binary_image', {'content':object.image, 'type': object.type}) }}" class="img-fluid" alt="" />
+									<img src="{{ path('binary_image', {'content':object.image, 'type': object.type|slugify}) }}" class="img-fluid" alt="" />
 								</div>
 								<p class="n1 carousel__slide-title">{{object.titles[0]}}</p>
 								<p class="n2 carousel__slide-subtitle">

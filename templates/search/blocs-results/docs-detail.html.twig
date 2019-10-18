@@ -9,8 +9,7 @@
                    name="{% if  type == 'online' %}online[]{% else %}onshelves[]{% endif %}"
                    value="{{ notice.permalink }}">
             <label for="result-doc-{{ type }}-{{ index }}">
-                <span class="sr-only">{{ 'bloc.notice-simple.result'|trans }} </span> {{ index +1 }}
-                <span class="sr-only">, {{ 'bloc.notice-simple.select'|trans }} {{ notice.frontTitle }}</span>
+                <span class="sr-only">{{ 'bloc.notice-simple.result'|trans }} {{ index +1 }}, {{ 'bloc.notice-simple.select'|trans }} {{ notice.frontTitle }}</span>
             </label>
 
             {% from 'search/blocs-results/macros.html.twig' import add_to_list_form %}
@@ -27,7 +26,7 @@
                 <a href="{{ path('record_bibliographic', {'permalink': notice.permalink, 'searchToken': objSearch.contextToken}) }}"
                    aria-label="{{ notice.frontTitle }}"
                 >
-                    <img src="{{ path('binary_image', {"content":notice.image, 'type': notice.type})}}" alt="" class="img-fluid" />
+                    <img src="{{ path('binary_image', {"content":notice.image, 'type': notice.type | slugify})}}" alt="" class="img-fluid" />
                 </a>
             </div>
             <div class="list-result__content-infos">
@@ -51,9 +50,11 @@
                     </button>
                     {% endif %}
                 </p>
+                {# TODO : Voir dans les fichiers gabarit pour cette info #}
                 <p lang="fr">Résultat de <a href="#" aria-label="Acceder à *Insert name BDD*">*Insert name BDD*</a></p>
 
                 {% for available in notice.copies %}
+                    {# TODO : afficher la location + category également pour les documents rayon disponible #}
                     {{ macros.availibility(available, notice) }}
 
                     {% if loop.first and not loop.last %}
@@ -85,6 +86,7 @@
             </div>
 
             {% if mode is defined and mode == 'full' %}
+            {# TODO : A quoi correspond ce bloc ? Si c'est pour le "voir tout" revoir le gabarit car il n'est pas bon #}
                 <div class="list-result__content-txt">
                     <p lang="fr">Effet de serre, réchauffement climatique, paléoclimatologie...exemples de questions
                         traitées dans ce dossier multimédia et auxquelles répondent des chercheurs du CNRS et de l'INSU.

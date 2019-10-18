@@ -8,6 +8,7 @@
 // any CSS you require will output into a single css file (app.css in this case)
 require('../css/app.scss');
 
+
 // Need jQuery? Install it with "yarn add jquery", then uncomment to require it.
 require('jquery');
 require('bootstrap');
@@ -22,7 +23,7 @@ import Routing from '../../assets/js/jsrouting.min.js';
 Routing.setRoutingData(routes);
 
 $('[data-toggle="tooltip"]').tooltip({
-    trigger: 'click',
+    trigger: 'hover focus',
     template: '<div class="tooltip" role="tooltip"><div class="tooltip-inner"></div></div>'
 });
 
@@ -119,4 +120,7 @@ let copyToClipboard = function (element) {
 
     $input.remove();
 };
+
+import SelectList from './select-list';
+new SelectList(document.querySelector('#adv-search-langage'));
 

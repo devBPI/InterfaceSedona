@@ -6,6 +6,7 @@ global:
   modal-btn-close: Fermer
   list-ordering: ": activer pour trier par ordre ascendant/descendant"
   site-title: "| Catalogue Bpi"
+  see-more: Voir plus
   form:
     email:
       placeholder: 'nom@example.com'
@@ -135,8 +136,7 @@ modal:
     submit: Confirmer
     submit-sr-only:  la suppression des listes et documents sélectionnés
   export:           #Modal 05 export
-    title: Courriel
-    subtitle: Paramétrer l'export
+    title: Paramétrer l'export
     field:
       recipient: Destinataire(s)
       comments: Message
@@ -192,11 +192,11 @@ modal:
     submit: Valider
     submit-sr-only:  l'envoi du mail de signalisation d'erreur
   comments-edit:   #Modal 10  edition d'un commentaire
-    title: Modifier le commentaire
+    title: Commentaire
     field-content: Contenu
     submit: Valider
   comments-view:  #Modal 11 visualisation d'un commentaire
-    title: Voir le commentaire
+    title: Commentaire
     close: Fermer
   notifed-form:   #Modal 12 notification de dispoibilité de document
     title: Être prevenu de son retour en rayon
@@ -518,7 +518,10 @@ bloc:
 
 error:
   page_not_available: 'Cette page n’est pas accessible.'
-  page_not_found: 'Page introuvable'
+  page_not_found: 404 - Page introuvable
+  link-go-back:  Revenir en arrière
+  link-home: Retourner à la page d'accueil
+  title-form: Formulaire de contact
   page_boken: Oops! Une erreur est survenue
   page_broken_message: |
     Le site rencontre actuellement un problème technique, merci de renouveller votre visite ultèrieurement.

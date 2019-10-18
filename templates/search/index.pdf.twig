@@ -1,6 +1,7 @@
 {% extends 'base.pdf.twig' %}
 
 {% block title %}Résultats de recherche{% endblock %}
+
 {% block body %}
 	<div class="print__bloc print__bloc--rayon">
 		<div class="print__header">
@@ -37,7 +38,7 @@
 					</div>
 					{% if includeImage %}
 						<div class="col-3">
-							<img src="{{path('binary_image', {"content": element.image, 'type': element.type}) }}" class="img-fluid" alt="" />
+							<img src="{{ image_to_base64(path('binary_image', {"content": element.image, 'type': element.type|slugify})) }}" class="img-fluid" alt="" />
 						</div>
 					{% endif %}
 
@@ -62,7 +63,7 @@
 				</div>
                 {% if includeImage %}
 					<div class="col-3">
-						<img src="{{ path('binary_image', {'content':element.image, 'type': element.type}) }}" class="img-fluid" alt="" />
+						<img src="{{ image_to_base64(path('binary_image', {'content':element.image, 'type': element.type| slugify})) }}" class="img-fluid" alt="" />
 					</div>
 				{% endif %}
 				<div class="col">
@@ -85,7 +86,7 @@
 					<h2 class="n1">{{ loop.index }}) {{ element.title }} </h2>
 				</div>
 				<div class="col-3">
-					<img src="{{ path('binary_image', {"content": element.image, 'type': element.type}) }}" class="img-fluid" alt="" />
+					<img src="{{ image_to_base64(path('binary_image', {"content": element.image, 'type': element.type|slugify}) )}}" class="img-fluid" alt="" />
 				</div>
 				<div class="col">
 					<ul class="print__list">
