@@ -91,6 +91,18 @@
 		}		
 	}
 
+	&--no-space {
+
+		.list-information {
+
+			&__label {
+				min-width: auto;
+				flex: 0 0 auto;
+				margin-right: $spacer;
+			}
+		}	
+	}
+
 	.btn-small-link {
 		line-height: normal;
 	}

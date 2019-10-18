@@ -1,0 +1,12 @@
+{% include "search/blocs-results/preview-authority.html.twig" with {'author': objSearch.results.mainAuthor, 'i':0, 'level': 1 } %}
+
+<div class="list-result__collapse">
+	<button class="list-result__collapse-button btn btn-see-more btn-see-more--more" type="button" data-toggle="collapse" data-target="#related-notices" aria-expanded="false" aria-controls="related-notices">{{ 'bloc.preview-authority.see-more'|trans }}</button>
+    {# Include collapse notices d'autorité - Affiche les 5 notices d'autorité les plus pertinentes #}
+	<div id="related-notices" class="collapse pt-3">
+        {# Demande BPI concernant l'affichage souhaité pour les 5 notices #}
+        {% for i, author in objSearch.results.otherAuthors %}
+            {% include "search/blocs-results/preview-authority.html.twig" with {'author': author, 'level': 2 } %}
+        {% endfor %}
+	</div>
+</div>

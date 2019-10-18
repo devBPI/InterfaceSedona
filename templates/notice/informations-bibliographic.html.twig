@@ -61,9 +61,9 @@
             {% for element in notice.otherEdition %}
                 <li class="list-information__sub-item">
                     <a href="{{ link }}" >
-                                {{ label }}
-                            </a>
-                        {{ element }}
+                        {{ label }}
+                    </a>
+                    {{ element }}
                 </li>
                 {# TODO gérer la deuxième valeurs conservation car il y a deux définitions différentes voir le fichier XML gabarit V2 onglet notice ligne 51  #}
                 {% if notice.conservations %}
@@ -132,7 +132,7 @@
                 {{ notice.fourth.biography }}
             </li>
             <li class="list-information__sub-item">
-                <span>{{ 'Inforamtions editeurs' |trans }}</span>
+                <span>{{ 'Informations editeurs' |trans }}</span>
                 {{ notice.fourth.editorInfo }}
             </li>
         </ul>

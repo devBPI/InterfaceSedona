@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace App\Entity;
 
@@ -168,5 +169,13 @@ class UserHistory
         $this->Search = $Search;
 
         return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getUserUid(): string
+    {
+        return $this->user_uid;
     }
 }

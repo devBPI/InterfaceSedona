@@ -16,6 +16,9 @@
 // Import Bootstrap-Slider
 @import 	"~bootstrap-slider/src/sass/bootstrap-slider";
 
+// Import select2
+@import "~select2/dist/css/select2.min.css";
+
 
 // Import Helpersl
 @import 	"helpers/mixins";
@@ -28,3 +31,4 @@
 
 // Components
 @import 	"components";
+

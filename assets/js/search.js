@@ -56,7 +56,7 @@ $(document)
         for (let [key, value] of Object.entries(objSelected)) {
             let container = $(value).parents('.list-result__content-item');
             if (container.length == 0) {
-                container = $(value).parents('.search-result');
+                container = $(value).parents('.js-list-result-authority-item');
             }
             if (container.length > 0) {
                 let card = container.clone()[0];

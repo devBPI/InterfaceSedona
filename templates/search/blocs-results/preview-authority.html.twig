@@ -1,20 +1,48 @@
-<!-- Début - Bloc 11 Aperçu d'une autorité -->
+{% if author is not empty %}
+    <div class="list-result__content-item js-list-result-authority-item">
 
-{% include "search/blocs-results/preview-authority_related-notice.html.twig" with {'author': objSearch.results.mainAuthor, 'i':0, 'level': 1 } %}
+        <div class="list-result__content-selector">
+            <input type="checkbox" id="related-notice-result-{{ i }}" class="addableInList js-authority"
+                   name="{{ author.docType }}[]"
+                   value="{{ author.permalink }}">
+            <label for="related-notice-result-{{ i }}">
+                <span class="sr-only">{{ 'bloc.preview-authority.first'|trans({'%name%': author.title}) }}</span>
+            </label>
 
-<div class="col-12">
-	<div class="search-result__collapse">
-		<button class="search-result__button btn btn-see-more btn-see-more--more" type="button" data-toggle="collapse" data-target="#related-notices" aria-expanded="false" aria-controls="related-notices">{{ 'bloc.preview-authority.see-more'|trans }}</button>
-		{# Include collapse notices d'autorité - Affiche les 5 notices d'autorité les plus pertinentes #}
-		<div id="related-notices" class="collapse pt-3">
-			{# Demande BPI concernant l'affichage souhaité pour les 5 notices #}
-			{% for i, author in objSearch.results.otherAuthors %}
-				<div class="row search-result__collapse-item">
-					{% include "search/blocs-results/preview-authority_related-notice.html.twig" with {'author': author, 'level': 2 } %}
-				</div>
-			{% endfor %}
-		</div>
-	</div>
-</div>
+            {% from 'search/blocs-results/macros.html.twig' import add_to_list_form %}
+            {{ add_to_list_form(
+                author.permalink,
+                path('record_authority', {'permalink': author.permalink}),
+                author.title,
+                "",
+                "author"
+            ) }}
+        </div>
 
-<!-- Fin - Bloc 11 Aperçu d'une autorité -->
+        <div class="list-result__content-body">
+            <div class="list-result__content-image">
+                <img src="{{ asset('images/types-autorite/autorite-'~ (author.type|slugify) ~'.svg') }}" alt="" class="img-fluid" />
+            </div>
+
+            <div class="list-result__content-infos">
+                {% if author is not empty %}
+                    <h{{ level }} lang="fr" class="n{{ level }} search-result__title">
+                        {% set pathName = author.indice ? 'record_indice_cdu' : 'record_authority' %}
+                        <a href="{{ path(pathName, {'permalink':author.permalink, 'searchToken': objSearch.contextToken}) }}"
+                           title="{{ author.title }}">
+                            {{ author.title }}
+                        </a>
+                    </h{{ level }}>
+                {% endif %}
+
+                <ul class="list-information list-information--no-space search-result__list">
+                    {% if author.indice %}
+                        {% include 'search/blocs-results/indice-detail.html.twig' %}
+                    {% else %}
+                        {% include 'search/blocs-results/authority-detail.html.twig' %}
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </div>
+{% endif %}

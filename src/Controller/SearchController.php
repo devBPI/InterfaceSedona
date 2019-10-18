@@ -259,14 +259,16 @@ class SearchController extends AbstractController
         try {
             $type = $request->get('type', WordsList::THEME_DEFAULT);
             $word = $request->get('word');
+            $mode = $request->get('mode');
             $objSearch = $this->searchProvider->findNoticeAutocomplete($type, $word, SuggestionList::class);
 
             return new JsonResponse([
                 'html' => $this->renderView(
-                    'search/autocompletion.html.twig',
+                    'search/blocs-searchextended/autocompletion.html.twig',
                     [
                         'words' => $objSearch->getSuggestions(),
-                        'type'  => $type
+                        'type'  => $type,
+                        'mode'  => $mode
                     ]
                 ),
             ]);

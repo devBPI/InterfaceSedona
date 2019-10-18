@@ -8,8 +8,8 @@ use App\Entity\UserHistory;
 use App\Model\Search\ObjSearch;
 use Doctrine\ORM\EntityManager;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
+use Symfony\Component\HttpKernel\Exception\UnauthorizedHttpException;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
-use Symfony\Component\Security\Core\Exception\AuthenticationException;
 
 /**
  * Class HistoryService
@@ -17,7 +17,7 @@ use Symfony\Component\Security\Core\Exception\AuthenticationException;
  */
 final class HistoryService extends AuthenticationService
 {
-    const SESSION_HISTORY_ID = 'history_session6';
+    const SESSION_HISTORY_ID = 'history_session';
 
     /**
      * @var EntityManager
@@ -47,24 +47,11 @@ final class HistoryService extends AuthenticationService
     public function getHistory(): array
     {
         if ($this->hasConnectedUser()) {
-            return $this->entityManager->getRepository(UserHistory::class)->findBy(
-                ['user_uid' => $this->getUserId()]
-            );
+            return $this->entityManager->getRepository(UserHistory::class)
+                ->getUserHistory($this->getUser());
         }
 
         return $this->getHistoryFromSession();
-    }
-
-    /**
-     * @return string
-     */
-    private function getUserId(): string
-    {
-        if (!$this->hasConnectedUser()) {
-            throw new AuthenticationException('Not connected');
-        }
-
-        return $this->getUser()->getUid();
     }
 
     /**
@@ -107,6 +94,11 @@ final class HistoryService extends AuthenticationService
         $histories = $this->entityManager->getRepository(UserHistory::class)
             ->findBy(['id' => $list]);
         foreach ($histories as $history) {
+            if ($history->getUserUid() !== $this->getUser()->getUid()) {
+                throw new UnauthorizedHttpException(
+                    'History '.$history->getId().' don\'t own to '.
+                    $this->getUser()->getFirstname().' '.$this->getUser()->getLastname());
+            }
             $this->entityManager->remove($history);
         }
 
@@ -192,7 +184,8 @@ final class HistoryService extends AuthenticationService
     private function findOrCreateUserHistory(SearchHistory $searchHistory): UserHistory
     {
         if ($this->hasConnectedUser()) {
-            $userHistory = $this->getUserHistoryFromSearchContext($searchHistory);
+            $userHistory = $this->entityManager->getRepository(UserHistory::class)
+                ->getUserHistoryFromSearchContext($searchHistory, $this->getUser());
         } else {
             $userHistory = $this->getUserHistoryFromSession($searchHistory);
         }
@@ -210,17 +203,6 @@ final class HistoryService extends AuthenticationService
         }
 
         return $userHistory;
-    }
-
-    /**
-     * @param SearchHistory $searchHistory
-     * @return UserHistory|null
-     */
-    private function getUserHistoryFromSearchContext(SearchHistory $searchHistory): ?UserHistory
-    {
-        return $this->entityManager->getRepository(UserHistory::class)->findOneBy(
-            ['Search' => $searchHistory, 'user_uid' => $this->getUserId()]
-        );
     }
 
     /**

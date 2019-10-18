@@ -14,7 +14,7 @@
                    type="text" aria-autocomplete="list" aria-controls="autocompletion-list"
                    id="search-input" data-url="{{ path('search_autocompletion') }}"
                    data-toggle="autocomplete" data-target="#autocompletion-list"
-                   data-type="#search-words"
+                   data-type="#search-words" data-mode="link"
                    placeholder="{{ ('bloc.search-zone.input-'~searchType~'-placeholder')|trans}}"
                    value="{{ objSearch is defined ? objSearch.simpleSearchKeyword : '' }}"/>
         </div>
