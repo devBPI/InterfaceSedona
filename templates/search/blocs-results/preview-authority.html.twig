@@ -7,6 +7,7 @@
                    value="{{ author.permalink }}">
             <label for="related-notice-result-{{ i }}">
                 <span class="sr-only">{{ 'bloc.preview-authority.first'|trans({'%name%': author.title}) }}</span>
+                {{ i +1 }}
             </label>
 
             {% from 'search/blocs-results/macros.html.twig' import add_to_list_form %}
