@@ -456,8 +456,8 @@ bloc:
     type:
       indice: 'Indice de classement'
     publics: 'Public'
-    manifestation-location: 'Lieu de la manifestations'
-    result-de: 'Lieu de la manifestations'
+    manifestation-location: 'Lieu de la manifestation'
+    result-de: 'Résultat de'
     origins: 'Origine de la notice'
     content-table: Tables des matières
     periodicity-date: Date d'édition papier
