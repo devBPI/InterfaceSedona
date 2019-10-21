@@ -35,7 +35,7 @@ class NoticeBuildFileService
     /**
      * @var NoticeAuthorityProvider
      */
-    private $noticeAuhtority;
+    private $noticeAuthority;
     /**
      * @var \Knp\Snappy\Pdf
      */
@@ -48,19 +48,19 @@ class NoticeBuildFileService
     /**
      * NoticeBuildFileService constructor.
      * @param NoticeProvider $noticeProvider
-     * @param NoticeAuthorityProvider $noticeAuhtority
+     * @param NoticeAuthorityProvider $noticeAuthority
      * @param \Knp\Snappy\Pdf $knpSnappy
      * @param \Twig_Environment $templating
      */
     public function __construct(
         NoticeProvider $noticeProvider,
-        NoticeAuthorityProvider $noticeAuhtority,
+        NoticeAuthorityProvider $noticeAuthority,
          \Knp\Snappy\Pdf $knpSnappy,
         \Twig_Environment $templating
         )
     {
         $this->noticeProvider   = $noticeProvider;
-        $this->noticeAuhtority  = $noticeAuhtority;
+        $this->noticeAuthority  = $noticeAuthority;
         $this->knpSnappy        = $knpSnappy;
         $this->templating = $templating;
     }
@@ -97,26 +97,31 @@ class NoticeBuildFileService
             ]
         );
     }
-    private function buildFileForNotice(ExportNotice $attachement, string $format)
+
+    /**
+     * @param ExportNotice $attachement
+     * @param string $format
+     * @return string
+     */
+    private function buildFileForNotice(ExportNotice $attachement, string $format):string
     {
         try{
             $permalink = $attachement->getNotices();
 
             $object = $this->noticeProvider->getNotice($permalink);
 
+            return  $this->templating->render("notice/print.".$format .".twig", [
+                'toolbar'           => Notice::class,
+                'isPrintLong'       => !$attachement->isShortFormat(),
+                'includeImage'      => $attachement->isImage(),
+                'notice'            => $object->getNotice(),
+                'noticeThemed'      => $object->getNoticesSameTheme(),
+            ]);
         }catch(\Exception $e){
             /**
              * catch and handle exception to tell
              */
         }
-
-        return  $this->templating->render("notice/print.".$format .".twig", [
-            'toolbar'           => Notice::class,
-            'isPrintLong'       => !$attachement->isShortFormat(),
-            'includeImage'      => $attachement->isImage(),
-            'notice'            => $object->getNotice(),
-            'noticeThemed'      => $object->getNoticesSameTheme(),
-        ]);
     }
 
     /**
@@ -131,9 +136,9 @@ class NoticeBuildFileService
     {
         try{
             $permalink = $attachement->getAuthorities();
-            $object             = $this->noticeAuhtority->getAuthority($permalink);
-            $relatedDocuments   = $this->noticeAuhtority->getSubjectNotice($object->getId());
-            $noticeAuthors      = $this->noticeAuhtority->getAuthorsNotice($object->getId());
+            $object             = $this->noticeAuthority->getAuthority($permalink);
+            $relatedDocuments   = $this->noticeAuthority->getSubjectNotice($object->getId());
+            $noticeAuthors      = $this->noticeAuthority->getAuthorsNotice($object->getId());
 
         }catch(\Exception $e){
             /**
@@ -162,7 +167,7 @@ class NoticeBuildFileService
     {
         try{
             $permalink          = $attachement->getAuthorities();
-            $object             = $this->noticeAuhtority->getIndiceCdu($permalink);
+            $object             = $this->noticeAuthority->getIndiceCdu($permalink);
         }catch(\Exception $e){
             /**
              * catch and handle exception to tell
@@ -220,8 +225,6 @@ class NoticeBuildFileService
      */
     public function buildContent(ExportNotice $attachement, string $type, string $format){
 
-        $content = '';
-
         switch ($type){
             case ObjSearch::class:
                 $content =  $this->buildFileForSearch($attachement, $format);
@@ -272,7 +275,7 @@ class NoticeBuildFileService
         }
         if (array_key_exists('authority', $array)){
             foreach ($array['authority'] as $value){
-                if (($notice=$this->noticeAuhtority->getAuthority($value)) instanceof Authority) {
+                if (($notice=$this->noticeAuthority->getAuthority($value)) instanceof Authority) {
                     $noticeAuthority[] = $notice;
                 }
             }
@@ -301,15 +304,15 @@ class NoticeBuildFileService
         $a = [];
         $n = [];
         try {
-        $permalinkN = json_decode($attachement->getNotices());
-        $permalinkA = json_decode($attachement->getAuthorities());
+            $permalinkN = json_decode($attachement->getNotices());
+            $permalinkA = json_decode($attachement->getAuthorities());
 
-        foreach ($permalinkA as $value){
-          $a[] = $this->noticeAuhtority->getAuthority($value);
-        }
-        foreach ($permalinkN as $value){
-          $n[] = $this->noticeProvider->getNotice($value);
-        }
+            foreach ($permalinkA as $value){
+              $a[] = $this->noticeAuthority->getAuthority($value);
+            }
+            foreach ($permalinkN as $value){
+              $n[] = $this->noticeProvider->getNotice($value)->getNotice();
+            }
 
         }catch (\Exception $e){
             /**
@@ -318,12 +321,12 @@ class NoticeBuildFileService
         }
 
         return  $this->templating->render(
-            "search/index.".$format.".twig",
+            "user/print.".$format.".twig",
             [
                 'toolbar'           => ObjSearch::class,
                 'isPrintLong'       => !$attachement->isShortFormat(),
                 'includeImage'      => $attachement->isImage(),
-                'printNoticeWrapper'=> new PrintNoticeWrapper($n, $a)
+                'printNoticeWrapper'=> new PrintNoticeWrapper([],  $a, $n)
             ]
         );
 
