@@ -330,9 +330,9 @@ bloc:
     input-sr-only: Saisir un mot clé
     input-placeholder: Rechercher
     input-general-placeholder: Rechercher
-    input-autoformation-placeholder: Rechercher dans autoformation
-    input-presse-placeholder: Rechercher dans presse
-    input-cinema-placeholder: Rechercher dans cinéma
+    input-autoformation-placeholder: Recherche dans le parcours Autoformation
+    input-presse-placeholder: Rechercher dans le parcours Actualités et Revues
+    input-cinema-placeholder: Rechercher dans le parcours Cinéma
     type-label: Chercher sur
     submit: Valider la recherche
     advanced-title: Recherche Avancée
