@@ -1,19 +1,20 @@
 {% if sameInstance(notice,'App\\Model\\Authority') and (notice.formAdopted is not empty or notice.type is not empty or notice.name is not empty) %}
     <li class="list-information__item">
+        {% if notice.type is not empty %}
+            <span class="list-information__label">{{ ("Type")|trans }}</span>
+        {% endif %}
         <ul class="list-information__sub-list" lang="fr">
+            <li class="list-information__sub-item">
+                {{ notice.type }}
+            </li>
             {% if notice.formAdopted is not empty %}
                 <li class="list-information__sub-item">
-                    <span class="list-information__label">{{ "bloc.autority-result-information.authority-type"|trans }}{{ notice.formAdopted }}</span>
-                </li>
-            {% endif %}
-            {% if notice.type is not empty %}
-                <li class="list-information__sub-item">
-                        <span class="list-information__label">{{ ("Type:  ")|trans }}{{ notice.type }}</span>
+                    {{ "bloc.autority-result-information.authority-type"|trans }}{{ notice.formAdopted }}
                 </li>
             {% endif %}
             {% if notice.name is not empty %}
                 <li class="list-information__sub-item">
-                        {{ notice.name }}
+                    {{ notice.name }}
                 </li>
             {% endif %}
         </ul>
@@ -22,7 +23,7 @@
 
 {% if sameInstance(notice,'App\\Model\\Authority') and  notice.countries is not empty %}
     <li class="list-information__item">
-        <span class="list-information__label">{{ ('Pays ')|trans }}</span>
+        <span class="list-information__label">{{ ('Pays')|trans }}</span>
         <ul class="list-information__sub-list" lang="fr">
             {% for element in notice.countries %}
                 <li class="list-information__sub-item">
@@ -34,7 +35,7 @@
 {% endif %}
 {% if sameInstance(notice,'App\\Model\\Authority') and  notice.languages is not empty %}
     <li class="list-information__item">
-        <span class="list-information__label">{{ ('Langue(s) ')|trans }}</span>
+        <span class="list-information__label">{{ ('Langue(s)')|trans }}</span>
         <ul class="list-information__sub-list" lang="fr">
             {% for element in notice.languages %}
                 <li class="list-information__sub-item">

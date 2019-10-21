@@ -15,7 +15,7 @@
         <ul class="list-link">
         {% if app.session.get('searchToken') is defined and app.session.get('searchToken') is not null %}
             <li>
-                <a href="{{ path('search', {'searchToken': app.session.get('searchToken') }) }}">Pour revenir en arrière </a>
+                <a href="{{ path('search', {'searchToken': app.session.get('searchToken') }) }}">{{ 'error.link-go-back' |trans }}</a>
             </li>
         {% endif %}
         <li>
