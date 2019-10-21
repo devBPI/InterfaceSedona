@@ -18,30 +18,10 @@ $(document)
                 .addClass('btn-see-more--more');
         }
     })
-    .on('click', '.js-btn', function() {
-        var $this = $(this),
-            $items = $this.parent().nextAll();
-
-        if ( $this.hasClass('js-btn--more') ) {
-            $items.removeClass('d-none');
-            $this
-                .text('Voir moins')
-                .removeClass('js-btn--more')
-                .addClass('js-btn--less');
-        } else {
-            $items.addClass('d-none');
-            $this
-                .text('Voir plus')
-                .removeClass('js-btn--less')
-                .addClass('js-btn--more');
-        }
-    })
     .on('change','.js-pagination-select', function (e) {
         let $this = $(this);
         let page = $this.val();
         window.location = $this.data('url').replace(-1, page);
-
-
     })
     .on('click', '.js-delete-filter',  function(e){
         e.preventDefault();

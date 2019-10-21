@@ -267,7 +267,10 @@ modal:
     clear-search: Effacer ma recherche
     submit: Rechercher
   refine-search:  #Modal 14 affiné la recheche
+    button-title: Affiner
+    button-title-aria: la recherche
     title: Affiner ma recherche
+    title-aria: la recherche
     filter-delete: Supprimer le filtre
     submit: Affiner
     submit-aria: Affiner ma recherche
@@ -382,6 +385,7 @@ bloc:
     document-available: Disponible
     document-unavailable: Indisponible
     notification-availablity: Document indisponible, être prévenu de son retour en rayon - ouverture formulaire
+    resume-label: Afficher le résumé
   search-header-footer:   #Bloc 14 Tri et pages
     header:
       nb-result-aria: dropdown-number-items
