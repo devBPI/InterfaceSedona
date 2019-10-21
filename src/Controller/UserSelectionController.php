@@ -5,10 +5,7 @@ namespace App\Controller;
 
 use App\Entity\UserSelectionList;
 use App\Entity\UserSelectionDocument;
-use App\Model\Form\ExportNotice;
-use App\Service\NoticeBuildFileService;
 use App\Service\SelectionListService;
-use Knp\Bundle\SnappyBundle\Snappy\Response\PdfResponse;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -36,15 +33,10 @@ class UserSelectionController extends AbstractController
      * @var SelectionListService
      */
     private $selectionService;
-    /**
-     * @var NoticeBuildFileService
-     */
-    private $buildFileContent;
 
     /**
      * UserSelectionController constructor.
      * @param SelectionListService $selectionListService
-     * @param NoticeBuildFileService $buildFileContent
      */
     public function __construct(SelectionListService $selectionListService)
     {
@@ -60,7 +52,6 @@ class UserSelectionController extends AbstractController
      */
     public function selectionAction(Request $request, SessionInterface $session): Response
     {
-      //  $session->remove('selection_session');
         if (count($request->request->all()) > 0) {
             $listObj = $request->get(self::INPUT_NAME, []);
             $action = $request->get('action');

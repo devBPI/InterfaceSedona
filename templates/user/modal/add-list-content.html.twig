@@ -32,7 +32,6 @@
                 <p class="search-base__label">{{ 'modal.list-add.add-to-profile'|trans }}</p>
                 <ul class="search-base__list">
                     {% for i, list in lists %}
-                        {{ dump(list)}}
                         <li class="search-base__item form-check">
                             <input type="checkbox" id="list-{{ i }}" class="form-check-input"
                                    name="{{ constant('App\\Controller\\UserSelectionController::INPUT_LIST') }}[]"

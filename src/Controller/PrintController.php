@@ -47,7 +47,7 @@ class PrintController extends AbstractController
      * @throws \Twig\Error\RuntimeError
      * @throws \Twig\Error\SyntaxError
      */
-    public function print(Request $request, $format)
+    public function printSelection(Request $request, $format)
     {
         $sendAttachement = new ExportNotice();
         $sendAttachement

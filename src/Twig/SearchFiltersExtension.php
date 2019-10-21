@@ -21,10 +21,6 @@ class SearchFiltersExtension extends AbstractExtension
      * @var RequestStack
      */
     private $requestStack;
-    /**
-     * @var ImageBuilderService
-     */
-    private $imageService;
 
     /**
      * SearchFiltersExtension constructor.
@@ -32,10 +28,9 @@ class SearchFiltersExtension extends AbstractExtension
      * @param RequestStack $requestStack
      * @param ImageBuilderService $imageService
      */
-    public function __construct(RequestStack $requestStack, ImageBuilderService $imageService)
+    public function __construct(RequestStack $requestStack)
     {
         $this->requestStack = $requestStack;
-        $this->imageService = $imageService;
     }
 
     /**
@@ -49,11 +44,8 @@ class SearchFiltersExtension extends AbstractExtension
             new TwigFunction('words_operators', [$this, 'getSearchOperators']),
             new TwigFunction('get_value_by_field_name', [$this, 'getValueByFieldName']),
             new TwigFunction('check_value_exist', [$this, 'isValueExist']),
-            new TwigFunction('sameInstance', [$this, 'sameInstance']),
             new TwigFunction('route_by_object', [$this, 'getRouteByObject']),
             new TwigFunction('pdf_occurence', [$this, 'getPdfOccurence']),
-            new TwigFunction('image_to_base64', [$this, 'image64']),
-            new TwigFunction('class', [$this, 'getClass']),
 
         ];
     }
@@ -128,23 +120,12 @@ class SearchFiltersExtension extends AbstractExtension
         }
 
         foreach ($array[$key] as $index => $value) {
-
             if ($value === $searchValue) {
                 return true;
             }
         }
 
         return false;
-    }
-
-    /**
-     * @param $object
-     * @param $class
-     * @return bool
-     */
-    public function sameInstance($object, $class)
-    {
-        return $object instanceof $class;
     }
 
     /**
@@ -165,7 +146,6 @@ class SearchFiltersExtension extends AbstractExtension
      */
     public function getPdfOccurence($object, $method, $label, $format = 'pdf')
     {
-
         $payload = "";
         if (method_exists($object, $method) && $object->{$method}()) {
             if (is_array($object->{$method}())) {
@@ -191,23 +171,5 @@ class SearchFiltersExtension extends AbstractExtension
         return "";
     }
 
-    /**
-     * @param $path
-     * @return null|string
-     */
-    public function image64($path)
-    {
-        return $this->imageService->getimage64(substr($path, 1));
-    }
-
-    /**
-     * @param $object
-     * @return string
-     * @throws \ReflectionException
-     */
-    public function getClass($object)
-    {
-        return (new \ReflectionClass($object))->getShortName();
-    }
 }
 

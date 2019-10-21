@@ -4,7 +4,7 @@
 		'1': {'title': ('page.home.page_title'|trans) , 'url':path('home')},
 		'2':{'title': ('footer.sitemap.bpi.Catalogue'|trans) , 'url':path('search')},
 		} %}
-        {% if navigation is defined and sameInstance(navigation,'App\\Service\\NavigationService') and notice is defined and notice is not null  %}
+        {% if navigation is defined and is_same_instance(navigation,'App\\Service\\NavigationService') and notice is defined and notice is not null  %}
 			{% set urlBreadcrumb = urlBreadcrumb |merge({
                 '3': {'title': ('Résultats'|trans) , 'url': path('search', {'searchToken':navigation.hash})},
                 '4':{'title': (notice.title |trans) ,'url': path('search', {'searchToken':navigation.hash})},

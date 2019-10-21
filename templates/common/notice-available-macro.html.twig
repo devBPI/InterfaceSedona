@@ -1,5 +1,5 @@
 {% macro availibility(object, notice ) %}
-    {% if sameInstance(object, "App\\Model\\NoticeAvailable")%}
+    {% if is_same_instance(object, "App\\Model\\NoticeAvailable")%}
         {% if object.availability == constant('App\\Model\\NoticeAvailable::AVAILABLE') %}
             <div class="availability availability--true availability--rayon">
                 <p>
@@ -21,7 +21,7 @@
                 </p>
             </div>
         {% endif %}
-    {% elseif sameInstance(object, "App\\Model\\Link") %}
+    {% elseif is_same_instance(object, "App\\Model\\Link") %}
        {% if object.media is  defined and object.media is not empty %}
            <div class="availability availability--true availability--online">
                <a href="{{ path('media-link', {'permalink': object.media}) }}" class="link link--icone-end link--inline">
