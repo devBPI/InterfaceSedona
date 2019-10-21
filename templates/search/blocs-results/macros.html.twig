@@ -1,7 +1,8 @@
-{% macro add_to_list_form(id, url, name, author, type) %}
-	<input type="hidden" name="{{ constant('App\\Controller\\UserSelectionController::INPUT_DOCUMENT') }}[__item__][id]" value="{{ id }}">
-	<input type="hidden" name="{{ constant('App\\Controller\\UserSelectionController::INPUT_DOCUMENT') }}[__item__][url]" value="{{ url }}">
-	<input type="hidden" name="{{ constant('App\\Controller\\UserSelectionController::INPUT_DOCUMENT') }}[__item__][name]" value="{{ name }}">
-	<input type="hidden" name="{{ constant('App\\Controller\\UserSelectionController::INPUT_DOCUMENT') }}[__item__][author]" value="{{ author }}">
-	<input type="hidden" name="{{ constant('App\\Controller\\UserSelectionController::INPUT_DOCUMENT') }}[__item__][type]" value="{{ type }}">
+{% macro add_to_list_form(id, url, name, author, type, noticeType) %}
+	<input type="hidden" name="{{ constant('App\\Controller\\UserSelectionController::INPUT_DOCUMENT') }}[__item__][id]" 			value="{{ id }}">
+	<input type="hidden" name="{{ constant('App\\Controller\\UserSelectionController::INPUT_DOCUMENT') }}[__item__][url]" 			value="{{ url }}">
+	<input type="hidden" name="{{ constant('App\\Controller\\UserSelectionController::INPUT_DOCUMENT') }}[__item__][name]" 			value="{{ name }}">
+	<input type="hidden" name="{{ constant('App\\Controller\\UserSelectionController::INPUT_DOCUMENT') }}[__item__][author]" 		value="{{ author }}">
+	<input type="hidden" name="{{ constant('App\\Controller\\UserSelectionController::INPUT_DOCUMENT') }}[__item__][type]" 			value="{{ type }}">
+	<input type="hidden" name="{{ constant('App\\Controller\\UserSelectionController::INPUT_DOCUMENT') }}[__item__][notice_type]" 	value="{{ noticeType }}">
 {% endmacro %}

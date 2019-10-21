@@ -43,7 +43,7 @@ class PrintNoticeWrapper
      * @param array $noticeOnShelves
      * @param array $noticeIndice
      */
-    public function __construct(array $noticeOnline, array $noticeAuthority, array $noticeOnShelves, array $noticeIndice)
+    public function __construct(array $noticeOnline, array $noticeAuthority, array $noticeOnShelves=[], array $noticeIndice=[])
     {
         $this->noticeOnline = $noticeOnline;
         $this->noticeAuthority = $noticeAuthority;

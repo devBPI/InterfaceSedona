@@ -49,8 +49,4 @@ class Value implements ValueBPIInterface
     {
         return $this->getValue();
     }
-
-
-
-
 }

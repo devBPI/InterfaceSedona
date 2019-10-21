@@ -88,11 +88,26 @@ $(document)
     .on('click', '.js-copy_to_clipboard', function (e) {
         let url =  $('.js-url-to-copy').val();
         copyToClipboard(url);
+    }).
+    on('click','.js-print-selection-action', function () {
+        let permalinkNotice = $('.js-notice:checked');
+        let notice = [];
+        let authority = [];
+        permalinkNotice.each(function () {
+            if ($(this).data('notice')){
+                notice.push($(this).data('notice'));
+            }else{
+                authority.push($(this).data('authority'));
+            }
+        });
+
+        $('.js-print-notices').val(JSON.stringify(notice));
+        $('.js-print-authorities').val(JSON.stringify(authority));
     })
 ;
 
 /**
- *
+ *table__input;
  * @param element
  */
 let copyToClipboard = function (element) {

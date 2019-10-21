@@ -35,8 +35,9 @@
 			</li>
 		{% endif %}
 		{% if printRoute is defined %}
+
 			<li class="toolbar__item">
-				<button  data-target="#modal-print" data-toggle="modal" class="js-print-action" >
+				<button  data-target="#modal-print" data-toggle="modal" class="{% if printRoute == path('selection_print')%}js-print-selection-action{% else %}js-print-action{% endif %}" >
 					<img src="{{ asset('images/icones/icone-imprimante.svg') }}" alt="" class="icone-imprimante"/>
 					<span>{{ 'bloc.toolbar.print'|trans }}</span>
 				</button>
