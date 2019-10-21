@@ -50,7 +50,7 @@ class UserSelectionController extends AbstractController
      * @throws \Doctrine\ORM\ORMException
      * @throws \Doctrine\ORM\OptimisticLockException
      */
-    public function selectionAction(Request $request, SessionInterface $session): Response
+    public function selectionAction(Request $request): Response
     {
         if (count($request->request->all()) > 0) {
             $listObj = $request->get(self::INPUT_NAME, []);

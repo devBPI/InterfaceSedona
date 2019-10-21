@@ -25,8 +25,6 @@ class StringExtension extends AbstractExtension
         return [
             new TwigFilter('snake', [$this, 'toSnakeCase']),
             new TwigFilter('slugify', [$this, 'toSlugify']),
-            new TwigFilter('slugify', [$this, 'toSlugify']),
-
         ];
     }
 
