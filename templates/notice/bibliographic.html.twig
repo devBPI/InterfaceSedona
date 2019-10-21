@@ -10,6 +10,7 @@
 		<div class="row">
 			{% include "notice/detail-bibliographic.html.twig"  with {'notice': object.notice, 'object':object } %}
 		</div>
+		{% if object.noticesSameTheme %}
 		<hr class="hr-double border-double mt-0">
 		<div class="row">
 			<!-- Début - Bloc 17 Documents liés -->
@@ -19,7 +20,7 @@
 				</div>
 				<div class="carousel-wrapper">
 					<div class="slick-carousel js-carousel-secondary" role="region" aria-roledescription="carrousel">
-                        {% for  object in object.noticesSameTheme.noticesList %}
+                        {% for object in object.noticesSameTheme.noticesList %}
 							<div class="carousel__slide">
 								<a href="{{ path('record_bibliographic', {'permalink': object.permalink}) }}" class="carousel__slide-link">
 									<span class="sr-only">
@@ -50,6 +51,7 @@
 			</div>
 			<!-- Fin - Bloc 17 Documents liés -->
 		</div>
+		{% endif %}
 	</div>
 {% endblock %}
 

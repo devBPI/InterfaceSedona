@@ -17,7 +17,6 @@ class NoticeThemed
      * @var Notices
      * @JMS\Type("App\Model\Notices")
      * @JMS\SerializedName("notices-same-theme")
-     * @JMS\XmlList(entry="noticesList")
      */
     private $noticesSameTheme;
 
@@ -27,6 +26,7 @@ class NoticeThemed
      * @JMS\Type("App\Model\Notice")
      */
     private $notice;
+
     /**
      * @var array
      * @JMS\Type("array<int>")
@@ -38,7 +38,7 @@ class NoticeThemed
     /**
      * @return Notices
      */
-    public function getNoticesSameTheme()
+    public function getNoticesSameTheme(): ?Notices
     {
         return $this->noticesSameTheme;
     }
