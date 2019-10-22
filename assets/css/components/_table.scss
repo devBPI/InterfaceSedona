@@ -2,8 +2,15 @@
 // Tableaux
 // -------------------------------
 
+.dataTables_scrollHead {
+
+	.table {
+		margin-bottom: 0;
+	}
+}
+
 .table {
-	width: 100%;
+	width: 100%!important;
 	white-space: nowrap;
 
 	thead {

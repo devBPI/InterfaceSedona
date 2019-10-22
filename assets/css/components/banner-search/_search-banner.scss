@@ -73,6 +73,7 @@
 	}
 
 	&__submit {
+		min-width: rem(45);
 		flex: 0 0 rem(45);
 		order: 2;
 		min-height: 45px;
