@@ -216,9 +216,9 @@ modal:
         subject: Sujet
         theme: Thème
         editor: Editeur
-        publication-date: Date de publication
-        isbn-issn-numcommercial: ISBN, ISSN...
-        indice-cote: Indice / Cote
+        publicationDate: Date de publication
+        isbnIssnNumcommercial: ISBN, ISSN...
+        indiceCote: Indice / Cote
       group:
         or: Ou
         and: Et
