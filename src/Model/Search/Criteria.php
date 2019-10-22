@@ -107,6 +107,19 @@ class Criteria
      */
     private $publicationDateEnd;
 
+    /**
+     * @var string
+     * @JMS\Type("string")
+     * @JMS\SerializedName("isbn-issn-numcommercial")
+     */
+    private $isbnIssnNumcommercial;
+
+    /**
+     * @var string
+     * @JMS\Type("string")
+     * @JMS\SerializedName("indice-cote")
+     */
+    private $indiceCote;
 
     /**
      * @var self

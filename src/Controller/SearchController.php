@@ -13,7 +13,6 @@ use App\Model\Search\SearchQuery;
 use App\Model\SuggestionList;
 use App\Service\NoticeBuildFileService;
 use App\Service\Provider\AdvancedSearchProvider;
-use App\Service\Provider\NoticeAuthorityProvider;
 use App\Service\Provider\SearchProvider;
 use App\Service\SearchService;
 use App\WordsList;
@@ -124,8 +123,10 @@ class SearchController extends AbstractController
      * @Route("/recherche-affinee/{parcours}", methods={"GET"}, name="refined_search")
      *
      * @param Request $request
+     * @param string $parcours
      * @return \Symfony\Component\HttpFoundation\Response
      * @throws \Doctrine\ORM\ORMException
+     * @throws \Doctrine\ORM\OptimisticLockException
      * @throws \Twig\Error\LoaderError
      * @throws \Twig\Error\RuntimeError
      * @throws \Twig\Error\SyntaxError
@@ -281,6 +282,7 @@ class SearchController extends AbstractController
     }
 
     /**
+     * @param SearchQuery $search
      * @param Request $request
      * @return Response
      * @throws \Doctrine\ORM\ORMException
