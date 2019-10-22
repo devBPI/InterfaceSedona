@@ -87,6 +87,7 @@ class UserSelectionDocument
     }
 
     /**
+     * @TODO : Est-ce vraiment utilisé ?
      * @return string
      */
     public function getNoticeType(): string

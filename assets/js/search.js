@@ -1,6 +1,7 @@
 import * as util from './notice-availibility.js'
-import Routing from '../../assets/js/jsrouting.min.js';
 // var Slider = require('bootstrap-slider');
+
+import {SelectionAdder} from './my-selection';
 
 $(document)
 // Bouton "Voir plus" / "Voir moins" -----------------------------------------------------------------------------------
@@ -48,33 +49,16 @@ $(document)
         let $this = $(this);
         $('.input-'+$this.data('name')).prop('checked', false);
     })
-    .on('show.bs.modal', '#modal-list-add,#modal-list-create', function (e) {
-        let $inputContainer = $(this).find('#resume-container');
-        $inputContainer.html('');
+    .on('show.bs.modal', '#modal-list-add', function (e) {
+        let adder = new SelectionAdder($(this).get(0));
 
-        let objSelected = $('#contenu-site').find('input:checked.addableInList');
-        for (let [key, value] of Object.entries(objSelected)) {
-            let container = $(value).parents('.list-result__content-item');
-            if (container.length == 0) {
-                container = $(value).parents('.js-list-result-authority-item');
+        let items = $('#contenu-site').find('input:checked.addableInList');
+        if (items.length > 0) {
+            adder.displaySelectedResume(Object.entries(items));
+
+            if (user_connected !== "1") {
+                adder.addInSession(this.querySelector('form'));
             }
-            if (container.length > 0) {
-                let card = container.clone()[0];
-                card = card.innerHTML.replace(/__item__/gi, key);
-                $inputContainer.append(card);
-            }
-        }
-
-        if (user_connected !== "1") {
-            let datas = $inputContainer.parents('form:first').serializeArray();
-
-            $.ajax({
-                method: "POST",
-                url: Routing.generate('user_selection_list_add_session'),
-                data: datas,
-            }).done(function (data) {
-                // stop the spinner
-            });
         }
     })
     // .on('show.bs.modal', '#modal-refine-search', function (e) {

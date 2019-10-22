@@ -1,13 +1,14 @@
 {% if author is not empty %}
-    <div class="list-result__content-item js-list-result-authority-item">
+    <div class="list-result__content-item js-list-result-item">
 
         <div class="list-result__content-selector">
             <input type="checkbox" id="related-notice-result-{{ i }}" class="addableInList js-authority"
                    name="{{ author.docType }}[]"
-                   value="{{ author.permalink }}">
+                   value="{{ author.permalink }}"
+                   {% if mode is defined and mode == 'detail' %}checked="checked"{% endif %}>
             <label for="related-notice-result-{{ i }}">
                 <span class="sr-only">{{ 'bloc.preview-authority.first'|trans({'%name%': author.title}) }}</span>
-                {{ i +1 }}
+                {{ i + 1 }}
             </label>
 
             {% from 'search/blocs-results/macros.html.twig' import add_to_list_form %}
@@ -16,7 +17,8 @@
                 path('record_authority', {'permalink': author.permalink}),
                 author.title,
                 "",
-                "author"
+                "author",
+                class_name(author)
             ) }}
         </div>
 
@@ -26,15 +28,14 @@
             </div>
 
             <div class="list-result__content-infos">
-                {% if author is not empty %}
-                    <h{{ level }} lang="fr" class="n{{ level }} search-result__title">
-                        {% set pathName = author.indice ? 'record_indice_cdu' : 'record_authority' %}
-                        <a href="{{ path(pathName, {'permalink':author.permalink, 'searchToken': objSearch.contextToken}) }}"
-                           title="{{ author.title }}">
-                            {{ author.title }}
-                        </a>
-                    </h{{ level }}>
-                {% endif %}
+                {% set contextToken = (objSearch is defined ? objSearch.contextToken : null) %}
+                <h{{ level }} lang="fr" class="n{{ level }} search-result__title">
+                    {% set pathName = author.indice ? 'record_indice_cdu' : 'record_authority' %}
+                    <a href="{{ path(pathName, {'permalink':author.permalink, 'searchToken': contextToken}) }}"
+                       title="{{ author.title }}">
+                        {{ author.title }}
+                    </a>
+                </h{{ level }}>
 
                 <ul class="list-information list-information--no-space search-result__list">
                     {% if author.indice %}

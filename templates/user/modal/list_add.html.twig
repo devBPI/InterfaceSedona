@@ -2,7 +2,12 @@
 <div role="dialog" aria-modal="true" aria-labelledby="modal-list-add-title" class="modal fade" id="modal-list-add">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
-            {{ render(controller('App\\Controller\\UserSelectionController::addListAction')) }}
+            {% set attr = {} %}
+            {#{% if current is defined %}#}
+                {#{% set attr = {'current': current} %}#}
+            {#{% endif %}#}
+
+            {{ render(controller('App\\Controller\\UserSelectionController::addListAction', attr)) }}
         </div>
     </div>
 </div>

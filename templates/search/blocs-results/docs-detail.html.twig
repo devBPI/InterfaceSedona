@@ -2,14 +2,15 @@
 
 <!-- Début - Bloc 13 Notices simples en 2 colonnes -->
 {% if notice is not empty %}
-    <div class="list-result__content-item">
+    <div class="list-result__content-item js-list-result-item">
         <div class="list-result__content-selector">
             <input type="checkbox" id="result-doc-{{ type }}-{{ index }}"
                    class="js-notice addableInList notice_{{ type }}"
                    name="{% if  type == constant('App\\Model\\Notice::SEE_ONLINE') %}online[]{% else %}onshelves[]{% endif %}"
-                   value="{{ notice.permalink }}">
+                   value="{{ notice.permalink }}"
+                {% if mode is defined and mode == 'detail' %}checked="checked"{% endif %}>
             <label for="result-doc-{{ type }}-{{ index }}">
-                <span class="sr-only">{{ 'bloc.notice-simple.result'|trans }} {{ index +1 }}, {{ 'bloc.notice-simple.select'|trans }} {{ notice.frontTitle }}</span>
+                <span class="sr-only">{{ 'bloc.notice-simple.result'|trans }} {{ index + 1 }}, {{ 'bloc.notice-simple.select'|trans }} {{ notice.frontTitle }}</span>
                 {{ index +1 }}
             </label>
 
@@ -21,19 +22,20 @@
                 notice.frontAuthor,
                 notice.type,
                 class_name(notice)
-
             ) }}
         </div>
+
+        {% set contextToken = (objSearch is defined ? objSearch.contextToken : null) %}
         <div class="list-result__content-body">
             <div class="list-result__content-image">
-                <a href="{{ path('record_bibliographic', {'permalink': notice.permalink, 'searchToken': objSearch.contextToken}) }}"
+                <a href="{{ path('record_bibliographic', {'permalink': notice.permalink, 'searchToken': contextToken}) }}"
                    aria-label="{{ notice.frontTitle }}"
                 >
                     <img src="{{ path('binary_image', {"content":notice.image, 'type': notice.type | slugify})}}" alt="" class="img-fluid" />
                 </a>
             </div>
             <div class="list-result__content-infos">
-                <a href="{{ path('record_bibliographic', {'permalink': notice.permalink, 'searchToken': objSearch.contextToken}) }}"
+                <a href="{{ path('record_bibliographic', {'permalink': notice.permalink, 'searchToken': contextToken}) }}"
                    lang="fr"
                    aria-label="{{ notice.frontTitle }}"
                    class="n2 list-result__content-title"

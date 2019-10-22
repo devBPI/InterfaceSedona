@@ -117,8 +117,7 @@ class UserSelectionController extends AbstractController
         }
 
         $params += [
-            'lists' => $this->selectionService->getListsOfCurrentUser(),
-            'object' => $request->get('current', null),
+            'lists' => $this->selectionService->getListsOfCurrentUser()
         ];
 
         return $this->render('user/modal/add-list-content.html.twig', $params);
