@@ -4,10 +4,9 @@
 
 .nav-sitemap {
 	position: relative;
-	padding-top: 75px;
 
-	@include media-breakpoint-up(lg) {
-		padding-top: 30px;
+	&__header {
+		margin-bottom: 10px;
 	}
 
 	&__button {
@@ -18,30 +17,15 @@
 		@include font-size(15);
 		font-weight: $font-bold;
 		color: $grey-disabled;
-		position: absolute;
-		top: 0;
+		margin-right: 10px;
 
 		&:hover {
 			color: $red;
 			text-decoration: underline;
 		}
 
-		&--second {
-			margin-top: 23px;
-
-			@include media-breakpoint-up(lg) {
-				margin-top: 0;
-				margin-left: 60px;
-			}
-		}
-
-		&--third {
-			margin-top: 47px;
-
-			@include media-breakpoint-up(lg) {
-				margin-top: 0;
-				margin-left: 135px;
-			}
+		&:last-child {
+			margin-right: 0;
 		}
 	}
 

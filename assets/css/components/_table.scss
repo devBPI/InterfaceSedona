@@ -120,7 +120,7 @@
 			position: relative;
 
 			button {
-				width: rem(30);
+				min-width: rem(30);
 				height: rem(30);
 				line-height: 1px;
 				padding: 0;
@@ -132,7 +132,7 @@
 				border: 0;
 
 				@include media-breakpoint-up(md) {
-					width: rem(25);
+					min-width: rem(25);
 					height: rem(25);
 				}
 
