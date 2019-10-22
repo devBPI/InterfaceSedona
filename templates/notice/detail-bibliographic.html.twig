@@ -15,6 +15,8 @@
             </h1>
         {% endfor %}
     {% endif %}
+
+    {# TODO : Formatage des infos réalisateurs sous le titre ne sont pas bonne, à revoir #}
     {{ notice_macros.detail(notice.translatedBy, 'bloc.autority-result-information.translated'|trans, true) }}
     {{ notice_macros.detail(notice.analyticalTitles, 'bloc.autority-result-information.in'|trans, true) }}
     {{ notice_macros.detail(notice.directors, 'bloc.autority-result-information.directors'|trans, true) }}

@@ -86,4 +86,9 @@
 	&__date {
 		display: flex;
 	}
+
+	.select2-selection.select2-selection--multiple {
+		min-width: 250px;
+		border-radius: 0;
+	}
 }
