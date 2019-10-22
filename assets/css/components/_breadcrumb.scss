@@ -8,4 +8,16 @@
 	@media print {
 		display: none;
 	}
+
+	&-item {
+		
+		a {
+			color: $black;
+
+			&:hover,
+			&:focus {
+				color: $red;
+			}
+		}
+	}
 }
