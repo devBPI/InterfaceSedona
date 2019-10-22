@@ -8,8 +8,8 @@
         <span>{{ notices.totalCount }}</span></h3>
 </div>
 
-{% if seeAll is defined and (seeAll in ['rayon', 'online']) %}
-    <a href="{{ add_see_all_into_uri('all') }}" class="list-result__header-link">
+{% if seeAll is defined and (seeAll in [constant('App\\Model\\Notice::SEE_ONSHELF') , constant('App\\Model\\Notice::SEE_ONLINE')]) %}
+    <a href="{{ add_see_all_into_uri(constant('App\\Model\\Notice::ALL')) }}" class="list-result__header-link">
         {{ ('bloc.header-docs.'~type~'.see-more')|trans }}
         <span class="sr-only sr-only-focusable">{{ ('bloc.header-docs.'~type~'.see-more-sr-only')|trans }}</span></a>
 {% else %}

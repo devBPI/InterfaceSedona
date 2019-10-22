@@ -19,8 +19,11 @@ class Notice extends AbstractImage implements NoticeInterface
     use OriginTrait, TraitSlugify, NoticeMappedTrait, NoticeTrait, ImageIsbnTrait;
 
     private const SEPARATOR = ' ; ';
-    public const ON_LIGNE = 'en ligne';
-    public const ON_SHELF = 'en rayon';
+    const ON_LIGNE   = 'en ligne';
+    const ON_SHELF   = 'en rayon';
+    const ALL        = 'all';
+    const SEE_ONLINE = 'online';
+    const SEE_ONSHELF = 'rayon';
 
     /**
      * @var array|Value[]
