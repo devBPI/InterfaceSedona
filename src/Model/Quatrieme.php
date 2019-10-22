@@ -18,11 +18,13 @@ use JMS\Serializer\Annotation as JMS;
 class Quatrieme
 {
     /**
-     * @var string
-     * @JMS\Type("string")
+     * @var array
+     * @JMS\Type("array<string>")
      * @JMS\SerializedName("presentation")
+     * @JMS\XmlList("p")
      */
     private $presentation;
+
      /**
      * @var string
      * @JMS\Type("string")
@@ -42,7 +44,7 @@ class Quatrieme
      */
     public function getPresentation(): ?string
     {
-        return $this->presentation;
+        return $this->presentation?$this->presentation[0]:null;
     }
 
     /**
