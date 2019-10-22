@@ -81,8 +81,32 @@ $('.js-list-information ul.list-information__sub-list').each( function() {
         $children_length = $children.length;
 
     if ( $children_length > 4 ) {
-        $children.eq(4).nextAll().addClass('d-none');
-        $children.eq(4)
-            .after('<li><button type="button" class="btn btn-small-link js-btn js-btn--more">Voir tout<span class="sr-only"> les résultats</span></button></li>');
+        $children
+            .eq(4)
+            .nextAll()
+            .addClass('d-none');
+        $children
+            .last()
+            .after('<li class="list-information__sub-item list-information__sub-item--btn"><button type="button" class="btn btn-small-link js-btn js-btn--more">Voir tout<span class="sr-only"> les résultats</span></button></li>');
     }
 });
+
+$(document)
+    .on('click', '.js-btn', function() {
+        var $this = $(this),
+            $items = $(this).parent().parent().children().eq(4).nextAll();
+
+        if ( $this.hasClass('js-btn--more') ) {
+            $items.removeClass('d-none');
+            $this
+                .text('Voir moins')
+                .removeClass('js-btn--more')
+                .addClass('js-btn--less');
+        } else {
+            $items.addClass('d-none');
+            $this
+                .text('Voir plus')
+                .removeClass('js-btn--less')
+                .addClass('js-btn--more');
+        }
+    })

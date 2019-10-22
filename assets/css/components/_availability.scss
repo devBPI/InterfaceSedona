@@ -6,10 +6,6 @@
 
 	p {
 		margin-bottom: 0;
-
-		& + p {
-			margin-bottom: $spacer;
-		}
 	}
 	
 	&--false {

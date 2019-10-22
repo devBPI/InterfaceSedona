@@ -5,7 +5,13 @@
 	<ul class="dropdown-menu" aria-labelledby="dropdown-sujets" role="listbox" tabindex="-1">
 		{% for subject in linkedSubjects %}
 			<li class="dropdown-item" role="option">
-				<a href="{{ path('search', { (constant('App\\Model\\Search\\Criteria::SIMPLE_SEARCH_KEYWORD')): subject }) }}"
+				<a href="{{
+					path('search', {
+						(constant('App\\Model\\Search\\Criteria::SIMPLE_SEARCH_KEYWORD')): subject,
+						(constant('App\\Model\\Search\\Criteria::SIMPLE_SEARCH_TYPE')): constant('App\\WordsList::SUBJECT_WORD')
+						}
+					)
+				}}"
 				   lang="fr">{{ 'bloc.related-topics.text'|trans }} {{ subject }}</a>
 			</li>
 		{% endfor %}

@@ -16,7 +16,7 @@
 				<ul class="index__list">
 					{% for index in indexList.indexes %}
 						{% if loop.index != 6 %}
-							<li class="index__item"><a href="{{ path('search', {'mot': index.name, 'type':'general'}) }}" lang="fr">{{ index.name }}</a></li>
+							<li class="index__item"><a href="{{ path('search', {(constant('App\\Model\\Search\\Criteria::SIMPLE_SEARCH_KEYWORD')): index.name, (constant('App\\Model\\Search\\Criteria::SIMPLE_SEARCH_TYPE')):'general'}) }}" lang="fr">{{ index.name }}</a></li>
 						{% else %}
 							<li class="index__item index__item--current">
 								<p id="index-current" aria-current="page" lang="fr" tabindex="0">

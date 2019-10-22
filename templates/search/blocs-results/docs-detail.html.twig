@@ -1,6 +1,5 @@
 {% import "common/notice-available-macro.html.twig" as macros %}
 
-<!-- Début - Bloc 13 Notices simples en 2 colonnes -->
 {% if notice is not empty %}
     <div class="list-result__content-item js-list-result-item">
         <div class="list-result__content-selector">
@@ -51,7 +50,7 @@
                     - <button class="list-result__content-resume" type="button"
                             role="tooltip" data-toggle="tooltip" title="Résumé : {{ notice.frontResume }}">
                         <img src="{{ asset('images/icones/icone-resume.svg') }}" alt=""/>
-                        <span class="sr-only">Afficher le résumé</span>
+                        <span class="sr-only">{{ 'bloc.notice-simple.resume-label'|trans }}</span>
                     </button>
                     {% endif %}
                 </p>
@@ -101,4 +100,3 @@
         </div>
     </div>
 {% endif %}
-<!-- Fin - Bloc 13 Notices simples en 2 colonnes -->

@@ -17,14 +17,14 @@
 		</div>
 	</div>
 
-	<div class="row mb-3">
+	<div class="row">
 		<div class="col-12 col-sm-10 pr-sm-0">
 			{% include "search/blocs-searchextended/filters-search.html.twig"   %}
 		</div>
 
 		<div class="col-12 col-sm-2 pl-sm-0">
 			<div class="search-refine">
-				<button class="search-refine__button" type="button" data-target="#modal-refine-search" data-toggle="modal">Affiner<span class="sr-only"> la recherche</span></button>
+				<button class="search-refine__button" type="button" data-target="#modal-refine-search" data-toggle="modal">{{ 'modal.refine-search.button-title'|trans }}<span class="sr-only"> {{ 'modal.refine-search.button-title-aria'|trans }}</span></button>
 				<!-- Include modal des filtres - Affiner -->
 				{% include "search/modal/refine-search.html.twig" with {'facets': objSearch.results.facets} %}
 			</div>
@@ -34,7 +34,7 @@
 
 {% block body %}
 
-	<div class="list-result">
+	<div class="list-result list-result--authority">
 		{% include "search/blocs-results/list-authorities.html.twig" %}
     </div>
 

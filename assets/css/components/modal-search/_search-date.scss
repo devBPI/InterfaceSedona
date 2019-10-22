@@ -30,6 +30,10 @@
 				margin-top: 0;
 			}
 		}
+
+		input[type="text"] {
+			max-width: 95px;
+		}
 	}
 
 	&__date {

@@ -5,6 +5,6 @@ $(document).ready(function () {
         "paging":   false,
         "info":   false,
         "searching":   false,
-        "scrollX": false
+        "scrollX": true
 	});
 });

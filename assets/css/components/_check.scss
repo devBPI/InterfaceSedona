@@ -3,8 +3,9 @@
 // -------------------------------
 
 .check {
-	width: rem(15);
+	min-width: rem(15);
 	height: rem(15);
+	flex: 0 0 rem(15);
 	border: $border-check;
 	display: inline-block;
 	vertical-align: middle;
@@ -52,6 +53,8 @@
 		vertical-align: middle;
 		width: auto;
 		padding-top: 0!important;
+		padding-right: $spacer;
+		text-align: left;
 	}
 }
 
