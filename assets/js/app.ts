@@ -33,7 +33,6 @@ $('input').iCheck({
     focusClass: 'focus'
 });
 
-
 $(document)
 // Gestion navigation focus - Menu principal ---------------------------------------------------------
     .on('focus', '.dropdown-link .nav-link', function() {
@@ -74,17 +73,16 @@ $(document)
             }
         });
     })
-    // Affichage champs date - Modal recherche avancée ---------------------------------------------------------
-    .on('change', '[name="adv-search-date"]', function() {
-        console.log('change date', $(this).val());
+	.on('show.bs.modal', '#modal-search-advanced', function (e) {
         var $input_period = $('.search-date__date--second');
 
-        if ( $(this).val() === 'Periode' ) {
+        $('.js-date-period .check--radio').on('ifChecked', function(){
             $input_period.removeClass('d-none');
-        } else {
+        });
+        $('.js-date-period .check--radio').on('ifUnchecked', function(){
             $input_period.addClass('d-none');
-        }
-    })
+        });
+	})
     .on('click', '.js-copy_to_clipboard', function (e) {
         let url =  $('.js-url-to-copy').val();
         copyToClipboard(url);
