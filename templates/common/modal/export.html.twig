@@ -2,7 +2,7 @@
 <div role="dialog" aria-modal="true" aria-labelledby="modal-export-title" class="modal fade" id="modal-export">
 	<div class="modal-dialog modal-dialog-centered">
 		<div class="modal-content">
-			{% if toolbar == 'App\\Model\\Search\\ObjSearch' %}
+			{% if toolbar in ['App\\Model\\Search\\ObjSearch', 'App\\Entity\\UserSelectionDocument'] %}
 				{{ render(controller('App\\Controller\\ExportController::sendNoticesOnAttachementAction', {'type': toolbar } )) }}
 			{% else %}
                 {{ render(controller('App\\Controller\\ExportController::sendNoticeWithAttachementAction', {'type': toolbar, 'permalink':notice.permalink } )) }}
