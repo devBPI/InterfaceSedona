@@ -33,7 +33,7 @@
 }
 
 // Convert PX to REM
-$browser-context: 13;
+$browser-context: 15;
 
 @function rem($pixels, $context: $browser-context) {
   @return ($pixels / $context) * 1rem;

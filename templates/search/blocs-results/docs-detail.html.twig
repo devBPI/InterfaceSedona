@@ -45,10 +45,11 @@
                 {% if notice.frontAuthor is not empty %}
                     <p lang="fr"><span class="font-italic">par</span> {{ notice.frontAuthor }}</p>
                 {% endif %}
-                <p lang="fr">{{ notice.frontDate }}
+                <p lang="fr">
+                {{ notice.frontDate }}
                     {% if notice.frontResume is not empty %}
                     - <button class="list-result__content-resume" type="button"
-                            role="tooltip" data-toggle="tooltip" title="Résumé : {{ notice.frontResume }}">
+                            role="tooltip" data-toggle="tooltip" title="{{ 'bloc.notice-simple.resume-title'|trans }} {{ notice.frontResume }}">
                         <img src="{{ asset('images/icones/icone-resume.svg') }}" alt=""/>
                         <span class="sr-only">{{ 'bloc.notice-simple.resume-label'|trans }}</span>
                     </button>
@@ -93,9 +94,7 @@
             {% if mode is defined and mode == 'full' %}
             {# TODO : A quoi correspond ce bloc ? Si c'est pour le "voir tout" revoir le gabarit car il n'est pas bon #}
                 <div class="list-result__content-txt">
-                    <p lang="fr">Effet de serre, réchauffement climatique, paléoclimatologie...exemples de questions
-                        traitées dans ce dossier multimédia et auxquelles répondent des chercheurs du CNRS et de l'INSU.
-                        Pour tous, du lecteur curieux au public averti.</p>
+                    <p lang="fr">{{ 'bloc.notice-simple.resume-title'|trans }} {{ notice.frontResume }}</p>
                 </div>
             {% endif %}
         </div>

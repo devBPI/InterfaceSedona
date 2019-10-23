@@ -1,4 +1,5 @@
 {% extends 'search/index.html.twig' %}
+
 {% block result %}
 	<div class="row">
         {% if seeAll in [constant('App\\Model\\Notice::SEE_ONSHELF') , constant('App\\Model\\Notice::ALL')] or seeAll is null %}

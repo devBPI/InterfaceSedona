@@ -7,5 +7,9 @@
 	&__logo {
 		margin-top: $spacer;
 		margin-bottom: $spacer;
+
+		img {
+			max-width: 5cm;
+		}
 	}
 }
