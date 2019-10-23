@@ -67,9 +67,9 @@ final class WordsList
     const SUBJECT_WORD = 'subject';
     const THEME_WORD = 'theme';
     const EDITOR_WORD = 'editor';
-    const PUBLICATION_DATE_WORD = 'publication-date';
-    const ISBN_WORD = 'isbn-issn-numcommercial';
-    const INDICE_COTE_WORD = 'indice-cote';
+    const PUBLICATION_DATE_WORD = 'publicationDate';
+    const ISBN_WORD = 'isbnIssnNumcommercial';
+    const INDICE_COTE_WORD = 'indiceCote';
 
     private function __construct()
     {

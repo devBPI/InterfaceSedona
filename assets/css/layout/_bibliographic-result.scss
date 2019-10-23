@@ -24,7 +24,7 @@
 		text-align: right;
 
 		img {
-			height: 25px;
+			height: rem(25);
 		}
 	}
 
@@ -57,6 +57,7 @@
 
 	&__availability {
 		padding-top: $spacer;
+		padding-bottom: $spacer;
 		border-top: $border-thin;
 	}
 

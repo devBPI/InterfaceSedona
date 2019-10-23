@@ -15,7 +15,7 @@
         <ul class="list-link">
         {% if app.session.get('searchToken') is defined and app.session.get('searchToken') is not null %}
             <li>
-                <a href="{{ path('search', {'searchToken': app.session.get('searchToken') }) }}">Pour revenir en arrière </a>
+                <a href="{{ path('search', {'searchToken': app.session.get('searchToken') }) }}">{{ 'error.link-go-back' |trans }}</a>
             </li>
         {% endif %}
         <li>
@@ -26,6 +26,7 @@
     <div class="row justify-content-center">
         <div class="col-12 col-sm-11 col-md-10">
             <h2 class="n2">{{ 'error.title-form' |trans }}</h2>
+            {# TODO : Formatage du formulaire à revoir #}
             {{ render(controller('App\\Controller\\CommonController::reportErrorPageAction')) }}
         </div>
     </div>

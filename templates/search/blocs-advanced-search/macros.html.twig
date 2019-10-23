@@ -2,12 +2,12 @@
     {% import _self as self %}
 
     {% for current_operator, keywords in keywords_list %}
-        {% set index = loop.index0 + 0 %}
+        {% set index = loop.index0 + start %}
         {% set first = loop.first and start == 0 %}
 
         {% for current_type, current_keyword in keywords %}
             {% if current_keyword is iterable %}
-                {{ self.display_keyword_form({(current_type): current_keyword}, index) }}
+                {{ self.display_keyword_form({(current_type): current_keyword}, index + 1) }}
             {% else %}
                 <div class="search-keyword__group row" id="keyword-group-{{ index }}">
                     {% include 'search/blocs-advanced-search/keyword-row.html.twig' %}

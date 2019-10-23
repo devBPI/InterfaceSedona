@@ -11,6 +11,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
@@ -54,12 +55,15 @@ class UserSelectionController extends AbstractController
         if (count($request->request->all()) > 0) {
             $listObj = $request->get(self::INPUT_NAME, []);
             $action = $request->get('action');
-
             $this->selectionService->applyAction($action, $listObj);
         }
 
         return $this->render( 'user/selection.html.twig',
-            $this->selectionService->getSelectionObjects());
+            $this->selectionService->getSelectionObjects() +[
+                'printRoute'=> $this->generateUrl('selection_print', ['format' => 'pdf']),
+                'toolbar'=> UserSelectionDocument::class
+            ]
+        );
     }
 
 
@@ -114,8 +118,7 @@ class UserSelectionController extends AbstractController
         }
 
         $params += [
-            'lists' => $this->selectionService->getListsOfCurrentUser(),
-            'object' => $request->get('current', null),
+            'lists' => $this->selectionService->getListsOfCurrentUser()
         ];
 
         return $this->render('user/modal/add-list-content.html.twig', $params);
@@ -144,7 +147,7 @@ class UserSelectionController extends AbstractController
      */
     public function editListAction(UserSelectionList $list, Request $request): Response
     {
-        $param = ['list' => $list];
+        $param = [self::INPUT_LIST => $list];
         $title = $request->get(self::INPUT_LIST_TITLE, null);
         if ($title !== null) {
             if ($title !== '') {
@@ -186,4 +189,7 @@ class UserSelectionController extends AbstractController
             'document' => $document
         ]);
     }
+
+
+
 }

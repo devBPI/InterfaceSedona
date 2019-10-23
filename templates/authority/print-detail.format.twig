@@ -30,9 +30,9 @@
 {% endif %}
 {% if format == 'pdf' %}
     <li>
-        {%  if sameInstance(notice,'App\\Model\\Authority', format) %}
+        {%  if is_same_instance(notice,'App\\Model\\Authority', format) %}
             <a href="{{ path('record_authority', {"permalink":notice.permalink}) }}">Lien de la notice</a>
-        {% elseif sameInstance(notice,'App\\Model\\IndiceCdu', format) %}
+        {% elseif is_same_instance(notice,'App\\Model\\IndiceCdu', format) %}
             <a href="{{ path('record_indice_cdu', {"permalink":notice.permalink}) }}">Lien de la notice</a>
         {% endif %}
     </li>

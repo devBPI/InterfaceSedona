@@ -46,10 +46,7 @@
 			}
 
 			img {
-
-				@include media-breakpoint-up(lg){
-					width: rem(210);
-				}
+				width: rem(210);
 			}
 		}
 	}

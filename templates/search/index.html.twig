@@ -17,14 +17,14 @@
 		</div>
 	</div>
 
-	<div class="row mb-3">
+	<div class="row">
 		<div class="col-12 col-sm-10 pr-sm-0">
 			{% include "search/blocs-searchextended/filters-search.html.twig"   %}
 		</div>
 
 		<div class="col-12 col-sm-2 pl-sm-0">
 			<div class="search-refine">
-				<button class="search-refine__button" type="button" data-target="#modal-refine-search" data-toggle="modal">Affiner<span class="sr-only"> la recherche</span></button>
+				<button class="search-refine__button" type="button" data-target="#modal-refine-search" data-toggle="modal">{{ 'modal.refine-search.button-title'|trans }}<span class="sr-only"> {{ 'modal.refine-search.button-title-aria'|trans }}</span></button>
 				<!-- Include modal des filtres - Affiner -->
 				{% include "search/modal/refine-search.html.twig" with {'facets': objSearch.results.facets} %}
 			</div>
@@ -34,7 +34,7 @@
 
 {% block body %}
 
-	<div class="list-result">
+	<div class="list-result list-result--authority">
 		{% include "search/blocs-results/list-authorities.html.twig" %}
     </div>
 
@@ -42,27 +42,19 @@
 		{# Include Nombre item #}
 		{% include "search/blocs-results/search-header.html.twig" %}
 	</div>
+	
     {% block result %}
 		<div class="row">
-
-            {% set pagesTotal = objSearch.results.pageTotal %}
-
-            {% if seeAll in ['rayon', 'all'] or seeAll is null %}
-				{% set pagesTotal = objSearch.results.notices.totalCount %}
 				<div class="col-12 col-md-6 pr-md-0">
-					{% include 'search/blocs-results/docs-container.html.twig' with { 'type': 'rayon', 'notices': objSearch.results.notices} %}
+					{% include 'search/blocs-results/docs-container.html.twig' with { 'type': constant('App\\Model\\Notice::SEE_ONSHELF'), 'notices': objSearch.results.notices} %}
 				</div>
-			{% endif %}
-            {% if seeAll in ['online', 'all'] or seeAll is null %}
-                {% set pagesTotal = objSearch.results.noticesOnline.totalCount %}
 				<div class="col-12 col-md-6 pl-md-0">
-					{% include 'search/blocs-results/docs-container.html.twig' with {'type': 'online', 'notices': objSearch.results.noticesOnline} %}
+					{% include 'search/blocs-results/docs-container.html.twig' with {'type': constant('App\\Model\\Notice::SEE_ONLINE'), 'notices': objSearch.results.noticesOnline} %}
 				</div>
-			{% endif %}
 		</div>
 		<div class="row">
 			{# Include Pagination #}
-			{% include "search/blocs-results/search-footer.html.twig" with {'criteria':objSearch.results.criteria, 'pagesTotal': pagesTotal, 'page':  objSearch.results.page} %}
+			{% include "search/blocs-results/search-footer.html.twig" with {'criteria':objSearch.results.criteria, 'pagesTotal': objSearch.results.pageTotal, 'page':  objSearch.results.page} %}
 		</div>
 	{% endblock %}
 

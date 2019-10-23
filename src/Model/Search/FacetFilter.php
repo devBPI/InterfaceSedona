@@ -26,6 +26,10 @@ class FacetFilter
     {
         if (array_key_exists(self::QUERY_NAME, $request)) {
             foreach ($request[self::QUERY_NAME] as $name => $values) {
+                if ($name === 'date_publishing') {
+                    $values = implode(',', $values);
+                }
+
                 $this->set($name, $values);
             }
         }

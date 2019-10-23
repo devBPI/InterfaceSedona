@@ -3,6 +3,9 @@
 {% block title %}{{ 'page.bibiographic.title'|trans({'%title%': object.notice.titles[0]}) }}{% endblock %}
 
 {% block body %}
+	<div class="d-none">
+		{% include 'search/blocs-results/docs-detail.html.twig' with {'notice': object.notice, 'type': 'Notice', 'index': 0, 'mode': 'detail'} %}
+	</div>
 	<div class="bibliographic-result">
 		<div class="row justify-content-between">
 			{% include "record/blocs/results-navigation.html.twig" with {'routeTarget': path('record_bibliographic',{"permalink":object.notice.permalink}) } %}
@@ -10,16 +13,16 @@
 		<div class="row">
 			{% include "notice/detail-bibliographic.html.twig"  with {'notice': object.notice, 'object':object } %}
 		</div>
+		{% if object.noticesSameTheme %}
 		<hr class="hr-double border-double mt-0">
 		<div class="row">
-			<!-- Début - Bloc 17 Documents liés -->
 			<div id="carousel-theme" class="carousel carousel--secondary {{ class|default('') }} col-12">
 				<div class="carousel__header">
 					<h2 class="n1">{{ 'bloc.list-related-documents.carousel-theme'|trans }}</h2>
 				</div>
 				<div class="carousel-wrapper">
 					<div class="slick-carousel js-carousel-secondary" role="region" aria-roledescription="carrousel">
-                        {% for  object in object.noticesSameTheme.noticesList %}
+                        {% for object in object.noticesSameTheme.noticesList %}
 							<div class="carousel__slide">
 								<a href="{{ path('record_bibliographic', {'permalink': object.permalink}) }}" class="carousel__slide-link">
 									<span class="sr-only">
@@ -40,7 +43,7 @@
 					</div>
 				</div>
 				<div class="carousel__footer">
-					<a href="{{ path('search', {'mot':notice.indice, 'type':constant('App\\WordsList::INDICE_COTE_WORD')}) }}" class="link link--icone-end">
+					<a href="{{ path('search', {(constant('App\\Model\\Search\\Criteria::SIMPLE_SEARCH_KEYWORD')):notice.indice, (constant('App\\Model\\Search\\Criteria::SIMPLE_SEARCH_TYPE')):(constant('App\\WordsList::INDICE_COTE_WORD'))}) }}" class="link link--icone-end">
 						{{ "bloc.list-related-documents.see-more"|trans }}
 						<span class="sr-only">{{ "bloc.list-related-documents.see-more-sr-only"|trans }} </span>
 						<span>({{ object.results}})</span>
@@ -48,8 +51,8 @@
 					</a>
 				</div>
 			</div>
-			<!-- Fin - Bloc 17 Documents liés -->
 		</div>
+		{% endif %}
 	</div>
 {% endblock %}
 

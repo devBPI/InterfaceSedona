@@ -43,6 +43,7 @@ class ExportNotice
      * @var string
      */
     private $authorities;
+
     /**
      * @var string
      */

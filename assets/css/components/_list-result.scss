@@ -15,21 +15,21 @@
 		.list-result__content-image {
 
 			@include media-breakpoint-up(md) {
-				min-width: 250px;
-				flex: 0 0 250px;
+				min-width: 200px;
+				flex: 0 0 200px;
 				padding-right: $spacer * 2;
 			}
 
 			img {
-				max-width: 250px;
+				max-width: 200px;
 			}
 		}
 
 		.list-result__content-infos {
 
 			@include media-breakpoint-up(md) {
-				min-width: calc(100% - 250px);
-				flex: 0 0 calc(100% - 250px);
+				min-width: calc(100% - 200px);
+				flex: 0 0 calc(100% - 200px);
 			}
 		}
 	}
@@ -121,9 +121,13 @@
 
 		.list-result__content-infos {
 
+			.list-result__content-resume {
+				display: none;
+			}
+
 			@include media-breakpoint-up(md) {
-				min-width: calc(100% - 125px - 40%);
-				flex: 0 0 calc(100% - 125px - 40%);
+				min-width: calc(100% - 100px - 40%);
+				flex: 0 0 calc(100% - 100px - 40%);
 			}
 		}
 	}
@@ -203,14 +207,14 @@
 			text-align: center;
 
 			img {
-				max-width: 125px;
+				max-width: 100px;
 			}
 
 			@include media-breakpoint-up(md) {
 				padding-right: $spacer;
 				margin-bottom: 0;
-				min-width: 125px;
-				flex: 0 0 125px;
+				min-width: 100px;
+				flex: 0 0 100px;
 			}
 		}
 
@@ -219,8 +223,8 @@
 			flex: 0 0 100%;
 
 			@include media-breakpoint-up(md) {
-				min-width: calc(100% - 125px);
-				flex: 0 0 calc(100% - 125px);
+				min-width: calc(100% - 100px);
+				flex: 0 0 calc(100% - 100px);
 			}
 
 			p {
@@ -235,7 +239,7 @@
 
 			@include media-breakpoint-up(md) {
 				margin-top: 0;
-				margin-left: $spacer;
+				padding-left: $spacer;
 				min-width: 40%;
 				flex: 0 0 40%;
 			}
@@ -279,7 +283,6 @@
 
 	&__collapse {
 		border-top: $border-default;
-		border-bottom: $border-default;
 		padding: $spacer 0;
 
 		&-button {

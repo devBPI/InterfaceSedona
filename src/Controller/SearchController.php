@@ -6,6 +6,7 @@ namespace App\Controller;
 use App\Controller\Traits\PrintTrait;
 use App\Entity\SearchHistory;
 use App\Model\Form\ExportNotice;
+use App\Model\Notice;
 use App\Model\Search\Criteria;
 use App\Model\Search\FacetFilter;
 use App\Model\Search\ObjSearch;
@@ -13,7 +14,6 @@ use App\Model\Search\SearchQuery;
 use App\Model\SuggestionList;
 use App\Service\NoticeBuildFileService;
 use App\Service\Provider\AdvancedSearchProvider;
-use App\Service\Provider\NoticeAuthorityProvider;
 use App\Service\Provider\SearchProvider;
 use App\Service\SearchService;
 use App\WordsList;
@@ -85,7 +85,6 @@ class SearchController extends AbstractController
      */
     public function indexAction(Request $request, string $parcours=self::GENERAL): Response
     {
-
         $keyword = $request->get(Criteria::SIMPLE_SEARCH_KEYWORD, '');
         $criteria = new Criteria();
         $criteria->setSimpleSearch($request->get(Criteria::SIMPLE_SEARCH_TYPE), $keyword);
@@ -109,7 +108,6 @@ class SearchController extends AbstractController
      */
     public function advancedSearchAction(Request $request, string $parcours=self::GENERAL): Response
     {
-
         $criteria = new Criteria();
 
         $criteria->setAdvancedSearch($request->query->all());
@@ -124,8 +122,10 @@ class SearchController extends AbstractController
      * @Route("/recherche-affinee/{parcours}", methods={"GET"}, name="refined_search")
      *
      * @param Request $request
+     * @param string $parcours
      * @return \Symfony\Component\HttpFoundation\Response
      * @throws \Doctrine\ORM\ORMException
+     * @throws \Doctrine\ORM\OptimisticLockException
      * @throws \Twig\Error\LoaderError
      * @throws \Twig\Error\RuntimeError
      * @throws \Twig\Error\SyntaxError
@@ -244,7 +244,8 @@ class SearchController extends AbstractController
             'search/blocs-advanced-search/content.html.twig',
             [
                 'criteria' => $this->advancedSearchProvider->getAdvancedSearchCriteria(),
-                'objSearch' => $objSearch
+                'objSearch' => $objSearch,
+                'modeDate' => $request->get('adv-search-date')
             ]
         );
     }
@@ -281,6 +282,7 @@ class SearchController extends AbstractController
     }
 
     /**
+     * @param SearchQuery $search
      * @param Request $request
      * @return Response
      * @throws \Doctrine\ORM\ORMException
@@ -293,14 +295,18 @@ class SearchController extends AbstractController
     {
         $objSearch = $this->searchService->createObjSearch($search, $request);
         $objSearch->setResults($this->searchProvider->getListBySearch($search));
-
         $request->query->remove('action');
 
+        $seeAll = $request->get('see-all', Notice::ALL);
+        $template = 'search/index.html.twig';
+        if (in_array($seeAll, [Notice::SEE_ONLINE, Notice::SEE_ONSHELF] )){
+            $template = 'search/index-all.html.twig';
+        }
         return $this->render(
-            'search/index.html.twig',
+            $template,
             [
                 'toolbar' => ObjSearch::class,
-                'seeAll'=> $request->get('see-all', 'all'),
+                'seeAll'=> $seeAll,
                 'objSearch' => $objSearch,
                 'printRoute' => $this->generateUrl('search_pdf', ['format' => 'pdf']),
             ]

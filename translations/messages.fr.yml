@@ -109,7 +109,8 @@ modal:
     submit: Valider
     submit-sr-only:  la création de la liste
   list-add:             #Modal 02 ajout à ma sélection
-    title: Ajouter ..
+    title-connected: Ajouter ..
+    title: Vous avez ajouté ..
     add-to-profile: '.. à Mon compte dans :'
     list: '%name%'
     new-list: Nouvelle liste
@@ -216,9 +217,9 @@ modal:
         subject: Sujet
         theme: Thème
         editor: Editeur
-        publication-date: Date de publication
-        isbn-issn-numcommercial: ISBN, ISSN...
-        indice-cote: Indice / Cote
+        publicationDate: Date de publication
+        isbnIssnNumcommercial: ISBN, ISSN...
+        indiceCote: Indice / Cote
       group:
         or: Ou
         and: Et
@@ -267,7 +268,10 @@ modal:
     clear-search: Effacer ma recherche
     submit: Rechercher
   refine-search:  #Modal 14 affiné la recheche
+    button-title: Affiner
+    button-title-aria: la recherche
     title: Affiner ma recherche
+    title-aria: la recherche
     filter-delete: Supprimer le filtre
     submit: Affiner
     submit-aria: Affiner ma recherche
@@ -330,9 +334,9 @@ bloc:
     input-sr-only: Saisir un mot clé
     input-placeholder: Rechercher
     input-general-placeholder: Rechercher
-    input-autoformation-placeholder: Rechercher dans autoformation
-    input-presse-placeholder: Rechercher dans presse
-    input-cinema-placeholder: Rechercher dans cinéma
+    input-autoformation-placeholder: Recherche dans le parcours Autoformation
+    input-presse-placeholder: Rechercher dans le parcours Actualités et Revues
+    input-cinema-placeholder: Rechercher dans le parcours Cinéma
     type-label: Chercher sur
     submit: Valider la recherche
     advanced-title: Recherche Avancée
@@ -377,11 +381,15 @@ bloc:
     result: Résultat numéro
     select: sélectionner
     access-to-bdd: Accès à
+    access-to-bpi: Consultable à la Bpi
     result-of-bdd: Résultat de
     last-publication: 'Dernier numéro reçu :'
     document-available: Disponible
     document-unavailable: Indisponible
     notification-availablity: Document indisponible, être prévenu de son retour en rayon - ouverture formulaire
+    resume-label: Afficher le résumé
+    resume-title: 'Résumé :'
+    availability-label: Document indisponible, être prévenu de son retour en rayon - ouverture formulaire
   search-header-footer:   #Bloc 14 Tri et pages
     header:
       nb-result-aria: dropdown-number-items
@@ -450,14 +458,11 @@ bloc:
     topics: Thème(s)
     other-edition: Autre(s) éditions
     insi: 'ISNI'
-    access-document:
-      in-shelf: Consultable à la Bpi
-      in-ligne: Accéder à %name%
     type:
       indice: 'Indice de classement'
     publics: 'Public'
-    manifestation-location: 'Lieu de la manifestations'
-    result-de: 'Lieu de la manifestations'
+    manifestation-location: 'Lieu de la manifestation'
+    result-de: 'Résultat de'
     origins: 'Origine de la notice'
     content-table: Tables des matières
     periodicity-date: Date d'édition papier
@@ -526,3 +531,12 @@ error:
   page_broken_message: |
     Le site rencontre actuellement un problème technique, merci de renouveller votre visite ultèrieurement.
     Nous allons le réparer dès que possible. Désolé pour tout inconvénient causé.
+quatrieme:
+  label:
+    editor_information: 'Informations editeurs :'
+    biography: 'Biographie :'
+    presentation: 'Presentation :'
+title:
+  presse: Actualités et revues
+  autoformation: Autoformation
+  cinema: Cinéma

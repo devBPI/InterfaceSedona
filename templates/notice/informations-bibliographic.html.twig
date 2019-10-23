@@ -50,7 +50,6 @@
 {% endif %}
 {{ notice_macros.detail(notice.materialDescriptions, 'modal.advanced-search.facette.materialSupport'|trans, false) }}
 {{ notice_macros.detail(notice.collectionSeries, 'footer.sitemap.professionnels.collections-et-services'|trans, true) }}
-{{ notice_macros.detail(notice.collectionSeries, 'footer.sitemap.professionnels.collections-et-services'|trans, true) }}
 {{ notice_macros.detail(notice.togetherTitle, 'bloc.autority-result-information.title-together'|trans, true) }}
 {{ notice_macros.detail(notice.inRelationTitle, 'bloc.autority-result-information.title-inrelation'|trans, true) }}
 {{ notice_macros.detail(notice.meeting, 'bloc.autority-result-information.meeting'|trans, true) }}
@@ -123,18 +122,24 @@
         <li class="list-information__item">
         <span class="list-information__label">{{ ("Quatrième de couverture")|trans }}</span>
         <ul class="list-information__sub-list" lang="fr">
-            <li class="list-information__sub-item">
-                <span>{{ 'Presentation' |trans }}</span>
-                {{ notice.fourth.presentation }}
-            </li>
-            <li class="list-information__sub-item">
-                <span>{{ 'Biographie' |trans }}</span>
-                {{ notice.fourth.biography }}
-            </li>
-            <li class="list-information__sub-item">
-                <span>{{ 'Informations editeurs' |trans }}</span>
-                {{ notice.fourth.editorInfo }}
-            </li>
+            {% if notice.fourth.presentation  %}
+                <li class="list-information__sub-item">
+                    <span>{{ 'quatrieme.label.presentation' |trans }}</span>
+                    {{ notice.fourth.presentation }}
+                </li>
+            {% endif %}
+            {% if  notice.fourth.biography %}
+                <li class="list-information__sub-item">
+                    <span>{{ 'quatrieme.label.biography' |trans }}</span>
+                    {{ notice.fourth.biography }}
+                </li>
+            {% endif %}
+            {% if   notice.fourth.editorInfo%}
+                <li class="list-information__sub-item">
+                    <span>{{ 'quatrieme.label.editor_information' |trans }}</span>
+                    {{ notice.fourth.editorInfo }}
+                </li>
+            {% endif %}
         </ul>
     </li>
 {% endif %}

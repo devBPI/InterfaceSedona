@@ -94,19 +94,32 @@ class Criteria
     private $publicationDate;
 
     /**
-     * @var integer
+     * @var string
      * @JMS\Type("int")
      * @JMS\SerializedName("date-publication-start")
      */
     private $publicationDateStart;
 
     /**
-     * @var integer
+     * @var string
      * @JMS\Type("int")
      * @JMS\SerializedName("date-publication-fin")
      */
     private $publicationDateEnd;
 
+    /**
+     * @var string
+     * @JMS\Type("string")
+     * @JMS\SerializedName("isbn-issn-numcommercial")
+     */
+    private $isbnIssnNumcommercial;
+
+    /**
+     * @var string
+     * @JMS\Type("string")
+     * @JMS\SerializedName("indice-cote")
+     */
+    private $indiceCote;
 
     /**
      * @var self
@@ -148,6 +161,10 @@ class Criteria
     {
         if (array_key_exists(self::QUERY_NAME, $request)) {
             foreach ($request[self::QUERY_NAME] as $name => $value) {
+                if (empty($value)) {
+                    continue;
+                }
+
                 $this->$name = $value;
             }
         }
@@ -267,6 +284,23 @@ class Criteria
         }
 
         return $this->not;
+    }
+
+
+    /**
+     * @return string
+     */
+    public function getPublicationDateStart(): ?string
+    {
+        return $this->publicationDateStart;
+    }
+
+    /**
+     * @return string
+     */
+    public function getPublicationDateEnd(): ?string
+    {
+        return $this->publicationDateEnd;
     }
 
     /**

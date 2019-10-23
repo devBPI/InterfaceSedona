@@ -1,28 +1,31 @@
-{% if sameInstance(notice,'App\\Model\\Authority') and (notice.formAdopted is not empty or notice.type is not empty or notice.name is not empty) %}
+
+
+{% if (notice.formAdopted is not empty or notice.type is not empty or notice.name is not empty) %}
     <li class="list-information__item">
+        {% if notice.type is not empty %}
+            <span class="list-information__label">{{ ("Type")|trans }}</span>
+        {% endif %}
         <ul class="list-information__sub-list" lang="fr">
+            <li class="list-information__sub-item">
+                {{ notice.type }}
+            </li>
             {% if notice.formAdopted is not empty %}
                 <li class="list-information__sub-item">
-                    <span class="list-information__label">{{ "bloc.autority-result-information.authority-type"|trans }}{{ notice.formAdopted }}</span>
-                </li>
-            {% endif %}
-            {% if notice.type is not empty %}
-                <li class="list-information__sub-item">
-                        <span class="list-information__label">{{ ("Type:  ")|trans }}{{ notice.type }}</span>
+                    {{ "bloc.autority-result-information.authority-type"|trans }}{{ notice.formAdopted }}
                 </li>
             {% endif %}
             {% if notice.name is not empty %}
                 <li class="list-information__sub-item">
-                        {{ notice.name }}
+                    {{ notice.name }}
                 </li>
             {% endif %}
         </ul>
     </li>
 {% endif %}
 
-{% if sameInstance(notice,'App\\Model\\Authority') and  notice.countries is not empty %}
+{% if  notice.countries is not empty %}
     <li class="list-information__item">
-        <span class="list-information__label">{{ ('Pays ')|trans }}</span>
+        <span class="list-information__label">{{ ('Pays')|trans }}</span>
         <ul class="list-information__sub-list" lang="fr">
             {% for element in notice.countries %}
                 <li class="list-information__sub-item">
@@ -32,9 +35,10 @@
         </ul>
     </li>
 {% endif %}
-{% if sameInstance(notice,'App\\Model\\Authority') and  notice.languages is not empty %}
+
+{% if  notice.languages is not empty %}
     <li class="list-information__item">
-        <span class="list-information__label">{{ ('Langue(s) ')|trans }}</span>
+        <span class="list-information__label">{{ ('Langue(s)')|trans }}</span>
         <ul class="list-information__sub-list" lang="fr">
             {% for element in notice.languages %}
                 <li class="list-information__sub-item">
@@ -45,7 +49,7 @@
         </ul>
     </li>
 {% endif %}
-{% if sameInstance(notice,'App\\Model\\Authority') and notice.musicalKinds is not empty %}
+{% if  notice.musicalKinds is not empty %}
     <li class="list-information__item">
         <span class="list-information__label">{{ ('Genre musical  ')|trans }}</span>
         <ul class="list-information__sub-list" lang="fr">
@@ -58,7 +62,7 @@
         </ul>
     </li>
 {% endif %}
-{% if sameInstance(notice,'App\\Model\\Authority') and notice.dates is not empty %}
+{% if notice.dates is not empty %}
     <li class="list-information__item">
         <span class="list-information__label">{{ ('Dates')|trans }}</span>
         <ul class="list-information__sub-list" lang="fr">
@@ -70,7 +74,7 @@
         </ul>
     </li>
 {% endif %}
-{% if sameInstance(notice,'App\\Model\\Authority') and notice.birthDate is not empty %}
+{% if notice.birthDate is not empty %}
     <li class="list-information__item">
         <span class="list-information__label">{{ ('Naissance')|trans }}</span>
         <ul class="list-information__sub-list" lang="fr">
@@ -80,7 +84,7 @@
         </ul>
     </li>
 {% endif %}
-{% if sameInstance(notice,'App\\Model\\Authority') and notice.deathDate is not empty %}
+{% if  notice.deathDate is not empty %}
     <li class="list-information__item">
         <span class="list-information__label">{{ ('Mort')|trans }}</span>
         <ul class="list-information__sub-list" lang="fr">
@@ -90,7 +94,7 @@
         </ul>
     </li>
 {% endif %}
-{% if sameInstance(notice,'App\\Model\\Authority') and notice.principalActivities is not empty %}
+{% if notice.principalActivities is not empty %}
     <li class="list-information__item">
         <span class="list-information__label">{{ ('Activité(s) principale(s)')|trans }}</span>
         <ul class="list-information__sub-list" lang="fr">
@@ -103,7 +107,7 @@
         </ul>
     </li>
 {% endif %}
-{% if sameInstance(notice,'App\\Model\\Authority') and notice.notes is not empty %}
+{% if notice.notes is not empty %}
     <li class="list-information__item">
         <span class="list-information__label">{{ ('Notes')|trans }}</span>
         <ul class="list-information__sub-list" lang="fr">
@@ -116,7 +120,7 @@
         </ul>
     </li>
 {% endif %}
-{% if sameInstance(notice,'App\\Model\\Authority') and notice.otherNames is not empty %}
+{% if  notice.otherNames is not empty %}
     <li class="list-information__item">
         <span class="list-information__label">{{ ('Autre(s) nom(s)')|trans }}</span>
         <ul class="list-information__sub-list" lang="fr">
@@ -129,7 +133,7 @@
         </ul>
     </li>
 {% endif %}
-{% if sameInstance(notice,'App\\Model\\Authority') and notice.employedFor is not empty %}
+{% if notice.employedFor is not empty %}
     <li class="list-information__item">
         <span class="list-information__label">{{ ('Employé pour')|trans }}</span>
         <ul class="list-information__sub-list" lang="fr">
@@ -142,7 +146,7 @@
         </ul>
     </li>
 {% endif %}
-{% if sameInstance(notice,'App\\Model\\Authority') and notice.associetedForm is not empty %}
+{% if  notice.associetedForm is not empty %}
     <li class="list-information__item">
         <span class="list-information__label">{{ ('Nom(s) associé(s) / Nom(s) lié(s)')|trans }}</span>
         <ul class="list-information__sub-list" lang="fr">
@@ -157,7 +161,7 @@
         </ul>
     </li>
 {% endif %}
-{% if sameInstance(notice,'App\\Model\\Authority') and notice.isni is not empty %}
+{% if notice.isni is not empty %}
     <li class="list-information__item">
         <span class="list-information__label">{{ ('ISNI')|trans }}</span>
         <ul class="list-information__sub-list" lang="fr">
@@ -168,7 +172,7 @@
         </ul>
     </li>
 {% endif %}
-{% if sameInstance(notice,'App\\Model\\Authority') and notice.origins is not empty %}
+{% if notice.origins is not empty %}
     <li class="list-information__item">
         <span class="list-information__label">{{ ('Origine de la notice :')|trans }}</span>
         <ul class="list-information__sub-list" lang="fr">

@@ -1,14 +1,13 @@
 <nav aria-label="{{ 'page.breadcrumb'|trans }}" role="navigation">
-	<p class="breadcrumb">
+	<ul class="breadcrumb">
 		{% set urlBreadcrumb = {
 		'1': {'title': ('page.home.page_title'|trans) , 'url':path('home')},
 		'2':{'title': ('footer.sitemap.bpi.Catalogue'|trans) , 'url':path('search')},
 		} %}
-        {% if navigation is defined and sameInstance(navigation,'App\\Service\\NavigationService') and notice is defined and notice is not null  %}
+        {% if navigation is defined and is_same_instance(navigation,'App\\Service\\NavigationService') and notice is defined and notice is not null  %}
 			{% set urlBreadcrumb = urlBreadcrumb |merge({
                 '3': {'title': ('Résultats'|trans) , 'url': path('search', {'searchToken':navigation.hash})},
                 '4':{'title': (notice.title |trans) ,'url': path('search', {'searchToken':navigation.hash})},
-
 			}) %}
 		{% elseif objSearch is defined and objSearch.contextToken is defined %}
             {% set urlBreadcrumb = urlBreadcrumb |merge({
@@ -16,13 +15,13 @@
             }) %}
 		{% endif %}
 		{% for value in  urlBreadcrumb %}
-			<span class="breadcrumb-item">
-				{% if loop.last %}
-                    {{ value['title'] }}
-				{% else %}
-					<a href="{{ value['url']  |raw}}">{{ value['title'] |raw }}</a>
-				{% endif %}
-			</span>
+			{% if loop.last %}
+				<li class="breadcrumb-item active" aria-current="page">{{ value['title'] }}</li>
+			{% else %}
+				<li class="breadcrumb-item">
+					<a href="{{ value['url'] |raw}}">{{ value['title'] |raw }}</a>
+				</li>
+			{% endif %}
 		{% endfor %}
-	</p>
+	</ul>
 </nav>

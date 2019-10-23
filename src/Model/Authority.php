@@ -11,7 +11,7 @@ use JMS\Serializer\Annotation as JMS;
  * Class Authority
  * @package App\Model
  */
-class Authority implements NoticeInterface
+final class Authority implements NoticeInterface
 {
     private const DOC_TYPE = 'authority';
 
