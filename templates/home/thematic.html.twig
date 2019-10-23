@@ -3,7 +3,7 @@
 {% block title %}Parcours {{ title }}{% endblock %}
 {% block body %}
 
-	<h1 class="n1">{{ title }}</h1>
+	<h1 class="n1">{{ ('title.'~title) | trans }}</h1>
 	{% include "home/blocs/carousel.html.twig" %}
 	<div class="card-container">
 		<h2 class="n1">{{ 'page.thematic.theme'|trans }}</h2>

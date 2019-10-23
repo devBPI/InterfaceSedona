@@ -1,55 +1,69 @@
 <!-- Début - Bloc A Barre utilitaires -->
 <div class="toolbar">
 	<ul class="toolbar__list">
-		{% if toolbar is defined and toolbar in ['App\\Model\\Notice', 'App\\Model\\Authority', 'App\\Model\\IndiceCdu'] %}
-			<li class="toolbar__item">
-				<button data-target="#modal-list-add" data-toggle="modal">
-					<img src="{{ asset('images/icones/icone-coeur.svg') }}" alt="" class="icone-coeur"/>
-					<span><span class="sr-only">{{ 'bloc.toolbar.add_to'|trans }} </span>{{ 'bloc.toolbar.my_selection'|trans }}</span>
-				</button>
-			</li>
-			<li class="toolbar__item">
-				<button data-target="#modal-export" data-toggle="modal" >
-					<img src="{{ asset('images/icones/icone-fichier.svg') }}" alt="" class="icone-fichier"/>
-					<span>{{ 'bloc.toolbar.export'|trans }}<span class="sr-only"> {{ 'bloc.toolbar.the_selection'|trans }}</span></span>
-				</button>
-			</li>
-		{% else %}
-			<li class="toolbar__item">
-				<button data-href="#modal-list-add" data-toggle="disable-if-no-found-modal"
-						data-spy='.addableInList,[data-toggle="check-all"]'
-						data-target='.addableInList:checked'>
-					<img src="{{ asset('images/icones/icone-coeur.svg') }}" alt="" class="icone-coeur"/>
-					<span><span class="sr-only">{{ 'bloc.toolbar.add_to'|trans }} </span>{{ 'bloc.toolbar.my_selection'|trans }}</span>
-				</button>
-			</li>
-			<li class="toolbar__item">
-				<button data-href="#modal-export" data-toggle="disable-if-no-found-modal"
-						data-spy='.addableInList,[data-toggle="check-all"]'
-						data-target='.addableInList:checked'
-						class="js-print-action"
-				>
-					<img src="{{ asset('images/icones/icone-fichier.svg') }}" alt="" class="icone-fichier"/>
-					<span>{{ 'bloc.toolbar.export'|trans }}</span>
-				</button>
-			</li>
-		{% endif %}
-		{% if printRoute is defined %}
+		{% block selection %}
+			{% if toolbar is defined and toolbar in ['App\\Model\\Notice', 'App\\Model\\Authority', 'App\\Model\\IndiceCdu'] %}
 
-			<li class="toolbar__item">
-				<button  data-target="#modal-print" data-toggle="modal" class="{% if printRoute == path('selection_print')%}js-print-selection-action{% else %}js-print-action{% endif %}" >
-					<img src="{{ asset('images/icones/icone-imprimante.svg') }}" alt="" class="icone-imprimante"/>
-					<span>{{ 'bloc.toolbar.print'|trans }}</span>
-				</button>
-			</li>
-		{% else %}
-			<li class="toolbar__item toolbar__item--disabled">
-				<p>
-					<img src="{{ asset('images/icones/icone-imprimante.svg') }}" alt="" class="icone-imprimante"/>
-					<span>{{ 'bloc.toolbar.print'|trans }}</span>
-				</p>
-			</li>
-		{% endif %}
+				<li class="toolbar__item">
+					<button data-target="#modal-list-add" data-toggle="modal">
+						<img src="{{ asset('images/icones/icone-coeur.svg') }}" alt="" class="icone-coeur"/>
+						<span><span class="sr-only">{{ 'bloc.toolbar.add_to'|trans }} </span>{{ 'bloc.toolbar.my_selection'|trans }}</span>
+					</button>
+				</li>
+
+			{% else %}
+				<li class="toolbar__item">
+					<button data-href="#modal-list-add" data-toggle="disable-if-no-found-modal"
+							data-spy='.addableInList,[data-toggle="check-all"]'
+							data-target='.addableInList:checked'>
+						<img src="{{ asset('images/icones/icone-coeur.svg') }}" alt="" class="icone-coeur"/>
+						<span><span class="sr-only">{{ 'bloc.toolbar.add_to'|trans }} </span>{{ 'bloc.toolbar.my_selection'|trans }}</span>
+					</button>
+				</li>
+			{% endif %}
+		{% endblock %}
+		{% block export %}
+			{% if toolbar is defined and toolbar in ['App\\Model\\Notice', 'App\\Model\\Authority', 'App\\Model\\IndiceCdu'] %}
+				<li class="toolbar__item">
+					<button data-target="#modal-export" data-toggle="modal" >
+						<img src="{{ asset('images/icones/icone-fichier.svg') }}" alt="" class="icone-fichier"/>
+						<span>{{ 'bloc.toolbar.export'|trans }}<span class="sr-only"> {{ 'bloc.toolbar.the_selection'|trans }}</span></span>
+					</button>
+				</li>
+			{% else %}
+				<li class="toolbar__item">
+					<button data-href="#modal-export" data-toggle="disable-if-no-found-modal"
+							data-spy='.addableInList,[data-toggle="check-all"]'
+							data-target='.addableInList:checked'
+							class="js-print-action"
+					>
+						<img src="{{ asset('images/icones/icone-fichier.svg') }}" alt="" class="icone-fichier"/>
+						<span>{{ 'bloc.toolbar.export'|trans }}</span>
+					</button>
+				</li>
+			{% endif %}
+		{% endblock %}
+		{% block print %}
+			{% if printRoute is defined %}
+				<li class="toolbar__item">
+					<button
+							data-target="#modal-print"
+							data-toggle="modal"
+							class="js-print-action"
+					>
+						<img src="{{ asset('images/icones/icone-imprimante.svg') }}" alt="" class="icone-imprimante"/>
+						<span>{{ 'bloc.toolbar.print'|trans }}</span>
+					</button>
+				</li>
+			{% else %}
+				<li class="toolbar__item toolbar__item--disabled">
+					<p>
+						<img src="{{ asset('images/icones/icone-imprimante.svg') }}" alt="" class="icone-imprimante"/>
+						<span>{{ 'bloc.toolbar.print'|trans }}</span>
+					</p>
+				</li>
+			{% endif %}
+		{% endblock %}
 		<li class="toolbar__item">
 			<button data-target="#modal-share" data-toggle="modal">
 				<img src="{{ asset('images/icones/icone-partage.svg') }}" alt="" class="icone-partage"/>
