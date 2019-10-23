@@ -60,7 +60,8 @@ class UserSelectionController extends AbstractController
 
         return $this->render( 'user/selection.html.twig',
             $this->selectionService->getSelectionObjects() +[
-                'printRoute'=> $this->generateUrl('selection_print', ['format' => 'pdf'])
+                'printRoute'=> $this->generateUrl('selection_print', ['format' => 'pdf']),
+                'toolbar'=> UserSelectionDocument::class
             ]
         );
     }
