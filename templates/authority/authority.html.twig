@@ -11,24 +11,28 @@
 			{% include "record/blocs/results-navigation.html.twig" with {'routeTarget': path('record_authority', {'permalink':notice.permalink}) } %}
 		</div>
 		<div class="row">
-			{% include "authority/detail-authority.html.twig" with {'notice': notice } %}
+            {% block detail %}
+                {% include "authority/detail-authority.html.twig" with {'notice': notice } %}
+			{% endblock %}
 		</div>
-		<div class="row authority-document">
-			<!-- Début - Bloc 19 Liste de documents  -->
-			<div class="col-12">
-				<ul class="authority-document__list">
-					<li class="authority-document__item"><a href="#carousel-auteur">{{ 'bloc.list-related-documents.carousel-auteur'|trans }}</a></li>
-					<li class="authority-document__item"><a href="#carousel-sujets">{{ 'bloc.list-related-documents.carousel-sujets'|trans }}</a></li>
-				</ul>
+		{% block linkedDocs %}
+			<div class="row authority-document">
+                <!-- Début - Bloc 19 Liste de documents  -->
+                <div class="col-12">
+                    <ul class="authority-document__list">
+                        <li class="authority-document__item"><a href="#carousel-auteur">{{ 'bloc.list-related-documents.carousel-auteur'|trans }}</a></li>
+                        <li class="authority-document__item"><a href="#carousel-sujets">{{ 'bloc.list-related-documents.carousel-sujets'|trans }}</a></li>
+                    </ul>
+                </div>
+                {% if authors is defined and authors|length > 0 and authors.mappedNotices is not empty %}
+                    {% include "record/blocs/list-related-documents.html.twig" with {'object': authors, 'type': 'auteur', 'image': 'images/couvertures-generiques/cg-livre.svg' } %}
+                {% endif %}
+                {% if subjects is defined and subjects|length > 0 and subjects.mappedNotices is not empty %}
+                    {% include "record/blocs/list-related-documents.html.twig" with {'object': subjects, 'type': 'sujets', 'image': 'images/couvertures-generiques/cg-image.svg' } %}
+                {% endif %}
+                <!-- Fin - Bloc 19 Liste de documents  -->
 			</div>
-            {% if authors is defined and authors|length > 0 and authors.mappedNotices is not empty %}
-            	{% include "record/blocs/list-related-documents.html.twig" with {'object': authors, 'type': 'auteur', 'image': 'images/couvertures-generiques/cg-livre.svg' } %}
-			{% endif %}
-			{% if subjects is defined and subjects|length > 0 and subjects.mappedNotices is not empty %}
-				{% include "record/blocs/list-related-documents.html.twig" with {'object': subjects, 'type': 'sujets', 'image': 'images/couvertures-generiques/cg-image.svg' } %}
-			{% endif %}
-			<!-- Fin - Bloc 19 Liste de documents  -->
-		</div>
+		{% endblock %}
 	</div>
 {% endblock %}
 
