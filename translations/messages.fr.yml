@@ -381,6 +381,7 @@ bloc:
     result: Résultat numéro
     select: sélectionner
     access-to-bdd: Accès à
+    access-to-bpi: Consultable à la Bpi
     result-of-bdd: Résultat de
     last-publication: 'Dernier numéro reçu :'
     document-available: Disponible
@@ -388,6 +389,7 @@ bloc:
     notification-availablity: Document indisponible, être prévenu de son retour en rayon - ouverture formulaire
     resume-label: Afficher le résumé
     resume-title: 'Résumé :'
+    availability-label: Document indisponible, être prévenu de son retour en rayon - ouverture formulaire
   search-header-footer:   #Bloc 14 Tri et pages
     header:
       nb-result-aria: dropdown-number-items
@@ -456,9 +458,6 @@ bloc:
     topics: Thème(s)
     other-edition: Autre(s) éditions
     insi: 'ISNI'
-    access-document:
-      in-shelf: Consultable à la Bpi
-      in-ligne: Accéder à %name%
     type:
       indice: 'Indice de classement'
     publics: 'Public'

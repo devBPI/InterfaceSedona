@@ -5,7 +5,7 @@
         {% if seeAll in [constant('App\\Model\\Notice::SEE_ONSHELF') , constant('App\\Model\\Notice::ALL')] or seeAll is null %}
             {% set pagesTotal = objSearch.results.notices.totalCount %}
 			<div class="col-12">
-                {% include 'search/blocs-results/docs-container.html.twig' with { 'type': constant('App\\Model\\Notice::ON_SHELF'), 'notices': objSearch.results.notices, 'classColl': 'full'} %}
+                {% include 'search/blocs-results/docs-container.html.twig' with { 'type': constant('App\\Model\\Notice::SEE_ONSHELF'), 'notices': objSearch.results.notices, 'classColl': 'full'} %}
 			</div>
         {% endif %}
         {% if seeAll in [constant('App\\Model\\Notice::SEE_ONLINE') , constant('App\\Model\\Notice::ALL')] or seeAll is null %}
