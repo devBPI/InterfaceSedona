@@ -10,7 +10,6 @@
 ./.deploy
 ./.package-ignore
 ./.env
-./.env.dist
 ./docker-compose.*
 ./nbproject
 ./app/config/parameters.yml
