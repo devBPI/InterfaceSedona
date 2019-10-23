@@ -244,7 +244,8 @@ class SearchController extends AbstractController
             'search/blocs-advanced-search/content.html.twig',
             [
                 'criteria' => $this->advancedSearchProvider->getAdvancedSearchCriteria(),
-                'objSearch' => $objSearch
+                'objSearch' => $objSearch,
+                'modeDate' => $request->get('adv-search-date')
             ]
         );
     }

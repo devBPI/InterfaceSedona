@@ -81,6 +81,7 @@ $(document)
         });
         $('.js-date-period .check--radio').on('ifUnchecked', function(){
             $input_period.addClass('d-none');
+            $('[name="criteria[publicationDateEnd]"]').val('');
         });
 	})
     .on('click', '.js-copy_to_clipboard', function (e) {
