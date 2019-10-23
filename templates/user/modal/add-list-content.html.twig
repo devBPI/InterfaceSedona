@@ -1,7 +1,9 @@
 <form id="list_add_form" class="modal-form list-docs" action="{{ path('user_selection_list_add') }}"
       method="post" data-toggle="form-remote">
     <div class="modal-header">
-        <h1 class="n1 modal-header__title" id="modal-list-add-title">{{ 'modal.list-add.title'|trans }}</h1>
+        <h1 class="n1 modal-header__title" id="modal-list-add-title">
+            {{ app.user ? ('modal.list-add.title-connected'|trans) : 'modal.list-add.title'|trans }}
+        </h1>
         <button class="close" type="button" aria-label="{{ 'global.modal-close'|trans }}"
                 data-dismiss="modal">
             <span aria-hidden="true" class="sr-only">X</span>
@@ -17,12 +19,7 @@
     {% endif %}
 
     <div class="modal-body">
-        <div class="list-result border-0 list-result--modal"
-             {% if current is not defined %}id="resume-container"{% endif %}>
-            {% if current is defined %}
-                {% include 'search/blocs-results/docs-detail.html.twig' with {'notice': current.object} %}
-            {% endif %}
-        </div>
+        <div class="list-result border-0 list-result--modal" id="resume-container"></div>
     </div>
 
     {% if is_granted('IS_AUTHENTICATED_FULLY') %}

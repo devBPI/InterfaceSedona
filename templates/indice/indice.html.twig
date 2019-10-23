@@ -1,35 +1,11 @@
-{% extends 'search/base.html.twig' %}
-{% block title %}{{ 'page.authority.title'|trans({'%author%': notice.title}) }}{% endblock %}
+{% extends 'authority/authority.html.twig' %}
 
-{% block body %}
-	<div class="authority-result">
-		<div class="row justify-content-between">
-			{% include "record/blocs/results-navigation.html.twig" with {'routeTarget': path('record_authority', {'permalink':notice.permalink}) } %}
-		</div>
-		<div class="row">
-
-			{% include "indice/detail-indice.html.twig" with {'notice': notice } %}
-		</div>
-		<div class="row authority-document">
-			<!-- Début - Bloc 19 Liste de documents  -->
-			<div class="col-12">
-				<ul class="authority-document__list">
-					<li class="authority-document__item"><a href="#carousel-auteur">{{ 'bloc.list-related-documents.carousel-auteur'|trans }}</a></li>
-					<li class="authority-document__item"><a href="#carousel-sujets">{{ 'bloc.list-related-documents.carousel-sujets'|trans }}</a></li>
-				</ul>
-			</div>
-			<!-- Fin - Bloc 19 Liste de documents  -->
-		</div>
-		<div class="row" id="around-index-wrapper">
-			{% include "indice/index-browsing.html.twig" with {"indexList": notice.aroundIndex} %}
-		</div>
-	</div>
+{% block detail %}
+    {% include "indice/detail-indice.html.twig" with {'notice': notice } %}
 {% endblock %}
 
-{% block javascripts %}
-    {{ parent() }}
-
-    {% if app.environment != 'test' %}
-        {{ encore_entry_script_tags('carousel') }}
-    {% endif %}
+{% block linkedDocs %}
+    <div class="row" id="around-index-wrapper">
+        {% include "indice/index-browsing.html.twig" with {"indexList": notice.aroundIndex} %}
+    </div>
 {% endblock %}

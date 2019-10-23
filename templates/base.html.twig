@@ -67,8 +67,7 @@
 					{% include "common/breadcrumb.html.twig" %}
 					{% block search %}{% include "common/search.html.twig" %}{% endblock %}
 					{% block searchextended %}{% endblock %}
-					{% include "common/toolbar.html.twig" %}
-
+					{% block toolbar %}	{% include "common/toolbar.html.twig" %} {% endblock %}
 					{% block body %}{% endblock %}
 				{% endblock %}
 			</div>

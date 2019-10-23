@@ -109,7 +109,8 @@ modal:
     submit: Valider
     submit-sr-only:  la création de la liste
   list-add:             #Modal 02 ajout à ma sélection
-    title: Ajouter ..
+    title-connected: Ajouter ..
+    title: Vous avez ajouté ..
     add-to-profile: '.. à Mon compte dans :'
     list: '%name%'
     new-list: Nouvelle liste

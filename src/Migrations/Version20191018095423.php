@@ -23,7 +23,7 @@ final class Version20191018095423 extends AbstractMigration
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'postgresql', 'Migration can only be executed safely on \'postgresql\'.');
 
 
-        $this->addSql('ALTER TABLE user_selection_document ADD notice_type VARCHAR(250) NOT NULL');
+        $this->addSql('ALTER TABLE user_selection_document ADD notice_type VARCHAR(250) NOT NULL DEFAULT \'notice\'');
     }
 
     public function down(Schema $schema) : void

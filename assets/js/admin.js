@@ -1,15 +1,18 @@
+import {SelectionAdder, SelectionList} from './my-selection';
+
+let selectionListObject = new SelectionList();
+
 $(document)
 	.on('show.bs.modal', '#modal-list-add,#modal-list-create', function (e) {
-		let $inputContainer = $(this).find('#resume-container');
-        $inputContainer.html('');
-		$inputContainer.parent('.modal-body').hide();
-		for (let doc of $('[name="selection[document][]"]:checked')) {
-			let card = $(doc).clone();
-			$inputContainer.append(card);
-		}
+        let adder = new SelectionAdder($(this).get(0));
+        adder.hideContainer();
+
+        for (let doc of $('[name="selection[document][]"]:checked')) {
+            adder.cloneSelectedItemInContainer(doc);
+        }
 	})
     .on('ifChanged click', ':checkbox', function () {
-    	$('#countSelectionList span').html('('+$('[name="selection[list][]"]:checked').length+')')
-    	$('#countSelectionDocument span').html('('+$('[name="selection[document][]"]:checked').length+')')
+        selectionListObject.updateListCount($('[name="selection[list][]"]:checked').length);
+        selectionListObject.updateDocumentCount($('[name="selection[document][]"]:checked').length);
     })
 ;

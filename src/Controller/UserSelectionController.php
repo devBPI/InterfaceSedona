@@ -60,7 +60,8 @@ class UserSelectionController extends AbstractController
 
         return $this->render( 'user/selection.html.twig',
             $this->selectionService->getSelectionObjects() +[
-                'printRoute'=> $this->generateUrl('selection_print', ['format' => 'pdf'])
+                'printRoute'=> $this->generateUrl('selection_print', ['format' => 'pdf']),
+                'toolbar'=> UserSelectionDocument::class
             ]
         );
     }
@@ -117,8 +118,7 @@ class UserSelectionController extends AbstractController
         }
 
         $params += [
-            'lists' => $this->selectionService->getListsOfCurrentUser(),
-            'object' => $request->get('current', null),
+            'lists' => $this->selectionService->getListsOfCurrentUser()
         ];
 
         return $this->render('user/modal/add-list-content.html.twig', $params);

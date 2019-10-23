@@ -1,5 +1,7 @@
 {% extends 'base.html.twig' %}
-
+{% block toolbar %}
+    {% include "common/toolbar-search.html.twig" %}
+{% endblock %}
 {% block javascripts %}
 	{{ parent() }}
     
