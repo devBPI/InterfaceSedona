@@ -130,7 +130,7 @@ dev-dotenv: dotenv-make
 
 dotenv-clear:
 	@printf "Clear dotenv files \n"
-	rm -rf .deploy .env .env.dist
+	rm -rf .deploy .env
 	touch .env
 	chmod 600 .env
 .PHONY: dotenv-clear
