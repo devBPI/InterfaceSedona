@@ -1,6 +1,6 @@
 {% macro availibility(object, notice ) %}
     {% if is_same_instance(object, "App\\Model\\NoticeAvailable")%}
-        {% if object.availability == constant('App\\Model\\NoticeAvailable::AVAILABLE') %}
+        {% if constant('App\\Model\\NoticeAvailable::AVAILABLE') in [object.availability, object.labelDisponibility] %}
             <div class="availability availability--true availability--rayon">
                 <p>
                     <span class="availability__status">{{ object.availability }} : </span>{% if object.cote %}{{ object.cote }}{% endif %}
