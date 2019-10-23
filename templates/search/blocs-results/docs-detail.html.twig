@@ -54,8 +54,9 @@
                     </button>
                     {% endif %}
                 </p>
-                {# TODO : Voir dans les fichiers gabarit pour cette info #}
-                <p lang="fr">Résultat de <a href="#" aria-label="Acceder à *Insert name BDD*">*Insert name BDD*</a></p>
+                {% if notice.configurationName is not empty %}
+                    <p lang="fr">Résultat de <a href="#" aria-label="Acceder à {{ notice.configurationName }}">{{ notice.configurationName }}</a></p>
+                {% endif %}
 
                 {% for available in notice.copies %}
                     {# TODO : afficher la location + category également pour les documents rayon disponible #}

@@ -60,7 +60,14 @@ class Notice extends AbstractImage implements NoticeInterface
      * @JMS\Type("string")
      * @JMS\SerializedName("nomPubliqueConfiguration")
      */
+    private $nomPubliqueConfiguration;
+    /**
+     * @var string
+     * @JMS\Type("string")
+     * @JMS\SerializedName("configurationName")
+     */
     private $configurationName;
+
     /**
      * @var string
      * @JMS\Type("string")
@@ -915,6 +922,10 @@ class Notice extends AbstractImage implements NoticeInterface
      */
     public function getConfigurationName(): ?string
     {
+        if ($this->nomPubliqueConfiguration) {
+            return $this->nomPubliqueConfiguration;
+        }
+
         return $this->configurationName;
     }
 
