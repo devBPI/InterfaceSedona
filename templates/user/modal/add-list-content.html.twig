@@ -2,7 +2,7 @@
       method="post" data-toggle="form-remote">
     <div class="modal-header">
         <h1 class="n1 modal-header__title" id="modal-list-add-title">
-            {{ app.user ? 'modal.list-add.title-connected'|trans : 'modal.list-add.title'|trans }}
+            {{ app.user ? ('modal.list-add.title-connected'|trans) : 'modal.list-add.title'|trans }}
         </h1>
         <button class="close" type="button" aria-label="{{ 'global.modal-close'|trans }}"
                 data-dismiss="modal">
