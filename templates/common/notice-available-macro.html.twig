@@ -16,7 +16,7 @@
                         data-toggle="modal"
                         data-target="#modal-notified">
                         <img src="{{ asset('images/icones/icone-enveloppe.svg') }}" alt="" class="icone-enveloppe"/>
-                        <span class="sr-only">Document indisponible, être prévenu de son retour en rayon - ouverture formulaire</span>
+                        <span class="sr-only">{{ 'bloc.notice-simple.availability-label'|trans }}</span>
                     </button>
                 </p>
             </div>
@@ -38,7 +38,7 @@
            </div>
        {% else %}
            <div class="availability availability--false availability--online">
-               <p class="mb-0 font-weight-bold">Consultable à la BPI</p>
+               <p class="mb-0 font-weight-bold">{{ 'bloc.notice-simple.access-to-bpi'|trans }}</p>
            </div>
        {% endif %}
     {% endif %}
