@@ -20,8 +20,12 @@
                 <!-- Début - Bloc 19 Liste de documents  -->
                 <div class="col-12">
                     <ul class="authority-document__list">
-                        <li class="authority-document__item"><a href="#carousel-auteur">{{ 'bloc.list-related-documents.carousel-auteur'|trans }}</a></li>
-                        <li class="authority-document__item"><a href="#carousel-sujets">{{ 'bloc.list-related-documents.carousel-sujets'|trans }}</a></li>
+                        {% if authors is defined and authors|length > 0 and authors.mappedNotices is not empty %}
+                            <li class="authority-document__item"><a href="#carousel-auteur">{{ 'bloc.list-related-documents.carousel-auteur'|trans }}</a></li>
+                        {% endif %}
+                        {% if subjects is defined and subjects|length > 0 and subjects.mappedNotices is not empty %}
+                            <li class="authority-document__item"><a href="#carousel-sujets">{{ 'bloc.list-related-documents.carousel-sujets'|trans }}</a></li>
+                        {% endif %}
                     </ul>
                 </div>
                 {% if authors is defined and authors|length > 0 and authors.mappedNotices is not empty %}

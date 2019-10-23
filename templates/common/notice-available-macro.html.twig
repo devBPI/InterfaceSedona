@@ -2,21 +2,21 @@
     {% if is_same_instance(object, "App\\Model\\NoticeAvailable")%}
         {% if constant('App\\Model\\NoticeAvailable::AVAILABLE') in [object.availability, object.labelDisponibility] %}
             <div class="availability availability--true availability--rayon">
-                <p>
-                    <span class="availability__status">{{ object.availability }} : </span>{% if object.cote %}{{ object.cote }}{% endif %}
+                <p class="font-weight-bold">
+                    <span class="availability__status">{{ object.availability }}</span>{% if object.cote %} {{ object.cote }}{% endif %}
                 </p>
                 <p>{% if object.location %}{{ object.location }} {% endif %}{% if object.category %}- {{ object.category }} {% endif %}</p>
             </div>
         {% else %}
             <div class="availability availability--false availability--rayon">
             {# TODO : Mettre le status de commande dynamique #}
-                <p class="availability__status">{{ 'bloc.notice-simple.document-unavailable'|trans }} : En commande</p>
+                <p class="availability__status">{{ 'bloc.notice-simple.document-unavailable'|trans }} <span>En commande</span></p>
                     <button class="btn list-result__content-button js-envelope"
                         data-url="{{ path('notice_availablity_request', {"sourceId": notice.sourceId, 'configurationId':notice.configurationId}) }}"
                         data-toggle="modal"
                         data-target="#modal-notified">
                         <img src="{{ asset('images/icones/icone-enveloppe.svg') }}" alt="" class="icone-enveloppe"/>
-                        <span class="sr-only">Document indisponible, être prévenu de son retour en rayon - ouverture formulaire</span>
+                        <span class="sr-only">{{ 'bloc.notice-simple.availability-label'|trans }}</span>
                     </button>
                 </p>
             </div>
@@ -38,7 +38,7 @@
            </div>
        {% else %}
            <div class="availability availability--false availability--online">
-               <p class="mb-0 font-weight-bold">Consultable à la BPI</p>
+               <p class="mb-0 font-weight-bold">{{ 'bloc.notice-simple.access-to-bpi'|trans }}</p>
            </div>
        {% endif %}
     {% endif %}

@@ -164,6 +164,14 @@ final class ObjSearch
     }
 
     /**
+     * @return Criteria|null
+     */
+    public function getCriteria(): ?Criteria
+    {
+        return $this->searchQuery->getCriteria();
+    }
+
+    /**
      * @return array
      */
     public function getAdvancedCriteria(): array
