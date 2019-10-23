@@ -1,5 +1,5 @@
 import * as util from './notice-availibility.js'
-// var Slider = require('bootstrap-slider');
+import Slider from 'bootstrap-slider';
 
 import {SelectionAdder} from './my-selection';
 
@@ -41,13 +41,17 @@ $(document)
             }
         }
     })
-    // .on('show.bs.modal', '#modal-refine-search', function (e) {
-    //     var sliderDate = new Slider('#rfn-date-slider', {
-    //         min: 1900,
-    //         max: 2010,
-    //         step: 5,
-    //         value: [1945,1980],
-    //         handle: 'square'
-    //     });
-    // })
+    .on('show.bs.modal', '#modal-refine-search', function (e) {
+        // document.querySelectorAll('.js-slider').forEach(function (input: HTMLInputElement) {
+        //     new Slider(this);
+        // })
+        if ($('#rfn-search-date-slider').data('slider-plugin') != undefined) {
+            return;
+        }
+
+        var slider = new Slider('#rfn-search-date-slider', {
+            handle: 'square'
+        });
+        $('#rfn-search-date-slider').data('slider-plugin', slider);
+    })
 ;

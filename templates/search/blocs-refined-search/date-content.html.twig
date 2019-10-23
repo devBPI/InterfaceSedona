@@ -1,23 +1,16 @@
-<div class="search-facette">
-    <button type="button" class="search-facette__button btn" data-toggle="collapse" aria-expanded="false" aria-controls="rfn-search-date" data-target="#rfn-search-date">{{ facet.label }}</button>
-    <div class="collapse search-facette__body" id="rfn-search-date" role="group" aria-label="{{ facet.label }}">
-        <div class="search-facette__content">
-            <div class="search-facette__item search-facette__item--button">
-                <button class="btn">{{ 'modal.refine-search.filter-delete'|trans }}<span class="sr-only"> : {{ facet.label }}</span></button>
-            </div>
-            <div class="search-facette__date">
-                <div>
-                    <label for="rfn-search-date-1" class="sr-only">Entrez une première date</label>
-                    <input type="text" class="form-control" id="rfn-search-date-1" placeholder="AAAA" name="{{ facet.name }}[]">
-                </div>
-                <div class="mx-3">
-                    *Insert Slider*
-                </div>
-                <div>
-                    <label for="rfn-search-date-2" class="sr-only">Entrez une deuxième date</label>
-                    <input type="text" class="form-control" id="rfn-search-date-2" placeholder="AAAA" name="{{ facet.name }}[]">
-                </div>
-            </div>
-        </div>
+<div class="search-facette__date">
+    <div>
+        <label for="rfn-search-date-1" class="sr-only">Entrez une première date</label>
+        <input type="text" class="form-control" id="rfn-search-date-1" placeholder="AAAA">
+    </div>
+    <div class="mx-3">
+        <input type="text" id="rfn-search-date-slider" name="facets[{{ facet.name }}][]"
+               data-slider-min="{{ facet.minValue }}" data-slider-max="{{ facet.maxValue }}"
+               data-slider-value="[{{ facet.minValue }},{{ facet.maxValue }}]"
+               data-slider-step="1" >
+    </div>
+    <div>
+        <label for="rfn-search-date-2" class="sr-only">Entrez une deuxième date</label>
+        <input type="text" class="form-control" id="rfn-search-date-2" placeholder="AAAA">
     </div>
 </div>

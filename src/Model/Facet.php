@@ -45,6 +45,12 @@ class Facet
     private $values;
 
     /**
+     * @var array
+     * @JMS\Exclude()
+     */
+    private $raw_values;
+
+    /**
      * @return string
      */
     public function getName(): string
@@ -82,5 +88,34 @@ class Facet
     public function getValues(): array
     {
         return $this->values;
+    }
+
+    /**
+     * @return array
+     */
+    public function getRawValues(): array
+    {
+        if ($this->raw_values === null) {
+            $this->raw_values = array_map(function (FacetValue $value) {
+                return (int)$value->getName();
+            }, $this->values);
+        }
+
+        return $this->raw_values;
+    }
+
+    /**
+     * @return int
+     */
+    public function getMinValue(): int
+    {
+        return min($this->getRawValues());
+    }
+    /**
+     * @return int
+     */
+    public function getMaxValue(): int
+    {
+        return max($this->getRawValues());
     }
 }
