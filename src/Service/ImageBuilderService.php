@@ -12,7 +12,8 @@ use Symfony\Component\HttpFoundation\File\File;
  */
 final class ImageBuilderService
 {
- use TraitSlugify;
+    use TraitSlugify;
+
     public  const PARENT_FOLDER             = 'imported_images';
     public  const COVER_FOLDER              = 'couvertures-generiques';
     private const IMAGE_FOLDER              = 'images';
@@ -48,12 +49,10 @@ final class ImageBuilderService
         if (!$fs->exists($this->imageDir.$localFilePath)) {
 
             $filename = basename($content);
-                try{
-                $content = file_get_contents(self::$url.DIRECTORY_SEPARATOR.self::BPI_FOLDER_NAME_ELECTRE.DIRECTORY_SEPARATOR.$content);
-            }catch (\ErrorException $e){
+            $content = file_get_contents(self::$url.DIRECTORY_SEPARATOR.self::BPI_FOLDER_NAME_ELECTRE.DIRECTORY_SEPARATOR.$content);
+            if ($content == false) {
                 return $this->buildGenericPicture($type);
             }
-
             $fs->mkdir(str_replace($filename, '', $this->imageDir.self::PARENT_FOLDER.DIRECTORY_SEPARATOR.$localFilePath));
             $this->saveLocalImage($content, $localFilePath);
         }
@@ -61,6 +60,10 @@ final class ImageBuilderService
         return $this->imageDir.self::PARENT_FOLDER.DIRECTORY_SEPARATOR.$localFilePath;
     }
 
+    /**
+     * @param string $type
+     * @return string
+     */
     private function buildGenericPicture(string $type)
     {
         $fs = new Filesystem();
@@ -84,6 +87,11 @@ final class ImageBuilderService
         $fs->dumpFile($this->imageDir.self::PARENT_FOLDER.DIRECTORY_SEPARATOR.$localPath, $content);
     }
 
+    /**
+     * @param $path
+     * @param null $type
+     * @return string|null
+     */
     public function getimage64($path, $type=null)
     {
         if ($type===null){
