@@ -481,6 +481,9 @@
     "symfony/serializer": {
         "version": "v3.4.30"
     },
+    "symfony/service-contracts": {
+        "version": "v1.1.7"
+    },
     "symfony/stopwatch": {
         "version": "v3.4.24"
     },

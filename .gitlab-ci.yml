@@ -6,9 +6,6 @@ stages:
   - deploy
 
 variables:
-  RANCHER_CLI_VERSION: "v0.6.10"
-  RANCHER_STACK_NAME: "bpi-catalogue"
-  RANCHER_STACK_URL: https://bpi-catalogue.dev.sedona.fr
   SENSIO_INSIGHT_PROJECT_ID: "d00b38e4-085a-4648-b87f-86de05d98aab"
 
 cache:
@@ -23,14 +20,8 @@ quality:sonar:
   stage: quality
   image: "registry.sedona.fr/images/maven:latest-gitlab-ci"
   script:
-    - GROUP_ID=$(make show-var-GROUP_ID)
-    - ARTIFACT_ID=$(make show-var-ARTIFACT_ID)
-    - CLIENT_NAME=$(make show-var-CLIENT_NAME)
-    - COMPOSER_PROJECT_DESCRIPTION=$(make show-var-COMPOSER_PROJECT_DESCRIPTION)
-    - sed -i -E "s/sonar.projectKey=[^)]+/sonar.projectKey=$GROUP_ID:$ARTIFACT_ID/g" sonar-project.properties
-    - sed -i -E "s/sonar.projectName=[^)]+/sonar.projectName=[$CLIENT_NAME] $COMPOSER_PROJECT_DESCRIPTION /g" sonar-project.properties
-    - sed -i -E "s/sonar.projectVersion=[^)]+/sonar.projectVersion=$CI_COMMIT_REF_NAME/g" sonar-project.properties
-    - 'sonar-scanner'
+    - make -B sonar-project.properties
+    - sonar-scanner
 
 quality:insight:
   stage: quality
@@ -158,20 +149,3 @@ publish:image:
     - docker push $APP_IMAGE_TAG
     - docker push $DB_IMAGE_TAG
     - docker rmi -f $APP_IMAGE_TAG $DB_IMAGE_TAG
-
-deploy:rancher_dev:
-  stage: deploy
-  needs: ["compileJS", "build:image", "publish:image"]
-  dependencies:
-    - publish:image
-  only:
-    - feature-coloriage
-  image:
-    name: "rancher/cli:$RANCHER_CLI_VERSION"
-    entrypoint: ["/bin/sh", "-c"]
-  when: manual
-  environment:
-    name: dev-rancher
-    url: $RANCHER_STACK_URL
-  script:
-    - rancher up --stack $RANCHER_STACK_NAME -d --confirm-upgrade --force-recreate --pull --file .deploy/rancher/docker-compose.yml --rancher-file .deploy/rancher/rancher-compose.yml app
