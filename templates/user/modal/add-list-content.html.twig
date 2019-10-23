@@ -1,8 +1,8 @@
 <form id="list_add_form" class="modal-form list-docs" action="{{ path('user_selection_list_add') }}"
       method="post" data-toggle="form-remote">
     <div class="modal-header">
-        <h1 class="n1 modal-header__title" id="modal-list-add-title">*
-            {% if app.user ? 'modal.list-add.title-connected'|trans : 'modal.list-add.title'|trans }}
+        <h1 class="n1 modal-header__title" id="modal-list-add-title">
+            {{ app.user ? 'modal.list-add.title-connected'|trans : 'modal.list-add.title'|trans }}
         </h1>
         <button class="close" type="button" aria-label="{{ 'global.modal-close'|trans }}"
                 data-dismiss="modal">
