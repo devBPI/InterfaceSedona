@@ -15,6 +15,21 @@
 			display: flex;
 			align-items: flex-start;
 		}
+
+		&--mentions {
+			justify-content: flex-end;
+			@include font-size(11);
+			padding-top: $spacer * 2;
+
+			.list-information {
+
+				&__label {
+					min-width: auto;
+					flex: 0 0 auto;
+					margin-right: 5px;
+				}
+			}
+		}
 	}
 
 	&__sub {
@@ -103,7 +118,12 @@
 			&__label {
 				min-width: auto;
 				flex: 0 0 auto;
-				margin-right: $spacer;
+				margin-right: 5px;
+
+				&:after {
+					content: ";";
+					margin-left: 5px;
+				}
 			}
 		}	
 	}
