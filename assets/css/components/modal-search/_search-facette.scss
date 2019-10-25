@@ -67,19 +67,8 @@
 			min-width: 50%;
 		}
 
-		&--button {
-			padding-top: 0;
-			flex: 0 0 100%;
-			min-width: 100%;
-
-			@include media-breakpoint-up(md) {
-				text-align: right;
-			}
-
-			button {
-				padding: 0;
-				color: $grey-disabled;
-			}
+		.check {
+			margin-top: 4px;
 		}
 	}
 

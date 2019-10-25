@@ -1,5 +1,5 @@
 <!-- Début - Modal 14 affiné la recheche -->
-<div role="dialog" aria-modal="true" aria-labelledby="modal-refine-search-title" class="modal fade" id="modal-refine-search">
+<div role="dialog" aria-modal="true" aria-labelledby="modal-refine-search-title" class="modal fade modal--filter" id="modal-refine-search">
 	<div class="modal-dialog modal-dialog-centered">
 		<div class="modal-content">
 			<form class="modal-form" method="get" action="{{ path('refined_search') }}">
@@ -25,7 +25,10 @@
 				{% endfor %}
 
 				<div class="modal-footer">
-					<button type="submit" aria-label="{{ 'modal.refine-search.submit-aria'|trans }}" class="btn btn-lg btn-primary btn-img">
+                    <button type="button" class="btn-link btn">
+                        {{ 'modal.refine-search.search-delete'|trans }}
+                    </button>
+					<button type="submit" class="btn btn-lg btn-primary btn-img">
 						<span>{{ 'modal.refine-search.submit'|trans }}</span><img src="{{ asset('images/icones/icone-loupe.svg') }}" alt="" class="icone-loupe"/></button>
 				</div>
 			</form>
