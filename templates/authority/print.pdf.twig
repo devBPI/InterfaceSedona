@@ -26,9 +26,12 @@
                     <div class="col-12">
                         <h2 class="n1">{{ loop.index ~')'}} {{ object.title }}</h2>
                     </div>
-                    <div class="col-3">
-                        <img src="{{ image_to_base64(path('binary_image', {'content':object.image, 'type': object.type|slugify})) }}" class="img-fluid" alt="" />
-                    </div>
+                    {% if includeImage %}
+
+                        <div class="col-3">
+                            <img src="{{ image_to_base64(path('binary_image', {'content':object.image, 'type': object.type|slugify})) }}" class="img-fluid" alt="" />
+                        </div>
+                    {% endif %}
                     <div class="col">
                         <ul class="print__list">
                             {% for author in object.authors %}

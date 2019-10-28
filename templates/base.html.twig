@@ -67,12 +67,13 @@
 					{% include "common/breadcrumb.html.twig" %}
 					{% block search %}{% include "common/search.html.twig" %}{% endblock %}
 					{% block searchextended %}{% endblock %}
-					{% block toolbar %}	{% include "common/toolbar.html.twig" %} {% endblock %}
+					{% block toolbar %}
+						{% include "common/toolbar.html.twig" %}
+					{% endblock %}
 					{% block body %}{% endblock %}
 				{% endblock %}
 			</div>
 		</main>
-
 		<footer role="contentinfo" class="footer">
 			<div class="container">
 				<div class="footer__top">

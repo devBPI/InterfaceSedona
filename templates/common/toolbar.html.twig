@@ -3,7 +3,6 @@
 	<ul class="toolbar__list">
 		{% block selection %}
 			{% if toolbar is defined and toolbar in ['App\\Model\\Notice', 'App\\Model\\Authority', 'App\\Model\\IndiceCdu'] %}
-
 				<li class="toolbar__item">
 					<button data-target="#modal-list-add" data-toggle="modal">
 						<img src="{{ asset('images/icones/icone-coeur.svg') }}" alt="" class="icone-coeur"/>

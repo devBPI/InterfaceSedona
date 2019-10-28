@@ -74,11 +74,10 @@ class Right
             $payload[] = implode(',', $this->getLicence());
         }
         if (count($this->getCopyRight()) >0){
-            $payload[] = implode(',', $this->v());
+            $payload[] = implode(',', $this->getCopyRight());
         }
 
         if (count($payload)>0){
-
             return implode(',', $payload);
         }
 

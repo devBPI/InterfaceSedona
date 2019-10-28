@@ -1,47 +1,54 @@
 	{% if  isPrintLong  %}
         {{ pdf_occurence (notice, 'getTitleForm', '', format) | raw }}
+    	{{ pdf_occurence (notice, 'getTranslatedBy', 'bloc.autority-result-information.translated_from'| trans, format) | raw }}
     {% endif %}
-    {{ pdf_occurence (notice, 'getTranslatedBy', 'Traduit de', format) | raw }}
-	{{ pdf_occurence (notice, 'getAlternatifTitle', 'Dans', format) | raw }}
-	{{ pdf_occurence (notice, 'getAnalyliticalTitle', 'Dans', format) | raw }}
-	{{ pdf_occurence (notice, 'getExportTitle', 'Dans', format) | raw }}
-	{{ pdf_occurence (notice, 'getAuthors', 'Auteur(s)', format) | raw }}
+
+	{{ pdf_occurence (notice, 'getAnalyliticalTitle', 'bloc.autority-result-information.in'| trans, format) | raw }}
+
+	 {% if notice.type != 'Musique' %}
+		 {{ pdf_occurence (notice, 'getExportTitle', 'bloc.autority-result-information.in'| trans, format) | raw }}
+	 {% else %}
+		 {{ pdf_occurence (notice, 'getAnalyliticalTitle', 'bloc.autority-result-information.in'| trans, format) | raw }}
+	 {% endif %}
+
+	{% if  isPrintLong   %}
+        {{ pdf_occurence (notice, 'getAuthors', 'bloc.autority-result-information.authors'| trans, format) | raw }}
+        {{ pdf_occurence (notice,'getAuthors', 'bloc.autority-result-information.autor'| trans, format) | raw }}
+        {{ pdf_occurence (notice,'getDirectors', 'bloc.autority-result-information.directors'| trans, format) | raw }}
+    {% else %}
+		{{ pdf_occurence (notice, 'getAuthors', 'bloc.autority-result-information.by'| trans, format) | raw }}
+		{{ pdf_occurence (notice, 'getDirectors', 'bloc.autority-result-information.by'| trans, format) | raw }}
+        {{ pdf_occurence (notice, 'getEditors', 'modal.advanced-search.keyword.type.editors'| trans, format) | raw }}
+        {{ pdf_occurence (notice, 'getPublishedDates', ''| trans, format) | raw }}
+        {{ pdf_occurence (notice, 'getFormats', ''| trans, format) | raw }}
+    {% endif %}
+
 	{% if  isPrintLong  %}
-		{% if notice.directors|length>0 %}
-			{{ pdf_occurence (notice,'getAuthors', 'Auteur(s), compositeur(s), interprète(s)', format) | raw }}
-			{{ pdf_occurence (notice,'getDirectors', 'Réalisateur(s)', format) | raw }}
-		{% else %}
-			{{ pdf_occurence (notice, 'getAuthors', 'Auteur(s)', format) | raw }}
-		{% endif %}
-
-		{{ pdf_occurence (notice, 'getResume', 'Résumé(s)', format) | raw }}
-		{{ pdf_occurence (notice, 'getContents', 'Pistes', format) | raw }}
+		{{ pdf_occurence (notice, 'getResume', 'bloc.autority-result-information.resumes'| trans, format) | raw }}
+		{{ pdf_occurence (notice, 'getContents', 'bloc.autority-result-information.tracks'| trans, format) | raw }}
 
 		{% if notice.directors|length>0 %}
-            {{ pdf_occurence (notice, 'otherAuthors', 'Autre(s) auteur(s), compositeur(s), interprète(s)', format) | raw }}
+            {{ pdf_occurence (notice, 'otherAuthors', 'bloc.results-navigation.result-information.authors-and-composer'| trans, format) | raw }}
 		{% else %}
-            {{ pdf_occurence (notice, 'getOtherAuthors', 'Autre(s) auteur(s)', format) | raw }}
+            {{ pdf_occurence (notice, 'getOtherAuthors', 'bloc.autority-result-information.other-authors'| trans, format) | raw }}
 		{% endif %}
 		{% if notice.directors|length>0 %}
 			Contributeur(s) :
-            {{ pdf_occurence (notice, 'getContributeurs', '', format) | raw }}
-            {{ pdf_occurence (notice, 'getAuthors', '', format) | raw }}
-            {{ pdf_occurence (notice, 'getOtherAuthors', '', format) | raw }}
+            {{ pdf_occurence (notice, 'getContributeurs', ''| trans, format) | raw }}
+            {{ pdf_occurence (notice, 'getAuthors', ''| trans, format) | raw }}
+            {{ pdf_occurence (notice, 'getOtherAuthors', ''| trans, format) | raw }}
 			{% else %}
-                {{ pdf_occurence (notice, 'getContributeurs', 'Contributeur(s)', format) | raw }}
+                {{ pdf_occurence (notice, 'getContributeurs', 'bloc.autority-result-information.contributor'| trans, format) | raw }}
         {% endif %}
-        {{ pdf_occurence (notice, 'getEditors', 'Editeur(s)', format) | raw }}
-        {{ pdf_occurence (notice, 'getPublishedDates', 'Date(s)', format) | raw }}
-        {{ pdf_occurence (notice, 'getEditors', 'Editeur(s)', format) | raw }}
-        {{ pdf_occurence (notice, 'getOtherDates', "Date d'édition papier(s)", format) | raw }}
-    {% endif %}
-	{% if isPrintLong %}
-		{{ pdf_occurence (notice, 'getPeriodicity', "Périodicité", format) | raw }}
-		{{ pdf_occurence (notice, 'getUniformTitle', "Oeuvre(s)", format) | raw }}
-		{{ pdf_occurence (notice, 'getAlternatifTitle', "Autre(s) forme(s) de titre", format) | raw }}
-		{{ pdf_occurence (notice, 'getContents', "Contenu", format) | raw }}
-		{{ pdf_occurence (notice, 'getNotes', "Notes", format) | raw }}
-		{{ pdf_occurence (notice, 'getResume', "Résumé", format) | raw }}
+        {{ pdf_occurence (notice, 'getPublishedDates', 'bloc.results-navigation.result-information.date'| trans, format) | raw }}
+        {{ pdf_occurence (notice, 'getEditors', 'modal.advanced-search.keyword.type.editors'| trans, format) | raw }}
+        {{ pdf_occurence (notice, 'getOtherDates', "bloc.autority-result-information.edition-date"| trans, format) | raw }}
+		{{ pdf_occurence (notice, 'getPeriodicity', "bloc.autority-result-information.periodicity"| trans, format) | raw }}
+		{{ pdf_occurence (notice, 'getUniformTitle', "bloc.autority-result-information.ouvre"| trans, format) | raw }}
+		{{ pdf_occurence (notice, 'getAlternatifTitle', "bloc.autority-result-information.alternatif-title"| trans, format) | raw }}
+		{{ pdf_occurence (notice, 'getContents', "modal.advanced-search.facette.contenu"| trans, format) | raw }}
+		{{ pdf_occurence (notice, 'getNotes', "bloc.autority-result-information.nots"| trans, format) | raw }}
+		{{ pdf_occurence (notice, 'getResume', "bloc.notice-simple.resume-title"| trans, format) | raw }}
 		{% if format =='pdf' %}<li>{% endif %}
 			Langue(s) :
 			{% for element in notice.languages %}
@@ -51,13 +58,19 @@
 				{{ element }} {% if not loop.last %};{% endif %}
 			{% endfor %}
 		{% if format =='pdf' %}</li>{% endif %}
-		{{ pdf_occurence (notice, 'getMaterialDescriptions', "Description matérielle", format) | raw }}
-		{{ pdf_occurence (notice, 'getCollectionSeries', "Série / Collection", format) | raw }}
-		{{ pdf_occurence (notice, 'getTogetherTitle', "Titre(s) d'ensemble", format) | raw }}
-		{{ pdf_occurence (notice, 'getInRelationTitle', "Titre(s) en relation", format) | raw }}
-		{{ pdf_occurence (notice, 'getMeeting', "Réunit", format) | raw }}
-		{{ pdf_occurence (notice, 'getOtherEdition', "Autre(s) édition(s)", format) | raw }}
-		{{ pdf_occurence (notice, 'getConservations', "Conservation", format) | raw }}
+		{{ pdf_occurence (notice, 'getMaterialDescriptions', "modal.advanced-search.facette.materialSupport"| trans, format) | raw }}
+		{{ pdf_occurence (notice, 'getCollectionSeries', "bloc.results-navigation.result-information.collection-series"| trans, format) | raw }}
+		{{ pdf_occurence (notice, 'getTogetherTitle', "bloc.autority-result-information.title-together"| trans, format) | raw }}
+		{{ pdf_occurence (notice, 'getInRelationTitle', "bloc.autority-result-information.title-inrelation"| trans, format) | raw }}
+		{{ pdf_occurence (notice, 'getMeeting', "bloc.autority-result-information.meeting"| trans, format) | raw }}
+		{{ pdf_occurence (notice, 'getOtherEdition', "bloc.autority-result-information.other-edition"| trans, format) | raw }}
+
+		{% if notice.conservations %}
+			{{ pdf_occurence (notice, 'getConservations', "bloc.results-navigation.result-information.conservation"| trans, format) | raw }}
+		{% else %}
+			{{ pdf_occurence (notice, 'getConservations', "bloc.results-navigation.result-information.conservation"| trans, format) | raw }}
+		{% endif %}
+
 		{#
 				to put
 					"<liens>
@@ -72,34 +85,33 @@
 			</lien>
 			</liens>"
 		#}
-		{{ pdf_occurence (notice, 'getSubject', "Sujets", format) | raw }}
-		{{ pdf_occurence (notice, 'getEras', "Epoque", format) | raw }}
-		{{ pdf_occurence (notice, 'getLocations', "Lieu ", format) | raw }}
-		{{ pdf_occurence (notice, 'getKinds', "Genre", format) | raw }}
-		{{ pdf_occurence (notice, 'getTopics', "Thème(s)", format) | raw }}
-		{{ pdf_occurence (notice, 'getIsbn', "ISBN ", format) | raw }}
-		{{ pdf_occurence (notice, 'getIssn', "ISSN", format) | raw }}
-		{{ pdf_occurence (notice, 'getCommercialNumbers', "Numéros commerciaux", format) | raw }}
-		{{ pdf_occurence (notice, 'getIndices', "Indice", format) | raw }}
-		{{ pdf_occurence (notice, 'getPublics', "Public", format) | raw }}
-		{{ pdf_occurence (notice, 'getRights', "Droits", format) | raw }}
-		{{ pdf_occurence (notice, 'getPlacesEvents', "Lieu de la manifestation", format) | raw }}
-		{{ pdf_occurence (notice, 'getOrigins', "Origine de la notice", format) | raw }}
+		{{ pdf_occurence (notice, 'getSubject', "modal.advanced-search.facette.subject"| trans, format) | raw }}
+		{{ pdf_occurence (notice, 'getEras', "bloc.autority-result-information.eras"| trans, format) | raw }}
+		{{ pdf_occurence (notice, 'getLocations', "bloc.autority-result-information.location"| trans, format) | raw }}
+		{{ pdf_occurence (notice, 'getKinds', "bloc.autority-result-information.kind"| trans, format) | raw }}
+		{{ pdf_occurence (notice, 'getTopics', "bloc.autority-result-information.topics"| trans, format) | raw }}
+		{{ pdf_occurence (notice, 'getIsbn', "ISBN "| trans, format) | raw }}
+		{{ pdf_occurence (notice, 'getIssn', "ISSN"| trans, format) | raw }}
+		{{ pdf_occurence (notice, 'getCommercialNumbers', "bloc.autority-result-information.comercial-number"| trans, format) | raw }}
+		{{ pdf_occurence (notice, 'getIndices', "bloc.autority-result-information.indice"| trans, format) | raw }}
+		{{ pdf_occurence (notice, 'getPublics', "bloc.autority-result-information.publics"| trans, format) | raw }}
+		{{ pdf_occurence (notice, 'getPlacesEvents', "bloc.autority-result-information.manifestation-location"| trans, format) | raw }}
+		{{ pdf_occurence (notice, 'getOrigins', "bloc.autority-result-information.origins"| trans, format) | raw }}
 	{% endif %}
-	{% if format =='pdf' %}<li>{% endif %}
-		Résultat de : {%for element in notice.configurationName %}{{ element }}{%endfor%}
-	{% if format =='pdf' %}</li>{% endif %}
+
+		{{ pdf_occurence (notice, 'getRights', "bloc.results-navigation.result-information.rights"| trans, format) | raw }}
+		{{ pdf_occurence (notice, 'getNomPubliqueConfiguration', 'bloc.notice-simple.result-of-bdd'|trans| trans, format) | raw }}
 	{# à vérifier avec le gabarit#}
-	{% if notice.isOnLine() == false %}
-		{{ pdf_occurence (notice.copies, 'getAvailibility', "", format) | raw }}
-		{{ pdf_occurence (notice.copies, 'getCote', "", format) | raw }}
-		{{ pdf_occurence (notice.copies, 'getSupport', "", format) | raw }}
-	{% else %}
-		{{ pdf_occurence (notice.copies, 'getAvailibility', "", format) | raw }}
-	{% endif %}
-    {{ pdf_occurence (notice, 'getNotes', "", format) | raw }}
-    {{ pdf_occurence (notice, 'getLocations', "", format) | raw }}
-    {{ pdf_occurence (notice, 'getCategory', "", format) | raw }}
+	{%  for copy in  notice.copies %}
+		{{ pdf_occurence (copy, 'getAvailability', ""| trans, format) | raw }}
+		{% if notice.isOnLine() == false %}
+			{{ pdf_occurence (copy, 'getCote', "bloc.autority-result-information.cote"| trans, format) | raw }}
+			{{ pdf_occurence (copy, 'getSupport', "bloc.autority-result-information.support"| trans, format) | raw }}
+		{% endif %}
+	{% endfor %}
+    {{ pdf_occurence (notice, 'getNotes', ""| trans, format) | raw }}
+    {{ pdf_occurence (notice, 'getLocations', ""| trans, format) | raw }}
+    {{ pdf_occurence (notice, 'getCategory', ""| trans, format) | raw }}
 	{% if isPrintLong  and format =='pdf' %}
-		<li><a href="{{ path('record_bibliographic', {"permalink":notice.permalink}) }}">Lien vers la notice</a>;</li>
+		<li><a href="{{ absolute_url(path('record_bibliographic', {"permalink":notice.permalink})) }}">Lien vers la notice</a>;</li>
     {% endif %}

@@ -1,22 +1,25 @@
-    {% if format =='pdf' %}
-        <li>
-            {{  "Type d'autorité"| trans }}: {{ "Indice de classement" | trans}}
-        </li>
-    {% else %}
-        {{  "Type d'autorité"| trans }}: {{ "Indice de classement" | trans}}
-    {% endif %}
-    {{ pdf_occurence (notice, 'getCote',notice.name, format) | raw }}
-    {{ pdf_occurence (notice, 'getCountries', 'Pays', format) | raw }}
-    {{ pdf_occurence (notice, 'getLanguages', 'Langue(s)', format) | raw }}
-    {{ pdf_occurence (notice, 'getBirthDate', 'Date(s)', format) | raw }}
-    {{ pdf_occurence (notice, 'getBirthLocation', 'Naissance', format) | raw }}
-    {{ pdf_occurence (notice, 'getDeathDate', 'Mort', format) | raw }}
-    {{ pdf_occurence (notice, 'getDeathLocation', '', format) | raw }}
-    {{ pdf_occurence (notice, 'getPrincipalActivities', 'Activité(s) principale(s)', format) | raw }}
+{{ pdf_occurence (notice, 'getFormRetenu',''| trans, format) | raw }}
+{% if format =='pdf' %}
+    <li>
+{% endif %}
+{{  "bloc.autority-result-information.authority-type"| trans }}: {{ "bloc.autority-result-information.type.indice" | trans}}
+{% if format =='pdf' %}
+    </li>
+{% endif %}
+
+{{ pdf_occurence (notice, 'getCountries', 'bloc.autority-result-information.country'| trans, format) | raw }}
+{{ pdf_occurence (notice, 'getLanguages', 'bloc.autority-result-information.language'| trans, format) | raw }}
+{{ pdf_occurence (notice, 'getBirthDate', 'bloc.autority-result-information.dates'| trans, format) | raw }}
+{{ pdf_occurence (notice, 'getBirthLocation', 'bloc.autority-result-information.born-date'| trans, format) | raw }}
+{{ pdf_occurence (notice, 'getDeathDate', 'bloc.autority-result-information.dead-date'| trans, format) | raw }}
+{{ pdf_occurence (notice, 'getDeathLocation', ''| trans, format) | raw }}
+{{ pdf_occurence (notice, 'getPrincipalActivities', 'bloc.autority-result-information.activity'| trans, format) | raw }}
 
 {% if format == 'pdf' %}
     <li>
-            <a href="{{ path('record_indice_cdu', {"permalink":notice.permalink}) }}">Lien de la notice</a>
+        <a href="{{ absolute_url(path('record_indice_cdu', {"permalink":notice.permalink})) }}">Lien de la notice</a>
     </li>
+{% else %}
+    {{ notice.permalink }}
 {% endif %}
 

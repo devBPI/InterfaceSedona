@@ -14,9 +14,11 @@
 					<div class="col-12">
 						<h2 class="n1">{{ loop.index }}) {{ element.title }}</h2>
 					</div>
-					<div class="col-3">
-						<img src="{{ absolute_url(asset('images/types-autorite/autorite-personne.svg')) }}" alt="" class="print__image" />
-					</div>
+                    {% if  includeImage %}
+						<div class="col-3">
+							<img src="{{absolute_url( asset('images/types-autorite/autorite-'~ (element.type|slugify) ~'.svg')) }}" alt="" class="img-fluid" />
+						</div>
+					{% endif %}
 					<div class="col">
 						<ul class="print__list">
 							{% include "authority/print-detail.format.twig" with {'notice': element, 'format':'pdf'} %}
@@ -25,11 +27,7 @@
 				</div>
 			</div>
 		{% endfor %}
-	</div>
-	<div class="print__bloc ptrin__bloc--online">
-		<div class="print__header">
-			<h2 class="n1">Indice CDU</h2>
-		</div>
+
 		{% for element in printNoticeWrapper.noticeIndice %}
 			<div class="print__item">
 				<div class="row">
@@ -38,7 +36,7 @@
 					</div>
 					{% if includeImage %}
 						<div class="col-3">
-							<img src="{{ image_to_base64(path('binary_image', {"content": element.image, 'type': element.type|slugify})) }}" class="img-fluid" alt="" />
+							<img src="{{ absolute_url(asset('images/types-autorite/autorite-indice.svg')) }}" alt="" class="img-fluid" />
 						</div>
 					{% endif %}
 
@@ -63,7 +61,7 @@
 				</div>
                 {% if includeImage %}
 					<div class="col-3">
-						<img src="{{ image_to_base64(path('binary_image', {'content':element.image, 'type': element.type| slugify})) }}" class="img-fluid" alt="" />
+						<img src="{{ absolute_url(path('binary_image', {'content':element.image, 'type': element.type| slugify})) }}" class="img-fluid" alt="" />
 					</div>
 				{% endif %}
 				<div class="col">
@@ -85,9 +83,11 @@
 				<div class="col-12">
 					<h2 class="n1">{{ loop.index }}) {{ element.title }} </h2>
 				</div>
-				<div class="col-3">
-					<img src="{{ image_to_base64(path('binary_image', {"content": element.image, 'type': element.type|slugify}) )}}" class="img-fluid" alt="" />
-				</div>
+                {% if  includeImage %}
+					<div class="col-3">
+						<img src="{{ absolute_url(path('binary_image', {"content": element.image, 'type': element.type|slugify}) )}}" class="img-fluid" alt="" />
+					</div>
+				{% endif %}
 				<div class="col">
 					<ul class="print__list">
                         {% include "notice/print-detail.format.twig" with {'notice': element, 'format': 'pdf'} %}

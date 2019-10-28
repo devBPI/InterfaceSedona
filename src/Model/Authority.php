@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace App\Model;
 
 use App\Model\Interfaces\NoticeInterface;
+use App\Model\Traits\IndiceAndAuthorityTrait;
 use App\Model\Traits\NoticeTrait;
 use JMS\Serializer\Annotation as JMS;
 
@@ -15,7 +16,7 @@ final class Authority implements NoticeInterface
 {
     private const DOC_TYPE = 'authority';
 
-    use NoticeTrait;
+    use NoticeTrait, IndiceAndAuthorityTrait;
 
     /**
      * @var int
@@ -29,14 +30,6 @@ final class Authority implements NoticeInterface
      * @JMS\SerializedName("formeRetenue")
      */
     private $name;
-
-    /**
-     * @var string
-     * @JMS\Type("string")
-     * @JMS\SerializedName("formRetenue")
-     */
-    private $formAdopted;
-
 
     /**
      * @var array
@@ -60,18 +53,7 @@ final class Authority implements NoticeInterface
      * @JMS\XmlList("date")
      */
     private $dates;
-    /**
-     * @var string
-     * @JMS\Type("string")
-     * @JMS\SerializedName("dateNaissance")
-     */
-    private $birthDate;
-    /**
-     * @var string
-     * @JMS\Type("string")
-     * @JMS\SerializedName("lieuNaissance")
-     */
-    private $birthLocation;
+
 
     /**
      * @var string|null
@@ -86,13 +68,7 @@ final class Authority implements NoticeInterface
      */
     private $deathLocation;
 
-    /**
-     * @var array
-     * @JMS\Type("array<string>")
-     * @JMS\SerializedName("activitesPrincipales")
-     * @JMS\XmlList("activitePrincipale")
-     */
-    private $principalActivities;
+
     /**
      * @var array
      * @JMS\Type("array<string>")
@@ -100,13 +76,7 @@ final class Authority implements NoticeInterface
      * @JMS\XmlList("note")
      */
     private $notes;
-    /**
-     * @var array
-     * @JMS\Type("array<string>")
-     * @JMS\SerializedName("autresNoms")
-     * @JMS\XmlList("autreNom")
-     */
-    private $otherNames;
+
     /**
      * @var string
      * @JMS\Type("string")
@@ -128,13 +98,6 @@ final class Authority implements NoticeInterface
      */
     private $classifiedNote;
 
-    /**
-     * @var array
-     * @JMS\Type("array<string>")
-     * @JMS\SerializedName("pays")
-     * @JMS\XmlList("pays")
-     */
-    private $countries;
 
     /**
      * @var array
@@ -184,15 +147,6 @@ final class Authority implements NoticeInterface
     /**
      * @return null|string
      */
-    public function getBirthLocation(): ?string
-    {
-
-        return $this->birthLocation;
-    }
-
-    /**
-     * @return null|string
-     */
     public function getDeathLocation(): ?string
     {
         return $this->deathLocation;
@@ -212,15 +166,6 @@ final class Authority implements NoticeInterface
     {
         return $this->name;
     }
-
-    /**
-     * @return null|string
-     */
-    public function getFormAdopted(): ?string
-    {
-        return $this->formAdopted;
-    }
-
     /**
      * @return array
      */
@@ -261,13 +206,6 @@ final class Authority implements NoticeInterface
         return $this->deathDate;
     }
 
-    /**
-     * @return array
-     */
-    public function getPrincipalActivities(): array
-    {
-        return $this->principalActivities;
-    }
 
     /**
      * @return array
@@ -276,15 +214,6 @@ final class Authority implements NoticeInterface
     {
         return $this->notes;
     }
-
-    /**
-     * @return array
-     */
-    public function getOtherNames(): array
-    {
-        return $this->otherNames;
-    }
-
     /**
      * @return null|string
      */
@@ -307,22 +236,6 @@ final class Authority implements NoticeInterface
     public function getClassifiedNote(): array
     {
         return $this->classifiedNote;
-    }
-
-    /**
-     * @return array
-     */
-    public function getCountries(): array
-    {
-        return $this->countries;
-    }
-
-    /**
-     * @return array
-     */
-    public function getLanguages(): array
-    {
-        return $this->languages;
     }
 
     /**

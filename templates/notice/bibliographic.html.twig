@@ -1,7 +1,6 @@
 {% extends 'search/base.html.twig' %}
 
 {% block title %}{{ 'page.bibiographic.title'|trans({'%title%': object.notice.titles[0]}) }}{% endblock %}
-
 {% block body %}
 	<div class="d-none">
 		{% include 'search/blocs-results/docs-detail.html.twig' with {'notice': object.notice, 'type': 'Notice', 'index': 0, 'mode': 'detail'} %}
