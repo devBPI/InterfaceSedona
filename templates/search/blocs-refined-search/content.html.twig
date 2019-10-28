@@ -5,13 +5,6 @@
     <div class="collapse search-facette__body" id="rfn-search-{{ facet.name }}" role="group"
          aria-label="{{ facet.label }}">
         <div class="search-facette__content">
-            <div class="search-facette__item search-facette__item--button">
-                <button class="btn js-delete-filter" data-name="{{ facet.name }}" type="button">
-                    {{ 'modal.refine-search.filter-delete'|trans }}
-                    <span class="sr-only"> : {{ facet.label }}</span>
-                </button>
-            </div>
-            
             {% if facet.name == 'date_publishing' %}
                 {% include 'search/blocs-refined-search/date-content.html.twig' %}
             {% else %}

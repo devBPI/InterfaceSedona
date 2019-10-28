@@ -272,7 +272,7 @@ modal:
     button-title-aria: la recherche
     title: Affiner ma recherche
     title-aria: la recherche
-    filter-delete: Supprimer le filtre
+    search-delete: Effacer ma recherche
     submit: Affiner
     submit-aria: Affiner ma recherche
 

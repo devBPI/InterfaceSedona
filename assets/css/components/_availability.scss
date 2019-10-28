@@ -29,15 +29,7 @@
 	}
 
 	&--online {
-
-		&.availability--false {
-			font-weight: $font-bold;
-			color: $green;
-		}
-
-		&.availability--true {
-			font-weight: $font-bold;
-		}
+		font-weight: $font-bold;
 	}
 
 	&--rayon {
