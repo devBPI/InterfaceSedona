@@ -61,7 +61,7 @@ services:
       - '@Symfony\Component\Ldap\Ldap'
       - "dc=bpi,dc=fr"
       - "ou=lecture,ou=applications,dc=bpi,dc=fr"
-      - mio1eThe
+      - '%env(LDAP_PASSWORD)%'
       - ['ROLE_USER']
       - ['mail', 'sn','cn', 'pseudo', 'uid', 'entryUUID']
       - mail
