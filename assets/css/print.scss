@@ -1,21 +1,21 @@
-// -------------------------------
-// @import - Global
-// -------------------------------
+// // -------------------------------
+// // @import - Global
+// // -------------------------------
 
-// Import Variables Global
-@import 	"variable";
+// // Import Variables Global
+// @import 	"variable";
 
-// Import Overwritten Bootstrap Variable
-@import 	"variable-custom-bootstrap",
-			"~bootstrap/scss/bootstrap";
+// // Import Overwritten Bootstrap Variable
+// @import 	"variable-custom-bootstrap",
+// 			"~bootstrap/scss/bootstrap";
 
-// Base
-@import 	"base/fonts",
-			"print/base";
+// // Base
+// @import 	"base/fonts",
+// 			"print/base";
 
-// Print
-@import 	"print/header";
+// // Print
+// @import 	"print/header";
 
-// Component
-@import 	"components/list-information",
-			"print/content";
+// // Component
+// @import 	"components/list-information",
+// 			"print/content";

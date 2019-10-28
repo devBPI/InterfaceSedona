@@ -240,6 +240,10 @@
 		&-sub-item {
 			padding: 3px 0;
 
+			@include media-breakpoint-up(md) {
+				padding: 2px 0;
+			}
+
 			a {
 				@include font-size(12);
 				color: $black;
