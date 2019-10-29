@@ -117,7 +117,7 @@ class NoticeBuildFileService
              * catch and handle exception to tell
              */
         }
-//dump($object->getNotice()); die;
+
         return  $this->templating->render("notice/print.".$format .".twig", [
             'toolbar'           => Notice::class,
             'isPrintLong'       => !$attachement->isShortFormat(),

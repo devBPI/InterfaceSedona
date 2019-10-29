@@ -1128,7 +1128,6 @@ class Notice extends AbstractImage implements NoticeInterface
     {
         $payload = [];
         if ($this->getTitleInformation() ){
-
             $payload[] = implode(',', $this->getTitleInformation());
         }
         if ($this->getIssues() ) {
