@@ -114,7 +114,7 @@ class NoticeBuildFileService
             $object = $this->noticeProvider->getNotice($permalink);
         }catch(\Exception $e){
 
-            throw new NotFoundHttpException(sprintf('the permalink %s not referenced', $permalink))
+            throw new NotFoundHttpException(sprintf('the permalink %s not referenced', $permalink));
         }
 
         return  $this->templating->render("notice/print.".$format .".twig", [
