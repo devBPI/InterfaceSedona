@@ -8,26 +8,56 @@
                         <li class="list-information__sub-item">
                             {% if is_linked == true %}
                                 <a href="{{ path('search', {'simple_search[text]':element}) }}">
-                                    {{ element }},
+                                    {{ element }}
                                 </a>
                             {% else %}
-                                {{ element }},
+                                {{ element }}
                             {% endif %}
+                            {% if not loop.last %}, {% endif %}
                         </li>
                     {% endfor %}
                 {% else %}
                     <li class="list-information__sub-item">
                         {% if is_linked == true %}
                             <a href="{{ path('search', {'simple_search[text]':object}) }}">
-                                {{ object }},
+                                {{ object }}
                             </a>
                         {% else %}
-                            {{ object }},
+                            {{ object }}
                         {% endif %}
                     </li>
                 {% endif %}
             </ul>
         </li>
+    {% endif %}
+{% endmacro %}
+
+{% macro detail_link(object, label, is_linked) %}
+    {% if object is not empty %}
+        <p lang="fr" class="bibliographic-result__author">
+            {{ label }}
+
+            {% if object is iterable %}
+                {% for element in object %}
+                    {% if is_linked == true %}
+                        <a href="{{ path('search', {'simple_search[text]':element}) }}">
+                            {{ element }}
+                        </a>
+                    {% else %}
+                        {{ element }}
+                    {% endif %}
+                    {% if not loop.last %}, {% endif %}
+                {% endfor %}
+            {% else %}
+                {% if is_linked == true %}
+                    <a href="{{ path('search', {'simple_search[text]':object}) }}">
+                        {{ object }}
+                    </a>
+                {% else %}
+                    {{ object }}
+                {% endif %}
+            {% endif %}
+        </p>
     {% endif %}
 {% endmacro %}
 

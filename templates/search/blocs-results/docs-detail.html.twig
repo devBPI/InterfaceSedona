@@ -60,7 +60,7 @@
                 {% endif %}
 
                 {% for available in notice.copies %}
-                    {# TODO : afficher la location + category également pour les documents rayon disponible #}
+                    {# TODO : afficher la location + category également pour les documents rayon disponible (TODO doublon avec macro) #}
                     {{ macros.availibility(available, notice) }}
 
                     {% if loop.first and not loop.last %}

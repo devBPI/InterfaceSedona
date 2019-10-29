@@ -24,7 +24,6 @@ trait PrintTrait
      */
     protected function renderPrint($content, $filename, $format)
     {
-        // TODO ici Elodie pour forcée le format de sortie
         if ($format == 'txt') {
             return new Response($content,200,[
                 'Content-Type' => 'application/force-download',

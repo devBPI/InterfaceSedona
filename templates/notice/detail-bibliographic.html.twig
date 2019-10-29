@@ -1,5 +1,6 @@
 {% import "common/notice-available-macro.html.twig" as macros %}
 {% import "common/detail-macro.html.twig" as notice_macros %}
+
 <!-- Début - Bloc 16 Notice bibliographique -->
 <div class="col-12">
     {% for title in notice.titles %}
@@ -16,20 +17,12 @@
         {% endfor %}
     {% endif %}
 
-    {# TODO : Formatage des infos réalisateurs sous le titre ne sont pas bonne, à revoir #}
-    {{ notice_macros.detail(notice.translatedBy, 'bloc.autority-result-information.translated'|trans, true) }}
-    {{ notice_macros.detail(notice.analyticalTitles, 'bloc.autority-result-information.in'|trans, true) }}
-    {{ notice_macros.detail(notice.directors, 'bloc.autority-result-information.directors'|trans, true) }}
     <div class="row align-items-md-center justify-content-between">
         <div class="col-12 col-md-6">
-            {% for author in notice.authorsValue %}
-                <p lang="fr" class="bibliographic-result__author">
-                    {% if loop.first %}
-                        {{ 'bloc.autority-result-information.autor'|trans }}
-                    {% endif %}
-                    <a href=" {{ path('search', {'simple_search[text]':author.value}) }}">{{ author.value }}</a>
-                </p>
-            {% endfor %}
+            {{ notice_macros.detail_link(notice.translatedBy, 'bloc.autority-result-information.translated'|trans, true) }}
+            {{ notice_macros.detail_link(notice.analyticalTitles, 'bloc.autority-result-information.in'|trans, true) }}
+            {{ notice_macros.detail_link(notice.directors, 'bloc.autority-result-information.directors'|trans, true) }}
+            {{ notice_macros.detail_link(notice.authorsValue, 'bloc.autority-result-information.autor'|trans, true) }}
         </div>
         <div class="col-6 col-md-4">
             {#<a href="#" class="link">{{ 'bloc.autority-result-information.autor-dicover'|trans }}</a>#}
@@ -118,22 +111,6 @@
         {% endfor %}
     </div>
 
-    {# TODO : vérifier tout les états de disponibilité, s'il y a bien tout les exemplaires d'afficher pour les journaux etc .. #}
-    {# Pour les revues/journaux ..
-    <div>
-        {% if notice.copies.lastNumber %}
-            <p>{{ 'bloc.notice-simple.last-publication'|trans }} {{ notice.copies.lastNumber }}</p>
-        {% endif %}
-        {% if  notice.copies.valuesReciviedNumber is defined and notice.copies.valuesReciviedNumber |length >0 %}
-            <p class="n5 mt-3">{{ 'bloc.autority-result-information.publication-receve'|trans }}</p>
-            <ul class="list-information list-information--sub-list">
-                {% include 'common/informations-list.html.twig' with {'details': {
-                    'no-label':notice.copies.valuesReciviedNumber,
-                }
-                } %}
-            </ul>
-        {% endif %}
-    </div> #}
 </div>
 {% include "search/modal/notified-form.html.twig" %}
 
