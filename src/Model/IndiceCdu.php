@@ -3,6 +3,7 @@
 namespace App\Model;
 
 use App\Model\Interfaces\NoticeInterface;
+use App\Model\Traits\IndiceAndAuthorityTrait;
 use App\Model\Traits\OriginTrait;
 use JMS\Serializer\Annotation as JMS;
 
@@ -14,7 +15,7 @@ final class IndiceCdu  extends Cdu implements NoticeInterface
 {
     private const DOC_TYPE = 'indice';
 
-    use OriginTrait;
+    use OriginTrait, IndiceAndAuthorityTrait;
 
     /**
      * @var string

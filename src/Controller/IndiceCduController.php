@@ -68,6 +68,9 @@ class IndiceCduController extends CardController
      * @param string $permalink
      * @param SessionInterface $session
      * @return Response
+     * @throws \Twig\Error\LoaderError
+     * @throws \Twig\Error\RuntimeError
+     * @throws \Twig\Error\SyntaxError
      */
     public function cduIndiceRecordAction(Request $request, string $permalink, SessionInterface $session)
     {
@@ -82,7 +85,6 @@ class IndiceCduController extends CardController
         }catch(NoResultException $e){
             return $this->render('common/error.html.twig');
         }
-
         return $this->render('indice/indice.html.twig', [
                   'toolbar'         => IndiceCdu::class,
                   'printRoute'      => $this->generateUrl('record_authority_pdf',  ['permalink'=>$permalink, 'format'=>'pdf']),
@@ -99,7 +101,8 @@ class IndiceCduController extends CardController
      * @return JsonResponse
      */
     public function aroundIndexesAction($cote): JsonResponse
-    {        try{
+    {
+        try{
             $indiceCdu = $this->noticeAuhtority->getIndiceCduAroundOf($cote);
             return new JsonResponse([
                 'html'=> $this->renderView('indice/index-browsing.html.twig',

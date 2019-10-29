@@ -49,12 +49,16 @@ final class ImageBuilderService
         if (!$fs->exists($this->imageDir.$localFilePath)) {
 
             $filename = basename($content);
-            $content = file_get_contents(self::$url.DIRECTORY_SEPARATOR.self::BPI_FOLDER_NAME_ELECTRE.DIRECTORY_SEPARATOR.$content);
-            if ($content == false) {
+           try{
+               if (($content = file_get_contents(self::$url.DIRECTORY_SEPARATOR.self::BPI_FOLDER_NAME_ELECTRE.DIRECTORY_SEPARATOR.$content)) === false){
+                   return $this->buildGenericPicture($type);
+               }
+           }catch (\ErrorException $e){
                 return $this->buildGenericPicture($type);
-            }
-            $fs->mkdir(str_replace($filename, '', $this->imageDir.self::PARENT_FOLDER.DIRECTORY_SEPARATOR.$localFilePath));
-            $this->saveLocalImage($content, $localFilePath);
+           }
+
+           $fs->mkdir(str_replace($filename, '', $this->imageDir.self::PARENT_FOLDER.DIRECTORY_SEPARATOR.$localFilePath));
+           $this->saveLocalImage($content, $localFilePath);
         }
 
         return $this->imageDir.self::PARENT_FOLDER.DIRECTORY_SEPARATOR.$localFilePath;

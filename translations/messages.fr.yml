@@ -217,6 +217,7 @@ modal:
         subject: Sujet
         theme: Thème
         editor: Editeur
+        editors: Editeur(s)
         publicationDate: Date de publication
         isbnIssnNumcommercial: ISBN, ISSN...
         indiceCote: Indice / Cote
@@ -418,20 +419,29 @@ bloc:
     result-previous: Document précédent
     result-next: Document suivant
     result-current: '%current% sur %nb%'
+    result-information:
+      authors-and-composer: Autre(s) auteur(s), compositeur(s), interprète(s)
+      date: Date(s)
+      collection-series: Série / Collection
+      conservation: Conservation
+      rights: Droits
   autority-result-information: #Bloc 16 Notice bibliographique + Bloc 18 Informations de la notice d'autorité
     autor: 'Auteur(s), compositeur(s), interprète(s)'
     autor-dicover: Découvrir l'auteur
     tracks: Pistes
     contributor: 'Contributeur(s)'
+    periodicity: Périodicité
     editor: 'Éditeur(s)'
     search-with: 'Relancer une recherche avec le terme : %theme%'
     date: 'Date'
+    dates: 'Date(s)'
     edition-date: Date d'édition papier
     ouvre: 'Oeuvre(s)'
     nots: 'Notes'
     language: 'Langue(s)'
     resume: 'Résumé'
-    support: 'Description matérielle'
+    resumes: 'Résumé(s)'
+    support: 'Support'
     comercial-number: 'Numéros commerciaux'
     genre: 'Genre'
     indice: 'Indice'
@@ -439,7 +449,11 @@ bloc:
     authority-type: "Type d'autorité"
     cote: "Cote"
     other-names: "Autre(s) nom(s)"
+    employed-for: "Employé pour"
     other-authors: "Autre(s) auteurs(s)"
+    linked-names: "Nom(s) associé(s) / Nom(s) lié(s)"
+    classification-notes: "Notes sur le classement"
+    authors: "Auteurs(s)"
     country: 'Pays'
     born-date: 'Naissance'
     dead-date: 'Mort'
@@ -468,8 +482,11 @@ bloc:
     periodicity-date: Date d'édition papier
     alternatif-title: Autre(s) forme(s) de titre
     translated: Traduction de:
+    translated_from: Traduit de:
     in: 'dans'
+    by: 'Par'
     directors: 'Réalisateurs'
+    your-references-bibliographic: Vos références bibliographiques
   list-related-documents:  #Bloc 19 Liste de documents + Bloc 17 Documents liés
     link-title: Actualité %current% sur %nb%, %name%
     see-more: Voir tout

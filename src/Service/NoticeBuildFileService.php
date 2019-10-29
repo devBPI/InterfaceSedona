@@ -21,6 +21,7 @@ use App\Service\Provider\NoticeProvider;
 use App\Utils\PrintNoticeWrapper;
 use Knp\Bundle\SnappyBundle\Snappy\Response\PdfResponse;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 /**
  * Class NoticeBuildFileService
@@ -102,26 +103,27 @@ class NoticeBuildFileService
      * @param ExportNotice $attachement
      * @param string $format
      * @return string
+     * @throws \Twig\Error\LoaderError
+     * @throws \Twig\Error\RuntimeError
+     * @throws \Twig\Error\SyntaxError
      */
     private function buildFileForNotice(ExportNotice $attachement, string $format):string
     {
         try{
             $permalink = $attachement->getNotices();
-
             $object = $this->noticeProvider->getNotice($permalink);
-
-            return  $this->templating->render("notice/print.".$format .".twig", [
-                'toolbar'           => Notice::class,
-                'isPrintLong'       => !$attachement->isShortFormat(),
-                'includeImage'      => $attachement->isImage(),
-                'notice'            => $object->getNotice(),
-                'noticeThemed'      => $object->getNoticesSameTheme(),
-            ]);
         }catch(\Exception $e){
-            /**
-             * catch and handle exception to tell
-             */
+
+            throw new NotFoundHttpException(sprintf('the permalink %s not referenced', $permalink));
         }
+
+        return  $this->templating->render("notice/print.".$format .".twig", [
+            'toolbar'           => Notice::class,
+            'isPrintLong'       => !$attachement->isShortFormat(),
+            'includeImage'      => $attachement->isImage(),
+            'notice'            => $object->getNotice(),
+            'noticeThemed'      => $object->getNoticesSameTheme(),
+        ]);
     }
 
     /**

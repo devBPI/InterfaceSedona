@@ -54,6 +54,13 @@ class Notice extends AbstractImage implements NoticeInterface
      * @JMS\XmlList("volume")
      */
     private $volumes;
+    /**
+     * @var array
+     * @JMS\Type("array<string>")
+     * @JMS\SerializedName("formats")
+     * @JMS\XmlList("format")
+     */
+    private $formats;
 
     /**
      * @var string
@@ -1120,11 +1127,21 @@ class Notice extends AbstractImage implements NoticeInterface
     public function getExportTitle():?string
     {
         $payload = [];
-        $payload[] = implode(',', $this->getTitleInformation());
-        $payload[] = implode(',', $this->getIssues());
-        $payload[] = implode(',', $this->getVolumes());
-        $payload[] = implode(',', $this->getFirstPage());
-        $payload[] = implode(',', $this->getLastPage());
+        if ($this->getTitleInformation() ){
+            $payload[] = implode(',', $this->getTitleInformation());
+        }
+        if ($this->getIssues() ) {
+            $payload[] = implode(',', $this->getIssues());
+        }
+        if ($this->getVolumes() ) {
+            $payload[] = implode(',', $this->getVolumes());
+        }
+        if ($this->getFirstPage() ) {
+            $payload[] = implode(',', $this->getFirstPage());
+        }
+        if ($this->getLastPage() ) {
+            $payload[] = implode(',', $this->getLastPage());
+        }
 
         return implode(',', $payload);
     }
@@ -1177,6 +1194,14 @@ class Notice extends AbstractImage implements NoticeInterface
 
     public function getSlugifiedType(){
         return  $this->slugify($this->getType());
+    }
+
+    /**
+     * @return array
+     */
+    public function getFormats(): array
+    {
+        return $this->formats;
     }
 }
 
