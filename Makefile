@@ -6,7 +6,7 @@ COMPOSER_PROJECT_NAME = $(shell awk 'BEGIN{FS=":"} $$0 ~ /\s*"name"/ {print $$2}
 COMPOSER_PROJECT_VERSION = $(shell awk 'BEGIN{FS=":"} $$0 ~ /\s*"version"/ {print $$2}' composer.json | cut -d'"' -f2)
 COMPOSER_PROJECT_DESCRIPTION = $(shell awk 'BEGIN{FS=":"} $$0 ~ /\s*"description"/ {print $$2}' composer.json | cut -d'"' -f2)
 # client/project-module
-CLIENT_NAME = $(firstword $(subst /, ,$(COMPOSER_PROJECT_NAME)))
+CLIENT_NAME = $(firstword $(subst /, ,${COMPOSER_PROJECT_NAME}))
 PROJECT_NAME = $(firstword $(subst -, ,$(lastword $(subst /, ,$(COMPOSER_PROJECT_NAME)))))
 MODULE_NAME = $(lastword $(subst -, ,$(lastword $(subst /, ,$(COMPOSER_PROJECT_NAME)))))
 # GAV
@@ -81,6 +81,10 @@ show-vars:
 
 .PHONY: show-vars
 
+show-var-CLIENT_NAME:
+	echo '${CLIENT_NAME}' | tr 'a-z' 'A-Z'
+.PHONY: show-var-%
+
 show-var-%:
 	@printf "${$*}\n"
 .PHONY: show-var-%
@@ -94,6 +98,12 @@ endif
 	@printf "App mode: \033[32m${APP_ENV}\033[39m.\n"
 .PHONY: env-%
 
+sonar-project.properties:
+	sed -E \
+		-e 's/sonar.projectKey=[^\n]+/sonar.projectKey=${GROUP_ID}:${ARTIFACT_ID}/g' \
+		-e 's/sonar.projectName=[^\n]+/sonar.projectName=[$(shell echo -n ''${CLIENT_NAME}'' | tr "a-z" "A-Z")] ${COMPOSER_PROJECT_DESCRIPTION}/g'\
+		-e 's/sonar.projectVersion=[^\n]+/sonar.projectVersion=${VERSION}/g'\
+		.deploy/sonar-project.dist.properties > sonar-project.properties
 
 show-mode:
 	@printf "App mode: \033[32m${APP_ENV}\033[39m.\n"
@@ -115,15 +125,21 @@ $(BUILD_DIR):
 package_info.json:
 	echo "{\"date_version\":\"${NOW}\",\"tag\":\"${CI_COMMIT_TAG}\",\"project_url\":\"${CI_PROJECT_URL}\", \"sha\":\"${CI_COMMIT_SHA}\"}" | tee package_info.json
 
-dotenv-make:
+.env:
 	@printf "Make dotenv files \n"
 	cp -n .env.dist .env
+
+dotenv-make: .env
 	chmod 600 .env
+.PHONY: dotenv-make
+
+dev-dotenv: dotenv-make
+	cat .deploy/dev/env.dist >> .env
 .PHONY: dotenv-make
 
 dotenv-clear:
 	@printf "Clear dotenv files \n"
-	rm -rf .deploy .env .env.dist
+	rm -rf .deploy .env
 	touch .env
 	chmod 600 .env
 .PHONY: dotenv-clear
@@ -204,9 +220,6 @@ endif
 cache-clear:
 ifdef CONSOLE
 	$(CONSOLE) --env=${APP_ENV} cache:clear --no-warmup
-    # $(CONSOLE) --env=${APP_ENV} doctrine:cache:clear-metadata
-	# $(CONSOLE) --env=${APP_ENV} doctrine:cache:clear-query
-	# $(CONSOLE) --env=${APP_ENV} doctrine:cache:clear-result
 else
 	rm -rf $(CACHE_DIR)/${APP_ENV}/*
 endif

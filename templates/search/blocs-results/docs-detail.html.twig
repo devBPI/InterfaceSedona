@@ -91,8 +91,7 @@
                 {% endfor %}
             </div>
 
-            {% if mode is defined and mode == 'full' %}
-            {# TODO : Afficher ce bloc lorsque que l'on est sur la page "Voir tout" #}
+            {% if type == constant('App\\Model\\Notice::ALL') %}
                 <div class="list-result__content-txt">
                     <p lang="fr">{{ 'bloc.notice-simple.resume-title'|trans }} {{ notice.frontResume }}</p>
                 </div>
