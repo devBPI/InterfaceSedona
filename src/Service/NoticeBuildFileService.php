@@ -21,6 +21,7 @@ use App\Service\Provider\NoticeProvider;
 use App\Utils\PrintNoticeWrapper;
 use Knp\Bundle\SnappyBundle\Snappy\Response\PdfResponse;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 /**
  * Class NoticeBuildFileService
@@ -62,7 +63,6 @@ class NoticeBuildFileService
         $this->noticeProvider   = $noticeProvider;
         $this->noticeAuthority  = $noticeAuthority;
         $this->knpSnappy        = $knpSnappy;
-        //$this->knpSnappy->setOption('page-offset', true);
         $this->templating = $templating;
     }
 
@@ -113,9 +113,8 @@ class NoticeBuildFileService
             $permalink = $attachement->getNotices();
             $object = $this->noticeProvider->getNotice($permalink);
         }catch(\Exception $e){
-            /**
-             * catch and handle exception to tell
-             */
+
+            throw new NotFoundHttpException(sprintf('the permalink %s not referenced', $permalink))
         }
 
         return  $this->templating->render("notice/print.".$format .".twig", [

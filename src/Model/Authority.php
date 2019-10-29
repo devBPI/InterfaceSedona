@@ -102,14 +102,6 @@ final class Authority implements NoticeInterface
     /**
      * @var array
      * @JMS\Type("array<string>")
-     * @JMS\SerializedName("langues")
-     * @JMS\XmlList("langue")
-     */
-    private $languages;
-
-    /**
-     * @var array
-     * @JMS\Type("array<string>")
      * @JMS\SerializedName("origines")
      * @JMS\XmlList("origine")
      */
