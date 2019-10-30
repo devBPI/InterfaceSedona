@@ -9,7 +9,7 @@ global:
   see-more: Voir plus
   form:
     email:
-      placeholder: 'nom@example.com'
+      placeholder: 'nom@exemple.com'
 
 header:
   logo_title: Aller à l'accueil du catalogue Bibliothèque Publique d'Information Centre Pompidou
@@ -139,7 +139,7 @@ modal:
   export:           #Modal 05 export
     title: Paramétrer l'export
     field:
-      recipient: Destinataire(s)
+      recipient: Destinataire(s) (nom@exemple.com)
       comments: Message
       abstract: Notices abrégées
       long: Notices complètes
@@ -165,8 +165,8 @@ modal:
       text: Texte
       title: Titre
       title_value: Références du catalogue de la Bpi
-      recipient: Destinataire
-      expeditor: Expéditeur
+      recipient: Destinataire (nom@exemple.com)
+      expeditor: Expéditeur (nom@exemple.com)
     submit: Envoyer
   suggestion:     #Modal 08 suggestion d'achats
     title: Suggestion
@@ -178,7 +178,7 @@ modal:
       editor: Editeur
       last-name: Nom
       first-name: Prénom
-      email: Courriel
+      email: Courriel (nom@exemple.com)
     submit: Valider
     submit-sr-only: l'envoi de la suggestion
   report:      #Modal 09 signaler une erreur
@@ -189,7 +189,7 @@ modal:
       message: Message
       last-name: Nom
       first-name: Prénom
-      email: Courriel
+      email: Courriel (nom@exemple.com)
     submit: Valider
     submit-sr-only:  l'envoi du mail de signalisation d'erreur
   comments-edit:   #Modal 10  edition d'un commentaire
@@ -199,9 +199,9 @@ modal:
   comments-view:  #Modal 11 visualisation d'un commentaire
     title: Commentaire
     close: Fermer
-  notifed-form:   #Modal 12 notification de dispoibilité de document
+  notifed-form:   #Modal 12 notification de disponibilité de document
     title: Être prevenu de son retour en rayon
-    field-email: Courriel
+    field-email: Courriel (nom@exemple.com)
     submit: Valider
     submit-sr-only: votre inscription à l'alerte de retour en rayon
   advanced-search:  #Modal 13 recheche avancé

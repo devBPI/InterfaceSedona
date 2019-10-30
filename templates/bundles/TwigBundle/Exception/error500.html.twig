@@ -3,7 +3,7 @@
 {% block title %} {% endblock %}
 
 {% block container %}
-    <h1 class="n1">{{ 'error.page_boken'|trans }}</h1>
+    <h1 class="n1 mt-3">{{ 'error.page_boken'|trans }}</h1>
     <p>{{ 'error.page_broken_message'|trans|nl2br }}</p>
     
     {% if app.environment == 'dev' or '77.158.146.242' in app.request.clientIps %}
