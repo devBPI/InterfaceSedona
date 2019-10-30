@@ -5,9 +5,8 @@
             id="rfn-{{ facet.name }}-{{ index }}"
             name="facets[{{ facet.name }}][]"
             value="{{ facetChild.name }}"
-            {% if app.request.query.has('facets') and
-                check_value_exist(facet.name, facetChild.name, app.request.query.get('facets')) %}
-        checked="checked"
+            {% if check_value_in_facet(facet.name, facetChild.name) %}
+                checked="checked"
             {% endif %}>
     <label class="form-check-label" for="rfn-{{ facet.name }}-{{ index }}">{{ facetChild.name }}</label>
 </div>

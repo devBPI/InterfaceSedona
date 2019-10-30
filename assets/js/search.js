@@ -1,7 +1,8 @@
 import * as util from './notice-availibility.js'
-import Slider from 'bootstrap-slider';
 
 import {SelectionAdder} from './my-selection';
+import {DateSlider} from './date-input-search';
+let dateSlider = new DateSlider();
 
 $(document)
 // Bouton "Voir plus" / "Voir moins" -----------------------------------------------------------------------------------
@@ -42,16 +43,9 @@ $(document)
         }
     })
     .on('show.bs.modal', '#modal-refine-search', function (e) {
-        // document.querySelectorAll('.js-slider').forEach(function (input: HTMLInputElement) {
-        //     new Slider(this);
-        // })
-        if ($('#rfn-search-date-slider').data('slider-plugin') != undefined) {
-            return;
+        let objSlider = document.querySelector('#rfn-search-date-slider');
+        if (objSlider) {
+            dateSlider.createDateSlider(objSlider);
         }
-
-        var slider = new Slider('#rfn-search-date-slider', {
-            handle: 'square'
-        });
-        $('#rfn-search-date-slider').data('slider-plugin', slider);
     })
 ;

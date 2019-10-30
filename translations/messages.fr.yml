@@ -265,6 +265,9 @@ modal:
       bdd: Bases de recherche
       langue: Langue(s)
       date: Date
+      date_placeholder: AAAA
+      date_start_label: Entrez une première date
+      date_end_label: Entrez une deuxième date
       subject: Sujets
     clear-search: Effacer ma recherche
     submit: Rechercher
