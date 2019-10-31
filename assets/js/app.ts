@@ -129,3 +129,8 @@ new SelectList(document.querySelector('#adv-search-langage'));
 
 import {DatePeriod} from './date-input-search';
 new DatePeriod(document.querySelector('.search-date__date--second'));
+
+import SearchForm from './clean-search';
+document.querySelectorAll('form').forEach((form: HTMLFormElement) => {
+    new SearchForm(form);
+})
