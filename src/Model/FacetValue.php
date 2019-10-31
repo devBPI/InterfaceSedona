@@ -39,18 +39,16 @@ class FacetValue
     /**
      * @return int
      */
-    public function getCountOnline(): int
+    public function getTotalCount(): int
     {
-        return $this->countOnline;
+        return $this->countOnline + $this->countOffline;
     }
 
     /**
-     * @return int
+     * @return string
      */
-    public function getCountOffline(): int
+    public function __toString(): string
     {
-        return $this->countOffline;
+        return $this->name;
     }
-
-
 }

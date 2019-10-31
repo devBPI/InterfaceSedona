@@ -290,7 +290,7 @@ class Criteria
     /**
      * @return string
      */
-    public function getPublicationDateStart(): ?string
+    public function getPublicationDateStart()
     {
         return $this->publicationDateStart;
     }
@@ -298,7 +298,7 @@ class Criteria
     /**
      * @return string
      */
-    public function getPublicationDateEnd(): ?string
+    public function getPublicationDateEnd()
     {
         return $this->publicationDateEnd;
     }
