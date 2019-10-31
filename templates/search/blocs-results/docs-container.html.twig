@@ -5,7 +5,7 @@
 
 	<div class="list-result__content">
 		{% for index, notice in notices.noticesList %}
-			{# Include résultat #}
+            {% set index = objSearch.globalIndex + index %}
 			{% include "search/blocs-results/docs-detail.html.twig" with {'type': type } %}
 		{% endfor %}
 	</div>

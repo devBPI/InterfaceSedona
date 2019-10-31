@@ -194,4 +194,12 @@ final class ObjSearch
         return $criteria;
     }
 
+    /**
+     * @return int
+     */
+    public function getGlobalIndex(): int
+    {
+        return (($this->searchQuery->getPage() - 1) * $this->searchQuery->getRows()) + 1;
+    }
+
 }
