@@ -73,17 +73,6 @@ $(document)
             }
         });
     })
-	.on('show.bs.modal', '#modal-search-advanced', function (e) {
-        var $input_period = $('.search-date__date--second');
-
-        $('.js-date-period .check--radio').on('ifChecked', function(){
-            $input_period.removeClass('d-none');
-        });
-        $('.js-date-period .check--radio').on('ifUnchecked', function(){
-            $input_period.addClass('d-none');
-            $('[name="criteria[publicationDateEnd]"]').val('');
-        });
-	})
     .on('click', '.js-copy_to_clipboard', function (e) {
         let url =  $('.js-url-to-copy').val();
         copyToClipboard(url);
@@ -138,3 +127,5 @@ let copyToClipboard = function (element) {
 import SelectList from './select-list';
 new SelectList(document.querySelector('#adv-search-langage'));
 
+import {DatePeriod} from './date-input-search';
+new DatePeriod(document.querySelector('.search-date__date--second'));

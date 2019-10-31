@@ -1,8 +1,6 @@
 import * as util from './notice-availibility.js'
 
 import {SelectionAdder} from './my-selection';
-import {DateSlider} from './date-input-search';
-let dateSlider = new DateSlider();
 
 $(document)
 // Bouton "Voir plus" / "Voir moins" -----------------------------------------------------------------------------------
@@ -42,10 +40,7 @@ $(document)
             }
         }
     })
-    .on('show.bs.modal', '#modal-refine-search', function (e) {
-        let objSlider = document.querySelector('#rfn-search-date-slider');
-        if (objSlider) {
-            dateSlider.createDateSlider(objSlider);
-        }
-    })
 ;
+
+import {DateSlider} from './date-input-search';
+let dateSlider = new DateSlider(document.querySelector('#rfn-search-date-slider'));
