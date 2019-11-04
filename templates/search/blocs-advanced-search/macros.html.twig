@@ -16,3 +16,42 @@
         {% endfor %}
     {% endfor %}
 {% endmacro %}
+
+{% macro display_checkbox_list(origin, key, items, selected) %}
+    {% for index, value in items %}
+        {% if value.name is defined %}
+            {% set count = value.totalCount %}
+            {% set value = value.name %}
+        {% endif %}
+
+        <div class="form-check search-facette__item">
+            <input type="checkbox"
+                   name="{{ constant('App\\Model\\Search\\FacetFilter::QUERY_NAME') ~'['~ key~'][]' }}"
+                   class="form-check-input input-{{ key }}"
+                   id="rfn-{{ key }}-{{ index }}" value="{{ value }}"
+                    {% if key in selected|keys and value in selected[key] %}
+                checked="checked"
+                    {% endif %}
+            >
+            <label class="form-check-label" for="rfn-{{ key }}-{{ index }}">
+                {{ value }} {% if count is defined %}({{ count }}){% endif %}
+            </label>
+        </div>
+
+        {% if not loop.first and not loop.last and loop.index % 6 == 0 %}
+            {% if loop.index != 6 %}</div>{% endif %}
+            <div class="js-hidden hidden-items" id="{{ origin }}-{{ key }}-{{ index }}">
+        {% endif %}
+    {% endfor %}
+
+    {% if items|length > 6 %}
+        </div>
+        <div class="d-none w-100">
+            <button type="button" class="btn btn-small-link js-see-more"
+                    data-target="#{{ origin }}-{{ key }}-5" aria-expanded="false"
+                    aria-controls="{{ origin }}-{{ key }}-5">
+                {{ 'global.see-more'|trans }}
+            </button>
+        </div>
+    {% endif %}
+{% endmacro %}

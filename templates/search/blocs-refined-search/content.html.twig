@@ -8,9 +8,8 @@
             {% if facet.name == 'date_publishing' %}
                 {% include 'search/blocs-refined-search/date-content.html.twig' %}
             {% else %}
-                {% for index, facetChild in facet.values %}
-                    {% include 'search/blocs-refined-search/check-content.html.twig' %}
-                {% endfor %}
+                {% from 'search/blocs-advanced-search/macros.html.twig' import display_checkbox_list %}
+                {{ display_checkbox_list('refine', facet.name, facet.values, objSearch.searchFilters) }}
             {% endif %}
         </div>
     </div>

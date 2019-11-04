@@ -1,5 +1,4 @@
 import * as util from './notice-availibility.js'
-import Slider from 'bootstrap-slider';
 
 import {SelectionAdder} from './my-selection';
 
@@ -41,17 +40,7 @@ $(document)
             }
         }
     })
-    .on('show.bs.modal', '#modal-refine-search', function (e) {
-        // document.querySelectorAll('.js-slider').forEach(function (input: HTMLInputElement) {
-        //     new Slider(this);
-        // })
-        if ($('#rfn-search-date-slider').data('slider-plugin') != undefined) {
-            return;
-        }
-
-        var slider = new Slider('#rfn-search-date-slider', {
-            handle: 'square'
-        });
-        $('#rfn-search-date-slider').data('slider-plugin', slider);
-    })
 ;
+
+import {DateSlider} from './date-input-search';
+let dateSlider = new DateSlider(document.querySelector('#rfn-search-date-slider'));

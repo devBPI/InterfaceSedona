@@ -13,19 +13,14 @@
 					</button>
 				</div>
 
-				{# TODO : Pour "Date de publication", mettre 2 champs input TEXT pour ensuite corriger Bootstrap Slider #}
-				{% for facet in objSearch.results.facets.facets %}
-                <div class="modal-body">
-                    {#{% if facet.name == 'date_publishing' %}#}
-                        {#{% include 'search/blocs-refined-search/date-content.html.twig' %}#}
-                    {#{% else %}#}
-                        {% include 'search/blocs-refined-search/content.html.twig' %}
-                    {#{% endif %}#}
-                </div>
+				{% for facet in objSearch.results.facets.facets if facet.values|length > 1 %}
+					<div class="modal-body">
+						{% include 'search/blocs-refined-search/content.html.twig' %}
+					</div>
 				{% endfor %}
 
 				<div class="modal-footer">
-                    <button type="button" class="btn-link btn">
+                    <button type="reset" class="btn-link btn js-clean">
                         {{ 'modal.refine-search.search-delete'|trans }}
                     </button>
 					<button type="submit" class="btn btn-lg btn-primary btn-img">

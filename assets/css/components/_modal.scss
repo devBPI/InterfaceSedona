@@ -112,10 +112,6 @@
 			@include font-size(15);
 			margin-left: 2px;
 			width: 100%;
-
-			@include media-breakpoint-up(md) {
-				text-align: right;
-			}
 		}
 
 		.form-group {
@@ -123,17 +119,22 @@
 			label {
 				padding-top: 5px;
 				padding-bottom: 5px;
-				@include font-size(15);
+				@include font-size(13);
 				margin-left: 0;
 
 				@include media-breakpoint-up(sm) {
 					padding-bottom: 0;
+				}
+
+				@include media-breakpoint-up(md) {
+					text-align: right;
 				}
 			}
 
 			input {
 
 				+ label {
+					text-align: left;
 
 					@include media-breakpoint-up(sm) {
 						padding-top: 0;

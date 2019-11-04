@@ -4,9 +4,10 @@ declare(strict_types=1);
 namespace App\Twig;
 
 
-use App\Service\ImageBuilderService;
+use App\Model\Search\FacetFilter;
 use App\Service\NavigationService;
 use App\WordsList;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFunction;
@@ -18,19 +19,23 @@ use Twig\TwigFunction;
 class SearchFiltersExtension extends AbstractExtension
 {
     /**
-     * @var RequestStack
+     * @var Request
      */
-    private $requestStack;
+    private $masterRequest;
+    /**
+     * @var array
+     */
+    private $facetQueries;
 
     /**
      * SearchFiltersExtension constructor.
      *
      * @param RequestStack $requestStack
-     * @param ImageBuilderService $imageService
      */
     public function __construct(RequestStack $requestStack)
     {
-        $this->requestStack = $requestStack;
+        $this->masterRequest = $requestStack->getMasterRequest();
+        $this->facetQueries = $requestStack->getMasterRequest()->get(FacetFilter::QUERY_NAME, []);
     }
 
     /**
@@ -42,8 +47,9 @@ class SearchFiltersExtension extends AbstractExtension
             new TwigFunction('search_words', [$this, 'getSearchWords']),
             new TwigFunction('is_search_word', [$this, 'isSearchWord']),
             new TwigFunction('words_operators', [$this, 'getSearchOperators']),
-            new TwigFunction('get_value_by_field_name', [$this, 'getValueByFieldName']),
-            new TwigFunction('check_value_exist', [$this, 'isValueExist']),
+            new TwigFunction('check_value_in_facet', [$this, 'isValueExistInFacetQueries']),
+            new TwigFunction('min_facet_value', [$this, 'getMinValueOfFacetQueries']),
+            new TwigFunction('max_facet_value', [$this, 'getMaxValueOfFacetQueries']),
             new TwigFunction('route_by_object', [$this, 'getRouteByObject']),
             new TwigFunction('pdf_occurence', [$this, 'getPdfOccurence']),
 
@@ -72,7 +78,7 @@ class SearchFiltersExtension extends AbstractExtension
      */
     public function getSearchWords(): array
     {
-        return WordsList::$words[$this->requestStack->getMasterRequest()->get('thematic', WordsList::THEME_DEFAULT)];
+        return WordsList::$words[$this->masterRequest->get('thematic', WordsList::THEME_DEFAULT)];
     }
 
     /**
@@ -84,48 +90,47 @@ class SearchFiltersExtension extends AbstractExtension
     }
 
     /**
-     * @param string $context
-     * @param string $field
-     * @param int|null $index
-     * @return null|string
+     * @param string $key
+     * @param $searchValue
+     * @return bool
      */
-    public function getValueByFieldName(string $context, string $field, $index = null): ?string
+    public function isValueExistInFacetQueries(string $key, $searchValue): bool
     {
-        $context_queries = $this->requestStack->getMasterRequest()->get($context, []);
-        if ($index !== null) {
-            if (
-                is_array($context_queries) &&
-                array_key_exists($index, $context_queries) &&
-                array_key_exists($field, $context_queries[$index])
-            ) {
-                return $context_queries[$index][$field];
-            }
-        } elseif (array_key_exists($field, $context_queries)) {
-            return $context_queries[$field];
+        if (!array_key_exists($key, $this->facetQueries)) {
+            return false;
         }
 
-        return null;
+        return count(array_filter($this->facetQueries[$key], function ($item) use ($searchValue) {
+            return $item === $searchValue;
+        })) === 1;
     }
 
     /**
      * @param string $key
-     * @param $searchValue
-     * @param array|null $array
-     * @return bool
+     * @param string|null $default_value
+     * @return null|string
      */
-    public function isValueExist(string $key, $searchValue, array $array = null): bool
+    public function getMinValueOfFacetQueries(string $key, string $default_value = null): ?string
     {
-        if (empty($array[$key])) {
-            return false;
+        if (!array_key_exists($key, $this->facetQueries) || count($this->facetQueries[$key]) === 0 ) {
+            return $default_value;
         }
 
-        foreach ($array[$key] as $index => $value) {
-            if ($value === $searchValue) {
-                return true;
-            }
+        return min($this->facetQueries[$key]);
+    }
+
+    /**
+     * @param string $key
+     * @param string $default_value
+     * @return null|string
+     */
+    public function getMaxValueOfFacetQueries(string $key, string $default_value = null): ?string
+    {
+        if (!array_key_exists($key, $this->facetQueries) || count($this->facetQueries[$key]) === 0 ) {
+            return $default_value;
         }
 
-        return false;
+        return max($this->facetQueries[$key]);
     }
 
     /**

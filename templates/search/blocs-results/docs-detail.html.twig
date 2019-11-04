@@ -9,8 +9,8 @@
                    value="{{ notice.permalink }}"
                 {% if mode is defined and mode == 'detail' %}checked="checked"{% endif %}>
             <label for="result-doc-{{ type }}-{{ index }}">
-                <span class="sr-only">{{ 'bloc.notice-simple.result'|trans }} {{ index + 1 }}, {{ 'bloc.notice-simple.select'|trans }} {{ notice.frontTitle }}</span>
-                {{ index +1 }}
+                <span class="sr-only">{{ 'bloc.notice-simple.result'|trans }} {{ index }}, {{ 'bloc.notice-simple.select'|trans }} {{ notice.frontTitle }}</span>
+                {{ index }}
             </label>
 
             {% from 'search/blocs-results/macros.html.twig' import add_to_list_form %}
@@ -60,13 +60,14 @@
                 {% endif %}
 
                 {% for available in notice.copies %}
-                    {# TODO : afficher la location + category également pour les documents rayon disponible #}
+                    {# TODO : afficher la location + category également pour les documents rayon disponible (TODO doublon avec macro) #}
                     {{ macros.availibility(available, notice) }}
 
                     {% if loop.first and not loop.last %}
                         <button type="button" class="btn btn-small-link" data-toggle="collapse"
                                 data-target="#availabity-items-{{ index }}" aria-expanded="false"
-                                aria-controls="availabity-items-{{ index }}">Voir plus
+                                aria-controls="availabity-items-{{ index }}">
+                            {{ 'global.see-more'|trans }}
                         </button>
                         <div class="collapse" id="availabity-items-{{ index }}">
                     {% endif %}
@@ -80,7 +81,8 @@
                     {% if loop.first and not loop.last %}
                         <button type="button" class="btn btn-small-link" data-toggle="collapse"
                                 data-target="#links-items-{{ index }}" aria-expanded="false"
-                                aria-controls="links-items-{{ index }}">Voir plus
+                                aria-controls="links-items-{{ index }}">
+                            {{ 'global.see-more'|trans }}
                         </button>
                         <div class="collapse" id="links-items-{{ index }}">
                     {% endif %}

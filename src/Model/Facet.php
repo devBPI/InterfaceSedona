@@ -11,7 +11,6 @@ use JMS\Serializer\Annotation as JMS;
  */
 class Facet
 {
-
     /**
      * @var string
      * @JMS\Type("string")
@@ -109,6 +108,10 @@ class Facet
      */
     public function getMinValue(): int
     {
+        if (count($this->getRawValues()) === 0) {
+            return 0;
+        }
+
         return min($this->getRawValues());
     }
     /**
@@ -116,6 +119,10 @@ class Facet
      */
     public function getMaxValue(): int
     {
+        if (count($this->getRawValues()) === 0) {
+            return 0;
+        }
+
         return max($this->getRawValues());
     }
 }
