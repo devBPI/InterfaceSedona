@@ -155,7 +155,6 @@
 
         {% block javascripts %}
 			{% if app.environment != 'test' %}
-				<script type="application/javascript" src="{{ asset('js/polyfill-ie.js') }}"></script>
             	{{ encore_entry_script_tags('app') }}
 			{% endif %}
         {% endblock %}
