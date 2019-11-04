@@ -6,10 +6,13 @@
 		<div class="slick-carousel js-carousel-secondary" role="region" aria-roledescription="carrousel">
 			{% for  element in object.mappedNotices %}
 				<div class="carousel__slide">
-					<a href="{{ path(app.request.attributes.get('_route'), {'permalink': element.permalink}) }}" class="carousel__slide-link">
-						<span class="sr-only">
-							{{ 'bloc.list-related-documents.link-title'|trans({'%current%': object.pagination.page, '%nb%': object.pagination.rows, '%name%': element.titles[0] }) }}</span>
-					</a>
+
+
+						<a href="{{ path(app.request.attributes.get('_route'), {'permalink': element.permalink}) }}" class="carousel__slide-link">
+							<span class="sr-only">
+								{{ 'bloc.list-related-documents.link-title'|trans({'%current%': object.pagination.page, '%nb%': object.pagination.rows, '%name%': element.titles[0] }) }}</span>
+						</a>
+
 					<div class="carousel__slide-image">
 						<img src="{{ path("binary_image", {"content": element.image, 'type': element.type|slugify })}}" class="img-fluid" alt="" />
 					</div>
@@ -23,6 +26,7 @@
 			{% endfor %}
 		</div>
 	</div>
+{#
 	<div class="carousel__footer">
 		<a href="{{ path('search', {(constant('App\\Model\\Search\\Criteria::SIMPLE_SEARCH_KEYWORD')):notice.name, (constant('App\\Model\\Search\\Criteria::SIMPLE_SEARCH_TYPE')): (constant('App\\WordsList::INDICE_COTE_WORD'))}) }}" class="link link--icone-end">
 			{{ "bloc.list-related-documents.see-more"|trans }}
@@ -30,5 +34,7 @@
 			<span>({{ object.mappedNotices |length }})</span>
 			<img src="{{ asset('images/icones/icone-chevron-gauche.svg') }}" alt="" class="icone-chevron-right"/>
 		</a>
+
 	</div>
+#}
 </div>
