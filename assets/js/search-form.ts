@@ -72,9 +72,10 @@ export class SearchForm {
         let nextDiv = document.querySelector(nextId) as HTMLDivElement;
 
         if (nextDiv == null) {
-            seeMoreButton.classList.add('d-none');
+            seeMoreButton.parentElement.remove();
         } else {
             seeMoreButton.setAttribute('data-target', nextId);
+            seeMoreButton.setAttribute('aria-controls', nextId.slice(1));
         }
     }
 

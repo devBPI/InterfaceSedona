@@ -17,7 +17,7 @@
     {% endfor %}
 {% endmacro %}
 
-{% macro display_checkbox_list(key, items, selected) %}
+{% macro display_checkbox_list(origin, key, items, selected) %}
     {% for index, value in items %}
         {% if value.name is defined %}
             {% set count = value.totalCount %}
@@ -40,7 +40,7 @@
 
         {% if not loop.first and not loop.last and loop.index % 6 == 0 %}
             {% if loop.index != 6 %}</div>{% endif %}
-            <div class="js-hidden" id="checkitem-{{ key }}-{{ index }}">
+            <div class="js-hidden" id="{{ origin }}-{{ key }}-{{ index }}">
         {% endif %}
     {% endfor %}
 
@@ -48,8 +48,8 @@
         </div>
         <div class="d-none">
             <button type="button" class="btn btn-small-link js-see-more"
-                    data-target="#checkitem-{{ key }}-5" aria-expanded="false"
-                    aria-controls="checkitem-{{ key }}-5">
+                    data-target="#{{ origin }}-{{ key }}-5" aria-expanded="false"
+                    aria-controls="{{ origin }}-{{ key }}-5">
                 {{ 'global.see-more'|trans }}
             </button>
         </div>

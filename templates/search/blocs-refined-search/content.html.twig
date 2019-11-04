@@ -9,7 +9,7 @@
                 {% include 'search/blocs-refined-search/date-content.html.twig' %}
             {% else %}
                 {% from 'search/blocs-advanced-search/macros.html.twig' import display_checkbox_list %}
-                {{ display_checkbox_list(facet.name, facet.values, objSearch.searchFilters) }}
+                {{ display_checkbox_list('refine', facet.name, facet.values, objSearch.searchFilters) }}
             {% endif %}
         </div>
     </div>

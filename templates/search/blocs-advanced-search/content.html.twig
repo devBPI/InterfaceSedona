@@ -151,7 +151,7 @@
                      id="adv-search-{{ key }}" role="group"
                      aria-label="{{ ('modal.advanced-search.facette.'~key)|trans }}">
                     <div class="search-facette__content">
-                        {{ display_form.display_checkbox_list(key, attribute(criteria, key), objSearch.searchFilters) }}
+                        {{ display_form.display_checkbox_list('advanced', key, attribute(criteria, key), objSearch.searchFilters) }}
                     </div>
                 </div>
             </div>
