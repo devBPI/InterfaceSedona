@@ -35,7 +35,9 @@ class SearchFiltersExtension extends AbstractExtension
     public function __construct(RequestStack $requestStack)
     {
         $this->masterRequest = $requestStack->getMasterRequest();
-        $this->facetQueries = $requestStack->getMasterRequest()->get(FacetFilter::QUERY_NAME, []);
+        if ($requestStack->getMasterRequest() instanceof Request) {
+            $this->facetQueries = $requestStack->getMasterRequest()->get(FacetFilter::QUERY_NAME, []);
+        }
     }
 
     /**
