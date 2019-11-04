@@ -39,16 +39,19 @@
         </div>
 
         {% if not loop.first and not loop.last and loop.index % 6 == 0 %}
-            <div>
-                <button type="button" class="btn btn-small-link" data-toggle="collapse"
-                        data-target="#check-item-{{ key }}-{{ index }}" aria-expanded="false"
-                        aria-controls="check-item-{{ key }}-{{ index }}">
-                    {{ 'global.see-more'|trans }}
-                </button>
-            </div>
             {% if loop.index != 6 %}</div>{% endif %}
-            <div class="collapse" id="check-item-{{ key }}-{{ index }}">
+            <div class="js-hidden" id="checkitem-{{ key }}-{{ index }}">
         {% endif %}
     {% endfor %}
-    {% if items|length > 6 %}</div>{% endif %}
+
+    {% if items|length > 6 %}
+        </div>
+        <div class="d-none">
+            <button type="button" class="btn btn-small-link js-see-more"
+                    data-target="#checkitem-{{ key }}-5" aria-expanded="false"
+                    aria-controls="checkitem-{{ key }}-5">
+                {{ 'global.see-more'|trans }}
+            </button>
+        </div>
+    {% endif %}
 {% endmacro %}

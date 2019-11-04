@@ -19,6 +19,19 @@ const routes = require('../../assets/js/fos_js_routes.json');
 
 import Routing from '../../assets/js/jsrouting.min.js';
 
+import {SearchForm, CopyKeyword} from './search-form';
+document.querySelectorAll('form').forEach((form: HTMLFormElement) => {
+    new SearchForm(form);
+})
+let copyKeyword = new CopyKeyword();
+
+
+import SelectList from './select-list';
+new SelectList(document.querySelector('#adv-search-langage'));
+
+import {DatePeriod} from './date-input-search';
+new DatePeriod(document.querySelector('.search-date__date--second'));
+
 
 Routing.setRoutingData(routes);
 
@@ -76,8 +89,8 @@ $(document)
     .on('click', '.js-copy_to_clipboard', function (e) {
         let url =  $('.js-url-to-copy').val();
         copyToClipboard(url);
-    }).
-    on('click','.js-print-selection-action', function () {
+    })
+    .on('click','.js-print-selection-action', function () {
         let permalinkNotice = $('.js-notice:checked');
         let notice = [];
         let authority = [];
@@ -91,6 +104,9 @@ $(document)
 
         $('.js-print-notices').val(JSON.stringify(notice));
         $('.js-print-authorities').val(JSON.stringify(authority));
+    })
+    .on('show.bs.modal', '#modal-search-advanced', function (e) {
+        copyKeyword.copyKeywordValue();
     })
 ;
 
@@ -123,14 +139,3 @@ let copyToClipboard = function (element) {
 
     $input.remove();
 };
-
-import SelectList from './select-list';
-new SelectList(document.querySelector('#adv-search-langage'));
-
-import {DatePeriod} from './date-input-search';
-new DatePeriod(document.querySelector('.search-date__date--second'));
-
-import SearchForm from './clean-search';
-document.querySelectorAll('form').forEach((form: HTMLFormElement) => {
-    new SearchForm(form);
-})
