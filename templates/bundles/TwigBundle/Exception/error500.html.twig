@@ -8,7 +8,7 @@
     
     {% if app.environment == 'dev' or IP_SEDONA in app.request.clientIps %}
         {# affichage de la raison de l'erreur pour Sedona #}
-        <p>Erreur remonté : {{ exception.message }}</p>
+        <p>Erreur remontée : {{ exception.message }}</p>
         <pre>{{ exception.toarray|json_encode }}</pre>
     {% endif %}
 
@@ -26,7 +26,6 @@
     <div class="row justify-content-center">
         <div class="col-12 col-sm-11 col-md-10">
             <h2 class="n2">{{ 'error.title-form' |trans }}</h2>
-            {# TODO : Formatage du formulaire à revoir : comme login #}
             {{ render(controller('App\\Controller\\CommonController::reportErrorPageAction')) }}
         </div>
     </div>
