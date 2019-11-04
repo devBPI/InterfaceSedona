@@ -40,13 +40,13 @@
 
         {% if not loop.first and not loop.last and loop.index % 6 == 0 %}
             {% if loop.index != 6 %}</div>{% endif %}
-            <div class="js-hidden" id="{{ origin }}-{{ key }}-{{ index }}">
+            <div class="js-hidden hidden-items" id="{{ origin }}-{{ key }}-{{ index }}">
         {% endif %}
     {% endfor %}
 
     {% if items|length > 6 %}
         </div>
-        <div class="d-none">
+        <div class="d-none w-100">
             <button type="button" class="btn btn-small-link js-see-more"
                     data-target="#{{ origin }}-{{ key }}-5" aria-expanded="false"
                     aria-controls="{{ origin }}-{{ key }}-5">

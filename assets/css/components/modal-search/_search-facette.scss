@@ -72,6 +72,16 @@
 		}
 	}
 
+	.hidden-items {
+		flex: 0 0 100%;
+		min-width: 100%;
+
+		@include media-breakpoint-up(md) {
+			flex: 0 0 50%;
+			min-width: 50%;
+		}
+	}
+
 	&__date {
 		display: flex;
 	}
