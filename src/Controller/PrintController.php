@@ -32,7 +32,7 @@ class PrintController extends AbstractController
      * PrintController constructor.
      * @param NoticeBuildFileService $buildFileContent
      */
-    public function __construct( NoticeBuildFileService $buildFileContent )
+    public function __construct(NoticeBuildFileService $buildFileContent )
     {
         $this->buildFileContent = $buildFileContent;
     }

@@ -197,4 +197,12 @@ class NavigationService
     {
         return $this->nextPermalink;
     }
+
+    /**
+     * @return SearchQuery|null
+     */
+    public function getSearch(): SearchQuery
+    {
+        return $this->search;
+    }
 }

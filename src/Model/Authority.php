@@ -4,6 +4,8 @@ declare(strict_types=1);
 namespace App\Model;
 
 use App\Model\Interfaces\NoticeInterface;
+use App\Model\Interfaces\RecordInterface;
+use App\Model\Traits\BreadcrumbTrait;
 use App\Model\Traits\IndiceAndAuthorityTrait;
 use App\Model\Traits\NoticeTrait;
 use JMS\Serializer\Annotation as JMS;
@@ -12,11 +14,11 @@ use JMS\Serializer\Annotation as JMS;
  * Class Authority
  * @package App\Model
  */
-final class Authority implements NoticeInterface
+final class Authority implements NoticeInterface, RecordInterface
 {
     private const DOC_TYPE = 'authority';
-
-    use NoticeTrait, IndiceAndAuthorityTrait;
+    const BREAD_CRUMB_NAME = 'authority';
+    use NoticeTrait, IndiceAndAuthorityTrait, BreadcrumbTrait;
 
     /**
      * @var int

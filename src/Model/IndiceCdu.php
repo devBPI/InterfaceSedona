@@ -3,6 +3,8 @@
 namespace App\Model;
 
 use App\Model\Interfaces\NoticeInterface;
+use App\Model\Interfaces\RecordInterface;
+use App\Model\Traits\BreadcrumbTrait;
 use App\Model\Traits\IndiceAndAuthorityTrait;
 use App\Model\Traits\OriginTrait;
 use JMS\Serializer\Annotation as JMS;
@@ -11,11 +13,13 @@ use JMS\Serializer\Annotation as JMS;
  * Class IndiceCdu
  * @package App\Model
  */
-final class IndiceCdu  extends Cdu implements NoticeInterface
+final class IndiceCdu  extends Cdu implements NoticeInterface, RecordInterface
 {
+
+    const BREAD_CRUMB_NAME = 'indice_cdu';
     private const DOC_TYPE = 'indice';
 
-    use OriginTrait, IndiceAndAuthorityTrait;
+    use OriginTrait, IndiceAndAuthorityTrait, BreadcrumbTrait;
 
     /**
      * @var string
@@ -102,5 +106,6 @@ final class IndiceCdu  extends Cdu implements NoticeInterface
     {
         return self::DOC_TYPE;
     }
+
 }
 

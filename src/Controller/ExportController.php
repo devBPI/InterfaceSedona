@@ -25,14 +25,20 @@ class ExportController extends AbstractController
      * @var NoticeBuildFileService
      */
     private $buildFileContent;
+    /**
+     * @var MailSenderService
+     */
+    private $mailSenderService;
 
     /**
      * ExportController constructor.
      * @param NoticeBuildFileService $buildFileContent
+     * @param MailSenderService $mailSenderService
      */
-    public function __construct(NoticeBuildFileService $buildFileContent)
+    public function __construct(NoticeBuildFileService $buildFileContent, MailSenderService $mailSenderService)
     {
         $this->buildFileContent = $buildFileContent;
+        $this->mailSenderService = $mailSenderService;
     }
 
     /**
@@ -45,7 +51,7 @@ class ExportController extends AbstractController
      * @throws \Twig\Error\LoaderError
      * @throws \Twig\Error\SyntaxError
      */
-    public function sendNoticesOnAttachementAction(Request $request, string $type, MailSenderService $mailSenderService): Response
+    public function sendNoticesOnAttachementAction(Request $request, string $type): Response
     {
         $form = $this->createForm(ExportNoticeType::class, new ExportNotice());
         $form->handleRequest($request);
@@ -57,7 +63,7 @@ class ExportController extends AbstractController
             $content = $this->buildFileContent->buildContent($object, $type, $object->getFormatType());
             $attachment = new \Swift_Attachment($content, $filename, sprintf('application/%s', $object->getFormatType()));
 
-            if ($mailSenderService->sendMail(
+            if ($this->mailSenderService->sendMail(
                 'common/modal/content.email.twig',
                 ['data' => $object],
                 'no-reply@sedona.fr',
@@ -94,7 +100,7 @@ class ExportController extends AbstractController
      * @throws \Twig\Error\LoaderError
      * @throws \Twig\Error\SyntaxError
      */
-    public function sendNoticeWithAttachementAction(Request $request,string $permalink, string $type, MailSenderService $mailSenderService): Response
+    public function sendNoticeWithAttachementAction(Request $request,string $permalink, string $type): Response
     {
         $form = $this->createForm(ExportNoticeType::class, new ExportNotice());
         $form->handleRequest($request);
@@ -110,7 +116,7 @@ class ExportController extends AbstractController
             $attachment = new \Swift_Attachment($content, $filename, sprintf('application/%s', $object->getFormatType()));
             $object->setObject(sprintf('partage par mail de la notice %s', $permalink));
 
-            if ($mailSenderService->sendMail(
+            if ($this->mailSenderService->sendMail(
                 'common/modal/content.email.twig',
                 ['data' => $object],
                 'no-reply@sedona.fr',

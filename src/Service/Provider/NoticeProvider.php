@@ -19,6 +19,7 @@ class NoticeProvider extends AbstractProvider
      */
     public function getNotice(string $query): NoticeThemed
     {
+
         return $this->hydrateFromResponse(sprintf('/details/notice-themed/%s', $query));
     }
 
