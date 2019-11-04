@@ -14,6 +14,7 @@ require('jquery');
 require('bootstrap');
 require('icheck');
 require('./data-toggle.js');
+import './polyfill-ie';
 
 const routes = require('../../assets/js/fos_js_routes.json');
 
