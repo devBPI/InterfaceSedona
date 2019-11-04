@@ -16,7 +16,7 @@ use App\Utils\NavigationNotice;
  * Class NavigationService
  * @package App\Service
  */
-class NavigationService
+final class NavigationService
 {
     /**
      * @var string

@@ -574,7 +574,7 @@ breadcrumb:
     presse: Recorrido Noticias y revistas
     autoformation: Recorrido Autoaprendizaje
     cinema: Recorrido Cine
-  search-terms: Resultados de búsqueda para : %terms%
+  search-terms: 'Resultados de búsqueda para : %terms%'
   search: Resultados de búsqueda
   card:
     bibliographic: Documento %title%

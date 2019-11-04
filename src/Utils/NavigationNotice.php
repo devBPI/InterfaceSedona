@@ -15,7 +15,6 @@ use App\Model\Traits\NoticeTrait;
 
 class NavigationNotice implements NoticeInterface
 {
-    const bread_crumb = 'notice';
     use NoticeTrait, BreadcrumbTrait;
 
     /**

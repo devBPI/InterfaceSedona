@@ -21,10 +21,7 @@ class BreadCrumbExtension extends AbstractExtension
      * @var RequestStack
      */
     private $requestStack;
-    /**
-     * @var \Twig_Template
-     */
-    private $templating;
+
     /**
      * @var BreadCrumbBuilder
      */
@@ -33,13 +30,11 @@ class BreadCrumbExtension extends AbstractExtension
     /**
      * BreadCrumbExtension constructor.
      * @param RequestStack $requestStack
-     * @param \Twig_Environment $templating
      * @param BreadCrumbBuilder $builder
      */
-    public function __construct(RequestStack $requestStack, \Twig_Environment $templating, BreadCrumbBuilder $builder)
+    public function __construct(RequestStack $requestStack, BreadCrumbBuilder $builder)
     {
         $this->requestStack = $requestStack;
-        $this->templating = $templating;
 
         $this->builder = $builder;
     }

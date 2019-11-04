@@ -100,7 +100,7 @@ final class BreadCrumbBuilder
         $this->bctService->add(
             'home_thematic',
             sprintf('breadcrumb.home.%s', $parcours),
-            ['parcours' => $parcours],
+            ['parcours' => $parcours]
         );
 
         return true;

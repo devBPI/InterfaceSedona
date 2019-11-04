@@ -25,10 +25,6 @@ use Symfony\Component\Routing\Annotation\Route;
  */
 class NoticeController extends AbstractController
 {
-    /**
-     * @var NoticeProvider
-     */
-    private $noticeProvider;
 
     /**
      * @var NoticeBuildFileService
@@ -37,13 +33,11 @@ class NoticeController extends AbstractController
 
     /**
      * NoticeController constructor.
-     * @param NoticeProvider $noticeProvider
+     * @param NoticeBuildFileService $buildFileContent
      */
     public function __construct(
-        NoticeProvider $noticeProvider,
         NoticeBuildFileService $buildFileContent
     ) {
-        $this->noticeProvider = $noticeProvider;
         $this->buildFileContent = $buildFileContent;
     }
 
