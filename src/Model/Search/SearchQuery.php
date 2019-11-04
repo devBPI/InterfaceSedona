@@ -159,4 +159,5 @@ class SearchQuery implements SearchResultInterface
     {
         return $this->mode;
     }
+
 }

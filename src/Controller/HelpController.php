@@ -41,5 +41,4 @@ class HelpController extends AbstractController
 	{
 		return $this->render('help/account.html.twig', []);
 	}
-
 }

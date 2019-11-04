@@ -1,55 +1,53 @@
-Bad credentials.: Votre email et/ou mot de passe ne sont pas valides.
 global:
   new-windows: Nouvelle fenêtre
   form-mandatory-field: champs obligatoires
   modal-close: Fermer cette fenêtre
   modal-cancel: Annuler
-  modal-btn-close: Fermer
   list-ordering: ": activer pour trier par ordre ascendant/descendant"
   site-title: "| Catalogue Bpi"
   see-more: Voir plus
   form:
     email:
-      placeholder: 'nom@exemple.com'
+      placeholder: 'nom@example.com'
 
 header:
-  logo_title: Aller à l'accueil du catalogue Bibliothèque Publique d'Information Centre Pompidou
+  logo_title: Go to the Bibliothèque Publique d'Information Centre Pompidou catalog homepage
   logo_alt: Bibliothèque Publique d'Information Centre Pompidou
-  menu_title: Consulter le menu principal
+  menu_title: Consult main menu
   navbar-evitement:
-    contenu-site: Aller au contenu
-    bloc-menu: Aller au menu général
-    menu-plans-sites: Aller au plan du site
-    form-search: Aller à la recherche
+    contenu-site: Go to content
+    bloc-menu: Go to main menu
+    menu-plans-sites: Go to the site map
+    form-search: Go to search
   navbar-langue:
-    title: Choix d'une langue
+    title: Choice of a language
     aria: Menu-langue
     change-to:
       en: English version
-      es: Espagnol version
-      fr: Version française
+      es: Espanol version
+      fr: French version
   navbar-principal:
-    home: Accueil
-    catalogue: Catalogue
+    home: Home
+    catalogue: Catalog
     agenda: Agenda
   navbar-secondaire:
-    title: Autres sites
+    title: Other sites
     aria: Menu-secondaire
     bpi: La Bpi
     balises: Balises
-    pro: Professionnels
+    pro: Professionals
     cinemadureel: Cinéma du réel
   navbar-user:
-    selection: Ma sélection
-    history: Historique
+    selection: My Selection
+    history: My history
   account:
-    title_unconnect: Mon compte
-    title_connected: Gestion de mon compte
+    title_unconnect: My account
+    title_connected: My account management
     aria: Menu-compte
-    welcome: Bienvenue
-    logout: Se deconnecter
-    profile: Mon compte
-    profile_title: Accéder à mon compte
+    welcome: Welcome
+    logout: Sign out
+    profile: My account
+    profile_title: Access to my account
   title:
     presse: Actualités et revues
     autoformation: Autoformation
@@ -59,57 +57,56 @@ footer:
     bpi:
       title: La Bpi
       class: first
-      Catalogue: Catalogue
+      Catalogue: Catalog
       agenda: Agenda
-      la-bibliotheque: La Bibliothèque
-      informations-pratiques: Informations pratiques
-      espace-presse: Presse / Partenariats
+      la-bibliotheque: The Library
+      informations-pratiques: Useful informations
+      espace-presse: Press / Partnership
     balises:
       title: Balises
       class: second
       webtv: WebTV / WebRadio
       exploration: Exploration
-      ma-une: Mon webmagazine
-      qui-sommes-nous: Qui sommes-nous ?
+      ma-une: My webmagazine
+      qui-sommes-nous: Who are we ?
     professionnels:
-      title: Professionnels
+      title: Professionals
       class: third
-      collections-et-services: Collections et services
-      cohesion-sociale: Cohésion sociale
-      etudes: Etudes
-      metier: Métier
+      collections-et-services: Collections and services
+      cohesion-sociale: Social cohesion
+      etudes: Studies
+      metier: Profession
       international: International
   credit-list:
-    espace-presse: Presse et partenariats
-    emplois-et-stages: Emploi & stages
-    marches-publics: Marchés publics
-    mentions-legales: Mentions légales
-    aide-et-accessibilite: Aide et accessiblité
+    espace-presse: Press / Partnership
+    emplois-et-stages: Employment & Internships
+    marches-publics: Public procurement contracts
+    mentions-legales: Legal Notices
+    aide-et-accessibilite: Help and accessibility
     contacts-bpi: Contacts
   links-externe:
-    mensuel: Le mensuel de la Bpi
-    actualite: L'actualité de la Bpi
-    magazine: Le magazine de la Bpi
+    mensuel: The monthly of the Bpi
+    actualite: The Bpi news
+    magazine: The Bpi magazine
   partenaires:
-    eurekoi: Eurêkoi
-    culture: Ministère de la Culture
+    eurekoi: Go to the website Eurêkoi
+    culture: Ministry of culture
     pompidou: Centre Pompidou
     ircam: Ircam
     franceculture: France Culture
   socials-medias:
-    facebook: Retrouvez la Bpi sur Facebook
-    twitter: Retrouvez la Bpi sur Twitter
-    instagram: Retrouvez la Bpi sur Instagram
-    youtube: Retrouvez la Bpi sur YouTube
-    linkedin: Retrouvez la Bpi sur LinkedIn
-    rss: Les fils RSS de la Bpi
+    facebook: Find the BPI on Facebook
+    twitter: Find the BPI on Twitter
+    instagram: Find the BPI on Instagram
+    youtube: Find the BPI on Youtube
+    linkedin: Find the BPI on Linkedin
+    rss: Bpi RSS feed
 
 modal:
   list-create:          #Modal 01  Création d'une liste
     title: Créer une nouvelle liste
-    mandatory-field: La saisie du titre de la liste est obligatoire
     field-title: Titre
-    message-success: Vous avez bien créé la liste « %name% » avec les documents sélectionnés.
+    message-success: Vous avez bien créé la liste « %name% » avec les document sélectionnés.
     submit: Valider
     submit-sr-only:  la création de la liste
   list-add:             #Modal 02 ajout à ma sélection
@@ -143,7 +140,7 @@ modal:
   export:           #Modal 05 export
     title: Paramétrer l'export
     field:
-      recipient: Destinataire(s) (nom@exemple.com)
+      recipient: Destinataire(s)
       comments: Message
       abstract: Notices abrégées
       long: Notices complètes
@@ -169,8 +166,8 @@ modal:
       text: Texte
       title: Titre
       title_value: Références du catalogue de la Bpi
-      recipient: Destinataire (nom@exemple.com)
-      expeditor: Expéditeur (nom@exemple.com)
+      recipient: Destinataire
+      expeditor: Expéditeur
     submit: Envoyer
   suggestion:     #Modal 08 suggestion d'achats
     title: Suggestion
@@ -182,7 +179,7 @@ modal:
       editor: Editeur
       last-name: Nom
       first-name: Prénom
-      email: Courriel (nom@exemple.com)
+      email: Courriel
     submit: Valider
     submit-sr-only: l'envoi de la suggestion
   report:      #Modal 09 signaler une erreur
@@ -193,7 +190,7 @@ modal:
       message: Message
       last-name: Nom
       first-name: Prénom
-      email: Courriel (nom@exemple.com)
+      email: Courriel
     submit: Valider
     submit-sr-only:  l'envoi du mail de signalisation d'erreur
   comments-edit:   #Modal 10  edition d'un commentaire
@@ -203,9 +200,9 @@ modal:
   comments-view:  #Modal 11 visualisation d'un commentaire
     title: Commentaire
     close: Fermer
-  notifed-form:   #Modal 12 notification de disponibilité de document
+  notifed-form:   #Modal 12 notification de dispoibilité de document
     title: Être prevenu de son retour en rayon
-    field-email: Courriel (nom@exemple.com)
+    field-email: Courriel
     submit: Valider
     submit-sr-only: votre inscription à l'alerte de retour en rayon
   advanced-search:  #Modal 13 recheche avancé
@@ -269,9 +266,6 @@ modal:
       bdd: Bases de recherche
       langue: Langue(s)
       date: Date
-      date_placeholder: AAAA
-      date_start_label: Entrez une première date
-      date_end_label: Entrez une deuxième date
       subject: Sujets
     clear-search: Effacer ma recherche
     submit: Rechercher
@@ -323,11 +317,6 @@ page:
     historic:
       title: Mon historique
       notice: Texte explicatif, précisions sur "sélection d'au moins un document permet de supprimer ces documents" et "il est nécessaire de revenir sur la barre des tâches en haut de la liste pour effectuer cette opération".
-  quatrieme:
-    label:
-      editor_information: 'Informations editeurs :'
-      biography: 'Biographie :'
-      presentation: 'Presentation :'
 
 bloc:
   toolbar:                #Bloc A Barre utilitaires
@@ -549,6 +538,11 @@ bloc:
       date: Recherché le
     select-ligne: 'Sélectionner la ligne : %title%'
     reload: Relancer la recherche %title%'
+  quatrieme:
+    label:
+      editor_information: 'Informations editeurs :'
+      biography: 'Biographie :'
+      presentation: 'Presentation :'
 
 error:
   page_not_available: 'Cette page n’est pas accessible.'
@@ -563,29 +557,27 @@ error:
 
 breadcrumb:
   home:
-    presse: Parcours Actualités et revues
-    autoformation: Parcours Autoformation
-    cinema: Pacrours Cinéma
-  help_index: 'Aide'
+    presse:  News and magazines course
+    autoformation:  Self-study course
+    cinema:  Cinema course
+  help_index: 'Help'
   help:
-    help_search:  La recherche
-    help_result:  Exploitation des résultats
+    help_search:  Search
+    help_result:  Exploitation of results
     help_service: Services
-    help_account: Mon compte
+    help_account: My account
   user:
-    user_login: Authentification
-    user_personal_data: Mon compte
-    user_selection_index: Ma sélection
-    user_history_index: Mon historique
+    user_login: Authentication
+    user_personal_data: My account
+    user_selection_index: My selection
+    user_history_index: My history
   parcours:
-    presse: Parcours Actualités et revues
-    autoformation: Parcours Autoformation
-    cinema: Parcours Cinéma
-  search-terms: 'Résultats de recherche pour : %terms%'
-  search: Résultats de recherche
+    presse: News and magazines course
+    autoformation:  Self-study course
+    cinema: Cinema course
+  search-terms:  Search results for :%terms%
+  search:  Search results
   card:
     bibliographic: Document %title%
-    indice_cdu: Autorité %title%
-    authority: Autorité %title%
-
-
+    indice_cdu: Authority %title%
+    authority: Authority %title%

@@ -17,6 +17,7 @@ use Symfony\Component\Translation\TranslatorInterface;
  */
 final class SearchService
 {
+    use SearchQueryTrait;
     /**
      * @var Translator
      */
@@ -85,22 +86,6 @@ final class SearchService
         return $objSearch;
     }
 
-    /**
-     * @param string $token
-     * @param Request $request
-     * @return SearchQuery
-     */
-    public function getSearchQueryFromToken(string $token, Request $request): SearchQuery
-    {
-        /** @var SearchQuery $search */
-        return $this
-            ->serializer
-            ->deserialize(
-                $request->getSession()->get($token),
-                SearchQuery::class,
-                'json'
-            );
-    }
 
     /**
      * @param string $object

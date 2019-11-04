@@ -3,6 +3,8 @@
 namespace App\Model;
 
 use App\Model\Interfaces\NoticeInterface;
+use App\Model\Interfaces\RecordInterface;
+use App\Model\Traits\BreadcrumbTrait;
 use App\Model\Traits\NoticeMappedTrait;
 use App\Model\Traits\NoticeTrait;
 use App\Model\Traits\OriginTrait;
@@ -14,11 +16,13 @@ use JMS\Serializer\Annotation as JMS;
  * Class NoticeDetail
  * @package App\Model
  */
-class Notice extends AbstractImage implements NoticeInterface
+class Notice extends AbstractImage implements NoticeInterface, RecordInterface
 {
-    use OriginTrait, TraitSlugify, NoticeMappedTrait, NoticeTrait, ImageIsbnTrait;
+    use OriginTrait, TraitSlugify, NoticeMappedTrait, NoticeTrait, ImageIsbnTrait, BreadcrumbTrait;
 
     private const SEPARATOR = ' ; ';
+    const BREAD_CRUMB_NAME = 'bibliographic';
+
     const ON_LIGNE   = 'en ligne';
     const ON_SHELF   = 'en rayon';
     const ALL        = 'all';
@@ -1226,5 +1230,6 @@ class Notice extends AbstractImage implements NoticeInterface
     {
         return $this->formats;
     }
+
 }
 
