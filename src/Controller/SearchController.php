@@ -133,6 +133,7 @@ class SearchController extends AbstractController
     public function refinedSearchAction(Request $request, string $parcours=self::GENERAL): Response
     {
         $search = $this->searchService->getSearchQueryFromToken($request->get('searchToken'), $request);
+
         $search->setFacets(new FacetFilter($request->query->all()));
 
         return $this->displaySearch(
@@ -140,7 +141,6 @@ class SearchController extends AbstractController
             $request
         );
     }
-
 
     /**
      * @Route("/retour-recherche/{token}", methods={"GET"}, name="back_search")
@@ -210,8 +210,7 @@ class SearchController extends AbstractController
      */
     public function printAction(Request $request, $format)
     {
-        $sendAttachement = new ExportNotice();
-        $sendAttachement
+        $sendAttachement = (new ExportNotice())
             ->setAuthorities($request->get('authorities', ''))
             ->setNotices($request->get('notices', ''))
             ->setImage($request->get('print-image', null) === 'print-image')
@@ -220,7 +219,6 @@ class SearchController extends AbstractController
       ;
 
         return  $this->buildFileContent->buildFile($sendAttachement, ObjSearch::class, $format);
-
     }
 
     /**

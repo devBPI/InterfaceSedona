@@ -77,3 +77,9 @@ services:
     class: Twig_Extensions_Extension_Text
     tags:
     - { name: twig.extension }
+
+  app.param_converter.bpi_converter:
+    class: App\Request\ParamConverter\BpiConverter
+    tags:
+    - { name: request.param_converter, priority: -2, converter: bpi_converter }
+

@@ -6,90 +6,63 @@ namespace App\Controller;
 use App\Model\Exception\NoResultException;
 use App\Model\Form\ExportNotice;
 use App\Model\IndiceCdu;
-use App\Model\RankedAuthority;
 use App\Service\NavigationService;
 use App\Service\NoticeBuildFileService;
 use App\Service\Provider\NoticeAuthorityProvider;
-use JMS\Serializer\Serializer;
-use JMS\Serializer\SerializerInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Annotation\Route;
+
 
 /**
  * Class IndiceCduController
  * @package App\Controller
  */
-class IndiceCduController extends CardController
+class IndiceCduController extends AbstractController
 {
     /**
      * @var NoticeAuthorityProvider
      */
     private $noticeAuhtority;
     /**
-     * @var Serializer
-     */
-    protected $serializer;
-
-    /**
      * @var NoticeBuildFileService
      */
     private $buildFileContent;
-    /**
-     * @var NavigationService
-     */
-    private $navigationService;
+
 
     /**
      * IndiceCduController constructor.
      * @param NoticeAuthorityProvider $noticeAuhtority
-     * @param SerializerInterface $serializer
-     * @param NoticeBuildFileService $service
-     * @param NavigationService $navigationService
+     * @param NoticeBuildFileService $buildFileContent
      */
     public function __construct(
         NoticeAuthorityProvider $noticeAuhtority,
-        SerializerInterface $serializer,
-        NoticeBuildFileService $service,
-        NavigationService $navigationService
+        NoticeBuildFileService $buildFileContent
     ) {
         $this->noticeAuhtority = $noticeAuhtority;
-        $this->serializer = $serializer;
-        $this->buildFileContent = $service;
-        $this->navigationService = $navigationService;
-        parent::__construct($navigationService, $serializer);
+        $this->buildFileContent = $buildFileContent;
     }
 
     /**
      * @Route("/indice-cdu/{permalink}", methods={"GET","HEAD"}, name="record_indice_cdu", requirements={"permalink"=".+"})
-     * @param Request $request
-     * @param string $permalink
-     * @param SessionInterface $session
+     * @ParamConverter("notice",     class="App\Model\IndiceCdu")
+     * @ParamConverter("navigation", class="App\Service\NavigationService")
+     * @param IndiceCdu $notice
+     * @param NavigationService $navigation
      * @return Response
-     * @throws \Twig\Error\LoaderError
-     * @throws \Twig\Error\RuntimeError
-     * @throws \Twig\Error\SyntaxError
      */
-    public function cduIndiceRecordAction(Request $request, string $permalink, SessionInterface $session)
+    public function cduIndiceRecordAction(IndiceCdu $notice, NavigationService $navigation=null)
     {
-        try{
-            $object = $this->noticeAuhtority->getIndiceCdu($permalink);
-            $subject = $this->noticeAuhtority->getSubjectNotice($object->getId());
-            $searchToken = $request->get('searchToken');
-            $navigation = null;
-            if ($session->has($searchToken)) {
-                $navigation = $this->buildNavigationService($permalink, $searchToken,  $session->get($searchToken, ''), RankedAuthority::class);
-            }
-        }catch(NoResultException $e){
-            return $this->render('common/error.html.twig');
-        }
+        $subject = $this->noticeAuhtority->getSubjectNotice($notice->getId());
+
         return $this->render('indice/indice.html.twig', [
                   'toolbar'         => IndiceCdu::class,
-                  'printRoute'      => $this->generateUrl('record_authority_pdf',  ['permalink'=>$permalink, 'format'=>'pdf']),
+                  'printRoute'      => $this->generateUrl('record_authority_pdf',  ['permalink'=>$notice->getPermalink(), 'format'=>'pdf']),
                   'subjects'        => $subject,
-                  'notice'          => $object,
+                  'notice'          => $notice,
                   'navigation'      => $navigation,
               ]
         );
