@@ -16,9 +16,9 @@ export class DateSlider {
                 this.changeInputValues(event.newValue);
             });
 
-            $(element).on('slide', function (event) {
+            $(element).on('slide', (event: any) => {
                 this.changeInputValues(event.value);
-            }.bind(this));
+            });
 
             this.initializeInput();
         }

@@ -74,6 +74,18 @@ class Notice extends AbstractImage implements NoticeInterface
      * @JMS\SerializedName("configurationName")
      */
     private $configurationName;
+    /**
+     * @var string
+     * @JMS\Type("string")
+     * @JMS\SerializedName("urlPubliqueConfiguration")
+     */
+    private $urlPubliqueConfiguration;
+    /**
+     * @var string
+     * @JMS\Type("string")
+     * @JMS\SerializedName("configurationPublicUrl")
+     */
+    private $configurationPublicUrl;
 
     /**
      * @var string
@@ -934,6 +946,17 @@ class Notice extends AbstractImage implements NoticeInterface
         }
 
         return $this->configurationName;
+    }
+    /**
+     * @return null|string
+     */
+    public function getConfigurationUrl(): ?string
+    {
+        if ($this->urlPubliqueConfiguration) {
+            return $this->urlPubliqueConfiguration;
+        }
+
+        return $this->configurationPublicUrl;
     }
 
     /**

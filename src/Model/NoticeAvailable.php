@@ -17,9 +17,14 @@ class NoticeAvailable
     /**
      * @var string
      * @JMS\Type("string")
-     * @JMS\SerializedName("categorie")
      */
     private $category;
+    /**
+     * @var string
+     * @JMS\Type("string")
+     */
+    private $categorie;
+
     /**
      * @var string
      * @JMS\SerializedName("cote")
@@ -52,7 +57,11 @@ class NoticeAvailable
 
     /**
      * @var string
-     * @JMS\SerializedName("localisation")
+     * @JMS\Type("string")
+     */
+    private $localisation;
+    /**
+     * @var string
      * @JMS\Type("string")
      */
     private $location;
@@ -109,6 +118,10 @@ class NoticeAvailable
      */
     public function getCategory(): ?string
     {
+        if ($this->categorie && $this->categorie !== null){
+            return $this->categorie;
+        }
+
         return $this->category;
     }
 
@@ -137,6 +150,10 @@ class NoticeAvailable
      */
     public function getLocation(): ?string
     {
+        if ($this->localisation && $this->localisation !== null){
+            return $this->localisation;
+        }
+
         return $this->location;
     }
 
@@ -145,7 +162,7 @@ class NoticeAvailable
      */
     public function getLabelDisponibility(): ?string
     {
-       if ($this->labelDisponibility && $this->labelDisponibility !==null){
+       if ($this->labelDisponibility && $this->labelDisponibility !== null){
            return $this->labelDisponibility;
        }
 

@@ -5,13 +5,11 @@
                 <p class="font-weight-bold">
                     <span class="availability__status">{{ object.availability }}</span>{% if object.cote %} {{ object.cote }}{% endif %}
                 </p>
-                {# TODO : ajout ligne dans resumé (résultats) #}
                 <p>{% if object.location %}{{ object.location }} {% endif %}{% if object.category %}- {{ object.category }} {% endif %}</p>
             </div>
         {% else %}
             <div class="availability availability--false availability--rayon">
-            {# TODO : Mettre le status de commande dynamique #}
-                <p class="availability__status">{{ 'bloc.notice-simple.document-unavailable'|trans }} <span>: En commande</span></p>
+                <p class="availability__status">{{ 'bloc.notice-simple.document-unavailable'|trans }} <span>: {{ object.availability }}</span></p>
                     <button class="btn list-result__content-button js-envelope"
                         data-url="{{ path('notice_availablity_request', {"sourceId": notice.sourceId, 'configurationId':notice.configurationId}) }}"
                         data-toggle="modal"

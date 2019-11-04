@@ -43,9 +43,9 @@ export default class Autocomplete {
         this.target.innerHTML = (await result.json()).html;
 
         if (this.mode !== 'link') {
-            this.target.querySelectorAll('a').forEach(function (link) {
+            this.target.querySelectorAll('a').forEach((link) => {
                 link.addEventListener('click', (event) => this.setInputValueAndHideList(event))
-            }.bind(this));
+            });
         }
     }
 

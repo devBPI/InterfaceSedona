@@ -21,16 +21,12 @@ export class SearchForm {
 
     private initListener() {
         if (this.resetButton) {
-            this.resetButton.addEventListener('click', () => {
-                this.resetAllInput();
-            });
+            this.resetButton.addEventListener('click', () => this.resetAllInput());
         }
 
         this.seeMoreButtonList.forEach((seeMoreButton: HTMLLinkElement) => {
             seeMoreButton.parentElement.classList.remove('d-none');
-            seeMoreButton.addEventListener('click', () => {
-                this.displayTargetDiv(seeMoreButton);
-            });
+            seeMoreButton.addEventListener('click', () => this.displayTargetDiv(seeMoreButton));
         });
     }
 
