@@ -10,7 +10,7 @@
 	}
 
 	&__button {
-		background-color: white;
+		background-color: $white;
 		border: 0;
 		padding: 0;
 		top: 0;
@@ -23,9 +23,16 @@
 			color: $red;
 			text-decoration: underline;
 		}
+	}
 
-		&:last-child {
-			margin-right: 0;
+	&__content {
+		position: absolute;
+		overflow: visible;
+		transition: none;
+		top: 2.6rem;
+
+		&.show {
+			height: 100% !important;
 		}
 	}
 
@@ -43,5 +50,9 @@
 				color: $red;
 			}
 		}
+	}
+
+	#btn-professionnels {
+		margin-right: 0;
 	}
 }
