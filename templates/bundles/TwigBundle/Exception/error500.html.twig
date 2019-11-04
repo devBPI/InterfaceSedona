@@ -6,7 +6,7 @@
     <h1 class="n1 mt-3">{{ 'error.page_boken'|trans }}</h1>
     <p>{{ 'error.page_broken_message'|trans|nl2br }}</p>
     
-    {% if app.environment == 'dev' or '77.158.146.242' in app.request.clientIps %}
+    {% if app.environment == 'dev' or IP_SEDONA in app.request.clientIps %}
         {# affichage de la raison de l'erreur pour Sedona #}
         <p>Erreur remonté : {{ exception.message }}</p>
         <pre>{{ exception.toarray|json_encode }}</pre>
