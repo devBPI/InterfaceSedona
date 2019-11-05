@@ -67,24 +67,7 @@
 
 		{% if notice.conservations %}
 			{{ pdf_occurence (notice, 'getConservations', "bloc.results-navigation.result-information.conservation"| trans, format) | raw }}
-		{% else %}
-			{{ pdf_occurence (notice, 'getConservations', "bloc.results-navigation.result-information.conservation"| trans, format) | raw }}
 		{% endif %}
-
-		{#
-				to put
-					"<liens>
-			<lien>
-			<accessDateFirstIssueOnline>***</accessDateFirstIssueOnline>
-			<accessDateLastIssueOnline>***</accessDateLastIssueOnline>
-			<accessNumFirstIssueOnline>***</accessNumFirstIssueOnline>
-			<accessNumFirstVolOnline>***</accessNumFirstVolOnline>
-			<accessNumLastIssueOnline>***</accessNumLastIssueOnline>
-			<accessNumLastVolOnline>***</accessNumLastVolOnline>
-			<url>***</url>
-			</lien>
-			</liens>"
-		#}
 		{{ pdf_occurence (notice, 'getSubject', "modal.advanced-search.facette.subject"| trans, format) | raw }}
 		{{ pdf_occurence (notice, 'getEras', "bloc.autority-result-information.eras"| trans, format) | raw }}
 		{{ pdf_occurence (notice, 'getLocations', "bloc.autority-result-information.location"| trans, format) | raw }}

@@ -52,6 +52,60 @@ class Link
     private $usedProfil;
 
     /**
+     * @var string
+     * @JMS\SerializedName("accessDateFirstIssueOnline")
+     *
+     * @JMS\Type("string")
+     */
+    private $accessDateFirstIssueOnline;
+    /**
+     * @var string
+     *
+     * @JMS\SerializedName("accessDateLastIssueOnline")
+     *
+     * @JMS\Type("string")
+     */
+    private $accessDateLastIssueOnline;
+    /**
+     * @var string
+     *
+     * @JMS\Type("string")
+     * @JMS\SerializedName("accessNumFirstIssueOnline")
+     */
+    private $accessNumFirstIssueOnline;
+
+    /**
+     * @var string
+     *
+     * @JMS\Type("string")
+     * @JMS\SerializedName("accessNumLastIssueOnline")
+     */
+    private $accessNumLastIssueOnline;
+
+    /**
+     * @var string
+     *
+     * @JMS\Type("string")
+     * @JMS\SerializedName("accessNumFirstVolOnline")
+     */
+    private $accessNumFirstVolOnline;
+
+    /**
+     * @var string
+     *
+     * @JMS\Type("string")
+     * @JMS\SerializedName("accessNumLastVolOnline")
+     */
+    private $accessNumLastVolOnline;
+    /**
+     * @var string
+     *
+     * @JMS\Type("string")
+     * @JMS\SerializedName("url")
+     */
+    private $url;
+
+    /**
      * @return null|string
      */
     public function getObjectType(): ?string
@@ -97,5 +151,95 @@ class Link
     public function getUsedProfil(): ?string
     {
         return $this->usedProfil;
+    }
+
+    /**
+     * @return null|string
+     */
+    public function getUrl(): ?string
+    {
+        return $this->url;
+    }
+
+    /**
+     * @return null|string
+     */
+    public function getAccessDateFirstIssueOnline(): ?string
+    {
+        return $this->accessDateFirstIssueOnline;
+    }
+
+    /**
+     * @return null|string
+     */
+    public function getAccessDateLastIssueOnline(): ?string
+    {
+        return $this->accessDateLastIssueOnline;
+    }
+
+    /**
+     * @return null|string
+     */
+    public function getAccessNumFirstIssueOnline(): ?string
+    {
+        return $this->accessNumFirstIssueOnline;
+    }
+
+    /**
+     * @return null|string
+     */
+    public function getAccessNumLastIssueOnline(): ?string
+    {
+        return $this->accessNumLastIssueOnline;
+    }
+
+    /**
+     * @return null|string
+     */
+    public function getAccessNumFirstVolOnline(): ?string
+    {
+        return $this->accessNumFirstVolOnline;
+    }
+
+    /**
+     * @return null|string
+     */
+    public function getAccessNumLastVolOnline(): ?string
+    {
+        return $this->accessNumLastVolOnline;
+    }
+
+    /**
+     * @return null|string
+     */
+    public function getConservation():?string
+    {
+        $payload = [];
+        if ($this->getAccessDateFirstIssueOnline()){
+            $payload[] = $this->getAccessDateFirstIssueOnline();
+        }
+        if ($this->getAccessDateLastIssueOnline()){
+            $payload[] = $this->getAccessDateLastIssueOnline();
+        }
+        if ($this->getAccessNumFirstIssueOnline()){
+            $payload[] = $this->getAccessNumFirstIssueOnline();
+        }
+        if ($this->getAccessNumFirstVolOnline()){
+            $payload[] = $this->getAccessNumFirstVolOnline();
+        }
+        if ($this->getAccessNumLastIssueOnline()){
+            $payload[] = $this->getAccessNumLastIssueOnline();
+        }
+        if ($this->getAccessNumLastVolOnline()){
+            $payload[] = $this->getAccessNumLastVolOnline();
+        }
+        if ($this->getUrl()){
+            $payload[] = $this->getUrl();
+        }
+        if ($payload === []){
+            return null;
+        }
+
+        return implode(', ', $payload);
     }
 }

@@ -47,6 +47,13 @@ class Notice extends AbstractImage implements NoticeInterface, RecordInterface
     /**
      * @var array
      * @JMS\Type("array<string>")
+     * @JMS\SerializedName("conservations")
+     * @JMS\XmlList("conservation")
+     */
+    private $conservationsLiens;
+    /**
+     * @var array
+     * @JMS\Type("array<string>")
      * @JMS\SerializedName("epoques")
      * @JMS\XmlList("epoque")
      */
@@ -147,7 +154,6 @@ class Notice extends AbstractImage implements NoticeInterface, RecordInterface
      * @JMS\XmlList("autreEdition")
      */
     private $otherEdition;
-    /**
     /**
      * @var array
      * @JMS\Type("array<string>")
@@ -912,7 +918,19 @@ class Notice extends AbstractImage implements NoticeInterface, RecordInterface
      */
     public function getConservation(): array
     {
-        return $this->conservation;
+
+        if ($this->conservation){
+            return $this->conservation;
+        }
+
+        $payload = [];
+        foreach ($this->getLinks() as $value){
+            if (($conservation = $value->getConservation()) !== null){
+                $payload[] = $conservation;
+            }
+        }
+
+        return $payload;
     }
 
     /**
