@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "d7b8be2421003e5e38c86fdb51cb8fd3",
+    "content-hash": "a5f37c43a6b00a7723f53898707e2de0",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -2462,6 +2462,49 @@
             "time": "2017-01-10T10:39:54+00:00"
         },
         {
+            "name": "isometriks/spam-bundle",
+            "version": "v1.0.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/isometriks/IsometriksSpamBundle.git",
+                "reference": "c0fae403e3b0c097282018c932fedff6d0b94de7"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/isometriks/IsometriksSpamBundle/zipball/c0fae403e3b0c097282018c932fedff6d0b94de7",
+                "reference": "c0fae403e3b0c097282018c932fedff6d0b94de7",
+                "shasum": ""
+            },
+            "require": {
+                "symfony/form": "~3.0|~4.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Isometriks\\Bundle\\SpamBundle\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "authors": [
+                {
+                    "name": "Craig Blanchette",
+                    "email": "craig.blanchette@gmail.com",
+                    "homepage": "http://isometriks.com"
+                },
+                {
+                    "name": "Patrik Pacin",
+                    "email": "github@exploit.cz",
+                    "homepage": "https://exploit.cz"
+                }
+            ],
+            "description": "Provides spam protection for Symfony3 forms",
+            "keywords": [
+                "spam",
+                "symfony3"
+            ],
+            "time": "2019-04-12T15:42:37+00:00"
+        },
+        {
             "name": "jdorn/sql-formatter",
             "version": "v1.2.17",
             "source": {
@@ -4602,16 +4645,16 @@
         },
         {
             "name": "symfony/finder",
-            "version": "v3.4.32",
+            "version": "v3.4.33",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/finder.git",
-                "reference": "2b6a666d6ff7fb65d10b97d817c8e7930944afb9"
+                "reference": "3e915e5ce305f8bc8017597f71f1f4095092ddf8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/finder/zipball/2b6a666d6ff7fb65d10b97d817c8e7930944afb9",
-                "reference": "2b6a666d6ff7fb65d10b97d817c8e7930944afb9",
+                "url": "https://api.github.com/repos/symfony/finder/zipball/3e915e5ce305f8bc8017597f71f1f4095092ddf8",
+                "reference": "3e915e5ce305f8bc8017597f71f1f4095092ddf8",
                 "shasum": ""
             },
             "require": {
@@ -4647,7 +4690,7 @@
             ],
             "description": "Symfony Finder Component",
             "homepage": "https://symfony.com",
-            "time": "2019-09-01T21:32:23+00:00"
+            "time": "2019-10-30T12:43:22+00:00"
         },
         {
             "name": "symfony/flex",

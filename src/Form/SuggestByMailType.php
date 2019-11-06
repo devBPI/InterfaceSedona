@@ -62,7 +62,11 @@ class SuggestByMailType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => SuggestByMail::class,
-            'csrf_protection' => false,
+            'honeypot' => true,
+            'honeypot_field' => 'email_address',
+            'honeypot_use_class' => false,
+            'honeypot_hide_class' => 'hidden',
+            'honeypot_message' => 'Form field are invalid',
         ]);
     }
 }

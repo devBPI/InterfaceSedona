@@ -14,9 +14,8 @@
 				{{ form_row(form.message) }}
 			</div>
 		</div>
-		<div>
-			<p>*Insert captcha*</p>
-		</div>
+
+		{{ form_rest(form) }}
 	</div>
 	<div class="modal-footer">
 		<button type="button" data-dismiss="modal" class="btn btn-lg btn-secondary">{{ 'global.modal-cancel'|trans }}</button>

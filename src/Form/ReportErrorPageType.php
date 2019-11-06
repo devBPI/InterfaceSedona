@@ -9,6 +9,7 @@ use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints as Asset;
 
 /**
@@ -38,5 +39,19 @@ class ReportErrorPageType extends AbstractType
                 'constraints' => [ new Asset\Email() ]
             ])
         ;
+    }
+
+    /**
+     * @param OptionsResolver $resolver
+     */
+    public function configureOptions(OptionsResolver $resolver)
+    {
+        $resolver->setDefaults([
+            'honeypot' => true,
+            'honeypot_field' => 'email_address',
+            'honeypot_use_class' => false,
+            'honeypot_hide_class' => 'hidden',
+            'honeypot_message' => 'Form field are invalid',
+        ]);
     }
 }

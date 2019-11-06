@@ -202,6 +202,9 @@
     "instaclick/php-webdriver": {
         "version": "1.4.5"
     },
+    "isometriks/spam-bundle": {
+        "version": "v1.0.3"
+    },
     "jdorn/sql-formatter": {
         "version": "v1.2.17"
     },
