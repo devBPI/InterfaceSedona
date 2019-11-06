@@ -5,11 +5,11 @@ var $slider_items = $(".js-carousel-primary .carousel__slide, .js-carousel-secon
 
 if ($(window).width() > 576 && $(window).width() < 992) {
     for(var i = 0; i < $slider_items.length; i+=2) {
-        $slider_items.slice(i, i+2).wrapAll('<div role="tabpanel" class="carousel__body"></div>');
+        $slider_items.slice(i, i+2).wrapAll('<div class="carousel__body"></div>');
     }
 } else if ($(window).width() > 992) {
     for(var i = 0; i < $slider_items.length; i+=4) {
-        $slider_items.slice(i, i+4).wrapAll('<div role="tabpanel" class="carousel__body"></div>');
+        $slider_items.slice(i, i+4).wrapAll('<div class="carousel__body"></div>');
     }
 }
 
@@ -28,7 +28,7 @@ $('.js-carousel-primary')
         customPaging: function (slider, i) {
             var slideNumber = (i + 1),
                 totalSlides = slider.slideCount;
-            return '<button class="carousel__pagination-dot" role="tab"><span class="sr-only">' + slideNumber + ' page sur ' + totalSlides + '</span></button>';
+            return '<button class="carousel__pagination-dot"><span class="sr-only">Actualités ' + slideNumber + ' page sur ' + totalSlides + '</span></button>';
         }
     })
     .on('afterChange', function(slick, currentSlide){
@@ -58,10 +58,11 @@ $('.carousel__button').on('click', function() {
 });
 
 // Correctif suivant retours RGAA
-$(".js-carousel-primary .slick-slide").removeAttr("role");
-$(".carousel__pagination").attr("aria-label", "Choix d'un groupe d'actualités à afficher");
-$('.carousel__pagination li').attr("aria-selected", "false");
-$('.carousel__pagination li.slick-active').attr("aria-selected", "true");
+$('.js-carousel-primary .slick-slide').removeAttr('role');
+$('.carousel__pagination').attr('aria-label', "Choix d'un groupe d'actualités à afficher");
+$('.carousel__pagination li').attr('aria-selected', 'false').removeAttr('role');
+$('.carousel__pagination li.slick-active').attr('aria-selected', 'true');
+$('.carousel__pagination .carousel__pagination-dot').removeAttr('aria-label');
 
 // Configuration Carousel Secondary (Notices) --------------------------------------------------------------------------
 $('.js-carousel-secondary').slick({
