@@ -43,8 +43,6 @@ class NoticeController extends AbstractController
 
     /**
      * @Route("/notice-bibliographique/{permalink}", methods={"GET","HEAD"}, name="record_bibliographic", requirements={"permalink"=".+"})
-     * @ParamConverter("notice",     class="App\Model\NoticeThemed")
-     * @ParamConverter("navigation", class="App\Service\NavigationService")
      * @param NoticeThemed $notice
      * @param NavigationService|null $navigation
      * @return Response
@@ -56,9 +54,11 @@ class NoticeController extends AbstractController
             'notice'            => $notice->getNotice(),
             'toolbar'           => Notice::class,
             'navigation'        => $navigation,
-            'printRoute'        => $this->generateUrl('record_bibliographic_pdf',['permalink'=> $notice->getNotice()->getPermalink() ,'format'=> 'pdf'])
+            'printRoute'        => $this->generateUrl(
+                'record_bibliographic_pdf',['permalink'=> $notice->getNotice()->getPermalink() ,'format'=> 'pdf'])
         ]);
     }
+
     /**
      * @Route("/print/notice-bibliographique.{format}/{permalink}", methods={"GET","HEAD"}, name="record_bibliographic_pdf", requirements={"permalink"=".+", "format"="html|pdf|txt"}, defaults={"format" = "pdf"})
      * @param Request $request

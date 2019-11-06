@@ -49,9 +49,19 @@ class BpiConverter implements ParamConverterInterface
      * @var NoticeAuthorityProvider
      */
     private $authorityProvider;
+    /**
+     * @var NoticeProvider
+     */
+    private $noticeProvider;
 
     /**
-     * NoticeController constructor.
+     * BpiConverter constructor.
+     * @param NoticeProvider $noticeProvider
+     * @param NoticeAuthorityProvider $authorityProvider
+     * @param SerializerInterface $serializer
+     * @param SessionInterface $session
+     * @param \Twig_Environment $templating
+     * @param NavigationService $navigationService
      */
     public function __construct(
         NoticeProvider $noticeProvider,
@@ -79,7 +89,7 @@ class BpiConverter implements ParamConverterInterface
     public function apply(Request $request, ParamConverter $configuration)
     {
         try{
-            $object     = $this->buildObject( $request,  $configuration);
+            $object  = $this->buildObject( $request,  $configuration);
         }
         catch(NoResultException $e){
             return $this->templating->render('common/error.html.twig');
@@ -89,7 +99,7 @@ class BpiConverter implements ParamConverterInterface
     }
 
     /**
-     * @return bool|void
+     * @return bool
      */
     public function supports(ParamConverter $configuration)
     {
@@ -113,22 +123,27 @@ class BpiConverter implements ParamConverterInterface
     {
         $permalink = $request->get('permalink');
 
-       if ($configuration->getClass() === NoticeThemed::class){
-           return $this->noticeProvider->getNotice($permalink);
+        $object = $request->get($configuration->getName());
+       if ($configuration->getClass() === NoticeThemed::class && (!$object instanceof NoticeThemed || $object->getNotice()->getPermalink() !==$permalink)){
+           $object = $this->noticeProvider->getNotice($permalink);
        }
 
-       if ($configuration->getClass() === Authority::class){
-           return $this->authorityProvider->getAuthority($permalink);
+       if ($configuration->getClass() === Authority::class && (!$object instanceof Authority || $object->getPermalink() !==$permalink)){
+           $object = $this->authorityProvider->getAuthority($permalink);
        }
-       if ($configuration->getClass() === IndiceCdu::class){
-           return $this->authorityProvider->getIndiceCdu($permalink);
+       if ($configuration->getClass() === IndiceCdu::class && (!$object instanceof IndiceCdu || $object->getPermalink() !==$permalink)){
+           $object = $this->authorityProvider->getIndiceCdu($permalink);
        }
 
-       if ($configuration->getClass() === NavigationService::class){
-           $object = $request->attributes->get('notice');
-
-           return $this->buildNavigationService($object, $request);
+       if (
+           $configuration->getClass() === NavigationService::class
+           && (!$object instanceof  NavigationService  || $object->getHash() !==  $request->get('searchToken'))
+       )
+           {
+           $object = $this->buildNavigationService($request->attributes->get('notice'), $request);
        }
+
+       return $object;
     }
 
     /**

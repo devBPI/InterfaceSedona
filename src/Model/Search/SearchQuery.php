@@ -146,10 +146,21 @@ class SearchQuery implements SearchResultInterface
 
     /**
      * @param FacetFilter $facets
+     * @return SearchQuery
      */
-    public function setFacets(FacetFilter $facets)
+    public function setFacets(FacetFilter $facets):SearchQuery
     {
         $this->facets = $facets;
+
+        return $this;
+    }
+
+    /**
+     * @param Criteria $facets
+     */
+    public function setCriteria(Criteria $criteria)
+    {
+        $this->criteria = $criteria;
     }
 
     /**

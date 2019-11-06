@@ -51,6 +51,7 @@ final class NavigationService
      */
     private $search;
 
+
     /**
      * NavigationService constructor.
      * @param SearchProvider $searchProvider
@@ -185,7 +186,7 @@ final class NavigationService
     /**
      * @return NavigationNotice
      */
-    public function getActualPermalink(): NavigationNotice
+    public function getActualPermalink(): ?NavigationNotice
     {
         return $this->actualPermalink;
     }
@@ -204,5 +205,15 @@ final class NavigationService
     public function getSearch(): SearchQuery
     {
         return $this->search;
+    }
+
+    /**
+     * @return null|string
+     */
+    public function  getPermalink(){
+        if ($this->getActualPermalink() instanceof NavigationNotice){
+            return $this->getActualPermalink()->getPermalink();
+        }
+        return null;
     }
 }

@@ -48,8 +48,6 @@ class IndiceCduController extends AbstractController
 
     /**
      * @Route("/indice-cdu/{permalink}", methods={"GET","HEAD"}, name="record_indice_cdu", requirements={"permalink"=".+"})
-     * @ParamConverter("notice",     class="App\Model\IndiceCdu")
-     * @ParamConverter("navigation", class="App\Service\NavigationService")
      * @param IndiceCdu $notice
      * @param NavigationService $navigation
      * @return Response

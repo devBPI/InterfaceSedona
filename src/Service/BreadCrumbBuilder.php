@@ -138,12 +138,14 @@ final class BreadCrumbBuilder
     {
         $route = $request->get('_route');
         $navigation = $request->get('navigation');
+        $parcoursTerms =[];
         if ($navigation instanceof NavigationService){
             if (($parcours = $navigation->getSearch()->getCriteria()->getParcours()) && $parcours!=='general'){
+                $parcoursTerms = ['parcours'=>$parcours];
                 $this->bctService->add(
                     'home_thematic',
                     sprintf('breadcrumb.parcours.%s', $parcours),
-                    ['parcours'=>$parcours]
+                    $parcoursTerms
                 );
             }
 
@@ -151,23 +153,24 @@ final class BreadCrumbBuilder
                 $this->bctService->add(
                     'refined_search',
                     'breadcrumb.search-terms',
-                    ['searchToken'  => $navigation->getHash()],
+                    array_merge(['searchToken'  => $navigation->getHash()], $parcoursTerms),
                     ['%terms%'      => $humanCriteria]
                 );
             }else {
                 $this->bctService->add(
                     'refined_search',
                     'breadcrumb.search',
-                    ['searchToken'  => $navigation->getHash()]
+                    array_merge(['searchToken'  => $navigation->getHash()], $parcoursTerms)
                 );
             }
 
         }else if (strpos($route, 'search')!==false){
             if (($parcours = $request->get('parcours')) && $parcours !== 'general'){
+                $parcoursTerms = ['parcours'=>$parcours];
                 $this->bctService->add(
                     'home_thematic',
                     sprintf('breadcrumb.parcours.%s', $parcours),
-                    ['parcours'=>$parcours]
+                   $parcoursTerms
                 );
             }
 
@@ -181,12 +184,13 @@ final class BreadCrumbBuilder
                     ->add(
                         'refined_search',
                         'breadcrumb.search-terms',
-                        ['searchToken'=>$searchToken], ['%terms%'=> $humanCriteria]);
+                        array_merge(['searchToken'=>$searchToken], $parcoursTerms),
+                        ['%terms%'=> $humanCriteria]);
             }else {
                 $this->bctService->add(
                     'refined_search',
                     'breadcrumb.search',
-                    ['searchToken'  => $searchToken]
+                    array_merge(['searchToken'=>$searchToken], $parcoursTerms)
                 );
             }
         }

@@ -49,8 +49,6 @@ class AuthorityController extends AbstractController
 
     /**
      * @Route("/notice-autorite/{permalink}", methods={"GET","HEAD"}, name="record_authority", requirements={"permalink"=".+"})
-     * @ParamConverter("notice",     class="App\Model\Authority")
-     * @ParamConverter("navigation", class="App\Service\NavigationService")
      * @return Response
      */
     public function authorityRecordAction(Authority $notice, NavigationService $navigation = null)

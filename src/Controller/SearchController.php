@@ -112,6 +112,7 @@ class SearchController extends AbstractController
 
         $criteria->setAdvancedSearch($request->query->all());
         $criteria->setParcours($parcours);
+
         return $this->displaySearch(
             new SearchQuery($criteria, new FacetFilter($request->query->all()), SearchQuery::ADVANCED_MODE),
             $request
@@ -133,8 +134,11 @@ class SearchController extends AbstractController
     public function refinedSearchAction(Request $request, string $parcours=self::GENERAL): Response
     {
         $search = $this->searchService->getSearchQueryFromToken($request->get('searchToken'), $request);
+        $criteria = $search->getCriteria()->setParcours($parcours);
 
-        $search->setFacets(new FacetFilter($request->query->all()));
+        $search->
+        setFacets(new FacetFilter($request->query->all()))
+        ->setCriteria($criteria);
 
         return $this->displaySearch(
             $search,
