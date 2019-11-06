@@ -4,18 +4,23 @@
 	<abbr title="{{ 'header.navbar-langue.change-to.fr'|trans }}">FR</abbr>
 	</button>
 	<ul class="dropdown-menu menu-langue__list" aria-labelledby="dropdown-langues" role="listbox" tabindex="-1">
+
 		<li class="dropdown-item menu-langue__list-item" role="option">
-			<a href="#" aria-label="{{ 'header.navbar-langue.change-to.en'|trans }}" lang="en">
+			<a href="{{ path(app.request.attributes.get('_route'),app.request.attributes.get('_route_params')|merge(app.request.query.all|merge({_locale: 'en'})))}}" aria-label="{{ 'header.navbar-langue.change-to.en'|trans }}" lang="en">
 				<abbr title="{{ 'header.navbar-langue.change-to.en'|trans }}">EN</abbr>
 			</a>
 		</li>
+
 		<li class="dropdown-item menu-langue__list-item" role="option">
-			<a href="#" aria-label="{{ 'header.navbar-langue.change-to.es'|trans }}" lang="es">
+			<a href="{{ path(app.request.attributes.get('_route'),app.request.attributes.get('_route_params')|merge(app.request.query.all|merge({_locale: 'es'})))}}" aria-label="{{ 'header.navbar-langue.change-to.es'|trans }}" lang="es">
 				<abbr title="{{ 'header.navbar-langue.change-to.es'|trans }}">ES</abbr>
 			</a>
 		</li>
+
 		<li class="dropdown-item menu-langue__list-item" role="option" aria-selected="true">
-			<abbr title="{{ 'header.navbar-langue.change-to.fr'|trans }}">FR</abbr>
+			<a href="{{ path(app.request.attributes.get('_route'),app.request.attributes.get('_route_params')|merge(app.request.query.all|merge({_locale: 'fr'})))}}" aria-label="{{ 'header.navbar-langue.change-to.es'|trans }}" lang="es">
+				<abbr title="{{ 'header.navbar-langue.change-to.fr'|trans }}">FR</abbr>
+			</a>
 		</li>
 	</ul>
 </div>
