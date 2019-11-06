@@ -145,6 +145,25 @@ class Criteria
      */
     private $notLabel;
 
+
+    /**
+     * @var string
+     * @JMS\Type("string")
+     */
+    private $recompenses;
+    /**
+     * @var string
+     * @JMS\Type("string")
+     */
+    private $droits;
+    /**
+     * @var string
+     * @JMS\Type("string")
+     * @JMS\SerializedName("source-id")
+     */
+    private $sourceId;
+
+
     /**
      * @param $type
      * @param $keyword
