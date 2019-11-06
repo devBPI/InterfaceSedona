@@ -1,5 +1,7 @@
 {% extends 'user/base.html.twig' %}
-
+{% block toolbar %}
+    {% include "common/toolbar-selection.html.twig" %}
+{% endblock %}
 {% block title %}{{ 'page.personal-data.title-connected'|trans }}{% endblock %}
 
 {% block body %}
