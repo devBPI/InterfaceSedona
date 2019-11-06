@@ -2,9 +2,8 @@
       action="{{ path('user_selection_list_document_comment_edit', {'document': document.id}) }}" method="post">
     <div class="modal-header">
         <h1 class="n1 modal-header__title" id="modal-comments-edit-title">{{ 'modal.comments-edit.title'|trans }}</h1>
-        <button class="close" type="button" aria-label="{{ 'global.modal-close'|trans }}" data-dismiss="modal">
-            <span aria-hidden="true" class="sr-only">X</span>
-            <img src="{{ asset('images/icones/icone-croix-blanc.svg') }}" alt=""/>
+        <button class="close" type="button" data-dismiss="modal">
+            <img src="{{ asset('images/icones/icone-croix-blanc.svg') }}" alt="{{ 'global.modal-close'|trans }}" />
         </button>
     </div>
 

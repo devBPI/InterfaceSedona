@@ -13,8 +13,8 @@
 
 	{% if  isPrintLong   %}
         {{ pdf_occurence (notice, 'getAuthors', 'bloc.autority-result-information.authors'| trans, format) | raw }}
-        {{ pdf_occurence (notice,'getAuthors', 'bloc.autority-result-information.autor'| trans, format) | raw }}
-        {{ pdf_occurence (notice,'getDirectors', 'bloc.autority-result-information.directors'| trans, format) | raw }}
+        {{ pdf_occurence (notice, 'getAuthors', 'bloc.autority-result-information.autor'| trans, format) | raw }}
+        {{ pdf_occurence (notice, 'getDirectors', 'bloc.autority-result-information.directors'| trans, format) | raw }}
     {% else %}
 		{{ pdf_occurence (notice, 'getAuthors', 'bloc.autority-result-information.by'| trans, format) | raw }}
 		{{ pdf_occurence (notice, 'getDirectors', 'bloc.autority-result-information.by'| trans, format) | raw }}

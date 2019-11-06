@@ -1,5 +1,5 @@
 <!-- Début - Modal 14 affiné la recheche -->
-<div role="dialog" aria-modal="true" aria-labelledby="modal-refine-search-title" class="modal fade modal--filter" id="modal-refine-search">
+<div role="dialog" aria-modal="true" aria-labelledby="modal-refine-search-title" class="modal fade modal--filter" id="modal-refine-search" tabindex="-1">
 	<div class="modal-dialog modal-dialog-centered">
 		<div class="modal-content">
 			<form class="modal-form" method="get" action="{{ path('refined_search') }}">
@@ -7,9 +7,8 @@
 
 				<div class="modal-header">
 					<h1 class="n1 modal-header__title" id="modal-refine-search-title">{{ 'modal.refine-search.title'|trans }}</h1>
-					<button class="close" type="button" aria-label="{{ 'global.modal-close'|trans }}" data-dismiss="modal">
-						<span aria-hidden="true" class="sr-only">X</span>
-						<img src="{{ asset('images/icones/icone-croix-blanc.svg') }}" alt="" />
+					<button class="close" type="button" data-dismiss="modal">
+						<img src="{{ asset('images/icones/icone-croix-blanc.svg') }}" alt="{{ 'global.modal-close'|trans }}" />
 					</button>
 				</div>
 

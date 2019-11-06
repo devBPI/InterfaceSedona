@@ -19,10 +19,18 @@
 		color: $grey-disabled;
 		margin-right: 10px;
 
-		&:hover {
+		&:hover,
+		&:focus {
 			color: $red;
 			text-decoration: underline;
 		}
+
+		// &:hover {
+
+		// 	+ .nav-sitemap__content {
+		// 		display: block;
+		// 	}
+		// }
 	}
 
 	&__content {
