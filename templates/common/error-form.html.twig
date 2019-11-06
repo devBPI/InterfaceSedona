@@ -1,0 +1,28 @@
+<div class="row justify-content-center">
+	<div class="col-12 col-sm-10 col-lg-8">
+		<form class="account-form" method="post" novalidate="novalidate" action="{{ path('common-report-error-page') }}" data-toggle="form-remote">
+            {% if form.vars.errors|length > 0 %}
+                {{ form_errors(form) }}
+            {% endif %}
+
+            {{ form_row(form.object) }}
+            {{ form_row(form.message) }}
+            {{ form_row(form.email) }}
+            {{ form_rest(form) }}
+
+			<div class="row justify-content-end">
+				<div class="col-12 col-md-8">
+					<div class="account-form__footer">
+						<div class="account-form__footer-content">
+							<button type="reset" class="btn btn-lg btn-secondary">
+								{{ 'global.modal-cancel'|trans }}</button>
+							<button type="submit" class="btn btn-lg btn-primary">
+								{{ 'modal.report.submit'|trans }}
+								<span class="sr-only"> {{ 'modal.report.submit-sr-only'|trans }}</span></button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</form>
+	</div>
+</div>

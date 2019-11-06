@@ -10,11 +10,12 @@ declare(strict_types=1);
 namespace App\Utils;
 
 use App\Model\Interfaces\NoticeInterface;
+use App\Model\Traits\BreadcrumbTrait;
 use App\Model\Traits\NoticeTrait;
 
 class NavigationNotice implements NoticeInterface
 {
-    use NoticeTrait;
+    use NoticeTrait, BreadcrumbTrait;
 
     /**
      * NavigationNotice constructor.

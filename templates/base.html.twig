@@ -147,7 +147,27 @@
 				</div>
 
 				<div class="footer__credit">
-					<p>© Copyright {{ "now"|date("Y") }}</p>
+					<p>
+						© Copyright {{ "now"|date("Y") }}
+						{% if app.environment == 'dev' or IP_SEDONA in app.request.clientIps %}
+							{%- set package_info = get_package_info() -%}
+							{% if package_info.tag is defined and package_info.tag %}
+								{% if package_info.project_url is defined and package_info.project_url %}
+									| <a href="{{ package_info.project_url }}/tags/{{ package_info.tag }}" target="_blank">Version {{ package_info.tag }}</a>
+								{% else %}
+									| Version {{ package_info.tag }}
+								{% endif %}
+							{% elseif package_info.sha is defined and package_info.sha  %}
+								{% if package_info.project_url is defined and package_info.project_url %}
+									| <a href="{{ package_info.project_url }}/commit/{{ package_info.sha }}" target="_blank">Commit {{ package_info.sha }}</a>
+								{% else %}
+									| Commit {{ package_info.sha }}
+								{% endif %}
+
+							{% endif %}
+							{% if package_info.date_version is defined and package_info.date_version %} | Crée le {{ package_info.date_version }}{% endif %}
+						{% endif %}
+					</p>
 				</div>
 			</div>
 

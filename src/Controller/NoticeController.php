@@ -6,11 +6,14 @@ namespace App\Controller;
 use App\Model\Exception\NoResultException;
 use App\Model\Form\ExportNotice;
 use App\Model\Notice;
+use App\Model\NoticeThemed;
 use App\Service\NavigationService;
 use App\Service\NoticeBuildFileService;
 use App\Service\Provider\NoticeProvider;
 use JMS\Serializer\SerializerInterface;
 use Knp\Bundle\SnappyBundle\Snappy\Response\PdfResponse;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
@@ -20,12 +23,8 @@ use Symfony\Component\Routing\Annotation\Route;
  * Class NoticeController
  * @package App\Controller
  */
-class NoticeController extends CardController
+class NoticeController extends AbstractController
 {
-    /**
-     * @var NoticeProvider
-     */
-    private $noticeProvider;
 
     /**
      * @var NoticeBuildFileService
@@ -34,51 +33,30 @@ class NoticeController extends CardController
 
     /**
      * NoticeController constructor.
-     * @param NoticeProvider $noticeProvider
-     * @param SerializerInterface $serializer
-     * @param NoticeBuildFileService $service
-     * @param NavigationService $navigationService
+     * @param NoticeBuildFileService $buildFileContent
      */
     public function __construct(
-        NoticeProvider $noticeProvider,
-        SerializerInterface $serializer,
-        NoticeBuildFileService $service,
-        NavigationService $navigationService
+        NoticeBuildFileService $buildFileContent
     ) {
-        $this->noticeProvider = $noticeProvider;
-        $this->buildFileContent = $service;
-        parent::__construct($navigationService, $serializer);
+        $this->buildFileContent = $buildFileContent;
     }
 
     /**
      * @Route("/notice-bibliographique/{permalink}", methods={"GET","HEAD"}, name="record_bibliographic", requirements={"permalink"=".+"})
-     * @param Request $request
-     * @param string $permalink
-     * @param SessionInterface $session
+     * @ParamConverter("notice",     class="App\Model\NoticeThemed")
+     * @ParamConverter("navigation", class="App\Service\NavigationService")
+     * @param NoticeThemed $notice
+     * @param NavigationService|null $navigation
      * @return Response
-     * @throws \Twig\Error\LoaderError
-     * @throws \Twig\Error\RuntimeError
-     * @throws \Twig\Error\SyntaxError
      */
-    public function bibliographicRecordAction(Request $request, string $permalink, SessionInterface $session)
+    public function bibliographicRecordAction(NoticeThemed $notice,NavigationService $navigation=null)
     {
-        try {
-            $searchToken = $request->get('searchToken');
-            $object = $this->noticeProvider->getNotice($permalink);
-            $navigation = null;
-            if ($session->has($searchToken)) {
-                $navigation = $this->buildNavigationService($permalink, $searchToken,  $session->get($searchToken, ''), $object->getNotice()->isOnLine() ? Notice::ON_LIGNE : Notice::ON_SHELF);
-            }
-        }catch(NoResultException $e){
-            return $this->render('common/error.html.twig');
-        }
-
         return $this->render('notice/bibliographic.html.twig', [
-            'object'            => $object,
-            'notice'            => $object->getNotice(),
+            'object'            => $notice,
+            'notice'            => $notice->getNotice(),
             'toolbar'           => Notice::class,
             'navigation'        => $navigation,
-            'printRoute'        => $this->generateUrl('record_bibliographic_pdf',['permalink'=> $object->getNotice()->getPermalink() ,'format'=> 'pdf'])
+            'printRoute'        => $this->generateUrl('record_bibliographic_pdf',['permalink'=> $notice->getNotice()->getPermalink() ,'format'=> 'pdf'])
         ]);
     }
     /**

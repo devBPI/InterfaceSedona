@@ -24,7 +24,7 @@ class CommonController extends AbstractController
 {
 
     /**
-     * @Route("signaler-une-erreur-sur-le-catalogue", name="common-repport-error")
+     * @Route("signaler-une-erreur-sur-le-catalogue", name="common-report-error")
      * @param Request $request
      * @param MailSenderService $mailSenderService
      * @return \Symfony\Component\HttpFoundation\Response
@@ -32,7 +32,7 @@ class CommonController extends AbstractController
      * @throws \Twig\Error\LoaderError
      * @throws \Twig\Error\SyntaxError
      */
-    public function reportErrorAction(Request $request, MailSenderService $mailSenderService)
+    public function reportErrorAction(Request $request, MailSenderService $mailSenderService): Response
     {
         $form = $this->createForm(ReportErrorType::class, new ReportError());
         $form->handleRequest($request);
@@ -61,7 +61,7 @@ class CommonController extends AbstractController
     }
 
     /**
-     * @Route("/page-error-reporting", name="common-repport-error-page")
+     * @Route("/page-error-reporting", name="common-report-error-page")
      * @param Request $request
      * @param MailSenderService $mailSenderService
      * @return \Symfony\Component\HttpFoundation\Response
@@ -69,31 +69,29 @@ class CommonController extends AbstractController
      * @throws \Twig\Error\LoaderError
      * @throws \Twig\Error\SyntaxError
      */
-    public function reportErrorPageAction(Request $request, MailSenderService $mailSenderService)
+    public function reportErrorPageAction(Request $request, MailSenderService $mailSenderService): Response
     {
         $form = $this->createForm(ReportErrorPageType::class, new ReportError());
         $form->handleRequest($request);
-                if ($form->isSubmitted() && $form->isValid()) {
-            $repportError = $form->getData();
 
-            $fromEmail = empty($repportError->getEmail()) ? 'cataloge@sedona.fr' : $repportError->getEmail();
+        if ($form->isSubmitted() && $form->isValid()) {
+            $reportError = $form->getData();
+
+            $fromEmail = empty($reportError->getEmail()) ? 'cataloge@sedona.fr' : $reportError->getEmail();
             if ($mailSenderService->sendMail(
-                'common/modal/content.email.twig', ['data' => $repportError], $fromEmail, 'catalogue.public@bpi.fr'
+                'common/modal/content.email.twig', ['data' => $reportError], $fromEmail, 'catalogue.public@bpi.fr'
             )) {
-                return $this->render('common/modal/report-page-error-success.html.twig');
-            } else {
-                $form->addError(
-                    new FormError("Une erreur est survenue lors de l'envoie de l'e-mail \n veuillez reessayer plus tard SVP.")
-                );
+                return $this->render('common/error-success.html.twig');
             }
+
+            $form->addError(
+                new FormError("Une erreur est survenue lors de l'envoie de l'e-mail \n veuillez reessayer plus tard SVP.")
+            );
         }
 
-        return $this->render(
-            'common/modal/report-page-error-content.html.twig',
-            [
-                'form' => $form->createView(),
-            ]
-        );
+        return $this->render('common/error-form.html.twig', [
+            'form' => $form->createView(),
+        ]);
     }
 
     /**

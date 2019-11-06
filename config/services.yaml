@@ -15,6 +15,9 @@ services:
       # fetching services directly from the container via $container->get() won't work.
       # The best practice is to be explicit about your dependencies anyway.
 
+    bind:
+      $root_dir: '%kernel.root_dir%'
+
   # makes classes in src/ available to be used as services
   # this creates a service per class whose id is the fully-qualified class name
   App\:
@@ -74,3 +77,9 @@ services:
     class: Twig_Extensions_Extension_Text
     tags:
     - { name: twig.extension }
+
+  app.param_converter.bpi_converter:
+    class: App\Request\ParamConverter\BpiConverter
+    tags:
+    - { name: request.param_converter, priority: -2, converter: bpi_converter }
+

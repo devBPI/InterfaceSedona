@@ -3,6 +3,8 @@
 namespace App\Model;
 
 use App\Model\Interfaces\NoticeInterface;
+use App\Model\Interfaces\RecordInterface;
+use App\Model\Traits\BreadcrumbTrait;
 use App\Model\Traits\NoticeMappedTrait;
 use App\Model\Traits\NoticeTrait;
 use App\Model\Traits\OriginTrait;
@@ -14,11 +16,13 @@ use JMS\Serializer\Annotation as JMS;
  * Class NoticeDetail
  * @package App\Model
  */
-class Notice extends AbstractImage implements NoticeInterface
+class Notice extends AbstractImage implements NoticeInterface, RecordInterface
 {
-    use OriginTrait, TraitSlugify, NoticeMappedTrait, NoticeTrait, ImageIsbnTrait;
+    use OriginTrait, TraitSlugify, NoticeMappedTrait, NoticeTrait, ImageIsbnTrait, BreadcrumbTrait;
 
     private const SEPARATOR = ' ; ';
+    const BREAD_CRUMB_NAME = 'bibliographic';
+
     const ON_LIGNE   = 'en ligne';
     const ON_SHELF   = 'en rayon';
     const ALL        = 'all';
@@ -40,6 +44,13 @@ class Notice extends AbstractImage implements NoticeInterface
      * @JMS\XmlList("conservation")
      */
     private $conservations;
+    /**
+     * @var array
+     * @JMS\Type("array<string>")
+     * @JMS\SerializedName("conservations")
+     * @JMS\XmlList("conservation")
+     */
+    private $conservationsLiens;
     /**
      * @var array
      * @JMS\Type("array<string>")
@@ -74,6 +85,18 @@ class Notice extends AbstractImage implements NoticeInterface
      * @JMS\SerializedName("configurationName")
      */
     private $configurationName;
+    /**
+     * @var string
+     * @JMS\Type("string")
+     * @JMS\SerializedName("urlPubliqueConfiguration")
+     */
+    private $urlPubliqueConfiguration;
+    /**
+     * @var string
+     * @JMS\Type("string")
+     * @JMS\SerializedName("configurationPublicUrl")
+     */
+    private $configurationPublicUrl;
 
     /**
      * @var string
@@ -131,7 +154,6 @@ class Notice extends AbstractImage implements NoticeInterface
      * @JMS\XmlList("autreEdition")
      */
     private $otherEdition;
-    /**
     /**
      * @var array
      * @JMS\Type("array<string>")
@@ -896,7 +918,19 @@ class Notice extends AbstractImage implements NoticeInterface
      */
     public function getConservation(): array
     {
-        return $this->conservation;
+
+        if ($this->conservation){
+            return $this->conservation;
+        }
+
+        $payload = [];
+        foreach ($this->getLinks() as $value){
+            if (($conservation = $value->getConservation()) !== null){
+                $payload[] = $conservation;
+            }
+        }
+
+        return $payload;
     }
 
     /**
@@ -934,6 +968,17 @@ class Notice extends AbstractImage implements NoticeInterface
         }
 
         return $this->configurationName;
+    }
+    /**
+     * @return null|string
+     */
+    public function getConfigurationUrl(): ?string
+    {
+        if ($this->urlPubliqueConfiguration) {
+            return $this->urlPubliqueConfiguration;
+        }
+
+        return $this->configurationPublicUrl;
     }
 
     /**
@@ -1203,5 +1248,6 @@ class Notice extends AbstractImage implements NoticeInterface
     {
         return $this->formats;
     }
+
 }
 

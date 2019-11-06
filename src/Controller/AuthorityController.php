@@ -12,6 +12,8 @@ use App\Service\NoticeBuildFileService;
 use App\Service\Provider\NoticeAuthorityProvider;
 use JMS\Serializer\Serializer;
 use JMS\Serializer\SerializerInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
@@ -21,73 +23,47 @@ use Symfony\Component\Routing\Annotation\Route;
  * Class AuthorityController
  * @package App\Controller
  */
-class AuthorityController extends CardController
+class AuthorityController extends AbstractController
 {
     /**
      * @var NoticeAuthorityProvider
      */
     private $noticeAuhtority;
     /**
-     * @var Serializer
-     */
-    protected $serializer;
-    /**
      * @var NoticeBuildFileService
      */
     private $buildFileContent;
 
     /**
-     * RecordController constructor.
+     * AuthorityController constructor.
      * @param NoticeAuthorityProvider $noticeAuhtority
-     * @param SerializerInterface $serializer
-     * @param NoticeBuildFileService $service
-     * @param NavigationService $navigationService
+     * @param NoticeBuildFileService $buildFileContent
      */
     public function __construct(
         NoticeAuthorityProvider $noticeAuhtority,
-        SerializerInterface $serializer,
-        NoticeBuildFileService $service,
-        NavigationService $navigationService
-
+        NoticeBuildFileService $buildFileContent
     ) {
         $this->noticeAuhtority = $noticeAuhtority;
-        $this->serializer = $serializer;
-        $this->buildFileContent = $service;
-        parent::__construct($navigationService, $serializer);
+        $this->buildFileContent = $buildFileContent;
     }
-
 
     /**
      * @Route("/notice-autorite/{permalink}", methods={"GET","HEAD"}, name="record_authority", requirements={"permalink"=".+"})
-     * @param Request $request
-     * @param string $permalink
-     * @param SessionInterface $session
+     * @ParamConverter("notice",     class="App\Model\Authority")
+     * @ParamConverter("navigation", class="App\Service\NavigationService")
      * @return Response
-     * @throws \Twig\Error\LoaderError
-     * @throws \Twig\Error\RuntimeError
-     * @throws \Twig\Error\SyntaxError
      */
-    public function authorityRecordAction(Request $request, string $permalink, SessionInterface $session)
+    public function authorityRecordAction(Authority $notice, NavigationService $navigation = null)
     {
-        try{
-            $object = $this->noticeAuhtority->getAuthority($permalink);
-            $subject = $this->noticeAuhtority->getSubjectNotice($object->getId());
-            $authors = $this->noticeAuhtority->getAuthorsNotice($object->getId());
-            $searchToken = $request->get('searchToken');
-            $navigation = null;
-            if ($session->has($searchToken)) {
-                $navigation = $this->buildNavigationService($permalink, $searchToken,  $session->get($searchToken, ''), RankedAuthority::class);
-            }
-        }catch(NoResultException $e){
-            return $this->render('common/error.html.twig');
-        }
+        $subject = $this->noticeAuhtority->getSubjectNotice($notice->getId());
+        $authors = $this->noticeAuhtority->getAuthorsNotice($notice->getId());
 
         return $this->render('authority/authority.html.twig', [
                 'toolbar'         => Authority::class,
-                'printRoute'      => $this->generateUrl('record_authority_pdf', ['permalink'=>$permalink, 'format'=>'pdf']),
+                'printRoute'      => $this->generateUrl('record_authority_pdf', ['permalink'=>$notice->getPermalink(), 'format'=>'pdf']),
                 'subjects'        => $subject,
                 'authors'         => $authors,
-                'notice'          => $object,
+                'notice'          => $notice,
                 'navigation'     => $navigation,
             ]
         );

@@ -14,20 +14,6 @@
 {{ notice_macros.detail(notice.notes, 'bloc.autority-result-information.nots'|trans, false) }}
 
 
-{#% if notice.resume is not empty %}
-    <li class="list-information__item">
-        <span class="list-information__label">{{ ("Résumé ")|trans }}</span>
-        <ul class="list-information__sub-list" lang="fr">
-            {% for element in notice.resume %}
-                <li class="list-information__sub-item">
-                        {{ element }}
-                </li>
-            {% endfor %}
-        </ul>
-    </li>
-{% endif %#}
-
-
 {% if notice.languages is not empty %}
     <li class="list-information__item">
         <span class="list-information__label">{{ 'modal.advanced-search.langage.title'|trans }}</span>
@@ -115,7 +101,18 @@
 
 {{ notice_macros.detail(notice.placesEvents , 'bloc.autority-result-information.manifestation-location'|trans, false) }}
 {{ notice_macros.detail(notice.origins , 'bloc.autority-result-information.origins'|trans, false) }}
-{{ notice_macros.detail(notice.configurationName , 'bloc.autority-result-information.result-de'|trans, false) }}
+{% if notice.configurationName is not empty %}
+    <li class="list-information__item">
+        <span class="list-information__label">{{ 'bloc.autority-result-information.result-de'|trans }}</span>
+        <ul class="list-information__sub-list" lang="fr">
+            <li class="list-information__sub-item">
+                <a href="{{ notice.configurationUrl }}">
+                    {{ notice.configurationName }}
+                </a>
+            </li>
+        </ul>
+    </li>
+{% endif %}
 
 {#result de quatrieme#}
 {% if notice.fourth %}
@@ -124,19 +121,19 @@
         <ul class="list-information__sub-list" lang="fr">
             {% if notice.fourth.presentation  %}
                 <li class="list-information__sub-item">
-                    <span>{{ 'quatrieme.label.presentation' |trans }}</span>
+                    <span>{{ 'page.quatrieme.label.presentation' |trans }}</span>
                     {{ notice.fourth.presentation }}
                 </li>
             {% endif %}
             {% if  notice.fourth.biography %}
                 <li class="list-information__sub-item">
-                    <span>{{ 'quatrieme.label.biography' |trans }}</span>
+                    <span>{{ 'page.quatrieme.label.biography' |trans }}</span>
                     {{ notice.fourth.biography }}
                 </li>
             {% endif %}
             {% if   notice.fourth.editorInfo%}
                 <li class="list-information__sub-item">
-                    <span>{{ 'quatrieme.label.editor_information' |trans }}</span>
+                    <span>{{ 'page.quatrieme.label.editor_information' |trans }}</span>
                     {{ notice.fourth.editorInfo }}
                 </li>
             {% endif %}

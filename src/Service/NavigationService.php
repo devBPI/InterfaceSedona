@@ -16,7 +16,7 @@ use App\Utils\NavigationNotice;
  * Class NavigationService
  * @package App\Service
  */
-class NavigationService
+final class NavigationService
 {
     /**
      * @var string
@@ -196,5 +196,13 @@ class NavigationService
     public function getNextPermalink(): ?NavigationNotice
     {
         return $this->nextPermalink;
+    }
+
+    /**
+     * @return SearchQuery|null
+     */
+    public function getSearch(): SearchQuery
+    {
+        return $this->search;
     }
 }
