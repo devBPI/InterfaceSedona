@@ -81,6 +81,6 @@ class NoticeController extends AbstractController
             return $this->render('common/error.html.twig');
         }
 
-        return  $this->buildFileContent->buildFile($sendWithAttachement, Notice::class, $format);
+        return  $this->buildFileContent->buildFile($sendWithAttachement, Notice::class);
     }
 }

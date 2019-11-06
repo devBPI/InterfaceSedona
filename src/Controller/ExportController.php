@@ -60,7 +60,7 @@ class ExportController extends AbstractController
             $object = $form->getData();
             $object->setObject('partage par mail de la recherche des notices ');
             $filename = 'search-'.date('Y-m-d_h-i-s').'.'.$object->getFormatType();
-            $content = $this->buildFileContent->buildContent($object, $type, $object->getFormatType());
+            $content = $this->buildFileContent->buildContent($object, $type);
             $attachment = new \Swift_Attachment($content, $filename, sprintf('application/%s', $object->getFormatType()));
 
             if ($this->mailSenderService->sendMail(
@@ -112,7 +112,7 @@ class ExportController extends AbstractController
             $object
                 ->setNotices($permalink)
                 ->setAuthorities($permalink);
-            $content = $this->buildFileContent->buildContent($object, $type, $object->getFormatType());
+            $content = $this->buildFileContent->buildContent($object, $type);
             $attachment = new \Swift_Attachment($content, $filename, sprintf('application/%s', $object->getFormatType()));
             $object->setObject(sprintf('partage par mail de la notice %s', $permalink));
 

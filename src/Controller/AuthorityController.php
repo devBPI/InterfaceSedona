@@ -92,7 +92,7 @@ class AuthorityController extends AbstractController
             return $this->render('common/error.html.twig');
         }
 
-        return  $this->buildFileContent->buildFile($sendAttachement, Authority::class, $format);
+        return  $this->buildFileContent->buildFile($sendAttachement, Authority::class);
     }
 
 }

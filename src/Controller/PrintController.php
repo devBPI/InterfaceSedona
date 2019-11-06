@@ -58,7 +58,7 @@ class PrintController extends AbstractController
             ->setShortFormat($request->get('print-type', 'print-long') !== 'print-long')
         ;
 
-        return  $this->buildFileContent->buildFile($sendAttachement, UserSelectionDocument::class, $format);
+        return  $this->buildFileContent->buildFile($sendAttachement, UserSelectionDocument::class);
     }
 
 
