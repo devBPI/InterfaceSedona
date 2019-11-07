@@ -20,7 +20,7 @@ use Symfony\Component\Routing\Annotation\Route;
  * Class UserSelectionController
  * @package App\Controller
  */
-class UserSelectionController extends AbstractController
+final class UserSelectionController extends AbstractController
 {
     const INPUT_NAME = 'selection';
     const INPUT_LIST = 'list';

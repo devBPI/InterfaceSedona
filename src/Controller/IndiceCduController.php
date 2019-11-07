@@ -21,7 +21,7 @@ use Symfony\Component\Routing\Annotation\Route;
  * Class IndiceCduController
  * @package App\Controller
  */
-class IndiceCduController extends AbstractController
+final class IndiceCduController extends AbstractController
 {
     /**
      * @var NoticeAuthorityProvider

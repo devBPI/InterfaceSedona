@@ -21,7 +21,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 
 
-class PrintController extends AbstractController
+final class PrintController extends AbstractController
 {
     /**
      * @var NoticeBuildFileService

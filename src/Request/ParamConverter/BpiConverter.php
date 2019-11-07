@@ -26,6 +26,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Request\ParamConverter\ParamConverterInte
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use JMS\Serializer\SerializerInterface;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class BpiConverter implements ParamConverterInterface
 {
@@ -92,6 +93,8 @@ class BpiConverter implements ParamConverterInterface
             $object  = $this->buildObject( $request,  $configuration);
         }
         catch(NoResultException $e){
+            throw new NotFoundHttpException();
+
             return $this->templating->render('common/error.html.twig');
         }
 
