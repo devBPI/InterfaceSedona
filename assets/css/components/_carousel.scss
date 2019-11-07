@@ -15,15 +15,25 @@
 
 	// Gestion Carousel Secondary
 	&--secondary {
+		padding-bottom: $spacer;
 
-		.carousel__footer {
+		&:after {
+			content: "";
+			position: absolute;
+			width: calc(100% - 30px);
+			height: 0;
+			left: 0;
+			right: 0;
+			margin-left: auto;
+			margin-right: auto;
+			bottom: 0;
 			border-bottom: $border-default;
 		}
 
 		&:last-child {
 
-			.carousel__footer {
-				border-bottom: 0;
+			&:after {
+				display: none;
 			}
 		}
 	}
@@ -31,7 +41,6 @@
 	// Gestion Header
 	&__footer {
 		margin-top: $spacer;
-		padding-bottom: $spacer;
 		display: flex;
 		justify-content: flex-end;
 	}
@@ -92,10 +101,14 @@
 
 		&-title {
 			margin-bottom: 5px;
+			max-height: 96px;
+			overflow: hidden;
 		}
 
 		&-subtitle {
 			margin-bottom: 0;
+			max-height: 49px;
+			overflow: hidden;
 		}
 	}
 

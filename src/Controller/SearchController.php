@@ -86,8 +86,10 @@ final class SearchController extends AbstractController
     public function indexAction(Request $request, string $parcours=self::GENERAL): Response
     {
         $keyword = $request->get(Criteria::SIMPLE_SEARCH_KEYWORD, '');
+        $type = $request->get(Criteria::SIMPLE_SEARCH_TYPE, WordsList::THEME_DEFAULT);
+
         $criteria = new Criteria();
-        $criteria->setSimpleSearch($request->get(Criteria::SIMPLE_SEARCH_TYPE), $keyword);
+        $criteria->setSimpleSearch($type, $keyword);
         $criteria->setParcours($parcours);
 
         return $this->displaySearch(new SearchQuery($criteria), $request);

@@ -8,7 +8,7 @@
         <ul class="dropdown-menu" aria-labelledby="dropdown-corrector" role="listbox" tabindex="-1">
             {% for suggestion in suggestionList.suggestions %}
                 <li class="dropdown-item" role="option">
-                    <a href="{{ path('search', {'simple_search[text]':suggestion}) }}" aria-label="{{ 'bloc.search-correct.text'|trans }} {{ suggestion }}" lang="fr">{{ suggestion }}</a>
+                    <a href="{{ path('search', {(constant('App\\Model\\Search\\Criteria::SIMPLE_SEARCH_KEYWORD')):suggestion}) }}" aria-label="{{ 'bloc.search-correct.text'|trans }} {{ suggestion }}" lang="fr">{{ suggestion }}</a>
                 </li>
             {% endfor %}
         </ul>

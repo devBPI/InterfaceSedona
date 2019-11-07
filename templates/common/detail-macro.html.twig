@@ -1,4 +1,4 @@
-{% macro detail(object, label, is_linked) %}
+{% macro detail(object, label) %}
     {% if object is not empty %}
         <li class="list-information__item">
             <span class="list-information__label">{{ label }}</span>
@@ -6,25 +6,45 @@
                 {% if object is iterable %}
                     {% for element in object %}
                         <li class="list-information__sub-item">
-                            {% if is_linked == true %}
-                                <a href="{{ path('search', {'simple_search[text]':element}) }}">
-                                    {{ element }}
-                                </a>
-                            {% else %}
+                            {{ element }}
+                            {% if not loop.last %}, {% endif %}
+                        </li>
+                    {% endfor %}
+                {% else %}
+                    <li class="list-information__sub-item">{{ object }}</li>
+                {% endif %}
+            </ul>
+        </li>
+    {% endif %}
+{% endmacro %}
+
+{% macro detail_link(object, label, type) %}
+    {% if object is not empty %}
+        <li class="list-information__item">
+            <span class="list-information__label">{{ label }}</span>
+            <ul class="list-information__sub-list" lang="fr">
+                {% if object is iterable %}
+                    {% for element in object %}
+                        <li class="list-information__sub-item">
+                            {% set pathAttr = {
+                                (constant('App\\Model\\Search\\Criteria::SIMPLE_SEARCH_KEYWORD')): ''~element,
+                                (constant('App\\Model\\Search\\Criteria::SIMPLE_SEARCH_TYPE')): type,
+                            } %}
+                            <a href="{{ path('search', pathAttr) }}">
                                 {{ element }}
-                            {% endif %}
+                            </a>
                             {% if not loop.last %}, {% endif %}
                         </li>
                     {% endfor %}
                 {% else %}
                     <li class="list-information__sub-item">
-                        {% if is_linked == true %}
-                            <a href="{{ path('search', {'simple_search[text]':object}) }}">
-                                {{ object }}
-                            </a>
-                        {% else %}
+                        {% set pathAttr = {
+                            (constant('App\\Model\\Search\\Criteria::SIMPLE_SEARCH_KEYWORD')): ''~object,
+                            (constant('App\\Model\\Search\\Criteria::SIMPLE_SEARCH_TYPE')): type,
+                        } %}
+                        <a href="{{ path('search', pathAttr) }}">
                             {{ object }}
-                        {% endif %}
+                        </a>
                     </li>
                 {% endif %}
             </ul>
@@ -32,30 +52,30 @@
     {% endif %}
 {% endmacro %}
 
-{% macro detail_link(object, label, is_linked) %}
+{% macro list_link(object, label, type) %}
     {% if object is not empty %}
         <p lang="fr" class="bibliographic-result__author">
             {{ label }}
 
             {% if object is iterable %}
                 {% for element in object %}
-                    {% if is_linked == true %}
-                        <a href="{{ path('search', {'simple_search[text]':element}) }}">
-                            {{ element }}
-                        </a>
-                    {% else %}
+                    {% set pathAttr = {
+                        (constant('App\\Model\\Search\\Criteria::SIMPLE_SEARCH_KEYWORD')): ''~element,
+                        (constant('App\\Model\\Search\\Criteria::SIMPLE_SEARCH_TYPE')): type,
+                    } %}
+                    <a href="{{ path('search', pathAttr) }}">
                         {{ element }}
-                    {% endif %}
+                    </a>
                     {% if not loop.last %}, {% endif %}
                 {% endfor %}
             {% else %}
-                {% if is_linked == true %}
-                    <a href="{{ path('search', {'simple_search[text]':object}) }}">
-                        {{ object }}
-                    </a>
-                {% else %}
+                {% set pathAttr = {
+                    (constant('App\\Model\\Search\\Criteria::SIMPLE_SEARCH_KEYWORD')): ''~element,
+                    (constant('App\\Model\\Search\\Criteria::SIMPLE_SEARCH_TYPE')): type,
+                } %}
+                <a href="{{ path('search', pathAttr) }}">
                     {{ object }}
-                {% endif %}
+                </a>
             {% endif %}
         </p>
     {% endif %}

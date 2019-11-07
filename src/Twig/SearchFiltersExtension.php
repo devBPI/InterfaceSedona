@@ -80,7 +80,7 @@ class SearchFiltersExtension extends AbstractExtension
      */
     public function getSearchWords(): array
     {
-        return WordsList::$words[$this->masterRequest->get('thematic', WordsList::THEME_DEFAULT)];
+        return WordsList::$words[$this->masterRequest->get('parcours', WordsList::THEME_DEFAULT)];
     }
 
     /**

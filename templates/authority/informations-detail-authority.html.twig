@@ -144,7 +144,7 @@
         <ul class="list-information__sub-list" lang="fr">
             {% for element in notice.associetedForm %}
                 <li class="list-information__sub-item">
-                    <a href="{{ path('search', {'simple_search[text]':element}) }}" >
+                    <a href="{{ path('search', {(constant('App\\Model\\Search\\Criteria::SIMPLE_SEARCH_KEYWORD')):element}) }}" >
                         {{ element }}
                     </a>
                 </li>

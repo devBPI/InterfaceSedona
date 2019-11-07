@@ -33,13 +33,13 @@ final class NoticeAvailabilityController extends AbstractController
     }
 
     /**
-     * @Route("/notices/{sourceId}/availability/{configurationId}", methods={"POST", "GET"}, requirements={", sourceId"="\d+", "configurationId"="\d+"}, name="notice_availablity_request")
+     * @Route("/notices/{sourceId}/availability/{configurationId}", methods={"POST", "GET"}, requirements={"sourceId"="\d+", "configurationId"="\d+"}, name="notice_availablity_request")
      * @param Request $request
      * @param int $sourceId
      * @param int $configurationId
      * @return Response
      */
-    public function indexAction(Request $request, int $sourceId, int $configurationId): Response
+    public function indexAction(Request $request, int $sourceId, int $configurationId = null): Response
     {
         $noticeAvailabilityRequest = new NoticeAvailabilityRequest(
             $sourceId,

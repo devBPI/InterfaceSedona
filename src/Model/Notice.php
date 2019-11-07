@@ -302,6 +302,13 @@ class Notice extends AbstractImage implements NoticeInterface, RecordInterface
     /**
      * @var array
      * @JMS\Type("array<string>")
+     * @JMS\SerializedName("titresAnalytic")
+     * @JMS\XmlList("titreAnalytic")
+     */
+    private $analyticalTitlesInDetail;
+    /**
+     * @var array
+     * @JMS\Type("array<string>")
      * @JMS\SerializedName("traductionsDe")
      * @JMS\XmlList("traductionDe")
      */
@@ -679,7 +686,11 @@ class Notice extends AbstractImage implements NoticeInterface, RecordInterface
      */
     public function getFrontAnalyticalTitle(): string
     {
-        return implode(self::SEPARATOR, $this->analyticalTitles);
+        if (!empty($this->analyticalTitles)) {
+            return implode(self::SEPARATOR, $this->analyticalTitles);
+        }
+
+        return implode(self::SEPARATOR, $this->analyticalTitlesInDetail);
     }
 
     /**
@@ -687,7 +698,7 @@ class Notice extends AbstractImage implements NoticeInterface, RecordInterface
      */
     public function getFrontAuthor(): string
     {
-        return implode(self::SEPARATOR, array_merge($this->authors, $this->directors));
+        return implode(self::SEPARATOR, array_merge($this->authorsValue, $this->authors, $this->directors));
     }
 
     /**
@@ -763,14 +774,6 @@ class Notice extends AbstractImage implements NoticeInterface, RecordInterface
     public function getTitles(): array
     {
         return $this->titles;
-    }
-
-    /**
-     * @return array
-     */
-    public function getAnalyticalTitles(): array
-    {
-        return $this->analyticalTitles;
     }
 
     /**
@@ -1167,9 +1170,9 @@ class Notice extends AbstractImage implements NoticeInterface, RecordInterface
     }
 
     /**
-     * @return null|string
+     * @return string
      */
-    public function getExportTitle():?string
+    public function getExportTitle(): string
     {
         $payload = [];
         if ($this->getTitleInformation() ){
@@ -1181,14 +1184,16 @@ class Notice extends AbstractImage implements NoticeInterface, RecordInterface
         if ($this->getVolumes() ) {
             $payload[] = implode(',', $this->getVolumes());
         }
+
+        $result = implode(', ', $payload);
         if ($this->getFirstPage() ) {
-            $payload[] = implode(',', $this->getFirstPage());
+            $result .= 'pp. '.implode(',', $this->getFirstPage());
         }
         if ($this->getLastPage() ) {
-            $payload[] = implode(',', $this->getLastPage());
+            $result .= ' - '.implode(',', $this->getLastPage());
         }
 
-        return implode(',', $payload);
+        return $result;
     }
 
     /**
