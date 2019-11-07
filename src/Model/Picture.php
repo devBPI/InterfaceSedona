@@ -9,7 +9,6 @@ declare(strict_types=1);
 
 namespace App\Model;
 use App\Model\Interfaces\PictureInterface;
-use App\Service\ImageBuilderService;
 use JMS\Serializer\Annotation as JMS;
 
 

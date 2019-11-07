@@ -24,16 +24,20 @@ final class ImageBuilderService
 
     /** @var string */
     private $imageDir;
-
-    public static $url = 'http://10.1.2.120:8080';
+    /**
+     * @var string
+     */
+    public  $url;
 
     /**
      * ImageBuilderService constructor.
      * @param string $imageDir
+     * @param $url
      */
-    public function __construct(string $imageDir)
+    public function __construct(string $imageDir, $url)
     {
         $this->imageDir = $imageDir;
+        $this->url = $url;
     }
 
     /**
@@ -50,7 +54,7 @@ final class ImageBuilderService
 
             $filename = basename($content);
            try{
-               if (($content = file_get_contents(self::$url.DIRECTORY_SEPARATOR.self::BPI_FOLDER_NAME_ELECTRE.DIRECTORY_SEPARATOR.$content)) === false){
+               if (($content = file_get_contents($this->url.DIRECTORY_SEPARATOR.self::BPI_FOLDER_NAME_ELECTRE.DIRECTORY_SEPARATOR.$content)) === false){
                    return $this->buildGenericPicture($type);
                }
            }catch (\ErrorException $e){
