@@ -439,7 +439,7 @@ bloc:
       conservation: Conservation
       rights: Droits
   autority-result-information: #Bloc 16 Notice bibliographique + Bloc 18 Informations de la notice d'autorité
-    autor: 'Auteur(s), compositeur(s), interprète(s)'
+    musique-author: 'Auteur(s), compositeur(s), interprète(s)'
     autor-dicover: Découvrir l'auteur
     tracks: Pistes
     contributor: 'Contributeur(s)'

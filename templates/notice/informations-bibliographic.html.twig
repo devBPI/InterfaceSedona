@@ -1,17 +1,17 @@
 {% import "common/detail-macro.html.twig" as notice_macros %}
 
-{{ notice_macros.detail(notice.authorsValue, 'bloc.autority-result-information.other-authors'|trans, true) }}
-{% if notice.type !="Vidéo"%}
-    {{ notice_macros.detail(notice.contributeurs, 'bloc.autority-result-information.contributor'|trans, true) }}
+{{ notice_macros.detail_link(notice.authorsValue, 'bloc.autority-result-information.other-authors'|trans, constant('App\\WordsList::AUTHOR_WORD')) }}
+{% if notice.type != "Vidéo"%}
+    {{ notice_macros.detail_link(notice.contributeurs, 'bloc.autority-result-information.contributor'|trans, constant('App\\WordsList::AUTHOR_WORD')) }}
 {% endif %}
-{{ notice_macros.detail(notice.editors, 'bloc.autority-result-information.editor'|trans, true) }}
-{{ notice_macros.detail(notice.publishedDates, 'bloc.autority-result-information.date'|trans, false) }}
-{{ notice_macros.detail(notice.otherDates, 'bloc.autority-result-information.edition-date'|trans, false) }}
-{{ notice_macros.detail(notice.periodicity, 'bloc.autority-result-information.periodicity-date'|trans, false) }}
-{{ notice_macros.detail(notice.uniformTitle, 'bloc.autority-result-information.ouvre'|trans, false) }}
-{{ notice_macros.detail(notice.alternatifTitle, 'bloc.autority-result-information.alternatif-title'|trans, false) }}
-{{ notice_macros.detail(notice.contents, 'modal.comments-edit.field-content'|trans, false) }}
-{{ notice_macros.detail(notice.notes, 'bloc.autority-result-information.nots'|trans, false) }}
+{{ notice_macros.detail_link(notice.editors, 'bloc.autority-result-information.editor'|trans, constant('App\\WordsList::AUTHOR_WORD')) }}
+{{ notice_macros.detail(notice.publishedDates, 'bloc.autority-result-information.date'|trans) }}
+{{ notice_macros.detail(notice.otherDates, 'bloc.autority-result-information.edition-date'|trans) }}
+{{ notice_macros.detail(notice.periodicity, 'bloc.autority-result-information.periodicity-date'|trans) }}
+{{ notice_macros.detail(notice.uniformTitle, 'bloc.autority-result-information.ouvre'|trans) }}
+{{ notice_macros.detail(notice.alternatifTitle, 'bloc.autority-result-information.alternatif-title'|trans) }}
+{{ notice_macros.detail(notice.contents, 'modal.comments-edit.field-content'|trans) }}
+{{ notice_macros.detail(notice.notes, 'bloc.autority-result-information.nots'|trans) }}
 
 
 {% if notice.languages is not empty %}
@@ -34,11 +34,11 @@
 
     </li>
 {% endif %}
-{{ notice_macros.detail(notice.materialDescriptions, 'modal.advanced-search.facette.materialSupport'|trans, false) }}
-{{ notice_macros.detail(notice.collectionSeries, 'footer.sitemap.professionnels.collections-et-services'|trans, true) }}
-{{ notice_macros.detail(notice.togetherTitle, 'bloc.autority-result-information.title-together'|trans, true) }}
-{{ notice_macros.detail(notice.inRelationTitle, 'bloc.autority-result-information.title-inrelation'|trans, true) }}
-{{ notice_macros.detail(notice.meeting, 'bloc.autority-result-information.meeting'|trans, true) }}
+{{ notice_macros.detail(notice.materialDescriptions, 'modal.advanced-search.facette.materialSupport'|trans) }}
+{{ notice_macros.detail_link(notice.collectionSeries, 'footer.sitemap.professionnels.collections-et-services'|trans, constant('App\\WordsList::TITLE_WORD')) }}
+{{ notice_macros.detail_link(notice.togetherTitle, 'bloc.autority-result-information.title-together'|trans, constant('App\\WordsList::TITLE_WORD')) }}
+{{ notice_macros.detail_link(notice.inRelationTitle, 'bloc.autority-result-information.title-inrelation'|trans, constant('App\\WordsList::TITLE_WORD')) }}
+{{ notice_macros.detail_link(notice.meeting, 'bloc.autority-result-information.meeting'|trans, constant('App\\WordsList::TITLE_WORD')) }}
 
 {% if notice.otherEdition%}
         <span class="list-information__label">{{ 'bloc.autority-result-information.other-edition'|trans }}</span>
@@ -63,17 +63,17 @@
     </li>
 {% endif %}
 
-{{ notice_macros.detail(notice.eras , 'bloc.autority-result-information.eras'|trans, true) }}
-{{ notice_macros.detail(notice.locations , 'bloc.autority-result-information.location'|trans, true) }}
-{{ notice_macros.detail(notice.kinds , 'bloc.autority-result-information.kind'|trans, true) }}
+{{ notice_macros.detail_link(notice.eras , 'bloc.autority-result-information.eras'|trans, constant('App\\WordsList::SUBJECT_WORD')) }}
+{{ notice_macros.detail_link(notice.locations , 'bloc.autority-result-information.location'|trans, constant('App\\WordsList::SUBJECT_WORD')) }}
+{{ notice_macros.detail_link(notice.kinds , 'bloc.autority-result-information.kind'|trans, constant('App\\WordsList::SUBJECT_WORD')) }}
 {#gender#}
-{{ notice_macros.detail(notice.topics , 'bloc.autority-result-information.kind'|trans, true) }}
-{{ notice_macros.detail(notice.isbn , 'ISBN', true) }}
-{{ notice_macros.detail(notice.issn , 'ISSN', true) }}
-{{ notice_macros.detail(notice.commercialNumbers , 'bloc.autority-result-information.comercial-number'|trans, false) }}
-{{ notice_macros.detail(notice.indices , 'bloc.autority-result-information.indices'|trans, false) }}
+{{ notice_macros.detail_link(notice.topics , 'bloc.autority-result-information.topics'|trans, constant('App\\WordsList::SUBJECT_WORD')) }}
+{{ notice_macros.detail(notice.isbn , 'ISBN') }}
+{{ notice_macros.detail(notice.issn , 'ISSN') }}
+{{ notice_macros.detail(notice.commercialNumbers , 'bloc.autority-result-information.comercial-number'|trans) }}
+{{ notice_macros.detail_link(notice.indices , 'bloc.autority-result-information.indices'|trans, constant('App\\WordsList::INDICE_COTE_WORD')) }}
 
-{{ notice_macros.detail(notice.publics , 'bloc.autority-result-information.publics'|trans, false) }}
+{{ notice_macros.detail(notice.publics , 'bloc.autority-result-information.publics'|trans) }}
 
 {#droit#}
 {% if notice.licences or notice.rights or notice.copyright %}
@@ -82,25 +82,25 @@
         <ul class="list-information__sub-list" lang="fr">
             {% for element in notice.rights %}
                 <li class="list-information__sub-item">
-                        {{ element.name }},
+                    {{ element.name }},
                 </li>
             {% endfor %}
             {% for element in notice.licences %}
                 <li class="list-information__sub-item">
-                        {{ element.name }}
+                    {{ element.name }}
                 </li>
             {% endfor %}
             {% for element in notice.copyright %}
                 <li class="list-information__sub-item">
-                        {{ element.name }}
+                    {{ element.name }}
                 </li>
             {% endfor %}
         </ul>
     </li>
 {% endif %}
 
-{{ notice_macros.detail(notice.placesEvents , 'bloc.autority-result-information.manifestation-location'|trans, false) }}
-{{ notice_macros.detail(notice.origins , 'bloc.autority-result-information.origins'|trans, false) }}
+{{ notice_macros.detail(notice.placesEvents , 'bloc.autority-result-information.manifestation-location'|trans) }}
+{{ notice_macros.detail(notice.origins , 'bloc.autority-result-information.origins'|trans) }}
 {% if notice.configurationName is not empty %}
     <li class="list-information__item">
         <span class="list-information__label">{{ 'bloc.autority-result-information.result-de'|trans }}</span>
@@ -140,4 +140,5 @@
         </ul>
     </li>
 {% endif %}
-{{ notice_macros.detail(notice.contentsTable , 'bloc.autority-result-information.content-table'|trans, false) }}
+
+{{ notice_macros.detail(notice.contentsTable , 'bloc.autority-result-information.content-table'|trans) }}
