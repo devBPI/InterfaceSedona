@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: infra
- * Date: 30/08/19
- * Time: 17:19
- */
 
 namespace App\Model;
 
@@ -32,7 +26,7 @@ class Value implements ValueBPIInterface
     /**
      * @return string
      */
-    public function getValue(): string
+    public function getValue(): ?string
     {
         return $this->value;
     }
@@ -45,8 +39,8 @@ class Value implements ValueBPIInterface
         return $this->complement;
     }
 
-    public function __toString()
+    public function __toString(): string
     {
-        return $this->getValue();
+        return ''.$this->getValue();
     }
 }
