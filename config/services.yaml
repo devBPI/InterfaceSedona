@@ -5,6 +5,7 @@
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
   locale: 'fr'
+  api_dir_name: '/CatalogueWebService/api/'
 
 services:
   # default configuration for services in *this* file
@@ -38,7 +39,7 @@ services:
     - '@eight_points_guzzle.client.bpi_catalog'
 
   App\Service\ImageBuilderService:
-    arguments: ['%kernel.project_dir%/public/', '%env(CATALOG_API)%' ]
+    arguments: ['%kernel.project_dir%/public/', '%env(CATALOG_API_HOST)%' ]
   App\Service\CleanerFiles:
     arguments: ['%kernel.project_dir%/public/']
   App\Service\HistoryService:
