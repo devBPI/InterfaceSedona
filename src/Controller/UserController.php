@@ -13,7 +13,7 @@ use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
  * Class UserController
  * @package App\Controller
  */
-class UserController extends AbstractController
+final class UserController extends AbstractController
 {
     /**
      * @Route("/authentification", methods={"GET","POST"}, name="user_login")

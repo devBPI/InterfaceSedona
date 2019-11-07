@@ -15,7 +15,7 @@ use Symfony\Component\Routing\Annotation\Route;
  * Class HomeController
  * @package App\Controller
  */
-class HomeController extends AbstractController
+final class HomeController extends AbstractController
 {
     /**
      * @var CarouselProvider

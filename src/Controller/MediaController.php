@@ -11,7 +11,7 @@ use Symfony\Component\Routing\Annotation\Route;
  * Class MediaController
  * @package App\Controller
  */
-class MediaController extends AbstractController
+final class MediaController extends AbstractController
 {
     /**
      * @Route("media/{permalink}", name="media-link", requirements={"permalink"=".+"})

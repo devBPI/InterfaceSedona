@@ -23,7 +23,7 @@ use Symfony\Component\Routing\Annotation\Route;
  * Class AuthorityController
  * @package App\Controller
  */
-class AuthorityController extends AbstractController
+final class AuthorityController extends AbstractController
 {
     /**
      * @var NoticeAuthorityProvider

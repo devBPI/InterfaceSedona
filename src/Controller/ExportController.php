@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: infra
- * Date: 02/10/19
- * Time: 11:01
- */
 
 namespace App\Controller;
 
@@ -19,7 +13,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 
-class ExportController extends AbstractController
+final class ExportController extends AbstractController
 {
     /**
      * @var NoticeBuildFileService

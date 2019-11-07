@@ -71,3 +71,22 @@
     {{ block('form_widget_simple') }}
 {%- endblock email_widget -%}
 
+{% block form_errors -%}
+    {%- if errors|length > 0 -%}
+        <span id="{{ form.vars.id }}-errors" class="{% if form is not rootform %}invalid-feedback{% else %}alert alert-danger{% endif %} d-block">
+            {%- for error in errors -%}
+                <span class="d-block">
+                    <span class="form-error-icon badge badge-danger text-uppercase">{{ 'Error'|trans({}, 'validators') }}</span> <span class="form-error-message">{{ error.message }}</span>
+                </span>
+            {%- endfor -%}
+        </span>
+    {%- endif %}
+{%- endblock form_errors %}
+
+{%- block widget_attributes -%}
+    {%- if not valid %}
+        {% set attr = attr|merge({class: (attr.class|default('') ~ ' is-invalid')|trim, "aria-describedby": form.vars.id~"-errors" }) %}
+    {% endif -%}
+    {{ parent() }}
+{%- endblock widget_attributes -%}
+

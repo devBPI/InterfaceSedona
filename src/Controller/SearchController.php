@@ -29,7 +29,7 @@ use Symfony\Component\Routing\Annotation\Route;
  * Class SearchController
  * @package App\Controller
  */
-class SearchController extends AbstractController
+final class SearchController extends AbstractController
 {
     use PrintTrait;
 

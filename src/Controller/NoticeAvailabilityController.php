@@ -16,7 +16,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
  * Class NoticeAvailabilityController
  * @package App\Controller
  */
-class NoticeAvailabilityController extends AbstractController
+final class NoticeAvailabilityController extends AbstractController
 {
     /**
      * @var EntityManagerInterface

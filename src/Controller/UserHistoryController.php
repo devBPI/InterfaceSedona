@@ -14,7 +14,7 @@ use Symfony\Component\Routing\Annotation\Route;
  * Class UserHistoryController
  * @package App\Controller
  */
-class UserHistoryController extends AbstractController
+final class UserHistoryController extends AbstractController
 {
     const INPUT_NAME = 'history';
 

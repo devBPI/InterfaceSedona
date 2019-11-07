@@ -23,7 +23,7 @@ use Symfony\Component\Routing\Annotation\Route;
  * Class NoticeController
  * @package App\Controller
  */
-class NoticeController extends AbstractController
+final class NoticeController extends AbstractController
 {
 
     /**

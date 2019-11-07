@@ -20,7 +20,7 @@ use Symfony\Component\Routing\Annotation\Route;
  * Class CommonController
  * @package App\Controller
  */
-class CommonController extends AbstractController
+final class CommonController extends AbstractController
 {
 
     /**
