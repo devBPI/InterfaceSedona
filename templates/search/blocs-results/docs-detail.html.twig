@@ -91,8 +91,7 @@
                     {% endif %}
                 {% endfor %}
             </div>
-
-            {% if type == constant('App\\Model\\Notice::ALL') %}
+            {% if app.request.get('see-all') and app.request.get('see-all') in [constant('App\\Model\\Notice::SEE_ONLINE'),constant('App\\Model\\Notice::SEE_ONSHELF')] and notice.frontResume %}
                 <div class="list-result__content-txt">
                     <p lang="fr">{{ 'bloc.notice-simple.resume-title'|trans }} {{ notice.frontResume }}</p>
                 </div>
