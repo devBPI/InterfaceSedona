@@ -8,7 +8,7 @@
 	margin-bottom: $spacer;
 
 	&__item {
-		margin-bottom: $spacer;
+		margin-bottom: 10px;
 		width: 100%;
 
 		@include media-breakpoint-up(sm) {

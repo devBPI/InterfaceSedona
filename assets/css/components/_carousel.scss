@@ -15,6 +15,7 @@
 
 	// Gestion Carousel Secondary
 	&--secondary {
+		padding-bottom: $spacer;
 
 		&:after {
 			content: "";
@@ -40,7 +41,6 @@
 	// Gestion Header
 	&__footer {
 		margin-top: $spacer;
-		padding-bottom: $spacer;
 		display: flex;
 		justify-content: flex-end;
 	}
@@ -101,10 +101,14 @@
 
 		&-title {
 			margin-bottom: 5px;
+			max-height: 96px;
+			overflow: hidden;
 		}
 
 		&-subtitle {
 			margin-bottom: 0;
+			max-height: 49px;
+			overflow: hidden;
 		}
 	}
 

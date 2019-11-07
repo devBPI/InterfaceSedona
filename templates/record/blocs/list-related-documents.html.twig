@@ -16,7 +16,7 @@
 					<div class="carousel__slide-image">
 						<img src="{{ path("binary_image", {"content": element.image, 'type': element.type|slugify })}}" class="img-fluid" alt="" />
 					</div>
-					<p class="n1 carousel__slide-title">{{element.titles[0]}}</p>
+					<p class="n1 carousel__slide-title">{{ element.titles[0] }}</p>
 					<p class="n2 carousel__slide-subtitle">
 						{% for author in element.authors %}
 							{{ author}}
