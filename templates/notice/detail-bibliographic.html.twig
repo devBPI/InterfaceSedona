@@ -1,8 +1,7 @@
 {% import "common/notice-available-macro.html.twig" as macros %}
 {% import "common/detail-macro.html.twig" as notice_macros %}
 
-<!-- Début - Bloc 16 Notice bibliographique -->
-<div class="col-12">
+<div class="col-12 col-md">
     {% for title in notice.titles %}
         <h1 class="n1 bibliographic-result__title" lang="fr">
             {{ title }}
@@ -16,24 +15,29 @@
             </h1>
         {% endfor %}
     {% endif %}
+</div>
 
+<div class="col-12 col-md-2">
+    <div class="bibliographic-result__type">
+        <img src="{{ asset('images/types/type-' ~ notice.slugifiedType ~ '.svg') }}" alt="{{ notice.type }}" title="{{ notice.type }}" />
+    </div>
+</div>
+<div class="col-12">
     <div class="row align-items-md-center justify-content-between">
-        <div class="col-12 col-md-6">
+        <div class="col-12">
             {{ notice_macros.detail_link(notice.translatedBy, 'bloc.autority-result-information.translated'|trans, true) }}
             {{ notice_macros.detail_link(notice.analyticalTitles, 'bloc.autority-result-information.in'|trans, true) }}
             {{ notice_macros.detail_link(notice.directors, 'bloc.autority-result-information.directors'|trans, true) }}
             {{ notice_macros.detail_link(notice.authorsValue, 'bloc.autority-result-information.autor'|trans, true) }}
         </div>
+        {#
         <div class="col-6 col-md-4">
-            {#<a href="#" class="link">{{ 'bloc.autority-result-information.autor-dicover'|trans }}</a>#}
+            <a href="#" class="link">{{ 'bloc.autority-result-information.autor-dicover'|trans }}</a>
         </div>
-        <div class="col-6 col-md-2">
-            <div class="bibliographic-result__type">
-                <img src="{{ asset('images/types/type-' ~ notice.slugifiedType ~ '.svg') }}" alt="{{ notice.type }}" title="{{ notice.type }}" />
-            </div>
-        </div>
+        #}
     </div>
 </div>
+
 {% if  notice.contents %}
     <div class="col-12">
         <h2 class="n1 bibliographic-result__subtitle">{{ 'bloc.autority-result-information.tracks'|trans }}</h2>
@@ -114,5 +118,3 @@
 </div>
 
 {% include "search/modal/notified-form.html.twig" %}
-
-<!-- Fin - Bloc 16 Notice bibliographique -->
