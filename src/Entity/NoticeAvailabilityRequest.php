@@ -72,7 +72,7 @@ class NoticeAvailabilityRequest
      * @param int $sourceId
      * @param int $configurationId
      */
-    public function __construct(int $sourceId, int $configurationId)
+    public function __construct(int $sourceId, int $configurationId = null)
     {
         $this->notice_source_id = $sourceId;
         $this->notice_configuration_id = $configurationId;
