@@ -20,15 +20,18 @@ class UserController extends AbstractController
      * @param AuthenticationUtils $authUtils
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function loginAction(AuthenticationUtils $authUtils): Response
+    public function loginAction(AuthenticationUtils $authUtils = null): Response
     {
-        $authenticationError = $authUtils->getLastAuthenticationError();
         $attr = [];
-        if ($authenticationError instanceof AuthenticationException) {
-            $attr = [
-                'error' => $authenticationError->getMessage(),
-                'last_login' => $authUtils->getLastUsername()
-            ];
+        if ($authUtils instanceof AuthenticationUtils) {
+            $authenticationError = $authUtils->getLastAuthenticationError();
+
+            if ($authenticationError instanceof AuthenticationException) {
+                $attr = [
+                    'error' => $authenticationError->getMessage(),
+                    'last_login' => $authUtils->getLastUsername()
+                ];
+            }
         }
 
         return $this->render('user/login.html.twig', $attr);
