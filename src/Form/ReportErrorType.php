@@ -4,7 +4,6 @@ declare(strict_types=1);
 namespace App\Form;
 
 
-use App\Form\Type\CustomEmailType;
 use App\Model\Form\ReportError;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
@@ -61,6 +60,11 @@ class ReportErrorType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => ReportError::class,
+            'honeypot' => true,
+            'honeypot_field' => 'email_address',
+            'honeypot_use_class' => false,
+            'honeypot_hide_class' => 'hidden',
+            'honeypot_message' => 'Form field are invalid',
         ]);
     }
 }

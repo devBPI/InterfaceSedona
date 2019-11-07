@@ -400,6 +400,7 @@ bloc:
     document-available: Disponible
     document-unavailable: Indisponible
     notification-availablity: Document indisponible, être prévenu de son retour en rayon - ouverture formulaire
+    notification-availablity-success: Vous serez informer dès son retour en rayon
     resume-label: Afficher le résumé
     resume-title: 'Résumé :'
     availability-label: Document indisponible, être prévenu de son retour en rayon - ouverture formulaire

@@ -1,0 +1,7 @@
+isometriks_spam:
+    honeypot:
+        field: email_address
+        use_class: false
+        hide_class: hidden
+        global: false
+        message: Form fields are invalid
