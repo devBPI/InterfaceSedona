@@ -9,13 +9,15 @@
 namespace App\Model;
 
 
-use App\Service\ImageBuilderService;
 
 trait PathToContentTrait
 {
-
+    /**
+     * @param $path
+     * @return string
+     */
     private function pathToContent($path):string
     {
-        return str_replace(ImageBuilderService::$url . DIRECTORY_SEPARATOR . ImageBuilderService::BPI_FOLDER_NAME_ELECTRE . DIRECTORY_SEPARATOR, '', $path);
+        return basename($path);
     }
 }
