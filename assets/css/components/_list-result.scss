@@ -60,7 +60,7 @@
 	}
 
 	&--online {
-		background-color: $grey-footer;
+		background-color: $grey-lighter;
 		height: 100%;
 		position: relative;
 
@@ -71,7 +71,7 @@
 			width: $spacer;
 			height: 100%;
 			top: 0;
-			background-color: $grey-footer;
+			background-color: $grey-lighter;
 
 			@include media-breakpoint-up(md) {
 				display: none;

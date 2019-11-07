@@ -61,6 +61,10 @@
 					color: $black;
 				}
 			}
+
+			&__input {
+				max-width: rem(90);
+			}
 		}	
 	}
 
