@@ -1,5 +1,3 @@
-import * as util from './notice-availibility.js'
-
 import {SelectionAdder} from './my-selection';
 
 $(document)
