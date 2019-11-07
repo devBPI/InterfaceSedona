@@ -30,7 +30,7 @@ class SuggestByMailType extends AbstractType
                 'required'  => true,
             ])
             ->add('author', TextareaType::class,[
-                'required'  => false,
+                'required'  => true,
             ])
             ->add('documentType', ChoiceType::class,[
                     'required'=> true,
@@ -49,8 +49,10 @@ class SuggestByMailType extends AbstractType
                 'required'  => false
             ])
             ->add('email', EmailType::class,[
-                'required'  => false,
-                'attr'      => ['autocomplete'=> 'email' ]
+                'required'  =>  false,
+                'attr'      =>  ['autocomplete'=> 'email' ],
+                'invalid_message' => "wesh le mail la t'es sérieux ?"
+
             ])
         ;
     }
