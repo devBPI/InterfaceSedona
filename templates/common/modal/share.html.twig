@@ -1,5 +1,4 @@
-<!-- Début - Modal 07 partage -->
-<div role="dialog" aria-modal="true" aria-labelledby="modal-share-title" class="modal fade" id="modal-share" tabindex="-1">
+<div role="dialog" aria-modal="true" aria-labelledby="modal-share-title" class="modal fade" id="modal-share" tabindex="-1" lang="fr">
 	<div class="modal-dialog modal-dialog-centered">
 
 		<div class="modal-content">
@@ -22,8 +21,7 @@
 					<button type="button" class="js-copy_to_clipboard btn btn-primary">{{ 'modal.share.btn-cpoy'|trans }}<span class="sr-only"> {{ 'modal.share.btn-cpoy-sr-only'|trans }}</span></button>
 				</div>
 			</div>
-            {{ render(controller('App\\Controller\\CommonController::shareByMailAction')) }}
+            {{ render(controller('App\\Controller\\ReportingController::shareByMailAction', {'link': absolute_url(app.request.uri)})) }}
 		</div>
 	</div>
 </div>
-<!-- Début - Modal 07 fin -->

@@ -9,7 +9,7 @@ use Symfony\Component\Validator\Constraints as Asset;
  * Class ShareByMail
  * @package App\Model\Form
  */
-class ShareByMail implements MessageInfoInterface
+final class ShareByMail implements MessageInfoInterface
 {
     use MessageInfoTrait;
 
@@ -26,6 +26,11 @@ class ShareByMail implements MessageInfoInterface
      * @Asset\Email();
      */
     private $receiver;
+
+    /**
+     * @var string
+     */
+    private $link;
 
     /**
      * @return null|string
@@ -61,5 +66,24 @@ class ShareByMail implements MessageInfoInterface
     public function getReceiver(): ?string
     {
         return $this->receiver;
+    }
+
+    /**
+     * @return null|string
+     */
+    public function getLink(): ?string
+    {
+        return $this->link;
+    }
+
+    /**
+     * @param string|null $link
+     * @return ShareByMail
+     */
+    public function setLink(string $link=null):ShareByMail
+    {
+        $this->link = $link;
+
+        return $this;
     }
 }

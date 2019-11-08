@@ -9,7 +9,7 @@ use Symfony\Component\Validator\Constraints as Asset;
  * Class ExportNotice
  * @package App\Model\Form
  */
-class ExportNotice
+final class ExportNotice
 {
     /**
      * @var string

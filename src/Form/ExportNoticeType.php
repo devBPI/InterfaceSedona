@@ -18,7 +18,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
  * Class ExportNoticeType
  * @package App\Form
  */
-class ExportNoticeType extends AbstractType
+final class ExportNoticeType extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder

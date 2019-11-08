@@ -24,8 +24,8 @@
 
 		<div class="col-12 col-sm-2 pl-sm-0">
 			<div class="search-refine">
-				<button class="search-refine__button" type="button" data-target="#modal-refine-search" data-toggle="modal">{{ 'modal.refine-search.button-title'|trans }}<span class="sr-only"> {{ 'modal.refine-search.button-title-aria'|trans }}</span></button>
-				<!-- Include modal des filtres - Affiner -->
+				<button class="search-refine__button" type="button" data-target="#modal-refine-search" data-toggle="modal" lang="fr">{{ 'modal.refine-search.button-title'|trans }}<span class="sr-only"> {{ 'modal.refine-search.button-title-aria'|trans }}</span></button>
+
 				{% include "search/modal/refine-search.html.twig" with {'facets': objSearch.results.facets} %}
 			</div>
 		</div>
@@ -39,7 +39,6 @@
     </div>
 
 	<div class="row">
-		{# Include Nombre item #}
 		{% include "search/blocs-results/search-header.html.twig" %}
 	</div>
 	
@@ -53,11 +52,9 @@
 				</div>
 		</div>
 		<div class="row">
-			{# Include Pagination #}
 			{% include "search/blocs-results/search-footer.html.twig" with {'criteria':objSearch.results.criteria, 'pagesTotal': objSearch.results.pageTotal, 'page':  objSearch.results.page} %}
 		</div>
 	{% endblock %}
 
-	<!-- Include modal formulaire pour être prevenu du retour du document en rayon -->
 	{% include "search/modal/notified-form.html.twig" %}
 {% endblock %}

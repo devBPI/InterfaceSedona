@@ -14,7 +14,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
  * Class AvailabilityNotificationType
  * @package App\Form
  */
-class AvailabilityNotificationType extends AbstractType
+final class AvailabilityNotificationType extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder

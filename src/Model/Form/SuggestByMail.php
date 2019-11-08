@@ -8,23 +8,23 @@ use Symfony\Component\Validator\Constraints as Asset;
  * Class SuggestByMail
  * @package App\Model\Form
  */
-class SuggestByMail implements PersonneInterface
+final class SuggestByMail implements PersonneInterface
 {
     use PersonneTrait;
     const DOCUMENT_TYPE = [
-        'Livre' => 'Livre',
-        'Livre numérique' => 'Livre numérique',
-        'Musique' => 'Musique',
-        'Vidéo' => 'Vidéo',
-        'BD' => 'BD',
-        'Revue, journal' => 'Revue, journal',
-        'Revue numérique' => 'Revue numérique',
-        'Site et base' => 'Site et base',
-        'Livre audio' => 'Livre audio',
-        'Débat et enregistrement' => 'Débat et enregistrement',
-        'Carte' => 'Carte',
-        'Partition et méthode' => 'Partition et méthode',
-        'Formation' => 'Formation'
+        'Livre'                     => 'Livre',
+        'Livre numérique'           => 'Livre numérique',
+        'Musique'                   => 'Musique',
+        'Vidéo'                     => 'Vidéo',
+        'BD'                        => 'BD',
+        'Revue, journal'            => 'Revue, journal',
+        'Revue numérique'           => 'Revue numérique',
+        'Site et base'              => 'Site et base',
+        'Livre audio'               => 'Livre audio',
+        'Débat et enregistrement'   => 'Débat et enregistrement',
+        'Carte'                     => 'Carte',
+        'Partition et méthode'      => 'Partition et méthode',
+        'Formation'                 => 'Formation'
     ];
     /**
      * @var string

@@ -16,7 +16,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
  * Class ReportErrorType
  * @package App\Form
  */
-class ReportErrorType extends AbstractType
+final class ReportErrorType extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder

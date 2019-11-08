@@ -27,7 +27,7 @@
                     {% for element in object %}
                         <li class="list-information__sub-item">
                             {% set pathAttr = {
-                                (constant('App\\Model\\Search\\Criteria::SIMPLE_SEARCH_KEYWORD')): ''~element,
+                                (constant('App\\Model\\Search\\Criteria::SIMPLE_SEARCH_KEYWORD')): ''~(element is defined ?element:''),
                                 (constant('App\\Model\\Search\\Criteria::SIMPLE_SEARCH_TYPE')): type,
                             } %}
                             <a href="{{ path('search', pathAttr) }}">
@@ -58,6 +58,7 @@
             {{ label }}
 
             {% if object is iterable %}
+
                 {% for element in object %}
                     {% set pathAttr = {
                         (constant('App\\Model\\Search\\Criteria::SIMPLE_SEARCH_KEYWORD')): ''~element,
@@ -70,7 +71,7 @@
                 {% endfor %}
             {% else %}
                 {% set pathAttr = {
-                    (constant('App\\Model\\Search\\Criteria::SIMPLE_SEARCH_KEYWORD')): ''~element,
+                    (constant('App\\Model\\Search\\Criteria::SIMPLE_SEARCH_KEYWORD')): ''~object,
                     (constant('App\\Model\\Search\\Criteria::SIMPLE_SEARCH_TYPE')): type,
                 } %}
                 <a href="{{ path('search', pathAttr) }}">

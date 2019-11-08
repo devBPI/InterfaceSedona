@@ -17,7 +17,7 @@
 {% if notice.languages is not empty %}
     <li class="list-information__item">
         <span class="list-information__label">{{ 'modal.advanced-search.langage.title'|trans }}</span>
-        <ul class="list-information__sub-list" lang="fr">
+        <ul class="list-information__sub-list">
             {% for element in notice.languages %}
                 <li class="list-information__sub-item">
                         {{ element }}
@@ -42,7 +42,7 @@
 
 {% if notice.otherEdition%}
         <span class="list-information__label">{{ 'bloc.autority-result-information.other-edition'|trans }}</span>
-        <ul class="list-information__sub-list" lang="fr">
+        <ul class="list-information__sub-list">
             {% for element in notice.otherEdition %}
                 <li class="list-information__sub-item">
                     <a href="{{ link }}" >
@@ -79,7 +79,7 @@
 {% if notice.licences or notice.rights or notice.copyright %}
     <li class="list-information__item">
     <span class="list-information__label">{{ ("Droits")|trans }}</span>
-        <ul class="list-information__sub-list" lang="fr">
+        <ul class="list-information__sub-list">
             {% for element in notice.rights %}
                 <li class="list-information__sub-item">
                     {{ element.name }},
@@ -104,7 +104,7 @@
 {% if notice.configurationName is not empty %}
     <li class="list-information__item">
         <span class="list-information__label">{{ 'bloc.autority-result-information.result-de'|trans }}</span>
-        <ul class="list-information__sub-list" lang="fr">
+        <ul class="list-information__sub-list">
             <li class="list-information__sub-item">
                 <a href="{{ notice.configurationUrl }}">
                     {{ notice.configurationName }}
@@ -118,7 +118,7 @@
 {% if notice.fourth %}
         <li class="list-information__item">
         <span class="list-information__label">{{ ("Quatrième de couverture")|trans }}</span>
-        <ul class="list-information__sub-list" lang="fr">
+        <ul class="list-information__sub-list">
             {% if notice.fourth.presentation  %}
                 <li class="list-information__sub-item">
                     <span>{{ 'page.quatrieme.label.presentation' |trans }}</span>

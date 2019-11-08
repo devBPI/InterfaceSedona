@@ -16,10 +16,13 @@ $(document)
                 .addClass('btn-see-more--more');
         }
     })
-    .on('change','.js-pagination-select', function (e) {
-        let $this = $(this);
-        let page = $this.val();
-        window.location = $this.data('url').replace(-1, page);
+    .on('keyup','.js-pagination-select', function (e) {
+        if (e.keyCode === 13) {
+
+            let $this = $(this);
+            let page = $this.val();
+            window.location = $this.data('url').replace(-1, page);
+        }
     })
     .on('click', '.js-delete-filter',  function(e){
         e.preventDefault();

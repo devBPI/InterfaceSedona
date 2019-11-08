@@ -17,22 +17,35 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * Class CommonController
+ * Class ReportingController
  * @package App\Controller
  */
-final class CommonController extends AbstractController
+final class ReportingController extends AbstractController
 {
+    /**
+     * @var MailSenderService
+     */
+    private $mailSenderService;
 
     /**
-     * @Route("signaler-une-erreur-sur-le-catalogue", name="common-report-error")
-     * @param Request $request
+     * ReportingController constructor.
      * @param MailSenderService $mailSenderService
+     */
+    public function __construct( MailSenderService $mailSenderService)
+    {
+
+        $this->mailSenderService = $mailSenderService;
+    }
+
+    /**
+     * @Route("/signaler-une-erreur-sur-le-catalogue", name="common-report-error")
+     * @param Request $request
      * @return \Symfony\Component\HttpFoundation\Response
      * @throws \Throwable
      * @throws \Twig\Error\LoaderError
      * @throws \Twig\Error\SyntaxError
      */
-    public function reportErrorAction(Request $request, MailSenderService $mailSenderService): Response
+    public function reportErrorAction(Request $request): Response
     {
         $form = $this->createForm(ReportErrorType::class, new ReportError());
         $form->handleRequest($request);
@@ -41,7 +54,7 @@ final class CommonController extends AbstractController
             $repportError = $form->getData();
 
             $fromEmail = empty($repportError->getEmail()) ? 'cataloge@sedona.fr' : $repportError->getEmail();
-            if ($mailSenderService->sendMail(
+            if ($this->mailSenderService->sendMail(
                 'common/modal/content.email.twig', ['data' => $repportError], $fromEmail, 'sender@sedona.fr'
             )) {
                 return $this->render('common/modal/report-error-success.html.twig');
@@ -63,13 +76,12 @@ final class CommonController extends AbstractController
     /**
      * @Route("/page-error-reporting", name="common-report-error-page")
      * @param Request $request
-     * @param MailSenderService $mailSenderService
      * @return \Symfony\Component\HttpFoundation\Response
      * @throws \Throwable
      * @throws \Twig\Error\LoaderError
      * @throws \Twig\Error\SyntaxError
      */
-    public function reportErrorPageAction(Request $request, MailSenderService $mailSenderService): Response
+    public function reportErrorPageAction(Request $request): Response
     {
         $form = $this->createForm(ReportErrorPageType::class, new ReportError());
         $form->handleRequest($request);
@@ -78,7 +90,7 @@ final class CommonController extends AbstractController
             $reportError = $form->getData();
 
             $fromEmail = empty($reportError->getEmail()) ? 'cataloge@sedona.fr' : $reportError->getEmail();
-            if ($mailSenderService->sendMail(
+            if ($this->mailSenderService->sendMail(
                 'common/modal/content.email.twig', ['data' => $reportError], $fromEmail, 'catalogue.public@bpi.fr'
             )) {
                 return $this->render('common/error-success.html.twig');
@@ -97,21 +109,19 @@ final class CommonController extends AbstractController
     /**
      * @Route("/share-by-mail", name="share_by_mail")
      * @param Request $request
-     * @param MailSenderService $mailSenderService
      * @return Response
      * @throws \Throwable
      * @throws \Twig\Error\LoaderError
      * @throws \Twig\Error\SyntaxError
      */
-    public function shareByMailAction(Request $request, MailSenderService $mailSenderService): Response
+    public function shareByMailAction(Request $request): Response
     {
         $form = $this->createForm(ShareByMailType::class, new ShareByMail());
         $form->handleRequest($request);
-
         if ($form->isSubmitted() && $form->isValid()){
             /** @var ShareByMail $object */
             $object = $form->getData();
-            if ($mailSenderService->sendMail(
+            if ($this->mailSenderService->sendMail(
                 'common/modal/content.email.twig',
                 ['data' => $object],
                 'no-reply@sedona.fr',
@@ -124,11 +134,13 @@ final class CommonController extends AbstractController
                 );
             }
         }
+        $link = $request->get('link');
 
         return $this->render(
             'common/modal/share-content.html.twig',
             [
                 'form' => $form->createView(),
+                'link' => $link
             ]
         );
     }
@@ -136,20 +148,19 @@ final class CommonController extends AbstractController
     /**
      * @Route("/suggest-by-mail", name="suggest_by_mail")
      * @param Request $request
-     * @param MailSenderService $mailSenderService
      * @return Response
      * @throws \Throwable
      * @throws \Twig\Error\LoaderError
      * @throws \Twig\Error\SyntaxError
      */
-    public function suggestByMailAction(Request $request, MailSenderService $mailSenderService): Response
+    public function suggestByMailAction(Request $request): Response
     {
         $form = $this->createForm(SuggestByMailType::class, new SuggestByMail());
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()){
             $object = $form->getData();
-            if ($mailSenderService->sendMail(
+            if ($this->mailSenderService->sendMail(
                 'common/modal/suggestion-content.email.twig',
                 ['data' => $object],
                 'no-reply@sedona.fr',

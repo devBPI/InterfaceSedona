@@ -17,7 +17,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
  * Class SuggestByMailType
  * @package App\Form
  */
-class SuggestByMailType extends AbstractType
+final class SuggestByMailType extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder
@@ -30,7 +30,7 @@ class SuggestByMailType extends AbstractType
                 'required'  => true,
             ])
             ->add('author', TextareaType::class,[
-                'required'  => false,
+                'required'  => true,
             ])
             ->add('documentType', ChoiceType::class,[
                     'required'=> false,

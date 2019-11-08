@@ -698,7 +698,26 @@ class Notice extends AbstractImage implements NoticeInterface, RecordInterface
      */
     public function getFrontAuthor(): string
     {
-        return implode(self::SEPARATOR, array_merge($this->authorsValue, $this->authors, $this->directors));
+        $payload = [];
+        $authors = [];
+
+        if ($this->authors){
+            $authors = array_merge($payload, $this->authors);
+        }elseif ($this->authorsValue){
+            foreach ($this->authorsValue as $value){
+                if ($value instanceof Value and $value->getValue()){
+                     $authors[] = $value->getValue();
+                }
+            }
+        }
+
+        $payload = array_merge($payload, $authors);
+        if ($this->directors){
+            $payload = array_merge($payload, $this->directors);
+
+        }
+
+        return implode(self::SEPARATOR, $payload);
     }
 
     /**
