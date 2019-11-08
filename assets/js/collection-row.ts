@@ -20,6 +20,12 @@ export class CollectionRow {
 
     private initListener() {
         this.adder.addEventListener('click', () => this.addRow());
+        this.target.querySelectorAll('.search-keyword__group').forEach((row: HTMLDivElement) => {
+            let removeButton = row.querySelector('button.js-remove-row') as HTMLButtonElement;
+            if (removeButton) {
+                removeButton.addEventListener('click', () => this.removeRow(row));
+            }
+        });
     }
 
     addRow(): void {
@@ -46,7 +52,7 @@ export class CollectionRow {
 
     private addEventListenerToRow(row: HTMLElement): void {
         new Autocomplete(row.querySelector('[data-toggle="autocomplete"]'));
-        row.querySelector('button').addEventListener('click', () => this.removeRow(row));
+        row.querySelector('button.js-remove-row').addEventListener('click', () => this.removeRow(row));
     }
 
     private removeRow(row: HTMLElement): void {

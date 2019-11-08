@@ -26,9 +26,11 @@ document.querySelectorAll('form').forEach((form: HTMLFormElement) => {
 })
 let copyKeyword = new CopyKeyword();
 
-
 import SelectList from './select-list';
-new SelectList(document.querySelector('#adv-search-langage'));
+let select2Element = document.querySelector('#adv-search-langage') as HTMLSelectElement;
+if (select2Element) {
+    new SelectList(select2Element);
+}
 
 import {DatePeriod} from './date-input-search';
 new DatePeriod(document.querySelector('.search-date__date--second'));
