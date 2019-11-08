@@ -25,9 +25,12 @@ header:
     title: Choix d'une langue
     aria: Menu-langue
     change-to:
-      en: English version
-      es: Espagnol version
+      en: Version anglaise
+      es: Version espagnol version
       fr: Version française
+      en-active: - active language
+      es-active: - activo idioma
+      fr-active: - langue active
   navbar-principal:
     home: Accueil
     catalogue: Catalogue

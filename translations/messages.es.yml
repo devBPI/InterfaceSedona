@@ -27,6 +27,9 @@ header:
       en: Versión en ingles
       es: Versión en español
       fr: Versión en francés
+      en-active: - active language
+      es-active: - activo idioma
+      fr-active: - langue active
   navbar-principal:
     home: Inicio
     catalogue: Catálogo
