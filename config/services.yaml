@@ -6,6 +6,7 @@
 parameters:
   locale: 'fr'
   api_dir_name: '/CatalogueWebService/api/'
+  sender: 'no-reply@%env(PROJECT_HOSTNAME)%'
 
 services:
   # default configuration for services in *this* file
@@ -59,7 +60,6 @@ services:
           protocol_version: 3
           referrals: false
 
-
   App\Provider\BpiLdapUserProvider:
     arguments:
       - '@Symfony\Component\Ldap\Ldap'
@@ -69,6 +69,11 @@ services:
       - ['ROLE_USER']
       - ['mail', 'sn','cn', 'pseudo', 'uid', 'entryUUID']
       - mail
+
+  App\Service\MailSenderService:
+    arguments:
+      - '%sender%'
+
 
   App\EventListener\AuthenticationListener:
     tags:
