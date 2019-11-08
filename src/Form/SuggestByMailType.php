@@ -49,10 +49,8 @@ class SuggestByMailType extends AbstractType
                 'required'  => false
             ])
             ->add('email', EmailType::class,[
-                'required'  =>  false,
-                'attr'      =>  ['autocomplete'=> 'email' ],
-                'invalid_message' => "wesh le mail la t'es sérieux ?"
-
+                'required'  => false,
+                'attr'      => ['autocomplete'=> 'email' ]
             ])
         ;
     }
