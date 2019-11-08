@@ -1,12 +1,12 @@
 {% if navigation is defined  and navigation is not null %}
 	<div class="col-auto">
-		<a href="{{ path('back_search', {'token': navigation.hash}) }}" class="link link--icone mb-3 mb-md-0">
+		<a href="{{ path('back_search', {'token': navigation.hash}) }}" class="link link--icone mb-3 mb-md-0" lang="fr">
 			<img src="{{ asset('images/icones/icone-chevron-gauche.svg') }}" alt="" class="icone-chevron"/>
 			<span>{{ 'bloc.results-navigation.return-to-result'|trans }}</span>
 		</a>
 	</div>
 	<div class="col-12 col-md-auto">
-		<nav aria-label="pagination">
+		<nav aria-label="pagination" lang="fr" role="navigation">
 			<ul class="pagination pagination--header justify-content-center justify-content-md-end">
 				<li class="page-item">
 					{% if navigation.previousPermalink is defined and navigation.previousPermalink is not null %}
@@ -28,7 +28,7 @@
 							<img src="{{ asset('images/icones/icone-chevron-gauche.svg') }}" alt="" class="icone-chevron"/>
 						</a>
 					{% else %}
-						<span>{{ 'bloc.results-navigation.result-next'|trans }}</span>
+						<p class="page-link page-link--left">{{ 'bloc.results-navigation.result-next'|trans }}</p>
                     {% endif %}
 				</li>
 			</ul>

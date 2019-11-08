@@ -1,7 +1,7 @@
 {% if author.type is defined and author.type is not null %}
     <li class="list-information__item">
         <span class="list-information__label">{{ 'bloc.autority-result-information.authority-type'|trans }}</span>
-        <ul class="list-information__sub-list" lang="fr">
+        <ul class="list-information__sub-list">
             <li class="list-information__sub-item">
                 {#% if link is not empty and label is not empty %}<a href="{{ link }}" aria-label="{{ 'bloc.autority-result-information.search-with'|trans({'%theme%': label }) }}">{{ label }}</a>{% else %}{{ label }}{% endif %#}
                 {{ author.type }}
@@ -13,7 +13,7 @@
 {% if  author.otherNames is defined and author.otherNames  is not null %}
     <li class="list-information__item">
         <span class="list-information__label">{{ 'bloc.autority-result-information.other-names'|trans }}</span>
-        <ul class="list-information__sub-list" lang="fr">
+        <ul class="list-information__sub-list">
             {% for val in author.otherNames %}
                 <li class="list-information__sub-item">
                     {{ val }}
@@ -25,7 +25,7 @@
 
 {% if  (author.birthDate is defined or author.deathDate is defined) and author.birthDate is not null %}
     <li class="list-information__item">
-        <ul class="list-information__sub-list" lang="fr">
+        <ul class="list-information__sub-list">
                 <li class="list-information__sub-item">
                     {{ author.birthDate }} {% if author.deathDate  %} - {{ author.deathDate }} {% endif %}
                 </li>
@@ -36,7 +36,7 @@
 {% if  author.countries  is defined and author.countries |length>0 %}
     <li class="list-information__item">
         <span class="list-information__label">{{ 'bloc.autority-result-information.country'|trans }}</span>
-        <ul class="list-information__sub-list" lang="fr">
+        <ul class="list-information__sub-list">
             {% for country in author.countries %}
                 <li class="list-information__sub-item">
                     {{ country }}
@@ -50,7 +50,7 @@
     <li class="list-information__item">
                     {#% if link is not empty and label is not empty %}<a href="{{ link }}" aria-label="{{ 'bloc.autority-result-information.search-with'|trans({'%theme%': label }) }}">{{ label }}</a>{% else %}{{ label }}{% endif %#}
     <span class="list-information__label">{{ 'bloc.autority-result-information.language'|trans }}</span>
-        <ul class="list-information__sub-list" lang="fr">
+        <ul class="list-information__sub-list">
             {% for language in author.languages %}
                 <li class="list-information__sub-item">
                     {{ language }}
@@ -63,7 +63,7 @@
 {% if  author.principalActivities is defined and author.principalActivities |length>0  %}
     <li class="list-information__item">
         <span class="list-information__label">{{ 'bloc.autority-result-information.activity'|trans }}</span>
-        <ul class="list-information__sub-list" lang="fr">
+        <ul class="list-information__sub-list">
             {% for activity in author.principalActivities %}
                 <li class="list-information__sub-item">
                     {{ activity }}

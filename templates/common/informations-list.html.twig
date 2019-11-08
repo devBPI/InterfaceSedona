@@ -2,7 +2,7 @@
     <li class="list-information__item">
         {% if items is iterable %}
             {% if (prefix|default('')~type)|trans is not empty %}<span class="list-information__label">{{ (prefix|default('')~type)|trans }}</span>{% endif %}
-            <ul class="list-information__sub-list" lang="fr">
+            <ul class="list-information__sub-list">
                 {% for label, link in items %}
                     <li class="list-information__sub-item">{% if link is not empty and label is not empty %}<a href="{{ link }}" aria-label="{{ 'bloc.autority-result-information.search-with'|trans({'%theme%': label }) }}">{{ label }}</a>{% else %}{{ label }}{% endif %}</li>
                 {% endfor %}
@@ -15,7 +15,7 @@
         {#{% if type != 'no-label' %}#}
             {#<span class="list-information__label">{{ ('bloc.autority-result-information.'~type)|trans }}</span>#}
         {#{% endif %}#}
-        {#<ul class="list-information__sub-list" lang="fr">#}
+        {#<ul class="list-information__sub-list">#}
             {#{% for label, link in items %}#}
                 {#<li class="list-information__sub-item">#}
                     {#{% if link and link |length>4 and label is not empty %}#}

@@ -58,22 +58,26 @@
 
 {% if  notice.contents %}
     <div class="col-12">
-        <h2 class="n1 bibliographic-result__subtitle">{{ 'bloc.autority-result-information.tracks'|trans }}</h2>
-        {% for content in notice.contents %}
-            <p lang="fr" class="bibliographic-result__resume">
-                {{ content }}
-            </p>
-        {% endfor %}
+        <div lang="fr">
+            <h2 class="n1 bibliographic-result__subtitle">{{ 'bloc.autority-result-information.tracks'|trans }}</h2>
+            {% for content in notice.contents %}
+                <p class="bibliographic-result__resume">
+                    {{ content }}
+                </p>
+            {% endfor %}
+        </div>
     </div>
 {% endif %}
 {% if notice.resume %}
     <div class="col-12">
-        <h2 class="n1 bibliographic-result__subtitle">{{ 'bloc.autority-result-information.resume'|trans }}</h2>
-        {% for resume in notice.resume %}
-            <p lang="fr" class="bibliographic-result__resume">
-                {{ resume }}
-            </p>
-        {% endfor %}
+        <div lang="fr">
+            <h2 class="n1 bibliographic-result__subtitle">{{ 'bloc.autority-result-information.resume'|trans }}</h2>
+            {% for resume in notice.resume %}
+                <p class="bibliographic-result__resume">
+                    {{ resume }}
+                </p>
+            {% endfor %}
+        </div>
     </div>
 {% endif %}
 
@@ -88,7 +92,7 @@
 </div>
 
 <div class="col-12 col-md-9">
-    <ul class="list-information bibliographic-result__infos js-list-information">
+    <ul class="list-information bibliographic-result__infos js-list-information" lang="fr">
         {% include 'notice/informations-bibliographic.html.twig' with {
             'notice': notice,
             'prefix': 'bloc.autority-result-information.',

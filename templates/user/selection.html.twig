@@ -26,26 +26,17 @@
             {% endif %}
         </div>
 
-        <!-- Début - Modal suppression liste -->
         {% include "user/modal/list_remove.html.twig" %}
-        <!-- Fin - Modal suppression liste -->
 
     </form>
 
 
     {% if app.user %}
-        <!-- Début - Modal création d'une nouvelle liste -->
         {% include "user/modal/list_create.html.twig" %}
-        <!-- Fin - Modal création d'une nouvelle liste -->
 
-        <!-- Début - Modal édition liste -->
         {% include "user/modal/list_edit.html.twig" %}
-        <!-- Fin - Modal édition liste -->
 
-
-        <!-- Début - Modal commentaires edit -->
         {% include "user/modal/comments-view.html.twig" %}
-        <!-- Fin - Modal commentaires edit -->
     {% endif %}
 
 {% endblock %}

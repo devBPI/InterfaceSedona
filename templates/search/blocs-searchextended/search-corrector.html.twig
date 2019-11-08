@@ -1,6 +1,5 @@
-<!-- Début - Bloc 7 Orthographe -->
 {% if suggestionList.suggestions is defined and  suggestionList.suggestions|length >0 %}
-    <div class="dropdown mb-3" aria-label="{{ 'bloc.search-correct.title-aria'|trans }}">
+    <div class="dropdown mb-3" aria-label="{{ 'bloc.search-correct.title-aria'|trans }}" lang="fr">
         <span class="sr-only">{{ 'bloc.search-correct.title-sr-only'|trans }}</span>
         <button type="button" id="dropdown-corrector" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="listbox" aria-expanded="false">
             {{ 'bloc.search-correct.text'|trans }}
@@ -14,4 +13,3 @@
         </ul>
     </div>
 {% endif %}
-<!-- Fin - Bloc 7 Orthographe -->

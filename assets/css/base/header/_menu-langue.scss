@@ -83,6 +83,13 @@
 						}
 					}
 				}
+
+				&.active {
+
+					a {
+						color: $grey-disabled;
+					}
+				}
 			}
 		}
 	}
