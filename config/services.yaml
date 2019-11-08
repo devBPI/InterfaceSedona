@@ -46,6 +46,9 @@ services:
     arguments: ['@doctrine.orm.entity_manager']
   App\Service\SelectionListService:
     arguments: ['@doctrine.orm.entity_manager']
+  App\Service\SearchService:
+    arguments:
+      $logger : '@monolog.logger'
 
 
   Symfony\Component\Ldap\Ldap:

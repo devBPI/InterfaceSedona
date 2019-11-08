@@ -1,12 +1,17 @@
-{% if facet.name == 'date_publishing' %}
-    {% include 'search/blocs-refined-search/date-content.html.twig' %}
-{% else %}
-    {% from 'search/blocs-advanced-search/macros.html.twig' import display_checkbox_list %}
-    {{ display_checkbox_list(
-        'refine',
-        facet.label,
-        facet.name,
-        facet.values,
-        objSearch.searchFilters
-    ) }}
-{% endif %}
+{% from 'search/blocs-advanced-search/macros.html.twig' import display_checkbox_list %}
+
+{% for facet in objSearch.results.facets.facets if facet.values|length > 1 %}
+    <div class="modal-body">
+        {% if facet.name == 'date_publishing' %}
+            {% include 'search/blocs-refined-search/date-content.html.twig' %}
+        {% else %}
+            {{ display_checkbox_list(
+                'refine',
+                facet.label,
+                facet.name,
+                facet.values,
+                objSearch.searchFilters
+            ) }}
+        {% endif %}
+    </div>
+{% endfor %}

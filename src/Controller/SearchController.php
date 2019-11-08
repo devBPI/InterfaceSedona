@@ -13,7 +13,6 @@ use App\Model\Search\ObjSearch;
 use App\Model\Search\SearchQuery;
 use App\Model\SuggestionList;
 use App\Service\NoticeBuildFileService;
-use App\Service\Provider\AdvancedSearchProvider;
 use App\Service\Provider\SearchProvider;
 use App\Service\SearchService;
 use App\WordsList;
@@ -22,7 +21,6 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
@@ -39,10 +37,6 @@ final class SearchController extends AbstractController
      */
     private $searchProvider;
     /**
-     * @var AdvancedSearchProvider
-     */
-    private $advancedSearchProvider;
-    /**
      * @var SearchService
      */
     private $searchService;
@@ -55,18 +49,15 @@ final class SearchController extends AbstractController
     /**
      * SearchController constructor.
      * @param SearchProvider $searchProvider
-     * @param AdvancedSearchProvider $advancedSearchProvider
      * @param SearchService $searchService
      * @param NoticeBuildFileService $service
      */
     public function __construct(
         SearchProvider $searchProvider,
-        AdvancedSearchProvider $advancedSearchProvider,
         SearchService $searchService,
         NoticeBuildFileService $service
     ) {
         $this->searchProvider = $searchProvider;
-        $this->advancedSearchProvider = $advancedSearchProvider;
         $this->searchService = $searchService;
         $this->buildFileContent = $service;
     }
@@ -229,34 +220,6 @@ final class SearchController extends AbstractController
     }
 
     /**
-     * @param Request $request
-     * @param SessionInterface $session
-     * @return Response
-     */
-    public function advancedSearchContent(Request $request, SessionInterface $session): Response
-    {
-        if ($request->get('searchToken') !== null && $session->has($request->get('searchToken'))) {
-            $searchQuery = $this->searchService->getSearchQueryFromToken($request->get('searchToken'), $request);
-        } else {
-            $criteria = new Criteria();
-            $criteria->setAdvancedSearch($request->query->all());
-            $searchQuery = new SearchQuery($criteria, new FacetFilter($request->query->all()));
-        }
-
-        $searchQuery->getCriteria()->setAdvancedSearch($request->query->all());
-        $objSearch = new ObjSearch($searchQuery);
-
-        return $this->render(
-            'search/blocs-advanced-search/content.html.twig',
-            [
-                'criteria' => $this->advancedSearchProvider->getAdvancedSearchCriteria(),
-                'objSearch' => $objSearch,
-                'modeDate' => $request->get('adv-search-date')
-            ]
-        );
-    }
-
-    /**
      * @Route("/autocompletion", methods={"GET"}, name="search_autocompletion")
      * @param Request $request
      * @return JsonResponse
@@ -291,8 +254,6 @@ final class SearchController extends AbstractController
      * @param SearchQuery $search
      * @param Request $request
      * @return Response
-     * @throws \Doctrine\ORM\ORMException
-     * @throws \Doctrine\ORM\OptimisticLockException
      * @throws \Twig\Error\LoaderError
      * @throws \Twig\Error\RuntimeError
      * @throws \Twig\Error\SyntaxError

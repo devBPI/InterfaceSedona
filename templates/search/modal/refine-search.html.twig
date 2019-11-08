@@ -11,11 +11,7 @@
 					</button>
 				</div>
 
-				{% for facet in objSearch.results.facets.facets if facet.values|length > 1 %}
-					<div class="modal-body">
-						{% include 'search/blocs-refined-search/content.html.twig' %}
-					</div>
-				{% endfor %}
+				{% include 'search/blocs-refined-search/content.html.twig' %}
 
 				<div class="modal-footer">
                     <button type="reset" class="btn-link btn js-clean">

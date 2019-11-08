@@ -92,8 +92,6 @@ class BpiConverter implements ParamConverterInterface
             $object = $this->buildObject($request, $configuration);
         } catch (NoResultException $e) {
             throw new NotFoundHttpException();
-
-            return $this->templating->render('common/error.html.twig');
         }
 
         $request->attributes->set($configuration->getName(), $object);
@@ -112,24 +110,23 @@ class BpiConverter implements ParamConverterInterface
         $permalink = $request->get('permalink');
 
         $object = $request->get($configuration->getName());
-        if ($configuration->getClass(
-            ) === NoticeThemed::class && (!$object instanceof NoticeThemed || $object->getNotice()->getPermalink(
-                ) !== $permalink)) {
+        if ($configuration->getClass() === NoticeThemed::class &&
+            (!$object instanceof NoticeThemed || $object->getNotice()->getPermalink() !== $permalink)) {
             $object = $this->noticeProvider->getNotice($permalink);
         }
 
-        if ($configuration->getClass() === Authority::class && (!$object instanceof Authority || $object->getPermalink(
-                ) !== $permalink)) {
+        if ($configuration->getClass() === Authority::class &&
+            (!$object instanceof Authority || $object->getPermalink() !== $permalink)) {
             $object = $this->authorityProvider->getAuthority($permalink);
         }
-        if ($configuration->getClass() === IndiceCdu::class && (!$object instanceof IndiceCdu || $object->getPermalink(
-                ) !== $permalink)) {
+        if ($configuration->getClass() === IndiceCdu::class &&
+            (!$object instanceof IndiceCdu || $object->getPermalink() !== $permalink)) {
             $object = $this->authorityProvider->getIndiceCdu($permalink);
         }
 
         if (
-            $configuration->getClass() === NavigationService::class
-            && (!$object instanceof NavigationService || $object->getHash() !== $request->get('searchToken'))
+            $configuration->getClass() === NavigationService::class &&
+            (!$object instanceof NavigationService || $object->getHash() !== $request->get('searchToken'))
         ) {
             $object = $this->buildNavigationService($request->attributes->get('notice'), $request);
         }

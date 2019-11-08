@@ -7,6 +7,7 @@ use App\Model\Search\FiltersQuery;
 use App\Model\Search\ObjSearch;
 use App\Model\Search\SearchQuery;
 use JMS\Serializer\SerializerInterface;
+use Monolog\Logger;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Translation\Translator;
 use Symfony\Component\Translation\TranslatorInterface;
@@ -18,6 +19,7 @@ use Symfony\Component\Translation\TranslatorInterface;
 final class SearchService
 {
     use SearchQueryTrait;
+
     /**
      * @var Translator
      */
@@ -30,21 +32,28 @@ final class SearchService
      * @var SerializerInterface
      */
     private $serializer;
+    /**
+     * @var Logger
+     */
+    private $logger;
 
     /**
      * SearchService constructor.
      * @param TranslatorInterface $translator
      * @param SerializerInterface $serializer
      * @param HistoryService $historicService
+     * @param Logger $logger
      */
     public function __construct(
         TranslatorInterface $translator,
         SerializerInterface $serializer,
-        HistoryService $historicService
+        HistoryService $historicService,
+        Logger $logger
     ) {
         $this->translator = $translator;
         $this->serializer = $serializer;
         $this->historicService = $historicService;
+        $this->logger = $logger;
     }
 
     /**
@@ -65,8 +74,6 @@ final class SearchService
      * @param SearchQuery $search
      * @param Request $request
      * @return ObjSearch
-     * @throws \Doctrine\ORM\ORMException
-     * @throws \Doctrine\ORM\OptimisticLockException
      */
     public function createObjSearch(SearchQuery $search, Request $request): ObjSearch
     {
@@ -77,11 +84,15 @@ final class SearchService
         $objSearch = new ObjSearch($search);
         $objSearch->setTitle($this->getTitleFromSearchQuery($search));
 
-        $this->historicService->saveCurrentSearchInSession(
-            $objSearch,
-            $this->serializer->serialize($search, 'json'),
-            $request->get('action', null) !== null
-        );
+        try {
+            $this->historicService->saveCurrentSearchInSession(
+                $objSearch,
+                $this->serializer->serialize($search, 'json'),
+                $request->get('action', null) !== null
+            );
+        } catch (\Exception $e) {
+            $this->logger->error('Search history failed : '.$e->getMessage());
+        }
 
         return $objSearch;
     }

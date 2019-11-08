@@ -12,7 +12,7 @@
 
             <form action="{{ path('advanced_search') }}" method="get">
 
-                {{ render(controller('App\\Controller\\SearchController::advancedSearchContent', {'request': app.request})) }}
+                {{ render(controller('App\\Controller\\AdvancedSearchController::index', {'request': app.request})) }}
 
                 <div class="modal-footer">
                     <button type="reset" class="btn-link btn js-clean">
