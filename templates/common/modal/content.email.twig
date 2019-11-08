@@ -3,7 +3,13 @@
 {% endblock %}
 
 {% block body_html %}
-    {{ data.message }}
+    Bonjour,
+    <p>
+        Je vous invite à découvrir le lien: <a href="{{ data.link }}" >{{ data.link }}</a>
+    </p>
+    <p>
+        {{ data.message }}
+    </p>
 {% endblock %}
 
 {% block body_text %}

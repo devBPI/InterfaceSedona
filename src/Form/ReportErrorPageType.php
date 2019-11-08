@@ -16,7 +16,7 @@ use Symfony\Component\Validator\Constraints as Asset;
  * Class ReportErrorPageType
  * @package App\Form
  */
-class ReportErrorPageType extends AbstractType
+final class ReportErrorPageType extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder
