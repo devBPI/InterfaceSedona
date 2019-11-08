@@ -22,7 +22,7 @@
 			</a>
 		</li>
 		<li class="dropdown-item menu-langue__list-item{% if app.request.locale=='fr' %} active{% endif %}" role="option" aria-selected="true">
-			<a href="{{ path(path,parameters|merge(app.request.query.all|merge({_locale: 'fr'})))}}" aria-label="{{ 'header.navbar-langue.change-to.es'|trans }}" lang="es">
+			<a href="{{ path(path,parameters|merge(app.request.query.all|merge({_locale: 'fr'})))}}" aria-label="{{ 'header.navbar-langue.change-to.fr'|trans }}" lang="es">
 				<abbr title="{{ 'header.navbar-langue.change-to.fr'|trans }}">FR</abbr>
 			</a>
 		</li>
