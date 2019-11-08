@@ -137,16 +137,17 @@ final class SearchController extends AbstractController
     {
         $search = $this->searchService->getSearchQueryFromToken($request->get('searchToken'), $request);
         $criteria = $search->getCriteria()->setParcours($parcours);
-
-        $search->
-        setFacets(new FacetFilter($request->query->all()))
-        ->setCriteria($criteria);
+        $search
+            ->setFacets(new FacetFilter($request->query->all()))
+            ->setCriteria($criteria)
+        ;
 
         return $this->displaySearch(
             $search,
             $request
         );
     }
+
 
     /**
      * @Route("/retour-recherche/{token}", methods={"GET"}, name="back_search")

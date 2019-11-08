@@ -9,7 +9,7 @@ use Symfony\Component\Validator\Constraints as Asset;
  * Class ShareByMail
  * @package App\Model\Form
  */
-class ShareByMail implements MessageInfoInterface
+final class ShareByMail implements MessageInfoInterface
 {
     use MessageInfoTrait;
 
