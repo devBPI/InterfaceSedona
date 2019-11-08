@@ -17,7 +17,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
  * Class SuggestByMailType
  * @package App\Form
  */
-class SuggestByMailType extends AbstractType
+final class SuggestByMailType extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder

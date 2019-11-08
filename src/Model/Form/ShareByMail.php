@@ -28,6 +28,11 @@ final class ShareByMail implements MessageInfoInterface
     private $receiver;
 
     /**
+     * @var string
+     */
+    private $link;
+
+    /**
      * @return null|string
      */
     public function getSender(): ?string
@@ -61,5 +66,24 @@ final class ShareByMail implements MessageInfoInterface
     public function getReceiver(): ?string
     {
         return $this->receiver;
+    }
+
+    /**
+     * @return null|string
+     */
+    public function getLink(): ?string
+    {
+        return $this->link;
+    }
+
+    /**
+     * @param string|null $link
+     * @return ShareByMail
+     */
+    public function setLink(string $link=null):ShareByMail
+    {
+        $this->link = $link;
+
+        return $this;
     }
 }
