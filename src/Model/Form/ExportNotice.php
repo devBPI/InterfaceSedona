@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace App\Model\Form;
 
-use Symfony\Component\Validator\Constraints as Asset;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Class ExportNotice
@@ -13,8 +13,8 @@ final class ExportNotice
 {
     /**
      * @var string
-     * @Asset\NotBlank(message="email.empty");
-     * @Asset\Email();
+     * @Assert\NotBlank(message="email.empty");
+     * @Assert\Email();
      */
     private $receiver;
     /**
@@ -27,7 +27,7 @@ final class ExportNotice
     private $shortFormat = false;
     /**
      * @var string
-     * @Asset\NotBlank();
+     * @Assert\NotBlank(message="text.empty");
      */
     private $formatType;
     /**
