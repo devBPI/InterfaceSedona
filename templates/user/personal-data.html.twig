@@ -6,9 +6,9 @@
 
 {% block body %}
 
-	<h1 class="n1">{{ 'page.personal-data.title-connected'|trans }}</h1>
+	<h1 class="n1" lang="fr">{{ 'page.personal-data.title-connected'|trans }}</h1>
 
-	<nav role="navigation">
+	<nav role="navigation" lang="fr">
 		<ul class="nav nav-tabs">
 			{% if is_granted('IS_AUTHENTICATED_FULLY') %}
 				<li class="nav-item">
@@ -24,7 +24,7 @@
 		</ul>
 	</nav>
 
-	<div class="tab-pane">
+	<div class="tab-pane" lang="fr">
 		{% block content %}
 			{% if is_granted('IS_AUTHENTICATED_FULLY') %}
 				<h2 class="n1 title-icone">

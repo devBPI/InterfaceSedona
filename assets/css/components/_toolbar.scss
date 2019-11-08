@@ -79,10 +79,9 @@
 			}
 
 			span {
-				display: none;
 
-				@include media-breakpoint-up(lg) {
-					display: block;
+				@include media-breakpoint-down(md) {
+					@include sr-only;
 				}
 			}
 		}

@@ -9,6 +9,7 @@ use Twig\Environment;
 
 class MailSenderService
 {
+
     /**
      * @var Environment
      */
@@ -18,16 +19,22 @@ class MailSenderService
      * @var \Swift_Mailer
      */
     private $mailer;
+    /**
+     * @var string
+     */
+    private $sender;
 
     /**
      * MailSenderService constructor.
+     * @param string $sender
      * @param Environment $twig
      * @param \Swift_Mailer $mailer
      */
-    public function __construct(Environment $twig, \Swift_Mailer $mailer)
+    public function __construct(string $sender, Environment $twig, \Swift_Mailer $mailer)
     {
         $this->mailer = $mailer;
         $this->twig = $twig;
+        $this->sender = $sender;
     }
 
     /**
@@ -52,7 +59,7 @@ class MailSenderService
 
         $message = (new \Swift_Message($subject))
             ->setSubject($subject)
-            ->setFrom($fromEmail)
+            ->setFrom($this->sender)
             ->setTo($toEmail)
         ;
 
