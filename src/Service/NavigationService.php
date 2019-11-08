@@ -9,6 +9,7 @@ use App\Model\Interfaces\NoticeInterface;
 use App\Model\Notice;
 use App\Model\RankedAuthority;
 use App\Model\Search\SearchQuery;
+use App\Request\ParamConverter\BpiConverterInterface;
 use App\Service\Provider\SearchProvider;
 use App\Utils\NavigationNotice;
 
@@ -16,7 +17,7 @@ use App\Utils\NavigationNotice;
  * Class NavigationService
  * @package App\Service
  */
-final class NavigationService
+final class NavigationService implements BpiConverterInterface
 {
     /**
      * @var string
@@ -210,7 +211,8 @@ final class NavigationService
     /**
      * @return null|string
      */
-    public function  getPermalink(){
+    public function getPermalink(): ?string
+    {
         if ($this->getActualPermalink() instanceof NavigationNotice){
             return $this->getActualPermalink()->getPermalink();
         }

@@ -1,17 +1,16 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: infra
- * Date: 29/08/19
- * Time: 16:29
- */
 declare(strict_types=1);
 
 namespace App\Model;
+
+use App\Request\ParamConverter\BpiConverterInterface;
 use JMS\Serializer\Annotation as JMS;
 
-
-class NoticeThemed
+/**
+ * Class NoticeThemed
+ * @package App\Model
+ */
+class NoticeThemed implements BpiConverterInterface
 {
     /**
      * @var Notices
@@ -59,4 +58,15 @@ class NoticeThemed
         return count($this->results)>0?$this->results[0]:0;
     }
 
+    /**
+     * @return null|string
+     */
+    public function getPermalink(): ?string
+    {
+        if ($this->getNotice() instanceof Notice) {
+            return $this->getNotice()->getPermalink();
+        }
+
+        return null;
+    }
 }

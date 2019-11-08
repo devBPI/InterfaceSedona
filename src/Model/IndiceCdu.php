@@ -7,13 +7,14 @@ use App\Model\Interfaces\RecordInterface;
 use App\Model\Traits\BreadcrumbTrait;
 use App\Model\Traits\IndiceAndAuthorityTrait;
 use App\Model\Traits\OriginTrait;
+use App\Request\ParamConverter\BpiConverterInterface;
 use JMS\Serializer\Annotation as JMS;
 
 /**
  * Class IndiceCdu
  * @package App\Model
  */
-final class IndiceCdu  extends Cdu implements NoticeInterface, RecordInterface
+final class IndiceCdu  extends Cdu implements NoticeInterface, RecordInterface, BpiConverterInterface
 {
 
     const BREAD_CRUMB_NAME = 'indice_cdu';

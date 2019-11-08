@@ -8,13 +8,14 @@ use App\Model\Interfaces\RecordInterface;
 use App\Model\Traits\BreadcrumbTrait;
 use App\Model\Traits\IndiceAndAuthorityTrait;
 use App\Model\Traits\NoticeTrait;
+use App\Request\ParamConverter\BpiConverterInterface;
 use JMS\Serializer\Annotation as JMS;
 
 /**
  * Class Authority
  * @package App\Model
  */
-final class Authority implements NoticeInterface, RecordInterface
+final class Authority implements NoticeInterface, RecordInterface, BpiConverterInterface
 {
     private const DOC_TYPE = 'authority';
     const BREAD_CRUMB_NAME = 'authority';
