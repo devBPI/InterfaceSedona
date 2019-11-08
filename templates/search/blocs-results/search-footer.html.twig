@@ -16,14 +16,14 @@
 				<div class="page-link page-link--reset">
 					<label for="pagination-select" class="sr-only">{{ 'bloc.search-header-footer.footer.select-sr-only'|trans({'%nb%': 5 }) }}</label>
 
-					<input type="text" aria-label="{{ 'bloc.search-header-footer.footer.select-sr-only'|trans({'%nb%': 5 }) }}" class="page-link__input">
+					<input
+							type="text"
+							aria-label="{{ 'bloc.search-header-footer.footer.select-sr-only'|trans({'%nb%': 5 }) }}"
+							data-url="{{ path('search', {'see-all':seeAll is defined?seeAll:null, 'searchToken': objSearch.contextToken, 'page':-1 }) }}"
+							class="js-pagination-select page-link__input"
+							value="{{ page}}"
 
-					<select id="pagination-select" class="js-pagination-select" data-url="{{ path('search', {'see-all':seeAll is defined?seeAll:null, 'searchToken': objSearch.contextToken, 'page':-1 }) }}">
-						{% for i in (page - 10)..(page + 10) if i > 0 and i <= pagesTotal %}
-							<option value="{{ i }}" {% if i == page %}selected{% endif %}>{{ i }}</option>
-						{% endfor %}
-					</select>
-
+					>
 					{{ 'bloc.search-header-footer.footer.select-of'|trans({'%nb%': pagesTotal }) }}
 				</div>
 			</li>
