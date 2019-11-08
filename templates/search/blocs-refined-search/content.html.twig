@@ -1,16 +1,12 @@
-<div class="search-facette">
-    <button type="button" class="search-facette__button btn" data-toggle="collapse" aria-expanded="false"
-            aria-controls="rfn-search-{{ facet.name }}" data-target="#rfn-search-{{ facet.name }}">{{ facet.label }}
-       </button>
-    <div class="collapse search-facette__body" id="rfn-search-{{ facet.name }}" role="group"
-         aria-label="{{ facet.label }}">
-        <div class="search-facette__content">
-            {% if facet.name == 'date_publishing' %}
-                {% include 'search/blocs-refined-search/date-content.html.twig' %}
-            {% else %}
-                {% from 'search/blocs-advanced-search/macros.html.twig' import display_checkbox_list %}
-                {{ display_checkbox_list('refine', facet.name, facet.values, objSearch.searchFilters) }}
-            {% endif %}
-        </div>
-    </div>
-</div>
+{% if facet.name == 'date_publishing' %}
+    {% include 'search/blocs-refined-search/date-content.html.twig' %}
+{% else %}
+    {% from 'search/blocs-advanced-search/macros.html.twig' import display_checkbox_list %}
+    {{ display_checkbox_list(
+        'refine',
+        facet.label,
+        facet.name,
+        facet.values,
+        objSearch.searchFilters
+    ) }}
+{% endif %}

@@ -140,21 +140,13 @@
 {% if criteria.facets is defined %}
     {% for key in criteria.facets if attribute(criteria, key)|length > 0 %}
         <div class="modal-body">
-            <div class="search-facette">
-                <button type="button"
-                        class="search-facette__button btn {% if key in objSearch.searchFilters|keys %}collapsed{% endif %}"
-                        data-toggle="collapse"
-                        aria-expanded="{{ key in objSearch.searchFilters|keys ? 'true' : 'false' }}"
-                        aria-controls="adv-search-{{ key }}"
-                        data-target="#adv-search-{{ key }}">{{ ('modal.advanced-search.facette.'~key)|trans }}</button>
-                <div class="collapse search-facette__body {% if key in objSearch.searchFilters|keys %}collapse show{% endif %}"
-                     id="adv-search-{{ key }}" role="group"
-                     aria-label="{{ ('modal.advanced-search.facette.'~key)|trans }}">
-                    <div class="search-facette__content">
-                        {{ display_form.display_checkbox_list('advanced', key, attribute(criteria, key), objSearch.searchFilters) }}
-                    </div>
-                </div>
-            </div>
+            {{ display_form.display_checkbox_list(
+                'advanced',
+                ('modal.advanced-search.facette.'~key)|trans,
+                key,
+                attribute(criteria, key),
+                objSearch.searchFilters
+            ) }}
         </div>
     {% endfor %}
 {% endif %}
