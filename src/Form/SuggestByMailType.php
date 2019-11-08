@@ -33,7 +33,7 @@ class SuggestByMailType extends AbstractType
                 'required'  => false,
             ])
             ->add('documentType', ChoiceType::class,[
-                    'required'=> true,
+                    'required'=> false,
                     'multiple' => false,
                     'choices'=> SuggestByMail::DOCUMENT_TYPE
                 ])

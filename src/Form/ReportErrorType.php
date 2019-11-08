@@ -11,7 +11,6 @@ use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Validator\Constraints as Asset;
 
 /**
  * Class ReportErrorType
@@ -32,8 +31,7 @@ class ReportErrorType extends AbstractType
             ])
             ->add('message', TextareaType::class,[
                 'required'  => true,
-                'label'     => 'modal.report.field.message',
-                'constraints'=> [ new Asset\NotBlank() ]
+                'label'     => 'modal.report.field.message'
             ])
             ->add('lastName', TextType::class,[
                 'required'  => false,

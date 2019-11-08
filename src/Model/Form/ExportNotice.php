@@ -13,7 +13,7 @@ class ExportNotice
 {
     /**
      * @var string
-     * @Asset\NotBlank();
+     * @Asset\NotBlank(message="email.empty");
      * @Asset\Email();
      */
     private $receiver;

@@ -27,25 +27,22 @@ class SuggestByMail implements PersonneInterface
         'Formation' => 'Formation'
     ];
     /**
-     * @Asset\NotBlank();
      * @var string
      */
     private $author;
 
     /**
-     * @Asset\NotBlank();
+     * @Asset\NotBlank(message="text.empty");
      * @var string
      */
     private $title;
 
     /**
-     * @Asset\NotBlank();
      * @var string
      */
     private $editor;
 
     /**
-     * @Asset\NotBlank();
      * @var string
      */
     private $documentType;

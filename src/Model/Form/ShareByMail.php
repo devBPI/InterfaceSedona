@@ -15,14 +15,14 @@ class ShareByMail implements MessageInfoInterface
 
     /**
      * @var string
-     * @Asset\NotBlank();
+     * @Asset\NotBlank(message="email.empty");
      * @Asset\Email();
      */
     private $sender;
 
     /**
      * @var string
-     * @Asset\NotBlank();
+     * @Asset\NotBlank(message="email.empty");
      * @Asset\Email();
      */
     private $receiver;

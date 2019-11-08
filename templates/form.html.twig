@@ -12,6 +12,11 @@
     {% endblock form_label_errors %}
 {%- endblock form_widget_simple %}
 
+{%- block textarea_widget -%}
+    {{ parent() }}
+    {{- form_errors(form) -}}
+{%- endblock textarea_widget -%}
+
 {% block form_label -%}
     {%- if label is same as(false) -%}
         <div class="{{ block('form_label_class') }}"></div>

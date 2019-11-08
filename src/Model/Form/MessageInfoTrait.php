@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Model\Form;
+
 use Symfony\Component\Validator\Constraints as Asset;
 
 /**
@@ -11,12 +12,13 @@ trait MessageInfoTrait
 {
     /**
      * @var string
-     * @Asset\NotBlank();
+     * @Asset\NotBlank(message="text.empty");
      */
     private $object;
 
     /**
      * @var string
+     * @Asset\NotBlank(message="text.empty");
      */
     private $message;
 

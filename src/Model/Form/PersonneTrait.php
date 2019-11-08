@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Model\Form;
+
 use Symfony\Component\Validator\Constraints as Asset;
 
 /**
@@ -21,7 +22,6 @@ trait PersonneTrait
 
     /**
      * @var string
-     * @Asset\NotBlank();
      * @Asset\Email();
      */
     private $email;

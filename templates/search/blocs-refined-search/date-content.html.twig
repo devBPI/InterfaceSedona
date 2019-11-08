@@ -3,7 +3,7 @@
         <label for="rfn-search-date-1" class="sr-only">{{ 'modal.advanced-search.facette.date_start_label'|trans }}</label>
         <input type="number" pattern="[0-9]{4}" class="form-control date-picker" id="rfn-search-date-1"
                placeholder="{{ 'modal.advanced-search.facette.date_placeholder'|trans }}"
-               min="{{ facet.minValue }}" max="{{ facet.maxValue }}" value="{{ min_facet_value(facet.name) }}">
+               min="{{ facet.minValue }}" max="{{ facet.maxValue }}" value="{{ min_facet_value(facet.name, facet.minValue) }}">
     </div>
     <div class="mx-3">
         <input type="text" id="rfn-search-date-slider"
@@ -15,7 +15,7 @@
         <label for="rfn-search-date-2" class="sr-only">{{ 'modal.advanced-search.facette.date_end_label'|trans }}</label>
         <input type="number" pattern="[0-9]{4}" class="form-control date-picker" id="rfn-search-date-2"
                placeholder="{{ 'modal.advanced-search.facette.date_placeholder'|trans }}"
-               min="{{ facet.minValue }}" max="{{ facet.maxValue }}" value="{{ max_facet_value(facet.name) }}">
+               min="{{ facet.minValue }}" max="{{ facet.maxValue }}" value="{{ max_facet_value(facet.name, facet.maxValue) }}">
     </div>
     <div class="d-none">
         {% for index, facetChild in facet.values %}
