@@ -6,7 +6,6 @@
 parameters:
   locale: 'fr'
   api_dir_name: '/CatalogueWebService/api/'
-  sender: 'no-reply@%env(PROJECT_HOSTNAME)%'
 
 services:
   # default configuration for services in *this* file
@@ -72,8 +71,7 @@ services:
 
   App\Service\MailSenderService:
     arguments:
-      - '%sender%'
-
+      - '%env(MAIL_SENDER)%'
 
   App\EventListener\AuthenticationListener:
     tags:
