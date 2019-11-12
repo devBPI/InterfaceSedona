@@ -6,6 +6,7 @@
 parameters:
   locale: 'fr'
   api_dir_name: '/CatalogueWebService/api/'
+  api_base_url: "http://%env(CATALOG_API_HOST)%%api_dir_name%"
 
 services:
   # default configuration for services in *this* file
@@ -39,7 +40,7 @@ services:
     - '@eight_points_guzzle.client.bpi_catalog'
 
   App\Service\ImageBuilderService:
-    arguments: ['%kernel.project_dir%/public/', '%env(CATALOG_API_HOST)%' ]
+    arguments: ['%kernel.project_dir%/public/', '%api_base_url%' ]
   App\Service\CleanerFiles:
     arguments: ['%kernel.project_dir%/public/']
   App\Service\HistoryService:

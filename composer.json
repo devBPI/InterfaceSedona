@@ -1,11 +1,11 @@
 {
     "name": "bpi/catalogue-site",
-    "version": "0.3.0-dev",
+    "version": "0.3.1-dev",
     "description": "Site Web Catalogue de la BPI",
     "type": "project",
     "license": "proprietary",
     "require": {
-        "php": "^7.0.8",
+        "php": "^7.3",
         "ext-ctype": "*",
         "ext-iconv": "*",
         "ext-ldap": "*",

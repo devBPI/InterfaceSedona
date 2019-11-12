@@ -4,7 +4,6 @@
 namespace App\Service;
 
 
-use App\Model\Form\ReportError;
 use Twig\Environment;
 
 class MailSenderService
@@ -26,8 +25,9 @@ class MailSenderService
 
     /**
      * MailSenderService constructor.
-     * @param string $sender
-     * @param Environment $twig
+     *
+     * @param string        $sender
+     * @param Environment   $twig
      * @param \Swift_Mailer $mailer
      */
     public function __construct(string $sender, Environment $twig, \Swift_Mailer $mailer)
@@ -38,32 +38,39 @@ class MailSenderService
     }
 
     /**
-     * @param $templateName
-     * @param $context
-     * @param $fromEmail
-     * @param $toEmail
-     * @param null $copyTo
+     * @param                        $templateName
+     * @param                        $context
+     * @param                        $fromEmail
+     * @param                        $toEmail
+     * @param null                   $replyTo
+     * @param \Swift_Attachment|null $attachment
+     *
      * @return int
      * @throws \Throwable
      * @throws \Twig\Error\LoaderError
      * @throws \Twig\Error\SyntaxError
      */
-    public function sendMail($templateName, $context, $fromEmail, $toEmail, $replyTo=null, \Swift_Attachment $attachment=null)
-    {
-        $context    = $this->twig->mergeGlobals($context);
-        $template   = $this->twig->resolveTemplate($templateName);
+    public function sendMail(
+        $templateName,
+        $context,
+        $fromEmail,
+        $toEmail,
+        $replyTo = null,
+        \Swift_Attachment $attachment = null
+    ) {
+        $context = $this->twig->mergeGlobals($context);
+        $template = $this->twig->resolveTemplate($templateName);
 
-        $subject    = $template->renderBlock('subject', $context);
-        $textBody   = $template->renderBlock('body_text', $context);
-        $htmlBody   = $template->renderBlock('body_html', $context);
-        $sender = 'no-reply@bpi-calogue.fr';
+        $subject = $template->renderBlock('subject', $context);
+        $textBody = $template->renderBlock('body_text', $context);
+        $htmlBody = $template->renderBlock('body_html', $context);
+
         $message = (new \Swift_Message($subject))
             ->setSubject($subject)
-            ->setFrom($sender)
-            ->setTo($toEmail)
-        ;
+            ->setFrom($this->sender)
+            ->setTo($toEmail);
 
-        if ($replyTo!==null){
+        if ($replyTo !== null) {
             $message->setReplyTo($replyTo);
         }
 
@@ -73,7 +80,7 @@ class MailSenderService
         } else {
             $message->setBody($textBody);
         }
-        if ($attachment!==null){
+        if ($attachment !== null) {
             $message->attach($attachment);
         }
 
