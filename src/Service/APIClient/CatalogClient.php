@@ -7,16 +7,12 @@ use App\Model\ErrorApiResponse;
 use App\Model\Exception\ApiException;
 use App\Model\Exception\ErrorAccessApiException;
 use App\Model\Exception\NoResultException;
-use EightPoints\Bundle\GuzzleBundle\Log\Logger;
-use EightPoints\Bundle\GuzzleBundle\Log\LoggerInterface;
-use EightPoints\Bundle\GuzzleBundle\Middleware\LogMiddleware;
 use GuzzleHttp\Client;
 use GuzzleHttp\ClientInterface;
 use GuzzleHttp\Exception\BadResponseException;
 use GuzzleHttp\Exception\ClientException;
 use GuzzleHttp\Exception\ConnectException;
 use GuzzleHttp\Exception\ServerException;
-use GuzzleHttp\MessageFormatter;
 use Psr\Http\Message\UriInterface;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
@@ -24,6 +20,7 @@ use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 /**
  * Class CatalogClient
+ *
  * @package App\Service\APIClient
  */
 class CatalogClient
@@ -43,8 +40,9 @@ class CatalogClient
 
     /**
      * CatalogClient constructor.
+     *
      * @param ClientInterface $client
-     * @param RequestStack $requestStack
+     * @param RequestStack    $requestStack
      */
     public function __construct(ClientInterface $client, RequestStack $requestStack)
     {
@@ -54,15 +52,16 @@ class CatalogClient
 
     /**
      * @param string|UriInterface $uri
-     * @param array|null $query
+     * @param array|null          $query
+     *
      * @return mixed
      */
     public function get($uri, array $query = null)
     {
         try {
             $options = [
-                'query' => $query,
-                'headers' => $this->getHeaders()
+                'query'   => $query,
+                'headers' => $this->getHeaders(),
             ];
 
             $response = $this->client->get($uri, $options);
@@ -71,7 +70,7 @@ class CatalogClient
 
             return $response;
         } catch (ConnectException $exception) {
-            throw new ErrorAccessApiException();
+            throw new ErrorAccessApiException(ErrorAccessApiException::MESSAGE, 500, $exception);
         } catch (ClientException|ServerException $exception) {
             $this->formatException($exception);
         }
@@ -83,7 +82,7 @@ class CatalogClient
     private function getHeaders(): array
     {
         return [
-            self::AUTH_KEY_HEADER => $this->httpHeaders->get(self::AUTH_KEY_HEADER, self::DEFAULT_AUTH_VALUE)
+            self::AUTH_KEY_HEADER => $this->httpHeaders->get(self::AUTH_KEY_HEADER, self::DEFAULT_AUTH_VALUE),
         ];
     }
 

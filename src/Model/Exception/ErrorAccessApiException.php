@@ -9,5 +9,5 @@ namespace App\Model\Exception;
  */
 class ErrorAccessApiException extends \DomainException
 {
-    protected $message = 'Le service est inaccessible pour l\'instant. Veuillez réessayer ultérieurement.';
+    public const MESSAGE = 'Le service est inaccessible pour l\'instant. Veuillez réessayer ultérieurement.';
 }
