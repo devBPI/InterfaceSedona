@@ -5,7 +5,7 @@ eight_points_guzzle:
     clients:
         bpi_catalog:
             # Write here the host where to do requests
-            base_url: "%env(CATALOG_API_HOST)%/%api_dir_name%"
+            base_url: "%env(CATALOG_API_HOST)%"
 
             # Request options: http://docs.guzzlephp.org/en/stable/request-options.html
             options:

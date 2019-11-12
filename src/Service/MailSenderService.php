@@ -56,10 +56,10 @@ class MailSenderService
         $subject    = $template->renderBlock('subject', $context);
         $textBody   = $template->renderBlock('body_text', $context);
         $htmlBody   = $template->renderBlock('body_html', $context);
-
+        $sender = 'no-reply@bpi-calogue.fr';
         $message = (new \Swift_Message($subject))
             ->setSubject($subject)
-            ->setFrom($this->sender)
+            ->setFrom($sender)
             ->setTo($toEmail)
         ;
 
