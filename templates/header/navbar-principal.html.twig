@@ -8,8 +8,12 @@
 			<li class="nav-item dropdown-link">
 				<a href="https://www.bpi.fr/la-bibliotheque" class="nav-link dropdown-toggle">La Bibliothèque</a>
 				<span class="sr-only">Accéder à la bibliothèque</span>
-				<button class="dropdown-toggle dropdown-toggle--responsive" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
-				{% include "header/navbar-principal-dropdown.html.twig" with {'list': [
+				<button class="dropdown-toggle dropdown-toggle--responsive dropdown-toggle--close" data-toggle="dropdown" aria-controls="ul-bibliotheque" aria-expanded="false">
+					<span class="sr-only js-label-aria">Ouvrir</span><span class="sr-only"> le sous-menu de la rubrique Bibliothèque</span>
+				</button>
+				{% include "header/navbar-principal-dropdown.html.twig" with {
+					'listId': 'ul-bibliotheque',
+					'list': [
 					{
 						'link': '//www.bpi.fr/la-bibliotheque/missions-et-organisation', 'name': 'Missions et organisation',
 						'children' : {
@@ -62,8 +66,12 @@
 			<li class="nav-item dropdown-link">
 				<a href="https://www.bpi.fr/informations-pratiques" class="nav-link dropdown-toggle">Informations pratiques</a>
 				<span class="sr-only">Accéder aux informations pratiques</span>
-				<button class="dropdown-toggle dropdown-toggle--responsive" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
-				{% include "header/navbar-principal-dropdown.html.twig" with {'list': [
+				<button class="dropdown-toggle dropdown-toggle--responsive dropdown-toggle--close" data-toggle="dropdown" aria-controls="ul-infos" aria-expanded="false">
+					<span class="sr-only js-label-aria">Ouvrir</span><span class="sr-only"> le sous-menu de la rubrique Informations pratiques</span>
+				</button>
+				{% include "header/navbar-principal-dropdown.html.twig" with {
+					'listId': 'ul-infos',
+					'list': [
 						{
 							'link': '//www.bpi.fr/sites/SiteInstitutionnel/home/informations-pratiques/venir-a-la-bpi.html', 'name': 'Venir à la Bpi',
 							'children' : {
@@ -132,8 +140,12 @@
 			<li class="nav-item dropdown-link">
 				<a href="https://www.bpi.fr/espace-presse" class="nav-link dropdown-toggle">Presse / Partenariats</a>
 				<span class="sr-only">Accéder à la presse et aux partenariats</span>
-				<button class="dropdown-toggle dropdown-toggle--responsive" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
-				{% include "header/navbar-principal-dropdown.html.twig" with {'list': [
+				<button class="dropdown-toggle dropdown-toggle--responsive dropdown-toggle--close" data-toggle="dropdown" aria-controls="ul-presse" aria-expanded="false">
+					<span class="sr-only js-label-aria">Ouvrir</span><span class="sr-only"> le sous-menu de la rubrique Presse / Partenariats</span>
+				</button>
+				{% include "header/navbar-principal-dropdown.html.twig" with {
+					'listId': 'ul-presse',
+					'list': [
 							{
 								'link': 'https://www.bpi.fr/espace-presse/communiques-et-dossiers-de-presse', 'name': 'Communiqués et dossiers de presse',
 								'children' : {

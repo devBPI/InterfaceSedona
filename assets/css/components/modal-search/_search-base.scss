@@ -14,18 +14,6 @@
 	&__group {
 		display: flex;
 	}
-	
-	&__label {
-		margin-bottom: 10px;
-
-		@include media-breakpoint-up(md) {
-			margin-bottom: 0;
-		}
-
-		& + & {
-			margin-left: $spacer;
-		}
-	}
 
 	&__list {
 		list-style-type: none;

@@ -50,10 +50,11 @@ $('input').iCheck({
 });
 
 $(document)
-// Gestion navigation focus - Menu principal ---------------------------------------------------------
     .on('focus', '.dropdown-link .nav-link', function() {
-        $('.dropdown-menu').removeClass('show');
-        $(this).siblings('.dropdown-menu').addClass('show');
+        if ($(window).width() > 768) {
+            $('.dropdown-menu').removeClass('show');
+            $(this).siblings('.dropdown-menu').addClass('show');
+        }
     })
     .on('click', '.js-print-action', function () {
         let permalinkAuthority = $('.js-authority:checked');
@@ -110,6 +111,21 @@ $(document)
     })
     .on('show.bs.modal', '#modal-search-advanced', function (e) {
         copyKeyword.copyKeywordValue();
+    })
+    .on('click', '.dropdown-toggle--responsive', function() {
+        let label = $(this).children('.js-label-aria');
+
+        if($(this).hasClass('dropdown-toggle--close')) {
+            label.text('Fermer');
+            $(this)
+                .removeClass('dropdown-toggle--close')
+                .addClass('dropdown-toggle--open');
+        } else {
+            label.text('Ouvrir');
+            $(this)
+                .removeClass('dropdown-toggle--open')
+                .addClass('dropdown-toggle--close');
+        }
     })
 ;
 

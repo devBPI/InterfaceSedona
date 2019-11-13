@@ -1,4 +1,4 @@
-<ul class="dropdown-menu">
+<ul class="dropdown-menu" {% if listId is defined %}id="{{ listId }}"{% endif %}>
     {% for item in list %}
         <li class="dropdown-item">
             <a href="{{ item.link }}">{{ item.name }}</a>
