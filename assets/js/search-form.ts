@@ -63,6 +63,14 @@ export class SearchForm {
         let targetDiv = document.querySelector(targetId) as HTMLDivElement;
         targetDiv.classList.remove('d-none');
 
+        let firstNextInputElement = targetDiv.querySelector('input');
+
+        console.log(firstNextInputElement);
+
+        if (firstNextInputElement) {
+            firstNextInputElement.focus();
+        }
+
         let partsId = targetId.split('-');
         let nextId = partsId[0]+'-'+partsId[1]+'-'+(Number(partsId[2]) + 6);
         let nextDiv = document.querySelector(nextId) as HTMLDivElement;
