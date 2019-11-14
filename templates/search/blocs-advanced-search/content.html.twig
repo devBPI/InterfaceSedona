@@ -84,7 +84,7 @@
                     <div class="search-date__group">
                         <div class="search-date__date form-group">
                             <label for="adv-search-date-1"
-                                   class="sr-only">{{ 'modal.advanced-search.date.date-start'|trans }}</label>
+                                   class="sr-only js-start-label">{{ 'modal.advanced-search.date.date-start'|trans }}</label>
                             <input type="text" class="form-control" id="adv-search-date-1" placeholder="AAAA"
                                    name="{{ constant('App\\Model\\Search\\Criteria::QUERY_NAME') }}[publicationDateStart]"
                                    value="{{ objSearch.criteria.publicationDateStart }}">
@@ -114,7 +114,7 @@
                  aria-label="{{ 'modal.advanced-search.langage.select-aria'|trans }}">
                 <div class="search-facette__content">
                     <select id="adv-search-langage" multiple="multiple" class="form-control"
-                            name="{{ constant('App\\Model\\Search\\FacetFilter::QUERY_NAME') }}[language][]">
+                            name="{{ constant('App\\Model\\Search\\FacetFilter::QUERY_NAME') }}[language][]"
                         data-value="{{ 'modal.advanced-search.langage.select-aria'|trans }}">
                         {% for lang in criteria.language %}
                             <option value="{{ lang }}"

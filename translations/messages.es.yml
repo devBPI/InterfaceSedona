@@ -363,7 +363,6 @@ bloc:
     button: Relancer la recherche dans
   filters-search:         #Bloc 10 Rappel des critères de recherche
     title: 'Recherche avancée :'
-    title-sr-only: Rappel des critères de recherche
   preview-authority:      #Bloc 11 Aperçu d'une autorité
     first: Sélectionner %name%
     see-more: Voir plus
