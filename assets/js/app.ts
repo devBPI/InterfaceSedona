@@ -48,6 +48,35 @@ $('input').iCheck({
     radioClass: 'check check--radio',
     focusClass: 'focus'
 });
+let printEngine = function(){
+    let permalinkAuthority = $('.js-authority:checked');
+    let permalinkNotice = $('.js-notice:checked');
+    let permalinkIndice = $('.js-indicecdu:checked');
+    let notice = [];
+    let authority = [];
+    let indice= [];
+    permalinkNotice.each(function () {
+        if ($(this).data('notice')){
+            notice.push($(this).data('notice'));
+        }
+    });
+    permalinkAuthority.each(function () {
+        if ($(this).data('authority')){
+            authority.push($(this).data('authority'));
+        }
+    });
+
+    permalinkIndice.each(function () {
+        if ($(this).data('indicecdu')){
+            indice.push($(this).data('indicecdu'));
+        }
+    });
+
+
+    $('.js-print-notices').val(JSON.stringify(notice));
+    $('.js-print-authorities').val(JSON.stringify(authority));
+    $('.js-print-indices').val(JSON.stringify(indice));
+}
 
 $(document)
 // Gestion navigation focus - Menu principal ---------------------------------------------------------
@@ -56,18 +85,10 @@ $(document)
         $(this).siblings('.dropdown-menu').addClass('show');
     })
     .on('click', '.js-print-action', function () {
-        let permalinkAuthority = $('.js-authority:checked');
-        let permalinkNotice = $('.js-notice:checked');
-
-        $('.js-print-authorities').val(permalinkAuthority.serialize());
-        $('.js-print-notices').val(permalinkNotice.serialize())
+        printEngine();
     })
     .on('click', '.js-export-form', function(e){
-        let permalinkAuthority = $('.js-authority:checked');
-        let permalinkNotice = $('.js-notice:checked');
-        $('.js-print-authorities').val(permalinkAuthority.serialize());
-        $('.js-print-notices').val(permalinkNotice.serialize());
-
+        printEngine();
     })
     .on('click', '.js-5-indices-around', function (event) {
         let $this = $(this);
@@ -92,21 +113,6 @@ $(document)
     .on('click', '.js-copy_to_clipboard', function (e) {
         let url =  $('.js-url-to-copy').val();
         copyToClipboard(url);
-    })
-    .on('click','.js-print-selection-action', function () {
-        let permalinkNotice = $('.js-notice:checked');
-        let notice = [];
-        let authority = [];
-        permalinkNotice.each(function () {
-            if ($(this).data('notice')){
-                notice.push($(this).data('notice'));
-            }else{
-                authority.push($(this).data('authority'));
-            }
-        });
-
-        $('.js-print-notices').val(JSON.stringify(notice));
-        $('.js-print-authorities').val(JSON.stringify(authority));
     })
     .on('show.bs.modal', '#modal-search-advanced', function (e) {
         copyKeyword.copyKeywordValue();

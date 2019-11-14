@@ -76,6 +76,7 @@ services:
   App\Service\MailSenderService:
     arguments:
       - '%env(MAIL_SENDER)%'
+      - '%env(REPLY_TO_EMAIL)%'
 
   App\EventListener\AuthenticationListener:
     tags:

@@ -145,6 +145,7 @@ modal:
     submit-sr-only:  la suppression des listes et documents sélectionnés
   export:           #Modal 05 export
     title: Paramétrer l'export
+    subject: Catalogue BPI – Export de notices
     field:
       recipient: Destinataire(s) (nom@exemple.com)
       comments: Message
@@ -186,6 +187,7 @@ modal:
       last-name: Nom
       first-name: Prénom
       email: Courriel (nom@exemple.com)
+      address: ' Coordonnées'
     submit: Valider
     submit-sr-only: l'envoi de la suggestion
   report:      #Modal 09 signaler une erreur
@@ -199,6 +201,7 @@ modal:
       email: Courriel (nom@exemple.com)
     submit: Valider
     submit-sr-only:  l'envoi du mail de signalisation d'erreur
+    email: Courriel
   comments-edit:   #Modal 10  edition d'un commentaire
     title: Commentaire
     field-content: Contenu
@@ -502,6 +505,7 @@ bloc:
     in: 'dans'
     by: 'Par'
     directors: 'Réalisateurs'
+    your-references-autority: Vos références d'autorité
     your-references-bibliographic: Vos références bibliographiques
   list-related-documents:  #Bloc 19 Liste de documents + Bloc 17 Documents liés
     link-title: Actualité %current% sur %nb%, %name%

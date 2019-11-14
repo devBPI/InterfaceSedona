@@ -1,0 +1,18 @@
+{% block subject %}
+    {{ data.object }}
+{% endblock %}
+
+{% block body_html %}
+    Bonjour,
+
+    <p>
+        Veuillez trouver dans la pièce joine vos références.
+    </p>
+
+    Cordialement
+{% endblock %}
+
+{% block body_text %}
+    {{ data.message }}
+{% endblock %}
+

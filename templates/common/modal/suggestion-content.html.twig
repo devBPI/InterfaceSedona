@@ -16,14 +16,13 @@
 			<div class="col-12 col-md-10">
 				{{ form_row(form.title,{ 'label': 'modal.suggestion.field.title'|trans }) }}
 				{{ form_row(form.author,{ 'label': 'modal.suggestion.field.author'|trans }) }}
-				{{ form_row(form.editor, { 'label': 'modal.suggestion.field.editor'|trans }) }}
+                {{ form_row(form.editor, { 'label': 'modal.suggestion.field.editor'|trans }) }}
+                {{ form_row(form.address, { 'label': 'modal.suggestion.field.address'|trans }) }}
 				{{ form_row(form.documentType,{ 'label': 'modal.suggestion.field.document-type'|trans }) }}
 			</div>
 		</div>
 	</div>
-
 	<div class="modal-body">
-
 		<h2 class="n1">{{ 'modal.suggestion.subtitle'|trans }}</h2>
 		<div class="row justify-content-center">
 			<div class="col-12 col-md-10">
@@ -35,7 +34,6 @@
 
         {{ form_rest(form) }}
 	</div>
-
 	<div class="modal-footer">
 		<button type="button" data-dismiss="modal" class="btn btn-lg btn-secondary">{{ 'global.modal-cancel'|trans }}</button>
 		<button type="submit" class="btn btn-lg btn-primary">{{ 'modal.suggestion.submit'|trans }}<span class="sr-only"> {{ 'modal.suggestion.submit-sr-only'|trans }}</span></button>

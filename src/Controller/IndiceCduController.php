@@ -58,7 +58,7 @@ final class IndiceCduController extends AbstractController
 
         return $this->render('indice/indice.html.twig', [
                   'toolbar'         => IndiceCdu::class,
-                  'printRoute'      => $this->generateUrl('record_authority_pdf',  ['permalink'=>$notice->getPermalink(), 'format'=>'pdf']),
+                  'printRoute'      => $this->generateUrl('indice_pdf',  ['permalink'=>$notice->getPermalink(), 'format'=>'pdf']),
                   'subjects'        => $subject,
                   'notice'          => $notice,
                   'navigation'      => $navigation,
@@ -106,7 +106,7 @@ final class IndiceCduController extends AbstractController
             $sendAttachement = new ExportNotice();
 
             $sendAttachement
-                ->setAuthorities($request->get('permalink'))
+                ->setIndices($request->get('permalink'))
                 ->setImage($request->get('print-image', null) === 'print-image')
                 ->setFormatType($format)
                 ->setShortFormat($request->get('print-type', 'print-long') !== 'print-long')
@@ -117,5 +117,7 @@ final class IndiceCduController extends AbstractController
 
         return  $this->buildFileContent->buildFile($sendAttachement, IndiceCdu::class, $format);
     }
+
+
 }
 

@@ -3,7 +3,7 @@ Imperssion Search PDF
 Résultats de recherche
 ---------------------
 
-Notice d'autorité
+{{ 'bloc.autority-result-information.your-references-autority'| trans }}
 =====================
 {% for element in printNoticeWrapper.noticeAuthority %}
     {{ loop.index }}) {{ element.title }}
@@ -15,15 +15,13 @@ Notice d'autorité
     {% include "indice/print-detail.format.twig" with {'notice': element, 'format': 'txt'} %}
 {% endfor %}
 
-Documents en rayon
+
+{{ 'bloc.autority-result-information.your-references-bibliographic'| trans }}
 =====================
 {% for element in printNoticeWrapper.noticeOnShelves %}
     {{ loop.index }}) {{ element.title }}
     {% include "notice/print-detail.format.twig" with {'notice': element, 'format': 'txt'} %}
 {% endfor %}
-
-Documents en ligne
-=====================
 
 {% for element in printNoticeWrapper.noticeOnLine %}
     {{ loop.index }}) {{ element.title }}

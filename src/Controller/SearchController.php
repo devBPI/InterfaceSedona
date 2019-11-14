@@ -211,6 +211,7 @@ final class SearchController extends AbstractController
         $sendAttachement = (new ExportNotice())
             ->setAuthorities($request->get('authorities', ''))
             ->setNotices($request->get('notices', ''))
+            ->setIndices($request->get('indices', ''))
             ->setImage($request->get('print-image', null) === 'print-image')
             ->setFormatType($format)
             ->setShortFormat($request->get('print-type', 'print-long') !== 'print-long')

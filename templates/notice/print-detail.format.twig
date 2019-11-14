@@ -3,8 +3,6 @@
     	{{ pdf_occurence (notice, 'getTranslatedBy', 'bloc.autority-result-information.translated_from'| trans, format) | raw }}
     {% endif %}
 
-	{{ pdf_occurence (notice, 'getAnalyliticalTitle', 'bloc.autority-result-information.in'| trans, format) | raw }}
-
 	 {% if notice.type != 'Musique' %}
 		 {{ pdf_occurence (notice, 'getExportTitle', 'bloc.autority-result-information.in'| trans, format) | raw }}
 	 {% else %}

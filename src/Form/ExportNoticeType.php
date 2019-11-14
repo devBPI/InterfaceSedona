@@ -53,7 +53,13 @@ final class ExportNoticeType extends AbstractType
                      'class' => 'js-print-authorities'
                  ]
              ])
-             ->add('receiver', EmailType::class, [
+             ->add('indices', HiddenType::class,[
+                 'required' => false,
+                 'attr'=>[
+                     'class' => 'js-print-indices'
+                 ]
+             ])
+             ->add('reciever', EmailType::class, [
                     'required' => true,
                     'label' => 'modal.share.field.recipient'
                  ])
@@ -66,10 +72,10 @@ final class ExportNoticeType extends AbstractType
                      'label'=> false,
                      'expanded'=>true,
                      'choices' => [
-                         'Format PDF'           =>'pdf',
                          'Format texte brute'   =>'txt',
+                         'Format PDF'           =>'pdf',
                      ],
-                    'data' => 'pdf'
+                    'data' => 'txt'
                  ])
              ;
     }

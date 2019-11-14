@@ -10,6 +10,11 @@ Notice d'autorité
     {% include "authority/print-detail.format.twig" with {'notice': element, 'format':'txt'} %}
 {% endfor %}
 
+{% for element in printNoticeWrapper.noticeIndice %}
+    {{ loop.index }}) {{ element.title }}
+    {% include "indice/print-detail.format.twig" with {'notice': element, 'format': 'txt'} %}
+{% endfor %}
+
 
 Documents
 =====================
