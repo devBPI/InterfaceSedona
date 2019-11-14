@@ -82,18 +82,22 @@ export class DateSlider {
 }
 
 export class DatePeriod {
+    private startDateInput: HTMLInputElement
     private endDateInput: HTMLInputElement
     private radioInputList: NodeListOf<HTMLInputElement>
 
     constructor(endDateDiv: HTMLDivElement) {
+        this.startDateInput = document.querySelector('.js-start-label');
         this.endDateInput = endDateDiv.querySelector('#adv-search-date-2');
         this.radioInputList = document.querySelectorAll('.js-date-period');
 
         this.radioInputList.forEach((radioElement: HTMLInputElement) => {
             $(radioElement).on('ifChecked', () => {
+                this.startDateInput.innerHTML = "Date de début de parution";
                 endDateDiv.classList.remove('d-none')
             });
             $(radioElement).on('ifUnchecked', () => {
+                this.startDateInput.innerHTML = "Date de parution";
                 endDateDiv.classList.add('d-none')
                 this.endDateInput.value = '';
             });
