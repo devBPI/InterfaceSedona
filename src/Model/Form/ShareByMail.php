@@ -25,7 +25,7 @@ final class ShareByMail implements MessageInfoInterface
      * @Asset\NotBlank(message="email.empty");
      * @Asset\Email();
      */
-    private $receiver;
+    private $reciever;
 
     /**
      * @var string
@@ -51,21 +51,21 @@ final class ShareByMail implements MessageInfoInterface
     }
 
     /**
-     * @param string $receiver
+     * @param string $reciever
      * @return ShareByMail
      */
-    public function setReceiver(string $receiver): ShareByMail
+    public function setReciever(string $reciever): ShareByMail
     {
-        $this->receiver = $receiver;
+        $this->reciever = $reciever;
         return $this;
     }
 
     /**
      * @return null|string
      */
-    public function getReceiver(): ?string
+    public function getReciever(): ?string
     {
-        return $this->receiver;
+        return $this->reciever;
     }
 
     /**

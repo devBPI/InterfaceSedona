@@ -1,10 +1,10 @@
 {% extends 'base.pdf.twig' %}
-{% block title %}{{ 'Vos références bibliographiques ' |trans }}{% endblock %}
+{% block title %}{{ 'bloc.autority-result-information.your-references-bibliographic' |trans }}{% endblock %}
 {% block body %}
 	<div class="print__item">
 		<div class="row">
 			<div class="col-12">
-				<h2 class="n1">1) {{ notice.type }} - {{ notice.title}}</h2>
+				<h2 class="n1"> {{ notice.type }} - {{ notice.title}}</h2>
 			</div>
 			{% if  includeImage %}
 				<div class="col-3">

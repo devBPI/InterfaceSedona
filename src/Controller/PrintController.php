@@ -53,6 +53,7 @@ final class PrintController extends AbstractController
         $sendAttachement
             ->setNotices($request->get('notices'))
             ->setAuthorities($request->get('authorities'))
+            ->setIndices($request->get('indices'))
             ->setImage($request->get('print-image', null) === 'print-image')
             ->setFormatType($format)
             ->setShortFormat($request->get('print-type', 'print-long') !== 'print-long')

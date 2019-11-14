@@ -39,7 +39,7 @@ final class ShareByMailType extends AbstractType
                 'required'  => true,
                 'label'     => 'modal.share.field.expeditor'
             ])
-            ->add('receiver', EmailType::class,[
+            ->add('reciever', EmailType::class,[
                 'required'  => true,
                 'label'     => 'modal.share.field.recipient'
             ])
