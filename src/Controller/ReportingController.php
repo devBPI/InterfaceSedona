@@ -22,6 +22,7 @@ use Symfony\Component\Routing\Annotation\Route;
  */
 final class ReportingController extends AbstractController
 {
+
     /**
      * @var MailSenderService
      */
@@ -52,10 +53,10 @@ final class ReportingController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $repportError = $form->getData();
-
-            $fromEmail = empty($repportError->getEmail()) ? 'cataloge@sedona.fr' : $repportError->getEmail();
             if ($this->mailSenderService->sendMail(
-                'common/modal/content.email.twig', ['data' => $repportError], $fromEmail, 'sender@sedona.fr'
+                'common/modal/content_error.email.twig',
+                ['data' => $repportError],
+                MailSenderService::RECIEVER_EMAIL,
             )) {
                 return $this->render('common/modal/report-error-success.html.twig');
             } else {
@@ -89,9 +90,10 @@ final class ReportingController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $reportError = $form->getData();
 
-            $fromEmail = empty($reportError->getEmail()) ? 'cataloge@sedona.fr' : $reportError->getEmail();
             if ($this->mailSenderService->sendMail(
-                'common/modal/content.email.twig', ['data' => $reportError], $fromEmail, 'catalogue.public@bpi.fr'
+                'common/modal/content.email.twig',
+                ['data' => $reportError],
+                MailSenderService::RECIEVER_EMAIL,
             )) {
                 return $this->render('common/error-success.html.twig');
             }
@@ -124,8 +126,8 @@ final class ReportingController extends AbstractController
             if ($this->mailSenderService->sendMail(
                 'common/modal/content.email.twig',
                 ['data' => $object],
-                'no-reply@sedona.fr',
-                $object->getReceiver(), $object->getSender()
+                $object->getReciever(),
+                $object->getSender()
             )) {
                 return $this->render('common/modal/share-success.html.twig');
             } else {
@@ -163,8 +165,7 @@ final class ReportingController extends AbstractController
             if ($this->mailSenderService->sendMail(
                 'common/modal/suggestion-content.email.twig',
                 ['data' => $object],
-                'no-reply@sedona.fr',
-                'catalogue.public@bpi.fr'
+                MailSenderService::PURCHASE_SUGGESTION_EMAIL,
             )) {
                 return $this->render('common/modal/share-success.html.twig');
             } else {
@@ -181,5 +182,4 @@ final class ReportingController extends AbstractController
             ]
         );
     }
-
 }

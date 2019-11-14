@@ -11,6 +11,7 @@ use Symfony\Component\Form\FormError;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Translation\TranslatorInterface;
 
 
 final class ExportController extends AbstractController
@@ -23,26 +24,32 @@ final class ExportController extends AbstractController
      * @var MailSenderService
      */
     private $mailSenderService;
+    /**
+     * @var TranslatorInterface
+     */
+    private $translator;
 
     /**
      * ExportController constructor.
      * @param NoticeBuildFileService $buildFileContent
      * @param MailSenderService $mailSenderService
+     * @param TranslatorInterface $translator
      */
-    public function __construct(NoticeBuildFileService $buildFileContent, MailSenderService $mailSenderService)
+    public function __construct(NoticeBuildFileService $buildFileContent, MailSenderService $mailSenderService, TranslatorInterface $translator)
     {
         $this->buildFileContent = $buildFileContent;
         $this->mailSenderService = $mailSenderService;
+        $this->translator = $translator;
     }
 
     /**
      * @Route("/share-by-mail/{type}", name="share_notice_search_by_mail")
      * @param Request $request
      * @param string $type
-     * @param MailSenderService $mailSenderService
      * @return Response
      * @throws \Throwable
      * @throws \Twig\Error\LoaderError
+     * @throws \Twig\Error\RuntimeError
      * @throws \Twig\Error\SyntaxError
      */
     public function sendNoticesOnAttachementAction(Request $request, string $type): Response
@@ -51,21 +58,20 @@ final class ExportController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()){
+            /** @var ExportNotice $object */
             $object = $form->getData();
-            $object->setObject('partage par mail de la recherche des notices ');
-            $filename = 'search-'.date('Y-m-d_h-i-s').'.'.$object->getFormatType();
+            $object->setObject($this->translator->trans('modal.export.subject'));
+            $filename = 'Vos-references-'.date('Y-m-d').'.'.$object->getFormatType();
             $content = $this->buildFileContent->buildContent($object, $type, $object->getFormatType());
             $attachment = new \Swift_Attachment($content, $filename, sprintf('application/%s', $object->getFormatType()));
 
             if ($this->mailSenderService->sendMail(
-                'common/modal/content.email.twig',
+                'common/modal/content-export-notice.email.twig',
                 ['data' => $object],
-                'no-reply@sedona.fr',
-               'no-reply@sedona.fr' ,
-                'no-reply@sedona.fr',
+                $object->getReciever(),
+                MailSenderService::SENDER_EMAIL,
                 $attachment
             )) {
-
                 return $this->render('common/modal/share-success.html.twig');
             } else {
                 $form->addError(
@@ -102,23 +108,22 @@ final class ExportController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()){
             /** @var ExportNotice $object */
             $object = $form->getData();
-            $filename = 'notice-'.date('Y-m-d_h-i-s').'.'.$object->getFormatType();
+            $filename = 'Vos-references-'.date('Y-m-d_h-i-s').'.'.$object->getFormatType();
             $object
                 ->setNotices($permalink)
-                ->setAuthorities($permalink);
+                ->setAuthorities($permalink)
+                ->setIndices($permalink);
             $content = $this->buildFileContent->buildContent($object, $type, $object->getFormatType());
             $attachment = new \Swift_Attachment($content, $filename, sprintf('application/%s', $object->getFormatType()));
-            $object->setObject(sprintf('partage par mail de la notice %s', $permalink));
+            $object->setObject($this->translator->trans('modal.export.subject'));
 
             if ($this->mailSenderService->sendMail(
-                'common/modal/content.email.twig',
+                'common/modal/content-export-notice.email.twig',
                 ['data' => $object],
-                'no-reply@sedona.fr',
-               $object->getReceiver() ,
-                'no-reply@sedona.fr',
+               $object->getReciever(),
+                MailSenderService::SENDER_EMAIL,
                 $attachment
             )) {
-
                 return $this->render('common/modal/share-success.html.twig');
             } else {
                 $form->addError(

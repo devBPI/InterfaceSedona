@@ -46,7 +46,10 @@ final class SuggestByMail implements PersonneInterface
      * @var string
      */
     private $documentType;
-
+    /**
+     * @var string
+     */
+    private $address;
     /**
      * @return string
      */
@@ -116,6 +119,24 @@ final class SuggestByMail implements PersonneInterface
     public function setTitle(string $title): SuggestByMail
     {
         $this->title = $title;
+        return $this;
+    }
+
+    /**
+     * @return null|string
+     */
+    public function getAddress(): ?string
+    {
+        return $this->address;
+    }
+
+    /**
+     * @param string $address
+     * @return SuggestByMail
+     */
+    public function setAddress(string $address): SuggestByMail
+    {
+        $this->address = $address;
         return $this;
     }
 }

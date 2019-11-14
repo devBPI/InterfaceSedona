@@ -16,7 +16,7 @@ final class ExportNotice
      * @Assert\NotBlank(message="email.empty");
      * @Assert\Email();
      */
-    private $receiver;
+    private $reciever;
     /**
      * @var string
      */
@@ -39,6 +39,10 @@ final class ExportNotice
      * @var string
      */
     private $notices;
+    /**
+     * @var string
+     */
+    private $indices;
     /**
      * @var string
      */
@@ -97,18 +101,18 @@ final class ExportNotice
     /**
      * @return null|string
      */
-    public function getReceiver(): ?string
+    public function getReciever(): ?string
     {
-        return $this->receiver;
+        return $this->reciever;
     }
 
     /**
-     * @param string $receiver
+     * @param string $reciever
      * @return ExportNotice
      */
-    public function setReceiver(string $receiver): ExportNotice
+    public function setReciever(string $reciever): ExportNotice
     {
-        $this->receiver = $receiver;
+        $this->reciever = $reciever;
         return $this;
     }
 
@@ -194,6 +198,25 @@ final class ExportNotice
     public function setShortFormat(bool $shortFormat): ExportNotice
     {
         $this->shortFormat = $shortFormat;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getIndices(): ?string
+    {
+        return $this->indices;
+    }
+
+    /**
+     * @param string|null $indices
+     * @return ExportNotice
+     */
+    public function setIndices(string $indices=null): ExportNotice
+    {
+        $this->indices = $indices;
 
         return $this;
     }

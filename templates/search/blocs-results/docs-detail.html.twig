@@ -7,6 +7,7 @@
                    class="js-notice addableInList notice_{{ type }}"
                    name="{% if  type == constant('App\\Model\\Notice::SEE_ONLINE') %}online[]{% else %}onshelves[]{% endif %}"
                    value="{{ notice.permalink }}"
+                   data-notice="{{ notice.permalink }}"
                 {% if mode is defined and mode == 'detail' %}checked="checked"{% endif %}>
             <label for="result-doc-{{ type }}-{{ index }}">
                 <span class="sr-only">{{ 'bloc.notice-simple.result'|trans }} {{ index }}, {{ 'bloc.notice-simple.select'|trans }} {{ notice.frontTitle }}</span>
