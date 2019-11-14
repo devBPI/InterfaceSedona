@@ -1,3 +1,11 @@
 This value is not a valid email address.: 'Veuillez saisir une adresse e-mail valide. Exemple : contact@bpi.fr.'
 email.empty: Veuillez saisir un email dans le champ ci-dessus
 text.empty: Le champ ne doit pas être vide, veuillez saisir du texte dans le champ ci-dessus
+title.empty: Le champ ne doit pas être vide, veuillez saisir du texte dans le champ "Titre"
+object.empty: Le champ ne doit pas être vide, veuillez saisir du texte dans le champ "Objet"
+message.empty: Le champ ne doit pas être vide, veuillez saisir du texte dans le champ "Message"
+formattype.empty: Le champ ne doit pas être vide, veuillez saisir du texte dans le champ "Format"
+reciever.empty: Le champ ne doit pas être vide, veuillez saisir du texte dans le champ "Destinataire"
+sender.empty: Le champ ne doit pas être vide, veuillez saisir du texte dans le champ "Expéditeur"
+texte.empty: Le champ ne doit pas être vide, veuillez saisir du texte dans le champ "Texte"
+The CSRF token is invalid. Please try to resubmit the form.: 'un problème technique est survenu. Veuillez renvoyer le formulaire.'
