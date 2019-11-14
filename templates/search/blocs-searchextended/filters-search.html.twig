@@ -1,7 +1,7 @@
 <div class="search-criteria">
 	{% if objSearch.advancedCriteria|length > 0 %}
 		<p class="search-criteria__label">{{ 'bloc.filters-search.title'|trans }}</p>
-		<div class="sr-only" id="filters-search">{{ 'bloc.relauch-search.title-sr-only'|trans }}</div>
+		<div class="sr-only" id="filters-search">{{ 'bloc.filters-search.title-sr-only'|trans }}</div>
 		<ul aria-describedby="filters-search" class="search-criteria__list">
 			{% for key, criteria in objSearch.advancedCriteria %}
 				<li class="search-criteria__item">

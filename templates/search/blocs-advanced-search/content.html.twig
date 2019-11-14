@@ -30,9 +30,7 @@
                  aria-label="{{ 'modal.advanced-search.base.select-aria'|trans }}">
                 <div class="search-facette__content">
                     <div class="search-base">
-                        <div class="search-base__group">
-                            <p class="search-base__label">{{ 'modal.advanced-search.base.label'|trans }}</p>
-                        </div>
+                        <p class="search-base__label">{{ 'modal.advanced-search.base.label'|trans }}</p>
                         <ul role="group" aria-label="{{ 'modal.advanced-search.base.in'|trans }}"
                             class="search-base__list">
                             {% for i, base in criteria.configurationName %}
@@ -44,8 +42,8 @@
                                             checked="checked"
                                            {% endif %}>
 
-                                    <label for="adv-search-bdd-{{ i }}" class="form-check-label"><span
-                                                class="sr-only">{{ 'modal.advanced-search.base.in'|trans }} </span>{{ base }}
+                                    <label for="adv-search-bdd-{{ i }}" class="form-check-label">
+                                        { base }}
                                     </label>
                                 </li>
                             {% endfor %}

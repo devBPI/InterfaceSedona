@@ -11,10 +11,6 @@
 		flex-direction: row;
 	}
 
-	&__group {
-		display: flex;
-	}
-
 	&__list {
 		list-style-type: none;
 		padding-left: 0;
@@ -42,7 +38,7 @@
 		}
 
 		.check {
-			margin-top: 2px;
+			margin-top: 4px;
 		}
 	}
 }

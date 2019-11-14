@@ -172,7 +172,7 @@ modal:
       expeditor: Expéditeur
     submit: Envoyer
   suggestion:     #Modal 08 suggestion d'achats
-    title: Suggestion
+    title: Suggestion d'achat
     subtitle: Coordonnées
     field:
       title: Titre
@@ -234,9 +234,6 @@ modal:
     base:
       title: Base de recherche
       label: Recherche dans
-      select-aria: Sélectionner les bases de recherche
-      all: Tout
-      in: Recherche dans
       name: Base de données %name%
     date:
       title: Date de publication
@@ -366,7 +363,7 @@ bloc:
     button: Relancer la recherche dans
   filters-search:         #Bloc 10 Rappel des critères de recherche
     title: 'Recherche avancée :'
-    title-sr-only: Activer le lien supprime le critère de recherche ou le filtre.
+    title-sr-only: Rappel des critères de recherche
   preview-authority:      #Bloc 11 Aperçu d'une autorité
     first: Sélectionner %name%
     see-more: Voir plus
