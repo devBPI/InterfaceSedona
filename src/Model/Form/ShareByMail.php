@@ -12,17 +12,27 @@ use Symfony\Component\Validator\Constraints as Asset;
 final class ShareByMail implements MessageInfoInterface
 {
     use MessageInfoTrait;
+    /**
+     * @var string
+     * @Asset\NotBlank(message="title.empty");
+     */
+    private $object;
+    /**
+     * @var string
+     * @Asset\NotBlank(message="texte.empty");
+     */
+    private $message;
 
     /**
      * @var string
-     * @Asset\NotBlank(message="email.empty");
+     * @Asset\NotBlank(message="sender.empty");
      * @Asset\Email();
      */
     private $sender;
 
     /**
      * @var string
-     * @Asset\NotBlank(message="email.empty");
+     * @Asset\NotBlank(message="reciever.empty");
      * @Asset\Email();
      */
     private $reciever;

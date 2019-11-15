@@ -205,7 +205,6 @@ class NoticeBuildFileService
                 return new PdfResponse($content,$filename.".pdf");
             default:
                 return $content;
-
         }
     }
 
@@ -220,7 +219,6 @@ class NoticeBuildFileService
      */
     public function buildContent(ExportNotice $attachement, string $type, string $format):string
     {
-
         switch ($type){
             case ObjSearch::class:
                 $content =  $this->buildFileForSearch($attachement, $format);
@@ -261,7 +259,7 @@ class NoticeBuildFileService
     private function buildFileForUserSelectionList(ExportNotice $attachement, string $format)
     {
         try {
-            $noticeWrapper  = $this->getNoticeWrapper($attachement->getNotices(), $attachement->getAuthorities(), $attachement->getIndices());
+            $noticeWrapper = $this->getNoticeWrapper($attachement->getNotices(), $attachement->getAuthorities(), $attachement->getIndices());
 
         }catch (\Exception|NoResultException $e){
            // throw new NotFoundHttpException();
@@ -287,9 +285,9 @@ class NoticeBuildFileService
     private function getNoticeWrapper($notice, $authority, $indices):PrintNoticeWrapper
     {
 
-        $permalinkN = json_decode($notice);
-        $permalinkA = json_decode($authority);
-        $permalinkI = json_decode($indices);
+        $permalinkN = \json_decode($notice);
+        $permalinkA = \json_decode($authority);
+        $permalinkI = \json_decode($indices);
         $i=[];
         $n=[];
         $a=[];

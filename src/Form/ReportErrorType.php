@@ -41,7 +41,7 @@ final class ReportErrorType extends AbstractType
             ->add('firstName', TextType::class,[
                 'required'  => false,
                 'label'     => 'modal.report.field.first-name',
-                'attr'      => ['autocomplete'=> 'name' ]
+                'attr'      => ['autocomplete'=> 'prenom' ]
             ])
             ->add('email', EmailType::class,[
                 'required'  => false,
@@ -62,7 +62,7 @@ final class ReportErrorType extends AbstractType
             'honeypot_field' => 'email_address',
             'honeypot_use_class' => false,
             'honeypot_hide_class' => 'hidden',
-            'honeypot_message' => 'Form field are invalid',
+            'honeypot_message' => 'message non localisée',
         ]);
     }
 }

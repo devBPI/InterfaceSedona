@@ -27,7 +27,7 @@ final class ExportNotice
     private $shortFormat = false;
     /**
      * @var string
-     * @Assert\NotBlank(message="text.empty");
+     * @Assert\NotBlank(message="formattype.empty");
      */
     private $formatType;
     /**

@@ -32,7 +32,7 @@ final class SuggestByMail implements PersonneInterface
     private $author;
 
     /**
-     * @Asset\NotBlank(message="text.empty");
+     * @Asset\NotBlank(message="title.empty");
      * @var string
      */
     private $title;
