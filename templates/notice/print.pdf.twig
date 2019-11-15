@@ -8,7 +8,7 @@
 			</div>
 			{% if  includeImage %}
 				<div class="col-3">
-					<img src="{{ image_to_base64(path("binary_image", {"content":notice.image, 'type': notice.type|slugify})) }}" class="img-fluid" alt="" />
+					<img src="{{ image_to_base64(path("binary_image", {"content": notice.image, 'type': notice.type |slugify})) }}" class="img-fluid" alt="" />
 				</div>
 			{% endif %}
 			<div class="col">
@@ -18,27 +18,29 @@
 			</div>
 		</div>
 	</div>
-    {% for  object in noticeThemed.noticesList %}
-		<div class="print__item">
-			<div class="row">
-					<div class="col-12">
-						<h2 class="n1">{{ loop.index}}) {{ object.titles[0] }} {{object.image  }}</h2>
+	{% if isPrintLong  %}
+		{% for  object in noticeThemed.noticesList %}
+			<div class="print__item">
+				<div class="row">
+						<div class="col-12">
+							<h2 class="n1">{{ loop.index}}) {{ object.titles[0] }} {{object.image  }}</h2>
+						</div>
+					{% if includeImage %}
+						<div class="col-3">
+							<img src="{{ image_to_base64(path('binary_image', {'content':object.image, 'type': notice.type|slugify})) }}" class="img-fluid" alt="" />
+						</div>
+					{% endif %}
+					<div class="col">
+						<ul class="print__list">
+							{% for author in object.authors %}
+								<li>
+									{{ author}}
+								</li>
+							{% endfor %}
+						</ul>
 					</div>
-				{% if includeImage %}
-					<div class="col-3">
-						<img src="{{ image_to_base64(path('binary_image', {'content':object.image, 'type': notice.type|slugify})) }}" class="img-fluid" alt="" />
-					</div>
-				{% endif %}
-				<div class="col">
-					<ul class="print__list">
-                        {% for author in object.authors %}
-							<li>
-								{{ author}}
-							</li>
-						{% endfor %}
-					</ul>
 				</div>
 			</div>
-		</div>
-    {% endfor %}
+		{% endfor %}
+	{% endif %}
 {% endblock %}

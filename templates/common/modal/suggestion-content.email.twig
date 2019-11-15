@@ -3,31 +3,14 @@
 {% endblock %}
 
 {% block body_html %}
-<p>
-    Auteur             : {{ data.author }}
-</p>
-<p>
-    {{ 'modal.suggestion.field.title'           |trans }}   : {{ data.title }}
-</p>
-<p>
-    {{ 'modal.suggestion.field.editor'          | trans }}  : {{ data.editor }}
-</p>
-<p>
-    {{ 'modal.suggestion.field.address'         | trans }}  : {{ data.address }}
-</p>
-<p>
-    {{ 'modal.suggestion.field.document-type'   | trans }}  : {{ data.documentType }}
-</p>
-<p>
-    {{ 'modal.suggestion.field.email'           | trans }}  : {{ data.email }}
-</p>
-<p>
-    {{ 'modal.suggestion.field.last-name' |trans }}         : {{ data.lastName }}
-</p>
-<p>
-  {{ 'modal.suggestion.field.first-name' |trans }}           : {{ data.firstName }}
-</p>
-
+    <p> {{ "modal.suggestion.field.author"       |trans }}   : {{ data.author }}</p>
+    <p> {{ 'modal.suggestion.field.title'        |trans }}   : {{ data.title }}</p>
+    <p> {{ 'modal.suggestion.field.editor'       |trans }}  : {{ data.editor }}</p>
+    <p> {{ 'modal.suggestion.field.address'      |trans }}  : {{ data.address }}</p>
+    <p> {{ 'modal.suggestion.field.document-type'|trans }}  : {{ data.documentType }}</p>
+    <p> {{ 'modal.report.email'                  |trans }}  : {{ data.email }}</p>
+    <p> {{ 'modal.suggestion.field.last-name'    |trans }}   : {{ data.lastName }}</p>
+    <p> {{ 'modal.suggestion.field.first-name'   |trans }}   : {{ data.firstName }}</p>
 {% endblock %}
 
 {% block body_text %}

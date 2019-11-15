@@ -11,7 +11,7 @@
 
 	{% if  isPrintLong   %}
         {{ pdf_occurence (notice, 'getAuthors', 'bloc.autority-result-information.authors'| trans, format) | raw }}
-        {{ pdf_occurence (notice, 'getAuthors', 'bloc.autority-result-information.autor'| trans, format) | raw }}
+        {{ pdf_occurence (notice, 'getAuthors', 'bloc.autority-result-information.authors'| trans, format) | raw }}
         {{ pdf_occurence (notice, 'getDirectors', 'bloc.autority-result-information.directors'| trans, format) | raw }}
     {% else %}
 		{{ pdf_occurence (notice, 'getAuthors', 'bloc.autority-result-information.by'| trans, format) | raw }}
@@ -79,8 +79,10 @@
 		{{ pdf_occurence (notice, 'getPlacesEvents', "bloc.autority-result-information.manifestation-location"| trans, format) | raw }}
 		{{ pdf_occurence (notice, 'getOrigins', "bloc.autority-result-information.origins"| trans, format) | raw }}
 	{% endif %}
-
+	{% if notice.rights|length>0 %}
 		{{ pdf_occurence (notice, 'getRights', "bloc.results-navigation.result-information.rights"| trans, format) | raw }}
+	{% endif %}
+
 		{{ pdf_occurence (notice, 'getNomPubliqueConfiguration', 'bloc.notice-simple.result-of-bdd'|trans| trans, format) | raw }}
 	{# à vérifier avec le gabarit#}
 	{%  for copy in  notice.copies %}
