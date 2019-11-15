@@ -58,6 +58,10 @@
 
 				@include media-breakpoint-up(md) {
 					border-top-color: $grey;
+
+					.nav-link {
+						color: $red;
+					}
 				}
 			}
 
@@ -73,7 +77,6 @@
 			}
 
 			&.active {
-				border-top-color: $grey;
 
 				.nav-link {
 					position: relative;

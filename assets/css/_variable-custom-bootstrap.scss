@@ -256,21 +256,11 @@ $modal-content-box-shadow-sm-up:    $modal-content-box-shadow-xs;
 $modal-backdrop-bg:                 $black;
 $modal-backdrop-opacity:            .6;
 $modal-header-border-color:         $white;
-$modal-footer-border-color:         $modal-header-border-color !default;
-$modal-header-border-width:         $modal-content-border-width !default;
-$modal-footer-border-width:         $modal-header-border-width !default;
 $modal-header-padding-y:            $spacer;
 $modal-header-padding-x:            $spacer;
-$modal-header-padding:              $modal-header-padding-y $modal-header-padding-x !default; // Keep this for backwards compatibility
 
-$modal-xl:                          1140px !default;
-$modal-lg:                          850px;
-$modal-md:                          650px;
+$modal-md:                          (650px / 15px) * 1rem;
 $modal-sm:                          100%;
-
-$modal-fade-transform:              translate(0, -50px) !default;
-$modal-show-transform:              none !default;
-$modal-transition:                  transform .3s ease-out !default;
 
 // Forms
 

@@ -12,7 +12,7 @@
 		color: $white;
 		padding: 0 10px;
 		margin: 0 5px;
-		height: 20px;
+		height: rem(24);
 		position: relative;		
 
 		&:hover {
@@ -33,12 +33,12 @@
 				position: absolute;
 				width: 0;
 				height: 0;
-				border-top: 10px solid transparent;
-				border-bottom: 10px solid transparent;
-				border-right: 10px solid $red;
+				border-top: rem(12) solid transparent;
+				border-bottom: rem(12) solid transparent;
+				border-right: rem(12) solid $red;
 				left: 0;
 				top: 0;
-				margin-left: -10px;
+				margin-left: rem(-12);
 			}
 
 			&:hover {
@@ -56,12 +56,12 @@
 				position: absolute;
 				width: 0;
 				height: 0;
-				border-top: 10px solid transparent;
-				border-bottom: 10px solid transparent;
-				border-left: 10px solid $red;
+				border-top: rem(12) solid transparent;
+				border-bottom: rem(12) solid transparent;
+				border-left: rem(12) solid $red;
 				right: 0;
 				top: 0;
-				margin-right: -10px;
+				margin-right: rem(-12);
 			}
 
 			&:hover {

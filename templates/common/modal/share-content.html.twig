@@ -6,6 +6,9 @@
 	{% endif %}
 
 	<div class="modal-body">
+	
+		<p class="modal-form__indication">* {{ 'global.form-mandatory-field'|trans }}</p>
+
 		<div class="row justify-content-center">
 			<div class="col-12 col-md-10">
 				{{ form_row(form.sender) }}
