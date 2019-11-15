@@ -388,7 +388,7 @@ bloc:
     document-unavailable: Indisponible
     notification-availablity: Document indisponible, être prévenu de son retour en rayon - ouverture formulaire
     resume-label: Afficher le résumé
-    resume-title: 'Résumé :'
+    resume-title: 'Résumé'
     availability-label: Document indisponible, être prévenu de son retour en rayon - ouverture formulaire
   search-header-footer:   #Bloc 14 Tri et pages
     header:
