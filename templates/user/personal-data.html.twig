@@ -8,21 +8,19 @@
 
 	<h1 class="n1" lang="fr">{{ 'page.personal-data.title-connected'|trans }}</h1>
 
-	<nav role="navigation" lang="fr">
-		<ul class="nav nav-tabs">
-			{% if is_granted('IS_AUTHENTICATED_FULLY') %}
-				<li class="nav-item">
-					<a href="{{ path('user_personal_data') }}" class="nav-link {% if currentPage is not defined %}active{% endif %}">{{ 'page.personal-data.profil.title'|trans }}</a>
-				</li>
-			{% endif %}
+	<ul class="nav nav-tabs">
+		{% if is_granted('IS_AUTHENTICATED_FULLY') %}
 			<li class="nav-item">
-				<a href="{{ path('user_selection_index') }}" class="nav-link {% if currentPage is defined and currentPage == 'selection' %}active{% endif %}">{{ 'page.personal-data.selection.title'|trans }}</a>
+				<a href="{{ path('user_personal_data') }}" class="nav-link {% if currentPage is not defined %}active{% endif %}">{{ 'page.personal-data.profil.title'|trans }}</a>
 			</li>
-			<li class="nav-item">
-				<a href="{{ path('user_history_index') }}" class="nav-link {% if currentPage is defined and currentPage == 'history' %}active{% endif %}">{{ 'page.personal-data.historic.title'|trans }}</a>
-			</li>
-		</ul>
-	</nav>
+		{% endif %}
+		<li class="nav-item">
+			<a href="{{ path('user_selection_index') }}" class="nav-link {% if currentPage is defined and currentPage == 'selection' %}active{% endif %}">{{ 'page.personal-data.selection.title'|trans }}</a>
+		</li>
+		<li class="nav-item">
+			<a href="{{ path('user_history_index') }}" class="nav-link {% if currentPage is defined and currentPage == 'history' %}active{% endif %}">{{ 'page.personal-data.historic.title'|trans }}</a>
+		</li>
+	</ul>
 
 	<div class="tab-pane" lang="fr">
 		{% block content %}
