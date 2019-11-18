@@ -1,9 +1,6 @@
 {% for element in thematic.themes %}
 	<div class="col-12 col-sm-6 col-lg-3">
 		<div lang="fr" class="card">
-            {% if  element.levels.count ==0 %}
-				<a href="{{ element.url }}" class="card__link"><span class="sr-only">{{ "bloc.preview-thematic-links.link-sr-only"|trans({'%name%' : element.title }) }}</span></a>
-            {% endif %}
 			<img src="{{ asset('images/parcours/'~thematic.type~'/'~element.image) }}" alt="" class="img-fluid card-img-top" />
 			<div class="card-body">
 				<h3 class="n2 card__title">{{ element.title }}</h3>
@@ -16,8 +13,12 @@
 						{% endfor %}
 					</ul>
                 {% endif %}
-
 			</div>
+            {% if  element.levels.count ==0 %}
+				<a href="{{ element.url }}" class="card__link">
+					<span class="sr-only">{{ "bloc.preview-thematic-links.link-sr-only"|trans({'%name%' : element.title }) }}</span>
+				</a>
+            {% endif %}
 		</div>
 	</div>
 {% endfor %}

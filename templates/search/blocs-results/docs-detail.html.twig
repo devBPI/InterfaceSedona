@@ -27,19 +27,16 @@
         {% set contextToken = (objSearch is defined ? objSearch.contextToken : null) %}
         <div class="list-result__content-body">
             <div class="list-result__content-image">
-                <a href="{{ path('record_bibliographic', {'permalink': notice.permalink, 'searchToken': contextToken}) }}"
-                   aria-label="{{ notice.frontTitle }}"
-                >
-                    <img src="{{ path('binary_image', {"content":notice.image, 'type': notice.type | slugify})}}" alt="" class="img-fluid" />
+                <a href="{{ path('record_bibliographic', {'permalink': notice.permalink, 'searchToken': contextToken}) }}">
+                    <img src="{{ path('binary_image', {"content":notice.image, 'type': notice.type | slugify})}}" alt="{{ notice.frontTitle }}" class="img-fluid" />
                 </a>
             </div>
             <div class="list-result__content-infos">
                 <a href="{{ path('record_bibliographic', {'permalink': notice.permalink, 'searchToken': contextToken}) }}"
                    lang="fr"
-                   aria-label="{{ notice.frontTitle }}"
                    class="n2 list-result__content-title"
                 >
-                    <img src="{{ asset('images/types/type-' ~ notice.slugifiedType ~ '.svg') }}" alt="" class="list-result__content-type" />
+                    <img src="{{ asset('images/types/type-' ~ notice.slugifiedType ~ '.svg') }}" alt="{{ notice.type }}" class="list-result__content-type" />
                     <span>{{ notice.frontTitle }}</span>
                 </a>
                 {% if notice.frontAuthor is not empty %}

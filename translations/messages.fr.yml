@@ -231,10 +231,12 @@ modal:
         publicationDate: Date de publication
         isbnIssnNumcommercial: ISBN, ISSN...
         indiceCote: Indice / Cote
+      type-label: Chercher sur
       group:
         or: Ou
         and: Et
         not: Sauf
+      group-label: Condition de recherche
       add-ligne: Ajouter un champs de recherche
       remove-ligne: Supprimer le champs de recherche n°%index%
 
