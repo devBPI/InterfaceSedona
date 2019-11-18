@@ -30,6 +30,7 @@ class CarouselProvider extends AbstractProvider
      */
     public function getListByThematic(string $theme): ?Carousel
     {
+        $carousel = null;
         try {
             /** @var $carousel Carousel */
             $carousel = $this->hydrateFromResponse('/carousel/'.$theme);

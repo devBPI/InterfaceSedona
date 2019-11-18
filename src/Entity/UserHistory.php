@@ -141,9 +141,9 @@ class UserHistory
     }
 
     /**
-     * @return string
+     * @return int|null
      */
-    public function getUrl(): ?string
+    public function getUrl()
     {
         if ($this->Search instanceof SearchHistory) {
             return $this->Search->getId();

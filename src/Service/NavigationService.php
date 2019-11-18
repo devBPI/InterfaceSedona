@@ -113,13 +113,13 @@ final class NavigationService implements BpiConverterInterface
     /**
      * @param SearchProvider $searchProvider
      * @param SearchQuery $search
-     * @param $type
+     * @param string $type
      * @return \App\Model\RankedAuthority[]|\App\Model\Subject[]|array
      * @throws \Twig\Error\LoaderError
      * @throws \Twig\Error\RuntimeError
      * @throws \Twig\Error\SyntaxError
      */
-    private function getNoticeList(SearchProvider $searchProvider, SearchQuery $search, $type)
+    private function getNoticeList(SearchProvider $searchProvider, SearchQuery $search, string $type=null)
     {
         $searchResultNotices = $searchProvider->getListBySearch($search);
 

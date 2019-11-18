@@ -68,10 +68,10 @@ final class IndiceCduController extends AbstractController
 
     /**
      * @Route("indice-cdu/around/{cote}", name="indice_around_indexes", requirements={"cote"=".+"})
-     * @param $cote
+     * @param string $cote
      * @return JsonResponse
      */
-    public function aroundIndexesAction($cote): JsonResponse
+    public function aroundIndexesAction(string  $cote): JsonResponse
     {
         try{
             $indiceCdu = $this->noticeAuhtority->getIndiceCduAroundOf($cote);
@@ -86,7 +86,6 @@ final class IndiceCduController extends AbstractController
                 'message'=> $e->getMessage(),
                 'code'=> $e->getCode()
             ]);
-
         }
     }
 

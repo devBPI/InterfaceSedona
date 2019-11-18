@@ -8,6 +8,7 @@ use App\Entity\UserSelectionDocument;
 use App\Entity\UserSelectionList;
 use App\Model\Exception\SelectionCategoryException;
 use App\Model\LdapUser;
+use App\Repository\UserSelectionListRepository;
 use Doctrine\ORM\EntityManager;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
@@ -45,11 +46,11 @@ final class SelectionListService extends AuthenticationService
 
     /**
      * @param UserSelectionList $list
-     * @param $title
+     * @param string $title
      * @throws \Doctrine\ORM\ORMException
      * @throws \Doctrine\ORM\OptimisticLockException
      */
-    public function updateList(UserSelectionList $list, $title)
+    public function updateList(UserSelectionList $list, string $title)
     {
         $list->setTitle($title);
         $this->entityManager->flush();
@@ -108,7 +109,10 @@ final class SelectionListService extends AuthenticationService
 
         $listIds = $request->get(UserSelectionController::INPUT_LIST, []);
         if (count($listIds) > 0) {
-            $lists = $this->entityManager->getRepository(UserSelectionList::class)
+            /** @var UserSelectionListRepository $userSelectionRepo */
+            $userSelectionRepo = $this->entityManager->getRepository(UserSelectionList::class);
+
+            $lists = $userSelectionRepo
                 ->findByIds($this->getUser(), $listIds);
         }
 
@@ -157,8 +161,10 @@ final class SelectionListService extends AuthenticationService
      */
     private function getNextPosition(LdapUser $user): int
     {
-        return $this->entityManager->getRepository(UserSelectionList::class)
-            ->getMaxPositionOfUserList($user) + 1;
+        /** @var UserSelectionListRepository $userSelectionRepo */
+        $userSelectionRepo = $this->entityManager->getRepository(UserSelectionList::class);
+
+        return $userSelectionRepo->getMaxPositionOfUserList($user) + 1;
     }
 
     /**
@@ -180,7 +186,10 @@ final class SelectionListService extends AuthenticationService
     public function getListsOfCurrentUser(): array
     {
         if ($this->hasConnectedUser()) {
-            return $this->entityManager->getRepository(UserSelectionList::class)
+            /** @var UserSelectionListRepository $userSelectionRepo */
+            $userSelectionRepo = $this->entityManager->getRepository(UserSelectionList::class);
+
+            return $userSelectionRepo
                 ->findAllOrderedByPosition($this->getUser());
         }
 
@@ -189,23 +198,23 @@ final class SelectionListService extends AuthenticationService
 
     /**
      * @param UserSelectionDocument $document
-     * @param $comment
+     * @param string $comment
      * @throws \Doctrine\ORM\ORMException
      * @throws \Doctrine\ORM\OptimisticLockException
      */
-    public function updateDocument(UserSelectionDocument $document, $comment)
+    public function updateDocument(UserSelectionDocument $document, string $comment)
     {
         $document->setComment($comment);
         $this->entityManager->flush();
     }
 
     /**
-     * @param $action
-     * @param $listObj
+     * @param string $action
+     * @param array $listObj
      * @throws \Doctrine\ORM\ORMException
      * @throws \Doctrine\ORM\OptimisticLockException
      */
-    public function applyAction($action, $listObj): void
+    public function applyAction(string $action, array $listObj=[]): void
     {
         if ($action === 'delete') {
             if ($this->hasConnectedUser()) {
@@ -314,8 +323,9 @@ final class SelectionListService extends AuthenticationService
     public function getCountDocuments(): int
     {
         if ($this->hasConnectedUser()) {
-            return $this->entityManager->getRepository(UserSelectionList::class)
-                ->getCountDocuments($this->getUser());
+            /** @var UserSelectionListRepository $userSelectionListRepo */
+            $userSelectionListRepo = $this->entityManager->getRepository(UserSelectionList::class);
+            return $userSelectionListRepo->getCountDocuments($this->getUser());
         }
 
         $docs = $this->getSession(self::SESSION_SELECTION_ID) ?? [];

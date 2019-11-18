@@ -200,13 +200,13 @@ final class SearchController extends AbstractController
      * @Route("/print/recherche.{format}", methods={"GET","HEAD"}, name="search_pdf", requirements={"format" = "html|pdf|txt"}, defaults={"format" = "pdf"})
      *
      * @param Request $request
-     * @param $format
+     * @param string $format
      * @return PdfResponse|Response
      * @throws \Twig\Error\LoaderError
      * @throws \Twig\Error\RuntimeError
      * @throws \Twig\Error\SyntaxError
      */
-    public function printAction(Request $request, $format)
+    public function printAction(Request $request,string $format='pdf')
     {
         $sendAttachement = (new ExportNotice())
             ->setAuthorities($request->get('authorities', ''))

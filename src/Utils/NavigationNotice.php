@@ -15,6 +15,7 @@ use App\Model\Traits\NoticeTrait;
 
 class NavigationNotice implements NoticeInterface
 {
+
     use NoticeTrait, BreadcrumbTrait;
 
     /**

@@ -27,9 +27,9 @@ class CustomResourceExtension extends AbstractExtension
     /**
      * CustomResourceExtension constructor.
      * @param Filesystem $fs
-     * @param $root_dir
+     * @param string $root_dir
      */
-    public function __construct(Filesystem $fs, $root_dir)
+    public function __construct(Filesystem $fs, string $root_dir)
     {
 
         $this->fs = $fs;
@@ -58,19 +58,19 @@ class CustomResourceExtension extends AbstractExtension
     }
 
     /**
-     * @param $path
+     * @param string $path
      * @return bool
      */
-    public function fileExistFilter($path)
+    public function fileExistFilter(string $path)
     {
         return $this->fs->exists($this->root_dir.$path);
     }
 
     /**
-     * @param $path
+     * @param string $path
      * @return string
      */
-    public function fileGetContentFilter($path)
+    public function fileGetContentFilter(string $path)
     {
         return $this->fileExistFilter($path) ? file_get_contents($this->root_dir.$path) : "";
     }

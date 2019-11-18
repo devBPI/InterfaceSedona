@@ -570,7 +570,7 @@ class Notice extends AbstractImage implements NoticeInterface, RecordInterface
     /**
      * @return string|null
      */
-    public function getTopic(): string
+    public function getTopic(): ?string
     {
         $payload = '';
         if (count($this->topics) > 0){
@@ -676,7 +676,7 @@ class Notice extends AbstractImage implements NoticeInterface, RecordInterface
     /**
      * @return string|null
      */
-    public function getFrontTitle(): string
+    public function getFrontTitle(): ?string
     {
         return implode(self::SEPARATOR, $this->titles);
     }
@@ -696,7 +696,7 @@ class Notice extends AbstractImage implements NoticeInterface, RecordInterface
     /**
      * @return string|null
      */
-    public function getFrontAuthor(): string
+    public function getFrontAuthor(): ?string
     {
         $payload = [];
         $authors = [];
@@ -723,7 +723,7 @@ class Notice extends AbstractImage implements NoticeInterface, RecordInterface
     /**
      * @return string|null
      */
-    public function getFrontDate(): string
+    public function getFrontDate(): ?string
     {
         if ($this->type === 'Revue') {
             return max($this->dates);
@@ -750,7 +750,7 @@ class Notice extends AbstractImage implements NoticeInterface, RecordInterface
 
 
     /**
-     * @return string
+     * @return null|string
      */
     public function getThumbnail(): ?string
     {
@@ -769,7 +769,7 @@ class Notice extends AbstractImage implements NoticeInterface, RecordInterface
     }
 
     /**
-     * @return string
+     * @return null|string
      */
     public function getCover(): ?string
     {
@@ -974,7 +974,7 @@ class Notice extends AbstractImage implements NoticeInterface, RecordInterface
     /**
      * @return null|string
      */
-    public function getIndice(): string
+    public function getIndice(): ?string
     {
         return count($this->indices)>0?($this->indices[0])->getCote():'';
     }

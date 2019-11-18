@@ -34,7 +34,7 @@ final class ImageBuilderService
      * @param string $imageDir
      * @param $url
      */
-    public function __construct(string $imageDir, $url)
+    public function __construct(string $imageDir, string $url)
     {
         $this->imageDir = $imageDir;
         $this->url = $url;
@@ -96,17 +96,17 @@ final class ImageBuilderService
     }
 
     /**
-     * @param $path
-     * @param null $type
-     * @return string|null
+     * @param string $path
+     * @param string|null $type
+     * @return null|string
      */
-    public function getimage64($path, $type=null)
+    public function getimage64(string $path, string $type=null)
     {
         if ($type===null){
             $type='livre';
         }
         $filePath = $this->buildImage(str_replace("imported_images".DIRECTORY_SEPARATOR.$type.DIRECTORY_SEPARATOR,"", $path), $type);
-
+        $file = null;
         try {
             $file = new File($filePath, true);
         } catch (\Exception $e) {

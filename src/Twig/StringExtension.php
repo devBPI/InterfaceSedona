@@ -9,18 +9,15 @@ use Twig\Extension\AbstractExtension;
 use Twig\TwigFilter;
 use Twig\TwigFunction;
 
-/**
- * Class StringExtension
- * @package App\Twig
- */
+
 class StringExtension extends AbstractExtension
 {
     use TraitSlugify;
 
     /**
-     * @return array|TwigFunction[]
+     * @return array|TwigFilter[]
      */
-    public function getFilters(): array
+    public function getFilters()
     {
         return [
             new TwigFilter('snake', [$this, 'toSnakeCase']),
@@ -28,19 +25,21 @@ class StringExtension extends AbstractExtension
         ];
     }
 
-
+    /**
+     * @return array|TwigFunction[]
+     */
     public function getFunctions()
     {
         return [
-        new TwigFunction('class_name', [$this, 'getClass']),
-        new TwigFunction('is_same_instance', [$this, 'sameInstance']),
+            new TwigFunction('class_name', [$this, 'getClass']),
+            new TwigFunction('is_same_instance', [$this, 'sameInstance']),
 
         ];
    }
 
 
     /**
-     * @param $object
+     * @param mixed $object
      * @return string
      * @throws \ReflectionException
      */
@@ -57,11 +56,11 @@ class StringExtension extends AbstractExtension
     }
 
     /**
-     * @param $object
-     * @param $class
+     * @param mixed $object
+     * @param string $class
      * @return bool
      */
-    public function sameInstance($object, $class)
+    public function sameInstance($object, string$class)
     {
         return $object instanceof $class;
     }

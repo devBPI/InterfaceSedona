@@ -61,10 +61,13 @@ class CleanUserHistoryCommand extends Command
 
         $date = new \DateTime('-'.$input->getOption('count-month').' month');
         $output->writeln('Clean histories older than '.$date->format('d/m/Y'));
+        try{
+            $deleted = $this->historyService->deleteHistoriesOlderThanDate($date);
+        }catch(\Exception $e){
+            $output->writeln(sprintf('the deleted is resulted with an error : %s.', $e->getMessage()));
+        }
 
-        $deleted = $this->historyService->deleteHistoriesOlderThanDate($date);
-
-        $output->writeln($deleted.' histories deleted.');
+        $output->writeln('the histories is deleted.');
     }
 
 }

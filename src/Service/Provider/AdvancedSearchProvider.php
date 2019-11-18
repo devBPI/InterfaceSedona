@@ -5,6 +5,7 @@ namespace App\Service\Provider;
 
 use App\Model\AdvancedSearchCriteria;
 use App\Model\Exception\ErrorAccessApiException;
+use JMS\Serializer\Exception\XmlErrorException;
 
 /**
  * Class AdvancedSearchProvider
@@ -15,7 +16,7 @@ class AdvancedSearchProvider extends AbstractProvider
     protected $modelName = AdvancedSearchCriteria::class;
 
     /**
-     * @return AdvancedSearchCriteria|object
+     * @return AdvancedSearchCriteria
      */
     public function getAdvancedSearchCriteria(): AdvancedSearchCriteria
     {

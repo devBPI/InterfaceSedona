@@ -15,7 +15,7 @@ class NoticeProvider extends AbstractProvider
 
     /**
      * @param string $query
-     * @return NoticeThemed|object
+     * @return NoticeThemed
      */
     public function getNotice(string $query): NoticeThemed
     {

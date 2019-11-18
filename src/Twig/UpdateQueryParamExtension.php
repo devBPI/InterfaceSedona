@@ -64,12 +64,12 @@ class UpdateQueryParamExtension extends AbstractExtension
 
         return $filtersQuery->toUrl();
     }
+
     /**
-     * @param string|null $page
-     *
+     * @param string|null $seeAll
      * @return string
      */
-    public function changeSeeAllParamIntoUri($seeAll = null): string
+    public function changeSeeAllParamIntoUri(string $seeAll = null): string
     {
         $filtersQuery = new FiltersQuery($this->requestStack->getMasterRequest());
         $filtersQuery->setSeeAll($seeAll);

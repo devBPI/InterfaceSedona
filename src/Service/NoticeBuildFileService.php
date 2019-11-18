@@ -77,6 +77,7 @@ class NoticeBuildFileService
      */
     private function buildFileForSearch(ExportNotice $attachement, string $format)
     {
+        $noticeWrapper  =  null;
         try {
             $noticeWrapper  = $this->getNoticeWrapper($attachement->getNotices(), $attachement->getAuthorities(), $attachement->getIndices());
 
@@ -107,6 +108,7 @@ class NoticeBuildFileService
      */
     private function buildFileForNotice(ExportNotice $attachement, string $format):string
     {
+        $permalink = null;
         try{
             $permalink = $attachement->getNotices();
             $object = $this->noticeProvider->getNotice($permalink);
@@ -133,6 +135,7 @@ class NoticeBuildFileService
      */
     private function buildFileForAuthority(ExportNotice $attachement, string $format)
     {
+        $permalink = null;
         try{
             $permalink = $attachement->getAuthorities();
             $object             = $this->noticeAuthority->getAuthority($permalink);
@@ -162,6 +165,7 @@ class NoticeBuildFileService
      */
     private function buildFileForIndice(ExportNotice $attachement, string $format)
     {
+        $permalink = null;
         try{
             $permalink          = $attachement->getIndices();
             $object             = $this->noticeAuthority->getIndiceCdu($permalink);
@@ -258,6 +262,7 @@ class NoticeBuildFileService
      */
     private function buildFileForUserSelectionList(ExportNotice $attachement, string $format)
     {
+        $noticeWrapper =null;
         try {
             $noticeWrapper = $this->getNoticeWrapper($attachement->getNotices(), $attachement->getAuthorities(), $attachement->getIndices());
 
@@ -277,14 +282,13 @@ class NoticeBuildFileService
     }
 
     /**
-     * @param $notice
-     * @param $authority
-     * @param $indices
+     * @param string|null $notice
+     * @param string|null $authority
+     * @param string|null $indices
      * @return PrintNoticeWrapper
      */
-    private function getNoticeWrapper($notice, $authority, $indices):PrintNoticeWrapper
+    private function getNoticeWrapper(string $notice=null, string $authority=null, string $indices=null):PrintNoticeWrapper
     {
-
         $permalinkN = \json_decode($notice);
         $permalinkA = \json_decode($authority);
         $permalinkI = \json_decode($indices);

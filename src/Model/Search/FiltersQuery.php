@@ -47,7 +47,7 @@ class FiltersQuery
     }
 
     /**
-     * @param string|null $page
+     * @param string|null $seeAll
      */
     public function setSeeAll(string $seeAll=null): void
     {

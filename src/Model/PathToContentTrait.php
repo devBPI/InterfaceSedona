@@ -13,10 +13,10 @@ namespace App\Model;
 trait PathToContentTrait
 {
     /**
-     * @param $path
+     * @param string $path
      * @return string
      */
-    private function pathToContent($path):string
+    private function pathToContent(string  $path):string
     {
         return basename($path);
     }

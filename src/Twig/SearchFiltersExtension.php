@@ -93,10 +93,10 @@ class SearchFiltersExtension extends AbstractExtension
 
     /**
      * @param string $key
-     * @param $searchValue
+     * @param string $searchValue
      * @return bool
      */
-    public function isValueExistInFacetQueries(string $key, $searchValue): bool
+    public function isValueExistInFacetQueries(string $key, string $searchValue): bool
     {
         if (!array_key_exists($key, $this->facetQueries)) {
             return false;
@@ -136,7 +136,7 @@ class SearchFiltersExtension extends AbstractExtension
     }
 
     /**
-     * @param $object
+     * @param mixed $object
      * @return string
      */
     public function getRouteByObject($object)
@@ -145,13 +145,13 @@ class SearchFiltersExtension extends AbstractExtension
     }
 
     /**
-     * @param $object
-     * @param $method
-     * @param $label
+     * @param mixed $object
+     * @param string $method
+     * @param string $label
      * @param string $format
      * @return string
      */
-    public function getPdfOccurence($object, $method, $label, $format = 'pdf')
+    public function getPdfOccurence($object, string $method, string $label, string $format = 'pdf')
     {
         $payload = "";
         if (method_exists($object, $method) && !empty($object->{$method}())) {

@@ -6,6 +6,7 @@ namespace App\Service;
 use App\Entity\SearchHistory;
 use App\Entity\UserHistory;
 use App\Model\Search\ObjSearch;
+use App\Repository\UserHistoryRepository;
 use Doctrine\ORM\EntityManager;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\HttpKernel\Exception\UnauthorizedHttpException;
@@ -47,7 +48,9 @@ final class HistoryService extends AuthenticationService
     public function getHistory(): array
     {
         if ($this->hasConnectedUser()) {
-            return $this->entityManager->getRepository(UserHistory::class)
+            /** @var UserHistoryRepository $userHistoryRepo */
+            $userHistoryRepo = $this->entityManager->getRepository(UserHistory::class);
+            return $userHistoryRepo
                 ->getUserHistory($this->getUser());
         }
 

@@ -16,20 +16,19 @@ trait PrintTrait
 {
 
     /**
-     * @param $content
-     * @param $filename
-     * @param $format
-     * @return Response
-     * @throws \Spipu\Html2Pdf\Exception\Html2PdfException
+     * @param string $content
+     * @param string $filename
+     * @param string $format
+     * @return PdfResponse|Response
      */
-    protected function renderPrint($content, $filename, $format)
+    protected function renderPrint(string $content,  string $filename, string $format)
     {
-        if ($format == 'txt') {
+        if ($format === 'txt') {
             return new Response($content,200,[
                 'Content-Type' => 'application/force-download',
                 'Content-Disposition' => 'attachment; filename="'.$filename.'.txt"'
             ]);
-        } elseif ($format == 'html') {
+        } elseif ($format === 'html') {
             return new Response($content);
         }
 

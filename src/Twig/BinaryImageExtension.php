@@ -49,10 +49,10 @@ class BinaryImageExtension extends AbstractExtension
 
 
     /**
-     * @param $path
+     * @param string $path
      * @return null|string
      */
-    public function image64($path)
+    public function image64(string $path)
     {
         return $this->imageService->getimage64(substr($path, 1));
     }

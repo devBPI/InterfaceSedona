@@ -34,7 +34,7 @@ class Notices extends AbstractListNotices
     private $cduUsed = [];
 
     /**
-     * @return Subject[]|array
+     * @return Notice[]|array
      */
     public function getNoticesList(): array
     {
@@ -42,7 +42,8 @@ class Notices extends AbstractListNotices
     }
 
     /**
-     * @return Notice[]|array
+     * @return Subject[]|array
+     *
      */
     public function getMappedNotices()
     {
