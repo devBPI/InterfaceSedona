@@ -3,7 +3,7 @@
 		{% include 'search/blocs-results/docs-header.html.twig' with {'type':type} %}
 	</div>
 
-	<div class="list-result__content">
+	<div class="list-result__content" role="list">
 		{% for index, notice in notices.noticesList %}
             {% set index = objSearch.globalIndex + index %}
 			{% include "search/blocs-results/docs-detail.html.twig" with {'type': type } %}
