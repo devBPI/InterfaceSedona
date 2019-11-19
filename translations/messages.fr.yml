@@ -347,7 +347,7 @@ bloc:
     suggest: Suggestion d'achats
     report-error: Signaler une erreur
   search-zone:            #Bloc B  Zone de recherche simple
-    autocompletion-notice: Insert texte explicatif pour l'auto-completion
+    autocompletion-notice: Utiliser les flèches haut et bas du clavier pour vous déplacer dans la liste de suggestions
     autocompletion-nb-result: %nb% options affichées
     input-sr-only: Saisir un mot clé
     input-placeholder: Rechercher
