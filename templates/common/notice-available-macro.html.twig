@@ -30,7 +30,7 @@
        {% elseif object.url is defined and object.url is not empty %}
            <div class="availability availability--true availability--online">
                <a href="{{ object.url }}" class="link link--icone-end link--inline">
-                   {{ 'bloc.notice-simple.access-to-bdd'|trans }} {{ notice.title }}
+                   {{ 'bloc.notice-simple.access-to-bdd'|trans }} {{ object.title }}
                    <img src="{{ asset('images/icones/icone-chevron-gauche.svg') }}" alt="" aria-hidden="true" />
                </a>
            </div>

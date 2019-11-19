@@ -146,8 +146,6 @@ final class SearchController extends AbstractController
      * @param string $token
      * @param Request $request
      * @return Response
-     * @throws \Doctrine\ORM\ORMException
-     * @throws \Doctrine\ORM\OptimisticLockException
      * @throws \Twig\Error\LoaderError
      * @throws \Twig\Error\RuntimeError
      * @throws \Twig\Error\SyntaxError
@@ -165,9 +163,7 @@ final class SearchController extends AbstractController
      *
      * @param SearchHistory $searchHistory
      * @param Request $request
-     * @return \Symfony\Component\HttpFoundation\Response
-     * @throws \Doctrine\ORM\ORMException
-     * @throws \Doctrine\ORM\OptimisticLockException
+     * @return Response
      * @throws \Twig\Error\LoaderError
      * @throws \Twig\Error\RuntimeError
      * @throws \Twig\Error\SyntaxError
@@ -182,6 +178,7 @@ final class SearchController extends AbstractController
 
     /**
      * @Route("/recherche-tout", methods={"GET","HEAD"}, name="search_all")
+     *
      * @param Request $request
      * @return Response
      */

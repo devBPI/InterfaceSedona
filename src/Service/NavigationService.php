@@ -113,8 +113,8 @@ final class NavigationService implements BpiConverterInterface
     /**
      * @param SearchProvider $searchProvider
      * @param SearchQuery $search
-     * @param string $type
-     * @return \App\Model\RankedAuthority[]|\App\Model\Subject[]|array
+     * @param string|null $type
+     * @return Notice[]|RankedAuthority[]|array
      * @throws \Twig\Error\LoaderError
      * @throws \Twig\Error\RuntimeError
      * @throws \Twig\Error\SyntaxError
@@ -201,7 +201,7 @@ final class NavigationService implements BpiConverterInterface
     }
 
     /**
-     * @return SearchQuery|null
+     * @return SearchQuery
      */
     public function getSearch(): SearchQuery
     {

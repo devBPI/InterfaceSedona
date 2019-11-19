@@ -43,7 +43,7 @@ final class HistoryService extends AuthenticationService
     }
 
     /**
-     * @return array|UserHistory[]
+     * @return array
      */
     public function getHistory(): array
     {
@@ -71,12 +71,12 @@ final class HistoryService extends AuthenticationService
     }
 
     /**
-     * @param $action
-     * @param $listObj
+     * @param string $action
+     * @param array $listObj
      * @throws \Doctrine\ORM\ORMException
      * @throws \Doctrine\ORM\OptimisticLockException
      */
-    public function applyAction($action, $listObj): void
+    public function applyAction(string $action, array $listObj): void
     {
         if ($action === 'delete') {
             if ($this->hasConnectedUser()) {
@@ -114,8 +114,10 @@ final class HistoryService extends AuthenticationService
      */
     public function deleteHistoriesOlderThanDate(\DateTime $date)
     {
-        return $this->entityManager->getRepository(UserHistory::class)
-            ->deleteOlderHistories($date);
+        /** @var UserHistoryRepository $userHistoryRepo */
+        $userHistoryRepo = $this->entityManager->getRepository(UserHistory::class);
+
+        return $userHistoryRepo->deleteOlderHistories($date);
     }
 
     /**
@@ -186,9 +188,11 @@ final class HistoryService extends AuthenticationService
      */
     private function findOrCreateUserHistory(SearchHistory $searchHistory): UserHistory
     {
+
         if ($this->hasConnectedUser()) {
-            $userHistory = $this->entityManager->getRepository(UserHistory::class)
-                ->getUserHistoryFromSearchContext($searchHistory, $this->getUser());
+            /** @var UserHistoryRepository $userHistoryRepo */
+            $userHistoryRepo = $this->entityManager->getRepository(UserHistory::class);
+            $userHistory = $userHistoryRepo->getUserHistoryFromSearchContext($searchHistory, $this->getUser());
         } else {
             $userHistory = $this->getUserHistoryFromSession($searchHistory);
         }
