@@ -113,14 +113,21 @@
             <div class="collapse search-facette__body" id="adv-search-language" role="group"
                  aria-label="{{ 'modal.advanced-search.langage.select-aria'|trans }}">
                 <div class="search-facette__content">
-                    <select id="adv-search-langage" multiple="multiple" class="form-control"
-                            name="{{ constant('App\\Model\\Search\\FacetFilter::QUERY_NAME') }}[language][]"
+                    <span class="sr-only">
+                        {{ 'modal.advanced-search.langage.select-sr-only'|trans }}
+                    </span>
+                    <label for="adv-search-langage">
+                        {{ 'modal.advanced-search.langage.label'|trans }}
+                    </label>
+                    <select id="adv-search-langage" multiple="multiple"
+                        name="{{ constant('App\\Model\\Search\\FacetFilter::QUERY_NAME') }}[language][]"
                         data-value="{{ 'modal.advanced-search.langage.select-aria'|trans }}">
                         {% for lang in criteria.language %}
                             <option value="{{ lang }}"
-                                    {% if 'language' in objSearch.searchFilters|keys and lang in objSearch.searchFilters['language'] %}
+                            {% if 'language' in objSearch.searchFilters|keys and
+                                lang in objSearch.searchFilters['language'] %}
                                 selected="selected"
-                                    {% endif %}>{{ lang }}</option>
+                            {% endif %}>{{ lang }}</option>
                         {% endfor %}
                     </select>
                 </div>

@@ -1,5 +1,4 @@
 import 'icheck';
-import 'select2';
 
 export class SearchForm {
     resetButton: HTMLButtonElement;

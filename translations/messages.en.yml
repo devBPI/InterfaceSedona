@@ -249,6 +249,8 @@ modal:
     langage:
       title: Langues
       select-aria: Sélectionner les langues
+      select-sr-only: Sélection multiple en autocomplétion. La saisie clavier permet de filtrer les propositions.
+      label: Choisissez une ou plusieurs langues
     available:
       in-shelf: Disponible en rayon
       in-ligne: Consultable en ligne
