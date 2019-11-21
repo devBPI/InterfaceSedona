@@ -229,7 +229,7 @@ modal:
       group:
         or: Ou
         and: Et
-        not: Sauf
+        notCriteria: Sauf
       group-label: Condition de recherche
       add-ligne: Ajouter un champs de recherche
       remove-ligne: Supprimer le champs de recherche n°%index%
