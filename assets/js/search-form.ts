@@ -64,9 +64,6 @@ export class SearchForm {
         targetDiv.classList.remove('d-none');
 
         let firstNextInputElement = targetDiv.querySelector('input');
-
-        console.log(firstNextInputElement);
-
         if (firstNextInputElement) {
             firstNextInputElement.focus();
         }
