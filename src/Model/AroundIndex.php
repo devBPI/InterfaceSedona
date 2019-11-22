@@ -15,7 +15,7 @@ use JMS\Serializer\Annotation as JMS;
  * Class AroundIndex
  * @package App\Model
  */
-class AroundIndex
+final class AroundIndex
 {
 
     /**
@@ -63,18 +63,6 @@ class AroundIndex
     public function getPrevious(): string
     {
         return $this->previous;
-    }
-
-    /**
-     * @return string
-     */
-    public function getPdf():string
-    {
-        /**
-         * @TODO use PDF here
-         */
-
-        return "#";
     }
 
 }
