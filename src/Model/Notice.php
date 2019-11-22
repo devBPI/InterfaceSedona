@@ -254,11 +254,10 @@ class Notice extends AbstractImage implements NoticeInterface, RecordInterface
      */
     private $periodicity;
     /**
-     * @var string|null
-     * @JMS\Type("string")
+     * @var array|null
+     * @JMS\Type("array<string>")
      * @JMS\SerializedName("editeurs")
      * @JMS\XmlList("editeur")
-     * @JMS\Type("string")
      */
     private $editors;
 
@@ -1004,9 +1003,9 @@ class Notice extends AbstractImage implements NoticeInterface, RecordInterface
     }
 
     /**
-     * @return null|string
+     * @return array|null
      */
-    public function getEditors(): ?string
+    public function getEditors(): ?array
     {
 
         return $this->editors;
@@ -1271,6 +1270,14 @@ class Notice extends AbstractImage implements NoticeInterface, RecordInterface
     public function getFormats(): array
     {
         return $this->formats;
+    }
+
+    /**
+     * @return array|null
+     */
+    public function getAnalyticalTitles(): ?array
+    {
+        return $this->analyticalTitles;
     }
 
 }

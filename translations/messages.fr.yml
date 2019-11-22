@@ -252,11 +252,11 @@ modal:
         Si date saisie, recherche depuis cette date,
         si période saisie, recherche de la date de début à la date de fin.
       by-date: Date
-      by-periode: Periode
+      by-periode: Période
       date-start: Date de parution
       date-end: Date de fin de parution
     langage:
-      title: Langues
+      title: Langue
       select-aria: Sélectionner les langues
       select-sr-only: Sélection multiple en autocomplétion. La saisie clavier permet de filtrer les propositions.
       label: Choisissez une ou plusieurs langues
@@ -264,8 +264,8 @@ modal:
       in-shelf: Disponible en rayon
       in-ligne: Consultable en ligne
     facette:
-      type: Type de documents
-      material_support: Supports
+      type: Type de document
+      material_support: Support
       genre_musical: Genre musical
       genre_film: Genre film
       genre_litteraire: Genre littéraire

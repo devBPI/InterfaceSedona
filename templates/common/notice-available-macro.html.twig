@@ -19,6 +19,33 @@
                 </p>
             </div>
         {% endif %}
+        {% if  object.lastNumber %}
+            <div class="availability availability--true availability--rayon">
+                <p class="font-weight-bold">
+                    <span class="availability__status">{{ 'bloc.notice-simple.last-publication'|trans }}</span>
+                </p>
+            </div>
+        {% endif %}
+        {% for number in object.reciviedNumber %}
+            <div class="availability availability--true availability--rayon">
+                <p class="font-weight-bold">
+                   {{ number }}
+                </p>
+            </div>
+            {% if loop.index == 2 %}
+
+                <button type="button" class="btn btn-small-link" data-toggle="collapse"
+                        data-target="#availabity-n-items" aria-expanded="false"
+                        aria-controls="availabity-n-items">{{ 'global.see-more'|trans }}
+                </button>
+
+                <div class="collapse" id="availabity-n-items">
+            {% endif %}
+
+            {% if not loop.index <3 and loop.last %}
+                </div>
+            {% endif %}
+        {% endfor %}
     {% elseif is_same_instance(object, "App\\Model\\Link") %}
        {% if object.media is  defined and object.media is not empty %}
            <div class="availability availability--true availability--online">
