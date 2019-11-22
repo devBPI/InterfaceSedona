@@ -267,7 +267,6 @@ class NoticeBuildFileService
             $noticeWrapper = $this->getNoticeWrapper($attachement->getNotices(), $attachement->getAuthorities(), $attachement->getIndices());
 
         }catch (\Exception|NoResultException $e){
-           // throw new NotFoundHttpException();
         }
 
         return  $this->templating->render(
