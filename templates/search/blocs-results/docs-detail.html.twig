@@ -46,7 +46,7 @@
                 {{ notice.frontDate }}
                     {% if notice.frontResume is not empty %}
                     - <button class="list-result__content-resume" type="button"
-                            role="tooltip" data-toggle="tooltip" title="{{ 'bloc.notice-simple.resume-title'|trans }} {{ notice.frontResume }}">
+                            role="tooltip" data-toggle="tooltip" title="{{ 'modal.comments-edit.field-content'|trans }} : {{ notice.frontResume }}">
                         <img src="{{ asset('images/icones/icone-resume.svg') }}" alt=""/>
                         <span class="sr-only">{{ 'bloc.notice-simple.resume-label'|trans }}</span>
                     </button>
