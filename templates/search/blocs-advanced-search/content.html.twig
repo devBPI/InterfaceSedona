@@ -137,13 +137,13 @@
 {% endif %}
 
 {% if criteria.facets is defined %}
-    {% for key in criteria.facets if attribute(criteria, key)|length > 0 %}
+    {% for key in criteria.facets if attribute(criteria, key|camel)|length > 0 %}
         <div class="modal-body">
             {{ display_form.display_checkbox_list(
                 'advanced',
                 ('modal.advanced-search.facette.'~key)|trans,
                 key,
-                attribute(criteria, key),
+                attribute(criteria, key|camel),
                 objSearch.searchFilters
             ) }}
         </div>

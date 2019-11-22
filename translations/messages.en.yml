@@ -256,10 +256,10 @@ modal:
       in-ligne: Consultable en ligne
     facette:
       type: Type de documents
-      materialSupport: Supports
-      genreMusical: Genre musical
-      genreFilm: Genre film
-      genreLitteraire: Genre littéraire
+      material_support: Supports
+      genre_musical: Genre musical
+      genre_film: Genre film
+      genre_litteraire: Genre littéraire
       audience: Public destinataire
       secteur: Secteur
       mediation: Médiation

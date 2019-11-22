@@ -193,10 +193,10 @@ class AdvancedSearchCriteria
     {
         return [
             'type',
-            'materialSupport',
-            'genreMusical',
-            'genreFilm',
-            'genreLitteraire',
+            'material_support',
+            'genre_musical',
+            'genre_film',
+            'genre_litteraire',
             'audience',
             'secteur',
             'mediation',
