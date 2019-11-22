@@ -44,10 +44,10 @@ class FacetFilter
     }
 
     /**
-     * @param $name
-     * @param $values
+     * @param string $name
+     * @param string $values
      */
-    public function set($name, $values)
+    public function set(string $name, string $values)
     {
         $this->attributes[$name] = $values;
     }

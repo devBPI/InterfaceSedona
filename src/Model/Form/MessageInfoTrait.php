@@ -20,9 +20,9 @@ trait MessageInfoTrait
 
     /**
      * @param string $object
-     * @return MessageInfoInterface|MessageInfoTrait
+     * @return $this
      */
-    public function setObject(string $object): MessageInfoInterface
+    public function setObject(string $object)
     {
         $this->object = $object;
 
@@ -39,9 +39,9 @@ trait MessageInfoTrait
 
     /**
      * @param string $message
-     * @return MessageInfoInterface|MessageInfoTrait
+     * @return $this
      */
-    public function setMessage(string $message): MessageInfoInterface
+    public function setMessage(string $message)
     {
         $this->message = $message;
 

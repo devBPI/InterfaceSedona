@@ -41,13 +41,13 @@ final class PrintController extends AbstractController
      * @Route("/print/selection.{format}", methods={"GET","HEAD"}, name="selection_print", requirements={"format" = "html|pdf|txt"}, defaults={"format" = "pdf"})
      *
      * @param Request $request
-     * @param $format
+     * @param string $format
      * @return PdfResponse|Response
      * @throws \Twig\Error\LoaderError
      * @throws \Twig\Error\RuntimeError
      * @throws \Twig\Error\SyntaxError
      */
-    public function printSelection(Request $request, $format)
+    public function printSelection(Request $request, string $format='pdf')
     {
         $sendAttachement = new ExportNotice();
         $sendAttachement

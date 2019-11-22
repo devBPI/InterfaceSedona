@@ -32,5 +32,4 @@ class ErrorApiResponse
     {
         return $this->message;
     }
-
 }

@@ -31,7 +31,9 @@ class ImageController extends AbstractController
     }
 
     /**
-     * @param $content
+     * @param Request $request
+     * @param string $content
+     * @param string $type
      * @return BinaryFileResponse
      */
     public function binary(Request $request, string $content, string $type)

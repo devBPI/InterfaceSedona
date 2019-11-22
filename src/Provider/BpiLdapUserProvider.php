@@ -9,14 +9,15 @@ use Symfony\Component\Ldap\Entry;
 use Symfony\Component\Ldap\Ldap;
 use Symfony\Component\Ldap\LdapInterface;
 use Symfony\Component\Security\Core\Exception\UsernameNotFoundException;
-use Symfony\Component\Security\Core\User\LdapUserProvider;
+
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Security\Core\User\UserProviderInterface;
 
 /**
  * Class BpiLdapUserProvider
  * @package App\Provider
  */
-class BpiLdapUserProvider extends LdapUserProvider
+class BpiLdapUserProvider implements UserProviderInterface
 {
     /** @var Ldap */
     private $ldap;

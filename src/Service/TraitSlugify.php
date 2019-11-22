@@ -2,17 +2,14 @@
 
 namespace App\Service;
 
-/**
- * Trait TraitSlugify
- * @package Sedona\CMSBundle\Service
- */
+
 trait TraitSlugify
 {
     /**
-     * @param $text
-     * @return null|string|string[]
+     * @param string|null $text
+     * @return mixed|null|string|string[]
      */
-    protected function slugify($text)
+    protected function slugify(string $text=null)
     {
         // convert vowel with accent to vowel without accent
         $text = str_replace(

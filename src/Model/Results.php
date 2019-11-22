@@ -3,6 +3,7 @@
 namespace App\Model;
 
 
+use App\Model\Interfaces\NoticeInterface;
 use App\Model\Interfaces\SearchResultInterface;
 use App\Model\Search\Criteria;
 use App\Model\Traits\SearchResultTrait;
@@ -97,7 +98,7 @@ class Results implements SearchResultInterface
     }
 
     /**
-     * @return Authority[]
+     * @return RankedAuthority[]
      */
     public function getAuthors(): array
     {
@@ -105,7 +106,7 @@ class Results implements SearchResultInterface
     }
 
     /**
-     * @return AuthorityInterface|Authority|null
+     * @return NoticeInterface|null
      */
     public function getMainAuthor()
     {
@@ -117,7 +118,7 @@ class Results implements SearchResultInterface
     }
 
     /**
-     * @return AuthorityInterface[]
+     * @return array
      */
     public function getOtherAuthors(): array
     {
@@ -143,7 +144,7 @@ class Results implements SearchResultInterface
     }
 
     /**
-     * @return string[]|array
+     * @return Authority[]|array
      */
     public function getLinkedSubjects(): array
     {
@@ -162,7 +163,7 @@ class Results implements SearchResultInterface
      * @param Criteria|null $criteria
      * @return Results
      */
-    public function setCriteria(Criteria $criteria): Results
+    public function setCriteria(Criteria $criteria=null): Results
     {
         $this->criteria = $criteria;
         return $this;

@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace App\Service\Provider;
 
+use App\Model\NoticeMappedAuthority;
 use App\Service\APIClient\CatalogClient;
 use GuzzleHttp\Psr7\Response;
 use JMS\Serializer\Serializer;
@@ -38,7 +39,7 @@ abstract class AbstractProvider implements ApiProviderInterface
      * @param string $endpoint
      * @param array $queries
      * @param string|null $model
-     * @return object
+     * @return mixed
      */
     protected function hydrateFromResponse(string $endpoint, array $queries = [], string $model = null)
     {

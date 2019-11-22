@@ -36,9 +36,9 @@ trait PersonneTrait
 
     /**
      * @param string $email
-     * @return ReportError
+     * @return $this
      */
-    public function setEmail(string $email): PersonneInterface
+    public function setEmail(string $email)
     {
         $this->email = $email;
 
@@ -55,9 +55,9 @@ trait PersonneTrait
 
     /**
      * @param string $lastName
-     * @return PersonneInterface
+     * @return $this
      */
-    public function setLastName(string $lastName): PersonneInterface
+    public function setLastName(string $lastName)
     {
         $this->lastName = $lastName;
 
@@ -74,9 +74,9 @@ trait PersonneTrait
 
     /**
      * @param string $firstName
-     * @return PersonneInterface
+     * @return $this
      */
-    public function setFirstName(string $firstName): PersonneInterface
+    public function setFirstName(string $firstName)
     {
         $this->firstName = $firstName;
         return $this;

@@ -124,9 +124,10 @@ final class BreadCrumbBuilder
                 sprintf('record_%s', $notice->getBreadcrumbName()),
                 sprintf('breadcrumb.card.%s', $notice->getBreadcrumbName()),
                 ['permalink' => $notice->getPermalink()],
-                ['%title%' => $notice->getTitle()]
+                ['%title%'   => $notice->getTitle()]
             );
         }
+
         return true;
     }
 

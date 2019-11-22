@@ -132,7 +132,7 @@ class Criteria
      */
     private $or;
     /**
-     * @var self
+     * @var self|null
      * @JMS\Type("App\Model\Search\Criteria")
      * @JMS\Accessor(getter="setNotSubCriteria")
      */
@@ -163,8 +163,8 @@ class Criteria
 
 
     /**
-     * @param $type
-     * @param $keyword
+     * @param string $type
+     * @param string $keyword
      */
     public function setSimpleSearch($type, $keyword)
     {

@@ -16,7 +16,8 @@ class NoticeAuthorityProvider extends AbstractProvider
 {
     /**
      * @param int $id
-     * @return NoticeMappedAuthority|object
+     * @return NoticeMappedAuthority
+     *
      */
     public function getSubjectNotice(int $id): NoticeMappedAuthority
     {
@@ -28,8 +29,8 @@ class NoticeAuthorityProvider extends AbstractProvider
     }
 
     /**
-     * @param $id
-     * @return NoticeMappedAuthority|object
+     * @param int $id
+     * @return NoticeMappedAuthority
      */
     public function getAuthorsNotice(int $id): NoticeMappedAuthority
     {
@@ -42,7 +43,7 @@ class NoticeAuthorityProvider extends AbstractProvider
 
     /**
      * @param string $query
-     * @return Authority|object
+     * @return Authority
      */
     public function getAuthority(string $query): Authority
     {
@@ -51,7 +52,7 @@ class NoticeAuthorityProvider extends AbstractProvider
 
     /**
      * @param string $query
-     * @return IndiceCdu|object
+     * @return IndiceCdu
      */
     public function getIndiceCdu(string $query): IndiceCdu
     {
@@ -60,7 +61,7 @@ class NoticeAuthorityProvider extends AbstractProvider
 
     /**
      * @param int $id
-     * @return NoticeMappedAuthority|object
+     * @return NoticeMappedAuthority
      */
     public function getSubjectIndice(int $id): NoticeMappedAuthority
     {
@@ -72,10 +73,10 @@ class NoticeAuthorityProvider extends AbstractProvider
     }
 
     /**
-     * @param $cote
-     * @return AroundIndex|object
+     * @param string $cote
+     * @return AroundIndex
      */
-    public function getIndiceCduAroundOf($cote):AroundIndex
+    public function getIndiceCduAroundOf(string $cote):AroundIndex
     {
         return $this->hydrateFromResponse(
             '/cdu-indexes/around',

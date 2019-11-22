@@ -12,7 +12,7 @@ namespace App\Model\Traits;
 trait BreadcrumbTrait
 {
     /**
-     * @return mixed
+     * @return string
      */
     public function getBreadcrumbName():string
     {

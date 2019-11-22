@@ -94,7 +94,6 @@ final class ExportController extends AbstractController
      * @Route("/share-by-mail/{type}/{permalink}", name="share_notice_by_mail", requirements={"permalink"=".+"})
      * @param Request $request
      * @param string $type
-     * @param MailSenderService $mailSenderService
      * @return Response
      * @throws \Throwable
      * @throws \Twig\Error\LoaderError

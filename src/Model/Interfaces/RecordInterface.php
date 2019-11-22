@@ -12,7 +12,7 @@ namespace App\Model\Interfaces;
 interface RecordInterface
 {
     /**
-     * @return mixed
+     * @return string
      */
     public function getBreadcrumbName():string;
 

@@ -49,7 +49,7 @@ final class HomeController extends AbstractController
     /**
      * @Route("/accueil/{parcours}", methods={"GET","HEAD"}, name="home_thematic", requirements={"theme"="autoformation|presse|cinema"})
      *
-     * @param string $thematic
+     * @param string $parcours
      * @return Response
      */
     public function thematicAction(string $parcours): Response

@@ -8,9 +8,10 @@ use Twig\Environment;
 
 class MailSenderService
 {
-    const RECIEVER_EMAIL = 'catalogue.public@bpi.fr';
-    const PURCHASE_SUGGESTION_EMAIL    = 'organigramme.0302@bpi.fr';
-    const SENDER_EMAIL  =  'catalogue.public@bpi.fr';
+    const RECIEVER_EMAIL            = 'catalogue.public@bpi.fr';
+    const PURCHASE_SUGGESTION_EMAIL = 'organigramme.0302@bpi.fr';
+    const SENDER_EMAIL              = 'catalogue.public@bpi.fr';
+
     /**
      * @var Environment
      */
@@ -46,9 +47,10 @@ class MailSenderService
     }
 
     /**
-     * @param $templateName
-     * @param $context
-     * @param $toEmail
+     * @param string $templateName
+     * @param array $context
+     * @param string|null $reciever
+     * @param string|null $senderEmail
      * @param \Swift_Attachment|null $attachment
      * @return int
      * @throws \Throwable
@@ -56,10 +58,10 @@ class MailSenderService
      * @throws \Twig\Error\SyntaxError
      */
     public function sendMail(
-        $templateName,
-        $context,
-        $reciever=null,
-        $senderEmail=null,
+        string $templateName,
+        array $context,
+        string $reciever=null,
+        string $senderEmail=null,
         \Swift_Attachment $attachment = null
     ) {
 
@@ -78,10 +80,8 @@ class MailSenderService
         $message = (new \Swift_Message($subject))
             ->setSubject($subject)
             ->setFrom($senderEmail)
-            ->setTo($reciever );
-
-            $message->setReplyTo($this->replyTo);
-
+            ->setTo($reciever )
+            ->setReplyTo($this->replyTo);
 
         if (!empty($htmlBody)) {
             $message->setBody($htmlBody, 'text/html')
