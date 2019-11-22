@@ -265,10 +265,10 @@ modal:
       in-ligne: Consultable en ligne
     facette:
       type: Type de document
-      materialSupport: Support
-      genreMusical: Genre musical
-      genreFilm: Genre film
-      genreLitteraire: Genre littéraire
+      material_support: Support
+      genre_musical: Genre musical
+      genre_film: Genre film
+      genre_litteraire: Genre littéraire
       audience: Public destinataire
       secteur: Secteur
       mediation: Médiation
@@ -353,7 +353,7 @@ bloc:
     suggest: Suggestion d'achats
     report-error: Signaler une erreur
   search-zone:            #Bloc B  Zone de recherche simple
-    autocompletion-notice: Insert texte explicatif pour l'auto-completion
+    autocompletion-notice: Utiliser les flèches haut et bas du clavier pour vous déplacer dans la liste de suggestions
     autocompletion-nb-result: %nb% options affichées
     input-sr-only: Saisir un mot clé
     input-placeholder: Rechercher
@@ -599,5 +599,3 @@ breadcrumb:
     bibliographic: Document %title%
     indice_cdu: Autorité %title%
     authority: Autorité %title%
-
-
