@@ -15,7 +15,7 @@ export class CollectionRow {
         this.prototype = this.target.dataset['prototype'];
         this.count = this.target.childElementCount;
         this.index = this.count;
-        this.disableAdder();
+        this.hideAdder();
 
         this.initListener();
     }
@@ -42,7 +42,7 @@ export class CollectionRow {
 
         this.count++;
         this.index++;
-        this.disableAdder();
+        this.hideAdder();
 
         this.setFocusOnInputOfRow(newRow);
     }
@@ -67,7 +67,7 @@ export class CollectionRow {
         row.remove();
         this.count--;
 
-        this.disableAdder();
+        this.hideAdder();
 
         let prevRow = parentElement.lastElementChild as HTMLElement;
         this.setFocusOnInputOfRow(prevRow);
@@ -77,11 +77,11 @@ export class CollectionRow {
         return this.count >= this.limit;
     }
 
-    private disableAdder(): void {
+    private hideAdder(): void {
         if (this.checkLimitChildren()) {
-            this.adder.setAttribute('disabled', 'disabled');
+            this.adder.classList.add('d-none');
         } else {
-            this.adder.removeAttribute('disabled');
+            this.adder.classList.remove('d-none');
         }
     }
 
