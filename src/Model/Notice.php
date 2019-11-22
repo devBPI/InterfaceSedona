@@ -705,7 +705,7 @@ class Notice extends AbstractImage implements NoticeInterface, RecordInterface
             $authors = array_merge($payload, $this->authors);
         }elseif ($this->authorsValue){
             foreach ($this->authorsValue as $value){
-                if ($value instanceof Value and $value->getValue()){
+                if ($value instanceof Value && $value->getValue()){
                      $authors[] = $value->getValue();
                 }
             }
