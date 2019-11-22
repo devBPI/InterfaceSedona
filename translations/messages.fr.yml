@@ -247,7 +247,10 @@ modal:
     date:
       title: Date de publication
       select-aria: Sélectionner la date ou la période de publication
-      title-sr-only: date de parution
+      select-sr-only: |
+        Sélectionner la date ou la période de publication.
+        Si date saisie, recherche depuis cette date,
+        si période saisie, recherche de la date de début à la date de fin.
       by-date: Date
       by-periode: Periode
       date-start: Date de parution

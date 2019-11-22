@@ -154,14 +154,14 @@ final class BreadCrumbBuilder
                 $this->bctService->add(
                     'refined_search',
                     'breadcrumb.search-terms',
-                    array_merge(['searchToken'  => $navigation->getHash()], $parcoursTerms),
+                    array_merge(['token'  => $navigation->getHash()], $parcoursTerms),
                     ['%terms%'      => $humanCriteria]
                 );
             }else {
                 $this->bctService->add(
                     'refined_search',
                     'breadcrumb.search',
-                    array_merge(['searchToken'  => $navigation->getHash()], $parcoursTerms)
+                    array_merge(['token'  => $navigation->getHash()], $parcoursTerms)
                 );
             }
 
@@ -185,13 +185,13 @@ final class BreadCrumbBuilder
                     ->add(
                         'refined_search',
                         'breadcrumb.search-terms',
-                        array_merge(['searchToken'=>$searchToken], $parcoursTerms),
+                        array_merge(['token'=>$searchToken], $parcoursTerms),
                         ['%terms%'=> $humanCriteria]);
             }else {
                 $this->bctService->add(
                     'refined_search',
                     'breadcrumb.search',
-                    array_merge(['searchToken'=>$searchToken], $parcoursTerms)
+                    array_merge(['token'=>$searchToken], $parcoursTerms)
                 );
             }
         }
