@@ -267,11 +267,12 @@ final class SearchController extends AbstractController
         if (in_array($seeAll, [Notice::SEE_ONLINE, Notice::SEE_ONSHELF] )){
             $template = 'search/index-all.html.twig';
         }
+
         return $this->render(
             $template,
             [
-                'toolbar' => ObjSearch::class,
-                'seeAll'=> $seeAll,
+                'toolbar'   => ObjSearch::class,
+                'seeAll'    => $seeAll,
                 'objSearch' => $objSearch,
                 'printRoute' => $this->generateUrl('search_pdf', ['format' => 'pdf']),
             ]

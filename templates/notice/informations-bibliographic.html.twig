@@ -34,6 +34,8 @@
 
     </li>
 {% endif %}
+
+
 {{ notice_macros.detail(notice.materialDescriptions, 'modal.advanced-search.facette.materialSupport'|trans) }}
 {{ notice_macros.detail_link(notice.collectionSeries, 'footer.sitemap.professionnels.collections-et-services'|trans, constant('App\\WordsList::TITLE_WORD')) }}
 {{ notice_macros.detail_link(notice.togetherTitle, 'bloc.autority-result-information.title-together'|trans, constant('App\\WordsList::TITLE_WORD')) }}
@@ -45,13 +47,10 @@
         <ul class="list-information__sub-list">
             {% for element in notice.otherEdition %}
                 <li class="list-information__sub-item">
-                    <a href="{{ link }}" >
-                        {{ label }}
-                    </a>
                     {{ element }}
                 </li>
                 {% if notice.conservations %}
-                    {% for element in conservations %}
+                    {% for element in  notice.conservations %}
                         <li class="list-information__sub-item">
                             {{ element }}
                         </li>

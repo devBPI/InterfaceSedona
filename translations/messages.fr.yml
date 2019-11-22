@@ -26,7 +26,7 @@ header:
     aria: Menu-langue
     change-to:
       en: Version anglaise
-      es: Version espagnol version
+      es: Version espagnol
       fr: Version française
       en-active: - active language
       es-active: - activo idioma
@@ -247,18 +247,18 @@ modal:
       select-aria: Sélectionner la date ou la période de publication
       title-sr-only: date de parution
       by-date: Date
-      by-periode: Periode
+      by-periode: Période
       date-start: Date de parution
       date-end: Date de fin de parution
     langage:
-      title: Langues
+      title: Langue
       select-aria: Sélectionner les langues
     available:
       in-shelf: Disponible en rayon
       in-ligne: Consultable en ligne
     facette:
-      type: Type de documents
-      materialSupport: Supports
+      type: Type de document
+      materialSupport: Support
       genreMusical: Genre musical
       genreFilm: Genre film
       genreLitteraire: Genre littéraire

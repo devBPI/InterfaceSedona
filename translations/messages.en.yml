@@ -245,7 +245,7 @@ modal:
       date-start: Entrer une date de parution
       date-end: Entrer une deuxième date de parution
     langage:
-      title: Langues
+      title: Langue
       select-aria: Sélectionner les langues
     available:
       in-shelf: Disponible en rayon
