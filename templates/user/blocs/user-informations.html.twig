@@ -4,7 +4,7 @@
 			{% if app.user %}
 				{% include 'common/informations-list.html.twig' with {'details': {
 					'page.personal-data.profil.pseudo': app.user.username,
-					'page.personal-data.profil.name': app.user.firstname~' '~app.user.lastname,
+					'page.personal-data.profil.name': app.user.lastname~' '~app.user.firstname,
 					'page.personal-data.profil.email': app.user.email
 				}} %}
 			{% endif %}

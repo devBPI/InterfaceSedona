@@ -21,6 +21,7 @@ class StringExtension extends AbstractExtension
     {
         return [
             new TwigFilter('snake', [$this, 'toSnakeCase']),
+            new TwigFilter('camel', [$this, 'toCamelCase']),
             new TwigFilter('slugify', [$this, 'toSlugify']),
         ];
     }
@@ -72,6 +73,15 @@ class StringExtension extends AbstractExtension
     public function toSnakeCase(string $text): string
     {
         return strtolower(ltrim(preg_replace('/([A-Z])/', '_\\1', $text), '_'));
+    }
+
+    /**
+     * @param string $text
+     * @return string
+     */
+    public function toCamelCase(string $text): string
+    {
+        return lcfirst(str_replace(' ', '', ucwords(preg_replace('/[^a-zA-Z0-9\x7f-\xff]++/', ' ', $text))));
     }
 
     /**

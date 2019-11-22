@@ -1,5 +1,5 @@
 {% if author is not empty %}
-    <div class="list-result__content-item js-list-result-item" lang="fr">
+    <div class="list-result__content-item js-list-result-item" lang="fr" role="listitem">
         <div class="list-result__content-selector">
             <input type="checkbox" id="related-notice-result-{{ index }}" class="addableInList {% if author.indice %}js-indicecdu{%else%}js-authority{% endif %}"
                    name="{{ author.docType }}[]"

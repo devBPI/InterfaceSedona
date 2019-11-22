@@ -22,121 +22,125 @@
 
 {% if criteria.configurationName is defined %}
     <div class="modal-body">
-        <div class="search-facette">
-            <button type="button" class="search-facette__button btn collapsed" data-toggle="collapse" aria-expanded=""
-                    aria-controls="adv-search-bdd"
-                    data-target="#adv-search-bdd">{{ 'modal.advanced-search.base.title'|trans }}</button>
-            <div class="collapse search-facette__body" id="adv-search-bdd" role="group"
-                 aria-label="{{ 'modal.advanced-search.base.select-aria'|trans }}">
-                <div class="search-facette__content">
-                    <div class="search-base">
-                        <p class="search-base__label">{{ 'modal.advanced-search.base.label'|trans }}</p>
-                        <ul role="group" aria-label="{{ 'modal.advanced-search.base.in'|trans }}"
-                            class="search-base__list">
-                            {% for i, base in criteria.configurationName %}
-                                <li class="form-check search-base__item">
-                                    {% set key = 'configurationName' %}
-                                    <input type="checkbox" id="adv-search-bdd-{{ i }}" class="form-check-input"
-                                           name="{{ constant('App\\Model\\Search\\FacetFilter::QUERY_NAME') }}[{{ key }}][]" value="{{ base }}"
-                                           {% if key in objSearch.searchFilters|keys and base in objSearch.searchFilters[key] %}
-                                            checked="checked"
-                                           {% endif %}>
+        {% set key = 'configuration_name' %}
+        {% set content %}
+            <div class="search-base">
+                <p class="search-base__label">{{ 'modal.advanced-search.base.label'|trans }}</p>
+                <ul role="group" aria-label="{{ 'modal.advanced-search.base.label'|trans }}"
+                    class="search-base__list">
+                    {% for i, base in criteria.configurationName %}
+                        <li class="form-check search-base__item">
+                            <input type="checkbox" id="adv-search-bdd-{{ i }}" class="form-check-input"
+                                   name="{{ constant('App\\Model\\Search\\FacetFilter::QUERY_NAME') }}[{{ key }}][]" value="{{ base }}"
+                                    {% if key in objSearch.searchFilters|keys and base in objSearch.searchFilters[key] %}
+                                checked="checked"
+                                    {% endif %}>
 
-                                    <label for="adv-search-bdd-{{ i }}" class="form-check-label">
-                                        {{ base }}
-                                    </label>
-                                </li>
-                            {% endfor %}
-                        </ul>
-                    </div>
-                </div>
+                            <label for="adv-search-bdd-{{ i }}" class="form-check-label">
+                                {{ base }}
+                            </label>
+                        </li>
+                    {% endfor %}
+                </ul>
             </div>
-        </div>
+        {% endset %}
+
+        {{ display_form.display_collapse_filter(
+            'advanced',
+            'modal.advanced-search.base.title'|trans,
+            key,
+            objSearch.searchFilters,
+            content
+        ) }}
     </div>
 {% endif %}
 
 <div class="modal-body">
-    <div class="search-facette">
-        <button type="button" class="search-facette__button btn" data-toggle="collapse" aria-expanded=""
-                aria-controls="adv-search-date"
-                data-target="#adv-search-date">{{ 'modal.advanced-search.date.title'|trans }}</button>
-        <div class="collapse search-facette__body" id="adv-search-date" role="group"
-             aria-label="{{ 'modal.advanced-search.date.select-aria'|trans }}">
-            <div class="search-facette__content">
-                <div aria-label="{{ 'modal.advanced-search.date.title-sr-only'|trans }}"
-                     class="search-date">
-                    <div class="search-date__group">
-                        <div class="search-date__radio form-check form-check-inline">
-                            <input class="form-check-input" type="radio" id="adv-search-label-date"
-                                   name="adv-search-date"
-                                   value="Date" checked>
-                            <label class="form-check-label"
-                                   for="adv-search-label-date">{{ 'modal.advanced-search.date.by-date'|trans }}</label>
-                        </div>
-                        <div class="search-date__radio search-date__radio--period js-date-period form-check form-check-inline">
-                            <input class="form-check-input" type="radio" id="adv-search-label-period"
-                                   name="adv-search-date"
-                                   value="Periode" {% if modeDate == 'Periode' %}checked{% endif %}>
-                            <label class="form-check-label"
-                                   for="adv-search-label-period">{{ 'modal.advanced-search.date.by-periode'|trans }}</label>
-                        </div>
-                    </div>
-                    <div class="search-date__group">
-                        <div class="search-date__date form-group">
-                            <label for="adv-search-date-1"
-                                   class="sr-only js-start-label">{{ 'modal.advanced-search.date.date-start'|trans }}</label>
-                            <input type="text" class="form-control" id="adv-search-date-1" placeholder="AAAA"
-                                   name="{{ constant('App\\Model\\Search\\Criteria::QUERY_NAME') }}[publicationDateStart]"
-                                   value="{{ objSearch.criteria.publicationDateStart }}">
-                        </div>
-                        <div class="search-date__date search-date__date--second form-group
-                             {% if modeDate != 'Periode' %}d-none{% endif %}">
-                            <label for="adv-search-date-2"
-                                   class="sr-only">{{ 'modal.advanced-search.date.date-end'|trans }}</label>
-                            <input type="text" class="form-control" id="adv-search-date-2" placeholder="AAAA"
-                                   name="{{ constant('App\\Model\\Search\\Criteria::QUERY_NAME') }}[publicationDateEnd]"
-                                   value="{{ objSearch.criteria.publicationDateEnd }}">
-                        </div>
-                    </div>
+    {% set content %}
+        <div aria-label="{{ 'modal.advanced-search.date.select-sr-only'|trans }}" class="search-date">
+            <div class="search-date__group">
+                <div class="search-date__radio form-check form-check-inline">
+                    <input class="form-check-input" type="radio" id="adv-search-label-date"
+                           name="adv-search-date"
+                           value="Date" checked>
+                    <label class="form-check-label"
+                           for="adv-search-label-date">{{ 'modal.advanced-search.date.by-date'|trans }}</label>
+                </div>
+                <div class="search-date__radio search-date__radio--period js-date-period form-check form-check-inline">
+                    <input class="form-check-input" type="radio" id="adv-search-label-period"
+                           name="adv-search-date"
+                           value="Periode" {% if modeDate == 'Periode' %}checked{% endif %}>
+                    <label class="form-check-label"
+                           for="adv-search-label-period">{{ 'modal.advanced-search.date.by-periode'|trans }}</label>
+                </div>
+            </div>
+            <div class="search-date__group">
+                <div class="search-date__date form-group">
+                    <label for="adv-search-date-1"
+                           class="sr-only js-start-label">{{ 'modal.advanced-search.date.date-start'|trans }}</label>
+                    <input type="text" class="form-control" id="adv-search-date-1" placeholder="AAAA"
+                           name="{{ constant('App\\Model\\Search\\Criteria::QUERY_NAME') }}[publicationDateStart]"
+                           value="{{ objSearch.criteria.publicationDateStart }}">
+                </div>
+                <div class="search-date__date search-date__date--second form-group
+                                 {% if modeDate != 'Periode' %}d-none{% endif %}">
+                    <label for="adv-search-date-2"
+                           class="sr-only">{{ 'modal.advanced-search.date.date-end'|trans }}</label>
+                    <input type="text" class="form-control" id="adv-search-date-2" placeholder="AAAA"
+                           name="{{ constant('App\\Model\\Search\\Criteria::QUERY_NAME') }}[publicationDateEnd]"
+                           value="{{ objSearch.criteria.publicationDateEnd }}">
                 </div>
             </div>
         </div>
-    </div>
+    {% endset %}
+
+    {{ display_form.display_collapse_filter(
+        'advanced',
+        'modal.advanced-search.date.title'|trans,
+        'dates',
+        objSearch.searchFilters,
+        content,
+        'modal.advanced-search.date.select-aria'|trans
+    ) }}
 </div>
 
 {% if criteria.language is defined %}
     <div class="modal-body">
-        <div class="search-facette">
-            <button type="button" class="search-facette__button btn" data-toggle="collapse" aria-expanded=""
-                    aria-controls="adv-search-language"
-                    data-target="#adv-search-language">{{ 'modal.advanced-search.langage.title'|trans }}</button>
-            <div class="collapse search-facette__body" id="adv-search-language" role="group"
-                 aria-label="{{ 'modal.advanced-search.langage.select-aria'|trans }}">
-                <div class="search-facette__content">
-                    <select id="adv-search-langage" multiple="multiple" class="form-control"
-                            name="{{ constant('App\\Model\\Search\\FacetFilter::QUERY_NAME') }}[language][]"
-                        data-value="{{ 'modal.advanced-search.langage.select-aria'|trans }}">
-                        {% for lang in criteria.language %}
-                            <option value="{{ lang }}"
-                                    {% if 'language' in objSearch.searchFilters|keys and lang in objSearch.searchFilters['language'] %}
-                                selected="selected"
-                                    {% endif %}>{{ lang }}</option>
-                        {% endfor %}
-                    </select>
-                </div>
-            </div>
-        </div>
+        {% set content %}
+            <span class="sr-only">{{ 'modal.advanced-search.langage.select-sr-only'|trans }}</span>
+            <label for="adv-search-langage">{{ 'modal.advanced-search.langage.label'|trans }}</label>
+            <select id="adv-search-langage" multiple="multiple"
+                    name="{{ constant('App\\Model\\Search\\FacetFilter::QUERY_NAME') }}[language][]"
+                    data-value="{{ 'modal.advanced-search.langage.select-aria'|trans }}">
+                {% for lang in criteria.language %}
+                    <option value="{{ lang }}"
+                            {% if 'language' in objSearch.searchFilters|keys and
+                                lang in objSearch.searchFilters['language'] %}
+                        selected="selected"
+                            {% endif %}>{{ lang }}</option>
+                {% endfor %}
+            </select>
+        {% endset %}
+
+        {{ display_form.display_collapse_filter(
+            'advanced',
+            'modal.advanced-search.langage.title'|trans,
+            'language',
+            objSearch.searchFilters,
+            content,
+            'modal.advanced-search.langage.select-aria'|trans
+        ) }}
     </div>
 {% endif %}
 
 {% if criteria.facets is defined %}
-    {% for key in criteria.facets if attribute(criteria, key)|length > 0 %}
+    {% for key in criteria.facets if attribute(criteria, key|camel)|length > 0 %}
         <div class="modal-body">
             {{ display_form.display_checkbox_list(
                 'advanced',
                 ('modal.advanced-search.facette.'~key)|trans,
                 key,
-                attribute(criteria, key),
+                attribute(criteria, key|camel),
                 objSearch.searchFilters
             ) }}
         </div>

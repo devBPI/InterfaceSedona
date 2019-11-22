@@ -1,6 +1,6 @@
 <div class="col-3 col-sm-2 search-keyword__condition">
     {% if not first %}
-        <label for="adv-search-condition-{{ index }}" class="sr-only"> // </label>
+        <label for="adv-search-condition-{{ index }}" class="sr-only">{{ 'modal.advanced-search.keyword.group-label'|trans }}</label>
         {% set operator_name = constant('App\\Model\\Search\\Criteria::ADVANCED_SEARCH_OPERATOR')~'['~index~']' %}
         <select name="{{ operator_name }}" class="form-control"
                 id="adv-search-condition-{{ index }}">
@@ -26,7 +26,7 @@
      class="search-autocomplet d-none"></div>
 </div>
 <div class="col-12 col-sm-4 pr-sm-0">
-    <label for="adv-search-choice-{{ index }}" class="sr-only"> // </label>
+    <label for="adv-search-choice-{{ index }}" class="sr-only">{{ 'modal.advanced-search.keyword.type-label'|trans }}</label>
     {% set select_name = constant('App\\Model\\Search\\Criteria::ADVANCED_SEARCH_LABEL')~'['~index~']['~constant('App\\Model\\Search\\Criteria::FIELD_LABEL')~']' %}
     <select name="{{ select_name }}" class="form-control" id="adv-search-choice-{{ index }}">
         {% for word in search_words() %}

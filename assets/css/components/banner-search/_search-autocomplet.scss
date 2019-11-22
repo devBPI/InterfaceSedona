@@ -11,9 +11,11 @@
 }
 
 .search-autocomplet {
-	background-color: white;
+	background-color: $white;
 	box-shadow: $dropdown-shadow;
-	margin-top: -17px;
+	bottom: 0;
+	left: 0;
+	transform: translateY(99%);
 	border: $border-default;
 	padding: $spacer;
 	position: absolute;

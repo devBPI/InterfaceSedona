@@ -231,10 +231,12 @@ modal:
         publicationDate: Date de publication
         isbnIssnNumcommercial: ISBN, ISSN...
         indiceCote: Indice / Cote
+      type-label: Chercher sur
       group:
         or: Ou
         and: Et
-        not: Sauf
+        notCriteria: Sauf
+      group-label: Condition de recherche
       add-ligne: Ajouter un champs de recherche
       remove-ligne: Supprimer le champs de recherche n°%index%
 
@@ -245,7 +247,10 @@ modal:
     date:
       title: Date de publication
       select-aria: Sélectionner la date ou la période de publication
-      title-sr-only: date de parution
+      select-sr-only: |
+        Sélectionner la date ou la période de publication.
+        Si date saisie, recherche depuis cette date,
+        si période saisie, recherche de la date de début à la date de fin.
       by-date: Date
       by-periode: Période
       date-start: Date de parution
@@ -253,6 +258,8 @@ modal:
     langage:
       title: Langue
       select-aria: Sélectionner les langues
+      select-sr-only: Sélection multiple en autocomplétion. La saisie clavier permet de filtrer les propositions.
+      label: Choisissez une ou plusieurs langues
     available:
       in-shelf: Disponible en rayon
       in-ligne: Consultable en ligne
@@ -276,6 +283,7 @@ modal:
       date_start_label: Entrez une première date
       date_end_label: Entrez une deuxième date
       subject: Sujets
+      date_publishing: Date de publication
     clear-search: Effacer ma recherche
     submit: Rechercher
   refine-search:  #Modal 14 affiné la recheche

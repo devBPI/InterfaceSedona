@@ -16,9 +16,9 @@ class ErrorApiResponse
 
     /**
      * ErrorApiResponse constructor.
-     * @param $data
+     * @param mixed $data
      */
-    public function __construct($data)
+    public function __construct(\stdClass $data)
     {
         if (isset($data->message)) {
             $this->message = $data->message;

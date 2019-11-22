@@ -6,6 +6,10 @@
                 <facet>
                     <name>{{ name|snake }}</name>
                     <values>
+                        {% if name == 'date_publishing' %}
+                            {% set values = values|join(',') %}
+                        {% endif %}
+
                         {% for value in values %}
                             <value>{{ value }}</value>
                         {% endfor %}

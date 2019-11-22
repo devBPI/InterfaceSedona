@@ -68,8 +68,6 @@ final class SearchController extends AbstractController
      * @param Request $request
      * @param string $parcours
      * @return \Symfony\Component\HttpFoundation\Response
-     * @throws \Doctrine\ORM\ORMException
-     * @throws \Doctrine\ORM\OptimisticLockException
      * @throws \Twig\Error\LoaderError
      * @throws \Twig\Error\RuntimeError
      * @throws \Twig\Error\SyntaxError
@@ -93,8 +91,6 @@ final class SearchController extends AbstractController
      * @param Request $request
      * @param string $parcours
      * @return Response
-     * @throws \Doctrine\ORM\ORMException
-     * @throws \Doctrine\ORM\OptimisticLockException
      * @throws \Twig\Error\LoaderError
      * @throws \Twig\Error\RuntimeError
      * @throws \Twig\Error\SyntaxError
@@ -113,20 +109,19 @@ final class SearchController extends AbstractController
     }
 
     /**
-     * @Route("/recherche-affinee/{parcours}", methods={"GET"}, name="refined_search")
+     * @Route("/recherche-affinee/{token}/{parcours}", methods={"GET"}, name="refined_search")
      *
      * @param Request $request
+     * @param string $token
      * @param string $parcours
      * @return \Symfony\Component\HttpFoundation\Response
-     * @throws \Doctrine\ORM\ORMException
-     * @throws \Doctrine\ORM\OptimisticLockException
      * @throws \Twig\Error\LoaderError
      * @throws \Twig\Error\RuntimeError
      * @throws \Twig\Error\SyntaxError
      */
-    public function refinedSearchAction(Request $request, string $parcours=self::GENERAL): Response
+    public function refinedSearchAction(Request $request, string $token = '', string $parcours=self::GENERAL): Response
     {
-        $search = $this->searchService->getSearchQueryFromToken($request->get('searchToken'), $request);
+        $search = $this->searchService->getSearchQueryFromToken($token, $request);
         $criteria = $search->getCriteria()->setParcours($parcours);
         $search
             ->setFacets(new FacetFilter($request->query->all()))

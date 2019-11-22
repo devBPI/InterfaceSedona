@@ -1,8 +1,10 @@
+Bad credentials.: Votre email et/ou mot de passe ne sont pas valides.
 global:
   new-windows: Nouvelle fenêtre
   form-mandatory-field: champs obligatoires
   modal-close: Fermer cette fenêtre
   modal-cancel: Annuler
+  modal-btn-close: Fermer
   list-ordering: ": activer pour trier par ordre ascendant/descendant"
   site-title: "| Catalogue Bpi"
   see-more: Voir plus
@@ -108,8 +110,9 @@ footer:
 modal:
   list-create:          #Modal 01  Création d'une liste
     title: Créer une nouvelle liste
+    mandatory-field: La saisie du titre de la liste est obligatoire
     field-title: Titre
-    message-success: Vous avez bien créé la liste « %name% » avec les document sélectionnés.
+    message-success: Vous avez bien créé la liste « %name% » avec les documents sélectionnés.
     submit: Valider
     submit-sr-only:  la création de la liste
   list-add:             #Modal 02 ajout à ma sélection
@@ -142,8 +145,9 @@ modal:
     submit-sr-only:  la suppression des listes et documents sélectionnés
   export:           #Modal 05 export
     title: Paramétrer l'export
+    subject: Catalogue BPI – Export de notices
     field:
-      recipient: Destinataire(s)
+      recipient: Destinataire(s) (nom@exemple.com)
       comments: Message
       abstract: Notices abrégées
       long: Notices complètes
@@ -169,8 +173,8 @@ modal:
       text: Texte
       title: Titre
       title_value: Références du catalogue de la Bpi
-      recipient: Destinataire
-      expeditor: Expéditeur
+      recipient: Destinataire (nom@exemple.com)
+      expeditor: Expéditeur (nom@exemple.com)
     submit: Envoyer
   suggestion:     #Modal 08 suggestion d'achats
     title: Suggestion d'achat
@@ -182,7 +186,8 @@ modal:
       editor: Editeur
       last-name: Nom
       first-name: Prénom
-      email: Courriel
+      email: Courriel (nom@exemple.com)
+      address: ' Coordonnées'
     submit: Valider
     submit-sr-only: l'envoi de la suggestion
   report:      #Modal 09 signaler une erreur
@@ -193,9 +198,10 @@ modal:
       message: Message
       last-name: Nom
       first-name: Prénom
-      email: Courriel
+      email: Courriel (nom@exemple.com)
     submit: Valider
     submit-sr-only:  l'envoi du mail de signalisation d'erreur
+    email: Courriel
   comments-edit:   #Modal 10  edition d'un commentaire
     title: Commentaire
     field-content: Contenu
@@ -203,9 +209,9 @@ modal:
   comments-view:  #Modal 11 visualisation d'un commentaire
     title: Commentaire
     close: Fermer
-  notifed-form:   #Modal 12 notification de dispoibilité de document
+  notifed-form:   #Modal 12 notification de disponibilité de document
     title: Être prevenu de son retour en rayon
-    field-email: Courriel
+    field-email: Courriel (nom@exemple.com)
     submit: Valider
     submit-sr-only: votre inscription à l'alerte de retour en rayon
   advanced-search:  #Modal 13 recheche avancé
@@ -225,10 +231,12 @@ modal:
         publicationDate: Date de publication
         isbnIssnNumcommercial: ISBN, ISSN...
         indiceCote: Indice / Cote
+      type-label: Chercher sur
       group:
         or: Ou
         and: Et
-        not: Sauf
+        notCriteria: Sauf
+      group-label: Condition de recherche
       add-ligne: Ajouter un champs de recherche
       remove-ligne: Supprimer le champs de recherche n°%index%
 
@@ -239,23 +247,28 @@ modal:
     date:
       title: Date de publication
       select-aria: Sélectionner la date ou la période de publication
-      title-sr-only: date de parution
+      select-sr-only: |
+        Sélectionner la date ou la période de publication.
+        Si date saisie, recherche depuis cette date,
+        si période saisie, recherche de la date de début à la date de fin.
       by-date: Date
       by-periode: Periode
-      date-start: Entrer une date de parution
-      date-end: Entrer une deuxième date de parution
+      date-start: Date de parution
+      date-end: Date de fin de parution
     langage:
       title: Langue
       select-aria: Sélectionner les langues
+      select-sr-only: Sélection multiple en autocomplétion. La saisie clavier permet de filtrer les propositions.
+      label: Choisissez une ou plusieurs langues
     available:
       in-shelf: Disponible en rayon
       in-ligne: Consultable en ligne
     facette:
       type: Type de documents
-      materialSupport: Supports
-      genreMusical: Genre musical
-      genreFilm: Genre film
-      genreLitteraire: Genre littéraire
+      material_support: Supports
+      genre_musical: Genre musical
+      genre_film: Genre film
+      genre_litteraire: Genre littéraire
       audience: Public destinataire
       secteur: Secteur
       mediation: Médiation
@@ -266,7 +279,11 @@ modal:
       bdd: Bases de recherche
       langue: Langue(s)
       date: Date
+      date_placeholder: AAAA
+      date_start_label: Entrez une première date
+      date_end_label: Entrez une deuxième date
       subject: Sujets
+      date_publishing: Date de publication
     clear-search: Effacer ma recherche
     submit: Rechercher
   refine-search:  #Modal 14 affiné la recheche
@@ -317,6 +334,11 @@ page:
     historic:
       title: Mon historique
       notice: Texte explicatif, précisions sur "sélection d'au moins un document permet de supprimer ces documents" et "il est nécessaire de revenir sur la barre des tâches en haut de la liste pour effectuer cette opération".
+  quatrieme:
+    label:
+      editor_information: 'Informations editeurs :'
+      biography: 'Biographie :'
+      presentation: 'Presentation :'
 
 bloc:
   toolbar:                #Bloc A Barre utilitaires
@@ -331,7 +353,7 @@ bloc:
     suggest: Suggestion d'achats
     report-error: Signaler une erreur
   search-zone:            #Bloc B  Zone de recherche simple
-    autocompletion-notice: Insert texte explicatif pour l'auto-completion
+    autocompletion-notice: Utiliser les flèches haut et bas du clavier pour vous déplacer dans la liste de suggestions
     autocompletion-nb-result: %nb% options affichées
     input-sr-only: Saisir un mot clé
     input-placeholder: Rechercher
@@ -388,6 +410,7 @@ bloc:
     document-available: Disponible
     document-unavailable: Indisponible
     notification-availablity: Document indisponible, être prévenu de son retour en rayon - ouverture formulaire
+    notification-availablity-success: Vous serez informer dès son retour en rayon
     resume-label: Afficher le résumé
     resume-title: 'Résumé'
     availability-label: Document indisponible, être prévenu de son retour en rayon - ouverture formulaire
@@ -486,6 +509,7 @@ bloc:
     in: 'dans'
     by: 'Par'
     directors: 'Réalisateurs'
+    your-references-autority: Vos références d'autorité
     your-references-bibliographic: Vos références bibliographiques
   list-related-documents:  #Bloc 19 Liste de documents + Bloc 17 Documents liés
     link-title: Actualité %current% sur %nb%, %name%
@@ -537,11 +561,6 @@ bloc:
       date: Recherché le
     select-ligne: 'Sélectionner la ligne : %title%'
     reload: Relancer la recherche %title%'
-  quatrieme:
-    label:
-      editor_information: 'Informations editeurs :'
-      biography: 'Biographie :'
-      presentation: 'Presentation :'
 
 error:
   page_not_available: 'Cette page n’est pas accessible.'

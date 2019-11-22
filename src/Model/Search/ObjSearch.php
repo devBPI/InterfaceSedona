@@ -185,10 +185,16 @@ final class ObjSearch
             $criteria[$field] = $keyword;
         }
 
-        foreach ($this->getSearchFilters() as $filters) {
-            foreach ($filters as $filter) {
-                $criteria[] = $filter;
+        foreach ($this->getSearchFilters() as $name => $values) {
+            if ($name === 'date_publishing' && is_array($values)) {
+                $values = min($values).' - '.max($values);
             }
+
+            if (is_array($values)) {
+                $values = implode(',', $values);
+            }
+
+            $criteria[$name] = $values;
         }
 
         return $criteria;

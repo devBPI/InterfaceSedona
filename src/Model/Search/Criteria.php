@@ -136,14 +136,12 @@ class Criteria
      * @JMS\Type("App\Model\Search\Criteria")
      * @JMS\Accessor(getter="setNotSubCriteria")
      */
-    private $not;
-
+    private $notCriteria;
     /**
      * @var string
-     * @JMS\SerializedName("not")
      * @JMS\Type("string")
      */
-    private $notLabel;
+    private $not;
 
 
     /**
@@ -295,16 +293,15 @@ class Criteria
      */
     public function setNotSubCriteria(): ?Criteria
     {
-        if ($this->not instanceof Criteria) {
-            $criteria = $this->not;
-            $criteria->notLabel = 'true';
-            $this->not = null;
+        if ($this->notCriteria instanceof Criteria) {
+            $criteria = $this->notCriteria;
+            $criteria->not = 'true';
+            $this->notCriteria = null;
             return $this->and = $criteria;
         }
 
-        return $this->not;
+        return $this->notCriteria;
     }
-
 
     /**
      * @return string
