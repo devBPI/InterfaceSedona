@@ -26,7 +26,7 @@ header:
     aria: Menu-langue
     change-to:
       en: Version anglaise
-      es: Version espagnol version
+      es: Version espagnol
       fr: Version française
       en-active: - active language
       es-active: - activo idioma
@@ -283,6 +283,7 @@ modal:
       date_start_label: Entrez une première date
       date_end_label: Entrez une deuxième date
       subject: Sujets
+      date_publishing: Date de publication
     clear-search: Effacer ma recherche
     submit: Rechercher
   refine-search:  #Modal 14 affiné la recheche
@@ -598,5 +599,3 @@ breadcrumb:
     bibliographic: Document %title%
     indice_cdu: Autorité %title%
     authority: Autorité %title%
-
-
