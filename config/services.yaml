@@ -40,7 +40,7 @@ services:
     - '@eight_points_guzzle.client.bpi_catalog'
 
   App\Service\ImageBuilderService:
-    arguments: ['%kernel.project_dir%/public/', '%api_base_url%' ]
+    arguments: ['%kernel.project_dir%/public/', 'http://%env(CATALOG_API_HOST)%' ]
   App\Service\CleanerFiles:
     arguments: ['%kernel.project_dir%/public/']
   App\Service\HistoryService:
@@ -66,8 +66,8 @@ services:
   App\Provider\BpiLdapUserProvider:
     arguments:
       - '@Symfony\Component\Ldap\Ldap'
-      - "dc=bpi,dc=fr"
-      - "ou=lecture,ou=applications,dc=bpi,dc=fr"
+      - '%env(BASE_DN)%'
+      - '%env(SEARCH_DN)%'
       - '%env(LDAP_PASSWORD)%'
       - ['ROLE_USER']
       - ['mail', 'sn','cn', 'pseudo', 'uid', 'entryUUID']
