@@ -63,7 +63,7 @@
 {% macro display_collapse_filter(origin, label, key, selected, content, aria_label = null) %}
     <div class="search-facette">
         <button type="button" class="btn search-facette__button {% if key in selected|keys %}collapsed{% endif %}"
-                data-toggle="collapse" aria-expanded="{{ key in selected|keys ? 'true' : 'false' }}false"
+                data-toggle="collapse" aria-expanded="{{ key in selected|keys ? 'true' : 'false' }}"
                 aria-controls="{{ origin }}-{{ key }}" data-target="#{{ origin }}-{{ key }}">
             {{ label }}
         </button>
