@@ -42,19 +42,6 @@ final class NoticeAvailabilityController extends AbstractController
      */
     public function indexAction(Request $request, int $sourceId, int $configurationId = null): Response
     {
-
-       return $this->redirectToRoute('notice_availablity_reload',$request->query->all()+['sourceId'=>$sourceId, 'configurationId'=> $configurationId]);
-    }
-
-    /**
-     * @Route("/reload/notices/{sourceId}/availabilities/{configurationId}", methods={"GET"}, requirements={"sourceId"="\d+", "configurationId"="\d+"}, name="notice_availablity_reload")
-     * @param Request $request
-     * @param int $sourceId
-     * @param int $configurationId
-     * @return Response
-     */
-    public function getAction(Request $request, int $sourceId, int $configurationId = null):Response
-    {
         $noticeAvailabilityRequest = new NoticeAvailabilityRequest(
             $sourceId,
             $configurationId
