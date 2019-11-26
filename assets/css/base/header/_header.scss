@@ -13,7 +13,6 @@
 			&:focus,
 			&[aria-expanded="true"] {
 				border: $border-thin;
-				outline: 0;
 			}
 		}
 

@@ -49,18 +49,14 @@
 	&__list {
 		
 		&-item {
+			@include font-size(12);
+			color: $black;
 
-			a {
-				@include font-size(12);
-				color: $black;
-
-				&:hover,
-				&:focus {
-					color: $red;
-					text-decoration: underline;
-				}
+			&:hover,
+			&:focus {
+				color: $red;
+				text-decoration: underline;
 			}
 		}
 	}
-	
 }

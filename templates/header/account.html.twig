@@ -5,10 +5,10 @@
 			<button type="button" id="dropdown-compte" data-toggle="dropdown" aria-haspopup="listbox" aria-expanded="false" class="account__button btn">
                 {{ 'header.account.welcome'|trans }}, {{ app.user.firstname }}
 			</button>
-			<ul class="dropdown-menu account__list" aria-labelledby="dropdown-compte" role="listbox" tabindex="-1">
-				<li class="dropdown-item account__list-item" role="option"><a href="{{ path('app_logout') }}">{{ 'header.account.logout'|trans }}</a></li>
-				<li class="dropdown-item account__list-item" role="option"><a href="{{ path('user_personal_data') }}" title="{{ 'header.account.profile_title'|trans }}">{{ 'header.account.profile'|trans }}</a></li>
-			</ul>
+			<div class="dropdown-menu account__list" aria-labelledby="dropdown-compte" role="listbox" tabindex="-1">
+				<a href="{{ path('app_logout') }}" class="dropdown-item account__list-item" role="option">{{ 'header.account.logout'|trans }}</a>
+				<a href="{{ path('user_personal_data') }}" title="{{ 'header.account.profile_title'|trans }}" class="dropdown-item account__list-item" role="option">{{ 'header.account.profile'|trans }}</a>
+			</div>
 		</div>
 	{% else %}
 		<a href="{{ path('user_login') }}" class="account__link btn">{{ 'header.account.title_unconnect'|trans }}</a>

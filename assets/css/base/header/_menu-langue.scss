@@ -38,6 +38,7 @@
 
 			@include media-breakpoint-up(lg) {
 				position: relative!important;
+				transform: none!important;
 				display: flex;
 				box-shadow: none;
 				border: 0;
@@ -46,7 +47,18 @@
 			}
 
 			&-item {
+				color: $black;
 				@include font-size(12);
+
+				&:hover,
+				&:focus {
+					color: $red;
+					text-decoration: underline;
+				}
+
+				&.active {
+					color: $grey-disabled;
+				}
 
 				@include media-breakpoint-up(lg) {
 					padding: 0 rem(10);
@@ -57,37 +69,7 @@
 					border-bottom: 0;
 
 					&:hover {
-						cursor: default;
-					}
-				}
-
-				&:hover {
-					color: $black;
-					cursor: default;
-				}
-
-				a {
-					color: $black;
-					@include font-size(12);
-
-					&:hover {
-						color: $red;
-					}
-
-					abbr {
-						text-decoration: none;
-						border-bottom: 0;
-
-						&:hover {
-							cursor: pointer;
-						}
-					}
-				}
-
-				&.active {
-
-					a {
-						color: $grey-disabled;
+						cursor: pointer;
 					}
 				}
 			}

@@ -58,21 +58,21 @@
 			}
 
 			&-item {
+				color: $black;
+				@include font-size(12);
+
+				&:hover,
+				&:focus {
+					color: $red;
+					text-decoration: underline;
+				}
 
 				@include media-breakpoint-up(lg) {
 					padding: 0 rem(10);
 				}
 
-				a {
-					color: $black;
-					@include font-size(12);
-
-					&:hover {
-						color: $red;
-					}
-				}
-
 				&--active {
+					color: $red;
 					position: relative;
 
 					&:after {
@@ -86,10 +86,6 @@
 						margin-bottom: -5px;
 						border-bottom: 10px solid $red;
 						border-left: 10px solid transparent;
-					}
-
-					a {
-						color: $red;
 					}
 				}
 			}

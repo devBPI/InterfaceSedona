@@ -4,12 +4,10 @@
         <button type="button" id="dropdown-corrector" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="listbox" aria-expanded="false">
             {{ 'bloc.search-correct.text'|trans }}
         </button>
-        <ul class="dropdown-menu" aria-labelledby="dropdown-corrector" role="listbox" tabindex="-1">
+        <div class="dropdown-menu" aria-labelledby="dropdown-corrector" role="listbox" tabindex="-1">
             {% for suggestion in suggestionList.suggestions %}
-                <li class="dropdown-item" role="option">
-                    <a href="{{ path('search', {(constant('App\\Model\\Search\\Criteria::SIMPLE_SEARCH_KEYWORD')):suggestion}) }}" aria-label="{{ 'bloc.search-correct.text'|trans }} {{ suggestion }}" lang="fr">{{ suggestion }}</a>
-                </li>
+                <a href="{{ path('search', {(constant('App\\Model\\Search\\Criteria::SIMPLE_SEARCH_KEYWORD')):suggestion}) }}" aria-label="{{ 'bloc.search-correct.text'|trans }} {{ suggestion }}" lang="fr" class="dropdown-item" role="option">{{ suggestion }}</a>
             {% endfor %}
-        </ul>
+        </div>
     </div>
 {% endif %}
