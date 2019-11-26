@@ -121,7 +121,7 @@ final class SearchController extends AbstractController
      */
     public function refinedSearchAction(Request $request, string $token = '', string $parcours=self::GENERAL): Response
     {
-        $search = $this->searchService->getSearchQueryFromToken($token, $request);
+        $search   = $this->searchService->getSearchQueryFromToken($token, $request);
         $criteria = $search->getCriteria()->setParcours($parcours);
         $search
             ->setFacets(new FacetFilter($request->query->all()))

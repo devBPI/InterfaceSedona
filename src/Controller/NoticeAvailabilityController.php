@@ -5,6 +5,7 @@ namespace App\Controller;
 
 use App\Entity\NoticeAvailabilityRequest;
 use App\Form\AvailabilityNotificationType;
+use App\Model\RankedAuthority;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -41,6 +42,19 @@ final class NoticeAvailabilityController extends AbstractController
      */
     public function indexAction(Request $request, int $sourceId, int $configurationId = null): Response
     {
+
+       return $this->redirectToRoute('notice_availablity_reload',$request->query->all()+['sourceId'=>$sourceId, 'configurationId'=> $configurationId]);
+    }
+
+    /**
+     * @Route("/reload/notices/{sourceId}/availabilities/{configurationId}", methods={"GET"}, requirements={"sourceId"="\d+", "configurationId"="\d+"}, name="notice_availablity_reload")
+     * @param Request $request
+     * @param int $sourceId
+     * @param int $configurationId
+     * @return Response
+     */
+    public function getAction(Request $request, int $sourceId, int $configurationId = null):Response
+    {
         $noticeAvailabilityRequest = new NoticeAvailabilityRequest(
             $sourceId,
             $configurationId
@@ -52,6 +66,7 @@ final class NoticeAvailabilityController extends AbstractController
             $noticeAvailableRequest = $form->getData();
 
             $user = $this->getUser();
+
             if ($user instanceof UserInterface) {
                 $noticeAvailableRequest->setRequester($user->getUsername());
             }
@@ -71,5 +86,5 @@ final class NoticeAvailabilityController extends AbstractController
             ]
         );
     }
-
 }
+

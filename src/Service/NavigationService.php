@@ -78,6 +78,7 @@ final class NavigationService implements BpiConverterInterface
         $this->hash = $hash;
         $this->search = $search;
         $notices = $this->getNoticeList($this->searchProvider, $this->search, $type);
+
         $this->rows = \count($notices);
 
         $noticesFiltered = array_filter(
@@ -88,7 +89,6 @@ final class NavigationService implements BpiConverterInterface
                 }
             }
         );
-
         if (\count($noticesFiltered) > 0) {
             $this->row = \array_key_first($noticesFiltered);
             $this->actualPermalink = new NavigationNotice($permalink, get_class($notices[$this->row]));
@@ -122,10 +122,11 @@ final class NavigationService implements BpiConverterInterface
     private function getNoticeList(SearchProvider $searchProvider, SearchQuery $search, string $type=null)
     {
         $searchResultNotices = $searchProvider->getListBySearch($search);
-
-        if ($type === RankedAuthority::class) {
+        if (\in_array($type,  [RankedAuthority::class, Authority::class,  IndiceCdu::class] )) {
             return $searchResultNotices->getAuthoritiesList();
         }
+
+
 
         if ($type === Notice::ON_LIGNE) {
             return $searchResultNotices->getNoticesOnline()->getNoticesList();
