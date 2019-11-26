@@ -5,6 +5,7 @@ namespace App\Controller;
 
 use App\Entity\NoticeAvailabilityRequest;
 use App\Form\AvailabilityNotificationType;
+use App\Model\RankedAuthority;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -52,6 +53,7 @@ final class NoticeAvailabilityController extends AbstractController
             $noticeAvailableRequest = $form->getData();
 
             $user = $this->getUser();
+
             if ($user instanceof UserInterface) {
                 $noticeAvailableRequest->setRequester($user->getUsername());
             }
@@ -71,5 +73,5 @@ final class NoticeAvailabilityController extends AbstractController
             ]
         );
     }
-
 }
+

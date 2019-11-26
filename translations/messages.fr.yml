@@ -256,7 +256,7 @@ modal:
       date-start: Date de parution
       date-end: Date de fin de parution
     langage:
-      title: Langue
+      title: Langues
       select-aria: Sélectionner les langues
       select-sr-only: Sélection multiple en autocomplétion. La saisie clavier permet de filtrer les propositions.
       label: Choisissez une ou plusieurs langues
