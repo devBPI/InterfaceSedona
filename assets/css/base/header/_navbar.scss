@@ -16,26 +16,24 @@
 		width: 100%;
 
 		&-item {
-			border-bottom: $border-thin;
 			text-align: center;
+			border-bottom: $border-thin;
 
 			@include media-breakpoint-up(md) {
-				border-right: $border-thin;
-				border-top: 1px solid transparent;
 				flex: 1 1 auto;
 				text-align: center;
+				border-bottom: 0;
 			}
 
 			&:first-child {
 
 				@include media-breakpoint-up(md) {
-					border-left: 1px solid transparent;
-				}
+					.nav-link {
+						border-left: 1px solid transparent;
 
-				&:hover {
-
-					@include media-breakpoint-up(md) {
-						border-left-color: $grey;
+						&:hover {
+							border-left-color: $grey;
+						}
 					}
 				}
 			}
@@ -43,35 +41,27 @@
 			&:last-child {
 
 				@include media-breakpoint-up(md) {
-					border-right: 1px solid transparent;
-				}
-
-				&:hover {
-
-					@include media-breakpoint-up(md) {
-						border-right-color: $grey;
-					}
-				}
-			}
-
-			&:hover {
-
-				@include media-breakpoint-up(md) {
-					border-top-color: $grey;
-
 					.nav-link {
-						color: $red;
+						border-right-color: transparent;
+
+						&:hover {
+							border-right-color: $grey;
+						}
 					}
 				}
 			}
 
-			&.dropdown {
+			&.dropdown-link {
 				
 				@include media-breakpoint-up(md) {
-					position: static;
 
 					&:hover {
-						border-bottom: 0;
+
+						.nav-link {
+							border-bottom: 0;
+							border-top-color: $grey;
+							color: $red;
+						}
 					}
 				}
 			}
@@ -104,12 +94,28 @@
 			font-weight: $font-medium;
 			line-height: 1;
 
+			@include media-breakpoint-up(md) {
+				border-right: $border-thin;
+				border-bottom: $border-thin;
+				border-top: 1px solid transparent;
+			}
+
 			&:hover {
 				color: $red;
+
+				@include media-breakpoint-up(md) {
+					border-top-color: $grey;
+				}
 			}
 
 			&:focus {
 				outline: $outline;
+				color: $red;
+			}
+
+			&.active {
+				border-bottom: 0;
+				border-top-color: $grey;
 				color: $red;
 			}
 		}
@@ -177,9 +183,11 @@
 
 			@include media-breakpoint-up(md) {
 				border: $border-thin;
+				border-top: 0;
 				box-shadow: $dropdown-shadow;
 				width: 100%;
 				padding: 30px 0 10px;
+				margin: 0;
 			}
 
 			&.show {

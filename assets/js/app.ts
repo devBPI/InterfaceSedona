@@ -81,7 +81,9 @@ let printEngine = function(){
 $(document)
     .on('focus', '.dropdown-link .nav-link', function() {
         if ($(window).width() > 768) {
+            $('.dropdown-link .nav-link').removeClass('active');
             $('.dropdown-menu').removeClass('show');
+            $(this).addClass('active');
             $(this).siblings('.dropdown-menu').addClass('show');
         }
     })
