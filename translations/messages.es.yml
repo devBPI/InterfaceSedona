@@ -363,7 +363,7 @@ bloc:
     input-cinema-placeholder: Rechercher dans le parcours Cinéma
     type-label: Chercher sur
     submit: Valider la recherche
-    advanced-title: Recherche Avancée
+    advanced-title: Recherche avancée
     advanced-sr-only: Rercherche Avancée - ouverture formulaire
   carousel:               #Bloc 01 diaporama nouveautés et/ou articles
     title: Carousel d'actualités

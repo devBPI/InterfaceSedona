@@ -10,6 +10,8 @@ namespace App\Model;
 
 
 
+use App\Service\ImageBuilderService;
+
 trait PathToContentTrait
 {
     /**
@@ -18,6 +20,6 @@ trait PathToContentTrait
      */
     private function pathToContent(string  $path):string
     {
-        return basename($path);
+        return ImageBuilderService::COVER.'/'.basename($path);
     }
 }

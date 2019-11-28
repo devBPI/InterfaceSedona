@@ -21,8 +21,8 @@ class SearchQuery implements SearchResultInterface
         'title-desc' => 'TITRE_Z_A',
         'author-asc' => 'AUTHEUR_A_Z',
         'author-desc' => 'AUTHEUR_Z_A',
-        'least-recent' => 'OLDER',
         'most-recent' => 'YOUNGER',
+        'least-recent' => 'OLDER',
     ];
 
     const ROWS_DEFAULT = 10;

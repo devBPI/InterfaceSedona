@@ -5,12 +5,23 @@
         {% if facet.name == 'date_publishing' %}
             {% include 'search/blocs-refined-search/date-content.html.twig' %}
         {% else %}
+            {% set affineSearchFitler = objSearch.searchFilters %}
+            {% if affineSearchFitler['type'] is not defined %}
+                {% set  affineSearchFitler = affineSearchFitler|merge({'type' :''}) %}
+            {% endif %}
+
+            {% if affineSearchFitler['disponibilite'] is not defined %}
+                {% set  affineSearchFitler = affineSearchFitler|merge({'disponibilite' :''}) %}
+            {% endif %}
+            {% if affineSearchFitler['creator'] is not defined %}
+                {% set  affineSearchFitler = affineSearchFitler|merge({'creator' :''}) %}
+            {% endif %}
             {{ display_checkbox_list(
                 'refine',
                 facet.label,
                 facet.name,
                 facet.values,
-                objSearch.searchFilters
+                affineSearchFitler
             ) }}
         {% endif %}
     </div>

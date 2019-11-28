@@ -1,8 +1,6 @@
 {% import 'search/blocs-advanced-search/macros.html.twig' as display_form %}
 
 <div class="modal-body">
-    <p tabindex="0">{{ 'modal.advanced-search.keyword.label'|trans }}</p>
-
     <div class="search-keyword"
          data-prototype="{{ include('search/blocs-advanced-search/keyword-row.html.twig', {index: '__index__', first: false})|escape }}">
 

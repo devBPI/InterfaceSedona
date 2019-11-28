@@ -42,17 +42,17 @@ final class ImageBuilderService
 
     /**
      * @param string $content
+     * @param string $type
      * @return string
      */
     public function buildImage(string $content, string $type='livre'): string
     {
         $localFilePath = $this->slugify($type).DIRECTORY_SEPARATOR.$content;
-
         $fs = new Filesystem();
 
         if (!$fs->exists($this->imageDir.$localFilePath)) {
+            $filename = $content;
 
-            $filename = basename($content);
            try{
                if (($content = file_get_contents($this->url.DIRECTORY_SEPARATOR.self::BPI_FOLDER_NAME_ELECTRE.DIRECTORY_SEPARATOR.$content)) === false){
                    return $this->buildGenericPicture($type);

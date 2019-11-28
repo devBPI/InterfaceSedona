@@ -99,12 +99,12 @@
 
 {{ notice_macros.detail(notice.placesEvents , 'bloc.autority-result-information.manifestation-location'|trans) }}
 {{ notice_macros.detail(notice.origins , 'bloc.autority-result-information.origins'|trans) }}
-{% if notice.configurationName is not empty %}
+{% if notice.configurationName is not empty and notice.configurationName != constant('App\\Model\\Notice::CATALOGUE_BPI') %}
     <li class="list-information__item">
         <span class="list-information__label">{{ 'bloc.autority-result-information.result-de'|trans }}</span>
         <ul class="list-information__sub-list">
             <li class="list-information__sub-item">
-                <a href="{{ notice.configurationUrl }}">
+                <a href="{{ notice.configurationUrl }}" target="_blank">
                     {{ notice.configurationName }}
                 </a>
             </li>

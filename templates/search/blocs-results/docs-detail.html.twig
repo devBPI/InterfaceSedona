@@ -56,8 +56,8 @@
                     </button>
                     {% endif %}
                 </p>
-                {% if notice.configurationName is not empty %}
-                    <p lang="fr">Résultat de <a href="{{ notice.configurationUrl }}" aria-label="Acceder à {{ notice.configurationName }}">{{ notice.configurationName }}</a></p>
+                {% if notice.configurationName is not empty and notice.configurationName != constant('App\\Model\\Notice::CATALOGUE_BPI') %}
+                    <p lang="fr">Résultat de <a href="{{ notice.configurationUrl }}" aria-label="Acceder à {{ notice.configurationName }}" target="_blank">{{ notice.configurationName }}</a></p>
                 {% endif %}
 
                 {% for available in notice.copies %}

@@ -22,6 +22,7 @@ class Notice extends AbstractImage implements NoticeInterface, RecordInterface
 
     private const SEPARATOR = ' ; ';
     const BREAD_CRUMB_NAME = 'bibliographic';
+    const CATALOGUE_BPI = 'Catalogue Bpi';
     const NOTICE_CONTENU_TYPE = ['Musique', 'site', 'base'];
     const ON_LIGNE   = 'en ligne';
     const ON_SHELF   = 'en rayon';
@@ -1253,12 +1254,15 @@ class Notice extends AbstractImage implements NoticeInterface, RecordInterface
     {
         if ($this->getPicture() instanceof Picture && !empty($this->getPicture()->getContent())){
             return $this->getPicture()->getContent();
+
         }elseif (!empty($this->getIsbn())){
             return $this->getIsbnCover() ;
         }
 
         return sprintf(ImageBuilderService::DEFAULT_PICTURE, $this->slugify($this->getType()));
     }
+
+
 
     public function getSlugifiedType(){
         return  $this->slugify($this->getType());
