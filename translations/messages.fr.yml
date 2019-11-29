@@ -278,6 +278,7 @@ modal:
       author: Auteur(s)
       bdd: Bases de recherche
       langue: Langue(s)
+      language: Langues
       date: Date
       date_placeholder: AAAA
       date_start_label: Entrez une première date
@@ -285,6 +286,7 @@ modal:
       subject: Sujets
       date_publishing: Date de publication
       configuration_name:  Base de recherche
+      materialSupport: 'Description matérielle'
     clear-search: Effacer ma recherche
     submit: Rechercher
   refine-search:  #Modal 14 affiné la recheche

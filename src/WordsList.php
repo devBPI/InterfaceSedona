@@ -62,6 +62,7 @@ final class WordsList
 
     const GENERAL_WORD = 'general';
     const TITLE_WORD = 'title';
+    const COLLECTION_WORD = 'collection';
     const AUTHOR_WORD = 'author';
     const REALISATOR_WORD = 'realisator';
     const SUBJECT_WORD = 'subject';

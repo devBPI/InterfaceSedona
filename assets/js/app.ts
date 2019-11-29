@@ -166,3 +166,11 @@ let copyToClipboard = function (element) {
 
     $input.remove();
 };
+
+$('.bibliographic-result__availability').children('button').on(    'click', function(e){
+    $(this).text(function(i,old){
+        return old=="Voir plus\n" +
+        "                " ?  'Voir moins' :"Voir plus\n" +
+            "                ";
+    });
+});

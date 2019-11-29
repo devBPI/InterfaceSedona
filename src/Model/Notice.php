@@ -23,7 +23,8 @@ class Notice extends AbstractImage implements NoticeInterface, RecordInterface
     private const SEPARATOR = ' ; ';
     const BREAD_CRUMB_NAME = 'bibliographic';
     const CATALOGUE_BPI = 'Catalogue Bpi';
-    const NOTICE_CONTENU_TYPE = ['Musique', 'site', 'base'];
+    const NOTICE_CONTENU_TYPE = [self::MUSIC, 'site', 'base'];
+    const MUSIC = 'Musique';
     const ON_LIGNE   = 'en ligne';
     const ON_SHELF   = 'en rayon';
     const ALL        = 'all';
