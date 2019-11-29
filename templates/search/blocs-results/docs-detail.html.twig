@@ -31,7 +31,7 @@
                     <img src="{{ path('binary_image', {"content":notice.image, 'type': notice.type | slugify})}}" alt="{{ notice.frontTitle }}" class="img-fluid" />
                 </a>
             </div>
-            <div class="list-result__content-infos">
+            <div class="list-result__content-infos js-seeMoreAvailability" >
                 <a href="{{ path('record_bibliographic', {'permalink': notice.permalink, 'searchToken': contextToken}) }}"
                    lang="fr"
                    class="n2 list-result__content-title"
@@ -39,6 +39,10 @@
                     <img src="{{ asset('images/types/type-' ~ notice.slugifiedType ~ '.svg') }}" alt="{{ notice.type }}" class="list-result__content-type" />
                     <span>{{ notice.frontTitle }}</span>
                 </a>
+                {% if notice.type in constant('App\\Model\\Notice::NOTICE_CONTENT_REVUE_TYPE') and  notice.frontAnalyticalTitle is not empty %}
+                    <p lang="fr"><span class="font-italic">Dans</span> {{ notice.frontAnalyticalTitle }}</p>
+                {% endif %}
+
                 {% if notice.frontAuthor is not empty %}
                     <p lang="fr"><span class="font-italic">par</span> {{ notice.frontAuthor }}</p>
                 {% endif %}
@@ -56,6 +60,11 @@
                     </button>
                     {% endif %}
                 </p>
+
+
+                {% if notice.type == constant('App\\Model\\Notice::VIDEO') and notice.formats is not empty  %}
+                    <p lang="fr">{{ notice.formats }}</p>
+                {% endif %}
                 {% if notice.configurationName is not empty and notice.configurationName != constant('App\\Model\\Notice::CATALOGUE_BPI') %}
                     <p lang="fr">Résultat de <a href="{{ notice.configurationUrl }}" aria-label="Acceder à {{ notice.configurationName }}" target="_blank">{{ notice.configurationName }}</a></p>
                 {% endif %}

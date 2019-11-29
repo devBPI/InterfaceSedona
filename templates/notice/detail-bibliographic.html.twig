@@ -11,7 +11,7 @@
     {% if notice.titleForm %}
         {% for title in notice.titleForm %}
             <h1 class="n1 bibliographic-result__title" lang="fr">
-                {{ title }}
+                <i>{{ title }}</i>
             </h1>
         {% endfor %}
     {% endif %}
@@ -26,12 +26,13 @@
     <div class="row align-items-md-center justify-content-between">
         <div class="col-12">
             {{ notice_macros.list_link(notice.translatedBy, 'bloc.autority-result-information.translated'|trans, constant('App\\WordsList::TITLE_WORD')) }}
-            {% if notice.frontAnalyticalTitle is not empty %}
+            {% if notice.type in constant('App\\Model\\Notice::NOTICE_CONTENT_REVUE_TYPE') and  notice.frontAnalyticalTitle is not empty %}
                 <p lang="fr" class="bibliographic-result__author">
                     <i>{{ 'bloc.autority-result-information.in'|trans }}</i>
                     {{ notice.frontAnalyticalTitle }}
                 </p>
             {% endif %}
+
             {% if notice.titleInformation is not empty %}
                 <p lang="fr" class="bibliographic-result__author">
                     <i>{{ 'bloc.autority-result-information.in'|trans }}</i>
@@ -103,7 +104,7 @@
     </ul>
 </div>
 <div class="col-12">
-    <div lang="fr" class="bibliographic-result__availability">
+    <div lang="fr" class="bibliographic-result__availability js-seeMoreAvailability">
         {% for available in notice.copies %}
             {{ macros.availibility(available, notice) }}
 

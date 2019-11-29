@@ -24,7 +24,9 @@ class Notice extends AbstractImage implements NoticeInterface, RecordInterface
     const BREAD_CRUMB_NAME = 'bibliographic';
     const CATALOGUE_BPI = 'Catalogue Bpi';
     const NOTICE_CONTENU_TYPE = [self::MUSIC, 'site', 'base'];
+    const NOTICE_CONTENT_REVUE_TYPE = ['Revue, journal', 'Article', 'Revue numérique'];
     const MUSIC = 'Musique';
+    const VIDEO = 'Vidéo';
     const ON_LIGNE   = 'en ligne';
     const ON_SHELF   = 'en rayon';
     const ALL        = 'all';
@@ -250,9 +252,10 @@ class Notice extends AbstractImage implements NoticeInterface, RecordInterface
     private $row;
 
     /**
-     * @var string
-     * @JMS\Type("string")
-     * @JMS\SerializedName("periodicite")
+     * @var array
+     * @JMS\Type("array<string>")
+     * @JMS\SerializedName("periodicites")
+     * @JMS\XmlList("periodicite")
      */
     private $periodicity;
     /**
@@ -331,10 +334,12 @@ class Notice extends AbstractImage implements NoticeInterface, RecordInterface
     /**
      * @var array
      * @JMS\Type("array<string>")
-     * @JMS\SerializedName("titresUniforms")
-     * @JMS\XmlList("titresUniforms")
+     * @JMS\SerializedName("titresUniform")
+     * @JMS\XmlList("titreUniform")
      */
     private $uniformTitle;
+
+
     /**
      * @var array
      * @JMS\Type("array<string>")
@@ -1023,9 +1028,9 @@ class Notice extends AbstractImage implements NoticeInterface, RecordInterface
 
 
     /**
-     * @return null|string
+     * @return array|null
      */
-    public function getPeriodicity(): ?string
+    public function getPeriodicity(): ?array
     {
         return $this->periodicity;
     }
@@ -1270,11 +1275,11 @@ class Notice extends AbstractImage implements NoticeInterface, RecordInterface
     }
 
     /**
-     * @return array
+     * @return null|string
      */
-    public function getFormats(): array
+    public function getFormats(): ?string
     {
-        return $this->formats;
+        return implode(self::SEPARATOR,$this->formats);
     }
 
     /**

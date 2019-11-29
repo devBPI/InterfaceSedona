@@ -96,7 +96,7 @@ class Criteria
     /**
      * @var string
      * @JMS\Type("int")
-     * @JMS\SerializedName("date-publication-start")
+     * @JMS\SerializedName("date-publication-debut")
      */
     private $publicationDateStart;
 
