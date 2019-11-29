@@ -12,11 +12,6 @@
                     {{ "bloc.autority-result-information.authority-type"|trans }}{{ notice.formAdopted }}
                 </li>
             {% endif %}
-            {% if notice.name is not empty %}
-                <li class="list-information__sub-item">
-                    {{ notice.name }}
-                </li>
-            {% endif %}
         </ul>
     </li>
 {% endif %}
@@ -75,7 +70,11 @@
         <span class="list-information__label">{{ ('Naissance')|trans }}</span>
         <ul class="list-information__sub-list">
             <li class="list-information__sub-item">
-                {{ notice.birthDate }} - {{ notice.birthLocation }}
+                {% if notice.birthLocation  is not empty %}
+                    {{ notice.birthDate }} - {{ notice.birthLocation }}
+                {% else %}
+                     {{ notice.birthDate }}
+                {% endif %}
             </li>
         </ul>
     </li>
@@ -85,7 +84,11 @@
         <span class="list-information__label">{{ ('Mort')|trans }}</span>
         <ul class="list-information__sub-list">
             <li class="list-information__sub-item">
-                {{ notice.deathDate }} - {{ notice.deathLocation }}
+                {% if notice.deathLocation  is not empty %}
+                    {{ notice.deathDate }} - {{ notice.deathLocation }}
+                {% else %}
+                    {{ notice.deathDate }}
+                {% endif %}
             </li>
         </ul>
     </li>

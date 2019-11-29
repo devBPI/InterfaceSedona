@@ -56,7 +56,7 @@
     </div>
 </div>
 
-{% if  notice.contents %}
+{% if  notice.contents and notice.type == constant('App\\Model\\Notice::MUSIC')  %}
     <div class="col-12">
         <div lang="fr">
             <h2 class="n1 bibliographic-result__subtitle">{{ 'bloc.autority-result-information.tracks'|trans }}</h2>
@@ -68,7 +68,7 @@
         </div>
     </div>
 {% endif %}
-{% if notice.resume %}
+{% if notice.resume and notice.type != constant('App\\Model\\Notice::MUSIC') %}
     <div class="col-12">
         <div lang="fr">
             <h2 class="n1 bibliographic-result__subtitle">{{ 'bloc.autority-result-information.resume'|trans }}</h2>
