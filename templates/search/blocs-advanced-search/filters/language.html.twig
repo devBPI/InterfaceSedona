@@ -1,0 +1,26 @@
+{% import 'search/blocs-advanced-search/macros.html.twig' as display_form %}
+
+{% set content %}
+    <span class="sr-only">{{ 'modal.advanced-search.langage.select-sr-only'|trans }}</span>
+    <label for="adv-search-langage">{{ 'modal.advanced-search.langage.label'|trans }}</label>
+    <select id="adv-search-langage" multiple="multiple"
+            name="{{ constant('App\\Model\\Search\\FacetFilter::QUERY_NAME') }}[{{ key }}][]"
+            data-value="{{ 'modal.advanced-search.langage.select-aria'|trans }}">
+        {% for lang in criteria.language %}
+            <option value="{{ lang }}"
+                    {% if key in objSearch.searchFilters|keys and
+                        lang in objSearch.searchFilters[key] %}
+                selected="selected"
+                    {% endif %}>{{ lang }}</option>
+        {% endfor %}
+    </select>
+{% endset %}
+
+{{ display_form.display_collapse_filter(
+    'advanced',
+    'modal.advanced-search.langage.title'|trans,
+    key,
+    objSearch.searchFilters,
+    content,
+    'modal.advanced-search.langage.select-aria'|trans
+) }}

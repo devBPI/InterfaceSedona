@@ -3,9 +3,10 @@
 namespace App\Twig;
 
 use Symfony\Component\Filesystem\Filesystem;
+use Twig\Environment;
 use Twig\Extension\AbstractExtension;
-use Twig\TwigFunction;
 use Twig\TwigFilter;
+use Twig\TwigFunction;
 
 /**
  * Class CustomResourceExtension
@@ -13,12 +14,14 @@ use Twig\TwigFilter;
  */
 class CustomResourceExtension extends AbstractExtension
 {
-
     /**
      * @var Filesystem
      */
     protected $fs;
-
+    /**
+     * @var Environment
+     */
+    private $template;
     /**
      * @var string
      */
@@ -27,12 +30,13 @@ class CustomResourceExtension extends AbstractExtension
     /**
      * CustomResourceExtension constructor.
      * @param Filesystem $fs
+     * @param Environment $template
      * @param string $root_dir
      */
-    public function __construct(Filesystem $fs, string $root_dir)
+    public function __construct(Filesystem $fs, Environment $template, string $root_dir)
     {
-
         $this->fs = $fs;
+        $this->template = $template;
         $this->root_dir = $root_dir."/../";
     }
 
@@ -42,7 +46,8 @@ class CustomResourceExtension extends AbstractExtension
     public function getFunctions()
     {
         return [
-            new TwigFunction('get_package_info',[$this, 'getPackageInfo'])
+            new TwigFunction('get_package_info',[$this, 'getPackageInfo']),
+            new TwigFunction('template_exist',[$this, 'checkExistTemplate'])
         ];
     }
 
@@ -82,6 +87,15 @@ class CustomResourceExtension extends AbstractExtension
     {
         $content = $this->fileExistFilter('package_info.json') ? file_get_contents($this->root_dir.'package_info.json') : "{}";
         return json_decode($content, true);
+    }
+
+    /**
+     * @param string $path
+     * @return bool
+     */
+    public function checkExistTemplate(string $path): bool
+    {
+        return $this->template->getLoader()->exists($path);
     }
 
 }

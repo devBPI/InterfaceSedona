@@ -192,8 +192,11 @@ class AdvancedSearchCriteria
     public function getFacets(): array
     {
         return [
+            'configuration_name',
+            'publication_date',
             'type',
             'material_support',
+            'language',
             'genre_musical',
             'genre_film',
             'genre_litteraire',

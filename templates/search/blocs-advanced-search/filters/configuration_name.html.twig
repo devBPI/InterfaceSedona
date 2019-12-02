@@ -1,0 +1,31 @@
+{% import 'search/blocs-advanced-search/macros.html.twig' as display_form %}
+
+{% set content %}
+    <div class="search-base">
+        <p class="search-base__label">{{ 'modal.advanced-search.base.label'|trans }}</p>
+        <ul role="group" aria-label="{{ 'modal.advanced-search.base.label'|trans }}"
+            class="search-base__list">
+            {% for i, base in criteria.configurationName %}
+                <li class="form-check search-base__item">
+                    <input type="checkbox" id="adv-search-bdd-{{ i }}" class="form-check-input"
+                           name="{{ constant('App\\Model\\Search\\FacetFilter::QUERY_NAME') }}[{{ key }}][]" value="{{ base }}"
+                            {% if key in objSearch.searchFilters|keys and base in objSearch.searchFilters[key] %}
+                        checked="checked"
+                            {% endif %}>
+
+                    <label for="adv-search-bdd-{{ i }}" class="form-check-label">
+                        {{ base }}
+                    </label>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endset %}
+
+{{ display_form.display_collapse_filter(
+    'advanced',
+    'modal.advanced-search.base.title'|trans,
+    key,
+    objSearch.searchFilters,
+    content
+) }}
