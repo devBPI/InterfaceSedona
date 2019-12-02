@@ -11,6 +11,8 @@
     <div class="row justify-content-center">
         <div class="col-12 col-sm-10 col-lg-8">
             <form action="{{ path('user_login') }}" method="post" class="account-form">
+            
+                <p class="modal-form__indication">* {{ 'global.form-mandatory-field'|trans }}</p> 
                 {% set error_class = '' %}
                 {% if error is defined and error is not empty %}
                     <div class="form-group row justify-content-md-end">

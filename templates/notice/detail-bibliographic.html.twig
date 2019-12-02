@@ -60,7 +60,7 @@
 {% if  notice.contents and notice.type == constant('App\\Model\\Notice::MUSIC')  %}
     <div class="col-12">
         <div lang="fr">
-            <h2 class="n1 bibliographic-result__subtitle">{{ 'bloc.autority-result-information.tracks'|trans }}</h2>
+            <h2 class="n2 bibliographic-result__subtitle">{{ 'bloc.autority-result-information.tracks'|trans }}</h2>
             {% for content in notice.contents %}
                 <p class="bibliographic-result__resume">
                     {{ content }}
@@ -72,7 +72,7 @@
 {% if notice.resume and notice.type != constant('App\\Model\\Notice::MUSIC') %}
     <div class="col-12">
         <div lang="fr">
-            <h2 class="n1 bibliographic-result__subtitle">{{ 'bloc.autority-result-information.resume'|trans }}</h2>
+            <h2 class="n2 bibliographic-result__subtitle">{{ 'bloc.autority-result-information.resume'|trans }}</h2>
             {% for resume in notice.resume %}
                 <p class="bibliographic-result__resume">
                     {{ resume }}
