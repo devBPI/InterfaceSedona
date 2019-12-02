@@ -47,7 +47,7 @@ final class HomeController extends AbstractController
     }
 
     /**
-     * @Route("/accueil/{parcours}", methods={"GET","HEAD"}, name="home_thematic", requirements={"theme"="autoformation|presse|cinema"})
+     * @Route("/{parcours}", methods={"GET","HEAD"}, name="home_thematic", requirements={"parcours"="autoformation|presse|cinema"})
      *
      * @param string $parcours
      * @return Response
