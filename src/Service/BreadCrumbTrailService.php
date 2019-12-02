@@ -71,12 +71,16 @@ class BreadCrumbTrailService implements \Iterator,  Countable
      * @param array $parameterLink
      * @return BreadCrumbStack
      */
-    public function add($link, $label, $arrayLink=[], $parameterLink=[]):BreadCrumbStack
+    public function add(string $routeName = null ,string $label, array $routeParam=[], array $labelParam = []):BreadCrumbStack
     {
-        $this->stack[] = new BreadCrumbStack(
-            $this->translator->trans($label, $parameterLink),
-            $this->routeCollection->generate($link, $arrayLink)
-        );
+        if (!empty($routeName)) {
+            $this->stack[] = new BreadCrumbStack(
+                $this->translator->trans($label, $labelParam),
+                $this->routeCollection->generate($routeName, $routeParam)
+            );
+        } else {
+            $this->stack[] = new BreadCrumbStack($this->translator->trans($label, $labelParam));
+        }
 
         return  $this->stack[$this->index];
     }

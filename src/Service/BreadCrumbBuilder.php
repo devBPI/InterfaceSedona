@@ -70,20 +70,19 @@ final class BreadCrumbBuilder
     {
         $route = $request->get('_route');
 
-        if (strpos($route, self::USER) !== false){
+        if (strpos($route, self::USER) !== false) {
             return $this->buildForUserPage($request);
         }
-        if (strpos($route, self::HELP) !== false){
+        if (strpos($route, self::HELP) !== false) {
             return $this->buildForHelpPage($request);
         }
         if (strpos($route, self::HOME) !== false && $route!=='home2'){
             return $this->buildForHome($request);
         }
-        if (strpos($route, self::RECORD) !== false){
+        if (strpos($route, self::RECORD) !== false) {
             return $this->buildForCardPage($request);
         }
-        if (strpos($route, self::SEARCH) !== false){
-
+        if (strpos($route, self::SEARCH) !== false) {
             return $this->buildForSearchPage($request);
         }
 
@@ -156,18 +155,19 @@ final class BreadCrumbBuilder
                 $this->bctService->add(
                     'refined_search',
                     'breadcrumb.search-terms',
-                    array_merge(['token'  => $navigation->getHash()], $parcoursTerms),
+                    array_merge([ObjSearch::PARAM_REQUEST_NAME  => $navigation->getHash()], $parcoursTerms),
                     ['%terms%'      => $humanCriteria]
                 );
             }else {
                 $this->bctService->add(
                     'refined_search',
                     'breadcrumb.search',
-                    array_merge(['token'  => $navigation->getHash()], $parcoursTerms)
+                    array_merge([ObjSearch::PARAM_REQUEST_NAME  => $navigation->getHash()], $parcoursTerms)
                 );
             }
 
         }else if (strpos($route, 'search')!==false){
+
             $parcoursTerms = [];
             if (($parcours = $request->get('parcours')) && $parcours !== 'general'){
                 $parcoursTerms = ['parcours'=>$parcours];
@@ -180,20 +180,21 @@ final class BreadCrumbBuilder
 
             $searchToken = $request->getSession()->get(ObjSearch::PARAM_REQUEST_NAME);
             if ($searchToken){
-                 $parcoursTerms = array_merge(['token'=>$searchToken], $parcoursTerms);
+                 $parcoursTerms = array_merge([ObjSearch::PARAM_REQUEST_NAME=>$searchToken], $parcoursTerms);
             }
 
-            if ($humanCriteria = $this->humanizeCriteria($request)){
-                $this->bctService
-                    ->add(
-                        'refined_search',
-                        'breadcrumb.search-terms',
-                        $parcoursTerms,
-                        ['%terms%'=> $humanCriteria]);
-            }else {
+            if ($humanCriteria = $this->humanizeCriteria($request)) {
                 $this->bctService->add(
-                    'refined_search',
-                    'breadcrumb.search',
+                    null,
+                    'breadcrumb.search-terms',
+                    [],
+                    ['%terms%'=> $humanCriteria]
+                );
+            } else {
+                $this->bctService->add(
+                    null,
+                    'breadcrumb.search' ,
+                    [],
                     $parcoursTerms
                 );
             }
