@@ -86,13 +86,13 @@
     <hr class="border-thin">
 </div>
 
-<div class="col-12 col-md-3">
+<div class="col-12 col-md-auto">
     <div class="bibliographic-result__image">
         <img src="{{ path('binary_image', {"content":object.notice.image, 'type': object.notice.type|slugify}) }}" alt="{% if object.notice.picture %}{{ object.notice.picture.description }}{% endif %}" class="img-fluid" />
     </div>
 </div>
 
-<div class="col-12 col-md-9">
+<div class="col-12 col-md">
     <ul class="list-information bibliographic-result__infos js-list-information" lang="fr">
         {% include 'notice/informations-bibliographic.html.twig' with {
             'notice': notice,

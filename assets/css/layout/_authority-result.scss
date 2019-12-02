@@ -22,7 +22,8 @@
 		max-width: 200px;
 
 		@include media-breakpoint-up(md) {
-			max-width: 100%;
+			width: 150px;
+			max-width: 150px;
 		}
 	}
 }
