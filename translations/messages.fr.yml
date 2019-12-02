@@ -13,7 +13,7 @@ global:
       placeholder: 'nom@exemple.com'
 
 header:
-  logo_title: Aller à l'accueil du catalogue Bibliothèque Publique d'Information Centre Pompidou
+  logo_title: Aller à l'accueil du catalogue Bibliothèque publique d'information Centre Pompidou
   logo_alt: Bibliothèque Publique d'Information Centre Pompidou
   menu_title: Consulter le menu principal
   navbar-evitement:

@@ -13,7 +13,7 @@ global:
       placeholder: 'nom@example.com'
 
 header:
-  logo_title: Go to the Bibliothèque Publique d'Information Centre Pompidou catalog homepage
+  logo_title: Go to the Bibliothèque publique d'information Centre Pompidou catalog homepage
   logo_alt: Bibliothèque Publique d'Information Centre Pompidou
   menu_title: Consult main menu
   navbar-evitement:
