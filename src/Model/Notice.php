@@ -418,12 +418,14 @@ class Notice extends AbstractImage implements NoticeInterface, RecordInterface
      * @JMS\XmlList("numeroCommercial")
      */
     private $commercialNumbers;
+
     /**
      * @var Quatrieme|null
      * @JMS\Type("App\Model\Quatrieme")
      * @JMS\SerializedName("quatrieme")
      */
     private $fourth;
+
     /**
      * @var string
      * @JMS\Type("string")
@@ -431,15 +433,12 @@ class Notice extends AbstractImage implements NoticeInterface, RecordInterface
      */
     private $contentsTable;
 
-
     /**
      * @var string
      * @JMS\Type("string")
      * @JMS\SerializedName("isni")
      */
     private $isni;
-
-
 
     /**
      * @var array|IndiceCdu[]

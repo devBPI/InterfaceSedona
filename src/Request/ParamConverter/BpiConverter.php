@@ -9,6 +9,7 @@ use App\Model\Exception\NoResultException;
 use App\Model\IndiceCdu;
 use App\Model\Notice;
 use App\Model\NoticeThemed;
+use App\Model\Search\ObjSearch;
 use App\Model\Search\SearchQuery;
 use App\Service\NavigationService;
 use App\Service\Provider\NoticeAuthorityProvider;
@@ -126,7 +127,7 @@ class BpiConverter implements ParamConverterInterface
 
         if (
             $configuration->getClass() === NavigationService::class &&
-            (!$object instanceof NavigationService || $object->getHash() !== $request->get('searchToken'))
+            (!$object instanceof NavigationService || $object->getHash() !== $request->get(ObjSearch::PARAM_REQUEST_NAME))
         ) {
             $object = $this->buildNavigationService($request->attributes->get('notice'), $request);
         }
@@ -144,7 +145,7 @@ class BpiConverter implements ParamConverterInterface
      */
     private function buildNavigationService(BpiConverterInterface $object, Request $request): ?NavigationService
     {
-        $searchToken = $request->get('searchToken', '');
+        $searchToken = $request->get(ObjSearch::PARAM_REQUEST_NAME, '');
         $class = get_class($object);
         if ($object instanceof NoticeThemed) {
             $class = $object->getNotice()->isOnLine() ? Notice::ON_LIGNE : Notice::ON_SHELF;

@@ -27,12 +27,12 @@
         {% set contextToken = (objSearch is defined ? objSearch.contextToken : null) %}
         <div class="list-result__content-body">
             <div class="list-result__content-image">
-                <a href="{{ path('record_bibliographic', {'permalink': notice.permalink, 'searchToken': contextToken}) }}">
+                <a href="{{ path('record_bibliographic', {'permalink': notice.permalink, (constant('App\\Model\\Search\\ObjSearch::PARAM_REQUEST_NAME')): contextToken}) }}">
                     <img src="{{ path('binary_image', {"content":notice.image, 'type': notice.type | slugify})}}" alt="{{ notice.frontTitle }}" class="img-fluid" />
                 </a>
             </div>
             <div class="list-result__content-infos js-seeMoreAvailability" >
-                <a href="{{ path('record_bibliographic', {'permalink': notice.permalink, 'searchToken': contextToken}) }}"
+                <a href="{{ path('record_bibliographic', {'permalink': notice.permalink, (constant('App\\Model\\Search\\ObjSearch::PARAM_REQUEST_NAME')): contextToken}) }}"
                    lang="fr"
                    class="n2 list-result__content-title"
                 >

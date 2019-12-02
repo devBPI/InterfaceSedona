@@ -178,7 +178,7 @@ final class BreadCrumbBuilder
                 );
             }
 
-            $searchToken = $request->getSession()->get('searchToken');
+            $searchToken = $request->getSession()->get(ObjSearch::PARAM_REQUEST_NAME);
             if ($searchToken){
                  $parcoursTerms = array_merge(['token'=>$searchToken], $parcoursTerms);
             }
@@ -232,7 +232,7 @@ final class BreadCrumbBuilder
      */
     private function getObjSearchQuery(Request $request):?SearchQuery
     {
-        $token      = $request->get('token',  $request->query->get('searchToken'));
+        $token      = $request->get('token',  $request->query->get(ObjSearch::PARAM_REQUEST_NAME));
         $route      = $request->get('_route');
 
         $searchQuery = null;

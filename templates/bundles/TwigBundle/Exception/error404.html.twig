@@ -8,9 +8,9 @@
     <p>{{ 'error.page_not_available' | trans }}</p>
 
     <ul class="list-link">
-        {% if app.session.get('searchToken') is defined and app.session.get('searchToken') is not null %}
+        {% if app.session.get(constant('App\\Model\\Search\\ObjSearch::PARAM_REQUEST_NAME')) is defined and app.session.get(constant('App\\Model\\Search\\ObjSearch::PARAM_REQUEST_NAME')) is not null %}
             <li>
-                <a href="{{ path('search', {'searchToken': app.session.get('searchToken') }) }}">{{ 'error.link-go-back' |trans }}</a>
+                <a href="{{ path('search', {(constant('App\\Model\\Search\\ObjSearch::PARAM_REQUEST_NAME')): app.session.get(constant('App\\Model\\Search\\ObjSearch::PARAM_REQUEST_NAME')) }) }}">{{ 'error.link-go-back' |trans }}</a>
             </li>
         {% endif %}
         <li>

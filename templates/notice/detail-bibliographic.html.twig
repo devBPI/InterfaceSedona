@@ -60,7 +60,7 @@
 {% if  notice.contents and notice.type == constant('App\\Model\\Notice::MUSIC')  %}
     <div class="col-12">
         <div lang="fr">
-            <h2 class="n1 bibliographic-result__subtitle">{{ 'bloc.autority-result-information.tracks'|trans }}</h2>
+            <h2 class="n2 bibliographic-result__subtitle">{{ 'bloc.autority-result-information.tracks'|trans }}</h2>
             {% for content in notice.contents %}
                 <p class="bibliographic-result__resume">
                     {{ content }}
@@ -72,7 +72,7 @@
 {% if notice.resume and notice.type != constant('App\\Model\\Notice::MUSIC') %}
     <div class="col-12">
         <div lang="fr">
-            <h2 class="n1 bibliographic-result__subtitle">{{ 'bloc.autority-result-information.resume'|trans }}</h2>
+            <h2 class="n2 bibliographic-result__subtitle">{{ 'bloc.autority-result-information.resume'|trans }}</h2>
             {% for resume in notice.resume %}
                 <p class="bibliographic-result__resume">
                     {{ resume }}
@@ -86,13 +86,13 @@
     <hr class="border-thin">
 </div>
 
-<div class="col-12 col-md-3">
+<div class="col-12 col-md-auto">
     <div class="bibliographic-result__image">
         <img src="{{ path('binary_image', {"content":object.notice.image, 'type': object.notice.type|slugify}) }}" alt="{% if object.notice.picture %}{{ object.notice.picture.description }}{% endif %}" class="img-fluid" />
     </div>
 </div>
 
-<div class="col-12 col-md-9">
+<div class="col-12 col-md">
     <ul class="list-information bibliographic-result__infos js-list-information" lang="fr">
         {% include 'notice/informations-bibliographic.html.twig' with {
             'notice': notice,
