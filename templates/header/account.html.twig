@@ -3,7 +3,7 @@
 		<div class="dropdown account__group" aria-label="{{ 'header.account.aria'|trans }}">
 			<span class="sr-only">{{ 'header.account.title_connected'|trans }}</span>
 			<button type="button" id="dropdown-compte" data-toggle="dropdown" aria-haspopup="listbox" aria-expanded="false" class="account__button btn">
-                {{ 'header.account.welcome'|trans }}, {{ app.user.firstname }}
+                {{ 'header.account.welcome'|trans }} {{ app.user.firstname }}
 			</button>
 			<div class="dropdown-menu account__list" aria-labelledby="dropdown-compte" role="listbox" tabindex="-1">
 				<a href="{{ path('app_logout') }}" class="dropdown-item account__list-item" role="option">{{ 'header.account.logout'|trans }}</a>
