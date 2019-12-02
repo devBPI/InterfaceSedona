@@ -142,7 +142,7 @@ class NoticeAvailable
             return  $this->disponibilite;
         }
 
-        return $this->availability;
+        return $this->labelAvailibility;
     }
 
     /**
@@ -168,7 +168,6 @@ class NoticeAvailable
 
        return $this->labelAvailibility;
     }
-
 
     /**
      * @return array

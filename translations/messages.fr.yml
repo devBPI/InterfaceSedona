@@ -242,7 +242,7 @@ modal:
 
     base:
       title: Base de recherche
-      label: Recherche dans
+      label: Rechercher dans
       name: Base de données %name%
     date:
       title: Date de publication

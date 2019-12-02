@@ -120,9 +120,14 @@ final class ReportingController extends AbstractController
     {
         $form = $this->createForm(ShareByMailType::class, new ShareByMail());
         $form->handleRequest($request);
+        $link = $request->get('link');
+        if ($form->getData() instanceof  ShareByMail && ($dataLink =  $form->getData()->getLink())!==null) {
+            $link = $dataLink;
+        }
         if ($form->isSubmitted() && $form->isValid()){
             /** @var ShareByMail $object */
             $object = $form->getData();
+
             if ($this->mailSenderService->sendMail(
                 'common/modal/content.email.twig',
                 ['data' => $object],
@@ -131,12 +136,12 @@ final class ReportingController extends AbstractController
             )) {
                 return $this->render('common/modal/share-success.html.twig');
             } else {
+
                 $form->addError(
                     new FormError("Une erreur est survenue lors de l'envoi de l'e-mail \n veuillez réessayer plus tard SVP.")
                 );
             }
         }
-        $link = $request->get('link');
 
         return $this->render(
             'common/modal/share-content.html.twig',

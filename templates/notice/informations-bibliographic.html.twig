@@ -4,10 +4,25 @@
 {% if notice.type != "Vidéo"%}
     {{ notice_macros.detail_link(notice.contributeurs, 'bloc.autority-result-information.contributor'|trans, constant('App\\WordsList::AUTHOR_WORD')) }}
 {% endif %}
+
 {{ notice_macros.detail_link(notice.editors, 'bloc.autority-result-information.editor'|trans, constant('App\\WordsList::AUTHOR_WORD')) }}
+
 {{ notice_macros.detail(notice.publishedDates, 'bloc.autority-result-information.date'|trans) }}
 {{ notice_macros.detail(notice.otherDates, 'bloc.autority-result-information.edition-date'|trans) }}
-{{ notice_macros.detail(notice.periodicity, 'bloc.autority-result-information.periodicity-date'|trans) }}
+{% if notice.periodicity %}
+    <li class="list-information__item">
+        <span class="list-information__label">{{ 'bloc.autority-result-information.periodicity'|trans }}</span>
+        <ul class="list-information__sub-list" lang="fr">
+
+            <li class="list-information__sub-item">
+                {% for element in  notice.periodicity %}
+                    {% set next = loop.index+1 %}
+                {{ element }}{% if notice.periodicity.next is defined %}.{% endif %}
+                {% endfor %}
+            </li>
+        </ul>
+    </li>
+{% endif %}
 {{ notice_macros.detail(notice.uniformTitle, 'bloc.autority-result-information.ouvre'|trans) }}
 {{ notice_macros.detail(notice.alternatifTitle, 'bloc.autority-result-information.alternatif-title'|trans) }}
 {{ notice_macros.detail(notice.contents, 'modal.comments-edit.field-content'|trans) }}
