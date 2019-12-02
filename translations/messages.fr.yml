@@ -306,7 +306,7 @@ page:
     title: Accueil - Catalogue de la Bpi
     thematic: Découvrir les parcours
   thematic:
-    theme: Les thèmes les plus consultés
+    theme: Les essentiels
   authority:
     title: Autorité %author%
   bibiographic:
@@ -374,7 +374,7 @@ bloc:
   preview-thematic:       #Bloc 02 Découvrir les parcours
     discover-sr-only: 'Découvrir les parcours : %name%'
   preview-thematic-links: #Bloc 05 Accès rapide
-    link-sr-only: Les thèmes les plus consultés, %name%
+    link-sr-only: Les essentiels, %name%
   search-correct:         #Bloc 07 Orthographe
     title-sr-only: Choix de la correction orthographique
     title-aria: menu-correction
