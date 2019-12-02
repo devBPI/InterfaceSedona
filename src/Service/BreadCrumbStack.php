@@ -26,7 +26,7 @@ final class BreadCrumbStack
      * @param string $label
      * @param $link
      */
-    public function __construct(string $label, string $link)
+    public function __construct(string $label, string $link = null)
     {
         $this->label = $label;
         $this->link = $link;

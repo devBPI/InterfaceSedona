@@ -108,7 +108,7 @@ final class SearchController extends AbstractController
     }
 
     /**
-     * @Route("/recherche-affinee/{parcours}", methods={"GET"}, name="refined_search")
+     * @Route("/recherche-affinee/{searchToken}/{parcours}", methods={"GET"}, name="refined_search")
      *
      * @param Request $request
      * @param string $parcours
@@ -119,9 +119,9 @@ final class SearchController extends AbstractController
      * @throws \Twig\Error\RuntimeError
      * @throws \Twig\Error\SyntaxError
      */
-    public function refinedSearchAction(Request $request, string $parcours=self::GENERAL): Response
+    public function refinedSearchAction(Request $request,string $searchToken = '', string $parcours=self::GENERAL): Response
     {
-        $search = $this->searchService->getSearchQueryFromToken($request->get(ObjSearch::PARAM_REQUEST_NAME, null), $request);
+        $search = $this->searchService->getSearchQueryFromToken($searchToken, $request);
         $criteria = $search->getCriteria()->setParcours($parcours);
         $search
             ->setFacets(new FacetFilter($request->query->all()))
