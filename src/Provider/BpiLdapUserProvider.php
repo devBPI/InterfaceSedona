@@ -27,7 +27,6 @@ class BpiLdapUserProvider implements UserProviderInterface
     private $defaultRoles;
     private $uidKey;
     private $defaultSearch;
-    private $passwordAttribute;
 
     /**
      * @var array
@@ -44,7 +43,6 @@ class BpiLdapUserProvider implements UserProviderInterface
      * @param array $fields
      * @param string|null $uidKey
      * @param string|null $filter
-     * @param string|null $passwordAttribute
      */
     public function __construct(
         LdapInterface $ldap,
@@ -54,8 +52,7 @@ class BpiLdapUserProvider implements UserProviderInterface
         array $defaultRoles = [],
         array $fields = [],
         string $uidKey = null,
-        string $filter = null,
-        string $passwordAttribute = null
+        string $filter = null
     ) {
         if (null === $uidKey) {
             $uidKey = 'sAMAccountName';
@@ -72,7 +69,6 @@ class BpiLdapUserProvider implements UserProviderInterface
         $this->defaultRoles = $defaultRoles;
         $this->uidKey = $uidKey;
         $this->defaultSearch = str_replace('{uid_key}', $uidKey, $filter);
-        $this->passwordAttribute = $passwordAttribute;
 
         $this->fields = $fields;
     }
@@ -81,7 +77,7 @@ class BpiLdapUserProvider implements UserProviderInterface
      * @param string $username
      * @return LdapUser|\Symfony\Component\Security\Core\User\User|UserInterface
      */
-    public function loadUserByUsername($username)
+    public function loadUserByUsername($username): LdapUser
     {
         $this->ldap->bind($this->searchDn, $this->searchPassword);
         $username = $this->ldap->escape($username, '', LdapInterface::ESCAPE_FILTER);
@@ -106,11 +102,8 @@ class BpiLdapUserProvider implements UserProviderInterface
 
         $entry = $entries[0];
 
-        try {
-            if (null !== $this->uidKey) {
-                $username = $this->getAttributeValue($entry, $this->uidKey);
-            }
-        } catch (InvalidArgumentException $e) {
+        if (null !== $this->uidKey) {
+            $username = $this->getAttributeValue($entry, $this->uidKey);
         }
 
         return $this->loadUser($username, $entry);
@@ -119,7 +112,7 @@ class BpiLdapUserProvider implements UserProviderInterface
     /**
      * {@inheritdoc}
      */
-    public function supportsClass($class)
+    public function supportsClass($class): bool
     {
         return LdapUser::class === $class;
     }
@@ -127,7 +120,7 @@ class BpiLdapUserProvider implements UserProviderInterface
     /**
      * {@inheritdoc}
      */
-    public function refreshUser(UserInterface $user)
+    public function refreshUser(UserInterface $user): UserInterface
     {
         return $user;
     }
@@ -150,7 +143,7 @@ class BpiLdapUserProvider implements UserProviderInterface
      *
      * @param Entry|null $entry
      * @param string $attribute
-     * @return
+     * @return mixed
      */
     private function getAttributeValue(Entry $entry, $attribute)
     {
