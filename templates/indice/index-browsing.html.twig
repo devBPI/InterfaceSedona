@@ -19,7 +19,7 @@
 							<li class="index__item index__item--current">
 								<p id="index-current" aria-current="page" lang="fr" tabindex="0">
 									<img src="{{ asset('images/icones/icone-chevron-gauche.svg') }}" alt="" class="icone-chevron-right"/>
-									{{ 'bloc.index.current'|trans({'%name%': index.name}) }}
+									{{ 'bloc.index.current'|trans({'%name%': index.name}) }}<span class="sr-only"> {{ 'bloc.index.current-sr-only'|trans() }}</span>
 								</p>
 							</li>
 						{% endif %}

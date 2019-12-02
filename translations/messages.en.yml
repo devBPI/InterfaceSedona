@@ -526,7 +526,8 @@ bloc:
     go-to-end: Aller à la fin du feuilletage d'index
     go-to current-index: Aller sur l'index active
     previous: précédents
-    current: %name% - Active
+    current: %name%
+    current-sr-only: - Active
     next: suivants
     name: index
   banner-tools:         #Bloc 24 Barre des tâches
