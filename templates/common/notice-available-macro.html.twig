@@ -49,8 +49,8 @@
     {% elseif is_same_instance(object, "App\\Model\\Link") %}
        {% if object.media is  defined and object.media is not empty %}
            <div class="availability availability--true availability--online">
-               <a href="{{ path('media-link', {'permalink': object.media}) }}" class="link link--icone-end link--inline">
-                   {{ 'bloc.notice-simple.access-to-bdd'|trans }} {{ notice.title }}
+               <a href="{{ path('media-link', {'permalink': object.media}) }}" class="link link--icone-end link--inline" target="_blank">
+                   {{ 'bloc.notice-simple.access-to-bdd'|trans }} {{ notice.title }} 
                    <img src="{{ asset('images/icones/icone-chevron-gauche.svg') }}" alt="" aria-hidden="true" />
                </a>
            </div>

@@ -30,6 +30,18 @@
 
 	&--online {
 		font-weight: $font-bold;
+
+		&.availability--true {
+
+			.link {
+				color: $blue;
+
+				&:hover,
+				&:focus {
+					color: $red;
+				}
+			}
+		}
 	}
 
 	&--rayon {
