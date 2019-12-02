@@ -11,13 +11,13 @@ use Symfony\Component\Security\Core\User\UserInterface;
 class LdapUser implements UserInterface
 {
     const UID_KEY = 'entryUUID';
+    const EMAIL_KEY = 'mail';
     const USERNAME_KEY = 'pseudo';
     const LASTNAME_KEY = 'sn';
     const FIRSTNAME_KEY = 'cn';
-    const EMAIL_KEY = 'mail';
 
     private static $mandatory_fields = [
-        self::USERNAME_KEY => 'username',
+        self::EMAIL_KEY => 'mail',
         self::UID_KEY => 'uid'
     ];
 
@@ -66,6 +66,8 @@ class LdapUser implements UserInterface
         }
         if (array_key_exists(self::USERNAME_KEY, $data) && isset($data[self::USERNAME_KEY][0])) {
             $this->username = $data[self::USERNAME_KEY][0];
+        } else {
+            $this->username = $data[self::EMAIL_KEY][0];
         }
         if (array_key_exists(self::LASTNAME_KEY, $data) && isset($data[self::LASTNAME_KEY][0])) {
             $this->lastname = $data[self::LASTNAME_KEY][0];
@@ -129,7 +131,7 @@ class LdapUser implements UserInterface
     /**
      * {@inheritdoc}
      */
-    public function getRoles()
+    public function getRoles(): array
     {
         return $this->roles;
     }
@@ -137,7 +139,7 @@ class LdapUser implements UserInterface
     /**
      * {@inheritdoc}
      */
-    public function getPassword()
+    public function getPassword(): ?string
     {
         return $this->password;
     }
@@ -150,7 +152,9 @@ class LdapUser implements UserInterface
      * @return string|null The salt
      */
     public function getSalt()
-    {}
+    {
+        return null;
+    }
 
     /**
      * Removes sensitive data from the user.
@@ -159,6 +163,8 @@ class LdapUser implements UserInterface
      * the plain-text password is stored on this object.
      */
     public function eraseCredentials()
-    {}
+    {
+        return null;
+    }
 
 }

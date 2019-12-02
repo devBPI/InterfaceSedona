@@ -42,13 +42,14 @@
 				display: flex;
 				box-shadow: none;
 				border: 0;
-				border-right: 1px solid $grey-border;
+				border-right: 1px solid $grey;
 				padding: rem(20) 0 rem(10);
 			}
 
 			&-item {
 				color: $black;
 				@include font-size(12);
+				margin-bottom: 0;
 
 				&:hover,
 				&:focus {
@@ -56,20 +57,32 @@
 					text-decoration: underline;
 				}
 
-				&.active {
-					color: $grey-disabled;
-				}
-
 				@include media-breakpoint-up(lg) {
 					padding: 0 rem(10);
 				}
 
 				abbr {
+					cursor: default;
 					text-decoration: none;
 					border-bottom: 0;
 
 					&:hover {
 						cursor: pointer;
+					}
+				}
+
+				&.active {
+					color: $grey-disabled;
+
+					&:hover {
+						text-decoration: none;
+					}
+
+					abbr {
+
+						&:hover {
+							cursor: default;
+						}
 					}
 				}
 			}
