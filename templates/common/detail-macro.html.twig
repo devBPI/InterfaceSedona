@@ -7,7 +7,7 @@
                     {% for element in object %}
                         <li class="list-information__sub-item">
                             {{ element }}
-                            {% if not loop.last %}, {% endif %}
+                            {% if not loop.last %}; {% endif %}
                         </li>
                     {% endfor %}
                 {% else %}
@@ -33,7 +33,7 @@
                             <a href="{{ path('search', pathAttr) }}">
                                 {{ element }}
                             </a>
-                            {% if not loop.last %}, {% endif %}
+                            {% if not loop.last %}; {% endif %}
                         </li>
                     {% endfor %}
                 {% else %}
@@ -67,7 +67,7 @@
                     <a href="{{ path('search', pathAttr) }}">
                         {{ element }}
                     </a>
-                    {% if not loop.last %}, {% endif %}
+                    {% if not loop.last %}; {% endif %}
                 {% endfor %}
             {% else %}
                 {% set pathAttr = {

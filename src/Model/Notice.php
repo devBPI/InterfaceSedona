@@ -130,6 +130,7 @@ class Notice extends AbstractImage implements NoticeInterface, RecordInterface
      * @JMS\XmlList("titreEnRelation")
      */
     private $inRelationTitle;
+
     /**
      * @var array
      * @JMS\Type("array<string>")
@@ -137,6 +138,7 @@ class Notice extends AbstractImage implements NoticeInterface, RecordInterface
      * @JMS\XmlList("auteur")
      */
     private $authors;
+
     /**
      * @var array|Value[]
      * @JMS\Type("array<App\Model\Value>")
@@ -144,6 +146,7 @@ class Notice extends AbstractImage implements NoticeInterface, RecordInterface
      * @JMS\XmlList("auteur")
      */
     private $authorsValue;
+
     /**
      * @var array
      * @JMS\Type("array<string>")
@@ -703,26 +706,25 @@ class Notice extends AbstractImage implements NoticeInterface, RecordInterface
      */
     public function getFrontAuthor(): ?string
     {
-        $payload = [];
         $authors = [];
 
-        if ($this->authors){
-            $authors = array_merge($payload, $this->authors);
-        }elseif ($this->authorsValue){
+        if (is_array($this->authors)) {
+            $authors = array_merge($authors, $this->authors);
+        }
+
+        if (is_array($this->authorsValue)) {
             foreach ($this->authorsValue as $value){
                 if ($value instanceof Value && $value->getValue()){
-                     $authors[] = $value->getValue();
+                    $authors[] = $value->getValue();
                 }
             }
         }
 
-        $payload = array_merge($payload, $authors);
-        if ($this->directors){
-            $payload = array_merge($payload, $this->directors);
-
+        if (is_array($this->directors)){
+            $authors = array_merge($authors, $this->directors);
         }
-
-        return implode(self::SEPARATOR, $payload);
+        $authors = array_unique(array_filter($authors));
+        return implode(self::SEPARATOR, $authors);
     }
 
     /**
