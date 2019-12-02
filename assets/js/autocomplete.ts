@@ -4,6 +4,19 @@ export default class Autocomplete {
     private mode: string;
     private target: HTMLElement;
     private type: HTMLSelectElement;
+    private mapping = {
+        'general': 'general',
+        'title': 'titre',
+        'collection': 'collection',
+        'author': 'auteur',
+        'realisator': 'realisateur',
+        'subject': 'sujet',
+        'theme': 'theme',
+        'editor': 'editeur',
+        'publicationDate': 'date-publication',
+        'isbnIssnNumcommercial': 'isbn-issn-numcommercial',
+        'indiceCote': 'indice-cote'
+    }
 
 
     constructor(private element: HTMLInputElement) {
@@ -30,7 +43,7 @@ export default class Autocomplete {
         const {value} = this.element;
         if (value.length >= 3) {
             this.autocompleteRequest = window.setTimeout(() => {
-                const params = $.param({word: value, type: this.type.value, mode: this.mode});
+                const params = $.param({word: value, type: this.mapping[this.type.value], mode: this.mode});
                 fetch(`${this.url}?${params}`)
                     .then(result => this.onAutocompleteFetched(result));
 
