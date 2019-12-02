@@ -17,11 +17,19 @@ class Link
      * @JMS\SerializedName("object-type")
      */
     private $objectType;
+
     /**
      * @var string
      * @JMS\Type("string")
      */
     private $title;
+
+    /**
+     * @deprecated
+     * @var string
+     * @JMS\Type("string")
+     */
+    private $titre;
 
     /**
      * @var string
@@ -118,7 +126,7 @@ class Link
      */
     public function getTitle(): ?string
     {
-        return $this->title;
+        return empty($this->title) ? $this->titre : $this->title;
     }
 
     /**
