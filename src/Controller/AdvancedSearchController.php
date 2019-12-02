@@ -47,8 +47,8 @@ final class AdvancedSearchController extends AbstractController
      */
     public function index(Request $request, SessionInterface $session): Response
     {
-        if ($request->get('searchToken') !== null && $session->has($request->get('searchToken'))) {
-            $searchQuery = $this->searchService->getSearchQueryFromToken($request->get('searchToken'), $request);
+        if ($request->get(ObjSearch::PARAM_REQUEST_NAME) !== null && $session->has($request->get(ObjSearch::PARAM_REQUEST_NAME))) {
+            $searchQuery = $this->searchService->getSearchQueryFromToken($request->get(ObjSearch::PARAM_REQUEST_NAME), $request);
         } else {
             $criteria = new Criteria();
             $criteria->setAdvancedSearch($request->query->all());

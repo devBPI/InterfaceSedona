@@ -1,7 +1,7 @@
 <div role="dialog" aria-modal="true" aria-labelledby="modal-refine-search-title" class="modal fade modal--filter" id="modal-refine-search" tabindex="-1" lang="fr">
 	<div class="modal-dialog modal-dialog-centered">
 		<div class="modal-content">
-			<form class="modal-form" method="get" action="{{ path('refined_search', {'token': objSearch.contextToken}) }}">
+			<form class="modal-form" method="get" action="{{ path('refined_search', {(constant('App\\Model\\Search\\ObjSearch::PARAM_REQUEST_NAME')): objSearch.contextToken}) }}">
 				<div class="modal-header">
 					<h1 class="n1 modal-header__title" id="modal-refine-search-title">{{ 'modal.refine-search.title'|trans }}</h1>
 					<button class="close" type="button" data-dismiss="modal">
