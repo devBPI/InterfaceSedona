@@ -1,6 +1,6 @@
 {% extends 'home/base.html.twig' %}
 
-{% block title %}Parcours {{ title }}{% endblock %}
+{% block title %}Parcours {{ ('header.title.'~title) | trans }}{% endblock %}
 {% block body %}
 
 	<h1 class="n1">{{ ('header.title.'~title) | trans }}</h1>
