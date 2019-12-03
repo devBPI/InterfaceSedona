@@ -296,27 +296,30 @@ class Criteria
      */
     public function getMyHistoryTitle(TranslatorInterface $translator, string $operator = ''): string
     {
-        $title = '';
+        $historyTitle = '';
         if (empty($operator) && !empty($this->getParcours()) && $this->getParcours() !== WordsList::THEME_DEFAULT) {
-            $title = $translator->trans('breadcrumb.parcours.'.$this->getParcours()). ' ';
+            $historyTitle = $translator->trans('header.title.'.$this->getParcours()). ' ';
         }
 
         foreach (WordsList::$words[WordsList::THEME_DEFAULT] as $field) {
             if (!empty($this->$field)) {
-                $title .= $this->$field. ' ('.$translator->trans('modal.advanced-search.keyword.type.'.$field).')';
+                $historyTitle .= $this->$field. ' ('.$translator->trans('modal.advanced-search.keyword.type.'.$field).')';
             }
         }
         if (!empty($operator)) {
-            $title .= ' '.strtoupper($translator->trans('modal.advanced-search.keyword.group.'.$operator));
+            if ($this->not) {
+                $operator = 'notCriteria';
+            }
+            $historyTitle .= ' '.strtoupper($translator->trans('modal.advanced-search.keyword.group.'.$operator));
         }
 
         foreach (WordsList::$operators as $operator) {
             if ($this->$operator instanceof Criteria) {
-                $title .= ' '.$this->$operator->getMyHistoryTitle($translator, $operator);
+                $historyTitle .= ' '.$this->$operator->getMyHistoryTitle($translator, $operator);
             }
         }
 
-        return $title;
+        return $historyTitle;
     }
 
     /**

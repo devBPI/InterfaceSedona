@@ -20,6 +20,8 @@ use Symfony\Component\Translation\TranslatorInterface;
 final class HistoryService extends AuthenticationService
 {
     const SESSION_HISTORY_ID = 'history_session';
+    const TITLE_LIMIT = 40;
+
 
     /**
      * @var EntityManager
@@ -154,8 +156,13 @@ final class HistoryService extends AuthenticationService
      */
     public function saveUserHistory(ObjSearch $objSearch): void
     {
+        $historyTitle = $objSearch->getCriteria()->getMyHistoryTitle($this->translator);
+        if (strlen($historyTitle) > self::TITLE_LIMIT) {
+            $historyTitle = substr($historyTitle,0,self::TITLE_LIMIT);
+        }
+
         $searchHistory = $this->findOrCreateSearchHistory(
-            $objSearch->getCriteria()->getMyHistoryTitle($this->translator),
+            $historyTitle,
             $objSearch->getContextConfig());
 
         $userHistory = $this->findOrCreateUserHistory($searchHistory);
