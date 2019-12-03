@@ -494,7 +494,7 @@ bloc:
     kind: Genre
     indices: Indice(s)
     topics: Thème(s)
-    other-edition: Autre(s) éditions
+    other-edition: Autre(s) édition(s)
     insi: 'ISNI'
     type:
       indice: 'Indice de classement'
