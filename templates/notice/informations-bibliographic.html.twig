@@ -59,7 +59,6 @@
 {{ notice_macros.detail(notice.issn , 'ISSN') }}
 {{ notice_macros.detail(notice.commercialNumbers , 'bloc.autority-result-information.comercial-number'|trans) }}
 {{ notice_macros.detail_link(notice.indices , 'bloc.autority-result-information.indices'|trans, constant('App\\WordsList::INDICE_COTE_WORD')) }}
-
 {{ notice_macros.detail(notice.publics , 'bloc.autority-result-information.publics'|trans) }}
 
 {#droit#}
@@ -80,8 +79,9 @@
     </li>
 {% endif %}
 
-{{ notice_macros.detail(notice.placesEvents , 'bloc.autority-result-information.manifestation-location'|trans) }}
-{{ notice_macros.detail(notice.origins , 'bloc.autority-result-information.origins'|trans) }}
+{{ notice_macros.detail(notice.placesEvents , 'bloc.autority-result-information.manifestation-location') }}
+{{ notice_macros.detail(notice.origins , 'bloc.autority-result-information.origins', "; ", " list-information__item--mentions") }}
+
 {% if notice.configurationName is not empty and notice.configurationName != constant('App\\Model\\Notice::CATALOGUE_BPI') %}
     <li class="list-information__item">
         <span class="list-information__label">{{ 'bloc.autority-result-information.result-de'|trans }}</span>
