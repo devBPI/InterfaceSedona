@@ -476,10 +476,10 @@ bloc:
     cote: "Cote"
     other-names: "Autre(s) nom(s)"
     employed-for: "Employé pour"
-    other-authors: "Autre(s) auteurs(s)"
+    other-authors: "Autre(s) auteur(s)"
     linked-names: "Nom(s) associé(s) / Nom(s) lié(s)"
     classification-notes: "Notes sur le classement"
-    authors: "Auteurs(s)"
+    authors: "Auteur(s)"
     country: 'Pays'
     born-date: 'Naissance'
     dead-date: 'Mort'
