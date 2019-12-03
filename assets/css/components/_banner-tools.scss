@@ -22,6 +22,10 @@
 		&:last-child {
 			margin-right: 0;
 		}
+
+		label {
+			padding-right: 0 !important;
+		}
 	}
 
 	&__item {
