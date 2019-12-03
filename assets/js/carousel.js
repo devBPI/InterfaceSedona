@@ -81,7 +81,7 @@ $('.js-list-information ul.list-information__sub-list').each( function() {
 
     if ( $children_length > 5 ) {
         $children
-            .eq(5)
+            .eq(4)
             .nextAll()
             .addClass('d-none');
         $children
@@ -93,7 +93,7 @@ $('.js-list-information ul.list-information__sub-list').each( function() {
 $(document)
     .on('click', '.js-btn', function() {
         var $this = $(this),
-            $items = $(this).parent().parent().children().eq(5).nextAll();
+            $items = $(this).parent().parent().children().eq(4).nextAll();
 
         if ($this.hasClass('js-btn--more') ) {
             $items.removeClass('d-none');
