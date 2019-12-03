@@ -55,7 +55,7 @@
 {{ notice_macros.detail_link(notice.kinds , 'bloc.autority-result-information.kind'|trans, constant('App\\WordsList::SUBJECT_WORD')) }}
 {#gender#}
 {{ notice_macros.detail_link(notice.topics , 'bloc.autority-result-information.topics'|trans, constant('App\\WordsList::SUBJECT_WORD')) }}
-{{ notice_macros.detail(notice.isbn , 'ISBN') }}
+{{ notice_macros.detail(notice.isbns , 'ISBN',';') }}
 {{ notice_macros.detail(notice.issn , 'ISSN') }}
 {{ notice_macros.detail(notice.commercialNumbers , 'bloc.autority-result-information.comercial-number'|trans) }}
 {{ notice_macros.detail_link(notice.indices , 'bloc.autority-result-information.indices'|trans, constant('App\\WordsList::INDICE_COTE_WORD')) }}
