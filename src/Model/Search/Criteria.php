@@ -5,6 +5,7 @@ namespace App\Model\Search;
 
 use App\WordsList;
 use JMS\Serializer\Annotation as JMS;
+use Symfony\Component\Translation\TranslatorInterface;
 
 /**
  * Class Criteria
@@ -286,6 +287,36 @@ class Criteria
         }
 
         return $keywords;
+    }
+
+    /**
+     * @param TranslatorInterface $translator
+     * @param string $operator
+     * @return string
+     */
+    public function getMyHistoryTitle(TranslatorInterface $translator, string $operator = ''): string
+    {
+        $title = '';
+        if (empty($operator) && !empty($this->getParcours()) && $this->getParcours() !== WordsList::THEME_DEFAULT) {
+            $title = $translator->trans('breadcrumb.parcours.'.$this->getParcours()). ' ';
+        }
+
+        foreach (WordsList::$words[WordsList::THEME_DEFAULT] as $field) {
+            if (!empty($this->$field)) {
+                $title .= $this->$field. ' ('.$translator->trans('modal.advanced-search.keyword.type.'.$field).')';
+            }
+        }
+        if (!empty($operator)) {
+            $title .= ' '.strtoupper($translator->trans('modal.advanced-search.keyword.group.'.$operator));
+        }
+
+        foreach (WordsList::$operators as $operator) {
+            if ($this->$operator instanceof Criteria) {
+                $title .= ' '.$this->$operator->getMyHistoryTitle($translator, $operator);
+            }
+        }
+
+        return $title;
     }
 
     /**

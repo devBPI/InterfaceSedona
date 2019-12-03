@@ -66,7 +66,7 @@ class UserHistory
     /**
      * @return int
      */
-    public function getId()
+    public function getId(): int
     {
         return $this->id;
     }
@@ -141,9 +141,9 @@ class UserHistory
     }
 
     /**
-     * @return int|null
+     * @return null|string
      */
-    public function getUrl()
+    public function getUrl(): ?string
     {
         if ($this->Search instanceof SearchHistory) {
             return $this->Search->getId();
