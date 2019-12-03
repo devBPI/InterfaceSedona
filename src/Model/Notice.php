@@ -130,6 +130,7 @@ class Notice extends AbstractImage implements NoticeInterface, RecordInterface
      * @JMS\XmlList("titreEnRelation")
      */
     private $inRelationTitle;
+
     /**
      * @var array
      * @JMS\Type("array<string>")
@@ -137,6 +138,7 @@ class Notice extends AbstractImage implements NoticeInterface, RecordInterface
      * @JMS\XmlList("auteur")
      */
     private $authors;
+
     /**
      * @var array|Value[]
      * @JMS\Type("array<App\Model\Value>")
@@ -144,6 +146,7 @@ class Notice extends AbstractImage implements NoticeInterface, RecordInterface
      * @JMS\XmlList("auteur")
      */
     private $authorsValue;
+
     /**
      * @var array
      * @JMS\Type("array<string>")
@@ -167,7 +170,7 @@ class Notice extends AbstractImage implements NoticeInterface, RecordInterface
     private $conservation;
     /**
      * @var array
-     * @JMS\Type("array<string>")
+     * @JMS\Type("array<App\Model\Value>")
      * @JMS\SerializedName("auteursSecondaires")
      * @JMS\XmlList("auteurSecondaire")
      */
@@ -699,30 +702,29 @@ class Notice extends AbstractImage implements NoticeInterface, RecordInterface
     }
 
     /**
-     * @return string|null
+     * @return array
      */
-    public function getFrontAuthor(): ?string
+    public function getFrontAuthor(): ?array
     {
-        $payload = [];
         $authors = [];
 
-        if ($this->authors){
-            $authors = array_merge($payload, $this->authors);
-        }elseif ($this->authorsValue){
+        if (is_array($this->authors)) {
+            $authors = array_merge($authors, $this->authors);
+        }
+
+        if (is_array($this->authorsValue)) {
             foreach ($this->authorsValue as $value){
                 if ($value instanceof Value && $value->getValue()){
-                     $authors[] = $value->getValue();
+                    $authors[] = $value->getValue();
                 }
             }
         }
 
-        $payload = array_merge($payload, $authors);
-        if ($this->directors){
-            $payload = array_merge($payload, $this->directors);
-
+        if (is_array($this->directors)){
+            $authors = array_merge($authors, $this->directors);
         }
 
-        return implode(self::SEPARATOR, $payload);
+        return array_unique(array_filter($authors));
     }
 
     /**
@@ -842,10 +844,14 @@ class Notice extends AbstractImage implements NoticeInterface, RecordInterface
     }
 
     /**
+     * TOUT SAUF type=Vidéo
      * @return array
      */
-    public function getContributeurs(): array
+    public function getContributeurs(): ?array
     {
+        if ($this->getType() === self::VIDEO) {
+            return null;
+        }
         return $this->contributeurs;
     }
 
@@ -871,8 +877,11 @@ class Notice extends AbstractImage implements NoticeInterface, RecordInterface
     /**
      * @return array
      */
-    public function getOtherAuthors(): array
+    public function getOtherAuthors(): ?array
     {
+        if ($this->type === self::VIDEO) {
+            return null;
+        }
         return $this->otherAuthors;
     }
 

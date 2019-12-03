@@ -476,10 +476,10 @@ bloc:
     cote: "Cote"
     other-names: "Autre(s) nom(s)"
     employed-for: "Employé pour"
-    other-authors: "Autre(s) auteurs(s)"
+    other-authors: "Autre(s) auteur(s)"
     linked-names: "Nom(s) associé(s) / Nom(s) lié(s)"
     classification-notes: "Notes sur le classement"
-    authors: "Auteurs(s)"
+    authors: "Auteur(s)"
     country: 'Pays'
     born-date: 'Naissance'
     dead-date: 'Mort'
@@ -496,7 +496,7 @@ bloc:
     kind: Genre
     indices: Indice(s)
     topics: Thème(s)
-    other-edition: Autre(s) éditions
+    other-edition: Autre(s) édition(s)
     insi: 'ISNI'
     type:
       indice: 'Indice de classement'
@@ -507,13 +507,14 @@ bloc:
     content-table: Tables des matières
     periodicity-date: Date d'édition papier
     alternatif-title: Autre(s) forme(s) de titre
-    translated: Traduction de:
-    translated_from: Traduit de:
+    translated: "Traduction de:"
+    translated_from: "Traduit de:"
     in: 'dans'
     by: 'Par'
     directors: 'Réalisateurs'
     your-references-autority: Vos références d'autorité
     your-references-bibliographic: Vos références bibliographiques
+    conservation: Conservation
   list-related-documents:  #Bloc 19 Liste de documents + Bloc 17 Documents liés
     link-title: Actualité %current% sur %nb%, %name%
     see-more: Voir tout

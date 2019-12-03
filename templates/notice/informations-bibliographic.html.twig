@@ -1,10 +1,6 @@
 {% import "common/detail-macro.html.twig" as notice_macros %}
-
-{{ notice_macros.detail_link(notice.authorsValue, 'bloc.autority-result-information.other-authors'|trans, constant('App\\WordsList::AUTHOR_WORD')) }}
-{% if notice.type != "Vidéo"%}
-    {{ notice_macros.detail_link(notice.contributeurs, 'bloc.autority-result-information.contributor'|trans, constant('App\\WordsList::AUTHOR_WORD')) }}
-{% endif %}
-
+{{ notice_macros.detail_link(notice.otherAuthors, ('bloc.autority-result-information.'~( notice.type == constant('MUSIC',notice) ?'musique-author':'other-authors')), constant('App\\WordsList::AUTHOR_WORD'), "; ") }}
+{{ notice_macros.detail_link(notice.contributeurs, 'bloc.autority-result-information.contributor', constant('App\\WordsList::AUTHOR_WORD')) }}
 {{ notice_macros.detail_link(notice.editors, 'bloc.autority-result-information.editor'|trans, constant('App\\WordsList::AUTHOR_WORD')) }}
 
 {{ notice_macros.detail(notice.publishedDates, 'bloc.autority-result-information.date'|trans) }}
@@ -13,12 +9,10 @@
     <li class="list-information__item">
         <span class="list-information__label">{{ 'bloc.autority-result-information.periodicity'|trans }}</span>
         <ul class="list-information__sub-list" lang="fr">
-
             <li class="list-information__sub-item">
-                {% for element in  notice.periodicity %}
-                    {% set next = loop.index+1 %}
-                {{ element }}{% if notice.periodicity.next is defined %}.{% endif %}
-                {% endfor %}
+                {%- for element in notice.periodicity -%}
+                    {{ element }}{% if loop.revindex > 1 %}. {% endif %}
+                {%- endfor -%}
             </li>
         </ul>
     </li>
@@ -34,15 +28,11 @@
         <span class="list-information__label">{{ 'modal.advanced-search.langage.title'|trans }}</span>
         <ul class="list-information__sub-list">
             {% for element in notice.languages %}
-                <li class="list-information__sub-item">
-                        {{ element }}
-                </li>
+                <li class="list-information__sub-item">{{ element }}</li>
             {% endfor %}
             {% if notice.originalLanguages is not empty %}
                 {% for element in notice.originalLanguages %}
-                    <li class="list-information__sub-item">
-                        {{ (", traduit de : ") }}{{ element }}
-                    </li>
+                    <li class="list-information__sub-item">{{ (", traduit de : ") }}{{ element }}</li>
                 {% endfor %}
             {% endif %}
         </ul>
@@ -57,24 +47,8 @@
 {{ notice_macros.detail_link(notice.inRelationTitle, 'bloc.autority-result-information.title-inrelation'|trans, constant('App\\WordsList::TITLE_WORD')) }}
 {{ notice_macros.detail_link(notice.meeting, 'bloc.autority-result-information.meeting'|trans, constant('App\\WordsList::TITLE_WORD')) }}
 
-{% if notice.otherEdition%}
-        <span class="list-information__label">{{ 'bloc.autority-result-information.other-edition'|trans }}</span>
-        <ul class="list-information__sub-list">
-            {% for element in notice.otherEdition %}
-                <li class="list-information__sub-item">
-                    {{ element }}
-                </li>
-                {% if notice.conservations %}
-                    {% for element in  notice.conservations %}
-                        <li class="list-information__sub-item">
-                            {{ element }}
-                        </li>
-                    {% endfor %}
-                {% endif %}
-            {% endfor %}
-        </ul>
-    </li>
-{% endif %}
+{{ notice_macros.detail(notice.otherEdition, 'bloc.autority-result-information.other-edition'|trans, "; ") }}
+{{ notice_macros.detail(notice.conservations, 'bloc.autority-result-information.conservation', "; ") }}
 
 {{ notice_macros.detail_link(notice.eras , 'bloc.autority-result-information.eras'|trans, constant('App\\WordsList::SUBJECT_WORD')) }}
 {{ notice_macros.detail_link(notice.locations , 'bloc.autority-result-information.location'|trans, constant('App\\WordsList::SUBJECT_WORD')) }}
@@ -91,22 +65,16 @@
 {#droit#}
 {% if notice.licences|length>0 or notice.rights|length>0 or notice.copyright|length>0 %}
     <li class="list-information__item">
-    <span class="list-information__label">{{ ("Droits")|trans }}</span>
+        <span class="list-information__label">{{ ("Droits")|trans }}</span>
         <ul class="list-information__sub-list">
             {% for element in notice.rights %}
-                <li class="list-information__sub-item">
-                    {{ element.name }},
-                </li>
+                <li class="list-information__sub-item">{{ element.name }},</li>
             {% endfor %}
             {% for element in notice.licences %}
-                <li class="list-information__sub-item">
-                    {{ element.name }}
-                </li>
+                <li class="list-information__sub-item">{{ element.name }}</li>
             {% endfor %}
             {% for element in notice.copyright %}
-                <li class="list-information__sub-item">
-                    {{ element.name }}
-                </li>
+                <li class="list-information__sub-item">{{ element.name }}</li>
             {% endfor %}
         </ul>
     </li>
@@ -119,9 +87,7 @@
         <span class="list-information__label">{{ 'bloc.autority-result-information.result-de'|trans }}</span>
         <ul class="list-information__sub-list">
             <li class="list-information__sub-item">
-                <a href="{{ notice.configurationUrl }}" target="_blank">
-                    {{ notice.configurationName }}
-                </a>
+                <a href="{{ notice.configurationUrl }}" target="_blank">{{ notice.configurationName }}</a>
             </li>
         </ul>
     </li>
@@ -129,7 +95,7 @@
 
 {#result de quatrieme#}
 {% if notice.fourth %}
-        <li class="list-information__item">
+    <li class="list-information__item">
         <span class="list-information__label">{{ ("Quatrième de couverture")|trans }}</span>
         <ul class="list-information__sub-list">
             {% if notice.fourth.presentation  %}

@@ -1,13 +1,13 @@
-{% macro detail(object, label) %}
+{% macro detail(object, label, glue =", ") %}
     {% if object is not empty %}
         <li class="list-information__item">
-            <span class="list-information__label">{{ label }}</span>
+            <span class="list-information__label">{{ label|trans }}</span>
             <ul class="list-information__sub-list" lang="fr">
                 {% if object is iterable %}
                     {% for element in object %}
                         <li class="list-information__sub-item">
                             {{ element }}
-                            {% if not loop.last %}, {% endif %}
+                            {% if not loop.last %}{{ glue|nl2br }}{% endif %}
                         </li>
                     {% endfor %}
                 {% else %}
@@ -18,10 +18,10 @@
     {% endif %}
 {% endmacro %}
 
-{% macro detail_link(object, label, type) %}
+{% macro detail_link(object, label, type, glue =", ") %}
     {% if object is not empty %}
         <li class="list-information__item">
-            <span class="list-information__label">{{ label }}</span>
+            <span class="list-information__label">{{ label|trans }}</span>
             <ul class="list-information__sub-list" lang="fr">
                 {% if object is iterable %}
                     {% for element in object %}
@@ -33,7 +33,7 @@
                             <a href="{{ path('search', pathAttr) }}">
                                 {{ element }}
                             </a>
-                            {% if not loop.last %}, {% endif %}
+                            {% if not loop.last %}{{ glue|nl2br }}{% endif %}
                         </li>
                     {% endfor %}
                 {% else %}
@@ -52,13 +52,12 @@
     {% endif %}
 {% endmacro %}
 
-{% macro list_link(object, label, type) %}
+{% macro list_link(object, label, type, glue =", ") %}
     {% if object is not empty %}
         <p lang="fr" class="bibliographic-result__author">
-            {{ label }}
+            {{ label|trans }}
 
             {% if object is iterable %}
-
                 {% for element in object %}
                     {% set pathAttr = {
                         (constant('App\\Model\\Search\\Criteria::SIMPLE_SEARCH_KEYWORD')): ''~element,
@@ -67,7 +66,7 @@
                     <a href="{{ path('search', pathAttr) }}">
                         {{ element }}
                     </a>
-                    {% if not loop.last %}, {% endif %}
+                    {% if not loop.last %}{{ glue|nl2br }} {% endif %}
                 {% endfor %}
             {% else %}
                 {% set pathAttr = {
