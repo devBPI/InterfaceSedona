@@ -170,7 +170,7 @@ class Notice extends AbstractImage implements NoticeInterface, RecordInterface
     private $conservation;
     /**
      * @var array
-     * @JMS\Type("array<string>")
+     * @JMS\Type("array<App\Model\Value>")
      * @JMS\SerializedName("auteursSecondaires")
      * @JMS\XmlList("auteurSecondaire")
      */
@@ -702,9 +702,9 @@ class Notice extends AbstractImage implements NoticeInterface, RecordInterface
     }
 
     /**
-     * @return string|null
+     * @return array
      */
-    public function getFrontAuthor(): ?string
+    public function getFrontAuthor(): ?array
     {
         $authors = [];
 
@@ -723,8 +723,8 @@ class Notice extends AbstractImage implements NoticeInterface, RecordInterface
         if (is_array($this->directors)){
             $authors = array_merge($authors, $this->directors);
         }
-        $authors = array_unique(array_filter($authors));
-        return implode(self::SEPARATOR, $authors);
+
+        return array_unique(array_filter($authors));
     }
 
     /**
@@ -844,10 +844,14 @@ class Notice extends AbstractImage implements NoticeInterface, RecordInterface
     }
 
     /**
+     * TOUT SAUF type=Vidéo
      * @return array
      */
     public function getContributeurs(): array
     {
+        if ($this->getType() === self::VIDEO) {
+            return null;
+        }
         return $this->contributeurs;
     }
 
@@ -875,6 +879,9 @@ class Notice extends AbstractImage implements NoticeInterface, RecordInterface
      */
     public function getOtherAuthors(): array
     {
+        if ($this->type === self::VIDEO) {
+            return null;
+        }
         return $this->otherAuthors;
     }
 

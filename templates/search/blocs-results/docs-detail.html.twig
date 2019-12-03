@@ -18,7 +18,7 @@
                 notice.permalink,
                 path('record_bibliographic', {'permalink': notice.permalink}),
                 notice.frontTitle,
-                notice.frontAuthor,
+                notice.frontAuthor|join('; '),
                 notice.type,
                 class_name(notice)
             ) }}
@@ -44,7 +44,7 @@
                 {% endif %}
 
                 {% if notice.frontAuthor is not empty %}
-                    <p lang="fr"><span class="font-italic">par</span> {{ notice.frontAuthor }}</p>
+                    <p lang="fr"><span class="font-italic">par</span> {{ notice.frontAuthor|join('; ') }}</p>
                 {% endif %}
                 <p lang="fr">
                 {{ notice.frontDate }}
