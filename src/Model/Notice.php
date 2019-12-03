@@ -674,6 +674,14 @@ class Notice extends AbstractImage implements NoticeInterface, RecordInterface
     }
 
     /**
+     * @return string|null
+     */
+    public function getIsbns():?array
+    {
+        return $this->isbns;
+    }
+
+    /**
      * @return string
      */
     public function getType(): string

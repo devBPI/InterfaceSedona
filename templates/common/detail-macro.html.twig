@@ -1,6 +1,6 @@
-{% macro detail(object, label, glue =", ") %}
+{% macro detail(object, label, glue =", ", classAppend="") %}
     {% if object is not empty %}
-        <li class="list-information__item">
+        <li class="list-information__item {{ classAppend }}">
             <span class="list-information__label">{{ label|trans }}</span>
             <ul class="list-information__sub-list" lang="fr">
                 {% if object is iterable %}

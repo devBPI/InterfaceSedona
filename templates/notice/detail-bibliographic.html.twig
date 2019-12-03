@@ -107,34 +107,10 @@
     <div lang="fr" class="bibliographic-result__availability js-seeMoreAvailability">
         {% for available in notice.copies %}
             {{ macros.availibility(available, notice) }}
-
-            {% if loop.first and not loop.last %}
-                <button type="button" class="btn btn-small-link" data-toggle="collapse"
-                        data-target="#availabity-items" aria-expanded="false"
-                        aria-controls="availabity-items">{{ 'global.see-more'|trans }}
-                </button>
-                <div class="collapse" id="availabity-items">
-            {% endif %}
-
-            {% if not loop.first and loop.last %}
-                </div>
-            {% endif %}
         {% endfor %}
 
         {% for link in notice.links %}
             {{ macros.availibility(link, notice) }}
-
-            {% if loop.first and not loop.last %}
-                <button type="button" class="btn btn-small-link" data-toggle="collapse"
-                        data-target="#links-items" aria-expanded="false"
-                        aria-controls="links-items">{{ 'global.see-more'|trans }}
-                </button>
-                <div class="collapse" id="links-items">
-            {% endif %}
-
-            {% if not loop.first and loop.last %}
-                </div>
-            {% endif %}
         {% endfor %}
     </div>
 
