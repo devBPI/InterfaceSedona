@@ -157,7 +157,7 @@
 								{% endif %}
 							{% elseif package_info.sha is defined and package_info.sha  %}
 								{% if package_info.project_url is defined and package_info.project_url %}
-									| <a href="{{ package_info.project_url }}/commit/{{ package_info.sha }}" target="_blank">Commit {{ package_info.sha }}</a>
+									| <a href="{{ package_info.project_url }}/commits/{{ package_info.sha }}" target="_blank">Commit {{ package_info.sha }}</a>
 								{% else %}
 									| Commit {{ package_info.sha }}
 								{% endif %}
