@@ -19,8 +19,13 @@
 	border: $border-default;
 	padding: $spacer;
 	position: absolute;
-	width: 100%;
+	width: calc(100% - 328px);
 	z-index: $zindex-dropdown;
+
+	@include media-breakpoint-down(sm) {
+		transform: translateY(79%);
+		width: 100%;
+	}
 
 	&__list {
 		list-style-type: none;
