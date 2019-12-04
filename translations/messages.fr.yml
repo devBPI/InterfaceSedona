@@ -289,6 +289,7 @@ modal:
       date_start_label: Entrez une première date
       date_end_label: Entrez une deuxième date
       subject: Sujets
+      subjects: Sujet(s)
       date_publishing: Date de publication
       configuration_name:  Base de recherche
       materialSupport: 'Description matérielle'
@@ -499,7 +500,7 @@ bloc:
     eras: Epoque
     location: Lieu
     kind: Genre
-    indices: Indice(s)
+    indices: Indice
     topics: Thème(s)
     other-edition: Autre(s) édition(s)
     insi: 'ISNI'

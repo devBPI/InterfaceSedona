@@ -50,6 +50,20 @@
 {{ notice_macros.detail(notice.otherEdition, 'bloc.autority-result-information.other-edition'|trans, "; ") }}
 {{ notice_macros.detail(notice.conservations, 'bloc.autority-result-information.conservation', "; ") }}
 
+{% if notice.subject|length>0 %}
+    <li class="list-information__item" >
+        <span class="list-information__label">{{ 'modal.advanced-search.facette.subjects'|trans }}</span>
+        <ul class="list-information__sub-list list-information__sub-list--bloc">
+            {% for element in notice.subject %}
+            {% set pathAttr = {
+                (constant('App\\Model\\Search\\Criteria::SIMPLE_SEARCH_KEYWORD')): ''~(element is defined ?element:''),
+                (constant('App\\Model\\Search\\Criteria::SIMPLE_SEARCH_TYPE')): constant('App\\WordsList::SUBJECT_WORD'),
+            } %}
+                <li class="list-information__sub-item"><a href="{{ path('search', pathAttr) }}" >{{ element }}</a></li>
+            {% endfor %}
+        </ul>
+    </li>
+{% endif %}
 {{ notice_macros.detail_link(notice.eras , 'bloc.autority-result-information.eras'|trans, constant('App\\WordsList::SUBJECT_WORD')) }}
 {{ notice_macros.detail_link(notice.locations , 'bloc.autority-result-information.location'|trans, constant('App\\WordsList::SUBJECT_WORD')) }}
 {{ notice_macros.detail_link(notice.kinds , 'bloc.autority-result-information.kind'|trans, constant('App\\WordsList::SUBJECT_WORD')) }}
@@ -59,6 +73,7 @@
 {{ notice_macros.detail(notice.issn , 'ISSN') }}
 {{ notice_macros.detail(notice.commercialNumbers , 'bloc.autority-result-information.comercial-number'|trans) }}
 {{ notice_macros.detail_link(notice.indices , 'bloc.autority-result-information.indices'|trans, constant('App\\WordsList::INDICE_COTE_WORD')) }}
+
 {{ notice_macros.detail(notice.publics , 'bloc.autority-result-information.publics'|trans) }}
 
 {#droit#}

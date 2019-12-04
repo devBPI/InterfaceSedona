@@ -5,10 +5,8 @@
          aria-haspopup="listbox" id="search-banner">
 
         <div class="input-group search-banner__input">
-            <label for="search-input" id="search-label"
-                   class="sr-only">{{ 'bloc.search-zone.input-sr-only'|trans }}</label>
+            <label for="search-input" id="search-label" class="sr-only">{{ 'bloc.search-zone.input-sr-only'|trans }}</label>
             {% set field_name = constant('App\\Model\\Search\\Criteria::SIMPLE_SEARCH_KEYWORD') %}
-
             <input name="{{ field_name }}" autocomplete="off"
                    type="text" aria-autocomplete="list" aria-describedby="autocompletion-infos" aria-controls="autocompletion-list"
                    id="search-input" data-url="{{ toggle_to_path_parcours('search_autocompletion',app.request.attributes.get(constant('App\\Model\\Search\\ObjSearch::PARAM_PARCOURS_NAME'))) }}"

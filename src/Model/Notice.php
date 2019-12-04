@@ -980,9 +980,9 @@ class Notice extends AbstractImage implements NoticeInterface, RecordInterface
     }
 
     /**
-     * @return array
+     * @return array|null
      */
-    public function getSubject(): array
+    public function getSubject(): ?array
     {
         return $this->subject;
     }

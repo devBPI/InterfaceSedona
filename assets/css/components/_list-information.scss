@@ -41,6 +41,10 @@
 			padding-left: 0;
 			display: flex;
 			flex-wrap: wrap;
+
+			&--bloc {
+				display: block;
+			}
 		}	
 
 		&-item {
@@ -132,4 +136,8 @@
 	.btn-small-link {
 		line-height: normal;
 	}
+}
+
+.list-information__sub-list--bloc {
+
 }
