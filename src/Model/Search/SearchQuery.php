@@ -19,8 +19,8 @@ class SearchQuery implements SearchResultInterface
         'pertinence' => self::SORT_DEFAULT,
         'title-asc' => 'TITRE_A_Z',
         'title-desc' => 'TITRE_Z_A',
-        'author-asc' => 'AUTHEUR_A_Z',
-        'author-desc' => 'AUTHEUR_Z_A',
+        'author-asc' => 'AUTEUR_A_Z',
+        'author-desc' => 'AUTEUR_Z_A',
         'most-recent' => 'YOUNGER',
         'least-recent' => 'OLDER',
     ];
