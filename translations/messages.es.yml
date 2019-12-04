@@ -492,7 +492,7 @@ bloc:
     eras: Epoque
     location: Lieu
     kind: Genre
-    indices: Indice(s)
+    indices: Indice
     topics: Thème(s)
     other-edition: Autre(s) édition(s)
     insi: 'ISNI'
