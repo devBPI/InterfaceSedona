@@ -19,12 +19,14 @@ class Link
     private $objectType;
 
     /**
+     * @see Renvoyer par une notice >   /fr/notice-bibliographique/ark:/34201/nptfl0001260012
      * @var string
      * @JMS\Type("string")
      */
     private $title;
 
     /**
+     * @see Renvoyer par le resultat >   /fr/recherche?mot=Moustaki%2C+Georges&type=general&action=
      * @deprecated
      * @var string
      * @JMS\Type("string")

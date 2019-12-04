@@ -883,6 +883,7 @@ class Notice extends AbstractImage implements NoticeInterface, RecordInterface
     }
 
     /**
+     * @see Voir Ligne 30/31 du fichier de Gabarie
      * @return array
      */
     public function getOtherAuthors(): ?array
@@ -958,6 +959,7 @@ class Notice extends AbstractImage implements NoticeInterface, RecordInterface
     }
 
     /**
+     * @see Voir Ligne 32/33 du fichier gabarit, onglé notice
      * @return array
      */
     public function getConservation(): array
