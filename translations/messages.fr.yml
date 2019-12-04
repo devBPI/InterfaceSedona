@@ -435,8 +435,8 @@ bloc:
       order-title-desc: Titre Z-A
       order-author-asc: Auteur A-Z
       order-author-desc: Auteur Z-A
-      order-most-recent: Le plus récent
-      order-least-recent: Le moins récent
+      order-most-recent: Les plus récents
+      order-least-recent: Les moins récents
     footer:
       aria-label: Pagination
       page-first: Première page
