@@ -1,7 +1,7 @@
 {% extends 'search/base.html.twig' %}
 
 {% block title %}
-	{%  if not app.request.attributes.get(constant('App\\Model\\Search\\ObjSearch::PARAM_PARCOURS_NAME'))  %}
+	{%  if app.request.attributes.get(constant('App\\Model\\Search\\ObjSearch::PARAM_PARCOURS_NAME'))  %}
 		{% set title = objSearch.title %}
 	{% else %}
         {% set title =  ('header.result.title.'~constant('App\\\Controller\\SearchController::GENERAL')) | trans  %}
