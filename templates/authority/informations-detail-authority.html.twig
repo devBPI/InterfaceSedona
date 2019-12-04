@@ -9,7 +9,7 @@
             {% if notice.type is not empty %}
                 <span class="list-information__label">{{ ("Type")|trans }}</span>
             {% endif %}
-            <ul class="list-information__sub-list">
+            <ul class="list-information__sub-list" lang="fr">
                 <li class="list-information__sub-item">
                     {{ notice.type }}
                 </li>
@@ -18,7 +18,7 @@
 {% endif %}
 {% if  notice.formParalella is not empty %}
     <li class="list-information__item">
-        <ul class="list-information__sub-list">
+        <ul class="list-information__sub-list" lang="fr">
             {% for element in notice.formParalella %}
                 <li class="list-information__sub-item">
                     {{ element }}
@@ -31,7 +31,7 @@
 {% if  notice.countries is not empty %}
     <li class="list-information__item">
         <span class="list-information__label">{{ ('Pays')|trans }}</span>
-        <ul class="list-information__sub-list">
+        <ul class="list-information__sub-list" lang="fr">
             {% for element in notice.countries %}
                 <li class="list-information__sub-item">
                     {{ element }}
@@ -41,12 +41,10 @@
     </li>
 {% endif %}
 
-
-
 {% if  notice.languages is not empty %}
     <li class="list-information__item">
         <span class="list-information__label">{{ ('Langue(s)')|trans }}</span>
-        <ul class="list-information__sub-list">
+        <ul class="list-information__sub-list" lang="fr">
             {% for element in notice.languages %}
                 <li class="list-information__sub-item">
                     {{ element }}
@@ -58,7 +56,7 @@
 {% if  notice.musicalKinds is not empty %}
     <li class="list-information__item">
         <span class="list-information__label">{{ ('Genre musical  ')|trans }}</span>
-        <ul class="list-information__sub-list">
+        <ul class="list-information__sub-list" lang="fr">
             {% for element in notice.musicalKinds %}
                 <li class="list-information__sub-item">
                     {{ element }}
@@ -70,7 +68,7 @@
 {% if notice.dates is not empty %}
     <li class="list-information__item">
         <span class="list-information__label">{{ ('Dates')|trans }}</span>
-        <ul class="list-information__sub-list">
+        <ul class="list-information__sub-list" lang="fr">
             <li class="list-information__sub-item">
                 {% for element in notice.dates %}
                     {{ element }}{% if loop.first %}-{%endif%}
@@ -82,7 +80,7 @@
 {% if notice.birthDate is not empty %}
     <li class="list-information__item">
         <span class="list-information__label">{{ ('Naissance')|trans }}</span>
-        <ul class="list-information__sub-list">
+        <ul class="list-information__sub-list" lang="fr">
             <li class="list-information__sub-item">
                 {% if notice.birthLocation  is not empty %}
                     {{ notice.birthDate }} - {{ notice.birthLocation }}
@@ -96,7 +94,7 @@
 {% if  notice.deathDate is not empty %}
     <li class="list-information__item">
         <span class="list-information__label">{{ ('Mort')|trans }}</span>
-        <ul class="list-information__sub-list">
+        <ul class="list-information__sub-list" lang="fr">
             <li class="list-information__sub-item">
                 {% if notice.deathLocation  is not empty %}
                     {{ notice.deathDate }} - {{ notice.deathLocation }}
@@ -110,7 +108,7 @@
 {% if notice.principalActivities is not empty %}
     <li class="list-information__item">
         <span class="list-information__label">{{ ('Activité(s) principale(s)')|trans }}</span>
-        <ul class="list-information__sub-list">
+        <ul class="list-information__sub-list" lang="fr">
             {% for element in notice.principalActivities %}
                 <li class="list-information__sub-item">
                     {{ element }}
@@ -122,7 +120,7 @@
 {% if notice.notes is not empty %}
     <li class="list-information__item">
         <span class="list-information__label">{{ ('Notes')|trans }}</span>
-        <ul class="list-information__sub-list">
+        <ul class="list-information__sub-list" lang="fr">
             {% for element in notice.notes %}
                 <li class="list-information__sub-item">
                     {{ element }}
@@ -134,7 +132,7 @@
 {% if  notice.otherNames is not empty %}
     <li class="list-information__item">
         <span class="list-information__label">{{ ('Autre(s) nom(s)')|trans }}</span>
-        <ul class="list-information__sub-list">
+        <ul class="list-information__sub-list" lang="fr">
             {% for element in notice.otherNames %}
                 <li class="list-information__sub-item">
                     {{ element }}
@@ -146,7 +144,7 @@
 {% if notice.employedFor is not empty %}
     <li class="list-information__item">
         <span class="list-information__label">{{ ('Employé pour')|trans }}</span>
-        <ul class="list-information__sub-list">
+        <ul class="list-information__sub-list" lang="fr">
             {% for element in notice.employedFor %}
                 <li class="list-information__sub-item">
                     {{ element }}
@@ -158,10 +156,10 @@
 {% if  notice.associetedForm is not empty %}
     <li class="list-information__item">
         <span class="list-information__label">{{ ('Nom(s) associé(s) / Nom(s) lié(s)')|trans }}</span>
-        <ul class="list-information__sub-list">
+        <ul class="list-information__sub-list" lang="fr">
             {% for element in notice.associetedForm %}
                 <li class="list-information__sub-item">
-                    <a href="{{ toggle_to_path_parcours('search', app.request.attributes.get('parcours'), {(constant('App\\Model\\Search\\Criteria::SIMPLE_SEARCH_KEYWORD')):element}) }}" >
+                    <a href="{{ toggle_to_path_parcours('search', app.request.attributes.get(constant('App\\Model\\Search\\ObjSearch::PARAM_PARCOURS_NAME')), {(constant('App\\Model\\Search\\Criteria::SIMPLE_SEARCH_KEYWORD')):element}) }}" >
                         {{ element }}
                     </a>
                 </li>
@@ -172,7 +170,7 @@
 {% if notice.isni is not empty %}
     <li class="list-information__item">
         <span class="list-information__label">{{ ('ISNI')|trans }}</span>
-        <ul class="list-information__sub-list">
+        <ul class="list-information__sub-list" lang="fr">
             <li class="list-information__sub-item">
                 {{ notice.isni }}
             </li>
@@ -184,7 +182,7 @@
 {% if notice.origins is not empty %}
     <li class="list-information__item list-information__item--mentions">
         <span class="list-information__label">{{ ('Origine de la notice :')|trans }}</span>
-        <ul class="list-information__sub-list">
+        <ul class="list-information__sub-list" lang="fr">
             {% for element in notice.origins %}
                 <li class="list-information__sub-item">
                     {{ element }}

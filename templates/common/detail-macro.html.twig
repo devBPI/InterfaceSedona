@@ -30,7 +30,7 @@
                                 (constant('App\\Model\\Search\\Criteria::SIMPLE_SEARCH_KEYWORD')): ''~(element is defined ?element:''),
                                 (constant('App\\Model\\Search\\Criteria::SIMPLE_SEARCH_TYPE')): type,
                             } %}
-                            <a href="{{ toggle_to_path_parcours('search', app.request.attributes.get('parcours'), pathAttr) }}">
+                            <a href="{{ toggle_to_path_parcours('search', app.request.attributes.get(constant('App\\Model\\Search\\ObjSearch::PARAM_PARCOURS_NAME')), pathAttr) }}">
                                 {{ element }}
                             </a>
                             {% if not loop.last %}{{ glue|nl2br }}{% endif %}
@@ -42,7 +42,7 @@
                             (constant('App\\Model\\Search\\Criteria::SIMPLE_SEARCH_KEYWORD')): ''~object,
                             (constant('App\\Model\\Search\\Criteria::SIMPLE_SEARCH_TYPE')): type,
                         } %}
-                        <a href="{{ toggle_to_path_parcours('search', app.request.attributes.get('parcours'), pathAttr) }}">
+                        <a href="{{ toggle_to_path_parcours('search', app.request.attributes.get(constant('App\\Model\\Search\\ObjSearch::PARAM_PARCOURS_NAME')), pathAttr) }}">
                             {{ object }}
                         </a>
                     </li>
@@ -63,7 +63,7 @@
                         (constant('App\\Model\\Search\\Criteria::SIMPLE_SEARCH_KEYWORD')): ''~element,
                         (constant('App\\Model\\Search\\Criteria::SIMPLE_SEARCH_TYPE')): type,
                     } %}
-                    <a href="{{ toggle_to_path_parcours('search', app.request.attributes.get('parcours'), pathAttr) }}">
+                    <a href="{{ toggle_to_path_parcours('search', app.request.attributes.get(constant('App\\Model\\Search\\ObjSearch::PARAM_PARCOURS_NAME')), pathAttr) }}">
                         {{ element }}
                     </a>
                     {% if not loop.last %}{{ glue|nl2br }} {% endif %}
@@ -73,7 +73,7 @@
                     (constant('App\\Model\\Search\\Criteria::SIMPLE_SEARCH_KEYWORD')): ''~object,
                     (constant('App\\Model\\Search\\Criteria::SIMPLE_SEARCH_TYPE')): type,
                 } %}
-                <a href="{{ toggle_to_path_parcours('search', app.request.attributes.get('parcours'), pathAttr) }}">
+                <a href="{{ toggle_to_path_parcours('search', app.request.attributes.get(constant('App\\Model\\Search\\ObjSearch::PARAM_PARCOURS_NAME')), pathAttr) }}">
                     {{ object }}
                 </a>
             {% endif %}

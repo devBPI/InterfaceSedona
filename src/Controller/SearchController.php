@@ -80,7 +80,6 @@ final class SearchController extends AbstractController
         $criteria = new Criteria();
         $criteria->setSimpleSearch($type, $keyword);
         $criteria->setParcours($parcours);
-
         return $this->displaySearch(new SearchQuery($criteria), $request);
     }
 
@@ -124,7 +123,7 @@ final class SearchController extends AbstractController
      */
     public function refinedSearchAction(Request $request, string $parcours=self::GENERAL): Response
     {
-        $search = $this->searchService->getSearchQueryFromToken($request->get('token', null), $request);
+        $search = $this->searchService->getSearchQueryFromToken($request->get(ObjSearch::PARAM_REQUEST_NAME, null), $request);
         $criteria = $search->getCriteria()->setParcours($parcours);
         $search
             ->setFacets(new FacetFilter($request->query->all()))
@@ -139,20 +138,20 @@ final class SearchController extends AbstractController
 
 
     /**
-     * @Route("/retour-recherche/{token}", methods={"GET"}, name="back_search")
-     * @Route("/{parcours}/retour-recherche/{token}", methods={"GET"}, name="back_search_parcours")
+     * @Route("/retour-recherche/{searchToken}", methods={"GET"}, name="back_search")
+     * @Route("/{parcours}/retour-recherche/{searchToken}", methods={"GET"}, name="back_search_parcours")
      *
-     * @param string $token
+     * @param string $searchToken
      * @param Request $request
      * @return Response
      * @throws \Twig\Error\LoaderError
      * @throws \Twig\Error\RuntimeError
      * @throws \Twig\Error\SyntaxError
      */
-    public function returnToSearchAction(string $token, Request $request): Response
+    public function returnToSearchAction(string $searchToken, Request $request): Response
     {
         return $this->displaySearch(
-            $this->searchService->getSearchQueryFromToken($token, $request),
+            $this->searchService->getSearchQueryFromToken($searchToken, $request),
             $request
         );
     }

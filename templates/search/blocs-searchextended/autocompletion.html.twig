@@ -5,7 +5,7 @@
 			<li class="search-autocomplet__item" role="option" aria-selected="false">
 				<a class="search-autocomplet__item-content"
 					{% if mode is defined and mode == 'link' %}
-						href="{{ toggle_to_path_parcours('search', app.request.attributes.get('parcours'), {(constant('App\\Model\\Search\\Criteria::SIMPLE_SEARCH_KEYWORD')): word, (constant('App\\Model\\Search\\Criteria::SIMPLE_SEARCH_TYPE')): type, 'action': ''}) }}"
+						href="{{ toggle_to_path_parcours('search', app.request.attributes.get(constant('App\\Model\\Search\\ObjSearch::PARAM_PARCOURS_NAME')), {(constant('App\\Model\\Search\\Criteria::SIMPLE_SEARCH_KEYWORD')): word, (constant('App\\Model\\Search\\Criteria::SIMPLE_SEARCH_TYPE')): type, 'action': ''}) }}"
 					{% endif %}>{{ word }}</a>
 			</li>
 		{% endfor %}

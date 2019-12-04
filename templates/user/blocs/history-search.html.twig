@@ -29,7 +29,7 @@
                 </td>
                 <td data-order="{{ history.lastViewDate|date('Ymd') }}">{{ history.lastViewDate|date('d/m/Y \\à H:i') }}</td>
                 <td class="table__body-search" data-order="false">
-                    {% set form_path = app.user ? path('saved_search', {'id': history.url}) : path('back_search', {(constant('App\\Model\\Search\\ObjSearch::PARAM_REQUEST_NAME')): history.url}) %}
+                    {% set form_path = app.user ? path('saved_search', {'id': history.url}) : toggle_to_path_parcours('back_search', app.request.attributes.get(constant('App\\Model\\Search\\ObjSearch::PARAM_PARCOURS_NAME')), {(constant('App\\Model\\Search\\ObjSearch::PARAM_REQUEST_NAME')): history.url}) %}
                     <a href="{{ form_path }}" role="button">
                         <span class="sr-only">{{ 'bloc.historic-search.reload'|trans({'%title%': history.title}) }}</span>
                         <img src="{{ asset('images/icones/icone-loupe-noire.svg') }}" alt="" class="icone-loupe"/>

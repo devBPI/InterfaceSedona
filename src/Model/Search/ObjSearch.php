@@ -11,6 +11,7 @@ use App\Model\Results;
 final class ObjSearch
 {
     CONST PARAM_REQUEST_NAME = 'searchToken';
+    CONST PARAM_PARCOURS_NAME = 'parcours';
 
     /**
      * @var string
