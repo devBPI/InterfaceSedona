@@ -16,6 +16,11 @@
     </div>
 
     <div class="modal-footer">
+        {% if action == 'add' %}
+            <a href="{{ path('user_selection_index') }}" class="button-arrow__button">
+                {{ 'modal.list-add.btn-selection'|trans }}</a>
+        {% endif %}
+
         <button type="button" data-dismiss="modal" class="btn btn-lg btn-secondary"
                 data-reload="true">{{ 'global.modal-btn-close'|trans }}</button>
     </div>
