@@ -11,6 +11,7 @@ use Doctrine\ORM\EntityManager;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\HttpKernel\Exception\UnauthorizedHttpException;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
+use Symfony\Component\Translation\TranslatorInterface;
 
 /**
  * Class HistoryService
@@ -19,11 +20,17 @@ use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInt
 final class HistoryService extends AuthenticationService
 {
     const SESSION_HISTORY_ID = 'history_session';
+    const TITLE_LIMIT = 40;
+
 
     /**
      * @var EntityManager
      */
     private $entityManager;
+    /***
+     * @var TranslatorInterface
+     */
+    private $translator;
 
     /**
      * HistoryService constructor.
@@ -31,13 +38,16 @@ final class HistoryService extends AuthenticationService
      * @param EntityManager $entityManager
      * @param TokenStorageInterface $tokenStorage
      * @param SessionInterface $session
+     * @param TranslatorInterface $translator
      */
     public function __construct(
         EntityManager $entityManager,
         TokenStorageInterface $tokenStorage,
-        SessionInterface $session
+        SessionInterface $session,
+        TranslatorInterface $translator
     ) {
         $this->entityManager = $entityManager;
+        $this->translator = $translator;
 
         parent::__construct($tokenStorage, $session);
     }
@@ -50,8 +60,7 @@ final class HistoryService extends AuthenticationService
         if ($this->hasConnectedUser()) {
             /** @var UserHistoryRepository $userHistoryRepo */
             $userHistoryRepo = $this->entityManager->getRepository(UserHistory::class);
-            return $userHistoryRepo
-                ->getUserHistory($this->getUser());
+            return $userHistoryRepo->getUserHistory($this->getUser());
         }
 
         return $this->getHistoryFromSession();
@@ -147,7 +156,14 @@ final class HistoryService extends AuthenticationService
      */
     public function saveUserHistory(ObjSearch $objSearch): void
     {
-        $searchHistory = $this->findOrCreateSearchHistory($objSearch->getTitle(), $objSearch->getContextConfig());
+        $historyTitle = $objSearch->getCriteria()->getMyHistoryTitle($this->translator);
+        if (strlen($historyTitle) > self::TITLE_LIMIT) {
+            $historyTitle = substr($historyTitle,0,self::TITLE_LIMIT);
+        }
+
+        $searchHistory = $this->findOrCreateSearchHistory(
+            $historyTitle,
+            $objSearch->getContextConfig());
 
         $userHistory = $this->findOrCreateUserHistory($searchHistory);
 
@@ -272,4 +288,5 @@ final class HistoryService extends AuthenticationService
 
         $this->setSession(self::SESSION_HISTORY_ID, $newHists);
     }
+
 }

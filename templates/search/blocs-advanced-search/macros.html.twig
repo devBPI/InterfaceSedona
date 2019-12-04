@@ -7,7 +7,7 @@
 
         {% for current_type, current_keyword in keywords %}
             {% if current_keyword is iterable %}
-                {{ self.display_keyword_form({(current_type): current_keyword}, index + 1) }}
+                {{ _self.display_keyword_form({(current_type): current_keyword}, index + 1) }}
             {% else %}
                 <div class="search-keyword__group row" id="keyword-group-{{ index }}">
                     {% include 'search/blocs-advanced-search/keyword-row.html.twig' %}
