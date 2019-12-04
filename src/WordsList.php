@@ -10,7 +10,7 @@ namespace App;
 final class WordsList
 {
     public const THEME_DEFAULT = 'general';
-    public const THEME_PRESS = 'presse';
+    public const THEME_PRESS = 'actualites-revues';
     public const THEME_CINEMA = 'cinema';
     public const THEME_AUTOFORMATION = 'autoformation';
 

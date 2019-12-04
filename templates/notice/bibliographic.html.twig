@@ -7,7 +7,7 @@
 	</div>
 	<div class="bibliographic-result">
 		<div class="row justify-content-between">
-			{% include "record/blocs/results-navigation.html.twig" with {'routeTarget': path('record_bibliographic',{"permalink":object.notice.permalink}) } %}
+			{% include "record/blocs/results-navigation.html.twig" with {'routeTarget': toggle_to_path_parcours('record_bibliographic',app.request.attributes.get('parcours'), {"permalink":object.notice.permalink}) } %}
 		</div>
 		<div class="row">
 			{% include "notice/detail-bibliographic.html.twig"  with {'notice': object.notice, 'object':object } %}
@@ -23,7 +23,7 @@
 					<div class="slick-carousel js-carousel-secondary" role="region" aria-roledescription="carrousel">
                         {% for object in object.noticesSameTheme.noticesList %}
 							<div class="carousel__slide">
-								<a href="{{ path('record_bibliographic', {'permalink': object.permalink}) }}" class="carousel__slide-link">
+								<a href="{{ toggle_to_path_parcours('record_bibliographic', app.request.attributes.get('parcours'), {'permalink': object.permalink}) }}" class="carousel__slide-link">
 									<span class="sr-only">
 										{{ object.titles[0] }}
 									</span>
@@ -42,7 +42,7 @@
 					</div>
 				</div>
 				<div class="carousel__footer">
-					<a href="{{ path('search', {(constant('App\\Model\\Search\\Criteria::SIMPLE_SEARCH_KEYWORD')):notice.indice, (constant('App\\Model\\Search\\Criteria::SIMPLE_SEARCH_TYPE')):(constant('App\\WordsList::INDICE_COTE_WORD'))}) }}" class="link link--icone-end">
+					<a href="{{ toggle_to_path_parcours('search', app.request.attributes.get('parcours'), {(constant('App\\Model\\Search\\Criteria::SIMPLE_SEARCH_KEYWORD')):notice.indice, (constant('App\\Model\\Search\\Criteria::SIMPLE_SEARCH_TYPE')):(constant('App\\WordsList::INDICE_COTE_WORD'))}) }}" class="link link--icone-end">
 						{{ "bloc.list-related-documents.see-more"|trans }}
 						<span class="sr-only">{{ "bloc.list-related-documents.see-more-sr-only"|trans }} </span>
 						<span>({{ object.results}})</span>

@@ -10,6 +10,7 @@ declare(strict_types=1);
 
 namespace App\Service;
 
+use App\Controller\SearchController;
 use App\Model\Interfaces\RecordInterface;
 use App\Model\NoticeThemed;
 use App\Model\Search\Criteria;
@@ -123,7 +124,7 @@ final class BreadCrumbBuilder
             $this->bctService->add(
                 sprintf('record_%s', $notice->getBreadcrumbName()),
                 sprintf('breadcrumb.card.%s', $notice->getBreadcrumbName()),
-                ['permalink' => $notice->getPermalink()],
+                ['permalink' => $notice->getPermalink(), 'parcours'=> $request->get('parcours', SearchController::GENERAL)],
                 ['%title%'   => $notice->getTitle()]
             );
         }
@@ -142,7 +143,6 @@ final class BreadCrumbBuilder
         $parcoursTerms =[];
 
         if ($navigation instanceof NavigationService){
-
             if (($parcours = $navigation->getSearch()->getCriteria()->getParcours()) && $parcours!=='general'){
                 $parcoursTerms = ['parcours'=>$parcours];
                 $this->bctService->add(
@@ -167,7 +167,6 @@ final class BreadCrumbBuilder
             }
 
         }else if (strpos($route, 'search')!==false){
-
             $parcoursTerms = [];
             if (($parcours = $request->get('parcours')) && $parcours !== 'general'){
                 $parcoursTerms = ['parcours'=>$parcours];
@@ -182,7 +181,21 @@ final class BreadCrumbBuilder
             if ($searchToken){
                  $parcoursTerms = array_merge([ObjSearch::PARAM_REQUEST_NAME=>$searchToken], $parcoursTerms);
             }
-
+/*            if ($humanCriteria = $this->humanizeCriteria($request)){
+                $this->bctService
+                    ->add(
+                        'refined_search',
+                        'breadcrumb.search-terms',
+                        $parcoursTerms,
+                        ['%terms%'=> $humanCriteria]);
+            }else {
+                $this->bctService->add(
+                    'refined_search',
+                    'breadcrumb.search',
+                    $parcoursTerms
+                );
+            }
+*/
             if ($humanCriteria = $this->humanizeCriteria($request)) {
                 $this->bctService->add(
                     null,

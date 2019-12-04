@@ -48,7 +48,8 @@ final class AuthorityController extends AbstractController
     }
 
     /**
-     * @Route("/notice-autorite/{permalink}", methods={"GET","HEAD"}, name="record_authority", requirements={"permalink"=".+"})
+     * @Route("/{parcours}/autorite/{permalink}", methods={"GET","HEAD"}, name="record_authority_parcours", requirements={"permalink"=".+"})
+     * @Route("/autorite/{permalink}", methods={"GET","HEAD"}, name="record_authority", requirements={"permalink"=".+"})
      * @return Response
      */
     public function authorityRecordAction(Authority $notice, NavigationService $navigation = null)
@@ -68,7 +69,7 @@ final class AuthorityController extends AbstractController
     }
 
     /**
-     * @Route("/print/notice-autorite.{format}/{permalink}", name="record_authority_pdf", requirements={"permalink"=".+", "format" = "html|pdf|txt"}, defaults={"format" = "pdf"})
+     * @Route("/print/autorite.{format}/{permalink}", name="record_authority_pdf", requirements={"permalink"=".+", "format" = "html|pdf|txt"}, defaults={"format" = "pdf"})
 
      * @param Request $request
      * @param string $format

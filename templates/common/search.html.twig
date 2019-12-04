@@ -1,6 +1,5 @@
-{% set searchType =  app.request.attributes.get('parcours')?:constant('App\\\Controller\\SearchController::GENERAL')%}
 
-<form method="get" role="search" id="form-search" action="{{ path('search', {'parcours':searchType}) }}">
+<form method="get" role="search" id="form-search" action="{{ toggle_to_path_parcours('search', app.request.attributes.get('parcours')) }}">
     <div class="sr-only" id="autocompletion-infos">{{ 'bloc.search-zone.autocompletion-notice'|trans }}</div>
     <div class="search-banner" role="combobox" aria-expanded="false" aria-owns="autocompletion-list"
          aria-haspopup="listbox" id="search-banner">
@@ -9,12 +8,13 @@
             <label for="search-input" id="search-label"
                    class="sr-only">{{ 'bloc.search-zone.input-sr-only'|trans }}</label>
             {% set field_name = constant('App\\Model\\Search\\Criteria::SIMPLE_SEARCH_KEYWORD') %}
+
             <input name="{{ field_name }}" autocomplete="off"
                    type="text" aria-autocomplete="list" aria-describedby="autocompletion-infos" aria-controls="autocompletion-list"
-                   id="search-input" data-url="{{ path('search_autocompletion') }}"
+                   id="search-input" data-url="{{ toggle_to_path_parcours('search_autocompletion',app.request.attributes.get('parcours')) }}"
                    data-toggle="autocomplete" data-target="#autocompletion-list"
                    data-type="#search-words" data-mode="link"
-                   placeholder="{{ ('bloc.search-zone.input-'~searchType~'-placeholder')|trans}}"
+                   placeholder="{{ ('bloc.search-zone.input-'~app.request.attributes.get('parcours', constant('App\\Controller\\SearchController::GENERAL') )~'-placeholder')|trans}}"
                    value="{{ objSearch is defined ? objSearch.simpleSearchKeyword : '' }}"/>
         </div>
         <div aria-labelledby="search-label" aria-describedby="autocompletion-infos" id="autocompletion-list" class="search-autocomplet d-none"></div>
@@ -35,7 +35,8 @@
         </button>
         <button type="button" data-target="#modal-search-advanced"
                 aria-label="{{ 'bloc.search-zone.advanced-sr-only'|trans }}" data-toggle="modal"
-                class="search-banner__modal" lang="fr">{{ 'bloc.search-zone.advanced-title'|trans }}</button>
+                class="search-banner__modal" lang="fr">{{ 'bloc.search-zone.advanced-title'|trans }}
+        </button>
     </div>
 </form>
 

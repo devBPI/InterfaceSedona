@@ -65,15 +65,20 @@ class BreadCrumbTrailService implements \Iterator,  Countable
     }
 
     /**
-     * @param $link
-     * @param $label
-     * @param array $arrayLink
-     * @param array $parameterLink
+     * @param string|null $routeName
+     * @param string $label
+     * @param array $routeParam
+     * @param array $labelParam
      * @return BreadCrumbStack
      */
     public function add(string $routeName = null ,string $label, array $routeParam=[], array $labelParam = []):BreadCrumbStack
     {
         if (!empty($routeName)) {
+
+            if ($routeName!=='home_thematic' && array_key_exists('parcours', $routeParam)){
+                $routeName .='_parcours';
+            }
+
             $this->stack[] = new BreadCrumbStack(
                 $this->translator->trans($label, $labelParam),
                 $this->routeCollection->generate($routeName, $routeParam)

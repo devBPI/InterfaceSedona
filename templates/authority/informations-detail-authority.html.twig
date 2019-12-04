@@ -1,17 +1,29 @@
 {% if (notice.formAdopted is not empty or notice.type is not empty or notice.name is not empty) %}
     <li class="list-information__item">
-        {% if notice.type is not empty %}
-            <span class="list-information__label">{{ ("Type")|trans }}</span>
-        {% endif %}
-        <ul class="list-information__sub-list">
-            <li class="list-information__sub-item">
-                {{ notice.type }}
-            </li>
+
             {% if notice.formAdopted is not empty %}
                 <li class="list-information__sub-item">
                     {{ "bloc.autority-result-information.authority-type"|trans }}{{ notice.formAdopted }}
                 </li>
             {% endif %}
+            {% if notice.type is not empty %}
+                <span class="list-information__label">{{ ("Type")|trans }}</span>
+            {% endif %}
+            <ul class="list-information__sub-list">
+                <li class="list-information__sub-item">
+                    {{ notice.type }}
+                </li>
+            </ul>
+    </li>
+{% endif %}
+{% if  notice.formParalella is not empty %}
+    <li class="list-information__item">
+        <ul class="list-information__sub-list">
+            {% for element in notice.formParalella %}
+                <li class="list-information__sub-item">
+                    {{ element }}
+                </li>
+            {% endfor %}
         </ul>
     </li>
 {% endif %}
@@ -28,6 +40,8 @@
         </ul>
     </li>
 {% endif %}
+
+
 
 {% if  notice.languages is not empty %}
     <li class="list-information__item">
@@ -147,7 +161,7 @@
         <ul class="list-information__sub-list">
             {% for element in notice.associetedForm %}
                 <li class="list-information__sub-item">
-                    <a href="{{ path('search', {(constant('App\\Model\\Search\\Criteria::SIMPLE_SEARCH_KEYWORD')):element}) }}" >
+                    <a href="{{ toggle_to_path_parcours('search', app.request.attributes.get('parcours'), {(constant('App\\Model\\Search\\Criteria::SIMPLE_SEARCH_KEYWORD')):element}) }}" >
                         {{ element }}
                     </a>
                 </li>

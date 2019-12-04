@@ -17,7 +17,7 @@
 
 {% if format == 'pdf' %}
     <li>
-        <a href="{{ absolute_url(path('record_indice_cdu', {"permalink":notice.permalink})) }}">Lien de la notice</a>
+        <a href="{{ absolute_url(path('record_indice_cdu', {"permalink":notice.permalink, 'parcours':'general'})) }}">Lien de la notice</a>
     </li>
 {% else %}
     {{ notice.permalink }}

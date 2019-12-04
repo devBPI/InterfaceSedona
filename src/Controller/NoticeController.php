@@ -42,12 +42,13 @@ final class NoticeController extends AbstractController
     }
 
     /**
-     * @Route("/notice-bibliographique/{permalink}", methods={"GET","HEAD"}, name="record_bibliographic", requirements={"permalink"=".+"})
+     * @Route("/{parcours}/document/{permalink}", methods={"GET","HEAD"}, name="record_bibliographic_parcours", requirements={"permalink"=".+"})
+     * @Route("/document/{permalink}", methods={"GET","HEAD"}, name="record_bibliographic", requirements={"permalink"=".+"})
      * @param NoticeThemed $notice
      * @param NavigationService|null $navigation
      * @return Response
      */
-    public function bibliographicRecordAction(NoticeThemed $notice,NavigationService $navigation=null)
+    public function bibliographicRecordAction(Request$request, NoticeThemed $notice, NavigationService $navigation=null)
     {
 
         return $this->render('notice/bibliographic.html.twig', [
@@ -61,7 +62,7 @@ final class NoticeController extends AbstractController
     }
 
     /**
-     * @Route("/print/notice-bibliographique.{format}/{permalink}", methods={"GET","HEAD"}, name="record_bibliographic_pdf", requirements={"permalink"=".+", "format"="html|pdf|txt"}, defaults={"format" = "pdf"})
+     * @Route("/print/document.{format}/{permalink}", methods={"GET","HEAD"}, name="record_bibliographic_pdf", requirements={"permalink"=".+", "format"="html|pdf|txt"}, defaults={"format" = "pdf"})
      * @param Request $request
      * @param string $format
      * @return PdfResponse|Response

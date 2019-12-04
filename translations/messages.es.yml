@@ -54,7 +54,7 @@ header:
     profile: Mi cuenta
     profile_title: Acceder a mi cuenta
   title:
-    presse: Actualités et revues
+    actualites-revues: Actualités et revues
     autoformation: Autoformation
     cinema: Cinéma
 footer:
@@ -66,7 +66,7 @@ footer:
       agenda: Agenda
       la-bibliotheque: La Biblioteca
       informations-pratiques: Informaciones prácticas
-      espace-presse: Prensa / Cooperación
+      espace-actualites-revues: Prensa / Cooperación
     balises:
       title: Balises
       class: second
@@ -83,7 +83,7 @@ footer:
       metier: Bibliotecarios
       international: Internacional
   credit-list:
-    espace-presse: Prensa / Cooperación
+    espace-actualites-revues: Prensa / Cooperación
     emplois-et-stages: Empleo y prácticas
     marches-publics: Licitaciones
     mentions-legales: Aviso legal
@@ -319,7 +319,7 @@ page:
     login: Adresse e-mail
     password: Mot de passe
     remember-me: Se souvenir
-    create-profil: S'inscrire
+    create-profil: Pas encore de compte?
     forgotten-password: Mot de passe oublié
     submit: Connexion
   personal-data:
@@ -360,7 +360,7 @@ bloc:
     input-placeholder: Rechercher
     input-general-placeholder: Rechercher
     input-autoformation-placeholder: Recherche dans le parcours Autoformation
-    input-presse-placeholder: Rechercher dans le parcours Actualités et Revues
+    input-actualites-revues-placeholder: Rechercher dans le parcours Actualités et revues
     input-cinema-placeholder: Rechercher dans le parcours Cinéma
     type-label: Chercher sur
     submit: Valider la recherche
@@ -559,7 +559,7 @@ bloc:
   historic-search:      #Bloc 26 Historique des recherches
     title: Mon historique
     col:
-      name: Nom de la recherche
+      name: Mes recherches
       date: Recherché le
     select-ligne: 'Sélectionner la ligne : %title%'
     reload: Relancer la recherche %title%'
@@ -577,7 +577,7 @@ error:
 
 breadcrumb:
   home:
-    presse: Recorrido Noticias y revistas
+    actualites-revues: Recorrido Noticias y revistas
     autoformation: Recorrido Autoaprendizaje
     cinema:  Recorrido Cine
   help_index: 'ayuda'
@@ -592,7 +592,7 @@ breadcrumb:
     user_selection_index: Mi selección
     user_history_index: Mi historialon
   parcours:
-    presse: Recorrido Noticias y revistas
+    actualites-revues: Recorrido Noticias y revistas
     autoformation: Recorrido Autoaprendizaje
     cinema: Recorrido Cine
   search-terms: 'Resultados de búsqueda para : %terms%'

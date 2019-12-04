@@ -6,7 +6,7 @@
         </button>
         <div class="dropdown-menu" aria-labelledby="dropdown-corrector" role="listbox" tabindex="-1">
             {% for suggestion in suggestionList.suggestions %}
-                <a href="{{ path('search', {(constant('App\\Model\\Search\\Criteria::SIMPLE_SEARCH_KEYWORD')):suggestion}) }}" aria-label="{{ 'bloc.search-correct.text'|trans }} {{ suggestion }}" lang="fr" class="dropdown-item" role="option">{{ suggestion }}</a>
+                    <a href="{{ path('search', {(constant('App\\Model\\Search\\Criteria::SIMPLE_SEARCH_KEYWORD')):suggestion}) }}" aria-label="{{ 'bloc.search-correct.text'|trans }} {{ suggestion }}" lang="fr" class="dropdown-item" role="option" >{{ suggestion }}</a>
             {% endfor %}
         </div>
     </div>

@@ -8,7 +8,7 @@
 	</div>
 	<div class="authority-result">
 		<div class="row justify-content-between">
-			{% include "record/blocs/results-navigation.html.twig" with {'routeTarget': path('record_authority', {'permalink':notice.permalink}) } %}
+			{% include "record/blocs/results-navigation.html.twig" with {'routeTarget': toggle_to_path_parcours('record_authority', app.request.attributes.get('parcours'), {'permalink':notice.permalink}) } %}
 		</div>
 		<div class="row">
             {% block detail %}
