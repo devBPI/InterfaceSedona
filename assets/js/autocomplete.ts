@@ -52,8 +52,15 @@ export default class Autocomplete {
     }
 
     private async onAutocompleteFetched(result: Response) {
+        let resultList = (await result.json()).html;
+
+        if (resultList == '') {
+            this.target.classList.add('d-none');
+            return;
+        }
+
         this.target.classList.remove('d-none');
-        this.target.innerHTML = (await result.json()).html;
+        this.target.innerHTML = resultList;
 
         if (this.mode !== 'link') {
             this.target.querySelectorAll('a').forEach((link) => {
