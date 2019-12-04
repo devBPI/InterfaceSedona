@@ -5,25 +5,26 @@ namespace App\Twig;
 
 
 use App\Controller\SearchController;
-use App\Service\ToggleToPathWithParcoursService;
+use App\Model\Search\ObjSearch;
+use App\WordsList;
+use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFunction;
 
 final class ToggleToPathWithParcours extends AbstractExtension
 {
-
     /**
-     * @var ToggleToPathWithParcoursService
+     * @var UrlGeneratorInterface
      */
-    private $parcoursService;
+    private $routeCollection;
 
     /**
      * ToggleToPathWithParcours constructor.
-     * @param ToggleToPathWithParcoursService $parcoursService
+     * @param UrlGeneratorInterface $routeCollection
      */
-    public function __construct(ToggleToPathWithParcoursService $parcoursService)
+    public function __construct(UrlGeneratorInterface $routeCollection)
     {
-        $this->parcoursService = $parcoursService;
+        $this->routeCollection = $routeCollection;
     }
 
     /**
@@ -44,9 +45,10 @@ final class ToggleToPathWithParcours extends AbstractExtension
      */
     public function togglePathPacours(string $pathName, string $parcours=null, array $pathParameters=[]):string
     {
-        if ($parcours===null){
-            $parcours=SearchController::GENERAL;
+        if ($parcours === SearchController::GENERAL || $parcours===null ){
+            return $this->routeCollection->generate($pathName, $pathParameters);
         }
-        return $this->parcoursService->toggle($pathName, $parcours, $pathParameters);
+
+        return $this->routeCollection->generate(sprintf($pathName.'_%s', 'parcours'), array_merge($pathParameters, [ObjSearch::PARAM_PARCOURS_NAME=> $parcours]));
     }
 }
