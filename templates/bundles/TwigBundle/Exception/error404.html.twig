@@ -10,7 +10,7 @@
     <ul class="list-link">
         {% if app.session.get(constant('App\\Model\\Search\\ObjSearch::PARAM_REQUEST_NAME')) is defined and app.session.get(constant('App\\Model\\Search\\ObjSearch::PARAM_REQUEST_NAME')) is not null %}
             <li>
-                <a href="{{ path('search', {(constant('App\\Model\\Search\\ObjSearch::PARAM_REQUEST_NAME')): app.session.get(constant('App\\Model\\Search\\ObjSearch::PARAM_REQUEST_NAME')) }) }}">{{ 'error.link-go-back' |trans }}</a>
+                <a href="{{ toggle_to_path_parcours('search', app.request.attributes.get(constant('App\\Model\\Search\\ObjSearch::PARAM_PARCOURS_NAME')), {(constant('App\\Model\\Search\\ObjSearch::PARAM_REQUEST_NAME')): app.session.get(constant('App\\Model\\Search\\ObjSearch::PARAM_REQUEST_NAME')) }) }}">{{ 'error.link-go-back' |trans }}</a>
             </li>
         {% endif %}
         <li>

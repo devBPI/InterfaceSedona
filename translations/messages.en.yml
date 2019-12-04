@@ -54,7 +54,7 @@ header:
     profile: My account
     profile_title: Access to my account
   title:
-    presse: Actualités et revues
+    actualites-revues: Actualités et revues
     autoformation: Autoformation
     cinema: Cinéma
 footer:
@@ -319,7 +319,7 @@ page:
     login: Adresse e-mail
     password: Mot de passe
     remember-me: Se souvenir
-    create-profil: S'inscrire
+    create-profil: Pas encore de compte?
     forgotten-password: Mot de passe oublié
     submit: Connexion
   personal-data:
@@ -360,7 +360,7 @@ bloc:
     input-placeholder: Rechercher
     input-general-placeholder: Rechercher
     input-autoformation-placeholder: Recherche dans le parcours Autoformation
-    input-presse-placeholder: Rechercher dans le parcours Actualités et Revues
+    input-actualites-revues-placeholder: Rechercher dans le parcours Actualités et revues
     input-cinema-placeholder: Rechercher dans le parcours Cinéma
     type-label: Chercher sur
     submit: Valider la recherche
@@ -559,7 +559,7 @@ bloc:
   historic-search:      #Bloc 26 Historique des recherches
     title: Mon historique
     col:
-      name: Nom de la recherche
+      name: Mes recherches
       date: Recherché le
     select-ligne: 'Sélectionner la ligne : %title%'
     reload: Relancer la recherche %title%'
@@ -577,7 +577,7 @@ error:
 
 breadcrumb:
   home:
-    presse:  News and magazines course
+    actualites-revues:  News and magazines course
     autoformation:  Self-study course
     cinema:  Cinema course
   help_index: 'Help'
@@ -592,7 +592,7 @@ breadcrumb:
     user_selection_index: My selection
     user_history_index: My history
   parcours:
-    presse: News and magazines course
+    actualites-revues: News and magazines course
     autoformation:  Self-study course
     cinema: Cinema course
   search-terms:  Search results for :%terms%

@@ -10,7 +10,7 @@
                 </button>
             </div>
 
-            <form action="{{ path('advanced_search') }}" method="get">
+            <form action="{{ toggle_to_path_parcours('advanced_search', app.request.attributes.get(constant('App\\Model\\Search\\ObjSearch::PARAM_PARCOURS_NAME'))) }}" method="get">
 
                 {{ render(controller('App\\Controller\\AdvancedSearchController::index', {'request': app.request})) }}
 

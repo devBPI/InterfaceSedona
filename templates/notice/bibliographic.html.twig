@@ -7,7 +7,7 @@
 	</div>
 	<div class="bibliographic-result">
 		<div class="row justify-content-between">
-			{% include "record/blocs/results-navigation.html.twig" with {'routeTarget': path('record_bibliographic',{"permalink":object.notice.permalink}) } %}
+			{% include "record/blocs/results-navigation.html.twig" with {'routeTarget': toggle_to_path_parcours('record_bibliographic',app.request.attributes.get(constant('App\\Model\\Search\\ObjSearch::PARAM_PARCOURS_NAME')), {"permalink":object.notice.permalink}) } %}
 		</div>
 		<div class="row">
 			{% include "notice/detail-bibliographic.html.twig"  with {'notice': object.notice, 'object':object } %}

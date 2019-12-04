@@ -19,7 +19,7 @@
 					<input
 							type="text"
 							aria-label="{{ 'bloc.search-header-footer.footer.select-sr-only'|trans({'%nb%': 5 }) }}"
-							data-url="{{ path('search', {'see-all':seeAll is defined?seeAll:null, (constant('App\\Model\\Search\\ObjSearch::PARAM_REQUEST_NAME')): objSearch.contextToken, 'page':-1 }) }}"
+							data-url="{{ toggle_to_path_parcours('search', app.request.attributes.get(constant('App\\Model\\Search\\ObjSearch::PARAM_PARCOURS_NAME')), {'see-all':seeAll is defined?seeAll:null, (constant('App\\Model\\Search\\ObjSearch::PARAM_REQUEST_NAME')): objSearch.contextToken, 'page':-1 }) }}"
 							class="js-pagination-select page-link__input"
 							value="{{ page}}"
 

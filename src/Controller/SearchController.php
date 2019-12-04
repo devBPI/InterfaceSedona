@@ -45,7 +45,6 @@ final class SearchController extends AbstractController
      * @var NoticeBuildFileService
      */
     private $buildFileContent;
-
     /**
      * SearchController constructor.
      * @param SearchProvider $searchProvider
@@ -63,7 +62,8 @@ final class SearchController extends AbstractController
     }
 
     /**
-     * @Route("/recherche/{parcours}", methods={"GET", "POST"}, name="search")
+     * @Route("/{parcours}/resultats", methods={"GET", "POST"}, name="search_parcours")
+     * @Route("/resultats", methods={"GET", "POST"}, name="search")
      *
      * @param Request $request
      * @param string $parcours
@@ -85,7 +85,8 @@ final class SearchController extends AbstractController
 
 
     /**
-     * @Route("/recherche-avancee/{parcours}", methods={"GET", "POST"}, name="advanced_search")
+     * @Route("/{parcours}/recherche-avancee", methods={"GET", "POST"}, name="advanced_search_parcours")
+     * @Route("/recherche-avancee", methods={"GET", "POST"}, name="advanced_search")
      *
      * @param Request $request
      * @param string $parcours
@@ -108,7 +109,8 @@ final class SearchController extends AbstractController
     }
 
     /**
-     * @Route("/recherche-affinee/{searchToken}/{parcours}", methods={"GET"}, name="refined_search")
+     * @Route("/recherche-affinee", methods={"GET"}, name="refined_search")
+     * @Route("/{parcours}/recherche-affinee", methods={"GET"}, name="refined_search_parcours")
      *
      * @param Request $request
      * @param string $parcours
@@ -119,9 +121,9 @@ final class SearchController extends AbstractController
      * @throws \Twig\Error\RuntimeError
      * @throws \Twig\Error\SyntaxError
      */
-    public function refinedSearchAction(Request $request,string $searchToken = '', string $parcours=self::GENERAL): Response
+    public function refinedSearchAction(Request $request, string $parcours=self::GENERAL): Response
     {
-        $search = $this->searchService->getSearchQueryFromToken($searchToken, $request);
+        $search = $this->searchService->getSearchQueryFromToken($request->get(ObjSearch::PARAM_REQUEST_NAME, null), $request);
         $criteria = $search->getCriteria()->setParcours($parcours);
         $search
             ->setFacets(new FacetFilter($request->query->all()))
@@ -137,6 +139,7 @@ final class SearchController extends AbstractController
 
     /**
      * @Route("/retour-recherche/{searchToken}", methods={"GET"}, name="back_search")
+     * @Route("/{parcours}/retour-recherche/{searchToken}", methods={"GET"}, name="back_search_parcours")
      *
      * @param string $searchToken
      * @param Request $request
@@ -214,10 +217,11 @@ final class SearchController extends AbstractController
 
     /**
      * @Route("/autocompletion", methods={"GET"}, name="search_autocompletion")
+     * @Route("/{parcours}/autocompletion", methods={"GET"}, name="search_autocompletion_parcours")
      * @param Request $request
      * @return JsonResponse
      */
-    public function autocompletionAction(Request $request): JsonResponse
+    public function autocompletionAction(Request $request, string $parcours=self::GENERAL): JsonResponse
     {
         try {
             $type = $request->get('type', WordsList::THEME_DEFAULT);

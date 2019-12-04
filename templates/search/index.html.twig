@@ -1,8 +1,15 @@
 {% extends 'search/base.html.twig' %}
 
-{% block title %}{{ objSearch.title ~ ' - ' ~ 'page.search.title.page'|trans({'%current%': objSearch.results.page, '%total%': objSearch.results.pageTotal}) }}{% endblock %}
+{% block title %}
+	{%  if not app.request.attributes.get(constant('App\\Model\\Search\\ObjSearch::PARAM_PARCOURS_NAME'))  %}
+		{% set title = objSearch.title %}
+	{% else %}
+        {% set title =  ('header.result.title.'~constant('App\\\Controller\\SearchController::GENERAL')) | trans  %}
+    {% endif %}
+    {{ title ~ ' - ' ~ 'page.search.title.page'|trans({'%current%': objSearch.results.page, '%total%': objSearch.results.pageTotal}) }}{% endblock %}
 
 {% block searchextended %}
+
 	<div class="row justify-content-sm-between">
 		<div class="col-12 col-sm-auto">
 			{% include "search/blocs-searchextended/search-corrector.html.twig" with {'suggestionList': objSearch.results.suggestionList} %}

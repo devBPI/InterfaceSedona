@@ -53,8 +53,13 @@ header:
     logout: Se deconnecter
     profile: Mon compte
     profile_title: Accéder à mon compte
+  result:
+    title:
+      actualites-revues: Parcours Actualités et revues - Résultats recherche
+      autoformation: Parcours Autoformation - Résultats recherche
+      cinema: Parcours Cinéma - Résultats recherche
   title:
-    presse: Actualités et revues
+    actualites-revues: Actualités et revues
     autoformation: Autoformation
     cinema: Cinéma
 footer:
@@ -321,7 +326,7 @@ page:
     login: Adresse e-mail
     password: Mot de passe
     remember-me: Se souvenir
-    create-profil: S'inscrire
+    create-profil: Pas encore de compte?
     forgotten-password: Mot de passe oublié
     submit: Connexion
   personal-data:
@@ -362,7 +367,7 @@ bloc:
     input-placeholder: Rechercher
     input-general-placeholder: Rechercher
     input-autoformation-placeholder: Recherche dans le parcours Autoformation
-    input-presse-placeholder: Rechercher dans le parcours Actualités et Revues
+    input-actualites-revues-placeholder: Rechercher dans le parcours Actualités et revues
     input-cinema-placeholder: Rechercher dans le parcours Cinéma
     type-label: Chercher sur
     submit: Valider la recherche
@@ -562,7 +567,7 @@ bloc:
   historic-search:      #Bloc 26 Historique des recherches
     title: Mon historique
     col:
-      name: Nom de la recherche
+      name: Mes recherches
       date: Recherché le
     select-ligne: 'Sélectionner la ligne : %title%'
     reload: Relancer la recherche %title%'
@@ -580,7 +585,7 @@ error:
 
 breadcrumb:
   home:
-    presse: Parcours Actualités et revues
+    actualites-revues: Parcours Actualités et revues
     autoformation: Parcours Autoformation
     cinema: Pacrours Cinéma
   help_index: 'Aide'
@@ -595,7 +600,7 @@ breadcrumb:
     user_selection_index: Ma sélection
     user_history_index: Mon historique
   parcours:
-    presse: Parcours Actualités et revues
+    actualites-revues: Parcours Actualités et revues
     autoformation: Parcours Autoformation
     cinema: Parcours Cinéma
   search-terms: 'Résultats de recherche pour : %terms%'
