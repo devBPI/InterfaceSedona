@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20191018095423 extends AbstractMigration
+final class Version20191203172738 extends AbstractMigration
 {
     public function getDescription() : string
     {
@@ -22,8 +22,8 @@ final class Version20191018095423 extends AbstractMigration
         // this up() migration is auto-generated, please modify it to your needs
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'postgresql', 'Migration can only be executed safely on \'postgresql\'.');
 
+        $this->addSql("update public.thematic set image = 'parcours-actualites-revues.jpg', type='actualites-revues' where type = 'presse'");
 
-        $this->addSql('ALTER TABLE user_selection_document ADD notice_type VARCHAR(250) NOT NULL DEFAULT \'notice\'');
     }
 
     public function down(Schema $schema) : void
@@ -31,6 +31,6 @@ final class Version20191018095423 extends AbstractMigration
         // this down() migration is auto-generated, please modify it to your needs
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'postgresql', 'Migration can only be executed safely on \'postgresql\'.');
 
-        $this->addSql('ALTER TABLE user_selection_document DROP notice_type');
+        $this->addSql('CREATE SCHEMA public');
     }
 }

@@ -3,7 +3,7 @@
 		<div lang="fr" class="card">
 			<img src="{{ asset('images/parcours/'~thematic.type~'/'~element.image) }}" alt="" class="img-fluid card-img-top" />
 			<div class="card-body">
-				<h3 class="n2 card__title">{{ element.title }}</h3>
+				<h3 class="n2 card__title{% if  element.levels.count ==0 %} card__title--link{% endif %}">{{ element.title }}</h3>
                 {% if  element.levels.count> 0 %}
 					<ul class="card__list">
 						{% for level in element.levels %}

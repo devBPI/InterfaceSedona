@@ -16,11 +16,11 @@ use Symfony\Component\HttpFoundation\Request;
 trait SearchQueryTrait
 {
     /**
-     * @param string $token
+     * @param string|null $token
      * @param Request $request
      * @return SearchQuery
      */
-    public function getSearchQueryFromToken(string $token, Request $request): SearchQuery
+    public function getSearchQueryFromToken(string $token=null, Request $request): SearchQuery
     {
         if (($searchQuery = $request->getSession()->get($token))===null){
             return new SearchQuery(new Criteria());

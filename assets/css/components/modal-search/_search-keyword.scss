@@ -21,6 +21,12 @@
 		margin-top: -1px;
 		border: $border-thin;
 		padding: 5px;
+		width: 100%;
+
+		@include media-breakpoint-down(sm) {
+			transform: translateY(99%);
+			width: calc(100% - 15px);
+		}
 	}
 
 	&__input {

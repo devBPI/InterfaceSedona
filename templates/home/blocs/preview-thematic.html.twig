@@ -3,7 +3,7 @@
 		<div lang="fr" class="card">
 			<img src="{{ asset('images/parcours/parcours-'~home.type~'.jpg') }}" alt="" class="img-fluid card-img-top" />
 			<div class="card-body">
-				<h3 class="n2 card__title">{{ home.title }}</h3>
+				<h3 class="n2 card__title card__title--link">{{ home.title }}</h3>
 				<p class="card__content">{{ home.description}}</p>
 			</div>
 			<a href="{{ path('home_thematic', {'parcours': home.type}) }}" class="card__link">

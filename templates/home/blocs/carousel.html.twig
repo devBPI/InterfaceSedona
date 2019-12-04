@@ -1,5 +1,5 @@
 {% if carousel and carousel.elements|length > 0 %}
-<div class="carousel carousel--primary">
+	<div class="carousel carousel--primary">
 	<div class="carousel-wrapper">
 		<div class="carousel__control">
 			<button class="carousel__button carousel__button--pause" type="button" aria-label="Mettre en pause le carousel">
@@ -9,7 +9,7 @@
 		<div class="slick-carousel js-carousel-primary" role="region" aria-roledescription="carrousel">
             {% for item in carousel.elements %}
 				<div class="carousel__slide">
-					<a href="{{ path('record_bibliographic', {'permalink': item.permalink}) }}" class="carousel__slide-link">
+					<a href="{{ toggle_to_path_parcours('record_bibliographic', app.request.attributes.get(constant('App\\Model\\Search\\ObjSearch::PARAM_PARCOURS_NAME')), {'permalink': item.permalink}) }}" class="carousel__slide-link">
 						<span class="sr-only">{{ 'bloc.carousel.item_desciption'|trans({'%index%': loop.index ,'%nb%' : carousel.elements|length , '%title%' : item.title , '%auteur%' : item.creator }) }}</span>
 					</a>
 					<div class="carousel__slide-image">

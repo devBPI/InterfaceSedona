@@ -5,8 +5,6 @@ namespace App\Controller;
 
 use App\Entity\Thematic;
 use App\Service\Provider\CarouselProvider;
-use Doctrine\Common\Collections\ArrayCollection;
-use JMS\Serializer\Exception\XmlErrorException;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -47,7 +45,7 @@ final class HomeController extends AbstractController
     }
 
     /**
-     * @Route("/{parcours}", methods={"GET","HEAD"}, name="home_thematic", requirements={"parcours"="autoformation|presse|cinema"})
+     * @Route("/{parcours}", methods={"GET","HEAD"}, name="home_thematic", requirements={"parcours"="autoformation|actualites-revues|cinema"})
      *
      * @param string $parcours
      * @return Response

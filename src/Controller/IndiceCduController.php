@@ -47,6 +47,7 @@ final class IndiceCduController extends AbstractController
     }
 
     /**
+     * @Route("/{parcours}/indice-cdu/{permalink}", methods={"GET","HEAD"}, name="record_indice_cdu_parcours", requirements={"permalink"=".+"})
      * @Route("/indice-cdu/{permalink}", methods={"GET","HEAD"}, name="record_indice_cdu", requirements={"permalink"=".+"})
      * @param IndiceCdu $notice
      * @param NavigationService $navigation

@@ -33,6 +33,10 @@
 		+ .card__list {
 			margin-top: $spacer;
 		}
+
+		&--link {
+			color: $blue;
+		}
 	}
 
 	&__content {
@@ -51,13 +55,13 @@
 			content: '-';
 			margin-right: 5px;
 		}
+	}
 
-		a {
-			color: $black;
+	&:hover {
 
-			&:hover {
-				color: $red;
-			}
+		.card__title--link {
+			color: $red;
+			text-decoration: underline;
 		}
 	}
 
