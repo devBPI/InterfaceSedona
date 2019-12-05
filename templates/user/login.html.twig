@@ -27,7 +27,7 @@
                     <label for="account-mail" class="col-12 col-md-4">{{ 'page.login.login'|trans }}</label>
                     <div class="col-12 col-md-8">
                         <input name="_username" type="email" class="form-control {{ error_class }}" id="account-mail"
-                               {% if last_login is defined %}value="{{ last_login }}"{% endif %} autocomplete="email">
+                               {% if last_login is defined %}value="{{ last_login }}"{% endif %} autocomplete="email" placeholder="{{ 'page.login.login-placeholder'|trans }}">
                     </div>
                 </div>
                 <div class="form-group row">

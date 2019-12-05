@@ -320,8 +320,9 @@ page:
       page: page %current% sur %total%
   login:
     title: Authentification
-    login: Adresse e-mail
-    password: Mot de passe
+    login: Courriel (nom@exemple.com) *
+    login-placeholder: nom@exemple.com
+    password: Mot de passe *
     remember-me: Se souvenir
     create-profil: Pas encore de compte?
     forgotten-password: Mot de passe oublié
