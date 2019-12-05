@@ -47,7 +47,6 @@ final class WordsList
             self::GENERAL_WORD,
             self::TITLE_WORD,
             self::AUTHOR_WORD,
-            self::REALISATOR_WORD,
             self::SUBJECT_WORD,
             self::THEME_WORD,
             self::EDITOR_WORD,
