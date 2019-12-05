@@ -24,7 +24,6 @@
                 class_name(author)
             ) }}
         </div>
-
         <div class="list-result__content-body">
             <div class="list-result__content-image">
                 {% set contextToken = (objSearch is defined ? objSearch.contextToken : null) %}
@@ -35,7 +34,7 @@
                 </a>
             </div>
             <div class="list-result__content-infos">
-                
+
                 {% set contextToken = (objSearch is defined ? objSearch.contextToken : null) %}
                 <h{{ level }} lang="fr" class="n{{ level }} search-result__title">
                     {% set pathName = author.indice ? 'record_indice_cdu' : 'record_authority' %}

@@ -1,6 +1,16 @@
 {% extends 'search/base.html.twig' %}
+{% block title %}
+	{% set baseTitle = 'page.bibiographic.title'|trans({'%title%': object.notice.titles[0]}) %}
+    {% if  app.request.attributes.get(constant('App\\Model\\Search\\ObjSearch::PARAM_PARCOURS_NAME'))  %}
+        {% set baseTitle =
+			(('page.bibiographic.parcours.'~ app.request.attributes.get(constant('App\\Model\\Search\\ObjSearch::PARAM_PARCOURS_NAME'))) | trans)
+			~ ' - '
+            ~ baseTitle
+		%}
 
-{% block title %}{{ 'page.bibiographic.title'|trans({'%title%': object.notice.titles[0]}) }}{% endblock %}
+		{% endif %}
+	{{  baseTitle }}
+{% endblock %}
 {% block body %}
 	<div class="d-none">
 		{% include 'search/blocs-results/docs-detail.html.twig' with {'notice': object.notice, 'type': 'Notice', 'index': 0, 'mode': 'detail'} %}
