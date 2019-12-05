@@ -27,7 +27,12 @@
 
         <div class="list-result__content-body">
             <div class="list-result__content-image">
-                <img src="{{ asset('images/types-autorite/autorite-'~ (author.type|slugify) ~'.svg') }}" alt="" class="img-fluid" />
+                {% set contextToken = (objSearch is defined ? objSearch.contextToken : null) %}
+                {% set pathName = author.indice ? 'record_indice_cdu' : 'record_authority' %}
+                <a href="{{ toggle_to_path_parcours(pathName,app.request.attributes.get(constant('App\\Model\\Search\\ObjSearch::PARAM_PARCOURS_NAME')),{ 'permalink':author.permalink, (constant('App\\Model\\Search\\ObjSearch::PARAM_REQUEST_NAME')): contextToken}) }}">
+                    <span class="sr-only" title="{{ author.title }}">{{ author.title }}</span>
+                    <img src="{{ asset('images/types-autorite/autorite-'~ (author.type|slugify) ~'.svg') }}" alt="" class="img-fluid" />
+                </a>
             </div>
             <div class="list-result__content-infos">
                 
