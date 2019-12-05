@@ -436,8 +436,9 @@ bloc:
       page-previous: Page précédente
       page-next: Page Suivante
       page-last: Dernière page
-      select-sr-only: Saisir un numéro de page à consulter sur %nb% pages
-      select-of: sur %nb%
+      input-start-sr-only: Saisir un numéro de page à consulter
+      input-end-sr-only: , puis valider avec la touche Entrée pour naviguer
+      input-of: sur %nb%
   results-navigation:     #Bloc 15 Navigation dans les résultats
     return-to-result: Retour aux résultats
     result-previous: Document précédent
