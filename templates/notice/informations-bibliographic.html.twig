@@ -17,7 +17,7 @@
         </ul>
     </li>
 {% endif %}
-{{ notice_macros.detail(notice.uniformTitle, 'bloc.autority-result-information.ouvre'|trans) }}
+{{ notice_macros.detail_link(notice.uniformTitle, 'bloc.autority-result-information.ouvre'|trans, constant('App\\WordsList::TITLE_WORD'), '') }}
 {{ notice_macros.detail(notice.alternatifTitle, 'bloc.autority-result-information.alternatif-title'|trans) }}
 {{ notice_macros.detail(notice.contents, 'modal.comments-edit.field-content'|trans) }}
 {{ notice_macros.detail(notice.notes, 'bloc.autority-result-information.nots'|trans) }}
