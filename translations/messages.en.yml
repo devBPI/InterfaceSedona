@@ -359,7 +359,7 @@ bloc:
     input-sr-only: Saisir un mot clé
     input-placeholder: Rechercher
     input-general-placeholder: Rechercher
-    input-autoformation-placeholder: Recherche dans le parcours Autoformation
+    input-autoformation-placeholder: Rechercher dans le parcours Autoformation
     input-actualites-revues-placeholder: Rechercher dans le parcours Actualités et revues
     input-cinema-placeholder: Rechercher dans le parcours Cinéma
     type-label: Chercher sur
