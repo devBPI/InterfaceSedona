@@ -30,6 +30,7 @@
                 <img src="{{ asset('images/types-autorite/autorite-'~ (author.type|slugify) ~'.svg') }}" alt="" class="img-fluid" />
             </div>
             <div class="list-result__content-infos">
+                
                 {% set contextToken = (objSearch is defined ? objSearch.contextToken : null) %}
                 <h{{ level }} lang="fr" class="n{{ level }} search-result__title">
                     {% set pathName = author.indice ? 'record_indice_cdu' : 'record_authority' %}
