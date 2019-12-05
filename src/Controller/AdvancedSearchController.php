@@ -54,6 +54,7 @@ final class AdvancedSearchController extends AbstractController
             $criteria->setAdvancedSearch($request->query->all());
             $searchQuery = new SearchQuery($criteria, new FacetFilter($request->query->all()));
         }
+        $searchQuery->getCriteria()->setParcours($request->get(ObjSearch::PARAM_PARCOURS_NAME));
 
         $searchQuery->getCriteria()->setAdvancedSearch($request->query->all());
         $objSearch = new ObjSearch($searchQuery);
@@ -61,7 +62,7 @@ final class AdvancedSearchController extends AbstractController
         return $this->render(
             'search/blocs-advanced-search/content.html.twig',
             [
-                'criteria' => $this->advancedSearchProvider->getAdvancedSearchCriteria(),
+                'criteria' => $this->advancedSearchProvider->getAdvancedSearchCriteria($searchQuery),
                 'objSearch' => $objSearch,
                 'modeDate' => $request->get('adv-search-date')
             ]

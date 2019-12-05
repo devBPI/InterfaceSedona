@@ -5,6 +5,7 @@ namespace App\Service\Provider;
 
 use App\Model\AdvancedSearchCriteria;
 use App\Model\Exception\ErrorAccessApiException;
+use App\Model\Search\SearchQuery;
 use JMS\Serializer\Exception\XmlErrorException;
 
 /**
@@ -18,10 +19,12 @@ class AdvancedSearchProvider extends AbstractProvider
     /**
      * @return AdvancedSearchCriteria
      */
-    public function getAdvancedSearchCriteria(): AdvancedSearchCriteria
+    public function getAdvancedSearchCriteria(SearchQuery $search): AdvancedSearchCriteria
     {
         try {
-            return $this->hydrateFromResponse('/advanced-search/list-elements');
+            return $this->hydrateFromResponse('/advanced-search/list-elements', [
+                'criters' => $this->serializer->serialize($search->getCriteria(), 'xml'),
+            ]);
         } catch (ErrorAccessApiException|XmlErrorException $exception) {
             return new AdvancedSearchCriteria();
         }
