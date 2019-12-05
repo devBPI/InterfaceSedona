@@ -38,13 +38,15 @@
                 </a>
             </div>
             <div class="list-result__content-infos js-seeMoreAvailability" >
-                <a href="{{ toggle_to_path_parcours('record_bibliographic', app.request.attributes.get(constant('App\\Model\\Search\\ObjSearch::PARAM_PARCOURS_NAME')), {'permalink': notice.permalink, (constant('App\\Model\\Search\\ObjSearch::PARAM_REQUEST_NAME')): contextToken}) }}"
-                   lang="fr"
-                   class="n2 list-result__content-title"
-                >
-                    <img src="{{ asset('images/types/type-' ~ notice.slugifiedType ~ '.svg') }}" alt="{{ notice.type }}" class="list-result__content-type" />
-                    <span>{{ notice.frontTitle }}</span>
-                </a>
+                <div class="list-result__content-title">
+                    <img src="{{ asset('images/types/type-' ~ notice.slugifiedType ~ '.svg') }}" alt="{{ notice.type }}" title="{{ notice.type }}" class="list-result__content-type" />
+                    <a href="{{ toggle_to_path_parcours('record_bibliographic', app.request.attributes.get(constant('App\\Model\\Search\\ObjSearch::PARAM_PARCOURS_NAME')), {'permalink': notice.permalink, (constant('App\\Model\\Search\\ObjSearch::PARAM_REQUEST_NAME')): contextToken}) }}"
+                    lang="fr"
+                    class="n2"
+                    >
+                        <span>{{ notice.frontTitle }}</span>
+                    </a>
+                </div>
                 {% if notice.type in constant('App\\Model\\Notice::NOTICE_CONTENT_REVUE_TYPE') and  notice.frontAnalyticalTitle is not empty %}
                     <p lang="fr"><span class="font-italic">Dans</span> {{ notice.frontAnalyticalTitle }}</p>
                 {% endif %}

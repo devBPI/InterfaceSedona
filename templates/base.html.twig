@@ -43,10 +43,15 @@
 				</div>
 
 				<div class="header__logo d-flex flex-wrap justify-content-between align-items-center">
-					<a href="{{ path('home') }}" title="{{ 'header.logo_title'|trans }}" class="header__logo-link">
-						<img src="{{ asset('images/bpi-logo.png') }}" alt="{{ 'header.logo_alt'|trans }}" />
-					</a>
-
+					{% if app.request.attributes.get('_route') in  ['home','home2'] %}
+						<span class="header__logo-link">
+							<img src="{{ asset('images/bpi-logo.png') }}" alt="{{ 'header.logo_alt'|trans }}" />
+						</span>
+					{% else %}
+						<a href="{{ path('home') }}" title="{{ 'header.logo_title'|trans }}" class="header__logo-link">
+							<img src="{{ asset('images/bpi-logo.png') }}" alt="{{ 'header.logo_alt'|trans }}" />
+						</a>
+					{%endif%}
 					<button type="button" data-toggle="collapse" data-target="#navbar-principale-content" aria-controls="navbar-principale-content" title="{{ 'header.menu_title'|trans }}" aria-expanded="false" class="navbar-toggler d-md-none navbar-burger">
 						<span class="sr-only">{{ 'header.menu_title'|trans }}</span>
 						<span class="navbar-burger__bar"></span>

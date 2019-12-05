@@ -50,7 +50,7 @@ header:
     title_connected: Gestion de mon compte
     aria: Menu-compte
     welcome: Bienvenue
-    logout: Se deconnecter
+    logout: Se déconnecter
     profile: Mon compte
     profile_title: Accéder à mon compte
   result:
@@ -89,7 +89,7 @@ footer:
       international: International
   credit-list:
     espace-presse: Presse et partenariats
-    emplois-et-stages: Emploi & stages
+    emplois-et-stages: Emplois & stages
     marches-publics: Marchés publics
     mentions-legales: Mentions légales
     aide-et-accessibilite: Aide et accessiblité
@@ -281,7 +281,7 @@ modal:
       available: Disponibilité
       theme: Thèmes
       author: Auteur(s)
-      bdd: Bases de recherche
+      bdd: Base de recherche
       langue: Langue(s)
       language: Langues
       date: Date
@@ -367,7 +367,7 @@ bloc:
     input-sr-only: Saisir un mot clé
     input-placeholder: Rechercher
     input-general-placeholder: Rechercher
-    input-autoformation-placeholder: Recherche dans le parcours Autoformation
+    input-autoformation-placeholder: Rechercher dans le parcours Autoformation
     input-actualites-revues-placeholder: Rechercher dans le parcours Actualités et revues
     input-cinema-placeholder: Rechercher dans le parcours Cinéma
     type-label: Chercher sur

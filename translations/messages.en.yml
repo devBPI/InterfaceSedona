@@ -252,7 +252,7 @@ modal:
         Si date saisie, recherche depuis cette date,
         si période saisie, recherche de la date de début à la date de fin.
       by-date: Date
-      by-periode: Periode
+      by-periode: Période
       date-start: Date de parution
       date-end: Date de fin de parution
     langage:
@@ -264,8 +264,8 @@ modal:
       in-shelf: Disponible en rayon
       in-ligne: Consultable en ligne
     facette:
-      type: Type de documents
-      material_support: Supports
+      type: Type de document
+      material_support: Support
       genre_musical: Genre musical
       genre_film: Genre film
       genre_litteraire: Genre littéraire
@@ -276,7 +276,7 @@ modal:
       available: Disponibilité
       theme: Thèmes
       author: Auteur(s)
-      bdd: Bases de recherche
+      bdd: Base de recherche
       langue: Langue(s)
       language: Langues
       date: Date
@@ -359,7 +359,7 @@ bloc:
     input-sr-only: Saisir un mot clé
     input-placeholder: Rechercher
     input-general-placeholder: Rechercher
-    input-autoformation-placeholder: Recherche dans le parcours Autoformation
+    input-autoformation-placeholder: Rechercher dans le parcours Autoformation
     input-actualites-revues-placeholder: Rechercher dans le parcours Actualités et revues
     input-cinema-placeholder: Rechercher dans le parcours Cinéma
     type-label: Chercher sur
@@ -595,7 +595,7 @@ breadcrumb:
     actualites-revues: News and magazines course
     autoformation:  Self-study course
     cinema: Cinema course
-  search-terms:  Search results for :%terms%
+  search-terms:  Search results for:%terms%
   search:  Search results
   card:
     bibliographic: Document %title%

@@ -206,7 +206,16 @@
 		&-title {
 			display: flex;
 			margin-bottom: rem(5);
-			color: $blue;
+
+			a {
+				margin-bottom: 0;
+				color: $blue;
+
+				&:hover,
+				&:focus {
+					color: $red;
+				}
+			}
 		}
 
 		&-body {
