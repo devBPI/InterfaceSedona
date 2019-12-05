@@ -264,7 +264,7 @@ modal:
       in-shelf: Disponible en rayon
       in-ligne: Consultable en ligne
     facette:
-      type: Type de documents
+      type: Type de document
       material_support: Supports
       genre_musical: Genre musical
       genre_film: Genre film
