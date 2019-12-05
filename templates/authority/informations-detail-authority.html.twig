@@ -71,7 +71,7 @@
         <ul class="list-information__sub-list" lang="fr">
             <li class="list-information__sub-item">
                 {% for element in notice.dates %}
-                    {{ element }}{% if loop.first %}-{%endif%}
+                    {{ element }}{% if loop.first %}- {%endif%}
                 {% endfor %}
             </li>
         </ul>
@@ -83,7 +83,7 @@
         <ul class="list-information__sub-list" lang="fr">
             <li class="list-information__sub-item">
                 {% if notice.birthLocation  is not empty %}
-                    {{ notice.birthDate }} - {{ notice.birthLocation }}
+                    {{ notice.birthDate }}, {{ notice.birthLocation }}
                 {% else %}
                      {{ notice.birthDate }}
                 {% endif %}
@@ -97,7 +97,7 @@
         <ul class="list-information__sub-list" lang="fr">
             <li class="list-information__sub-item">
                 {% if notice.deathLocation  is not empty %}
-                    {{ notice.deathDate }} - {{ notice.deathLocation }}
+                    {{ notice.deathDate }}, {{ notice.deathLocation }}
                 {% else %}
                     {{ notice.deathDate }}
                 {% endif %}

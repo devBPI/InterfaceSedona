@@ -317,6 +317,10 @@ page:
     title: Autorité %author%
   bibiographic:
     title: Document %title%
+    parcours:
+      autoformation: Parcours Autoformation
+      cinema: Parcours Cinéma
+      actualites-revues: Parcours Actualités et revues
   search:
     title:
       simple: Résultats recherche simple - %keyword%
@@ -588,7 +592,7 @@ breadcrumb:
   home:
     actualites-revues: Parcours Actualités et revues
     autoformation: Parcours Autoformation
-    cinema: Pacrours Cinéma
+    cinema: Parcrours Cinéma
   help_index: 'Aide'
   help:
     help_search:  La recherche

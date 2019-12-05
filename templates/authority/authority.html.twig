@@ -1,9 +1,18 @@
 {% extends 'search/base.html.twig' %}
-
-{% block title %}{{ 'page.authority.title'|trans({'%author%': notice.title}) }}{% endblock %}
+{% block title %}
+	{% set baseTitle = 'page.authority.title'|trans({'%author%': notice.title}) %}
+    {% if  app.request.attributes.get(constant('App\\Model\\Search\\ObjSearch::PARAM_PARCOURS_NAME'))  %}
+        {% set baseTitle =
+            (('page.bibiographic.parcours.'~ app.request.attributes.get(constant('App\\Model\\Search\\ObjSearch::PARAM_PARCOURS_NAME'))) | trans)
+            ~ ' - '
+            ~ baseTitle
+        %}
+    {% endif %}
+	{{  baseTitle }}
+{% endblock %}
 
 {% block body %}
-	<div class="d-none">
+    <div class="d-none">
         {% include 'search/blocs-results/preview-authority.html.twig' with {'author': notice, 'level': 2, 'index': 0, 'mode': 'detail'} %}
 	</div>
 	<div class="authority-result">

@@ -36,7 +36,15 @@ final class HomeController extends AbstractController
     public function indexAction(): Response
     {
         $carousel = $this->carouselProvider->getHomeList();
-        $thematic = $this->getDoctrine()->getRepository(Thematic::class)->findAll();
+        $thematic = $this
+            ->getDoctrine()
+            ->getRepository(Thematic::class)
+            ->findBy(
+                [],
+                ['title' => 'ASC']
+            )
+            ;
+        ;
 
         return $this->render('home/default.html.twig',[
                 'carousel'  => $carousel,
