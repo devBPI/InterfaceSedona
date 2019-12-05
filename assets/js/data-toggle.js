@@ -200,7 +200,8 @@ import {CollectionRow} from './collection-row.ts';
             location.reload();
         })
         .on('ifChanged click', '[data-toggle="check-all"]', function () {
-            let $form = $(this).parents('form'),
+            let $this = $(this),
+                $form = $(this).parents('form'),
                 selector = $form.find(':checkbox')
             ;
             if ($(this).data('target') !== undefined) {
@@ -208,6 +209,12 @@ import {CollectionRow} from './collection-row.ts';
             }
 
             $(selector).attr('checked', $(this).is(':checked'));
+            $(selector).on('ifChanged click', function () {
+                if ($(this).is(':checked') == false) {
+                    $this.removeAttr('checked');
+                    $this.parents('div.check').removeClass('checked');
+                }
+            });
             if ($(this).is(':checked')) {
                 $(selector).parents('div.check').addClass('checked');
             } else {
