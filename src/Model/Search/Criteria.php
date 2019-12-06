@@ -123,18 +123,20 @@ class Criteria
     private $indiceCote;
 
     /**
-     * @var self
-     * @JMS\Type("App\Model\Search\Criteria")
+     * @var self[]
+     * @JMS\Type("array<App\Model\Search\Criteria>")
+     * @JMS\XmlList("search-criterias")
      */
     private $and;
     /**
-     * @var self
-     * @JMS\Type("App\Model\Search\Criteria")
+     * @var self[]
+     * @JMS\Type("array<App\Model\Search\Criteria>")
+     * @JMS\XmlList("search-criterias")
      */
     private $or;
     /**
-     * @var self|null
-     * @JMS\Type("App\Model\Search\Criteria")
+     * @var self[]|null
+     * @JMS\Type("array<App\Model\Search\Criteria>")
      * @JMS\Accessor(getter="setNotSubCriteria")
      */
     private $notCriteria;
@@ -216,7 +218,7 @@ class Criteria
             unset($operators[$key]);
 
             $t = new self();
-            $this->$operator = $t->setKeywords($keywordsArray, $operators);
+            $this->$operator = [$t->setKeywords($keywordsArray, $operators)];
         }
 
         return $this;
@@ -255,12 +257,26 @@ class Criteria
         }
 
         foreach (WordsList::$operators as $operator) {
-            if ($this->$operator instanceof Criteria) {
-                $keywords[$operator] = $this->$operator->getKeywords(false);
+            $subCriteria = $this->getSubCriteriaOfOperator($operator);
+            if ($subCriteria instanceof Criteria) {
+                $keywords[$operator] = $subCriteria->getKeywords(false);
             }
         }
 
         return $keywords;
+    }
+
+    /**
+     * @param string $operator
+     * @return Criteria|null
+     */
+    private function getSubCriteriaOfOperator(string $operator): ?Criteria
+    {
+        if (isset($this->$operator[0]) && $this->$operator[0] instanceof Criteria) {
+            return $this->$operator[0];
+        }
+
+        return null;
     }
 
     /**
@@ -281,8 +297,9 @@ class Criteria
         }
 
         foreach (WordsList::$operators as $operator) {
-            if ($this->$operator instanceof Criteria) {
-                $keywords = array_merge($keywords, $this->$operator->getKeywordsTitles($withFields));
+            $subCriteria = $this->getSubCriteriaOfOperator($operator);
+            if ($subCriteria instanceof Criteria) {
+                $keywords = array_merge($keywords, $subCriteria->getKeywordsTitles($withFields));
             }
         }
 
@@ -314,8 +331,9 @@ class Criteria
         }
 
         foreach (WordsList::$operators as $operator) {
-            if ($this->$operator instanceof Criteria) {
-                $historyTitle .= ' '.$this->$operator->getMyHistoryTitle($translator, $operator);
+            $subCriteria = $this->getSubCriteriaOfOperator($operator);
+            if ($subCriteria instanceof Criteria) {
+                $historyTitle .= ' '.$subCriteria->getMyHistoryTitle($translator, $operator);
             }
         }
 
@@ -323,15 +341,15 @@ class Criteria
     }
 
     /**
-     * @return Criteria
+     * @return Criteria[]
      */
-    public function setNotSubCriteria(): ?Criteria
+    public function setNotSubCriteria(): ?array
     {
-        if ($this->notCriteria instanceof Criteria) {
-            $criteria = $this->notCriteria;
+        if (isset($this->notCriteria[0]) && $this->notCriteria[0] instanceof Criteria) {
+            $criteria = $this->notCriteria[0];
             $criteria->not = 'true';
             $this->notCriteria = null;
-            return $this->and = $criteria;
+            return $this->and = [$criteria];
         }
 
         return $this->notCriteria;
