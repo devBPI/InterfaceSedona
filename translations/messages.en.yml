@@ -94,17 +94,17 @@ footer:
     actualite: The Bpi news
     magazine: The Bpi magazine
   partenaires:
-    eurekoi: Go to the website Eurêkoi
+    eurekoi: website Eurêkoi
     culture: Ministry of culture
     pompidou: Centre Pompidou
     ircam: Ircam
     franceculture: France Culture
   socials-medias:
-    facebook: Find the BPI on Facebook
-    twitter: Find the BPI on Twitter
-    instagram: Find the BPI on Instagram
-    youtube: Find the BPI on Youtube
-    linkedin: Find the BPI on Linkedin
+    facebook: Find the Bpi on Facebook
+    twitter: Find the Bpi on Twitter
+    instagram: Find the Bpi on Instagram
+    youtube: Find the Bpi on Youtube
+    linkedin: Find the Bpi on Linkedin
     rss: Bpi RSS feed
 
 modal:
