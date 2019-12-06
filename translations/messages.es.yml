@@ -305,6 +305,7 @@ page:
     thematic: Découvrir les parcours
   thematic:
     theme: Les essentiels
+    andMore: Et aussi
   authority:
     title: Autorité %author%
   bibiographic:

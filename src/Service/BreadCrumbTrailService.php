@@ -53,7 +53,7 @@ class BreadCrumbTrailService implements \Iterator,  Countable
         $this->index = 0;
         $this->stack[$this->index] = new BreadCrumbStack(
             $this->translator->trans('page.home.page_title'),
-            $this->routeCollection->generate('home')
+            $this->routeCollection->generate('home2')
         );
     }
 
