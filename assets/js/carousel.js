@@ -93,6 +93,7 @@ $('.js-list-information ul.list-information__sub-list').each( function() {
 $(document)
     .on('click', '.js-btn', function() {
         var $this = $(this),
+            $firstItem = $(this).parent().parent().children().eq(5).children(),
             $items = $(this).parent().parent().children().eq(4).nextAll();
 
         if ($this.hasClass('js-btn--more') ) {
@@ -101,6 +102,7 @@ $(document)
                 .text('Voir moins')
                 .removeClass('js-btn--more')
                 .addClass('js-btn--less');
+            $firstItem.focus();
         } else {
             $items.addClass('d-none');
             $this
