@@ -1,4 +1,10 @@
 {% for element in thematic.themes %}
+	{% if (thematic.themes |length) - loop.index  == 3 %}
+		<div class="col-12">
+			<hr class="border-double hr-double">
+			<h2 class="n1">{{ 'page.thematic.andMore'|trans }}</h2>
+		</div>
+	{% endif %}
 	<div class="col-12 col-sm-6 col-lg-3">
 		<div lang="fr" class="card">
 			<img src="{{ asset('images/parcours/'~thematic.type~'/'~element.image) }}" alt="" class="img-fluid card-img-top" />

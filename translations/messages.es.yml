@@ -94,17 +94,17 @@ footer:
     actualite: La actualidad de la Bpi
     magazine: La revista de la Bpi
   partenaires:
-    eurekoi: Ir al sitio web Eurêkoi
+    eurekoi: Eurêkoi
     culture: Ministerio de Cultura
     pompidou: Centro Pompidou
     ircam: Ircam
     franceculture: France Culture
   socials-medias:
-    facebook: Encuentra la BPI en Facebook
-    twitter: Encuentra la BPI en Twitter
-    instagram: Encuentra la BPI en Instagram
-    youtube: Encuentra la BPI en Youtube
-    linkedin: Encuentra la BPI en Linkedin
+    facebook: Encuentra la Bpi en Facebook
+    twitter: Encuentra la Bpi en Twitter
+    instagram: Encuentra la Bpi en Instagram
+    youtube: Encuentra la Bpi en Youtube
+    linkedin: Encuentra la Bpi en Linkedin
     rss: Suscribirse al RSS de la Bpi
 
 modal:
@@ -305,6 +305,7 @@ page:
     thematic: Découvrir les parcours
   thematic:
     theme: Les essentiels
+    andMore: Et aussi
   authority:
     title: Autorité %author%
   bibiographic:
@@ -320,8 +321,9 @@ page:
       page: page %current% sur %total%
   login:
     title: Authentification
-    login: Adresse e-mail
-    password: Mot de passe
+    login: Courriel (nom@exemple.com) *
+    login-placeholder: nom@exemple.com
+    password: Mot de passe *
     remember-me: Se souvenir
     create-profil: Pas encore de compte?
     forgotten-password: Mot de passe oublié

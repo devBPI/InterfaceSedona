@@ -66,8 +66,7 @@
                         {% if notice.type in constant('App\\Model\\Notice::NOTICE_CONTENU_TYPE') %}
                             {% set title = 'modal.comments-edit.field-content' %}
                         {% endif %}
-                    - <button class="list-result__content-resume" type="button"
-                            role="tooltip" data-toggle="tooltip" title="{{ title |trans }} : {{ notice.frontResume }}">
+                    - <button class="list-result__content-resume" type="button" data-toggle="tooltip" title="{{ title |trans }} : {{ notice.frontResume }}">
                         <img src="{{ asset('images/icones/icone-resume.svg') }}" alt=""/>
                         <span class="sr-only">{{ 'bloc.notice-simple.resume-label'|trans }}</span>
                     </button>
@@ -82,37 +81,44 @@
                     <p lang="fr">Résultat de <a href="{{ notice.configurationUrl }}" aria-label="Acceder à {{ notice.configurationName }}" target="_blank">{{ notice.configurationName }}</a></p>
                 {% endif %}
 
-                {% for available in notice.copies %}
-                    {{ macros.availibility(available, notice) }}
+                
+                <ul class="availability">
+                    {% for available in notice.copies %}
+                            {{ macros.availibility(available, notice) }}
 
-                    {% if loop.first and not loop.last %}
-                        <button type="button" class="btn btn-small-link" data-toggle="collapse"
-                                data-target="#availabity-items-{{ index }}" aria-expanded="false"
-                                aria-controls="availabity-items-{{ index }}">
-                            {{ 'global.see-more'|trans }}
-                        </button>
-                        <div class="collapse" id="availabity-items-{{ index }}">
-                    {% endif %}
+                            {% if loop.first and not loop.last %}
+                                    <button type="button" class="btn btn-small-link" data-toggle="collapse"
+                                            data-target="#availabity-items-{{ index }}" aria-expanded="false"
+                                            aria-controls="availabity-items-{{ index }}">
+                                        {{ 'global.see-more'|trans }}
+                                    </button>
+                                    <ul class="collapse" id="availabity-items-{{ index }}">
+                            {% endif %}
 
-                    {% if not loop.first and loop.last %}
-                        </div>
-                    {% endif %}
-                {% endfor %}
-                {% for link in notice.links %}
-                    {{macros.availibility(link, notice) }}
-                    {% if loop.first and not loop.last %}
-                        <button type="button" class="btn btn-small-link" data-toggle="collapse"
-                                data-target="#links-items-{{ index }}" aria-expanded="false"
-                                aria-controls="links-items-{{ index }}">
-                            {{ 'global.see-more'|trans }}
-                        </button>
-                        <div class="collapse" id="links-items-{{ index }}">
-                    {% endif %}
+                            {% if not loop.first and loop.last %}
+                                    </ul>
+                            {% endif %}
+                    {% endfor %}
 
-                    {% if not loop.first and loop.last %}
-                        </div>
-                    {% endif %}
-                {% endfor %}
+                    {% for link in notice.links %}
+                            {{macros.availibility(link, notice) }}
+
+                            {% if loop.first and not loop.last %}
+                                    <button type="button" class="btn btn-small-link" data-toggle="collapse"
+                                            data-target="#links-items-{{ index }}" aria-expanded="false"
+                                            aria-controls="links-items-{{ index }}">
+                                        {{ 'global.see-more'|trans }}
+                                    </button>
+                                    <ul class="collapse" id="links-items-{{ index }}">
+                            {% endif %}
+
+                            {% if not loop.first and loop.last %}
+                                    </ul>
+                            {% endif %}
+                    {% endfor %}
+                </ul>
+
+
             </div>
             {% if app.request.get('see-all') and app.request.get('see-all') in [constant('App\\Model\\Notice::SEE_ONLINE'),constant('App\\Model\\Notice::SEE_ONSHELF')] and notice.frontResume %}
                 <div class="list-result__content-txt">
