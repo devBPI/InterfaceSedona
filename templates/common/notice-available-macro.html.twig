@@ -55,7 +55,7 @@
        {% if object.media is  defined and object.media is not empty %}
            <li class="availability--true availability--online">
                <a href="{{ path('media-link', {'permalink': object.media}) }}" class="link link--icone-end link--inline" target="_blank">
-                   {{ 'bloc.notice-simple.access-to-bdd'|trans }} {{ notice.title }} 
+                   {{ 'bloc.notice-simple.access-to-bdd'|trans }} {{ object.title }}
                    <img src="{{ asset('images/icones/icone-chevron-gauche.svg') }}" alt="" aria-hidden="true" />
                </a>
            </li>
