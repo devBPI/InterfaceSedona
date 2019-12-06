@@ -104,7 +104,7 @@
     </ul>
 </div>
 <div class="col-12">
-    <div lang="fr" class="bibliographic-result__availability js-seeMoreAvailability">
+    <ul lang="fr" class="bibliographic-result__availability availability js-seeMoreAvailability">
         {% for available in notice.copies %}
             {{ macros.availibility(available, notice) }}
         {% endfor %}
@@ -112,7 +112,7 @@
         {% for link in notice.links %}
             {{ macros.availibility(link, notice) }}
         {% endfor %}
-    </div>
+    </ul>
 
 </div>
 

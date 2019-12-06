@@ -3,6 +3,19 @@
 // -------------------------------
 
 .availability {
+	list-style-type: none;
+	padding-left: 0;
+	margin-bottom: 0;
+
+	ul {
+		list-style-type: none;
+		padding-left: 0;
+		margin-bottom: 0;
+	}
+
+	li + li {
+		margin-top: 5px;
+	}
 
 	p {
 		margin-bottom: 0;
@@ -11,21 +24,6 @@
 	&--false {
 		display: flex;
 		align-items: center;
-	}
-
-	&__place {
-		margin-bottom: $spacer;
-	}
-
-	&__button {
-		margin-top: -20px;
-	}
-
-	.list-result {
-
-		.availability__button {
-			margin-top: 0;
-		}
 	}
 
 	&--online {
