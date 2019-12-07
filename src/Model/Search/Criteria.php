@@ -294,10 +294,10 @@ class Criteria
      * @param string $operator
      * @return string
      */
-    public function getMyHistoryTitle(TranslatorInterface $translator, string $operator = ''): string
+    public function getMyHistoryTitle(TranslatorInterface $translator, string $operator = '', $withParcours=true): string
     {
         $historyTitle = '';
-        if (empty($operator) && !empty($this->getParcours()) && $this->getParcours() !== WordsList::THEME_DEFAULT) {
+        if ($withParcours && empty($operator) && !empty($this->getParcours()) && $this->getParcours() !== WordsList::THEME_DEFAULT) {
             $historyTitle = $translator->trans('header.title.'.$this->getParcours()). ' ';
         }
 
@@ -354,9 +354,9 @@ class Criteria
     }
 
     /**
-     * @return string
+     * @return null|string
      */
-    public function getParcours(): string
+    public function getParcours(): ?string
     {
         return $this->parcours;
     }

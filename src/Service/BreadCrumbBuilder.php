@@ -19,6 +19,7 @@ use App\Model\Search\ObjSearch;
 use App\Model\Search\SearchQuery;
 use JMS\Serializer\SerializerInterface;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Translation\TranslatorInterface;
 
 final class BreadCrumbBuilder
 {
@@ -43,16 +44,26 @@ final class BreadCrumbBuilder
      * @var SerializerInterface
      */
     private $serializer;
+    /**
+     * @var UrlGeneratorInterface
+     */
+    private $routeCollection;
+    /**
+     * @var TranslatorInterface
+     */
+    private $translator;
 
     /**
      * BreadCrumbBuilder constructor.
      * @param BreadCrumbTrailService $bctService
      * @param SerializerInterface $serializer
+     * @param TranslatorInterface $translator
      */
-    public function __construct(BreadCrumbTrailService $bctService, SerializerInterface $serializer)
+    public function __construct(BreadCrumbTrailService $bctService, SerializerInterface $serializer, TranslatorInterface $translator)
     {
         $this->bctService = $bctService;
         $this->serializer = $serializer;
+        $this->translator = $translator;
     }
 
     /**
@@ -280,13 +291,8 @@ final class BreadCrumbBuilder
     private function humanizeCriteria(Request $request):?string
     {
         $objSearch =  new ObjSearch($this->getObjSearchQuery($request));
-        $keywords = $objSearch->getCriteria()->getKeywordsTitles();
 
-        if ($keywords ){
-           return implode(',', $keywords);
-        }
-
-        return null;
+        return $objSearch->getCriteria()->getMyHistoryTitle($this->translator, '', false);
     }
 }
 
