@@ -79,7 +79,7 @@ let printEngine = function(){
 }
 
 $(document)
-    .on('focus', '.dropdown-link .nav-link', function() {
+    .on('focus', '.dropdown-link .nav-link, .nav-pills .dropdown .dropdown-toggle', function() {
         if ($(window).width() > 768) {
             $('.dropdown-link .nav-link').removeClass('active');
             $('.dropdown-menu').removeClass('show');
