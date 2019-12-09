@@ -137,6 +137,18 @@ $(document)
     })
 ;
 
+if ($(window).width() > 992) {
+    let menuLangueList = $('.js-menu-langue-list'),
+        menuLangueItems = menuLangueList.children(),
+        menuSecondaireList = $('.js-menu-secondaire-list'),
+        menuSecondaireItems = menuSecondaireList.children();
+
+        menuLangueList.removeAttr('aria-labelledby role tabindex');
+        menuLangueItems.removeAttr('role');
+        menuSecondaireList.removeAttr('aria-labelledby role tabindex');
+        menuSecondaireItems.removeAttr('role');
+}
+
 /**
  *table__input;
  * @param element

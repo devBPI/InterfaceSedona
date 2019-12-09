@@ -234,7 +234,11 @@
 			text-align: center;
 
 			img {
-				max-width: 100%;
+				max-width: 150px;
+
+				@include media-breakpoint-up(md) {
+					max-width: 100%;
+				}
 			}
 
 			@include media-breakpoint-up(md) {

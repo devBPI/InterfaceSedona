@@ -28,6 +28,16 @@
 				margin-left: 3px;
 				margin-bottom: 2px;
 			}
+
+			abbr {
+				cursor: default;
+				text-decoration: none;
+				border-bottom: 0;
+
+				&:hover {
+					cursor: pointer;
+				}
+			}
 			
 			@include media-breakpoint-up(lg) { 
 				display: none;

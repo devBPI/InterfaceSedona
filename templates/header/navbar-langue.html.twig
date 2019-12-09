@@ -8,9 +8,15 @@
 <div class="dropdown menu-langue" aria-label="{{ 'header.navbar-langue.aria'|trans }}">
 	<span class="sr-only">{{ 'header.navbar-langue.title'|trans }}</span>
 	<button type="button" id="dropdown-langues" data-toggle="dropdown" aria-haspopup="listbox" aria-expanded="false" class="menu-langue__button btn">
-	<abbr title="{{ 'header.navbar-langue.change-to.fr'|trans }}">FR</abbr>
+		{% if app.request.locale=='en' %}
+			<abbr title="{{ 'header.navbar-langue.change-to.en'|trans }}">EN</abbr>
+		{% elseif app.request.locale=='es' %}
+			<abbr title="{{ 'header.navbar-langue.change-to.es'|trans }}">ES</abbr>
+		{% elseif app.request.locale=='fr' %}
+			<abbr title="{{ 'header.navbar-langue.change-to.fr'|trans }}">FR</abbr>
+		{% endif %}
 	</button>
-	<div class="dropdown-menu menu-langue__list" aria-labelledby="dropdown-langues" role="listbox" tabindex="-1">
+	<div class="dropdown-menu menu-langue__list js-menu-langue-list" aria-labelledby="dropdown-langues" role="listbox" tabindex="-1">
 		{% if app.request.locale=='en' %}
 			<p aria-label="{{ 'header.navbar-langue.change-to.en'|trans }}{% if app.request.locale=='en' %} {{ 'header.navbar-langue.change-to.en-active'|trans }}{% endif %}" lang="en" class="dropdown-item menu-langue__list-item{% if app.request.locale=='en' %} active{% endif %}" role="option">
 				<abbr title="{{ 'header.navbar-langue.change-to.en'|trans }}">EN</abbr>
