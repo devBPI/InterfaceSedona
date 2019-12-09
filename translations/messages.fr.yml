@@ -418,6 +418,7 @@ bloc:
   notice-simple:          #Bloc 13 Notices simples en 2 colonnes
     result: Résultat numéro
     select: sélectionner
+    access: Accès
     access-to-bdd: Accès à
     access-to-bpi: Consultable à la Bpi
     result-of-bdd: Résultat de
