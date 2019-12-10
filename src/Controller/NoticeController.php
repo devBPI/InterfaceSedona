@@ -48,7 +48,7 @@ final class NoticeController extends AbstractController
      * @param NavigationService|null $navigation
      * @return Response
      */
-    public function bibliographicRecordAction(Request$request, NoticeThemed $notice, NavigationService $navigation=null)
+    public function bibliographicRecordAction(NoticeThemed $notice, NavigationService $navigation=null)
     {
 
         return $this->render('notice/bibliographic.html.twig', [

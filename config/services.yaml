@@ -92,3 +92,6 @@ services:
     tags:
     - { name: request.param_converter, priority: -2, converter: bpi_converter }
 
+  App\EventListener\ExceptionListener:
+    tags:
+      - { name: kernel.event_listener, event: kernel.exception }

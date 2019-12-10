@@ -5,7 +5,6 @@ namespace App\Request\ParamConverter;
 
 
 use App\Model\Authority;
-use App\Model\Exception\NoResultException;
 use App\Model\IndiceCdu;
 use App\Model\Notice;
 use App\Model\NoticeThemed;
@@ -20,7 +19,6 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Sensio\Bundle\FrameworkExtraBundle\Request\ParamConverter\ParamConverterInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 /**
  * Class BpiConverter
@@ -36,10 +34,6 @@ class BpiConverter implements ParamConverterInterface
      * @var SessionInterface
      */
     private $session;
-    /**
-     * @var \Twig_Environment
-     */
-    private $templating;
     /**
      * @var NavigationService
      */
@@ -59,7 +53,6 @@ class BpiConverter implements ParamConverterInterface
      * @param NoticeAuthorityProvider $authorityProvider
      * @param SerializerInterface $serializer
      * @param SessionInterface $session
-     * @param \Twig_Environment $templating
      * @param NavigationService $navigationService
      */
     public function __construct(
@@ -67,14 +60,12 @@ class BpiConverter implements ParamConverterInterface
         NoticeAuthorityProvider $authorityProvider,
         SerializerInterface $serializer,
         SessionInterface $session,
-        \Twig_Environment $templating,
         NavigationService $navigationService
 
     ) {
         $this->noticeProvider = $noticeProvider;
         $this->serializer = $serializer;
         $this->session = $session;
-        $this->templating = $templating;
         $this->navigationService = $navigationService;
         $this->authorityProvider = $authorityProvider;
     }
@@ -89,11 +80,7 @@ class BpiConverter implements ParamConverterInterface
      */
     public function apply(Request $request, ParamConverter $configuration)
     {
-        try {
-            $object = $this->buildObject($request, $configuration);
-        } catch (NoResultException $e) {
-            throw new NotFoundHttpException();
-        }
+        $object = $this->buildObject($request, $configuration);
 
         $request->attributes->set($configuration->getName(), $object);
     }
