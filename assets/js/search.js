@@ -35,11 +35,11 @@ $(document)
         let items = $('#contenu-site').find('input:checked.addableInList');
         if (items.length > 0) {
             adder.displaySelectedResume(Object.entries(items));
-
-            if (user_connected !== "1") {
-                adder.addInSession(this.querySelector('form'));
-            }
         }
+    })
+    .on('hide.bs.modal', '#modal-list-add', function (e) {
+        let adder = new SelectionAdder($(this).get(0));
+        adder.cleanContainer();
     })
 ;
 

@@ -2,7 +2,7 @@
       method="post" data-toggle="form-remote">
     <div class="modal-header">
         <h1 class="n1 modal-header__title" id="modal-list-add-title">
-            {{ app.user ? ('modal.list-add.title-connected'|trans) : 'modal.list-add.title'|trans }}
+            {{ 'modal.list-add.title-connected'|trans }}
         </h1>
         <button class="close" type="button" data-dismiss="modal">
             <img src="{{ asset('images/icones/icone-croix-blanc.svg') }}" alt="{{ 'global.modal-close'|trans }}" />
@@ -94,16 +94,11 @@
             {# Pas authentifié #}
             <a href="{{ path('user_login') }}" class="btn btn-lg btn-primary">
                 {{ 'modal.list-add.btn-login2'|trans }}</a>
-        {% else %}
-            {# Authentifié #}
-            <button type="submit" class="btn btn-lg btn-primary">
-                {{ 'modal.list-add.submit'|trans }}
-                <span class="sr-only"> {{ 'modal.list-add.submit-sr-only'|trans }}</span>
-            </button>
         {% endif %}
+
+        <button type="submit" class="btn btn-lg btn-primary">
+            {{ 'modal.list-add.submit'|trans }}
+            <span class="sr-only"> {{ 'modal.list-add.submit-sr-only'|trans }}</span>
+        </button>
     </div>
 </form>
-
-<script type="text/javascript">
-    const user_connected = "{{ is_granted('IS_AUTHENTICATED_FULLY') }}";
-</script>
