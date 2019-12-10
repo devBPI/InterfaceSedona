@@ -400,7 +400,8 @@ bloc:
     title-aria: menu-relanche
     button: Relancer la recherche dans
   filters-search:         #Bloc 10 Rappel des critères de recherche
-    title: 'Recherche avancée :'
+    simple-title: 'Recherche simple :'
+    advanced-title: 'Recherche avancée :'
   preview-authority:      #Bloc 11 Aperçu d'une autorité
     first: Sélectionner %name%
     see-more: Voir plus
