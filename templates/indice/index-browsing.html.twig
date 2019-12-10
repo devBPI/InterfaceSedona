@@ -13,13 +13,16 @@
 				<button type="button" class="js-5-indices-around btn index__button index__button--top" data-url="{{ path("indice_around_indexes", {"cote":indexList.previous}) }}"><img src="{{ asset('images/icones/icone-chevron-gauche.svg') }}" alt="" class="icone-chevron-top"/>5 <span class="sr-only">{{ 'bloc.index.name'|trans }}</span> {{ 'bloc.index.previous'|trans }}<img src="{{ asset('images/icones/icone-chevron-gauche.svg') }}" alt="" class="icone-chevron-top"/></button>
 				<ul class="index__list">
 					{% for index in indexList.indexes %}
+						{% set itemLabel = index.cote~' - '~index.name %}
 						{% if loop.index != 6 %}
-							<li class="index__item"><a href="{{ path('search', {(constant('App\\Model\\Search\\Criteria::SIMPLE_SEARCH_KEYWORD')): index.name, (constant('App\\Model\\Search\\Criteria::SIMPLE_SEARCH_TYPE')):'general'}) }}" lang="fr">{{ index.name }}</a></li>
+							<li class="index__item">
+								<a href="{{ path('search', {(constant('App\\Model\\Search\\Criteria::SIMPLE_SEARCH_KEYWORD')): index.name, (constant('App\\Model\\Search\\Criteria::SIMPLE_SEARCH_TYPE')):'general'}) }}" lang="fr">
+									{{ itemLabel }}</a></li>
 						{% else %}
 							<li class="index__item index__item--current">
 								<p id="index-current" aria-current="page" lang="fr" tabindex="0">
 									<img src="{{ asset('images/icones/icone-chevron-gauche.svg') }}" alt="" class="icone-chevron-right"/>
-									{{ 'bloc.index.current'|trans({'%name%': index.name}) }}<span class="sr-only"> {{ 'bloc.index.current-sr-only'|trans() }}</span>
+									{{ 'bloc.index.current'|trans({'%name%': itemLabel}) }}<span class="sr-only"> {{ 'bloc.index.current-sr-only'|trans() }}</span>
 								</p>
 							</li>
 						{% endif %}
