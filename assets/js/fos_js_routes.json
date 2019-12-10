@@ -1,1 +1,1 @@
-{"base_url":"","routes":{"user_selection_list_add_session":{"tokens":[["text","\/selection\/list\/ajout-documents-en-session"],["variable","\/","fr|en|es","_locale"]],"defaults":{"_locale":"fr"},"requirements":{"_locale":"fr|en|es"},"hosttokens":[],"methods":["POST"],"schemes":[]}},"prefix":"","host":"localhost","port":"","scheme":"http","locale":[]}
+{"base_url":"","routes":[],"prefix":"","host":"localhost","port":"","scheme":"http","locale":[]}
