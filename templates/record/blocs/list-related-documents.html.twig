@@ -24,16 +24,4 @@
 			{% endfor %}
 		</div>
 	</div>
-
-{#
-	<div class="carousel__footer">
-		<a href="{{ path('search', {(constant('App\\Model\\Search\\Criteria::SIMPLE_SEARCH_KEYWORD')):notice.name, (constant('App\\Model\\Search\\Criteria::SIMPLE_SEARCH_TYPE')): (constant('App\\WordsList::INDICE_COTE_WORD'))}) }}" class="link link--icone-end">
-			{{ "bloc.list-related-documents.see-more"|trans }}
-			<span class="sr-only">{{ "bloc.list-related-documents.see-more-sr-only"|trans }} </span>
-			<span>({{ object.mappedNotices |length }})</span>
-			<img src="{{ asset('images/icones/icone-chevron-gauche.svg') }}" alt="" class="icone-chevron-right"/>
-		</a>
-
-	</div>
-#}
 </div>

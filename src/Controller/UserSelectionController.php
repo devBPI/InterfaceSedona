@@ -125,18 +125,6 @@ final class UserSelectionController extends AbstractController
     }
 
     /**
-     * @Route("/list/ajout-documents-en-session", methods={"POST"}, name="_list_add_session", options={"expose"=true})
-     * @param Request $request
-     * @return Response
-     */
-    public function addDocumentListInSessionAction(Request $request): Response
-    {
-        $this->selectionService->addDocumentsInSession($request->get(self::INPUT_DOCUMENT, []));
-
-        return new JsonResponse();
-    }
-
-    /**
      * @Security("has_role('ROLE_USER')")
      * @Route("/list/{list}/modification", methods={"GET","POST"}, name="_list_edit")
      * @param UserSelectionList $list

@@ -55,7 +55,7 @@
 {% macro list_link(object, label, type, glue =", ") %}
     {% if object is not empty %}
         <p lang="fr" class="bibliographic-result__author">
-            {{ label|trans }}
+            {{ label|trans }} :
 
             {% if object is iterable %}
                 {% for element in object %}

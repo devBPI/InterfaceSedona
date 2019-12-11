@@ -42,7 +42,14 @@
 				}
 
 				.dropdown-menu {
-					min-width: 100%;
+					
+					.dropdown-item {
+
+						&:hover,
+						&:focus {
+							text-decoration: $hover;
+						}
+					}
 				}
 
 				&:hover {

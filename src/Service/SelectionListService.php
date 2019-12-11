@@ -63,6 +63,11 @@ final class SelectionListService extends AuthenticationService
      */
     public function addDocumentsToLists(Request $request)
     {
+        if (!$this->hasConnectedUser()) {
+            $this->addDocumentsInSession($request->get(UserSelectionController::INPUT_DOCUMENT, []));
+            return;
+        }
+
         $documents = $this->createDocumentsFromRequest($request);
 
         foreach ($this->getListsFromRequest($request) as $userSelectionCategory) {
@@ -375,7 +380,7 @@ final class SelectionListService extends AuthenticationService
     /**
      * @param array $documents
      */
-    public function addDocumentsInSession(array $documents = [])
+    private function addDocumentsInSession(array $documents = [])
     {
         $this->appendSession(self::SESSION_SELECTION_ID, $documents);
     }

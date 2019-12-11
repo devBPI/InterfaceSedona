@@ -179,10 +179,6 @@ final class ObjSearch
      */
     public function getAdvancedCriteria(): array
     {
-        if (!$this->advancedMode) {
-            return [];
-        }
-
         $criteria = [];
         foreach ($this->searchQuery->getCriteria()->getKeywordsTitles(true) as $field => $keyword) {
             $criteria[$field] = $keyword;
@@ -209,6 +205,14 @@ final class ObjSearch
     public function getGlobalIndex(): int
     {
         return (($this->searchQuery->getPage() - 1) * $this->searchQuery->getRows()) + 1;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isAdvancedMode(): bool
+    {
+        return $this->advancedMode;
     }
 
 }

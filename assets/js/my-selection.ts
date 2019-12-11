@@ -56,16 +56,7 @@ export class SelectionAdder {
         return container;
     }
 
-    addInSession(form: HTMLFormElement) {
-        let datas = $(form).serializeArray();
-
-        $.ajax({
-            method: "POST",
-            url: Routing.generate('user_selection_list_add_session'),
-            data: datas,
-        }).done(function (data) {
-            // stop the spinner
-        });
+    cleanContainer() {
+        while (this.container.firstChild) this.container.removeChild(this.container.firstChild);
     }
-
 }

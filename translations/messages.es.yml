@@ -13,7 +13,7 @@ global:
       placeholder: 'nom@example.com'
 
 header:
-  logo_title: Ir al inicio del catálogo de la Bibliothèque publique d'information Centre Pompidou
+  logo_title: Ir al inicio del catálogo de la Bibliothèque publique d'information - Centre Pompidou
   logo_alt: Bibliothèque Publique d'Information Centre Pompidou
   menu_title: Consultar el menú principal
   navbar-evitement:
@@ -300,7 +300,7 @@ modal:
 page:
   breadcrumb: Fil d'ariane
   home:
-    page_title: Inicio
+    page_title: Accueil
     title: Accueil - Catalogue de la Bpi
     thematic: Découvrir les parcours
   thematic:
@@ -392,7 +392,8 @@ bloc:
     title-aria: menu-relanche
     button: Relancer la recherche dans
   filters-search:         #Bloc 10 Rappel des critères de recherche
-    title: 'Recherche avancée :'
+    simple-title: 'Recherche simple :'
+    advanced-title: 'Recherche avancée :'
   preview-authority:      #Bloc 11 Aperçu d'une autorité
     first: Sélectionner %name%
     see-more: Voir plus
@@ -513,7 +514,7 @@ bloc:
     content-table: Tables des matières
     periodicity-date: Date d'édition papier
     alternatif-title: Autre(s) forme(s) de titre
-    translated: Traduction de:
+    translated: Traduction de
     translated_from: Traduit de:
     in: 'dans'
     by: 'Par'

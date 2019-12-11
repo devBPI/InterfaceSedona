@@ -28,7 +28,7 @@ final class ReportErrorPageType extends AbstractType
             ->add('object', TextType::class,[
                 'required'  => true,
                 'label'     => 'modal.report.field.object',
-                'constraints' => [ new Asset\NotBlank('text.empty') ]
+                'constraints' => [ new Asset\NotBlank(['message' => 'text.empty']) ]
             ])
             ->add('message', TextareaType::class,[
                 'required'  => false,

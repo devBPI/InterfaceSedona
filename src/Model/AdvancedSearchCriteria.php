@@ -2,6 +2,7 @@
 
 namespace App\Model;
 
+use App\WordsList;
 use JMS\Serializer\Annotation as JMS;
 
 /**
@@ -187,11 +188,12 @@ class AdvancedSearchCriteria
     }
 
     /**
+     * @param string $parcours
      * @return array
      */
-    public function getFacets(): array
+    public function getFacets(string $parcours = null): array
     {
-        return [
+        $list = [
             'configuration_name',
             'publication_date',
             'type',
@@ -199,11 +201,17 @@ class AdvancedSearchCriteria
             'language',
             'genre_musical',
             'genre_film',
-            'genre_litteraire',
-            'audience',
-            'secteur',
-            'mediation',
-            'contenu'
+            'genre_litteraire'
         ];
+
+        if ($parcours !== WordsList::THEME_AUTOFORMATION) {
+            $list[] = 'audience';
+        }
+
+        $list[] = 'secteur';
+        $list[] = 'mediation';
+        $list[] = 'contenu';
+
+        return $list;
     }
 }

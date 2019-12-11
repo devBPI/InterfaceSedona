@@ -14,11 +14,9 @@
     <li class="list-information__item">
         <span class="list-information__label">{{ 'bloc.autority-result-information.other-names'|trans }}</span>
         <ul class="list-information__sub-list">
-            {% for val in author.otherNames %}
-                <li class="list-information__sub-item">
-                    {{ val }}
-                </li>
-            {% endfor %}
+            <li class="list-information__sub-item">
+            {{ author.otherNames|slice(0, 2)|join(' ; ') }}
+            </li>
         </ul>
     </li>
 {% endif %}

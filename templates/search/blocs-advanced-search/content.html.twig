@@ -19,7 +19,7 @@
 </div>
 
 {% if criteria.facets is defined %}
-    {% for key in criteria.facets %}
+    {% for key in criteria.facets(objSearch.criteria.parcours) %}
         <div class="modal-body">
             {% set filterPath = 'search/blocs-advanced-search/filters/'~key~'.html.twig' %}
             {% if template_exist(filterPath) %}

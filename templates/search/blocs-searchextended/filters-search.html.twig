@@ -1,6 +1,7 @@
 <div class="search-criteria">
 	{% if objSearch.advancedCriteria|length > 0 %}
-		<p class="search-criteria__label">{{ 'bloc.filters-search.title'|trans }}</p>
+		<p class="search-criteria__label">
+			{{ objSearch.advancedMode ? 'bloc.filters-search.advanced-title'|trans : 'bloc.filters-search.simple-title'|trans }}</p>
 		<ul class="search-criteria__list">
 			{% for key, criteria in objSearch.advancedCriteria %}
 				<li class="search-criteria__item">

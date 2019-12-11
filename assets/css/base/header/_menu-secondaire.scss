@@ -64,7 +64,7 @@
 				&:hover,
 				&:focus {
 					color: $red;
-					text-decoration: underline;
+					text-decoration: $hover-target;
 				}
 
 				@include media-breakpoint-up(lg) {
