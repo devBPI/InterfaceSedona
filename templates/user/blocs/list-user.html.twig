@@ -17,6 +17,14 @@
 
             <table class="table table-striped table-group__table">
                 <caption class="sr-only">{{ 'bloc.list-user.list-name'|trans({'%name%': list.title}) }}</caption>
+                <colgroup>
+                    <col width="40px">
+                    <col width="280px">
+                    <col width="280px">
+                    <col width="80px">
+                    <col width="120px">
+                    <col width="200px">
+                </colgroup>
                 {% include 'user/blocs/list-table-header.html.twig' %}
 
                 <tbody class="table__body">

@@ -13,10 +13,10 @@
     <td class="table__body-title">
         <a href="{{ document.url }}" title="{{ document.title }}"
            aria-label="{{ 'bloc.list-user.link'|trans({'%title%': document.title}) }}">
-            {{ document.title|truncate(40) }}</a>
+            {{ document.title|truncate(35) }}</a>
     </td>
     <td title="{{ document.author }}">
-        {{ document.author|truncate(40) }}
+        {{ document.author|truncate(35) }}
     </td>
     <td class="table__body-type" data-order="{{ document.documentType }}">
         <img src="{{ asset('images/types/type-'~ (document.documentType|slugify) ~'.svg') }}"
@@ -26,7 +26,7 @@
     <td class="table__body-edit" data-order="false">
         {% if app.user %}
             {% if document.comment is not empty and document.comment|split("\n").0 is defined %}
-                {{ document.comment|split("\n").0|trim|truncate(40) }}
+                <p>{{ document.comment|split("\n").0|trim|truncate(20) }}</p>
                 <button data-content="{{ '<p>'~document.comment|nl2br~'</p>' }}" data-target="#modal-comments-view"
                         data-toggle="modal">
                     <span class="sr-only">{{ 'bloc.list-user.comments-see'|trans }}</span>
