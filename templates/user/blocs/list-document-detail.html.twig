@@ -32,7 +32,10 @@
                     <span class="sr-only">{{ 'bloc.list-user.comments-see'|trans }}</span>
                     <img src="{{ asset('images/icones/icone-oeil.svg') }}" alt="" class="icone-oeil"/>
                 </button>
+            {% else %}
+                <p>{{ 'bloc.list-user.comments-add'|trans }}</p>
             {% endif %}
+
             <button data-remote="{{ path('user_selection_list_document_comment_edit', {'document': document.id}) }}"
                     data-target="#modal-list-edit" data-toggle="modal">
                 <span class="sr-only">{{ 'bloc.list-user.comments-edit'|trans }}</span>

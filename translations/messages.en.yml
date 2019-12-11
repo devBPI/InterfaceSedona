@@ -562,6 +562,7 @@ bloc:
     select-ligne: 'Sélectionner toute la ligne : %title%, %auteur%, %document-type%'
     link: Accéder à %title%
     comments-see: Voir le commentaire
+    comments-add: Ecrire un commentaire
     comments-edit: Modifier le commentaire
     comments-disabled: Veuillez-vous connecter afin de saisir un commentaire
     new-list: Créer une nouvelle liste
