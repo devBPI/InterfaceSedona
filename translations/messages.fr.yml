@@ -46,7 +46,7 @@ header:
     selection: Ma sélection
     history: Historique
   account:
-    title_unconnect: Mon compte
+    title_unconnect: 
     title_connected: Gestion de mon compte
     aria: Menu-compte
     welcome: Bienvenue
