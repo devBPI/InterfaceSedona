@@ -32,6 +32,7 @@ final class SearchController extends AbstractController
     use PrintTrait;
 
     public const GENERAL ='general';
+
     /**
      * @var SearchProvider
      */
@@ -45,6 +46,7 @@ final class SearchController extends AbstractController
      * @var NoticeBuildFileService
      */
     private $buildFileContent;
+
     /**
      * SearchController constructor.
      * @param SearchProvider $searchProvider
@@ -62,8 +64,8 @@ final class SearchController extends AbstractController
     }
 
     /**
-     * @Route("/{parcours}/resultats", methods={"GET", "POST"}, name="search_parcours")
-     * @Route("/resultats", methods={"GET", "POST"}, name="search")
+     * @Route("/{parcours}/recherche-simple", methods={"GET", "POST"}, name="search_parcours")
+     * @Route("/recherche-simple", methods={"GET", "POST"}, name="search")
      *
      * @param Request $request
      * @param string $parcours
@@ -171,23 +173,6 @@ final class SearchController extends AbstractController
         return $this->displaySearch(
             $this->searchService->deserializeSearchQuery($searchHistory->getQueryString()),
             $request
-        );
-    }
-
-    /**
-     * @Route("/recherche-tout", methods={"GET","HEAD"}, name="search_all")
-     *
-     * @param Request $request
-     * @return Response
-     */
-    public function searchAllAction(Request $request): Response
-    {
-        return $this->render(
-            'search/index-all.html.twig',
-            [
-                'toolbar' => ObjSearch::class,
-                'printRoute' => $this->generateUrl('search_pdf', ['format' => 'pdf']),
-            ]
         );
     }
 
