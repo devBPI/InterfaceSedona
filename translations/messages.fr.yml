@@ -35,6 +35,84 @@ header:
     home: Accueil
     catalogue: Catalogue
     agenda: Agenda
+    bibliotheque : La Bibliothèque
+      mission : Missions et organisation
+        organigramme : Organigramme
+        renovation : La bibliothèque en rénovation
+        chartes : Chartes
+        rapports : Rapports d'Activité
+      collections : Collections
+        livres : Livres
+        revues : Revues spécialisées
+        presse : Presse et actualité
+        ressources : Ressources électroniques
+        autoformation : Autoformation
+        collectionsaudio : Collections audiovisuelles
+        musiques : Musiques et documents parlés
+        generation : Nouvelle génération
+        cartes : Cartes et plans
+      offres : Offres culturelles et médiations
+        event : Evénements culturels 
+        mediations : Médiations
+        offresdist : Offres à distances
+      publications : Publications et supports de communication
+        programme : Programme de la Bpi
+        lettres : Lettres d'information
+        balises : Magazine Balises
+        support : Supports de communication
+        editions : Editions de la bibliothèque publique d'information
+        tvradio : Web TV / Web Radio 
+      publics : Publics de la Bpi 
+        sociologie : Sociologie des publics
+        enquetes : Enquêtes auprès des publics 
+        chiffres : La Bpi en chiffres 
+        histoire : Histoire de la Bpi 
+    informations : Informations pratiques
+      venir : Venir à la Bpi 
+        horaires : Horaires 
+        webcam : Webcam 
+        acces : Accès 
+        modeemploi : Bpi mode d'emploi 
+        contacts : Contacts 
+      espaces : Les espaces 
+        niveau1 : Niveau 1
+        niveau2 : Niveau 2
+        niveau3 : Niveau 3
+      services : Les services
+        renseignements : Renseignements et orientation 
+        internet : Internet et le wifi
+        autreinternet : L'autre Internet
+        autreservice : Les autres services
+      offrestype : Les offres par type de publication
+        etudiants : Etudiants ou lycéens 
+        enseignant : Enseignants 
+        famille : Famille 
+        intervenant : Intervenant du champ social 
+        nouveau : Nouvel arrivant à Paris 
+        rechercheemploi : En recherche d'emploi 
+      handicap : Handicap et accessibilité 
+        acces : Accès 
+        loges : Les loges 
+        autresservices : Les autres services à destination du public handicapé 
+      emplois : Emplois et stages
+        permanents : Emplois permanents 
+        temporaire : Emplois temporaires
+        stages : Stages 
+      marchespublic : Marchés publics 
+        consultations : Consultations 
+        candidatures : Candidatures 
+        attributions : Attributions 
+      faq : Foire aux questions
+    presse : Presse / Partenariats
+      communiques : Communiqués et dossiers de presse
+        archives : Archives des communiqués 
+      tournages : Tournages et prises de vues
+      logos : Logos 
+      visuels : Visuels
+        espaces : Espaces de la bibliothèque
+        plusvite : 'Plus vite, plus haut, plus fort : filmer le sport' 
+        integrale : 'Sergueï Loznitsa : l'intégrale'
+      partenariats : Partenariats 
   navbar-secondaire:
     title: Autres sites
     aria: Menu-secondaire
