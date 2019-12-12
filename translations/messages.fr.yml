@@ -407,12 +407,12 @@ bloc:
     see-more: Voir plus
   header-docs:            #Bloc 12 En-tête des résultats
     rayon:
-      title-sr-only: Documents en rayon, sélectionner tout les résultats
+      title-sr-only: Documents en rayon, sélectionner tous les résultats
       in-ligne: 'Documents en rayon :'
       see-more: Voir tout
       see-more-sr-only: les documents en rayons
     online:
-      title-sr-only: Documents en ligne, sélectionner tout les résultats
+      title-sr-only: Documents en ligne, sélectionner tous les résultats
       in-ligne: 'Documents en ligne :'
       see-more: Voir tout
       see-more-sr-only: les documents en ligne
