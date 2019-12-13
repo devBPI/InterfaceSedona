@@ -23,10 +23,11 @@
                 </p>
             </li>
         {% endif %}
-        {% if  object.lastNumber %}
+        {% if object.lastNumber %}
             <li class="availability--true availability--rayon">
                 <p class="font-weight-bold">
                     <span class="availability__status">{{ 'bloc.notice-simple.last-publication'|trans }}</span>
+                    {{ object.lastNumber }}
                 </p>
             </li>
         {% endif %}
