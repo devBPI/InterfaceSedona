@@ -28,20 +28,23 @@ header:
       en: English version
       es: Espanol version
       fr: French version
-      en-active: - active language
-      es-active: - activo idioma
-      fr-active: - langue active
- navbar-principal:
+      en-active: '- active language'
+      es-active: '- activo idioma'
+      fr-active: '- langue active'
+  navbar-principal:
     home: Home
     catalogue: Catalogue
     agenda: Agenda
-    bibliotheque : The Library
-      mission : Missions and organisation
+    bibliotheque :
+      title: The Library
+      mission :
+        title: Missions and organisation
         organigramme : Organisation Chart
         renovation : Projects
         chartes : Charters
         rapports : Activity Reports
-      collections : Collections and specific resources
+      collections :
+        title: Collections and specific resources
         livres : Printed collections
         revues : Revues spécialisées
         presse : Presse et actualité
@@ -51,67 +54,81 @@ header:
         musiques : Music and talking documents
         generation : New generation
         cartes : Cartes et plans
-      offres : Cultural mediations and resources
+      offres :
+        title: Cultural mediations and resources
         event : Cultural events
         mediations : Mediations
         offresdist : Remote resources
-      publications : Publications and communication supports
+      publications :
+        title: Publications and communication supports
         programme : Programme de la Bpi
         lettres : Newsletter
         balises : Magazine Balises
         support : Communication supports
         editions : Publications of the Library
         tvradio : Web TV / Web Radio 
-      publics : The audiences of the Bpi
+      publics :
+        title: The audiences of the Bpi
         sociologie : Sociology of the audiences
         enquetes : Survey of the audiences
         chiffres : The Bpi in figures
         histoire : History of the Bpi
-    informations : Useful informations
-      venir : Coming to the Bpi
+    informations :
+      title: Useful informations
+      venir :
+        title: Coming to the Bpi
         horaires : Opening hours
         webcam : Webcam
         acces : Access
         modeemploi : How to use the Bpi
         contacts : Contacts
-      espaces : Public areas
+      espaces :
+        title: Public areas
         niveau1 : Level 1
         niveau2 : Level 2
         niveau3 : Level 3
-      services : Services
+      services :
+        title: Services
         renseignements : Renseignements et orientation
         internet : Internet and Wi-Fi
         autreinternet : The other Internet
         autreservice : Other services
-      offrestype : Resources by type of user
+      offrestype :
+        title: Resources by type of user
         etudiants : School or university students
         enseignant : Teacher
         famille : Family
         intervenant : Social workers
         nouveau : New in Paris
         rechercheemploi : Job seeker
-      handicap : Handicaps and accessibility
+      handicap :
+        title: Handicaps and accessibility
         acces : Access
         loges : Booths
         autresservices : Other services available for members of the public with handicaps
-      emplois : Employment and internships
+      emplois :
+        title: Employment and internships
         permanents : Permanent employment
         temporaire : Temporary employment
         stages : Internships
-      marchespublic : Public procurement contracts
+      marchespublic :
+        title: Public procurement contracts
         consultations : Consultations
         candidatures : Applications
         attributions : Awards
       faq : Frequently Asked Questions
-    presse : Press Center
-      communiques : Communiqués et dossiers de presse
+    presse :
+      title: Press Center
+      communiques :
+        title: Communiqués et dossiers de presse
         archives : Archives des communiqués
       tournages : Tournages et prises de vues
       logos : Logos 
-      visuels : Visuels
+      visuels :
+        title: Visuels
         espaces : Espaces de la bibliothèque
         plusvite : 'Plus vite, plus haut, plus fort : filmer le sport' 
-        integrale : 'Sergueï Loznitsa : l'intégrale'
+        integrale : 'Sergueï Loznitsa : l''intégrale'
       partenariats : Partenariats 
   navbar-secondaire:
     title: Other sites
@@ -439,7 +456,7 @@ bloc:
     report-error: Signaler une erreur
   search-zone:            #Bloc B  Zone de recherche simple
     autocompletion-notice: Utiliser les flèches haut et bas du clavier pour vous déplacer dans la liste de suggestions
-    autocompletion-nb-result: %nb% options affichées
+    autocompletion-nb-result: '%nb% options affichées'
     input-sr-only: Saisir un mot clé
     input-placeholder: Rechercher
     input-general-placeholder: Rechercher
@@ -523,7 +540,7 @@ bloc:
       page-next: Page Suivante
       page-last: Dernière page
       input-start-sr-only: Saisir un numéro de page à consulter
-      input-end-sr-only: , puis valider avec la touche Entrée pour naviguer
+      input-end-sr-only: ', puis valider avec la touche Entrée pour naviguer'
       input-of: sur %nb%
   results-navigation:     #Bloc 15 Navigation dans les résultats
     return-to-result: Retour aux résultats
@@ -593,7 +610,7 @@ bloc:
     periodicity-date: Date d'édition papier
     alternatif-title: Autre(s) forme(s) de titre
     translated: Traduction de
-    translated_from: Traduit de:
+    translated_from: 'Traduit de:'
     in: 'dans'
     by: 'Par'
     directors: 'Réalisateurs'
@@ -613,8 +630,8 @@ bloc:
     go-to-end: Aller à la fin du feuilletage d'index
     go-to current-index: Aller sur l'index active
     previous: précédents
-    current: %name%
-    current-sr-only: - Active
+    current: '%name%'
+    current-sr-only: '- Active'
     next: suivants
     name: index
   banner-tools:         #Bloc 24 Barre des tâches
@@ -629,7 +646,7 @@ bloc:
     list-name: la liste
   list-user:            #Bloc 25 Liste des documents présents dans Ma sélection
     list-select: "Sélectionner la liste : %name%"
-    list-name: %name%
+    list-name: '%name%'
     list-name-change: Changer le nom de la liste
     col:
       title: Titre

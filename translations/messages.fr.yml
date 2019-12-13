@@ -28,20 +28,23 @@ header:
       en: Version anglaise
       es: Version espagnole
       fr: Version française
-      en-active: - active language
-      es-active: - activo idioma
-      fr-active: - langue active
+      en-active: '- active language'
+      es-active: '- activo idioma'
+      fr-active: '- langue active'
   navbar-principal:
     home: Accueil
     catalogue: Catalogue
     agenda: Agenda
-    bibliotheque : La Bibliothèque
-      mission : Missions et organisation
+    bibliotheque :
+      title: La Bibliothèque
+      mission :
+        title: Missions et organisation
         organigramme : Organigramme
         renovation : La bibliothèque en rénovation
         chartes : Chartes
         rapports : Rapports d'Activité
-      collections : Collections
+      collections :
+        title: Collections
         livres : Livres
         revues : Revues spécialisées
         presse : Presse et actualité
@@ -51,67 +54,81 @@ header:
         musiques : Musiques et documents parlés
         generation : Nouvelle génération
         cartes : Cartes et plans
-      offres : Offres culturelles et médiations
+      offres :
+        title: Offres culturelles et médiations
         event : Evénements culturels 
         mediations : Médiations
         offresdist : Offres à distances
-      publications : Publications et supports de communication
+      publications :
+        title: Publications et supports de communication
         programme : Programme de la Bpi
         lettres : Lettres d'information
         balises : Magazine Balises
         support : Supports de communication
         editions : Editions de la bibliothèque publique d'information
         tvradio : Web TV / Web Radio 
-      publics : Publics de la Bpi 
+      publics :
+        title: Publics de la Bpi
         sociologie : Sociologie des publics
         enquetes : Enquêtes auprès des publics 
         chiffres : La Bpi en chiffres 
         histoire : Histoire de la Bpi 
-    informations : Informations pratiques
-      venir : Venir à la Bpi 
+    informations :
+      title: Informations pratiques
+      venir :
+        title: Venir à la Bpi
         horaires : Horaires 
         webcam : Webcam 
         acces : Accès 
         modeemploi : Bpi mode d'emploi 
         contacts : Contacts 
-      espaces : Les espaces 
+      espaces :
+        title: Les espaces
         niveau1 : Niveau 1
         niveau2 : Niveau 2
         niveau3 : Niveau 3
-      services : Les services
+      services :
+        title: Les services
         renseignements : Renseignements et orientation 
         internet : Internet et le wifi
         autreinternet : L'autre Internet
         autreservice : Les autres services
-      offrestype : Les offres par type de publication
+      offrestype :
+        title: Les offres par type de publication
         etudiants : Etudiants ou lycéens 
         enseignant : Enseignants 
         famille : Famille 
         intervenant : Intervenant du champ social 
         nouveau : Nouvel arrivant à Paris 
         rechercheemploi : En recherche d'emploi 
-      handicap : Handicap et accessibilité 
+      handicap :
+        title: Handicap et accessibilité
         acces : Accès 
         loges : Les loges 
         autresservices : Les autres services à destination du public handicapé 
-      emplois : Emplois et stages
+      emplois :
+        title: Emplois et stages
         permanents : Emplois permanents 
         temporaire : Emplois temporaires
         stages : Stages 
-      marchespublic : Marchés publics 
+      marchespublic :
+        title: Marchés publics
         consultations : Consultations 
         candidatures : Candidatures 
         attributions : Attributions 
       faq : Foire aux questions
-    presse : Presse / Partenariats
-      communiques : Communiqués et dossiers de presse
+    presse :
+      title: Presse / Partenariats
+      communiques :
+        title: Communiqués et dossiers de presse
         archives : Archives des communiqués 
       tournages : Tournages et prises de vues
       logos : Logos 
-      visuels : Visuels
+      visuels :
+        title: Visuels
         espaces : Espaces de la bibliothèque
         plusvite : 'Plus vite, plus haut, plus fort : filmer le sport' 
-        integrale : 'Sergueï Loznitsa : l'intégrale'
+        integrale : 'Sergueï Loznitsa : l''intégrale'
       partenariats : Partenariats 
   navbar-secondaire:
     title: Autres sites
@@ -447,7 +464,7 @@ bloc:
     report-error: Signaler une erreur
   search-zone:            #Bloc B  Zone de recherche simple
     autocompletion-notice: Utiliser les flèches haut et bas du clavier pour vous déplacer dans la liste de suggestions
-    autocompletion-nb-result: %nb% options affichées
+    autocompletion-nb-result: '%nb% options affichées'
     input-sr-only: Saisir un mot clé
     input-placeholder: Rechercher
     input-general-placeholder: Rechercher
@@ -531,7 +548,7 @@ bloc:
       page-next: Page Suivante
       page-last: Dernière page
       input-start-sr-only: Saisir un numéro de page à consulter
-      input-end-sr-only: , puis valider avec la touche Entrée pour naviguer
+      input-end-sr-only: ', puis valider avec la touche Entrée pour naviguer'
       input-of: sur %nb%
   results-navigation:     #Bloc 15 Navigation dans les résultats
     return-to-result: Retour aux résultats
@@ -622,8 +639,8 @@ bloc:
     go-to-end: Aller à la fin du feuilletage d'index
     go-to current-index: Aller sur l'index active
     previous: précédents
-    current: %name%
-    current-sr-only: - Active
+    current: '%name%'
+    current-sr-only: '- Active'
     next: suivants
     name: index
   banner-tools:         #Bloc 24 Barre des tâches
@@ -638,7 +655,7 @@ bloc:
     list-name: la liste
   list-user:            #Bloc 25 Liste des documents présents dans Ma sélection
     list-select: "Sélectionner la liste : %name%"
-    list-name: %name%
+    list-name: '%name%'
     list-name-change: Changer le nom de la liste
     col:
       title: Titre
