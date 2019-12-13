@@ -97,6 +97,12 @@ class NoticeAvailable
      */
     private $support;
     /**
+     * @var string
+     * @JMS\Type("string")
+     * @JMS\SerializedName("material_support")
+     */
+    private $materialSupport;
+    /**
      * @var array
      * @JMS\Type("array<string>")
      * @JMS\SerializedName("numeros-recus")
@@ -170,11 +176,15 @@ class NoticeAvailable
     }
 
     /**
-     * @return array
+     * @return string
      */
-    public function getSupport(): array
+    public function getSupport(): ?string
     {
-        return $this->support;
+        if (!empty($this->materialSupport)) {
+            return $this->materialSupport;
+        }
+
+        return implode(' ', $this->support);
     }
 
     /**

@@ -6,6 +6,7 @@
             <li class="availability--true availability--rayon">
                 <p class="font-weight-bold">
                     <span class="availability__status">{{ object.labelDisponibility }}</span>{% if object.cote %} {{ object.cote }}{% endif %}
+                    {% if object.support %}- {{ object.support }}{% endif %}
                 </p>
                 <p>{% if object.location %}{{ object.location }} {% endif %}{% if object.category %}- {{ object.category }} {% endif %}</p>
             </li>
