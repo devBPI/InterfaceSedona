@@ -5,9 +5,6 @@
 {% block title %}{{ 'page.personal-data.title-connected'|trans }}{% endblock %}
 
 {% block body %}
-
-	<h1 class="n1" lang="fr">{{ 'page.personal-data.title-connected'|trans }}</h1>
-
 	<ul class="nav nav-tabs">
 		{% if is_granted('IS_AUTHENTICATED_FULLY') %}
 			<li class="nav-item">
