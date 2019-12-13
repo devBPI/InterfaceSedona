@@ -31,14 +31,13 @@ class ImageController extends AbstractController
     }
 
     /**
-     * @param Request $request
      * @param string $content
      * @param string $type
      * @return BinaryFileResponse
      */
-    public function binary(Request $request, string $content, string $type)
+    public function binary(string $content, string $type)
     {
-        $filePath = $this->imageService->buildImage($content, $request->get('type', null));
+        $filePath = $this->imageService->buildImage($content, $type);
         $mimeTypeGuesser = new FileinfoMimeTypeGuesser();
         $headers = [
             'Content-Type'        => $mimeTypeGuesser->guess($filePath),

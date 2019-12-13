@@ -43,7 +43,6 @@ final class ImageBuilderService
      * @param string $content
      * @param string $type
      *
-     * @param string $type
      * @return string
      */
     public function buildImage(string $content, string $type = 'livre'): string
