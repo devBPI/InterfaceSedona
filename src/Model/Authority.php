@@ -81,12 +81,6 @@ final class Authority implements NoticeInterface, RecordInterface, BpiConverterI
     private $notes;
 
     /**
-     * @var string
-     * @JMS\Type("string")
-     * @JMS\SerializedName("employePour")
-     */
-    private $employedfor;
-    /**
      * @var array
      * @JMS\Type("array<string>")
      * @JMS\SerializedName("formesAssociees")
@@ -208,13 +202,6 @@ final class Authority implements NoticeInterface, RecordInterface, BpiConverterI
     public function getNotes(): array
     {
         return $this->notes;
-    }
-    /**
-     * @return null|string
-     */
-    public function getEmployedfor(): ?string
-    {
-        return $this->employedfor;
     }
 
     /**

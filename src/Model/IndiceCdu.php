@@ -44,6 +44,14 @@ final class IndiceCdu  extends Cdu implements NoticeInterface, RecordInterface, 
     private $aroundIndex;
 
     /**
+     * @var array
+     * @JMS\Type("array<string>")
+     * @JMS\SerializedName("usedFor_s")
+     * @JMS\XmlList("usedFor")
+     */
+    private $employedfor;
+
+    /**
      * @return AroundIndex
      */
     public function getAroundIndex(): AroundIndex
@@ -108,5 +116,12 @@ final class IndiceCdu  extends Cdu implements NoticeInterface, RecordInterface, 
         return self::DOC_TYPE;
     }
 
+    /**
+     * @return array|null
+     */
+    public function getEmployedfor(): ?array
+    {
+        return $this->employedfor;
+    }
 }
 

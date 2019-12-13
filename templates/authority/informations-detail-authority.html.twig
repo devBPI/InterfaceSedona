@@ -141,18 +141,6 @@
         </ul>
     </li>
 {% endif %}
-{% if notice.employedFor is not empty %}
-    <li class="list-information__item">
-        <span class="list-information__label">{{ ('Employé pour')|trans }}</span>
-        <ul class="list-information__sub-list" lang="fr">
-            {% for element in notice.employedFor %}
-                <li class="list-information__sub-item">
-                    {{ element }}
-                </li>
-            {% endfor %}
-        </ul>
-    </li>
-{% endif %}
 {% if  notice.associetedForm is not empty %}
     <li class="list-information__item">
         <span class="list-information__label">{{ ('Nom(s) associé(s) / Nom(s) lié(s)')|trans }}</span>

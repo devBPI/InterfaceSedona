@@ -15,6 +15,17 @@
 					</li>
 				</ul>
 			</li>
+
+            {% if notice.employedFor is not empty %}
+				<li class="list-information__item">
+					<span class="list-information__label">{{ ('Employé pour')|trans }}</span>
+					<ul class="list-information__sub-list" lang="fr">
+						<li class="list-information__sub-item">
+							{{ notice.employedFor|join(' ; ') }}
+						</li>
+					</ul>
+				</li>
+            {% endif %}
 		</ul>
 	</div>
 </div>
