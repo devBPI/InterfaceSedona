@@ -110,6 +110,17 @@ class NoticeAvailable
      */
     private $reciviedNumber;
 
+    /**
+     * @var array
+     * @JMS\Type("array<string>")
+     * @JMS\XmlList("note")
+     */
+    private $notes;
+    /**
+     * @var string
+     * @JMS\Type("string")
+     */
+    private $note;
 
     /**
      * @return bool
@@ -217,6 +228,18 @@ class NoticeAvailable
     public function getCote(): ?string
     {
         return $this->cote??$this->getCallNum();
+    }
+
+    /**
+     * @return array
+     */
+    public function getNotes(): array
+    {
+        if ($this->note) {
+            return [$this->note];
+        }
+
+        return $this->notes;
     }
 
 }

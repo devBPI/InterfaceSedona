@@ -8,6 +8,7 @@
                     <span class="availability__status">{{ object.labelDisponibility }}</span>{% if object.cote %} {{ object.cote }}{% endif %}
                     {% if object.support %}- {{ object.support }}{% endif %}
                 </p>
+                {% if object.notes %}<p>{{ object.notes|join(' ') }}</p>{% endif %}
                 <p>{% if object.location %}{{ object.location }} {% endif %}{% if object.category %}- {{ object.category }} {% endif %}</p>
             </li>
         {% else %}
