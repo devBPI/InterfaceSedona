@@ -7,6 +7,9 @@
     </li>
 {% endif %}
 
+{{ pdf_occurence (notice, 'getEmployedFor', 'bloc.autority-result-information.employed-for'| trans, format) | raw }}
+{{ pdf_occurence (notice, 'getClassifiedNote', 'bloc.autority-result-information.classification-notes'| trans, format) | raw }}
+
 {{ pdf_occurence (notice, 'getCountries', 'bloc.autority-result-information.country'| trans, format) | raw }}
 {{ pdf_occurence (notice, 'getLanguages', 'bloc.autority-result-information.language'| trans, format) | raw }}
 {{ pdf_occurence (notice, 'getBirthDate', 'bloc.autority-result-information.dates'| trans, format) | raw }}

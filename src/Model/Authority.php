@@ -87,13 +87,6 @@ final class Authority implements NoticeInterface, RecordInterface, BpiConverterI
      * @JMS\XmlList("formeAssociee")
      */
     private $associetedForm;
-    /**
-     * @var array
-     * @JMS\Type("array<string>")
-     * @JMS\SerializedName("notesClassement")
-     * @JMS\XmlList("noteClassement")
-     */
-    private $classifiedNote;
 
 
     /**
@@ -210,14 +203,6 @@ final class Authority implements NoticeInterface, RecordInterface, BpiConverterI
     public function getAssocietedForm(): array
     {
         return $this->associetedForm;
-    }
-
-    /**
-     * @return array
-     */
-    public function getClassifiedNote(): array
-    {
-        return $this->classifiedNote;
     }
 
     /**

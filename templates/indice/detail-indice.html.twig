@@ -26,6 +26,19 @@
 					</ul>
 				</li>
             {% endif %}
+
+            {% if notice.classifiedNote is not empty %}
+				<li class="list-information__item">
+					<span class="list-information__label">{{ ('Notes sur le classement')|trans }}</span>
+					<ul class="list-information__sub-list" lang="fr">
+                        {% for note in notice.classifiedNote %}
+                            <li class="list-information__sub-item">
+                                {{ note }}
+                            </li>
+                        {% endfor %}
+					</ul>
+				</li>
+            {% endif %}
 		</ul>
 	</div>
 </div>
