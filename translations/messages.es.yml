@@ -30,11 +30,88 @@ header:
       fr: Versión en francés
       en-active: - active language
       es-active: - activo idioma
-      fr-active: - langue active
-  navbar-principal:
-    home: Inicio
-    catalogue: Catálogo
+navbar-principal:
+    home: Accueil
+    catalogue: Catalogue
     agenda: Agenda
+    bibliotheque : La Biblioteca
+      mission : Misiones y organización
+        organigramme : Organigramme
+        renovation : La bibliothèque en rénovation
+        chartes : Chartes
+        rapports : Rapports d'Activité
+      collections : Colecciones
+        livres : Colecciones impresas
+        revues : Revues spécialisées
+        presse : Presse et actualité
+        ressources : Recursos electrónicos
+        autoformation : Autoformación
+        collectionsaudio : Colecciones audiovisuales
+        musiques : Música y documentos sonores
+        generation : Nueva generación
+        cartes : Cartes et plans
+      offres : Ofertas culturales y mediaciones
+        event : Eventos culturales 
+        mediations : Mediaciones
+        offresdist : Ofertas a distancia
+      publications : Publicaciones y soportes de comunicación
+        programme : Programme de la Bpi
+        lettres : Boletines de información
+        balises : Magazine Balises
+        support : Soportes de comunicación
+        editions : Ediciones de la biblioteca
+        tvradio : Web TV / Web Radio 
+      publics : Los públicos de la Bpi
+        sociologie : Sociología de públicos
+        enquetes : Encuestas en el terreno de la Bpi
+        chiffres : La Bpi en cifras 
+        histoire : Historia de la Bpi
+    informations : Informaciones prácticas
+      venir : Venir à la Bpi 
+        horaires : Horarios 
+        webcam : Cámara web
+        acces : Acceso
+        modeemploi : Bpi instrucciones
+        contacts : Contactos
+      espaces : Los espacios 
+        niveau1 : Plan del nivel 1
+        niveau2 : Plan del nivel 2
+        niveau3 : Plan del nivel 3
+      services : Los servicios
+        renseignements : Renseignements et orientation
+        internet : Internet y el wifi
+        autreinternet : El otro internet
+        autreservice : Los otros servicios
+      offrestype : Las ofertas por tipo de público
+        etudiants : Alumno de enseñanza secundaria o estudiante
+        enseignant : Profesor
+        famille : Familia
+        intervenant : Participante del campo social
+        nouveau : Nuevo en París
+        rechercheemploi : En búsqueda de empleo
+      handicap : Minusvalía y accesibilidad
+        acces : Acceso
+        loges : Las cabinas 
+        autresservices : Los otros servicios a disposición de los minusválidos
+      emplois : Empleos y prácticas
+        permanents : Empleos fijos
+        temporaire : Empleos temporales
+        stages : Prácticas
+      marchespublic : Mercados públicos
+        consultations : Consultas
+        candidatures : Candidaturas
+        attributions : Adjudicaciones 
+      faq : Preguntas más frecuentes
+    presse : Espacio prensa
+      communiques : Communiqués et dossiers de presse
+        archives : Archives des communiqués 
+      tournages : Tournages et prises de vues
+      logos : Logos 
+      visuels : Visuels
+        espaces : Espaces de la bibliothèque
+        plusvite : 'Plus vite, plus haut, plus fort : filmer le sport' 
+        integrale : 'Sergueï Loznitsa : l'intégrale'
+      partenariats : Partenariats 
   navbar-secondaire:
     title: Otros sitios
     aria: Menu-secondaire
