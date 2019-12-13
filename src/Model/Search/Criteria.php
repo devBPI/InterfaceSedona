@@ -289,7 +289,7 @@ class Criteria
         foreach (WordsList::$words[WordsList::THEME_DEFAULT] as $field) {
             if (!empty($this->$field)) {
                 if ($withFields) {
-                    $keywords[$field] = $this->$field;
+                    $keywords[] = [$field => $this->$field];
                 } else {
                     $keywords[] = $this->$field;
                 }

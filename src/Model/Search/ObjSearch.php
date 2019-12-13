@@ -179,10 +179,7 @@ final class ObjSearch
      */
     public function getAdvancedCriteria(): array
     {
-        $criteria = [];
-        foreach ($this->searchQuery->getCriteria()->getKeywordsTitles(true) as $field => $keyword) {
-            $criteria[$field] = $keyword;
-        }
+        $criteria = $this->searchQuery->getCriteria()->getKeywordsTitles(true);
 
         foreach ($this->getSearchFilters() as $name => $values) {
             if ($name === 'date_publishing' && is_array($values)) {
@@ -193,7 +190,7 @@ final class ObjSearch
                 $values = implode(',', $values);
             }
 
-            $criteria[$name] = $values;
+            $criteria[] = [$name => $values];
         }
 
         return $criteria;
