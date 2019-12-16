@@ -11,25 +11,25 @@
 			<ul class="pagination pagination--header justify-content-center justify-content-md-end">
 				<li class="page-item">
 					{% if navigation.previousPermalink is defined and navigation.previousPermalink is not null %}
-						<a href="{{ toggle_to_path_parcours(route_by_object(navigation.previousPermalink.type), app.request.attributes.get(constant('App\\Model\\Search\\ObjSearch::PARAM_PARCOURS_NAME')), {'permalink':navigation.previousPermalink.permalink,(constant('App\\Model\\Search\\ObjSearch::PARAM_REQUEST_NAME')):navigation.hash}) }}" class="page-link page-link--left">
+						<a href="{{ toggle_to_path_parcours(route_by_object(navigation.previousPermalink.type), app.request.attributes.get(constant('App\\Model\\Search\\ObjSearch::PARAM_PARCOURS_NAME')), {'permalink':navigation.previousPermalink.permalink,(constant('App\\Model\\Search\\ObjSearch::PARAM_REQUEST_NAME')):navigation.hash}) }}" class="page-link link link--icone">
 							<img src="{{ asset('images/icones/icone-chevron-gauche.svg') }}" alt="" class="icone-chevron"/>
 							<span>{{ 'bloc.results-navigation.result-previous'|trans }}</span>
 						</a>
                     {% else %}
-						<p class="page-link page-link--left">{{ 'bloc.results-navigation.result-previous'|trans }}</p>
+						<span class="page-link">{{ 'bloc.results-navigation.result-previous'|trans }}</span>
 					{% endif %}
 				</li>
 				<li class="page-item">
-					<p class="page-link">{{ 'bloc.results-navigation.result-current'|trans({'%nb%': navigation.rows, '%current%': navigation.row+1 }) }}</p>
+					<span class="page-link page-link--nolink">{{ 'bloc.results-navigation.result-current'|trans({'%nb%': navigation.rows, '%current%': navigation.row+1 }) }}</span>
 				</li>
 				<li class="page-item">
 					{% if navigation.nextPermalink is defined and navigation.nextPermalink is not null %}
-						<a href="{{  toggle_to_path_parcours(route_by_object(navigation.nextPermalink.type),app.request.get('parcours'),{'permalink':navigation.nextPermalink.permalink, (constant('App\\Model\\Search\\ObjSearch::PARAM_REQUEST_NAME')):navigation.hash}) }}" class="page-link page-link--right">
+						<a href="{{  toggle_to_path_parcours(route_by_object(navigation.nextPermalink.type),app.request.get('parcours'),{'permalink':navigation.nextPermalink.permalink, (constant('App\\Model\\Search\\ObjSearch::PARAM_REQUEST_NAME')):navigation.hash}) }}" class="page-link link link--icone-end">
 							<span>{{ 'bloc.results-navigation.result-next'|trans }}</span>
 							<img src="{{ asset('images/icones/icone-chevron-gauche.svg') }}" alt="" class="icone-chevron"/>
 						</a>
 					{% else %}
-						<p class="page-link page-link--left">{{ 'bloc.results-navigation.result-next'|trans }}</p>
+						<span class="page-link">{{ 'bloc.results-navigation.result-next'|trans }}</span>
                     {% endif %}
 				</li>
 			</ul>

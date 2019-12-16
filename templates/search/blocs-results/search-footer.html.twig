@@ -1,14 +1,14 @@
 <div class="col-12" lang="fr">
 
 	<nav aria-label="{{ 'bloc.search-header-footer.footer.aria-label'|trans }}" role="navigation">
-		<ul class="pagination justify-content-center">
+		<ul class="pagination pagination--icone justify-content-center">
 			<li class="page-item">
-				<a href="{{ add_page_to_uri(1) }}" class="page-link page-link--left-double">
+				<a href="{{ add_page_to_uri(1) }}" class="page-link link link--icone">
 					<img src="{{ asset('images/icones/icone-chevron-double-gauche.svg') }}" alt="" class="icone-chevron-double"/><span class="sr-only">{{ 'bloc.search-header-footer.footer.page-first'|trans }}</span>
 				</a>
 			</li>
 			<li class="page-item">
-				<a href="{{ add_page_to_uri(page - 1) }}" class="page-link page-link--left">
+				<a href="{{ add_page_to_uri(page - 1) }}" class="page-link link link--icone">
 					<img src="{{ asset('images/icones/icone-chevron-gauche.svg') }}" alt="" class="icone-chevron"/>
 					<span class="sr-only">{{ 'bloc.search-header-footer.footer.page-previous'|trans }}</span>
 				</a>
@@ -31,12 +31,12 @@
 				</div>
 			</li>
 			<li class="page-item">
-				<a href="{{ add_page_to_uri(page + 1) }}" class="page-link page-link--right">
+				<a href="{{ add_page_to_uri(page + 1) }}" class="page-link link link--icone-end">
 					<img src="{{ asset('images/icones/icone-chevron-gauche.svg') }}" alt="" class="icone-chevron-double"/><span class="sr-only">{{ 'bloc.search-header-footer.footer.page-next'|trans }}</span>
 				</a>
 			</li>
 			<li class="page-item">
-				<a href="{{ add_page_to_uri(pagesTotal) }}" class="page-link page-link--right-double">
+				<a href="{{ add_page_to_uri(pagesTotal) }}" class="page-link link link--icone-end">
 					<img src="{{ asset('images/icones/icone-chevron-double-gauche.svg') }}" alt="" class="icone-chevron"/><span class="sr-only">{{ 'bloc.search-header-footer.footer.page-last'|trans }}</span>
 				</a>
 			</li>

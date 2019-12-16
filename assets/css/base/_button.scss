@@ -104,28 +104,47 @@
 
 .link {
 
+	img {
+		height: rem(13);
+	}
+
+	span {
+		+ img {
+			transform: scaleX(-1);
+			margin-left: 3px;
+			margin-top: -3px;
+		}
+	}
+
+	&:hover,
+	&:focus {
+		text-decoration: underline;
+	}
+
 	&--icone {
-		margin-top: rem(-2);
 		display: block;
+		position: relative;
+		padding-left: rem(15)!important;
 
 		img {
-			height: rem(13);
-
-			+ span {
-				vertical-align: middle;
-				margin-left: 5px;
-			}
+			position: absolute;
+			top: 50%;
+			left: 0;
+			transform: translateY(-50%);
 		}
 	}
 
 	&--icone-end {
-		margin-top: rem(-2);
 		display: block;
+		position: relative;
+		padding-right: rem(15)!important;
 
 		img {
-			height: rem(13);
-			transform: scaleX(-1);
-			margin-top: -3px;
+			position: absolute;
+			top: 50%;
+			right: 0;
+			margin: 0!important;
+			transform: scaleX(-1) translateY(-50%)!important;
 		}
 	}
 
