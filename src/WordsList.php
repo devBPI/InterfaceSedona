@@ -20,7 +20,6 @@ final class WordsList
             self::TITLE_WORD,
             self::AUTHOR_WORD,
             self::SUBJECT_WORD,
-            self::PUBLICATION_DATE_WORD,
             self::ISBN_WORD,
             self::INDICE_COTE_WORD
         ],
@@ -29,7 +28,6 @@ final class WordsList
             self::TITLE_WORD,
             self::AUTHOR_WORD,
             self::SUBJECT_WORD,
-            self::PUBLICATION_DATE_WORD,
             self::ISBN_WORD,
             self::INDICE_COTE_WORD
         ],
@@ -39,7 +37,6 @@ final class WordsList
             self::AUTHOR_WORD,
             self::REALISATOR_WORD,
             self::SUBJECT_WORD,
-            self::PUBLICATION_DATE_WORD,
             self::ISBN_WORD,
             self::INDICE_COTE_WORD
         ],
@@ -50,7 +47,6 @@ final class WordsList
             self::SUBJECT_WORD,
             self::THEME_WORD,
             self::EDITOR_WORD,
-            self::PUBLICATION_DATE_WORD,
             self::ISBN_WORD,
             self::INDICE_COTE_WORD
         ]
@@ -67,7 +63,6 @@ final class WordsList
     const SUBJECT_WORD = 'subject';
     const THEME_WORD = 'theme';
     const EDITOR_WORD = 'editor';
-    const PUBLICATION_DATE_WORD = 'publicationDate';
     const ISBN_WORD = 'isbnIssnNumcommercial';
     const INDICE_COTE_WORD = 'indiceCote';
 
