@@ -5,7 +5,7 @@
         {% if constant('App\\Model\\NoticeAvailable::AVAILABLE') in [object.availability, object.labelDisponibility] %}
             <li class="availability--true availability--rayon">
                 <p class="font-weight-bold">
-                    <span class="availability__status">{{ object.labelDisponibility }}</span>{% if object.cote %} {{ object.cote }}{% endif %}
+                    <span class="availability__status">{{ 'bloc.notice-simple.document-available'|trans }} </span>{% if object.cote %} {{ object.cote }}{% endif %}
                     {% if object.support %}- {{ object.support }}{% endif %}
                 </p>
                 {% if object.notes %}<p>{{ object.notes|join(' ') }}</p>{% endif %}
@@ -26,34 +26,34 @@
             </li>
         {% endif %}
         {% if object.lastNumber %}
-            <li class="availability--true availability--rayon">
+            <li class="availability--numbers">
                 <p class="font-weight-bold">
-                    <span class="availability__status">{{ 'bloc.notice-simple.last-publication'|trans }}</span>
+                    <span class="availability__label">{{ 'bloc.notice-simple.last-publication'|trans }}</span>
                     {{ object.lastNumber }}
                 </p>
             </li>
         {% endif %}
-        {% for number in object.reciviedNumber %}
-            <li class="availability--true availability--rayon">
-                <p class="font-weight-bold">
-                   {{ number }}
-                </p>
-            </li>
-            {% if loop.index == 2 %}
-                <li>
-                    <button type="button" class="btn btn-small-link" data-toggle="collapse"
-                            data-target="#availabity-n-items" aria-expanded="false"
-                            aria-controls="availabity-n-items">{{ 'global.see-more'|trans }}
-                    </button>
+        {% if object.reciviedNumber|length > 1 %}
+            <li class="availability--numbers">
+                <button type="button" class="btn btn-small-link" data-toggle="collapse"
+                        data-target="#availabity-n-items" aria-expanded="false"
+                        aria-controls="availabity-n-items">{{ 'global.see-more'|trans }}
+                </button>
 
-                    <ul class="collapse" id="availabity-n-items">
-            {% endif %}
-
-            {% if not loop.index <3 and loop.last %}
+                <div class="collapse" id="availabity-n-items">
+                    <p class="availability__label">{{ 'bloc.notice-simple.publications'|trans }}</p>
+                    <ul class="availability__list">
+                    {% for number in object.reciviedNumber %}
+                        <li>
+                            <p class="font-weight-bold">
+                                {{ number }}
+                            </p>
+                        </li>
+                    {% endfor %}
                     </ul>
-                </li>
-            {% endif %}
-        {% endfor %}
+                </div>
+            </li>
+        {% endif %}
 
     {% elseif is_same_instance(object, "App\\Model\\Link") %}
         {% set objTitle = 'bloc.notice-simple.access'|trans %}

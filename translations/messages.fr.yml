@@ -519,6 +519,7 @@ bloc:
     access-to-bpi: Consultable à la Bpi
     result-of-bdd: Résultat de
     last-publication: 'Dernier numéro reçu :'
+    publications: 'Numéros reçus :'
     document-available: Disponible
     document-unavailable: Indisponible
     notification-availablity: Document indisponible, être prévenu de son retour en rayon - ouverture formulaire

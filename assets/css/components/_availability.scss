@@ -62,4 +62,19 @@
 			}
 		}
 	}
+
+	&--numbers {
+		.availability__label {
+			font-weight: $font-bold;
+			text-transform: uppercase;
+		}
+
+		#availabity-n-items.show {
+			display: flex;
+
+			.availability__list {
+				margin-left: 20px;
+			}
+		}
+	}
 }
