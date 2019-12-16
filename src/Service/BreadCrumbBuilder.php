@@ -286,13 +286,12 @@ final class BreadCrumbBuilder
 
     /**
      * @param Request $request
-     * @return null|string
+     * @return string
      */
-    private function humanizeCriteria(Request $request):?string
+    private function humanizeCriteria(Request $request): string
     {
         $objSearch =  new ObjSearch($this->getObjSearchQuery($request));
-
-        return $objSearch->getCriteria()->getMyHistoryTitle($this->translator, '', false);
+        return implode(', ', $objSearch->getCriteria()->getKeywordsTitles());
     }
 }
 
