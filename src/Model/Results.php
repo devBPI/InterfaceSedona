@@ -172,7 +172,7 @@ class Results implements SearchResultInterface
     /**
      * @return Facets
      */
-    public function getFacets(): Facets
+    public function getFacets(): ?Facets
     {
         return $this->facets;
     }

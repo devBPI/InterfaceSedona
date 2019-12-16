@@ -33,9 +33,14 @@
 
 		<div class="col-12 col-sm-2 pl-sm-0">
 			<div class="search-refine">
-				<button class="search-refine__button" type="button" data-target="#modal-refine-search" data-toggle="modal" lang="fr">{{ 'modal.refine-search.button-title'|trans }}<span class="sr-only"> {{ 'modal.refine-search.button-title-aria'|trans }}</span></button>
+				{% if objSearch.results.facets %}
+					<button class="search-refine__button" type="button" data-target="#modal-refine-search" data-toggle="modal" lang="fr">
+						{{ 'modal.refine-search.button-title'|trans }}
+						<span class="sr-only"> {{ 'modal.refine-search.button-title-aria'|trans }}</span>
+					</button>
 
-				{% include "search/modal/refine-search.html.twig" with {'facets': objSearch.results.facets} %}
+					{% include "search/modal/refine-search.html.twig" with {'facets': objSearch.results.facets} %}
+				{% endif %}
 			</div>
 		</div>
 	</div>
