@@ -58,7 +58,7 @@
     {% elseif is_same_instance(object, "App\\Model\\Link") %}
         {% set objTitle = 'bloc.notice-simple.access'|trans %}
         {% if object.title is not empty %}
-            {% set objTitle =  'bloc.notice-simple.access-to-bdd'|trans ~ ' ' ~ notice.title %}
+            {% set objTitle =  'bloc.notice-simple.access-to-bdd'|trans ~ ' ' ~ object.title %}
         {% endif %}
 
         {% if object.media is  defined and object.media is not empty %}
