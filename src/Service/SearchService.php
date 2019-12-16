@@ -6,6 +6,7 @@ namespace App\Service;
 use App\Model\Search\FiltersQuery;
 use App\Model\Search\ObjSearch;
 use App\Model\Search\SearchQuery;
+use App\WordsList;
 use JMS\Serializer\SerializerInterface;
 use Monolog\Logger;
 use Symfony\Component\HttpFoundation\Request;
@@ -62,12 +63,19 @@ final class SearchService
      */
     private function getTitleFromSearchQuery(SearchQuery $searchQuery): string
     {
-        $keywords = $searchQuery->getCriteria()->getKeywordsTitles();
+        $title = [];
+        if ($searchQuery->getCriteria()->getParcours() !== WordsList::THEME_DEFAULT) {
+            $title[] = $this->translator->trans('header.result.title.'.$searchQuery->getCriteria()->getParcours());
+        } else {
+            $title[] = $this->translator->trans('page.search.title.'.strtolower($searchQuery->getMode()));
+        }
 
-        return $this->translator->trans(
-            'page.search.title.'.strtolower($searchQuery->getMode()), [
-                '%keyword%' => implode(', ', $keywords)
-        ]);
+        $keywords = $searchQuery->getCriteria()->getKeywordsTitles();
+        if (count($keywords) > 0) {
+            $title[] = implode(', ', $keywords);
+        }
+
+        return implode(' - ', $title);
     }
 
     /**

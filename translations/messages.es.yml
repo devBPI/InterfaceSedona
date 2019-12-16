@@ -411,8 +411,8 @@ page:
       actualites-revues: Parcours Actualités et revues
   search:
     title:
-      simple: Résultats recherche simple - %keyword%
-      advanced: Résultats recherche avancée - %keyword%
+      simple: Résultats recherche simple
+      advanced: Résultats recherche avancée
       page: page %current% sur %total%
   login:
     title: Authentification

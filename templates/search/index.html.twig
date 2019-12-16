@@ -1,14 +1,8 @@
 {% extends 'search/base.html.twig' %}
 
 {% block title %}
-	{% if  app.request.attributes.get(constant('App\\Model\\Search\\ObjSearch::PARAM_PARCOURS_NAME'))  %}
-        {% set title =  ('header.result.title.'~ app.request.attributes.get(constant('App\\Model\\Search\\ObjSearch::PARAM_PARCOURS_NAME'))) | trans  %}
-    {% elseif objSearch is defined and objSearch.title is not null %}
-        {% set title = objSearch.title %}
-	{% else %}
-        {% set title = constant('App\\Controller\\SearchController::GENERAL') %}
-    {% endif %}
-    {{ title ~ ' - ' ~ 'page.search.title.page'|trans({'%current%': objSearch.results.page, '%total%': objSearch.results.pageTotal}) }}{% endblock %}
+    {{ objSearch.title ~ ' - ' ~ 'page.search.title.page'|trans({'%current%': objSearch.results.page, '%total%': objSearch.results.pageTotal}) }}
+{% endblock %}
 
 {% block searchextended %}
 
