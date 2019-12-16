@@ -13,46 +13,38 @@
 		margin: 0 rem(5);
 
 		@include media-breakpoint-up(md) {
-			margin: 0;
+			margin: 0 rem(3);
+		}
+	}
+
+	&--icone {
+
+		.link {
+			padding: 0 rem(5);
+
+			img {
+				position: relative;
+				transform: none;
+				top: 0;
+			}
+
+			&--icone-end {
+
+				img {
+					transform: scaleX(-1)!important;
+				}
+			}
 		}
 	}
 
 	.page {
 
 		&-link {
+			border: 0;
 			height: 100%;
 			margin-bottom: 0;
-			line-height: 1.5;
-			display: initial;
 			padding: 0 rem(5);
-
-			&:hover {
-				text-decoration: underline;
-			}
-
-			img {
-				height: rem(13);
-
-				+ span {
-					margin-left: rem(5);
-				}
-			}
-
-			span {
-				vertical-align: middle;
-
-				+ img {
-					margin-left: rem(5);
-				}
-			}
-
-			&--right,
-			&--right-double {
-
-				img {
-					transform: scaleX(-1);
-				}
-			}
+			display: inline-block;
 
 			&--reset {
 
@@ -60,6 +52,13 @@
 					text-decoration: none;
 					color: $black;
 				}
+			}
+
+			&--nolink {
+				border-left: $border-default;
+				border-right: $border-default;
+				color: $black;
+				text-decoration: none;
 			}
 
 			&__input {
@@ -74,27 +73,6 @@
 
 		.page-item {
 			margin: 0;
-		}
-
-		p.page-link {
-			border-left: $border-default;
-			border-right: $border-default;
-			border-top: 0;
-			border-bottom: 0;
-			
-			&:hover {
-				border-top-color: transparent;
-				border-bottom-color: transparent;
-				border-left-color: $black;
-				border-right-color: $black;
-				color: $black;
-				text-decoration: none;
-			}
-
-			&.page-link--left,
-			&.page-link--right {
-				border: 0;
-			}
 		}
 
 		.page-link {
