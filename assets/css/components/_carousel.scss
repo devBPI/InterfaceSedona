@@ -99,13 +99,15 @@
 
 		&-title {
 			margin-bottom: 5px;
-			max-height: 95px;
+			max-height: rem(92);
+			display: block;
 			overflow: hidden;
 		}
 
 		&-subtitle {
 			margin-bottom: 0;
-			max-height: 49px;
+			max-height: rem(46);
+			display: block;
 			overflow: hidden;
 		}
 	}
