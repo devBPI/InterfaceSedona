@@ -95,7 +95,7 @@
 {% endif %}
 
 {{ notice_macros.detail(notice.placesEvents , 'bloc.autority-result-information.manifestation-location') }}
-{{ notice_macros.detail(notice.origins , 'bloc.autority-result-information.origins', "; ", " list-information__item--mentions") }}
+{{ notice_macros.detail(notice.origins , 'bloc.autority-result-information.origins'|trans ~ ': ', " ; ", " list-information__item--mentions") }}
 
 {% if notice.configurationName is not empty and notice.configurationName != constant('App\\Model\\Notice::CATALOGUE_BPI') %}
     <li class="list-information__item">

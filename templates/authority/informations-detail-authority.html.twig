@@ -169,11 +169,12 @@
 
 {% if notice.origins is not empty %}
     <li class="list-information__item list-information__item--mentions">
-        <span class="list-information__label">{{ ('Origine de la notice :')|trans }}</span>
+        <span class="list-information__label">{{ 'bloc.autority-result-information.origins'|trans }} :</span>
         <ul class="list-information__sub-list" lang="fr">
             {% for element in notice.origins %}
                 <li class="list-information__sub-item">
                     {{ element }}
+                    {% if not loop.last %}; {% endif %}
                 </li>
             {% endfor%}
             {% if notice.originalUrl is not empty %}
