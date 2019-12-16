@@ -25,9 +25,10 @@ $('.js-carousel-primary')
         nextArrow: '<button class="slick-next" aria-label="Actualité suivante" type="button">Suivant</button>',
         dotsClass: 'carousel__pagination',
         customPaging: function (slider, i) {
-            var slideNumber = (i + 1),
-                totalSlides = slider.slideCount;
-            return '<button class="carousel__pagination-dot"><span class="sr-only">Actualités ' + slideNumber + ' page sur ' + totalSlides + '</span></button>';
+            var timestamp = new Date().getTime();
+            var slideNumber = i + 1,
+            totalSlides = slider.slideCount;
+            return '<button class="carousel__pagination-dot" aria-labelledby="dot-btn-' + timestamp + '-' + slideNumber + '"><span id="dot-btn-' + timestamp + '-' + slideNumber + '" class="sr-only">Actualités ' + slideNumber + ' page sur ' + totalSlides + '</span></button>';
         }
     })
     .on('afterChange', function(slick, currentSlide){
