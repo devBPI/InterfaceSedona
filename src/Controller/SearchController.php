@@ -140,8 +140,8 @@ final class SearchController extends AbstractController
 
 
     /**
-     * @Route("/retour-recherche/{searchToken}", methods={"GET"}, name="back_search")
-     * @Route("/{parcours}/retour-recherche/{searchToken}", methods={"GET"}, name="back_search_parcours")
+     * @Route("/recherche-retour/{searchToken}", methods={"GET"}, name="back_search")
+     * @Route("/{parcours}/recherche-retour/{searchToken}", methods={"GET"}, name="back_search_parcours")
      *
      * @param string $searchToken
      * @param Request $request
