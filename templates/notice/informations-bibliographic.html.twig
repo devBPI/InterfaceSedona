@@ -1,7 +1,7 @@
 {% import "common/detail-macro.html.twig" as notice_macros %}
-{{ notice_macros.detail_link(notice.otherAuthors, ('bloc.autority-result-information.'~( notice.type == constant('MUSIC',notice) ?'musique-author':'other-authors')), constant('App\\WordsList::AUTHOR_WORD'), "; ") }}
-{{ notice_macros.detail_link(notice.contributeurs, 'bloc.autority-result-information.contributor', constant('App\\WordsList::AUTHOR_WORD')) }}
-{{ notice_macros.detail_link(notice.editors, 'bloc.autority-result-information.editor'|trans, constant('App\\WordsList::AUTHOR_WORD')) }}
+{{ notice_macros.row_link(notice.otherAuthors, ('bloc.autority-result-information.'~( notice.type == constant('MUSIC',notice) ?'musique-author':'other-authors')), constant('App\\WordsList::AUTHOR_WORD')) }}
+{{ notice_macros.row_link(notice.contributeurs, 'bloc.autority-result-information.contributor', constant('App\\WordsList::AUTHOR_WORD')) }}
+{{ notice_macros.row_link(notice.editors, 'bloc.autority-result-information.editor'|trans, constant('App\\WordsList::AUTHOR_WORD')) }}
 
 {{ notice_macros.detail(notice.publishedDates, 'bloc.autority-result-information.date'|trans) }}
 {{ notice_macros.detail(notice.otherDates, 'bloc.autority-result-information.edition-date'|trans) }}
