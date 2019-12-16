@@ -60,13 +60,13 @@
                 {% endif %}
 
                 <p lang="fr">
-                {{ notice.frontDate }}
+                    {{ notice.frontDate }}
                     {% if notice.frontResume is not empty %}
-                        {% set title = 'bloc.notice-simple.resume-title' %}
+                        {% set title = 'bloc.notice-simple.resume-title'|trans %}
                         {% if notice.type in constant('App\\Model\\Notice::NOTICE_CONTENU_TYPE') %}
-                            {% set title = 'modal.comments-edit.field-content' %}
+                            {% set title = 'modal.comments-edit.field-content'|trans %}
                         {% endif %}
-                    - <button class="list-result__content-resume" type="button" data-toggle="tooltip" title="{{ title |trans }} : {{ notice.frontResume }}">
+                    - <button class="list-result__content-resume" type="button" data-toggle="tooltip" title="{{ title }} : {{ notice.frontResume }}">
                         <img src="{{ asset('images/icones/icone-resume.svg') }}" alt=""/>
                         <span class="sr-only">{{ 'bloc.notice-simple.resume-label'|trans }}</span>
                     </button>
@@ -118,16 +118,16 @@
                     {% endfor %}
                 </ul>
 
-
             </div>
+
             {% if app.request.get('see-all') and app.request.get('see-all') in [constant('App\\Model\\Notice::SEE_ONLINE'),constant('App\\Model\\Notice::SEE_ONSHELF')] and notice.frontResume %}
                 <div class="list-result__content-txt">
-                    {% set title = 'bloc.notice-simple.resume-title' %}
+                    {% set title = 'bloc.notice-simple.resume-title'|trans %}
                     {% if notice.type in constant('App\\Model\\Notice::NOTICE_CONTENU_TYPE') %}
-                        {% set title = 'modal.comments-edit.field-content' %}
+                        {% set title = 'modal.comments-edit.field-content'|trans %}
                     {% endif %}
 
-                    <p lang="fr">{{ title |trans }} : {{ notice.frontResume }}</p>
+                    <p lang="fr">{{ title }} : {{ notice.frontResume }}</p>
                 </div>
             {% endif %}
         </div>
