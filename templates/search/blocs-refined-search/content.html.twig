@@ -1,6 +1,6 @@
 {% from 'search/blocs-advanced-search/macros.html.twig' import display_checkbox_list %}
 
-{% for facet in objSearch.results.facets.facets if facet.values|length > 1 %}
+{% for facet in objSearch.results.facets.facets if facet.values|length > 0 %}
     <div class="modal-body">
         {% if facet.name == 'date_publishing' %}
             {% include 'search/blocs-refined-search/date-content.html.twig' %}
