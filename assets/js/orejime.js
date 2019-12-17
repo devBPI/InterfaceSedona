@@ -20,12 +20,13 @@ Orejime.init({
                 description: "Ces cookies servent à mesurer et analyser l’audience de notre site (volume de fréquentation, pages vues, temps moyen par visite, etc.) ; et ce afin d’en améliorer la performance. En acceptant ces cookies, vous contribuez à l’amélioration de notre site.",
             },
             "always-on": {
-                description: "Ces cookies sont nécessaires pour assurer le fonctionnement optimal du site et ne peuvent être paramétrés.\n\n"+
+                description: "Ces cookies sont nécessaires pour assurer le fonctionnement optimal du site et ne peuvent être paramétrés.\n\n" +
                     "Ils nous permettent de vous offrir les principales fonctionnalités du site, de vous conseiller en ligne ou encore de sécuriser notre site contre les fraudes éventuelles.",
             },
             purposes: {
                 analytics: "Analytics"
             }
+        }
     },
     apps: [
         {
@@ -51,5 +52,5 @@ Orejime.init({
             purposes: [],
             required: true
         }
-    ],
+    ]
 });
