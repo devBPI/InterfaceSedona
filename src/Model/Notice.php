@@ -385,20 +385,7 @@ class Notice extends AbstractImage implements NoticeInterface, RecordInterface
      * @JMS\SerializedName("droits-infos")
      */
     private $rights;
-    /**
-     * @var array
-     * @JMS\Type("array<string>")
-     * @JMS\SerializedName("licences")
-     * @JMS\XmlList("licence")
-     */
-    private $licences;
-    /**
-     * @var array
-     * @JMS\Type("array<string>")
-     * @JMS\SerializedName("copyrights")
-     * @JMS\XmlList("copyright")
-     */
-    private $copyright;
+
     /**
      * @var array
      * @JMS\Type("array<string>")
@@ -597,27 +584,11 @@ class Notice extends AbstractImage implements NoticeInterface, RecordInterface
     }
 
     /**
-     * @return Right|null
-     */
-    public function getRights():?Right
-    {
-        return $this->rights;
-    }
-
-    /**
      * @return array
      */
-    public function getLicences(): array
+    public function getRights(): array
     {
-        return $this->licences;
-    }
-
-    /**
-     * @return array
-     */
-    public function getCopyright(): array
-    {
-        return $this->copyright;
+        return $this->rights->__toArray();
     }
 
     /**

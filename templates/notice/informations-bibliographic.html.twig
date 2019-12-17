@@ -76,23 +76,7 @@
 
 {{ notice_macros.detail(notice.publics , 'bloc.autority-result-information.publics'|trans) }}
 
-{#droit#}
-{% if notice.licences|length>0 or notice.rights|length>0 or notice.copyright|length>0 %}
-    <li class="list-information__item">
-        <span class="list-information__label">{{ ("Droits")|trans }}</span>
-        <ul class="list-information__sub-list">
-            {% for element in notice.rights %}
-                <li class="list-information__sub-item">{{ element.name }},</li>
-            {% endfor %}
-            {% for element in notice.licences %}
-                <li class="list-information__sub-item">{{ element.name }}</li>
-            {% endfor %}
-            {% for element in notice.copyright %}
-                <li class="list-information__sub-item">{{ element.name }}</li>
-            {% endfor %}
-        </ul>
-    </li>
-{% endif %}
+{{ notice_macros.detail(notice.rights , "Droits"|trans, " . ") }}
 
 {{ notice_macros.detail(notice.placesEvents , 'bloc.autority-result-information.manifestation-location') }}
 {{ notice_macros.detail(notice.origins , 'bloc.autority-result-information.origins'|trans ~ ': ', " ; ", " list-information__item--mentions") }}
