@@ -185,67 +185,50 @@ $('.js-seeMoreAvailability').children('button').on(    'click', function(e){
     });
 });
 
-
-
-
-// see the annotated config in the README for details on how everything works
-let orejimeConfig = {
-    appElement: "#app",
+Orejime.init({
+    appElement: "#contenu-site",
     privacyPolicy: "http://www.bpi.fr/home/gestion/informations-sur-les-cookies.html",
     lang:"fr",
     translations: {
         fr: {
             consentModal: {
                 description: "En poursuivant votre navigation sur le site sans modifier vos paramètres, vous acceptez l'utilisation des cookies pour vous proposer des contenus et services adaptés à vos centres d’intérêt",
-            }
-        },
-        en: {
-            consentModal: {
-                description: "En poursuivant votre navigation sur le site sans modifier vos paramètres, vous acceptez l'utilisation des cookies pour vous proposer des contenus et services adaptés à vos centres d’intérêt",
             },
-            "inline-tracker": {
-                description: "Example of an inline tracking script that sets a dummy cookie",
-            },
-            "external-tracker": {
-                description: "Example of an external tracking script that sets a dummy cookie",
+            "google-tag-manager": {
+                description: "Ces cookies servent à mesurer et analyser l’audience de notre site (volume de fréquentation, pages vues, temps moyen par visite, etc.) ; et ce afin d’en améliorer la performance. En acceptant ces cookies, vous contribuez à l’amélioration de notre site.",
             },
             "always-on": {
-                description: "this example app will not set any cookie",
-            },
-            "disabled-by-default": {
-                description: "this example app will not set any cookie",
+                description: "Ces cookies sont nécessaires pour assurer le fonctionnement optimal du site et ne peuvent être paramétrés.\n\n"+
+                    "Ils nous permettent de vous offrir les principales fonctionnalités du site, de vous conseiller en ligne ou encore de sécuriser notre site contre les fraudes éventuelles.",
             },
             purposes: {
-                analytics: "Analytics",
-                security: "Security",
-                ads: "Ads"
+                analytics: "Analytics"
             }
-        },
-        es: {
-            consentModal: {
-                description: "En poursuivant votre navigation sur le site sans modifier vos paramètres, vous acceptez l'utilisation des cookies pour vous proposer des contenus et services adaptés à vos centres d’intérêt",
-            },
-            purposes: {
-                analytics: "Analytics",
-                security: "Security",
-                ads: "Ads"
-            }
-        },
-
-
+        }
     },
     apps: [
         {
-            name: "inline-tracker",
-            title: "Inline Tracker",
+            name: "google-tag-manager",
+            title: "Google Tag Manager",
+            cookies: [
+                "_ga",
+                "_gat",
+                "_gid",
+                "__utma",
+                "__utmb",
+                "__utmc",
+                "__utmt",
+                "__utmz",
+                // "_gat_gtag_" + GTM_UA,
+                // "_gat_" + GTM_UA
+            ],
             purposes: ["analytics"],
-            cookies: ["inline-tracker"],
-            onlyOnce: true,
+        },
+        {
+            name: "always-on",
+            title: "Required app",
+            purposes: [],
+            required: true
         }
     ],
-}
-
-// since there is a orejimeConfig global variable in index.js, a window.orejime instance was created when including the lib
-document.querySelector('.consent-modal-button').addEventListener('click', function() {
-    orejime.show();
-}, false);
+});
