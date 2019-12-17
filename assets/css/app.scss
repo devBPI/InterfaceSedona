@@ -19,6 +19,10 @@
 // Import select2
 @import 	"~select2/select2.css";
 
+// Orejime
+@import  	"variable-custom-orijime",
+			"~orejime/dist/orejime";
+
 // Import Helpers
 @import 	"helpers/mixins";
 
@@ -30,4 +34,3 @@
 
 // Components
 @import 	"components";
-
