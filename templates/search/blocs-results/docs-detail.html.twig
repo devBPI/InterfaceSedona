@@ -77,8 +77,8 @@
                 {% if notice.type == constant('App\\Model\\Notice::VIDEO') and notice.formats is not empty  %}
                     <p lang="fr">{{ notice.formats }}</p>
                 {% endif %}
-                {% if notice.configurationName is not empty and notice.configurationName != constant('App\\Model\\Notice::CATALOGUE_BPI') %}
-                    <p lang="fr">Résultat de <a href="{{ notice.configurationUrl }}" aria-label="Acceder à {{ notice.configurationName }}" target="_blank">{{ notice.configurationName }}</a></p>
+                {% if notice.configurationName is not empty and notice.configurationName != constant('App\\Model\\Notice::CATALOGUE_BPI') and notice.configurationUrl is not empty %}
+                    <p lang="fr">{{ 'bloc.autority-result-information.result-de'|trans }} <a href="{{ notice.configurationUrl }}" aria-label="Acceder à {{ notice.configurationName }}" target="_blank">{{ notice.configurationName }}</a></p>
                 {% endif %}
 
                 
