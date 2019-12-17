@@ -353,7 +353,8 @@ modal:
         si période saisie, recherche de la date de début à la date de fin.
       by-date: Date
       by-periode: Période
-      date-start: Date de parution
+      date: Date de parution
+      date-start: Date de début de parution
       date-end: Date de fin de parution
     langage:
       title: Langues

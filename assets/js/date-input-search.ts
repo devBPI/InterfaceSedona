@@ -82,25 +82,47 @@ export class DateSlider {
 }
 
 export class DatePeriod {
-    private startDateInput: HTMLInputElement
-    private endDateInput: HTMLInputElement
-    private radioInputList: NodeListOf<HTMLInputElement>
+    private dateDiv: HTMLDivElement;
+    private periodDiv: HTMLDivElement;
 
-    constructor(endDateDiv: HTMLDivElement) {
-        this.startDateInput = document.querySelector('.js-start-label');
-        this.endDateInput = endDateDiv.querySelector('#adv-search-date-2');
-        this.radioInputList = document.querySelectorAll('.js-date-period');
+    constructor(periodRadioElement: HTMLInputElement) {
+        this.dateDiv = document.querySelector('#js-date-div');
+        this.periodDiv = document.querySelector('#js-period-div');
+        this.init($(periodRadioElement).is(':checked'));
 
-        this.radioInputList.forEach((radioElement: HTMLInputElement) => {
-            $(radioElement).on('ifChecked', () => {
-                this.startDateInput.innerHTML = "Date de début de parution";
-                endDateDiv.classList.remove('d-none')
+
+        $(periodRadioElement)
+            .on('ifChecked', () => {
+                this.showPeriod();
+            })
+            .on('ifUnchecked', () => {
+                this.hidePeriod();
             });
-            $(radioElement).on('ifUnchecked', () => {
-                this.startDateInput.innerHTML = "Date de parution";
-                endDateDiv.classList.add('d-none')
-                this.endDateInput.value = '';
-            });
+    }
+
+    private hidePeriod(): void {
+        this.dateDiv.classList.remove('d-none');
+        this.periodDiv.classList.add('d-none');
+        this.clearInput(this.periodDiv);
+    }
+
+    private showPeriod(): void {
+        this.dateDiv.classList.add('d-none');
+        this.periodDiv.classList.remove('d-none');
+        this.clearInput(this.dateDiv);
+    }
+
+    private clearInput(containerDiv: HTMLDivElement) {
+        containerDiv.querySelectorAll('input').forEach((input: HTMLInputElement) => {
+            input.value = '';
         })
+    }
+
+    private init(periodChecked: boolean) {
+        if (periodChecked) {
+            this.showPeriod();
+        } else {
+            this.hidePeriod();
+        }
     }
 }

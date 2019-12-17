@@ -88,7 +88,7 @@ class Criteria
     private $collection;
 
     /**
-     * @var integer
+     * @var string
      * @JMS\Type("int")
      * @JMS\SerializedName("date-publication")
      */
@@ -355,18 +355,25 @@ class Criteria
         return $this->notCriteria;
     }
 
-    /**
-     * @return string
-     */
-    public function getPublicationDateStart()
-    {
-        return $this->publicationDateStart;
-    }
 
     /**
      * @return string
      */
-    public function getPublicationDateEnd()
+    public function getPublicationDate(): ?string
+    {
+        return $this->publicationDate;
+    }
+    /**
+     * @return string
+     */
+    public function getPublicationDateStart(): ?string
+    {
+        return $this->publicationDateStart;
+    }
+    /**
+     * @return string
+     */
+    public function getPublicationDateEnd(): ?string
     {
         return $this->publicationDateEnd;
     }

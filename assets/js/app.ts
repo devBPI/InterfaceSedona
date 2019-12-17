@@ -33,7 +33,7 @@ if (select2Element) {
 }
 
 import {DatePeriod} from './date-input-search';
-new DatePeriod(document.querySelector('.search-date__date--second'));
+new DatePeriod(document.querySelector('.js-date-period'));
 
 
 Routing.setRoutingData(routes);
