@@ -259,7 +259,10 @@ class Criteria
         foreach (WordsList::$operators as $operator) {
             $subCriteria = $this->getSubCriteriaOfOperator($operator);
             if ($subCriteria instanceof Criteria) {
-                $keywords[$operator] = $subCriteria->getKeywords(false);
+                $subKeywords = $subCriteria->getKeywords(false);
+                if (!empty($subKeywords)) {
+                    $keywords[$operator] = $subKeywords;
+                }
             }
         }
 
