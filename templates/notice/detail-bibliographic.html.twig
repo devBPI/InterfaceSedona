@@ -61,11 +61,13 @@
     <div class="col-12">
         <div lang="fr">
             <h2 class="n2 bibliographic-result__subtitle">{{ 'bloc.autority-result-information.tracks'|trans }}</h2>
-            {% for content in notice.contents %}
-                <p class="bibliographic-result__resume">
-                    {{ content }}
-                </p>
-            {% endfor %}
+            <div class="bibliographic-result__resume">
+                {% for content in notice.contents %}
+                    <p class="mb-0">
+                        {{ content }}
+                    </p>
+                {% endfor %}
+            </div>
         </div>
     </div>
 {% endif %}
