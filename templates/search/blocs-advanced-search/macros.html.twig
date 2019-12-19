@@ -57,17 +57,17 @@
         {% endif %}
     {% endset %}
 
-    {{ _self.display_collapse_filter(origin, label, key, selected, content) }}
+    {{ _self.display_collapse_filter(origin, label, key, key in selected|keys, content) }}
 {% endmacro %}
 
-{% macro display_collapse_filter(origin, label, key, selected, content, aria_label = null) %}
+{% macro display_collapse_filter(origin, label, key, collapsed, content, aria_label = null) %}
     <div class="search-facette">
-        <button type="button" class="btn search-facette__button {% if key in selected|keys %}collapsed{% endif %}"
-                data-toggle="collapse" aria-expanded="{{ key in selected|keys ? 'true' : 'false' }}"
+        <button type="button" class="btn search-facette__button {% if collapsed %}collapsed{% endif %}"
+                data-toggle="collapse" aria-expanded="{{ collapsed ? 'true' : 'false' }}"
                 aria-controls="{{ origin }}-{{ key }}" data-target="#{{ origin }}-{{ key }}">
             {{ label }}
         </button>
-        <div class="collapse search-facette__body {% if key in selected|keys %}collapse show{% endif %}"
+        <div class="collapse search-facette__body {% if collapsed %}collapse show{% endif %}"
              id="{{ origin }}-{{ key }}" role="group" aria-label="{{ aria_label|default(label) }}">
             <div class="search-facette__content">
                 {{ content }}

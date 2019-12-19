@@ -18,10 +18,6 @@
 					<label for="pagination-input">
 						<input
 							type="text"
-							data-url="{{ toggle_to_path_parcours('search',
-								app.request.attributes.get(constant('App\\Model\\Search\\ObjSearch::PARAM_PARCOURS_NAME')),
-								app.request.query.all|merge({'see-all':seeAll is defined?seeAll:null, (constant('App\\Model\\Search\\ObjSearch::PARAM_REQUEST_NAME')): objSearch.contextToken, 'page':-1 })
-							) }}"
 							class="js-pagination-select page-link__input"
 							value="{{ page }}"
 							id="pagination-input"

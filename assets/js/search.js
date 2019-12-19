@@ -18,10 +18,13 @@ $(document)
     })
     .on('keyup','.js-pagination-select', function (e) {
         if (e.keyCode === 13) {
+            let currentUrl = new URL(location.href);
+            let queryString = currentUrl.search;
+            let urlSearchParams = new URLSearchParams(queryString);
+            urlSearchParams.set('page', $(this).val());
+            currentUrl.search = urlSearchParams.toString();
 
-            let $this = $(this);
-            let page = $this.val();
-            window.location = $this.data('url').replace(-1, page);
+            window.location = currentUrl.toString();
         }
     })
     .on('click', '.js-delete-filter',  function(e){
