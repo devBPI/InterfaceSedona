@@ -4,7 +4,7 @@
             <a href="{{ item.link }}">{{ item.name }}</a>
             {% if item.children is defined %}
                 <ul class="dropdown-sub-list">
-                    {% for subLink, subName in item.children %}
+                    {% for subName, subLink in item.children %}
                         <li class="dropdown-sub-item"><a href="{{ subLink }}">{{ subName }}</a></li>
                     {% endfor %}
                 </ul>

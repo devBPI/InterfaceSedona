@@ -50,7 +50,9 @@ services:
   App\Service\SearchService:
     arguments:
       $logger : '@monolog.logger'
-
+  App\Twig\MenuCreator:
+    arguments:
+      $translationPath : '%kernel.project_dir%/translations'
 
   Symfony\Component\Ldap\Ldap:
     arguments: ['@Symfony\Component\Ldap\Adapter\ExtLdap\Adapter']

@@ -1,169 +1,22 @@
-{# TRADUCTION A FAIRE.... #}
 <nav class="navbar navbar-expand-md" role="navigation" aria-label="menu principal" id="navbar-principale">
 	<div class="collapse navbar-collapse" id="navbar-principale-content">
 		<ul class="navbar-nav nav">
-			<li class="nav-item"><a href="https://www.bpi.fr/bpi" class="nav-link">Accueil</a></li>
-			<li class="nav-item active"><a href="/" class="nav-link">Catalogue<span class="sr-only"> - page active</span></a></li>
-			<li class="nav-item"><a href="https://www.bpi.fr/agenda" class="nav-link">Agenda</a></li>
-			<li class="nav-item dropdown-link">
-				<a href="https://www.bpi.fr/la-bibliotheque" class="nav-link dropdown-toggle">{{ 'header.navbar-principal.bibliotheque.title'|trans }}</a>
-				<span class="sr-only">Accéder à la bibliothèque</span>
-				<button class="dropdown-toggle dropdown-toggle--responsive dropdown-toggle--close" data-toggle="dropdown" aria-controls="ul-bibliotheque" aria-expanded="false">
-					<span class="sr-only js-label-aria">Ouvrir</span><span class="sr-only"> le sous-menu de la rubrique Bibliothèque</span>
-				</button>
-				{% include "header/navbar-principal-dropdown.html.twig" with {
-					'listId': 'ul-bibliotheque',
-					'list': [
-					{
-						'link': '//www.bpi.fr/la-bibliotheque/missions-et-organisation', 'name': 'header.navbar-principal.bibliotheque.mission.title'|trans,
-						'children' : {
-							'//www.bpi.fr/la-bibliotheque/missions-et-organisation/organigramme': 'header.navbar-principal.bibliotheque.mission.organigramme'|trans,
-							'//www.bpi.fr/la-bibliotheque/missions-et-organisation/projets': 'header.navbar-principal.bibliotheque.mission.renovation'|trans,
-							'//www.bpi.fr/la-bibliotheque/missions-et-organisation/chartes': 'header.navbar-principal.bibliotheque.mission.chartes'|trans,
-							'//www.bpi.fr/la-bibliotheque/missions-et-organisation/rapports-d-activite': 'header.navbar-principal.bibliotheque.mission.rapports'|trans,
-						}
-					},{
-						'link': '//www.bpi.fr/la-bibliotheque/collections', 'name': 'header.navbar-principal.bibliotheque.collections.title'|trans,
-						'children' : {
-							'//www.bpi.fr/la-bibliotheque/collections/livres': 'header.navbar-principal.bibliotheque.collections.livres'|trans,
-							'//www.bpi.fr/sites/SiteInstitutionnel/home/la-bibliotheque/collections/revues-specialisees.html': 'header.navbar-principal.bibliotheque.collections.revues'|trans,
-							'//www.bpi.fr/sites/SiteInstitutionnel/home/la-bibliotheque/collections/presse-et-actualite.html': 'header.navbar-principal.bibliotheque.collections.presse'|trans,
-							'//www.bpi.fr/la-bibliotheque/collections/ressources-electroniques': 'header.navbar-principal.bibliotheque.collections.ressources'|trans,
-							'//www.bpi.fr/la-bibliotheque/collections/autoformation': 'header.navbar-principal.bibliotheque.collections.autoformation'|trans,
-							'//www.bpi.fr/la-bibliotheque/collections/collections-audiovisuelles': 'header.navbar-principal.bibliotheque.collections.collectionsaudio'|trans,
-							'//www.bpi.fr/la-bibliotheque/collections/musiques-et-documents-parles': 'header.navbar-principal.bibliotheque.collections.musiques'|trans,
-							'//www.bpi.fr/la-bibliotheque/collections/nouvelle-generation': 'header.navbar-principal.bibliotheque.collections.generation'|trans,
-							'//www.bpi.fr/sites/SiteInstitutionnel/home/la-bibliotheque/collections/cartes-et-plans.html': 'header.navbar-principal.bibliotheque.collections.cartes'|trans,
-						}
-					},{
-						'link': '//www.bpi.fr/la-bibliotheque/offres-culturelles-et-mediations', 'name': 'header.navbar-principal.bibliotheque.offres.title'|trans,
-						'children' : {
-							'//www.bpi.fr/la-bibliotheque/offres-culturelles-et-mediations/evenements-culturels': 'header.navbar-principal.bibliotheque.offres.event'|trans,
-							'//www.bpi.fr/la-bibliotheque/offres-culturelles-et-mediations/mediations': 'header.navbar-principal.bibliotheque.offres.mediations'|trans,
-							'//www.bpi.fr/la-bibliotheque/offres-culturelles-et-mediations/offres-a-distance': 'header.navbar-principal.bibliotheque.offres.offresdist'|trans,
-						}
-					},{
-						'link': '//www.bpi.fr/la-bibliotheque/publications-et-supports-de-communication', 'name': 'header.navbar-principal.bibliotheque.publications.title'|trans,
-						'children' : {
-							'//www.bpi.fr/a-bibliotheque/publications-et-supports-de-communication/programme-de-la-bpi': 'header.navbar-principal.bibliotheque.publications.programme'|trans,
-							'//www.bpi.fr/newsletters': 'header.navbar-principal.bibliotheque.publications.lettres'|trans,
-							'//www.bpi.fr/sites/SiteInstitutionnel/home/la-bibliotheque/publications-et-supports-de-comm/magazine-balises.html ': 'header.navbar-principal.bibliotheque.publications.balises'|trans,
-							'//www.bpi.fr/la-bibliotheque/publications-et-supports-de-communication/supports-de-communication': 'header.navbar-principal.bibliotheque.publications.support'|trans,
-							'//www.bpi.fr/la-bibliotheque/publications-et-supports-de-communication/editions-de-la-bibliotheque': 'header.navbar-principal.bibliotheque.publications.editions'|trans,
-							'http://webtv.bpi.fr/': 'header.navbar-principal.bibliotheque.publications.tvradio'|trans,
-						}
-					},{
-						'link': '//www.bpi.fr/la-bibliotheque/les-publics-de-la-bpi', 'name': 'Les publics de la Bpi',
-						'children' : {
-							'//www.bpi.fr/la-bibliotheque/les-publics-de-la-bpi/sociologie-des-publics': 'Sociologie des publics',
-							'//www.bpi.fr/la-bibliotheque/les-publics-de-la-bpi/enquetes-aupres-des-publics': 'Enquêtes auprès des publics',
-						}
-					},
-					{ 'link': '//www.bpi.fr/la-bibliotheque/la-bpi-en-chiffres', 'name': 'La Bpi en chiffres' },
-					{ 'link': '//www.bpi.fr/la-bibliotheque/histoire-de-la-bpi', 'name': 'Histoire de la Bpi' }
-				]} %}
-			</li>
-			<li class="nav-item dropdown-link">
-				<a href="https://www.bpi.fr/informations-pratiques" class="nav-link dropdown-toggle">Informations pratiques</a>
-				<span class="sr-only">Accéder aux informations pratiques</span>
-				<button class="dropdown-toggle dropdown-toggle--responsive dropdown-toggle--close" data-toggle="dropdown" aria-controls="ul-infos" aria-expanded="false">
-					<span class="sr-only js-label-aria">Ouvrir</span><span class="sr-only"> le sous-menu de la rubrique Informations pratiques</span>
-				</button>
-				{% include "header/navbar-principal-dropdown.html.twig" with {
-					'listId': 'ul-infos',
-					'list': [
-						{
-							'link': '//www.bpi.fr/sites/SiteInstitutionnel/home/informations-pratiques/venir-a-la-bpi.html', 'name': 'Venir à la Bpi',
-							'children' : {
-								'//www.bpi.fr/sites/SiteInstitutionnel/home/informations-pratiques/venir-a-la-bpi/horaires.html': 'Horaires',
-								'//www.bpi.fr/webcam': 'Webcam',
-								'//www.bpi.fr/sites/SiteInstitutionnel/home/informations-pratiques/venir-a-la-bpi/acces.html': 'Accès',
-								'//www.bpi.fr/contenus/bpi--mode-demploi': 'Bpi mode d\'emploi',
-								'//www.bpi.fr/sites/SiteInstitutionnel/home/informations-pratiques/venir-a-la-bpi/contacts.html': 'Contacts',
-							}
-						},
-						{
-							'link': '//www.bpi.fr/informations-pratiques/les-espaces', 'name': 'Les espaces',
-							'children' : {
-								'//www.bpi.fr/informations-pratiques/les-espaces/niveau-1': 'Niveau 1',
-								'//www.bpi.fr/informations-pratiques/les-espaces/niveau-2': 'Niveau 2',
-								'//www.bpi.fr/informations-pratiques/les-espaces/niveau-3': 'Niveau 3',
-							}
-						},
-						{
-							'link': '//www.bpi.fr/informations-pratiques/les-services', 'name': 'Les services',
-							'children' : {
-								'//www.bpi.fr/sites/SiteInstitutionnel/home/informations-pratiques/les-services/renseignements-et-orientation.html': 'Renseignements et orientation',
-								'//www.bpi.fr/informations-pratiques/les-services/internet-et-le-wifi': 'Internet et le wifi',
-								'//www.bpi.fr/informations-pratiques/les-services/lautre-internet': 'L\'autre Internet',
-								'//www.bpi.fr/informations-pratiques/les-services/les-autres-services': 'Les autres services',
-							}
-						},
-						{
-							'link': '//www.bpi.fr/informations-pratiques/les-offres-par-type-de-public', 'name': 'Les offres par type de public',
-							'children' : {
-								'//www.bpi.fr/sites/SiteInstitutionnel/home/informations-pratiques/les-offres-par-type-de-public/%c3%89tudiant-ou-lyceen.html': 'Etudiant ou lycéen',
-								'//www.bpi.fr/informations-pratiques/les-offres-par-type-de-public/enseignant': 'Enseignant',
-								'//www.bpi.fr/informations-pratiques/les-offres-par-type-de-public/famille': 'Famille',
-								'//www.bpi.fr/informations-pratiques/les-offres-par-type-de-public/intervenant-du-champ-social': 'Intervenant du champ social',
-								'//www.bpi.fr/informations-pratiques/les-offres-par-type-de-public/nouvel-arrivant-a-paris': 'Nouvel arrivant à Paris',
-								'//www.bpi.fr/informations-pratiques/les-offres-par-type-de-public/chercheur-d-emploi': 'En recherche d\'emploi',
-								}
-							},
-						{
-							'link': '//www.bpi.fr/informations-pratiques/handicap-et-accessibilite', 'name': 'Handicap et accessibilité',
-							'children' : {
-								'//www.bpi.fr/informations-pratiques/handicap-et-accessibilite/acces': 'Accès',
-								'//www.bpi.fr/informations-pratiques/handicap-et-accessibilite/les-loges': 'Les loges',
-								'//www.bpi.fr/informations-pratiques/handicap-et-accessibilite/les-autres-services-a-destination-du-public-handicape': 'Les autres services à destination du public handicapé',
-							}
-						},
-						{
-							'link': '//www.bpi.fr/informations-pratiques/emplois-et-stages', 'name': 'Emplois et stages',
-							'children' : {
-								'//www.bpi.fr/informations-pratiques/emplois-et-stages/emplois-permanents': 'Emplois permanents',
-								'//www.bpi.fr/informations-pratiques/emplois-et-stages/emplois-temporaires': 'Emplois temporaires',
-								'//www.bpi.fr/informations-pratiques/emplois-et-stages/stages': 'Stages',
-							}
-						},
-						{
-							'link': '//www.bpi.fr/informations-pratiques/marches-publics', 'name': 'Marchés publics',
-							'children' : {
-								'//www.bpi.fr/informations-pratiques/marches-publics/consultations': 'Consultations',
-								'//www.bpi.fr/informations-pratiques/marches-publics/candidatures': 'Candidatures',
-								'//www.bpi.fr/informations-pratiques/marches-publics/attributions': 'Attributions',
-							}
-						},
-						{ 'link': '//www.bpi.fr/sites/SiteInstitutionnel/home/informations-pratiques/foire-aux-questions.html', 'name': 'Foire aux questions'}
-					]} %}
-			</li>
-			<li class="nav-item dropdown-link">
-				<a href="https://www.bpi.fr/espace-presse" class="nav-link dropdown-toggle">Presse / Partenariats</a>
-				<span class="sr-only">Accéder à la presse et aux partenariats</span>
-				<button class="dropdown-toggle dropdown-toggle--responsive dropdown-toggle--close" data-toggle="dropdown" aria-controls="ul-presse" aria-expanded="false">
-					<span class="sr-only js-label-aria">Ouvrir</span><span class="sr-only"> le sous-menu de la rubrique Presse / Partenariats</span>
-				</button>
-				{% include "header/navbar-principal-dropdown.html.twig" with {
-					'listId': 'ul-presse',
-					'list': [
-							{
-								'link': 'https://www.bpi.fr/espace-presse/communiques-et-dossiers-de-presse', 'name': 'Communiqués et dossiers de presse',
-								'children' : {
-									'https://www.bpi.fr/espace-presse/communiques-et-dossiers-de-presse/archives': 'Archives des communiqués',
-								}
-							},
-							{ 'link': 'https://www.bpi.fr/espace-presse/tournages-et-reportages', 'name': 'Tournages et prises de vues' },
-							{ 'link': 'https://www.bpi.fr/espace-presse/logos', 'name': 'Logos' },
-							{
-								'link': 'https://www.bpi.fr/espace-presse/visuels',
-								'name': 'Visuels',
-								'children' : {
-									'https://www.bpi.fr/sites/SiteInstitutionnel/home/presse--partenariats/visuels2/espaces-de-la-bibliotheque.html': 'Espaces de la bibliothèque'
-								}
-							},
-							{ 'link': 'https://www.bpi.fr/sites/SiteInstitutionnel/home/presse--partenariats/partenariats.html', 'name': 'Partenariats' }
-					]} %}
-			</li>
+            {% for label, nav in header_menu() %}
+				<li class="nav-item {% if nav.list is defined %}dropdown-link{% endif %} {% if nav.active is defined %}active{% endif %}">
+                    {% if nav.active is defined %}<span class="sr-only"> - page active</span>{% endif %}
+					<a href="{{ nav.link }}" class="nav-link {% if nav.list is defined %}dropdown-toggle{% endif %}">{{ label }}</a>
+                    {% if nav.list is defined %}
+						<span class="sr-only">{{ nav.sronly }}</span>
+						<button class="dropdown-toggle dropdown-toggle--responsive dropdown-toggle--close" data-toggle="dropdown" aria-controls="{{ nav.list.id }}" aria-expanded="false">
+							<span class="sr-only js-label-aria">Ouvrir</span><span class="sr-only"> le sous-menu de la rubrique {{ label }}</span>
+						</button>
+
+                        {% for listId, list in nav.list %}
+                            {% include "header/navbar-principal-dropdown.html.twig" %}
+                        {% endfor %}
+                    {% endif %}
+				</li>
+            {% endfor %}
 		</ul>
 	</div>
 </nav>

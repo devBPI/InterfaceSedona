@@ -1,0 +1,161 @@
+header:
+  Accueil:
+    link: https://www.bpi.fr/bpi
+
+  Catalogue:
+    link: http://catalogue.bpi.fr/
+    active: true
+
+  Agenda:
+    link: https://www.bpi.fr/agenda
+
+  La Bibliothèque:
+    link: https://www.bpi.fr/la-biblioteca
+    sronly: Accéder à la bibliothèque
+    list:
+      id: ul-bibliotheque
+      items:
+      -
+        name: Missions et organisation
+        link: https://www.bpi.fr/la-bibliotheque/missions-et-organisation
+        children:
+          Rapports d'activité: https://www.bpi.fr/la-bibliotheque/missions-et-organisation/organigramme
+          Organigramme: https://www.bpi.fr/la-bibliotheque/missions-et-organisation/projets
+          La bibliothèque en rénovation: https://www.bpi.fr/la-bibliotheque/missions-et-organisation/chartes
+          Chartes: https://www.bpi.fr/la-bibliotheque/missions-et-organisation/rapports-d-activite
+
+      -
+        name: Collections
+        link: https://www.bpi.fr/la-bibliotheque/collections
+        children:
+          Livres: https://www.bpi.fr/la-bibliotheque/collections/livres
+          Revues spécialisées: https://www.bpi.fr/sites/SiteInstitutionnel/home/la-bibliotheque/collections/revues-specialisees.html
+          Presse et actualité: https://www.bpi.fr/sites/SiteInstitutionnel/home/la-bibliotheque/collections/presse-et-actualite.html
+          Ressources électroniques: https://www.bpi.fr/la-bibliotheque/collections/ressources-electroniques
+          Autoformation: https://www.bpi.fr/la-bibliotheque/collections/autoformation
+          Collections audiovisuelles: https://www.bpi.fr/la-bibliotheque/collections/collections-audiovisuelles
+          Musiques et documents parlés: https://www.bpi.fr/la-bibliotheque/collections/musiques-et-documents-parles
+          Nouvelle génération: https://www.bpi.fr/la-bibliotheque/collections/nouvelle-generation
+          Cartes et plans: https://www.bpi.fr/sites/SiteInstitutionnel/home/la-bibliotheque/collections/cartes-et-plans.html
+      -
+        name: Offres culturelles et médiations
+        link: https://www.bpi.fr/la-bibliotheque/offres-culturelles-et-mediations
+        children:
+          Evénements culturels: https://www.bpi.fr/la-bibliotheque/offres-culturelles-et-mediations/evenements-culturels
+          Médiations: https://www.bpi.fr/la-bibliotheque/offres-culturelles-et-mediations/mediations
+          Offres à distance: https://www.bpi.fr/la-bibliotheque/offres-culturelles-et-mediations/offres-a-distance
+      -
+        name: Publications et supports de communication
+        link: https:////www.bpi.fr/la-bibliotheque/publications-et-supports-de-communication
+        children:
+          Programme de la Bpi: https://www.bpi.fr/a-bibliotheque/publications-et-supports-de-communication/programme-de-la-bpi
+          'Lettres d''information': https:////www.bpi.fr/newsletters
+          Magazine Balises: https://www.bpi.fr/la-bibliotheque/publications-et-supports-de-communication/de-ligne-en-ligne
+          Supports de communication: https://www.bpi.fr/la-bibliotheque/publications-et-supports-de-communication/supports-de-communication
+          'Editions de la Bibliothèque publique d''information': https://www.bpi.fr/la-bibliotheque/publications-et-supports-de-communication/editions-de-la-bibliotheque
+          Web TV / Web Radio: http://webtv.bpi.fr/
+      -
+        name: Les publics de la Bpi
+        link: https://www.bpi.fr/la-bibliotheque/les-publics-de-la-bpi
+        children:
+          Sociologie des publics: https://www.bpi.fr/la-bibliotheque/les-publics-de-la-bpi/sociologie-des-publics
+          Enquêtes auprès des publics: https://www.bpi.fr/la-bibliotheque/les-publics-de-la-bpi/enquetes-aupres-des-publics
+      -
+        name: La Bpi en chiffres
+        link: https://www.bpi.fr/la-bibliotheque/la-bpi-en-chiffres
+      -
+        name: Histoire de la Bpi
+        link: https://www.bpi.fr/la-bibliotheque/histoire-de-la-bpi
+
+  Informations pratiques:
+    link: https://www.bpi.fr/informations-pratiques
+    sronly: Accéder aux informations pratiques
+    list:
+      id: ul-infos
+      items:
+      -
+        name: Venir à la Bpi
+        link: https://www.bpi.fr/sites/SiteInstitutionnel/home/informations-pratiques/venir-a-la-bpi.html
+        children:
+          Horaires: https://www.bpi.fr/sites/SiteInstitutionnel/home/informations-pratiques/venir-a-la-bpi/horaires.html
+          Webcam: https://www.bpi.fr/webcam
+          Accès: https://www.bpi.fr/sites/SiteInstitutionnel/home/informations-pratiques/venir-a-la-bpi/acces.html
+          'Bpi mode d''emploi': https://www.bpi.fr/contenus/bpi--mode-demploi
+          Contacts: https://www.bpi.fr/sites/SiteInstitutionnel/home/informations-pratiques/venir-a-la-bpi/contacts.html
+      -
+        name: Les espaces
+        link: https://www.bpi.fr/informations-pratiques/les-espaces
+        children:
+          Niveau 1: https://www.bpi.fr/informations-pratiques/les-espaces/niveau-1
+          Niveau 2: https://www.bpi.fr/informations-pratiques/les-espaces/niveau-2
+          Niveau 3: https://www.bpi.fr/informations-pratiques/les-espaces/niveau-3
+      -
+        name: Les services
+        link: https://www.bpi.fr/informations-pratiques/les-services
+        children:
+          Renseignements et orientation: https://www.bpi.fr/sites/SiteInstitutionnel/home/informations-pratiques/les-services/renseignements-et-orientation.html
+          Internet et le wifi: https://www.bpi.fr/informations-pratiques/les-services/internet-et-le-wifi
+          'L''autre Internet': https://www.bpi.fr/informations-pratiques/les-services/lautre-internet
+          Les autres services: https://www.bpi.fr/informations-pratiques/les-services/les-autres-services
+      -
+        name: Les offres par type de public
+        link: https://www.bpi.fr/informations-pratiques/les-offres-par-type-de-public
+        children:
+          AEtudiant ou lycéen: https://www.bpi.fr/sites/SiteInstitutionnel/home/informations-pratiques/les-offres-par-type-de-public/%c3%89tudiant-ou-lyceen.html
+          Enseignant: https://www.bpi.fr/informations-pratiques/les-offres-par-type-de-public/enseignant
+          Famille: https://www.bpi.fr/informations-pratiques/les-offres-par-type-de-public/famille
+          Intervenant du champ social: https://www.bpi.fr/informations-pratiques/les-offres-par-type-de-public/intervenant-du-champ-social
+          Nouvel arrivant à Paris: https://www.bpi.fr/informations-pratiques/les-offres-par-type-de-public/nouvel-arrivant-a-paris
+          'En recherche d''emploi': https://www.bpi.fr/informations-pratiques/les-offres-par-type-de-public/chercheur-d-emploi
+      -
+        name: Handicap et accessibilité
+        link: https://www.bpi.fr/informations-pratiques/handicap-et-accessibilite
+        children:
+          Accès: https://www.bpi.fr/informations-pratiques/handicap-et-accessibilite/acces
+          Les loges: https://www.bpi.fr/informations-pratiques/handicap-et-accessibilite/les-loges
+          Les autres services à destination du public handicapé: https://www.bpi.fr/informations-pratiques/handicap-et-accessibilite/les-autres-services-a-destination-du-public-handicape
+      -
+        name: Emplois et stages
+        link: https://www.bpi.fr/informations-pratiques/emplois-et-stages
+        children:
+          Emplois permanents: https://www.bpi.fr/informations-pratiques/emplois-et-stages/emplois-permanents
+          Emplois temporaires: https://www.bpi.fr/informations-pratiques/emplois-et-stages/emplois-temporaires
+          Stages: https://www.bpi.fr/informations-pratiques/emplois-et-stages/stages
+      -
+        name: Marchés publics
+        link: https://www.bpi.fr/informations-pratiques/marches-publics
+        children:
+          Consultations: https://www.bpi.fr/informations-pratiques/marches-publics/consultations
+          Candidatures: https://www.bpi.fr/informations-pratiques/marches-publics/candidatures
+          Attributions: https://www.bpi.fr/informations-pratiques/marches-publics/attributions
+      -
+        name: Foire aux questions
+        link: https://www.bpi.fr/sites/SiteInstitutionnel/home/informations-pratiques/foire-aux-questions.html
+
+  Presse / Partenariats:
+    link: https://www.bpi.fr/espace-presse
+    sronly: Accéder à la presse et aux partenariats
+    list:
+      id: ul-presse
+      items:
+      -
+        name: Communiqués et dossiers de presse
+        link: https://www.bpi.fr/espace-presse/communiques-et-dossiers-de-presse
+        children:
+          Archives des communiqués: https://www.bpi.fr/espace-presse/communiques-et-dossiers-de-presse/archives
+      -
+        name: Tournages et prises de vues
+        link: https://www.bpi.fr/espace-presse/tournages-et-reportages
+      -
+        name: Logos
+        link: https://www.bpi.fr/espace-presse/logos
+      -
+        name: Visuels
+        link: https://www.bpi.fr/espace-presse/visuels
+        children:
+          Espaces de la bibliothèque: https://www.bpi.fr/es/sites/SiteInstitutionnel/home/presse--partenariats/visuels2/espaces-de-la-bibliotheque.html
+          'Plus vite, plus haut, plus fort : filmer le sport': https://www.bpi.fr/es/sites/SiteInstitutionnel/home/presse--partenariats/visuels2/plus-vite-plus-haut-plus-fort--f.html
+          'Sergueï Loznitsa : l''intégrale': https://www.bpi.fr/es/sites/SiteInstitutionnel/home/presse--partenariats/visuels2/serguei-loznitsa--lintegrale.html
+      -
+        name: Partenariats
+        link: https://www.bpi.fr/es/sites/SiteInstitutionnel/home/presse--partenariats/partenariats.html
