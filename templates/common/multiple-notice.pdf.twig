@@ -12,7 +12,7 @@
                 </div>
                 {% if  includeImage %}
                     <div class="col-3">
-                        <img src="{{absolute_url( asset('images/types-autorite/autorite-'~ (element.type|slugify) ~'.svg')) }}" alt="" class="img-fluid" />
+                        <img src="{{absolute_url( asset('images/types/type-'~ (element.type|slugify) ~'.svg')) }}" alt="" class="img-fluid" />
                     </div>
                 {% endif %}
                 <div class="col">
@@ -32,7 +32,7 @@
                 </div>
                 {% if includeImage %}
                     <div class="col-3">
-                        <img src="{{ absolute_url(asset('images/types-autorite/autorite-indice.svg')) }}" alt="" class="img-fluid" />
+                        <img src="{{ absolute_url(asset('images/types/type-indice.svg')) }}" alt="" class="img-fluid" />
                     </div>
                 {% endif %}
 
