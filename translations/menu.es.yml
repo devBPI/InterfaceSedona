@@ -159,3 +159,20 @@ header:
         -
           name: Partenariats
           link: https://www.bpi.fr/es/sites/SiteInstitutionnel/home/presse--partenariats/partenariats.html
+
+footer:
+  La BPI:
+    Catálogo: http://catalogue.bpi.fr
+    Agenda: https://www.bpi.fr/es/sites/SiteInstitutionnel/home/agenda.html
+    La Biblioteca: https://www.bpi.fr/la-biblioteca
+    Informaciones prácticas: https://www.bpi.fr/informaciones-practicas
+    Espacio prensa: https://www.bpi.fr/es/sites/SiteInstitutionnel/home/presse--partenariats.html
+
+  Balises:
+
+  Profesionales:
+    Colecciones y servicios: https://www.bpi.fr/es/sites/Professionnels/home/collections-et-services.html
+    Cohesión social: https://www.bpi.fr/es/sites/Professionnels/home/cohesion-sociale.html
+    Estudios: https://www.bpi.fr/es/sites/Professionnels/home/etudes-1.html
+    Profesión: https://www.bpi.fr/es/sites/Professionnels/home/metier.html
+    Internacional: https://www.bpi.fr/es/sites/Professionnels/home/international-1.html

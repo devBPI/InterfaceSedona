@@ -101,7 +101,7 @@ header:
         name: Les offres par type de public
         link: https://www.bpi.fr/informations-pratiques/les-offres-par-type-de-public
         children:
-          AEtudiant ou lycéen: https://www.bpi.fr/sites/SiteInstitutionnel/home/informations-pratiques/les-offres-par-type-de-public/%c3%89tudiant-ou-lyceen.html
+          Etudiant ou lycéen: https://www.bpi.fr/sites/SiteInstitutionnel/home/informations-pratiques/les-offres-par-type-de-public/%c3%89tudiant-ou-lyceen.html
           Enseignant: https://www.bpi.fr/informations-pratiques/les-offres-par-type-de-public/enseignant
           Famille: https://www.bpi.fr/informations-pratiques/les-offres-par-type-de-public/famille
           Intervenant du champ social: https://www.bpi.fr/informations-pratiques/les-offres-par-type-de-public/intervenant-du-champ-social
@@ -159,3 +159,25 @@ header:
         -
           name: Partenariats
           link: https://www.bpi.fr/es/sites/SiteInstitutionnel/home/presse--partenariats/partenariats.html
+
+footer:
+  La Bpi:
+    Catalogue: /
+    Agenda: https://www.bpi.fr/agenda
+    La Bibliothèque: https://www.bpi.fr/la-bibliotheque
+    Informations pratiques: https://www.bpi.fr/informations-pratiques
+    Presse / Partenariats: https://www.bpi.fr/espace-presse
+
+  Balises:
+    WebTV /WebRadio: https://webtv.bpi.fr/
+    Exploration: https://www.bpi.fr/sites/Balises/home/exploration.html
+    Mon webmagazine: https://www.bpi.fr/sites/Balises/home/ma-une.html
+    Qui sommes-nous ?: https://www.bpi.fr/sites/Balises/home/qui-sommes-nous.html
+
+  Professionnels:
+    Collections et services: https://www.bpi.fr/sites/Professionnels/home/collections-et-services.html
+    Cohésion sociale: https://www.bpi.fr/sites/Professionnels/home/cohesion-sociale.html
+    Études: https://www.bpi.fr/sites/Professionnels/home/etudes-1.html
+    Métier: https://www.bpi.fr/sites/Professionnels/home/metier.html
+    International: https://www.bpi.fr/sites/Professionnels/home/international-1.html
+

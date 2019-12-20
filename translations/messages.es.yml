@@ -54,30 +54,6 @@ header:
     autoformation: Autoformation
     cinema: Cinéma
 footer:
-  sitemap:
-    bpi:
-      title: La Bpi
-      class: first
-      Catalogue: Catálogo
-      agenda: Agenda
-      la-bibliotheque: La Biblioteca
-      informations-pratiques: Informaciones prácticas
-      espace-actualites-revues: Prensa / Cooperación
-    balises:
-      title: Balises
-      class: second
-      webtv: WebTV / WebRadio
-      exploration: Explorar
-      ma-une: Mi webmagazine
-      qui-sommes-nous: ¿Quiénes somos ?
-    professionnels:
-      title: Bibliotecarios
-      class: third
-      collections-et-services: Colecciones y servicios
-      cohesion-sociale: Cohesión social
-      etudes: Estudios
-      metier: Bibliotecarios
-      international: Internacional
   credit-list:
     espace-actualites-revues: Prensa / Cooperación
     emplois-et-stages: Empleo y prácticas

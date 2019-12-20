@@ -1,58 +1,22 @@
 <div id="accordion" class="nav-sitemap">
-	{% for sectionname, items in {
-		'bpi' : {
-			'/': 'footer.sitemap.bpi.Catalogue'|trans,
-			'//www.bpi.fr/agenda': 'footer.sitemap.bpi.agenda'|trans,
-			'//www.bpi.fr/la-bibliotheque': 'footer.sitemap.bpi.la-bibliotheque'|trans,
-			'//www.bpi.fr/informations-pratiques': 'footer.sitemap.bpi.informations-pratiques'|trans,
-			'//www.bpi.fr/espace-presse': 'footer.sitemap.bpi.espace-presse'|trans
-		},
-		'balises' : {
-			'//webtv.bpi.fr/': 'footer.sitemap.balises.webtv'|trans,
-			'//www.bpi.fr/sites/Balises/home/exploration.html': 'footer.sitemap.balises.exploration'|trans,
-			'//www.bpi.fr/sites/Balises/home/ma-une.html': 'footer.sitemap.balises.ma-une'|trans,
-			'//www.bpi.fr/sites/Balises/home/qui-sommes-nous.html': 'footer.sitemap.balises.qui-sommes-nous'|trans
-		},
-		'professionnels' : {
-			'//www.bpi.fr/sites/Professionnels/home/collections-et-services.html': 'footer.sitemap.professionnels.collections-et-services'|trans,
-			'//www.bpi.fr/sites/Professionnels/home/cohesion-sociale.html': 'footer.sitemap.professionnels.cohesion-sociale'|trans,
-			'//www.bpi.fr/sites/Professionnels/home/etudes-1.html': 'footer.sitemap.professionnels.etudes'|trans,
-			'//www.bpi.fr/sites/Professionnels/home/metier.html': 'footer.sitemap.professionnels.metier'|trans,
-			'//www.bpi.fr/sites/Professionnels/home/international-1.html': 'footer.sitemap.professionnels.international'|trans
-		}
-	} %}
-		<button type="button" id="btn-{{ sectionname }}" data-toggle="collapse" data-target="#menu-{{ sectionname }}" aria-expanded="false" aria-controls="menu-{{ sectionname }}" class="nav-sitemap__button nav-sitemap__button--{{ ('footer.sitemap.'~sectionname~'.class')|trans }}">{{ ('footer.sitemap.'~sectionname~'.title')|trans }}</button>
-		<div class="collapse nav-sitemap__content" id="menu-{{ sectionname }}" data-parent="#accordion" aria-labelledby="btn-{{ sectionname }}">
-			<ul class="nav-sitemap__list">
-				{% for link, title in items %}
-					<li class="nav-sitemap__item">
-						<a href="{{ link }}" title="{{ title }} - {{ 'global.new-windows'|trans }}" target="_blank">{{ title }}</a>
-					</li>
-				{% endfor %}
-			</ul>
-		</div>
-	{% endfor %}
-	{# {% for sectionname, items in {
-		'bpi' : {
-			'/': 'footer.sitemap.bpi.Catalogue'|trans,
-			'//www.bpi.fr/agenda': 'footer.sitemap.bpi.agenda'|trans,
-			'//www.bpi.fr/la-bibliotheque': 'footer.sitemap.bpi.la-bibliotheque'|trans,
-			'//www.bpi.fr/informations-pratiques': 'footer.sitemap.bpi.informations-pratiques'|trans,
-			'//www.bpi.fr/espace-presse': 'footer.sitemap.bpi.espace-presse'|trans
-		},
-		'balises' : {
-			'//webtv.bpi.fr/': 'footer.sitemap.balises.webtv'|trans,
-			'//www.bpi.fr/sites/Balises/home/exploration.html': 'footer.sitemap.balises.exploration'|trans,
-			'//www.bpi.fr/sites/Balises/home/ma-une.html': 'footer.sitemap.balises.ma-une'|trans,
-			'//www.bpi.fr/sites/Balises/home/qui-sommes-nous.html': 'footer.sitemap.balises.qui-sommes-nous'|trans
-		},
-		'professionnels' : {
-			'//www.bpi.fr/sites/Professionnels/home/collections-et-services.html': 'footer.sitemap.professionnels.collections-et-services'|trans,
-			'//www.bpi.fr/sites/Professionnels/home/cohesion-sociale.html': 'footer.sitemap.professionnels.cohesion-sociale'|trans,
-			'//www.bpi.fr/sites/Professionnels/home/etudes-1.html': 'footer.sitemap.professionnels.etudes'|trans,
-			'//www.bpi.fr/sites/Professionnels/home/metier.html': 'footer.sitemap.professionnels.metier'|trans,
-			'//www.bpi.fr/sites/Professionnels/home/international-1.html': 'footer.sitemap.professionnels.international'|trans
-		}
-	} %}
-	{% endfor %} #}
+    {% for title, items in footer_menu() %}
+        {% set sectionname = title|slugify %}
+
+        <button type="button" id="btn-{{ sectionname }}" data-toggle="collapse" data-target="#menu-{{ sectionname }}"
+                aria-expanded="false" aria-controls="menu-{{ sectionname }}"
+                class="nav-sitemap__button">
+            {{ title|trans }}
+        </button>
+        <div class="collapse nav-sitemap__content" id="menu-{{ sectionname }}" data-parent="#accordion"
+             aria-labelledby="btn-{{ sectionname }}">
+            <ul class="nav-sitemap__list">
+                {% for title, link in items %}
+                    <li class="nav-sitemap__item">
+                        <a href="{{ link }}" title="{{ title }} - {{ 'global.new-windows'|trans }}"
+                           target="_blank">{{ title }}</a>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+    {% endfor %}
 </div>

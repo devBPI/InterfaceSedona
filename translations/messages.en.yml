@@ -54,30 +54,6 @@ header:
     autoformation: Autoformation
     cinema: Cinéma
 footer:
-  sitemap:
-    bpi:
-      title: La Bpi
-      class: first
-      Catalogue: Catalog
-      agenda: Agenda
-      la-bibliotheque: The Library
-      informations-pratiques: Useful informations
-      espace-presse: Press / Partnership
-    balises:
-      title: Balises
-      class: second
-      webtv: WebTV / WebRadio
-      exploration: Exploration
-      ma-une: My webmagazine
-      qui-sommes-nous: Who are we ?
-    professionnels:
-      title: Professionals
-      class: third
-      collections-et-services: Collections and services
-      cohesion-sociale: Social cohesion
-      etudes: Studies
-      metier: Profession
-      international: International
   credit-list:
     espace-presse: Press / Partnership
     emplois-et-stages: Employment & Internships
