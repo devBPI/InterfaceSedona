@@ -182,7 +182,7 @@ modal:
     title: Commentaire
     close: Fermer
   notifed-form:   #Modal 12 notification de disponibilité de document
-    title: Être prevenu de son retour en rayon
+    title: Être prévenu(e) de son retour en rayon
     field-email: Courriel (nom@exemple.com)
     submit: Valider
     submit-sr-only: votre inscription à l'alerte de retour en rayon
@@ -394,11 +394,11 @@ bloc:
     publications: 'Numéros reçus :'
     document-available: Disponible
     document-unavailable: Indisponible
-    notification-availablity: Document indisponible, être prévenu de son retour en rayon - ouverture formulaire
-    notification-availablity-success: Vous serez informer dès son retour en rayon
+    notification-availablity: Document indisponible, être prévenu(e) de son retour en rayon - ouverture formulaire
+    notification-availablity-success: Vous serez informé(e) dès son retour en rayon.
     resume-label: Afficher le résumé
     resume-title: 'Résumé'
-    availability-label: Document indisponible, être prévenu de son retour en rayon - ouverture formulaire
+    availability-label: Document indisponible, être prévenu(e) de son retour en rayon - ouverture formulaire
   search-header-footer:   #Bloc 14 Tri et pages
     header:
       nb-result-aria: dropdown-number-items

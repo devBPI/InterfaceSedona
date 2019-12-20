@@ -32,8 +32,8 @@ final class ExportNoticeType extends AbstractType
                  'label'=> false,
                  'expanded'=>true,
                  'choices'=>[
-                     'Notices abrégés'=>true,
-                     'Notices longues'=>false,
+                     'Notices abrégées'=>true,
+                     'Notices complete'=>false,
                  ],
                  'data' => true
              ])
@@ -60,8 +60,11 @@ final class ExportNoticeType extends AbstractType
                  ]
              ])
              ->add('reciever', EmailType::class, [
-                    'required' => true,
-                    'label' => 'modal.share.field.recipient'
+                    'required'      => true,
+                    'label'         =>'modal.share.field.recipient',
+                    'attr'=>[
+                        'autocomplete'  =>"off",
+                        ]
                  ])
              ->add('message', TextareaType::class,[
                     'required' => false,
@@ -73,7 +76,7 @@ final class ExportNoticeType extends AbstractType
                      'expanded'=>true,
                      'choices' => [
                          'Format texte brute'   =>'txt',
-                         'Format PDF'           =>'pdf',
+                         'Mettre PDF en pièce jointe'           =>'pdf',
                      ],
                     'data' => 'txt'
                  ])
