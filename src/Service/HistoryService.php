@@ -53,7 +53,7 @@ final class HistoryService extends AuthenticationService
     }
 
     /**
-     * @return array
+     * @return array|UserHistory[]
      */
     public function getHistory(): array
     {
