@@ -467,6 +467,12 @@ class Notice extends AbstractImage implements NoticeInterface, RecordInterface
      * @JMS\XmlList("datePublication")
      */
     private $publishedDates;
+    /**
+     * @var string
+     * @JMS\Type("string")
+     * @JMS\SerializedName("anneeMaximaleSeriel")
+     */
+    private $maxPublishedDate;
 
     /**
      * @var array
@@ -870,7 +876,13 @@ class Notice extends AbstractImage implements NoticeInterface, RecordInterface
      */
     public function getPublishedDates(): array
     {
-        return $this->publishedDates;
+        $dates = $this->publishedDates;
+
+        if ($this->maxPublishedDate) {
+            $dates[] = $this->maxPublishedDate;
+        }
+
+        return $dates;
     }
 
     /**
