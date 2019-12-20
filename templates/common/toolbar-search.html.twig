@@ -24,8 +24,9 @@
     {% block print %}
         <li class="toolbar__item">
             <button
-                    data-target="#modal-print"
-                    data-toggle="modal"
+                    data-href="#modal-print" data-toggle="disable-if-no-found-modal"
+                    data-spy='.addableInList,[data-toggle="check-all"]'
+                    data-target='.addableInList:checked'
                     class="js-print-action"
             >
                 <img src="{{ asset('images/icones/icone-imprimante.svg') }}" alt="" class="icone-imprimante"/>
