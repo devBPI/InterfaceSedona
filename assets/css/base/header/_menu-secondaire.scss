@@ -3,14 +3,13 @@
 // -------------------------------
 
 #menu-secondaire {
-	margin-left: -1px;
-	margin-right: -1px;
-	border-left: $border-thin;
-	border-right: $border-thin;
+	margin-bottom: rem(10);
 
 	@include media-breakpoint-up(md) {
+		border-left: $border-thin;
+		border-right: $border-thin;
 		margin-right: $spacer;
-		margin-left: 0;
+		margin-bottom: 0;
 	}
 
 	@media print {
@@ -60,6 +59,14 @@
 			&-item {
 				color: $black;
 				@include font-size(12);
+
+				& + .menu-secondaire__list-item {
+					margin-top: rem(10);
+
+					@include media-breakpoint-up(lg) {
+						margin-top: 0;
+					}
+				}
 
 				&:hover,
 				&:focus {
