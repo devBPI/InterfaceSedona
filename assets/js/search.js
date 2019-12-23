@@ -16,17 +16,6 @@ $(document)
                 .addClass('btn-see-more--more');
         }
     })
-    .on('keyup','.js-pagination-select', function (e) {
-        if (e.keyCode === 13) {
-            let currentUrl = new URL(location.href);
-            let queryString = currentUrl.search;
-            let urlSearchParams = new URLSearchParams(queryString);
-            urlSearchParams.set('page', $(this).val());
-            currentUrl.search = urlSearchParams.toString();
-
-            window.location = currentUrl.toString();
-        }
-    })
     .on('click', '.js-delete-filter',  function(e){
         e.preventDefault();
         let $this = $(this);
@@ -47,4 +36,7 @@ $(document)
 ;
 
 import {DateSlider} from './date-input-search';
-let dateSlider = new DateSlider(document.querySelector('#rfn-search-date-slider'));
+new DateSlider(document.querySelector('#rfn-search-date-slider'));
+
+import Pagination from './pagination';
+new Pagination(document.querySelector('#pagination-input'));
