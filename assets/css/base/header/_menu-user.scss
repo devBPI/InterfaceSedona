@@ -11,9 +11,11 @@
 
 .menu-user {
 	margin-bottom: rem(10);
+	margin-left: $spacer;
 
 	@include media-breakpoint-up(md) {
 		margin-bottom: 0;
+		margin-left: 0;
 	}
 
 	&__list {
