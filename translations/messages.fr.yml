@@ -116,10 +116,10 @@ modal:
     submit-sr-only: la modification de la liste
     message-success: La liste « %name% » a bien été modifiée.
   list-remove:      #Modal 04 supperions de listes
-    title: Suppression des listes et des documents
-    message-confirmation: Voulez-vous vraiment supprimer les listes et documents sélectionnés ?
+    title: Suppression d'éléments
+    message-confirmation: Voulez-vous vraiment supprimer les éléments sélectionnés ?
     submit: Confirmer
-    submit-sr-only:  la suppression des listes et documents sélectionnés
+    submit-sr-only:  la suppression des éléments sélectionnés
   export:           #Modal 05 export
     title: Paramétrer l'export
     subject: Catalogue BPI – Export de notices
