@@ -187,7 +187,7 @@ final class ObjSearch
             }
 
             if (is_array($values)) {
-                $values = implode(',', $values);
+                $values = implode(', ', $values);
             }
 
             $criteria[] = [$name => $values];

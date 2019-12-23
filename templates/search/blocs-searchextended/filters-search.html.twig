@@ -7,9 +7,9 @@
 				{% for key, value in criteria %}
 					<li class="search-criteria__item">
 						{% if is_search_word(key) %}
-							{{ ('modal.advanced-search.keyword.type.'~key)|trans }}:&nbsp;
+							{{ ('modal.advanced-search.keyword.type.'~key)|trans }} : 
 						{% else %}
-							{{ ('modal.advanced-search.facette.'~key)|trans }}:
+							{{ ('modal.advanced-search.facette.'~key)|trans }} :
 						{% endif %}
 
 						{{ value }}
