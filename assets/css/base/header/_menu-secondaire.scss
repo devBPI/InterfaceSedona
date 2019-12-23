@@ -89,10 +89,14 @@
 						height: 0;
 						right: 0;
 						bottom: 0;
-						margin-right: 0;
+						margin-right: $spacer;
 						margin-bottom: -5px;
 						border-bottom: 10px solid $red;
 						border-left: 10px solid transparent;
+
+						@include media-breakpoint-up(lg) {
+							margin-right: 0;
+						}
 					}
 				}
 			}
