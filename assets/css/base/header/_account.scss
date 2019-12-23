@@ -10,8 +10,10 @@
 }
 
 .account {
+	margin-bottom: rem(10);
 
 	@include media-breakpoint-up(lg) {
+		margin-top: 0;
 		margin-top: rem(10);
 	}
 
