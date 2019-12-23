@@ -1,74 +1,74 @@
 <div class="print__bloc print__bloc--rayon">
-    {% if printNoticeWrapper is defined and printNoticeWrapper.noticeAuthority |length> 0 or printNoticeWrapper.noticeIndice|length>0 %}
+    {% if printNoticeWrapper is not empty and (printNoticeWrapper.noticeAuthority|length > 0 or printNoticeWrapper.noticeIndice|length > 0) %}
         <div class="print__header">
             <h2 class="n1">{{ 'bloc.autority-result-information.your-references-autority'|trans }}</h2>
         </div>
+        {% for element in printNoticeWrapper.noticeAuthority %}
+            <div class="print__item">
+                <div class="row">
+                    <div class="col-12">
+                        <h2 class="n1">{{ loop.index }}) {{ element.title }}</h2>
+                    </div>
+                    {% if  includeImage %}
+                        <div class="col-3">
+                            <img src="{{ absolute_url( asset('images/types/type-'~ (element.type|slugify) ~'.svg')) }}" alt="" class="img-fluid" />
+                        </div>
+                    {% endif %}
+                    <div class="col">
+                        <ul class="print__list">
+                            {% include "authority/print-detail.format.twig" with {'notice': element, 'format':'pdf'} %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+
+        {% for element in printNoticeWrapper.noticeIndice %}
+            <div class="print__item">
+                <div class="row">
+                    <div class="col-12">
+                        <h2 class="n1">{{ loop.index }}) {{ element.title }} </h2>
+                    </div>
+                    {% if includeImage %}
+                        <div class="col-3">
+                            <img src="{{ absolute_url(asset('images/types/type-indice.svg')) }}" alt="" class="img-fluid" />
+                        </div>
+                    {% endif %}
+
+                    <div class="col">
+                        <ul class="print__list">
+                            {% include "indice/print-detail.format.twig" with {'notice': element, 'format': 'pdf'} %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
     {% endif %}
-    {% for element in printNoticeWrapper.noticeAuthority %}
-        <div class="print__item">
-            <div class="row">
-                <div class="col-12">
-                    <h2 class="n1">{{ loop.index }}) {{ element.title }}</h2>
-                </div>
-                {% if  includeImage %}
-                    <div class="col-3">
-                        <img src="{{absolute_url( asset('images/types/type-'~ (element.type|slugify) ~'.svg')) }}" alt="" class="img-fluid" />
-                    </div>
-                {% endif %}
-                <div class="col">
-                    <ul class="print__list">
-                        {% include "authority/print-detail.format.twig" with {'notice': element, 'format':'pdf'} %}
-                    </ul>
-                </div>
-            </div>
-        </div>
-    {% endfor %}
-
-    {% for element in printNoticeWrapper.noticeIndice %}
-        <div class="print__item">
-            <div class="row">
-                <div class="col-12">
-                    <h2 class="n1">{{ loop.index }}) {{ element.title }} </h2>
-                </div>
-                {% if includeImage %}
-                    <div class="col-3">
-                        <img src="{{ absolute_url(asset('images/types/type-indice.svg')) }}" alt="" class="img-fluid" />
-                    </div>
-                {% endif %}
-
-                <div class="col">
-                    <ul class="print__list">
-                        {% include "indice/print-detail.format.twig" with {'notice': element, 'format': 'pdf'} %}
-                    </ul>
-                </div>
-            </div>
-        </div>
-    {% endfor %}
 </div>
 
 <div class="print__bloc print__bloc--rayon">
-    {% if printNoticeWrapper.noticeOnShelves|length> 0 or printNoticeWrapper.noticeOnLine|length>0 %}
+    {% if printNoticeWrapper is not empty and (printNoticeWrapper.noticeOnShelves|length > 0 or printNoticeWrapper.noticeOnLine|length > 0) %}
         <div class="print__header">
             <h2 class="n1">{{ "bloc.autority-result-information.your-references-bibliographic"|trans }}</h2>
         </div>
-    {% endif %}
-    {% for element in printNoticeWrapper.noticeOnShelves %}
-        <div class="print__item">
-            <div class="row">
-                <div class="col-12">
-                    <h2 class="n1">{{ loop.index }}) {{ element.type }} - {{ element.title }}</h2>
-                </div>
-                {% if includeImage %}
-                    <div class="col-3">
-                        <img src="{{ absolute_url(path('binary_image', {'content':element.image, 'type': element.type| slugify})) }}" class="img-fluid" alt="" />
+        {% for element in printNoticeWrapper.noticeOnShelves %}
+            <div class="print__item">
+                <div class="row">
+                    <div class="col-12">
+                        <h2 class="n1">{{ loop.index }}) {{ element.type }} - {{ element.title }}</h2>
                     </div>
-                {% endif %}
-                <div class="col">
-                    <ul class="print__list">
-                        {% include "notice/print-detail.format.twig" with {'notice': element, 'format': 'pdf'} %}
-                    </ul>
+                    {% if includeImage %}
+                        <div class="col-3">
+                            <img src="{{ absolute_url(path('binary_image', {'content':element.image, 'type': element.type| slugify})) }}" class="img-fluid" alt="" />
+                        </div>
+                    {% endif %}
+                    <div class="col">
+                        <ul class="print__list">
+                            {% include "notice/print-detail.format.twig" with {'notice': element, 'format': 'pdf'} %}
+                        </ul>
+                    </div>
                 </div>
             </div>
-        </div>
-    {% endfor %}
+        {% endfor %}
+    {% endif %}
 </div>

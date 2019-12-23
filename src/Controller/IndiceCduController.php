@@ -115,7 +115,7 @@ final class IndiceCduController extends AbstractController
             return $this->render('common/error.html.twig');
         }
 
-        return  $this->buildFileContent->buildFile($sendAttachement, IndiceCdu::class, $format);
+        return  $this->buildFileContent->buildFile($sendAttachement, IndiceCdu::class);
     }
 
 

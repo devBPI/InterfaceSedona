@@ -197,7 +197,7 @@ final class SearchController extends AbstractController
             ->setShortFormat($request->get('print-type', 'print-long') !== 'print-long')
       ;
 
-        return  $this->buildFileContent->buildFile($sendAttachement, ObjSearch::class, $format);
+        return  $this->buildFileContent->buildFile($sendAttachement, ObjSearch::class);
     }
 
     /**

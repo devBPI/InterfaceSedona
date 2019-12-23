@@ -64,18 +64,17 @@ class NoticeBuildFileService
         $this->noticeProvider   = $noticeProvider;
         $this->noticeAuthority  = $noticeAuthority;
         $this->knpSnappy        = $knpSnappy;
-        $this->templating = $templating;
+        $this->templating       = $templating;
     }
 
     /**
      * @param ExportNotice $attachement
-     * @param string $format
      * @return string
      * @throws \Twig\Error\LoaderError
      * @throws \Twig\Error\RuntimeError
      * @throws \Twig\Error\SyntaxError
      */
-    private function buildFileForSearch(ExportNotice $attachement, string $format)
+    private function buildFileForSearch(ExportNotice $attachement)
     {
         $noticeWrapper  =  null;
         try {
@@ -88,7 +87,7 @@ class NoticeBuildFileService
         }
 
         return  $this->templating->render(
-            "search/index.".$format.".twig",
+            "search/index.".$attachement->getFormatType().".twig",
             [
                 'toolbar'=> ObjSearch::class,
                 'isPrintLong'   => !$attachement->isShortFormat(),
@@ -100,13 +99,12 @@ class NoticeBuildFileService
 
     /**
      * @param ExportNotice $attachement
-     * @param string $format
      * @return string
      * @throws \Twig\Error\LoaderError
      * @throws \Twig\Error\RuntimeError
      * @throws \Twig\Error\SyntaxError
      */
-    private function buildFileForNotice(ExportNotice $attachement, string $format):string
+    private function buildFileForNotice(ExportNotice $attachement):string
     {
         $permalink = null;
         try{
@@ -116,7 +114,7 @@ class NoticeBuildFileService
            throw new NotFoundHttpException(sprintf('the permalink %s not referenced', $permalink));
         }
 
-        return  $this->templating->render("notice/print.".$format .".twig", [
+        return  $this->templating->render("notice/print.".$attachement->getFormatType() .".twig", [
             'toolbar'           => Notice::class,
             'isPrintLong'       => !$attachement->isShortFormat(),
             'includeImage'      => $attachement->isImage(),
@@ -127,13 +125,12 @@ class NoticeBuildFileService
 
     /**
      * @param ExportNotice $attachement
-     * @param string $format
      * @return string
      * @throws \Twig\Error\LoaderError
      * @throws \Twig\Error\RuntimeError
      * @throws \Twig\Error\SyntaxError
      */
-    private function buildFileForAuthority(ExportNotice $attachement, string $format)
+    private function buildFileForAuthority(ExportNotice $attachement)
     {
         $permalink = null;
         try{
@@ -146,7 +143,7 @@ class NoticeBuildFileService
             throw new NotFoundHttpException(sprintf('the permalink %s not referenced', $permalink));
         }
 
-        return  $this->templating->render("authority/print.".$format .".twig", [
+        return  $this->templating->render("authority/print.".$attachement->getFormatType() .".twig", [
             'toolbar'           => Authority::class,
             'isPrintLong'       => !$attachement->isShortFormat(),
             'includeImage'      => $attachement->isImage(),
@@ -157,13 +154,12 @@ class NoticeBuildFileService
     }
     /**
      * @param ExportNotice $attachement
-     * @param string $format
      * @return string
      * @throws \Twig\Error\LoaderError
      * @throws \Twig\Error\RuntimeError
      * @throws \Twig\Error\SyntaxError
      */
-    private function buildFileForIndice(ExportNotice $attachement, string $format)
+    private function buildFileForIndice(ExportNotice $attachement)
     {
         $permalink = null;
         try{
@@ -173,7 +169,7 @@ class NoticeBuildFileService
             throw new NotFoundHttpException(sprintf('the permalink %s not referenced', $permalink));
         }
 
-        return  $this->templating->render("indice/print.".$format .".twig", [
+        return  $this->templating->render("indice/print.".$attachement->getFormatType() .".twig", [
             'toolbar'           => Authority::class,
             'isPrintLong'       => !$attachement->isShortFormat(),
             'includeImage'      => $attachement->isImage(),
@@ -184,18 +180,17 @@ class NoticeBuildFileService
     /**
      * @param ExportNotice $attachement
      * @param string $type
-     * @param string $format
      * @return mixed|string
      * @throws \Twig\Error\LoaderError
      * @throws \Twig\Error\RuntimeError
      * @throws \Twig\Error\SyntaxError
      */
-    public function buildFile(ExportNotice $attachement, string $type, string $format)
+    public function buildFile(ExportNotice $attachement, string $type)
     {
-        $content = $this->buildContent($attachement, $type, $format);
+        $content = $this->buildContent($attachement, $type);
         $filename = 'search-'.date('Y-m-d_h-i-s');
 
-        switch ($format){
+        switch ($attachement->getFormatType()){
             case 'txt':
                 return  new Response(
                 $content, 200, [
@@ -215,37 +210,46 @@ class NoticeBuildFileService
     /**
      * @param ExportNotice $attachement
      * @param string $type
-     * @param string $format
      * @return string
      * @throws \Twig\Error\LoaderError
      * @throws \Twig\Error\RuntimeError
      * @throws \Twig\Error\SyntaxError
      */
-    public function buildContent(ExportNotice $attachement, string $type, string $format):string
+    public function buildContent(ExportNotice $attachement, string $type):string
     {
         switch ($type){
             case ObjSearch::class:
-                $content =  $this->buildFileForSearch($attachement, $format);
+                $content =  $this->buildFileForSearch($attachement);
                 break;
             case Notice::class:
-                $content =  $this->buildFileForNotice($attachement, $format);
+                $content =  $this->buildFileForNotice($attachement);
                 break;
             case Authority::class:
-                $content =  $this->buildFileForAuthority($attachement, $format);
+                $content =  $this->buildFileForAuthority($attachement);
                 break;
             case IndiceCdu::class:
-                $content =  $this->buildFileForIndice($attachement, $format);
+                $content =  $this->buildFileForIndice($attachement);
                 break;
             case UserSelectionDocument::class:
-                $content = $this->buildFileForUserSelectionList($attachement, $format);
+                $content = $this->buildFileForUserSelectionList($attachement);
                 break;
             default:
                 throw new \InvalidArgumentException(sprintf('The type "%s" is not referenced on the app', $type));
                 break;
         }
 
-        if ($format === 'pdf'){
-            return  $this->knpSnappy->getOutputFromHtml($content);
+        if ($attachement->getFormatType() === 'pdf'){
+            return  $this->knpSnappy->getOutputFromHtml($content,[
+                "orientation"       => 'Portrait',
+                'page-size'         => 'A4',
+                'encoding'          => 'UTF-8',
+//                'margin-top'        => '20mm',
+//                "default-header"    => true,
+//                'header-spacing'    => 3,
+                "header-line"       => true,
+                "header-left"      => "[title]",
+                "header-center"     => "Page [page] of [toPage]"
+            ]);
         }
 
         return $content;
@@ -254,13 +258,12 @@ class NoticeBuildFileService
 
     /**
      * @param ExportNotice $attachement
-     * @param string $format
      * @return string
      * @throws \Twig\Error\LoaderError
      * @throws \Twig\Error\RuntimeError
      * @throws \Twig\Error\SyntaxError
      */
-    private function buildFileForUserSelectionList(ExportNotice $attachement, string $format)
+    private function buildFileForUserSelectionList(ExportNotice $attachement)
     {
         $noticeWrapper =null;
         try {
@@ -270,7 +273,7 @@ class NoticeBuildFileService
         }
 
         return  $this->templating->render(
-            "user/print.".$format.".twig",
+            "user/print.".$attachement->getFormatType().".twig",
             [
                 'toolbar'           => ObjSearch::class,
                 'isPrintLong'       => !$attachement->isShortFormat(),
