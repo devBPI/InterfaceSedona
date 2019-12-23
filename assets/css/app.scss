@@ -5,6 +5,9 @@
 // Import Variables Global
 @import 	"variable";
 
+// Import Helpers
+@import 	"helpers/mixins";
+
 // Import Overwritten Bootstrap Variable
 @import 	"variable-custom-bootstrap",
 			"~bootstrap/scss/bootstrap";
@@ -20,11 +23,9 @@
 @import 	"~select2/select2.css";
 
 // Orejime
-@import  	"variable-custom-orijime",
-			"~orejime/dist/orejime";
-
-// Import Helpers
-@import 	"helpers/mixins";
+@import  	"variable-custom-orejime",
+			"~orejime/dist/orejime",
+			"vendors/orejime";
 
 // Base
 @import 	"base";
