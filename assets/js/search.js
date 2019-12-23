@@ -1,5 +1,11 @@
 import {SelectionAdder} from './my-selection';
 
+import {DateSlider} from './date-input-search';
+new DateSlider(document.querySelector('#rfn-search-date-slider'));
+
+import Pagination from './pagination';
+new Pagination(document.querySelector('#pagination-input'));
+
 $(document)
 // Bouton "Voir plus" / "Voir moins" -----------------------------------------------------------------------------------
     .on('click', '.btn-see-more', function() {
@@ -34,9 +40,3 @@ $(document)
         adder.cleanContainer();
     })
 ;
-
-import {DateSlider} from './date-input-search';
-new DateSlider(document.querySelector('#rfn-search-date-slider'));
-
-import Pagination from './pagination';
-new Pagination(document.querySelector('#pagination-input'));

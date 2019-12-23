@@ -336,6 +336,7 @@ bloc:
     report-error: Signaler une erreur
   search-zone:            #Bloc B  Zone de recherche simple
     autocompletion-notice: Utiliser les flèches haut et bas du clavier pour vous déplacer dans la liste de suggestions
+    autocompletion-notice-sr-only: Tapez les premières lettres pour faire apparaître des suggestions et utilisez la tabulation pour naviguer dans la liste de suggestions. Appuyez sur Entrée pour accéder à la page correspondant à votre sélection
     autocompletion-nb-result: '%nb% options affichées'
     input-sr-only: Saisir un mot clé
     input-placeholder: Rechercher

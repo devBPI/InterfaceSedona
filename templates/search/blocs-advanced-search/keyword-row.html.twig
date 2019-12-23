@@ -17,14 +17,14 @@
            class="sr-only">{{ 'modal.advanced-search.keyword.label'|trans }}</label>
     {% set field_name = constant('App\\Model\\Search\\Criteria::ADVANCED_SEARCH_LABEL')~'['~index~']['~constant('App\\Model\\Search\\Criteria::TEXT_LABEL')~']' %}
 
-    <input type="text" autocomplete="off" aria-autocomplete="list" aria-controls="autocompletion-list"
+    <input type="text" autocomplete="off" id="adv-search-txt-{{ index }}" class="form-control"
            data-url="{{ toggle_to_path_parcours('search_autocompletion',app.request.attributes.get(constant('App\\Model\\Search\\ObjSearch::PARAM_PARCOURS_NAME'))) }}"
            data-toggle="autocomplete" data-target="#autocompletion-list-{{ index }}"
            data-type="#adv-search-choice-{{ index }}"
            name="{{ field_name }}" value="{{ current_keyword ?? '' }}"
-           id="adv-search-txt-{{ index }}" class="form-control">
+           aria-expanded="false" aria-owns="autocompletion-list-{{ index }}">
     <div aria-labelledby="search-label" aria-describedby="autocompletion-infos" id="autocompletion-list-{{ index }}"
-     class="search-autocomplet d-none"></div>
+     class="search-autocomplet sr-only"></div>
 </div>
 <div class="col-12 col-sm-4 pr-sm-0">
     <label for="adv-search-choice-{{ index }}" class="sr-only">{{ 'modal.advanced-search.keyword.type-label'|trans }}</label>

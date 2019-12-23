@@ -1,11 +1,13 @@
 {% if words is defined and words %}
-	<p class="sr-only" aria-live="assertive">{{ 'bloc.search-zone.autocompletion-nb-result'|trans({'%nb%': words|length})}}</p>
-	<ul role="listbox" class="listbox search-autocomplet__list">
-		{%  for word in words %}
-			<li class="search-autocomplet__item" role="option" aria-selected="false">
+	<p class="sr-only" aria-live="assertive" aria-atomic="true">{{ 'bloc.search-zone.autocompletion-nb-result'|trans({'%nb%': words|length})}}</p>
+	<ul class="listbox search-autocomplet__list">
+		{% for word in words %}
+			<li class="search-autocomplet__item">
 				<a class="search-autocomplet__item-content"
 					{% if mode is defined and mode == 'link' %}
 						href="{{ toggle_to_path_parcours('search', app.request.attributes.get(constant('App\\Model\\Search\\ObjSearch::PARAM_PARCOURS_NAME')), {(constant('App\\Model\\Search\\Criteria::SIMPLE_SEARCH_KEYWORD')): word, (constant('App\\Model\\Search\\Criteria::SIMPLE_SEARCH_TYPE')): type, 'action': ''}) }}"
+					{% else %}
+						tabindex="0"
 					{% endif %}>{{ word }}</a>
 			</li>
 		{% endfor %}
