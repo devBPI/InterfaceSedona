@@ -95,3 +95,15 @@
     {{ parent() }}
 {%- endblock widget_attributes -%}
 
+
+{% block fieldset_form_row -%}
+    <fieldset class="form-group">
+        <legend class="sr-only">{{- form.vars.name -}}</legend>
+        <div class="row{% if (not compound or force_error|default(false)) and not valid %} is-invalid{% endif %}">
+            {{- form_label(form) -}}
+            <div class="{{ block('form_group_class') }}">
+                {{- form_widget(form) -}}
+            </div>
+        </div>
+    </fieldset>
+{%- endblock fieldset_form_row %}
