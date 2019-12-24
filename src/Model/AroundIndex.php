@@ -1,11 +1,5 @@
 <?php
 declare(strict_types=1);
-/**
- * Created by PhpStorm.
- * User: infra
- * Date: 26/09/19
- * Time: 15:32
- */
 
 namespace App\Model;
 
@@ -17,7 +11,6 @@ use JMS\Serializer\Annotation as JMS;
  */
 final class AroundIndex
 {
-
     /**
      * @var array|Cdu[]
      * @JMS\Type("array<App\Model\Cdu>")
@@ -52,7 +45,7 @@ final class AroundIndex
     /**
      * @return string
      */
-    public function getNext(): string
+    public function getNext(): ?string
     {
         return $this->next;
     }
@@ -60,7 +53,7 @@ final class AroundIndex
     /**
      * @return string
      */
-    public function getPrevious(): string
+    public function getPrevious(): ?string
     {
         return $this->previous;
     }

@@ -76,7 +76,7 @@ class NoticeAuthorityProvider extends AbstractProvider
      * @param string $cote
      * @return AroundIndex
      */
-    public function getIndiceCduAroundOf(string $cote):AroundIndex
+    public function getIndiceCduAroundOf(string $cote): AroundIndex
     {
         return $this->hydrateFromResponse(
             '/cdu-indexes/around',

@@ -23,7 +23,7 @@ import Routing from '../../assets/js/jsrouting.min.js';
 import {SearchForm, CopyKeyword} from './search-form';
 document.querySelectorAll('form').forEach((form: HTMLFormElement) => {
     new SearchForm(form);
-})
+});
 let copyKeyword = new CopyKeyword();
 
 import SelectList from './select-list';
@@ -76,7 +76,7 @@ let printEngine = function(){
     $('.js-print-notices').val(JSON.stringify(notice));
     $('.js-print-authorities').val(JSON.stringify(authority));
     $('.js-print-indices').val(JSON.stringify(indice));
-}
+};
 
 $(document)
     .on('focus', '.dropdown-link .nav-link, .nav-pills .dropdown .dropdown-toggle', function() {
@@ -97,8 +97,8 @@ $(document)
         printEngine();
     })
     .on('click', '.js-5-indices-around', function (event) {
-        let $this = $(this);
-        let url = $this.data('url');
+        let url = $(this).data('url');
+
         /**
          * send the form
          */

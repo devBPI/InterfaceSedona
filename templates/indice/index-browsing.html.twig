@@ -10,26 +10,35 @@
 			<a href="#index-current" class="sr-only sr-only-focusable">{{ 'bloc.index.go-to current-index'|trans }}</a>
 
 			<div class="index__content">
-				<button type="button" class="js-5-indices-around btn index__button index__button--top" data-url="{{ path("indice_around_indexes", {"cote":indexList.previous}) }}"><img src="{{ asset('images/icones/icone-chevron-gauche.svg') }}" alt="" class="icone-chevron-top"/>10 <span class="sr-only">{{ 'bloc.index.name'|trans }}</span> {{ 'bloc.index.previous'|trans }}<img src="{{ asset('images/icones/icone-chevron-gauche.svg') }}" alt="" class="icone-chevron-top"/></button>
+				<button type="button" class="js-5-indices-around btn index__button index__button--top" data-url="{{ path("indice_around_indexes", {"cote": indexList.previous, "current": current}) }}">
+					<img src="{{ asset('images/icones/icone-chevron-gauche.svg') }}" alt="" class="icone-chevron-top"/>10
+					<span class="sr-only">{{ 'bloc.index.name'|trans }}</span> {{ 'bloc.index.previous'|trans }}
+					<img src="{{ asset('images/icones/icone-chevron-gauche.svg') }}" alt="" class="icone-chevron-top"/>
+				</button>
+
 				<ul class="index__list">
 					{% for index in indexList.indexes %}
 						{% set itemLabel = index.cote~' - '~index.name %}
-						{% if loop.index != 6 %}
-							<li class="index__item">
-								<a href="{{ path('search', {(constant('App\\Model\\Search\\Criteria::SIMPLE_SEARCH_KEYWORD')): index.name, (constant('App\\Model\\Search\\Criteria::SIMPLE_SEARCH_TYPE')):'general'}) }}" lang="fr">
-									{{ itemLabel }}</a></li>
-						{% else %}
+						{% if current == index.cote %}
 							<li class="index__item index__item--current">
 								<p id="index-current" aria-current="page" lang="fr" tabindex="0">
 									<img src="{{ asset('images/icones/icone-chevron-gauche.svg') }}" alt="" class="icone-chevron-right"/>
-									{{ 'bloc.index.current'|trans({'%name%': itemLabel}) }}<span class="sr-only"> {{ 'bloc.index.current-sr-only'|trans() }}</span>
+									{{ 'bloc.index.current'|trans({'%name%': itemLabel}) }} <span class="sr-only">{{ 'bloc.index.current-sr-only'|trans() }}</span>
 								</p>
 							</li>
+						{% else %}
+							<li class="index__item">
+								<a href="{{ path('search', {(constant('App\\Model\\Search\\Criteria::SIMPLE_SEARCH_KEYWORD')): index.name, (constant('App\\Model\\Search\\Criteria::SIMPLE_SEARCH_TYPE')):'general'}) }}" lang="fr">
+									{{ itemLabel }}</a></li>
 						{% endif %}
 					{% endfor %}
 				</ul>
-				<button type="button" class="js-5-indices-around btn index__button index__button--bottom" data-url="{{ path("indice_around_indexes", {"cote":indexList.next}) }}">
-					<img src="{{ asset('images/icones/icone-chevron-gauche.svg') }}" alt="" class="icone-chevron-bottom"/>10 <span class="sr-only">{{ 'bloc.index.name'|trans }}</span> {{ 'bloc.index.next'|trans }}<img src="{{ asset('images/icones/icone-chevron-gauche.svg') }}" alt="" class="icone-chevron-bottom"/>
+
+				<button type="button" class="js-5-indices-around btn index__button index__button--bottom" data-url="{{ path("indice_around_indexes", {"cote": indexList.next, "current": current}) }}">
+					<img src="{{ asset('images/icones/icone-chevron-gauche.svg') }}" alt="" class="icone-chevron-bottom"/>10
+					<span class="sr-only">{{ 'bloc.index.name'|trans }}</span>
+					{{ 'bloc.index.next'|trans }}
+					<img src="{{ asset('images/icones/icone-chevron-gauche.svg') }}" alt="" class="icone-chevron-bottom"/>
 				</button>
 			</div>
 		</div>
