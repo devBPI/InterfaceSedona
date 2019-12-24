@@ -144,8 +144,12 @@ import {CollectionRow} from './collection-row.ts';
             return false;
         })
         .on('shown.bs.modal', '.modal', function () {
-            $(this).find( 'input:visible:first').focus();
+            let firstInput = $(this).find( 'input.is-invalid:visible:first');
+            if (firstInput.length === 0) {
+                firstInput = $(this).find( 'input:visible:first');
+            }
 
+            firstInput.get(0).focus();
         })
         .on('click', '[data-toggle=modal]', function(e) {
             var $this = $(this),
