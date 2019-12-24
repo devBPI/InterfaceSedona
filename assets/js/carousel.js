@@ -36,7 +36,10 @@ $('.js-carousel-primary')
             .attr('aria-selected', 'false')
             .removeAttr('role');
         $('.carousel__pagination li.slick-active').attr('aria-selected', 'true');
-        $('.slick-active').find('.carousel__slide:first-child .carousel__slide-link').focus();
+
+        if( $('.slick-arrow:focus') || $('.carousel__slide-link:focus') || $('.carousel__pagination-dot:focus') ) {
+            $('.slick-active').find('.carousel__slide:first-child .carousel__slide-link').focus();
+        }
     })
 ;
 
