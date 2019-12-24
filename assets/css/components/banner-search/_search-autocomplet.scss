@@ -37,5 +37,12 @@
 
 	&__item {
 		padding: 3px 0;
+
+		&-content {
+
+			&:hover {
+				cursor: pointer;
+			}
+		}
 	}
 }
