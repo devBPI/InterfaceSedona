@@ -97,11 +97,11 @@
 {% endif %}
 
 {#result de quatrieme#}
-{% if notice.fourth %}
+{% if notice.fourth and (notice.fourth.presentation or notice.fourth.biography or notice.fourth.editorInfo) %}
     <li class="list-information__item">
         <span class="list-information__label">{{ ("Quatrième de couverture")|trans }}</span>
         <ul class="list-information__sub-list">
-            {% if notice.fourth.presentation  %}
+            {% if notice.fourth.presentation %}
                 <li class="list-information__sub-item">
                     <span>{{ 'page.quatrieme.label.presentation' |trans }}</span>
                     {{ notice.fourth.presentation }}
@@ -113,7 +113,7 @@
                     {{ notice.fourth.biography }}
                 </li>
             {% endif %}
-            {% if notice.fourth.editorInfo%}
+            {% if notice.fourth.editorInfo %}
                 <li class="list-information__sub-item">
                     <span>{{ 'page.quatrieme.label.editor_information' |trans }}</span>
                     {{ notice.fourth.editorInfo }}
