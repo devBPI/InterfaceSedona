@@ -87,6 +87,9 @@ $(document)
             $(this).siblings('.dropdown-menu').addClass('show');
         }
     })
+    .on('mouseenter', '.dropdown-link .nav-link', function() {
+        $('.search-banner__select select').blur();
+    })
     .on('click', '.js-print-action', function () {
         printEngine();
     })
