@@ -49,6 +49,11 @@ header:
     logout: Desconectarse
     profile: Mi cuenta
     profile_title: Acceder a mi cuenta
+  result:
+    title:
+      actualites-revues: Parcours Actualités et revues - Résultats recherche
+      autoformation: Parcours Autoformation - Résultats recherche
+      cinema: Parcours Cinéma - Résultats recherche
   title:
     actualites-revues: Actualités et revues
     autoformation: Autoformation
@@ -86,7 +91,7 @@ modal:
     field-title: Titre
     message-success: Vous avez bien créé la liste « %name% » avec les documents sélectionnés.
     submit: Valider
-    submit-sr-only:  la création de la liste
+    submit-sr-only: la création de la liste
   list-add:             #Modal 02 ajout à ma sélection
     title-connected: Ajouter ..
     title: Vous avez ajouté ..
@@ -100,7 +105,7 @@ modal:
     btn-login: Pour la conserver, connectez-vous à Mon compte.
     btn-login2: Me connecter
     submit: Valider
-    submit-sr-only:  la création de la liste
+    submit-sr-only: la création de la liste
     message-success: Les documents ont bien été ajoutés à vos listes.
     message-error:
       no-list: Aucune liste n'a été sélectionnée. Veuillez en sélectionner une ou en créer une nouvelle.
@@ -114,7 +119,7 @@ modal:
     title: Suppression d'éléments
     message-confirmation: Voulez-vous vraiment supprimer les éléments sélectionnés ?
     submit: Confirmer
-    submit-sr-only:  la suppression des éléments sélectionnés
+    submit-sr-only: la suppression des éléments sélectionnés
   export:           #Modal 05 export
     title: Paramétrer l'export
     subject: Catalogue BPI – Export de notices
@@ -172,7 +177,7 @@ modal:
       first-name: Prénom
       email: Courriel (nom@exemple.com)
     submit: Valider
-    submit-sr-only:  l'envoi du mail de signalisation d'erreur
+    submit-sr-only: l'envoi du mail de signalisation d'erreur
     email: Courriel
   comments-edit:   #Modal 10  edition d'un commentaire
     title: Commentaire
@@ -259,7 +264,10 @@ modal:
       date_start_label: Entrez une première date
       date_end_label: Entrez une deuxième date
       subject: Sujets
+      subjects: Sujet(s)
       date_publishing: Date de publication
+      configuration_name: Base de recherche
+      materialSupport: Description matérielle
     clear-search: Effacer ma recherche
     submit: Rechercher
   refine-search:  #Modal 14 affiné la recheche
@@ -375,12 +383,12 @@ bloc:
     see-more: Voir plus
   header-docs:            #Bloc 12 En-tête des résultats
     rayon:
-      title-sr-only: Documents en rayon, sélectionner tout les résultats
+      title-sr-only: Documents en rayon, sélectionner tous les résultats
       in-ligne: 'Documents en rayon :'
       see-more: Voir tout
       see-more-sr-only: les documents en rayons
     online:
-      title-sr-only: Documents en ligne, sélectionner tout les résultats
+      title-sr-only: Documents en ligne, sélectionner tous les résultats
       in-ligne: 'Documents en ligne :'
       see-more: Voir tout
       see-more-sr-only: les documents en ligne
@@ -498,6 +506,7 @@ bloc:
     directors: 'Réalisateurs'
     your-references-autority: Vos références d'autorité
     your-references-bibliographic: Vos références bibliographiques
+    conservation: Conservation
   list-related-documents:  #Bloc 19 Liste de documents + Bloc 17 Documents liés
     link-title: Actualité %current% sur %nb%, %name%
     see-more: Voir tout
@@ -554,7 +563,7 @@ bloc:
 error:
   page_not_available: 'Cette page n’est pas accessible.'
   page_not_found: 404 - Page introuvable
-  link-go-back:  Revenir en arrière
+  link-go-back: Revenir en arrière
   link-home: Retourner à la page d'accueil
   title-form: Formulaire de contact
   page_boken: Oops! Une erreur est survenue
@@ -566,11 +575,11 @@ breadcrumb:
   home:
     actualites-revues: Recorrido Noticias y revistas
     autoformation: Recorrido Autoaprendizaje
-    cinema:  Recorrido Cine
+    cinema: Recorrido Cine
   help_index: 'Ayuda'
   help:
-    help_search:  Búsqueda
-    help_result:  Explotación de resultados
+    help_search: Búsqueda
+    help_result: Explotación de resultados
     help_service: Servicios
     help_account: Mi cuenta
   user:

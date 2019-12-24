@@ -91,7 +91,7 @@ modal:
     field-title: Titre
     message-success: Vous avez bien créé la liste « %name% » avec les documents sélectionnés.
     submit: Valider
-    submit-sr-only:  la création de la liste
+    submit-sr-only: la création de la liste
   list-add:             #Modal 02 ajout à ma sélection
     title-connected: Ajouter ..
     title: Vous avez ajouté ..
@@ -105,7 +105,7 @@ modal:
     btn-login: Pour la conserver, connectez-vous à Mon compte.
     btn-login2: Me connecter
     submit: Valider
-    submit-sr-only:  la création de la liste
+    submit-sr-only: la création de la liste
     message-success: Les documents ont bien été ajoutés à vos listes.
     message-error:
       no-list: Aucune liste n'a été sélectionnée. Veuillez en sélectionner une ou en créer une nouvelle.
@@ -119,7 +119,7 @@ modal:
     title: Suppression d'éléments
     message-confirmation: Voulez-vous vraiment supprimer les éléments sélectionnés ?
     submit: Confirmer
-    submit-sr-only:  la suppression des éléments sélectionnés
+    submit-sr-only: la suppression des éléments sélectionnés
   export:           #Modal 05 export
     title: Paramétrer l'export
     subject: Catalogue BPI – Export de notices
@@ -177,7 +177,7 @@ modal:
       first-name: Prénom
       email: Courriel (nom@exemple.com)
     submit: Valider
-    submit-sr-only:  l'envoi du mail de signalisation d'erreur
+    submit-sr-only: l'envoi du mail de signalisation d'erreur
     email: Courriel
   comments-edit:   #Modal 10  edition d'un commentaire
     title: Commentaire
@@ -266,8 +266,8 @@ modal:
       subject: Sujets
       subjects: Sujet(s)
       date_publishing: Date de publication
-      configuration_name:  Base de recherche
-      materialSupport: 'Description matérielle'
+      configuration_name: Base de recherche
+      materialSupport: Description matérielle
     clear-search: Effacer ma recherche
     submit: Rechercher
   refine-search:  #Modal 14 affiné la recheche
@@ -499,8 +499,8 @@ bloc:
     content-table: Tables des matières
     periodicity-date: Date d'édition papier
     alternatif-title: Autre(s) forme(s) de titre
-    translated: "Traduction de"
-    translated_from: "Traduit de:"
+    translated: Traduction de
+    translated_from: 'Traduit de:'
     in: 'dans'
     by: 'Par'
     directors: 'Réalisateurs'
@@ -563,7 +563,7 @@ bloc:
 error:
   page_not_available: 'Cette page n’est pas accessible.'
   page_not_found: 404 - Page introuvable
-  link-go-back:  Revenir en arrière
+  link-go-back: Revenir en arrière
   link-home: Retourner à la page d'accueil
   title-form: Formulaire de contact
   page_boken: Oops! Une erreur est survenue
@@ -578,8 +578,8 @@ breadcrumb:
     cinema: Parcours Cinéma
   help_index: 'Aide'
   help:
-    help_search:  La recherche
-    help_result:  Exploitation des résultats
+    help_search: La recherche
+    help_result: Exploitation des résultats
     help_service: Services
     help_account: Mon compte
   user:
