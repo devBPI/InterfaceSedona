@@ -1,9 +1,7 @@
 <nav aria-label="{{ 'page.breadcrumb'|trans }}" role="navigation">
 
 	<ul class="breadcrumb">
-		{% set urlBreadcrumb = breadcrumb() %}
-
-		{% for value in  urlBreadcrumb %}
+		{% for value in breadcrumb() %}
 			{% if loop.last %}
 				<li class="breadcrumb-item active" aria-current="page">{{ value.label }}</li>
 			{% else %}
