@@ -70,7 +70,7 @@
             </li>
         {% elseif object.url is defined and object.url is not empty %}
             <li class="availability--true availability--online">
-                <a href="{{ object.url }}" class="link link--icone-end link--inline">
+                <a href="{{ object.url }}" class="link link--icone-end link--inline" target="_blank">
                     {{ objTitle }}
                     <img src="{{ asset('images/icones/icone-chevron-gauche.svg') }}" alt="" aria-hidden="true" />
                 </a>
