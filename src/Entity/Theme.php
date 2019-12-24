@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -19,10 +21,9 @@ class Theme
      */
     private $id;
 
-
     /**
      * @ORM\Column(type="json_array", nullable=false, options={"jsonb": true})
-     * @var string
+     * @var array
      */
     private $title;
 
@@ -33,36 +34,42 @@ class Theme
     private $image;
 
     /**
-     * @var Thematic
      * @ORM\ManyToOne(targetEntity="App\Entity\Thematic", inversedBy="themes", cascade={"all"})
+     * @var Thematic
      */
     private $Parent;
 
     /**
      * @ORM\OneToMany(targetEntity="ThemeLevel", mappedBy="Parent")
+     * @var ThemeLevel[]|ArrayCollection
      */
     private $levels;
 
     /**
      * @ORM\Column(type="json_array", nullable=false, options={"jsonb": true})
-     * @var string
+     * @var array
      */
     private $url;
 
     /**
-     * @return mixed
+     * @return int
      */
-    public function getId()
+    public function getId(): int
     {
         return $this->id;
     }
 
     /**
+     * @param string $locale
      * @return string
      */
-    public function getTitle($locale='fr'): string
+    public function getTitle(string $locale='fr'): string
     {
-        return $this->title[$locale];
+        if (array_key_exists($locale, $this->title)) {
+            return $this->title[$locale];
+        }
+
+        return '';
     }
 
     /**
@@ -74,27 +81,31 @@ class Theme
     }
 
     /**
-     * @return mixed
+     * @return Thematic|null
      */
-    public function getParent()
+    public function getParent(): ?Thematic
     {
         return $this->Parent;
     }
 
     /**
-     * @return mixed
+     * @return Collection
      */
-    public function getLevels()
+    public function getLevels(): Collection
     {
         return $this->levels;
     }
 
     /**
+     * @param string $locale
      * @return string
      */
-    public function getUrl($locale='fr'): string
+    public function getUrl(string $locale='fr'): string
     {
-        return $this->url[$locale];
-    }
+        if (array_key_exists($locale, $this->url)) {
+            return $this->url[$locale];
+        }
 
+        return '';
+    }
 }

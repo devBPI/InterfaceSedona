@@ -21,49 +21,60 @@ class ThemeLevel
 
     /**
      * @ORM\Column(type="json_array", nullable=false, options={"jsonb": true})
-     * @var string
+     * @var array
      */
     private $title;
 
     /**
      * @ORM\Column(type="json_array", nullable=false, options={"jsonb": true})
-     * @var string
+     * @var array
      */
     private $url;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Theme", inversedBy="levels", cascade={"all"})
+     * @var Theme
      */
     private $Parent;
 
     /**
-     * @return mixed
+     * @return int
      */
-    public function getId()
+    public function getId(): int
     {
         return $this->id;
     }
 
     /**
+     * @param string $locale
      * @return string
      */
-    public function getTitle($locale='fr'): string
+    public function getTitle(string $locale='fr'): string
     {
-        return $this->title[$locale];
+        if (array_key_exists($locale, $this->title)) {
+            return $this->title[$locale];
+        }
+
+        return '';
     }
 
     /**
+     * @param string $locale
      * @return string
      */
-    public function getUrl($locale='fr'): string
+    public function getUrl(string $locale='fr'): string
     {
-        return $this->url[$locale];
+        if (array_key_exists($locale, $this->url)) {
+            return $this->url[$locale];
+        }
+
+        return '';
     }
 
     /**
-     * @return mixed
+     * @return Theme
      */
-    public function getParent()
+    public function getParent(): Theme
     {
         return $this->Parent;
     }

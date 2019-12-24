@@ -9,20 +9,20 @@
 		<div lang="fr" class="card">
 			<img src="{{ asset('images/parcours/'~thematic.type~'/'~element.image) }}" alt="" class="img-fluid card-img-top" />
 			<div class="card-body">
-				<h3 class="n2 card__title{% if  element.levels.count ==0 %} card__title--link{% endif %}">{{ element.title }}</h3>
-                {% if  element.levels.count> 0 %}
+				<h3 class="n2 card__title{% if element.levels.count == 0 %} card__title--link{% endif %}">{{ element.title(app.request.locale) }}</h3>
+                {% if element.levels.count > 0 %}
 					<ul class="card__list">
 						{% for level in element.levels %}
 							<li class="card__item">
-								<a href="{{ level.url}}">{{ level.title }}</a>
+								<a href="{{ level.url(app.request.locale) }}">{{ level.title(app.request.locale) }}</a>
 							</li>
 						{% endfor %}
 					</ul>
                 {% endif %}
 			</div>
-            {% if  element.levels.count ==0 %}
-				<a href="{{ element.url }}" class="card__link">
-					<span class="sr-only">{{ "bloc.preview-thematic-links.link-sr-only"|trans({'%name%' : element.title }) }}</span>
+            {% if element.levels.count == 0 %}
+				<a href="{{ element.url(app.request.locale) }}" class="card__link">
+					<span class="sr-only">{{ "bloc.preview-thematic-links.link-sr-only"|trans({'%name%' : element.title(app.request.locale) }) }}</span>
 				</a>
             {% endif %}
 		</div>
