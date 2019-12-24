@@ -81,10 +81,16 @@ let printEngine = function(){
 $(document)
     .on('focus', '.dropdown-link .nav-link, .nav-pills .dropdown .dropdown-toggle', function() {
         if ($(window).width() > 768) {
-            $('.dropdown-link .nav-link').removeClass('active');
+            $('.dropdown-link .nav-link, .dropdown .nav-link').removeClass('active');
             $('.dropdown-menu').removeClass('show');
             $(this).addClass('active');
             $(this).siblings('.dropdown-menu').addClass('show');
+        }
+    })
+    .on('focusout', '.dropdown-menu .dropdown-item:last-child', function () {
+        if ($(window).width() > 768) {
+            $('.dropdown-link .nav-link, .dropdown .nav-link').removeClass('active');
+            $('.dropdown-menu').removeClass('show');
         }
     })
     .on('mouseenter', '.dropdown-link .nav-link', function() {
