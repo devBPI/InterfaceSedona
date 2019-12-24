@@ -29,9 +29,6 @@ final class SuggestByMailType extends AbstractType
             ->add('title', TextType::class,[
                 'required'  => true,
             ])
-            ->add('address', TextType::class,[
-                'required'  => false,
-            ])
             ->add('author', TextareaType::class,[
                 'required'  => false,
             ])

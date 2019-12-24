@@ -340,7 +340,7 @@ bloc:
     share: Partager
     help: Aide
     help_search:
-    suggest: Suggestion d'achats
+    suggest: Suggestion d'achat
     report-error: Signaler une erreur
   search-zone:            #Bloc B  Zone de recherche simple
     autocompletion-notice: Utiliser les flèches haut et bas du clavier pour vous déplacer dans la liste de suggestions
