@@ -60,7 +60,7 @@ header:
     cinema: Cinéma
 footer:
   credit-list:
-    espace-actualites-revues: Prensa / Cooperación
+    espace-presse: Prensa / Cooperación
     emplois-et-stages: Empleo y prácticas
     marches-publics: Licitaciones
     mentions-legales: Aviso legal
@@ -93,20 +93,20 @@ modal:
     submit: Valider
     submit-sr-only: la création de la liste
   list-add:             #Modal 02 ajout à ma sélection
-    title-connected: Ajouter ..
-    title: Vous avez ajouté ..
-    add-to-profile: '.. à Mon compte dans :'
+    title-connected: Ajouter...
+    title: Vous avez ajouté...
+    add-to-profile: '... à Mon compte dans :'
     list: '%name%'
     new-list: Nouvelle liste
     field-title: Titre
-    add-to-tempory: .. à Ma sélection temporaire.
+    add-to-tempory: ... à Ma sélection.
     btn-return: Retourner à la liste des résultats
     btn-selection: Aller dans ma sélection
     btn-login: Pour la conserver, connectez-vous à Mon compte.
     btn-login2: Me connecter
     submit: Valider
     submit-sr-only: la création de la liste
-    message-success: Les documents ont bien été ajoutés à vos listes.
+    message-success: ... à Ma sélection
     message-error:
       no-list: Aucune liste n'a été sélectionnée. Veuillez en sélectionner une ou en créer une nouvelle.
   list-edit:          #Modal 03 edition d'une liste
