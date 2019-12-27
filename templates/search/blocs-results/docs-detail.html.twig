@@ -19,7 +19,7 @@
                 notice.permalink,
                 toggle_to_path_parcours('record_bibliographic', app.request.attributes.get(constant('App\\Model\\Search\\ObjSearch::PARAM_PARCOURS_NAME')), {'permalink': notice.permalink}),
                 notice.frontTitle,
-                notice.frontAuthor|join('; '),
+                notice.frontAuthor|join(' ; '),
                 notice.type,
                 class_name(notice)
             ) }}
