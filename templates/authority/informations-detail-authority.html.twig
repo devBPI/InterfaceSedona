@@ -1,22 +1,22 @@
-{% if (notice.formAdopted is not empty or notice.type is not empty or notice.name is not empty) %}
+{% if (notice.formAdopted is not empty or notice.type is not empty) %}
     <li class="list-information__item">
-
-            {% if notice.formAdopted is not empty %}
-                <li class="list-information__sub-item">
-                    {{ "bloc.autority-result-information.authority-type"|trans }}{{ notice.formAdopted }}
-                </li>
-            {% endif %}
-            {% if notice.type is not empty %}
-                <span class="list-information__label">{{ ("Type")|trans }}</span>
-            {% endif %}
+        {% if notice.formAdopted is not empty %}
+            <li class="list-information__sub-item">
+                {{ notice.formAdopted }}
+            </li>
+        {% endif %}
+        {% if notice.type is not empty %}
+            <span class="list-information__label">{{ "bloc.autority-result-information.authority-type"|trans }}</span>
             <ul class="list-information__sub-list" lang="fr">
                 <li class="list-information__sub-item">
                     {{ notice.type }}
                 </li>
             </ul>
+        {% endif %}
     </li>
 {% endif %}
-{% if  notice.formParalella is not empty %}
+
+{% if notice.formParalella is not empty %}
     <li class="list-information__item">
         <ul class="list-information__sub-list" lang="fr">
             {% for element in notice.formParalella %}
@@ -28,7 +28,7 @@
     </li>
 {% endif %}
 
-{% if  notice.countries is not empty %}
+{% if notice.countries is not empty %}
     <li class="list-information__item">
         <span class="list-information__label">{{ ('Pays')|trans }}</span>
         <ul class="list-information__sub-list" lang="fr">
@@ -41,7 +41,7 @@
     </li>
 {% endif %}
 
-{% if  notice.languages is not empty %}
+{% if notice.languages is not empty %}
     <li class="list-information__item">
         <span class="list-information__label">{{ ('Langue(s)')|trans }}</span>
         <ul class="list-information__sub-list" lang="fr">
@@ -53,7 +53,7 @@
         </ul>
     </li>
 {% endif %}
-{% if  notice.musicalKinds is not empty %}
+{% if notice.musicalKinds is not empty %}
     <li class="list-information__item">
         <span class="list-information__label">{{ ('Genre musical  ')|trans }}</span>
         <ul class="list-information__sub-list" lang="fr">
@@ -67,11 +67,12 @@
 {% endif %}
 {% if notice.dates is not empty %}
     <li class="list-information__item">
-        <span class="list-information__label">{{ ('Dates')|trans }}</span>
+        <span class="list-information__label">{{ ('Date(s)')|trans }}</span>
         <ul class="list-information__sub-list" lang="fr">
             <li class="list-information__sub-item">
                 {% for element in notice.dates %}
-                    {{ element }}{% if loop.first %}- {%endif%}
+                    {% if not loop.first %} - {%endif%}
+                    {{ element }}
                 {% endfor %}
             </li>
         </ul>
@@ -91,7 +92,7 @@
         </ul>
     </li>
 {% endif %}
-{% if  notice.deathDate is not empty %}
+{% if notice.deathDate is not empty %}
     <li class="list-information__item">
         <span class="list-information__label">{{ ('Mort')|trans }}</span>
         <ul class="list-information__sub-list" lang="fr">
@@ -129,7 +130,7 @@
         </ul>
     </li>
 {% endif %}
-{% if  notice.otherNames is not empty %}
+{% if notice.otherNames is not empty %}
     <li class="list-information__item">
         <span class="list-information__label">{{ ('Autre(s) nom(s)')|trans }}</span>
         <ul class="list-information__sub-list" lang="fr">
@@ -141,7 +142,7 @@
         </ul>
     </li>
 {% endif %}
-{% if  notice.associetedForm is not empty %}
+{% if notice.associetedForm is not empty %}
     <li class="list-information__item">
         <span class="list-information__label">{{ ('Nom(s) associé(s) / Nom(s) lié(s)')|trans }}</span>
         <ul class="list-information__sub-list" lang="fr">

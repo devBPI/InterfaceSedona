@@ -19,7 +19,7 @@
 				<ul class="index__list">
 					{% for index in indexList.indexes %}
 						{% set itemLabel = index.cote~' - '~index.name %}
-						{% if current == index.cote %}
+						{% if index.cote is same as(current) %}
 							<li class="index__item index__item--current">
 								<p id="index-current" aria-current="page" lang="fr" tabindex="0">
 									<img src="{{ asset('images/icones/icone-chevron-gauche.svg') }}" alt="" class="icone-chevron-right"/>
