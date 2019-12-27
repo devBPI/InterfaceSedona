@@ -1,4 +1,4 @@
-{% macro detail(object, label, glue =", ", classAppend="") %}
+{% macro detail(object, label, glue =" ; ", classAppend="") %}
     {% if object is not empty %}
         <li class="list-information__item {{ classAppend }}">
             <span class="list-information__label">{{ label|trans }}</span>
@@ -17,7 +17,6 @@
         </li>
     {% endif %}
 {% endmacro %}
-
 {% macro detail_link(object, label, type, glue =", ") %}
     {% if object is not empty %}
         <li class="list-information__item">
@@ -47,6 +46,23 @@
                         </a>
                     </li>
                 {% endif %}
+            </ul>
+        </li>
+    {% endif %}
+{% endmacro %}
+
+{% macro row(object, label = null) %}
+    {% if object is not empty %}
+        <li class="list-information__item">
+            {% if label is not empty %}
+                <span class="list-information__label">{{ label|trans }}</span>
+            {% endif %}
+            <ul class="list-information__sub-list list-information__sub-list--bloc" lang="fr">
+                {% for element in object %}
+                    <li class="list-information__sub-item">
+                        {{ element }}
+                    </li>
+                {% endfor %}
             </ul>
         </li>
     {% endif %}

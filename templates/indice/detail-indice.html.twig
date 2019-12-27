@@ -1,3 +1,5 @@
+{% import "common/detail-macro.html.twig" as detail_macros %}
+
 <div class="col-12 col-md-auto">
 	<div class="authority-result__image">
 		<img src="{{ asset('images/types/type-' ~ notice.type|slugify ~ '.svg') }}" alt="" class="img-fluid" />
@@ -16,29 +18,8 @@
 				</ul>
 			</li>
 
-            {% if notice.employedFor is not empty %}
-				<li class="list-information__item">
-					<span class="list-information__label">{{ ('Employé pour')|trans }}</span>
-					<ul class="list-information__sub-list" lang="fr">
-						<li class="list-information__sub-item">
-							{{ notice.employedFor|join(' ; ') }}
-						</li>
-					</ul>
-				</li>
-            {% endif %}
-
-            {% if notice.classifiedNote is not empty %}
-				<li class="list-information__item">
-					<span class="list-information__label">{{ ('Notes sur le classement')|trans }}</span>
-					<ul class="list-information__sub-list" lang="fr">
-                        {% for note in notice.classifiedNote %}
-                            <li class="list-information__sub-item">
-                                {{ note }}
-                            </li>
-                        {% endfor %}
-					</ul>
-				</li>
-            {% endif %}
+            {{ detail_macros.detail(notice.employedFor, 'Employé pour') }}
+            {{ detail_macros.row(notice.classifiedNote, 'Notes sur le classement') }}
 		</ul>
 	</div>
 </div>
