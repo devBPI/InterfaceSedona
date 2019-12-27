@@ -1,4 +1,5 @@
 {% extends 'search/base.html.twig' %}
+
 {% block title %}
 	{% set baseTitle = 'page.authority.title'|trans({'%author%': notice.title}) %}
     {% if  app.request.attributes.get(constant('App\\Model\\Search\\ObjSearch::PARAM_PARCOURS_NAME'))  %}
@@ -15,27 +16,35 @@
     <div class="d-none">
         {% include 'search/blocs-results/preview-authority.html.twig' with {'author': notice, 'level': 2, 'index': 0, 'mode': 'detail'} %}
 	</div>
+
 	<div class="authority-result">
 		<div class="row justify-content-between">
 			{% include "record/blocs/results-navigation.html.twig" with {'routeTarget': toggle_to_path_parcours('record_authority', app.request.attributes.get(constant('App\\Model\\Search\\ObjSearch::PARAM_PARCOURS_NAME')), {'permalink':notice.permalink}) } %}
 		</div>
+
 		<div class="row">
             {% block detail %}
                 {% include "authority/detail-authority.html.twig" with {'notice': notice } %}
 			{% endblock %}
 		</div>
+
 		{% block linkedDocs %}
+            {% set hasAuthors = authors is defined and authors|length > 0 and authors.mappedNotices is not empty %}
+            {% set hasSubjects = subjects is defined and subjects|length > 0 and subjects.mappedNotices is not empty %}
+
+            {% if hasAuthors or hasSubjects %}
 			<div class="row authority-document">
                 <div class="col-12">
                     <hr class="border-double hr-double">
                 </div>
-                {% if authors is defined and authors|length > 0 and authors.mappedNotices is not empty %}
+                {% if hasAuthors %}
                     {% include "record/blocs/list-related-documents.html.twig" with {'object': authors, 'type': 'auteur' } %}
                 {% endif %}
-                {% if subjects is defined and subjects|length > 0 and subjects.mappedNotices is not empty %}
+                {% if hasSubjects %}
                     {% include "record/blocs/list-related-documents.html.twig" with {'object': subjects, 'type': 'sujets' } %}
                 {% endif %}
 			</div>
+            {% endif %}
 		{% endblock %}
 	</div>
 {% endblock %}

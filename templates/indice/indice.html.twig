@@ -5,6 +5,8 @@
 {% endblock %}
 
 {% block linkedDocs %}
+    {{ parent() }}
+
     <div class="row" id="around-index-wrapper">
         {% include "indice/index-browsing.html.twig" with {"indexList": notice.aroundIndex, 'current': notice.cote} %}
     </div>
