@@ -54,13 +54,15 @@
 {% macro row(object, label = null) %}
     {% if object is not empty %}
         <li class="list-information__item">
-            {% if label is not empty %}
-                <span class="list-information__label">{{ label|trans }}</span>
-            {% endif %}
+            <span class="list-information__label">{{ label|trans }}</span>
             <ul class="list-information__sub-list list-information__sub-list--bloc" lang="fr">
                 {% for element in object %}
                     <li class="list-information__sub-item">
                         {{ element }}
+                    </li>
+                {% else %}
+                    <li class="list-information__sub-item">
+                        {{ object }}
                     </li>
                 {% endfor %}
             </ul>
