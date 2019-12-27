@@ -438,7 +438,7 @@ bloc:
     result-next: Document suivant
     result-current: '%current% sur %nb%'
     result-information:
-      authors-and-composer: Autre(s) auteur(s), compositeur(s), interprète(s)
+      authors-and-composer: Auteur(s), compositeur(s), interprète(s)
       date: Date(s)
       collection-series: Série / Collection
       conservation: Conservation
