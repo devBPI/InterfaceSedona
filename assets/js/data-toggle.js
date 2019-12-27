@@ -148,8 +148,9 @@ import {CollectionRow} from './collection-row.ts';
             if (firstInput.length === 0) {
                 firstInput = $(this).find( 'input:visible:first');
             }
-
-            firstInput.get(0).focus();
+            if (firstInput.get(0) !== undefined) {
+                firstInput.get(0).focus();
+            }
         })
         .on('click', '[data-toggle=modal]', function(e) {
             var $this = $(this),

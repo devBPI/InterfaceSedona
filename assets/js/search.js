@@ -4,7 +4,10 @@ import {DateSlider} from './date-input-search';
 new DateSlider(document.querySelector('#rfn-search-date-slider'));
 
 import Pagination from './pagination';
-new Pagination(document.querySelector('#pagination-input'));
+let paginationField = document.querySelector('#pagination-input');
+if (paginationField) {
+    new Pagination(paginationField);
+}
 
 $(document)
 // Bouton "Voir plus" / "Voir moins" -----------------------------------------------------------------------------------
