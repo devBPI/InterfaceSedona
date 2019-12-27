@@ -536,8 +536,8 @@ bloc:
     list-remove: Supprimer
     list-name: la liste
   list-user:            #Bloc 25 Liste des documents présents dans Ma sélection
-    list-select: "Sélectionner la liste : %name%"
-    list-name: '%name%'
+    list-select: 'Sélectionner la liste : %name%'
+    list-name: 'Ma sélection %name%'
     list-name-change: Changer le nom de la liste
     col:
       title: Titre
