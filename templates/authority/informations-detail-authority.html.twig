@@ -69,7 +69,7 @@
 
 {{ detail_macros.row(notice.notes, 'Notes') }}
 {{ detail_macros.row(notice.otherNames, 'Autre(s) nom(s)') }}
-{{ detail_macros.row_links(notice.associetedForm, 'Nom(s) associé(s) / Nom(s) lié(s)') }}
+{{ detail_macros.row_link(notice.associetedForm, 'Nom(s) associé(s) / Nom(s) lié(s)') }}
 
 {{ detail_macros.row(notice.isni, 'ISNI') }}
 
@@ -79,8 +79,8 @@
         <ul class="list-information__sub-list" lang="fr">
             {% for element in notice.origins %}
                 <li class="list-information__sub-item">
+                    {% if not loop.first %}; {% endif %}
                     {{ element }}
-                    {% if not loop.last %}; {% endif %}
                 </li>
             {% endfor%}
             {% if notice.originalUrl is not empty %}
