@@ -67,17 +67,19 @@ final class ExportNoticeType extends AbstractType
             ])
              ->add('message', TextareaType::class,[
                 'required'  => false,
-                'label'     => 'modal.export.field.comments'
+                'label'     => 'modal.export.field.comments',
+                 'attr'      => ['autocomplete'=> 'off' ]
             ])
              ->add('formatType', ChoiceType::class, [
                 'required' => true,
                 'label'    => false,
-                'expanded' =>true,
+                'expanded' => true,
                 'data'     => 'txt',
                 'choices'  => [
                     'Format texte brute'   => 'txt',
                     'Mettre PDF en pièce jointe' => 'pdf',
-                ]
+                ],
+                 'attr'      => ['autocomplete'=> 'off' ]
              ]);
     }
 

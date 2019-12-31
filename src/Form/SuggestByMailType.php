@@ -28,15 +28,18 @@ final class SuggestByMailType extends AbstractType
         $builder
             ->add('title', TextType::class,[
                 'required'  => true,
+                'attr'      => ['autocomplete'=> 'off' ]
             ])
             ->add('author', TextareaType::class,[
                 'required'  => false,
+                'attr'      => ['autocomplete'=> 'off' ]
             ])
             ->add('documentType', ChoiceType::class,[
-                    'required'=> false,
-                    'multiple' => false,
-                    'choices'=> SuggestByMail::DOCUMENT_TYPE
-                ])
+                'required'  => false,
+                'multiple'  => false,
+                'choices'   => SuggestByMail::DOCUMENT_TYPE,
+                'attr'      => ['autocomplete'=> 'off' ]
+            ])
             ->add('lastName', TextType::class,[
                 'required'  => false,
                 'attr'      => ['autocomplete'=> 'family-name' ]
@@ -46,7 +49,8 @@ final class SuggestByMailType extends AbstractType
                 'attr'      => ['autocomplete'=> 'name' ]
             ])
             ->add('editor', TextType::class,[
-                'required'  => false
+                'required'  => false,
+                'attr'      => ['autocomplete'=> 'off' ]
             ])
             ->add('email', EmailType::class,[
                 'required'  => false,

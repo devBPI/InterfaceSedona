@@ -28,17 +28,20 @@ final class ReportErrorPageType extends AbstractType
             ->add('object', TextType::class,[
                 'required'  => true,
                 'label'     => 'modal.report.field.object',
-                'constraints' => [ new Asset\NotBlank(['message' => 'text.empty']) ]
+                'constraints' => [ new Asset\NotBlank(['message' => 'text.empty']) ],
+                'attr'      => ['autocomplete'=> 'off' ]
             ])
             ->add('message', TextareaType::class,[
                 'required'  => false,
-                'label'     => 'modal.report.field.message'
+                'label'     => 'modal.report.field.message',
+                'attr'      => ['autocomplete'=> 'off' ]
             ])
             ->add('email', EmailType::class,[
                 'required'  => false,
                 'label'     => 'modal.report.field.email',
                 'constraints' => [ new Asset\Email() ],
-                'label_attr' => ['compl' => 'modal.email-example']
+                'label_attr' => ['compl' => 'modal.email-example'],
+                'attr'      => ['autocomplete'=> 'off' ]
             ])
         ;
     }

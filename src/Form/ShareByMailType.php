@@ -27,24 +27,27 @@ final class ShareByMailType extends AbstractType
         $builder
             ->add('object', HiddenType::class,[
                 'label'     => 'modal.share.field.title',
-                'data'      => 'modal.share.field.title_value'
+                'data'      => 'modal.share.field.title_value',
+                'attr'      => ['autocomplete'=> 'off' ]
             ])
             ->add('message', TextareaType::class,[
                 'required'  => true,
                 'label'     => 'modal.share.field.text',
+                'attr'      => ['autocomplete'=> 'off' ]
             ])
             ->add('sender', EmailType::class,[
                 'required'  => true,
                 'label'     => 'modal.share.field.expeditor',
-                'label_attr' => ['compl' => 'modal.email-example']
+                'label_attr' => ['compl' => 'modal.email-example'],
+                'attr'      => ['autocomplete'=> 'off' ]
             ])
             ->add('reciever', EmailType::class,[
                 'required'  => true,
                 'label'     => 'modal.share.field.recipient',
-                'label_attr' => ['compl' => 'modal.email-example']
+                'label_attr' => ['compl' => 'modal.email-example'],
+                'attr'      => ['autocomplete'=> 'off' ]
             ])
-            ->add('link', HiddenType::class,[
-            ])
+            ->add('link', HiddenType::class)
         ;
     }
 
