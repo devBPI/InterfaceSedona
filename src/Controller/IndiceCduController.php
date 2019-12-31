@@ -54,12 +54,12 @@ final class IndiceCduController extends AbstractController
      */
     public function cduIndiceRecordAction(IndiceCdu $notice, NavigationService $navigation=null)
     {
-        $subject = $this->noticeAuhtority->getSubjectNotice($notice->getId());
+        $subjects = $this->noticeAuhtority->getSubjectIndice($notice->getId());
 
         return $this->render('indice/indice.html.twig', [
                 'toolbar'         => IndiceCdu::class,
                 'printRoute'      => $this->generateUrl('indice_pdf',  ['permalink'=>$notice->getPermalink(), 'format'=>'pdf']),
-                'subjects'        => $subject,
+                'subjects'        => $subjects,
                 'notice'          => $notice,
                 'navigation'      => $navigation,
             ]

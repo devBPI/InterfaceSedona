@@ -324,7 +324,7 @@ class Notice extends AbstractImage implements NoticeInterface, RecordInterface
      * @var array
      * @JMS\Type("array<string>")
      * @JMS\SerializedName("titresAlternatifs")
-     * @JMS\XmlList("titreAlternatifs")
+     * @JMS\XmlList("titreAlternatif")
      */
     private $alternatifTitle;
     /**

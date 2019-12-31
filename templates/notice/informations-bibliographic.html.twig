@@ -1,31 +1,25 @@
 {% import "common/detail-macro.html.twig" as notice_macros %}
+
 {{ notice_macros.row_link(notice.otherAuthors, ('bloc.autority-result-information.'~( notice.type == constant('MUSIC',notice) ?'musique-author':'other-authors')), constant('App\\WordsList::AUTHOR_WORD')) }}
 {{ notice_macros.row_link(notice.contributeurs, 'bloc.autority-result-information.contributor', constant('App\\WordsList::AUTHOR_WORD')) }}
 {{ notice_macros.row_link(notice.editors, 'bloc.autority-result-information.editor'|trans, constant('App\\WordsList::AUTHOR_WORD')) }}
 
 {{ notice_macros.detail(notice.publishedDates, 'bloc.autority-result-information.date'|trans, ' - ') }}
 {{ notice_macros.detail(notice.otherDates, 'bloc.autority-result-information.edition-date'|trans) }}
-{% if notice.periodicity %}
-    <li class="list-information__item">
-        <span class="list-information__label">{{ 'bloc.autority-result-information.periodicity'|trans }}</span>
-        <ul class="list-information__sub-list" lang="fr">
-            <li class="list-information__sub-item">
-                {%- for element in notice.periodicity -%}
-                    {{ element }}{% if loop.revindex > 1 %}. {% endif %}
-                {%- endfor -%}
-            </li>
-        </ul>
-    </li>
-{% endif %}
-{{ notice_macros.detail_link(notice.uniformTitle, 'bloc.autority-result-information.ouvre'|trans, constant('App\\WordsList::TITLE_WORD'), '') }}
-{{ notice_macros.detail(notice.alternatifTitle, 'bloc.autority-result-information.alternatif-title'|trans) }}
+{{ notice_macros.detail(notice.periodicity, 'bloc.autority-result-information.periodicity'|trans, '. ') }}
 
-{% if notice.resume and notice.type != constant('App\\Model\\Notice::MUSIC') %}
+{{ notice_macros.row_link(notice.uniformTitle, 'bloc.autority-result-information.ouvre'|trans, constant('App\\WordsList::TITLE_WORD')) }}
+{{ notice_macros.row_link(notice.alternatifTitle, 'bloc.autority-result-information.alternatif-title'|trans, constant('App\\WordsList::TITLE_WORD')) }}
+
+{% if notice.type != constant('App\\Model\\Notice::MUSIC') %}
     {{ notice_macros.detail(notice.contents, 'modal.comments-edit.field-content'|trans) }}
 {% endif %}
 
-{{ notice_macros.detail(notice.notes, 'bloc.autority-result-information.nots'|trans) }}
+{{ notice_macros.row(notice.notes, 'bloc.autority-result-information.nots'|trans) }}
 
+{% if notice.type == constant('App\\Model\\Notice::MUSIC') %}
+    {{ notice_macros.detail(notice.resume, 'bloc.notice-simple.resume-title'|trans) }}
+{% endif %}
 
 {% if notice.languages is not empty %}
     <li class="list-information__item">
@@ -45,14 +39,14 @@
 {% endif %}
 
 
-{{ notice_macros.detail(notice.materialDescriptions, 'modal.advanced-search.facette.materialSupport'|trans) }}
-{{ notice_macros.detail_link(notice.collectionSeries, 'footer.sitemap.professionnels.collections-et-services'|trans, constant('App\\WordsList::COLLECTION_WORD')) }}
-{{ notice_macros.detail_link(notice.togetherTitle, 'bloc.autority-result-information.title-together'|trans, constant('App\\WordsList::TITLE_WORD')) }}
-{{ notice_macros.detail_link(notice.inRelationTitle, 'bloc.autority-result-information.title-inrelation'|trans, constant('App\\WordsList::TITLE_WORD')) }}
-{{ notice_macros.detail_link(notice.meeting, 'bloc.autority-result-information.meeting'|trans, constant('App\\WordsList::TITLE_WORD')) }}
+{{ notice_macros.row(notice.materialDescriptions, 'modal.advanced-search.facette.materialSupport'|trans) }}
+{{ notice_macros.row_link(notice.collectionSeries, 'bloc.autority-result-information.collections-et-services'|trans, constant('App\\WordsList::COLLECTION_WORD')) }}
+{{ notice_macros.row_link(notice.togetherTitle, 'bloc.autority-result-information.title-together'|trans, constant('App\\WordsList::TITLE_WORD')) }}
+{{ notice_macros.row_link(notice.inRelationTitle, 'bloc.autority-result-information.title-inrelation'|trans, constant('App\\WordsList::TITLE_WORD')) }}
+{{ notice_macros.row_link(notice.meeting, 'bloc.autority-result-information.meeting'|trans, constant('App\\WordsList::TITLE_WORD')) }}
 
-{{ notice_macros.detail(notice.otherEdition, 'bloc.autority-result-information.other-edition'|trans, "; ") }}
-{{ notice_macros.detail(notice.conservations, 'bloc.autority-result-information.conservation', "; ") }}
+{{ notice_macros.detail(notice.otherEdition, 'bloc.autority-result-information.other-edition'|trans) }}
+{{ notice_macros.detail(notice.conservations, 'bloc.autority-result-information.conservation') }}
 
 {% if notice.subject|length>0 %}
     <li class="list-information__item" >
@@ -68,19 +62,19 @@
         </ul>
     </li>
 {% endif %}
-{{ notice_macros.detail_link(notice.eras , 'bloc.autority-result-information.eras'|trans, constant('App\\WordsList::SUBJECT_WORD')) }}
-{{ notice_macros.detail_link(notice.locations , 'bloc.autority-result-information.location'|trans, constant('App\\WordsList::SUBJECT_WORD')) }}
-{{ notice_macros.detail_link(notice.kinds , 'bloc.autority-result-information.kind'|trans, constant('App\\WordsList::SUBJECT_WORD')) }}
+{{ notice_macros.row_link(notice.eras , 'bloc.autority-result-information.eras'|trans, constant('App\\WordsList::SUBJECT_WORD')) }}
+{{ notice_macros.row_link(notice.locations , 'bloc.autority-result-information.location'|trans, constant('App\\WordsList::SUBJECT_WORD')) }}
+{{ notice_macros.row_link(notice.kinds , 'bloc.autority-result-information.kind'|trans, constant('App\\WordsList::SUBJECT_WORD')) }}
 {#gender#}
-{{ notice_macros.detail_link(notice.topics , 'bloc.autority-result-information.topics'|trans, constant('App\\WordsList::SUBJECT_WORD')) }}
-{{ notice_macros.detail(notice.isbns , 'ISBN',';') }}
+{{ notice_macros.row_link(notice.topics , 'bloc.autority-result-information.topics'|trans, constant('App\\WordsList::SUBJECT_WORD')) }}
+{{ notice_macros.detail(notice.isbns , 'ISBN') }}
 {{ notice_macros.detail(notice.issn , 'ISSN') }}
 {{ notice_macros.detail(notice.commercialNumbers , 'bloc.autority-result-information.comercial-number'|trans) }}
-{{ notice_macros.detail_link(notice.indices , 'bloc.autority-result-information.indices'|trans, constant('App\\WordsList::INDICE_COTE_WORD')) }}
+{{ notice_macros.row_link(notice.indices , 'bloc.autority-result-information.indices'|trans, constant('App\\WordsList::INDICE_COTE_WORD')) }}
 
 {{ notice_macros.detail(notice.publics , 'bloc.autority-result-information.publics'|trans) }}
 
-{{ notice_macros.detail(notice.rights , "Droits"|trans, " . ") }}
+{{ notice_macros.detail(notice.rights , "Droits"|trans, ". ") }}
 
 {{ notice_macros.detail(notice.placesEvents , 'bloc.autority-result-information.manifestation-location') }}
 {{ notice_macros.detail(notice.origins , 'bloc.autority-result-information.origins'|trans ~ ': ', " ; ", " list-information__item--mentions") }}

@@ -60,7 +60,7 @@ header:
     cinema: Cinéma
 footer:
   credit-list:
-    espace-actualites-revues: Prensa / Cooperación
+    espace-presse: Prensa / Cooperación
     emplois-et-stages: Empleo y prácticas
     marches-publics: Licitaciones
     mentions-legales: Aviso legal
@@ -93,20 +93,20 @@ modal:
     submit: Valider
     submit-sr-only: la création de la liste
   list-add:             #Modal 02 ajout à ma sélection
-    title-connected: Ajouter ..
-    title: Vous avez ajouté ..
-    add-to-profile: '.. à Mon compte dans :'
+    title-connected: Ajouter...
+    title: Vous avez ajouté...
+    add-to-profile: '... à Mon compte dans :'
     list: '%name%'
     new-list: Nouvelle liste
     field-title: Titre
-    add-to-tempory: .. à Ma sélection temporaire.
+    add-to-tempory: ... à Ma sélection.
     btn-return: Retourner à la liste des résultats
     btn-selection: Aller dans ma sélection
     btn-login: Pour la conserver, connectez-vous à Mon compte.
     btn-login2: Me connecter
     submit: Valider
     submit-sr-only: la création de la liste
-    message-success: Les documents ont bien été ajoutés à vos listes.
+    message-success: ... à Ma sélection
     message-error:
       no-list: Aucune liste n'a été sélectionnée. Veuillez en sélectionner une ou en créer une nouvelle.
   list-edit:          #Modal 03 edition d'une liste
@@ -438,7 +438,7 @@ bloc:
     result-next: Document suivant
     result-current: '%current% sur %nb%'
     result-information:
-      authors-and-composer: Autre(s) auteur(s), compositeur(s), interprète(s)
+      authors-and-composer: Auteur(s), compositeur(s), interprète(s)
       date: Date(s)
       collection-series: Série / Collection
       conservation: Conservation
@@ -507,6 +507,7 @@ bloc:
     your-references-autority: Vos références d'autorité
     your-references-bibliographic: Vos références bibliographiques
     conservation: Conservation
+    collections-et-services: Collections
   list-related-documents:  #Bloc 19 Liste de documents + Bloc 17 Documents liés
     link-title: Actualité %current% sur %nb%, %name%
     see-more: Voir tout
@@ -536,8 +537,8 @@ bloc:
     list-remove: Supprimer
     list-name: la liste
   list-user:            #Bloc 25 Liste des documents présents dans Ma sélection
-    list-select: "Sélectionner la liste : %name%"
-    list-name: '%name%'
+    list-select: 'Sélectionner la liste : %name%'
+    list-name: 'Mi selección %name%'
     list-name-change: Changer le nom de la liste
     col:
       title: Titre
@@ -591,7 +592,7 @@ breadcrumb:
     actualites-revues: Recorrido Noticias y revistas
     autoformation: Recorrido Autoaprendizaje
     cinema: Recorrido Cine
-  search-terms: 'Resultados de búsqueda para : %terms%'
+  search-terms: 'Resultados de búsqueda para: %terms%'
   search: Resultados de búsqueda
   card:
     bibliographic: Documento %title%

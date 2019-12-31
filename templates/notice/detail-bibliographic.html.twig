@@ -47,17 +47,12 @@
             {% if notice.type == "Vidéo"%}
                 {% set label = 'bloc.autority-result-information.directors'|trans %}
             {% endif %}
-            {{ notice_macros.list_link(notice.frontAuthor, label, constant('App\\WordsList::AUTHOR_WORD'),"; ") }}
+            {{ notice_macros.list_link(notice.frontAuthor, label, constant('App\\WordsList::AUTHOR_WORD'), " ; ") }}
         </div>
-        {#
-        <div class="col-6 col-md-4">
-            <a href="#" class="link">{{ 'bloc.autority-result-information.autor-dicover'|trans }}</a>
-        </div>
-        #}
     </div>
 </div>
 
-{% if  notice.contents and notice.type == constant('App\\Model\\Notice::MUSIC')  %}
+{% if notice.contents and notice.type == constant('App\\Model\\Notice::MUSIC')  %}
     <div class="col-12">
         <div lang="fr">
             <h2 class="n2 bibliographic-result__subtitle">{{ 'bloc.autority-result-information.tracks'|trans }}</h2>

@@ -109,7 +109,7 @@ final class UserSelectionController extends AbstractController
             try {
                 $this->selectionService->addDocumentsToLists($request);
 
-                return $this->render('user/modal/creation-list-success.html.twig', ['action' => 'add']);
+                return $this->render('user/modal/add-list-success.html.twig');
             } catch (\Exception $e) {
                 $params = [
                     'error' => $e->getMessage(),

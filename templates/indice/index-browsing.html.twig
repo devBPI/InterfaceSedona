@@ -19,7 +19,7 @@
 				<ul class="index__list">
 					{% for index in indexList.indexes %}
 						{% set itemLabel = index.cote~' - '~index.name %}
-						{% if current == index.cote %}
+						{% if index.cote is same as(current) %}
 							<li class="index__item index__item--current">
 								<p id="index-current" aria-current="page" lang="fr" tabindex="0">
 									<img src="{{ asset('images/icones/icone-chevron-gauche.svg') }}" alt="" class="icone-chevron-right"/>
@@ -28,7 +28,7 @@
 							</li>
 						{% else %}
 							<li class="index__item">
-								<a href="{{ path('search', {(constant('App\\Model\\Search\\Criteria::SIMPLE_SEARCH_KEYWORD')): index.name, (constant('App\\Model\\Search\\Criteria::SIMPLE_SEARCH_TYPE')):'general'}) }}" lang="fr">
+								<a href="{{ path('search', {(constant('App\\Model\\Search\\Criteria::SIMPLE_SEARCH_KEYWORD')): index.cote, (constant('App\\Model\\Search\\Criteria::SIMPLE_SEARCH_TYPE')): 'indiceCote'}) }}" lang="fr">
 									{{ itemLabel }}</a></li>
 						{% endif %}
 					{% endfor %}

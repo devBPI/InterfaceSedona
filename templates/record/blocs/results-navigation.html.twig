@@ -1,7 +1,7 @@
 
 {% if navigation is defined  and navigation is not null %}
 	<div class="col-auto">
-		<a href="{{ toggle_to_path_parcours('back_search', app.request.attributes.get(constant('App\\Model\\Search\\ObjSearch::PARAM_PARCOURS_NAME')), {(constant('App\\Model\\Search\\ObjSearch::PARAM_REQUEST_NAME')): navigation.hash}) }}" class="link link--icone mb-3 mb-md-0" lang="fr">
+		<a href="{{ toggle_to_path_parcours('back_search', app.request.attributes.get(constant('App\\Model\\Search\\ObjSearch::PARAM_PARCOURS_NAME')), {(constant('App\\Model\\Search\\ObjSearch::PARAM_REQUEST_NAME')): navigation.hash})~'#'~notice.permalink }}" class="link link--icone mb-3 mb-md-0" lang="fr">
 			<img src="{{ asset('images/icones/icone-chevron-gauche.svg') }}" alt="" class="icone-chevron"/>
 			<span>{{ 'bloc.results-navigation.return-to-result'|trans }}</span>
 		</a>

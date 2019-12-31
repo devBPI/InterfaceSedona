@@ -1,77 +1,36 @@
-{% if (notice.formAdopted is not empty or notice.type is not empty or notice.name is not empty) %}
-    <li class="list-information__item">
+{% import "common/detail-macro.html.twig" as detail_macros %}
 
-            {% if notice.formAdopted is not empty %}
-                <li class="list-information__sub-item">
-                    {{ "bloc.autority-result-information.authority-type"|trans }}{{ notice.formAdopted }}
-                </li>
-            {% endif %}
-            {% if notice.type is not empty %}
-                <span class="list-information__label">{{ ("Type")|trans }}</span>
-            {% endif %}
+{% if (notice.formAdopted is not empty or notice.type is not empty) %}
+    <li class="list-information__item">
+        {% if notice.formAdopted is not empty %}
+            <li class="list-information__sub-item">
+                {{ notice.formAdopted }}
+            </li>
+        {% endif %}
+        {% if notice.type is not empty %}
+            <span class="list-information__label">{{ "bloc.autority-result-information.authority-type"|trans }}</span>
             <ul class="list-information__sub-list" lang="fr">
                 <li class="list-information__sub-item">
                     {{ notice.type }}
                 </li>
             </ul>
-    </li>
-{% endif %}
-{% if  notice.formParalella is not empty %}
-    <li class="list-information__item">
-        <ul class="list-information__sub-list" lang="fr">
-            {% for element in notice.formParalella %}
-                <li class="list-information__sub-item">
-                    {{ element }}
-                </li>
-            {% endfor %}
-        </ul>
+        {% endif %}
     </li>
 {% endif %}
 
-{% if  notice.countries is not empty %}
-    <li class="list-information__item">
-        <span class="list-information__label">{{ ('Pays')|trans }}</span>
-        <ul class="list-information__sub-list" lang="fr">
-            {% for element in notice.countries %}
-                <li class="list-information__sub-item">
-                    {{ element }}
-                </li>
-            {% endfor %}
-        </ul>
-    </li>
-{% endif %}
+{{ detail_macros.row(notice.formParalella) }}
+{{ detail_macros.detail(notice.countries, 'Pays') }}
+{{ detail_macros.detail(notice.languages, 'Langue(s)') }}
+{{ detail_macros.detail(notice.musicalKinds, 'Genre musical') }}
 
-{% if  notice.languages is not empty %}
-    <li class="list-information__item">
-        <span class="list-information__label">{{ ('Langue(s)')|trans }}</span>
-        <ul class="list-information__sub-list" lang="fr">
-            {% for element in notice.languages %}
-                <li class="list-information__sub-item">
-                    {{ element }}
-                </li>
-            {% endfor %}
-        </ul>
-    </li>
-{% endif %}
-{% if  notice.musicalKinds is not empty %}
-    <li class="list-information__item">
-        <span class="list-information__label">{{ ('Genre musical  ')|trans }}</span>
-        <ul class="list-information__sub-list" lang="fr">
-            {% for element in notice.musicalKinds %}
-                <li class="list-information__sub-item">
-                    {{ element }}
-                </li>
-            {% endfor %}
-        </ul>
-    </li>
-{% endif %}
 {% if notice.dates is not empty %}
     <li class="list-information__item">
-        <span class="list-information__label">{{ ('Dates')|trans }}</span>
+        <span class="list-information__label">{{ ('Date(s)')|trans }}</span>
         <ul class="list-information__sub-list" lang="fr">
             <li class="list-information__sub-item">
                 {% for element in notice.dates %}
-                    {{ element }}{% if loop.first %}- {%endif%}
+                    {% if not loop.first %} - {%endif%}
+                    {{ element }}
                 {% endfor %}
             </li>
         </ul>
@@ -91,7 +50,7 @@
         </ul>
     </li>
 {% endif %}
-{% if  notice.deathDate is not empty %}
+{% if notice.deathDate is not empty %}
     <li class="list-information__item">
         <span class="list-information__label">{{ ('Mort')|trans }}</span>
         <ul class="list-information__sub-list" lang="fr">
@@ -105,67 +64,14 @@
         </ul>
     </li>
 {% endif %}
-{% if notice.principalActivities is not empty %}
-    <li class="list-information__item">
-        <span class="list-information__label">{{ ('Activité(s) principale(s)')|trans }}</span>
-        <ul class="list-information__sub-list" lang="fr">
-            {% for element in notice.principalActivities %}
-                <li class="list-information__sub-item">
-                    {{ element }}
-                </li>
-            {% endfor %}
-        </ul>
-    </li>
-{% endif %}
-{% if notice.notes is not empty %}
-    <li class="list-information__item">
-        <span class="list-information__label">{{ ('Notes')|trans }}</span>
-        <ul class="list-information__sub-list" lang="fr">
-            {% for element in notice.notes %}
-                <li class="list-information__sub-item">
-                    {{ element }}
-                </li>
-            {% endfor %}
-        </ul>
-    </li>
-{% endif %}
-{% if  notice.otherNames is not empty %}
-    <li class="list-information__item">
-        <span class="list-information__label">{{ ('Autre(s) nom(s)')|trans }}</span>
-        <ul class="list-information__sub-list" lang="fr">
-            {% for element in notice.otherNames %}
-                <li class="list-information__sub-item">
-                    {{ element }}
-                </li>
-            {% endfor %}
-        </ul>
-    </li>
-{% endif %}
-{% if  notice.associetedForm is not empty %}
-    <li class="list-information__item">
-        <span class="list-information__label">{{ ('Nom(s) associé(s) / Nom(s) lié(s)')|trans }}</span>
-        <ul class="list-information__sub-list" lang="fr">
-            {% for element in notice.associetedForm %}
-                <li class="list-information__sub-item">
-                    <a href="{{ toggle_to_path_parcours('search', app.request.attributes.get(constant('App\\Model\\Search\\ObjSearch::PARAM_PARCOURS_NAME')), {(constant('App\\Model\\Search\\Criteria::SIMPLE_SEARCH_KEYWORD')):element}) }}" >
-                        {{ element }}
-                    </a>
-                </li>
-            {% endfor %}
-        </ul>
-    </li>
-{% endif %}
-{% if notice.isni is not empty %}
-    <li class="list-information__item">
-        <span class="list-information__label">{{ ('ISNI')|trans }}</span>
-        <ul class="list-information__sub-list" lang="fr">
-            <li class="list-information__sub-item">
-                {{ notice.isni }}
-            </li>
-        </ul>
-    </li>
-{% endif %}
 
+{{ detail_macros.detail(notice.principalActivities, 'Activité(s) principale(s)') }}
+
+{{ detail_macros.row(notice.notes, 'Notes') }}
+{{ detail_macros.row(notice.otherNames, 'Autre(s) nom(s)') }}
+{{ detail_macros.row_link(notice.associetedForm, 'Nom(s) associé(s) / Nom(s) lié(s)') }}
+
+{{ detail_macros.row(notice.isni, 'ISNI') }}
 
 {% if notice.origins is not empty %}
     <li class="list-information__item list-information__item--mentions">
@@ -173,8 +79,8 @@
         <ul class="list-information__sub-list" lang="fr">
             {% for element in notice.origins %}
                 <li class="list-information__sub-item">
+                    {% if not loop.first %}; {% endif %}
                     {{ element }}
-                    {% if not loop.last %}; {% endif %}
                 </li>
             {% endfor%}
             {% if notice.originalUrl is not empty %}
