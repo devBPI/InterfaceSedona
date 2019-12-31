@@ -14,6 +14,7 @@ require('jquery');
 require('bootstrap');
 require('icheck');
 require('./data-toggle.js');
+
 import './polyfill-ie';
 
 const routes = require('../../assets/js/fos_js_routes.json');
@@ -35,6 +36,16 @@ if (select2Element) {
 import {DatePeriod} from './date-input-search';
 new DatePeriod(document.querySelector('.js-date-period'));
 
+import {Printer, CopyToClipboard} from './printer';
+let printers = document.querySelectorAll('.js-print-action, .js-export-form');
+printers.forEach((linkElement: HTMLLinkElement) => {
+    new Printer(linkElement);
+});
+
+let copiers = document.querySelectorAll('.js-copy_to_clipboard');
+copiers.forEach((linkElement: HTMLLinkElement) => {
+    new CopyToClipboard(linkElement);
+});
 
 Routing.setRoutingData(routes);
 
@@ -48,35 +59,6 @@ $('input').iCheck({
     radioClass: 'check check--radio',
     focusClass: 'focus'
 });
-let printEngine = function(){
-    let permalinkAuthority = $('.js-authority:checked');
-    let permalinkNotice = $('.js-notice:checked');
-    let permalinkIndice = $('.js-indicecdu:checked');
-    let notice = [];
-    let authority = [];
-    let indice= [];
-    permalinkNotice.each(function () {
-        if ($(this).data('notice')){
-            notice.push($(this).data('notice'));
-        }
-    });
-    permalinkAuthority.each(function () {
-        if ($(this).data('authority')){
-            authority.push($(this).data('authority'));
-        }
-    });
-
-    permalinkIndice.each(function () {
-        if ($(this).data('indicecdu')){
-            indice.push($(this).data('indicecdu'));
-        }
-    });
-
-
-    $('.js-print-notices').val(JSON.stringify(notice));
-    $('.js-print-authorities').val(JSON.stringify(authority));
-    $('.js-print-indices').val(JSON.stringify(indice));
-};
 
 $(document)
     .on('focus', '.dropdown-link .nav-link, .nav-pills .dropdown .dropdown-toggle', function() {
@@ -95,12 +77,6 @@ $(document)
     })
     .on('mouseenter', '.dropdown-link .nav-link', function() {
         $('.search-banner__select select').blur();
-    })
-    .on('click', '.js-print-action', function () {
-        printEngine();
-    })
-    .on('click', '.js-export-form', function(e){
-        printEngine();
     })
     .on('click', '.js-5-indices-around', function (event) {
         let url = $(this).data('url');
@@ -121,13 +97,6 @@ $(document)
                 // put an error message here
             }
         });
-    })
-    .on('click', '.js-copy_to_clipboard', function (e) {
-        let field = document.querySelector('.js-url-to-copy') as HTMLInputElement;
-        if (field && field.value !== '') {
-            field.select();
-            document.execCommand("copy");
-        }
     })
     .on('show.bs.modal', '#modal-search-advanced', function (e) {
         copyKeyword.copyKeywordValue();
@@ -160,36 +129,6 @@ if ($(window).width() > 992) {
         menuSecondaireList.removeAttr('aria-labelledby role tabindex');
         menuSecondaireItems.removeAttr('role');
 }
-
-/**
- *table__input;
- * @param element
- */
-let copyToClipboard = function (element) {
-    let $input = $("<input>");
-    $input
-        .css(
-            {
-                'position': 'fixed',
-                'top':'0',
-                'left':'0',
-                'width':'2em',
-                'height':'2em',
-                'padding':'0',
-                'border':'none',
-                'outline':'none',
-                'boxShadow':'none',
-                'background':'transparent',
-            }
-        );
-
-    $('body').append($input);
-    $input.val(element).select();
-
-    document.execCommand("copy");
-
-    $input.remove();
-};
 
 $('.js-seeMoreAvailability').children('button').on(    'click', function(e){
     $(this).text(function(i,old){

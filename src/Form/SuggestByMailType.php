@@ -67,7 +67,7 @@ final class SuggestByMailType extends AbstractType
             'honeypot_field' => 'email_address',
             'honeypot_use_class' => false,
             'honeypot_hide_class' => 'hidden',
-            'honeypot_message' => 'message non localisée',
+            'honeypot_message' => 'Champs invalides',
         ]);
     }
 }
