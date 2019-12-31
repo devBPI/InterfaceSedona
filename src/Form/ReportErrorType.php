@@ -61,7 +61,6 @@ final class ReportErrorType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => ReportError::class,
-            'attr' => ['autocomplete' => 'off'],
             'honeypot' => true,
             'honeypot_field' => 'email_address',
             'honeypot_use_class' => false,
