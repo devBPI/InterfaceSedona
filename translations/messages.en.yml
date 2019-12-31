@@ -140,7 +140,7 @@ modal:
       img: Exporter les images
     submit: Imprimer
   share:            #Modal 07 fin
-    title: Partage
+    title: Partager
     subtitle-1: Permalien
     url-page: URL de la page
     btn-cpoy: Copier
@@ -308,7 +308,7 @@ page:
     login-placeholder: nom@exemple.com
     password: Mot de passe *
     remember-me: Se souvenir
-    create-profil: Pas encore de compte?
+    create-profil: Pas encore de compte ?
     forgotten-password: Mot de passe oublié
     submit: Connexion
   personal-data:
