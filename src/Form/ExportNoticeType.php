@@ -32,8 +32,8 @@ final class ExportNoticeType extends AbstractType
                  'label'    => false,
                  'expanded' => true,
                  'choices'  => [
-                     'Notices abrégées'=>true,
-                     'Notices complete'=>false,
+                     'modal.export.field.abstract' => true,
+                     'modal.export.field.long' => false
                  ],
                  'data' => true
              ])
@@ -76,8 +76,8 @@ final class ExportNoticeType extends AbstractType
                 'expanded' => true,
                 'data'     => 'txt',
                 'choices'  => [
-                    'Format texte brute'   => 'txt',
-                    'Mettre PDF en pièce jointe' => 'pdf',
+                    'modal.export.field.txt' => 'txt',
+                    'modal.export.field.pdf' => 'pdf'
                 ],
                  'attr'      => ['autocomplete'=> 'off' ]
              ]);
