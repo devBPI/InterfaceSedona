@@ -35,11 +35,13 @@ final class ExportNoticeType extends AbstractType
                      'modal.export.field.abstract' => true,
                      'modal.export.field.long' => false
                  ],
-                 'data' => true
+                 'data' => true,
+                 'attr'      => ['autocomplete' => "off"]
              ])
              ->add('image', CheckboxType::class,[
                  'required' => false,
-                 'label'    => 'modal.export.field.img'
+                 'label'    => 'modal.export.field.img',
+                 'attr'      => ['autocomplete' => "off"]
              ])
              ->add('notices', HiddenType::class,[
                  'required' => false,
