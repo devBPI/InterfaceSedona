@@ -50,7 +50,8 @@ final class SuggestByMailType extends AbstractType
             ])
             ->add('email', EmailType::class,[
                 'required'  => false,
-                'attr'      => ['autocomplete'=> 'email' ]
+                'attr'      => ['autocomplete'=> 'email' ],
+                'label_attr' => ['compl' => 'modal.email-example']
             ])
         ;
     }

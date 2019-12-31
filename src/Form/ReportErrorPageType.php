@@ -37,7 +37,8 @@ final class ReportErrorPageType extends AbstractType
             ->add('email', EmailType::class,[
                 'required'  => false,
                 'label'     => 'modal.report.field.email',
-                'constraints' => [ new Asset\Email() ]
+                'constraints' => [ new Asset\Email() ],
+                'label_attr' => ['compl' => 'modal.email-example']
             ])
         ;
     }

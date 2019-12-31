@@ -46,7 +46,8 @@ final class ReportErrorType extends AbstractType
             ->add('email', EmailType::class,[
                 'required'  => false,
                 'label'     => 'modal.report.field.email',
-                'attr'      => ['autocomplete'=> 'email' ]
+                'attr'      => ['autocomplete'=> 'email' ],
+                'label_attr' => ['compl' => 'modal.email-example']
             ])
         ;
     }

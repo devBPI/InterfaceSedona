@@ -29,6 +29,7 @@ final class AvailabilityNotificationType extends AbstractType
                 [
                     'required' => true,
                     'label' => 'modal.notifed-form.field-email',
+                    'label_attr' => ['compl' => 'modal.email-example'],
                     'attr' => [
                         'autocomplete' => 'email',
                         'placeholder' => 'global.form.email.placeholder',

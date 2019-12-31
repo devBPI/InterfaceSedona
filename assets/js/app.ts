@@ -123,8 +123,11 @@ $(document)
         });
     })
     .on('click', '.js-copy_to_clipboard', function (e) {
-        let url =  $('.js-url-to-copy').val();
-        copyToClipboard(url);
+        let field = document.querySelector('.js-url-to-copy') as HTMLInputElement;
+        if (field && field.value !== '') {
+            field.select();
+            document.execCommand("copy");
+        }
     })
     .on('show.bs.modal', '#modal-search-advanced', function (e) {
         copyKeyword.copyKeywordValue();

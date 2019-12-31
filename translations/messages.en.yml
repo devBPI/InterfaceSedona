@@ -85,6 +85,7 @@ footer:
     rss: Bpi RSS feed
 
 modal:
+  email-example: (nom@exemple.com)
   list-create:          #Modal 01  Création d'une liste
     title: Créer une nouvelle liste
     mandatory-field: La saisie du titre de la liste est obligatoire
@@ -124,7 +125,7 @@ modal:
     title: Paramétrer l'export
     subject: Catalogue BPI – Export de notices
     field:
-      recipient: Destinataire(s) (nom@exemple.com)
+      recipient: Destinataire(s)
       comments: Message
       abstract: Notices abrégées
       long: Notices complètes
@@ -147,11 +148,11 @@ modal:
     btn-cpoy-sr-only: l'url
     subtitle-2: Envoyer cette page à un ami
     field:
-      text: Texte
-      title: Titre
+      text: Message
+      title: Objet
       title_value: Références du catalogue de la Bpi
-      recipient: Destinataire (nom@exemple.com)
-      expeditor: Expéditeur (nom@exemple.com)
+      recipient: Destinataire
+      expeditor: Expéditeur
     submit: Envoyer
   suggestion:     #Modal 08 suggestion d'achats
     title: Suggestion d'achat
@@ -163,7 +164,7 @@ modal:
       editor: Editeur
       last-name: Nom
       first-name: Prénom
-      email: Courriel (nom@exemple.com)
+      email: Courriel
       address: ' Coordonnées'
     submit: Valider
     submit-sr-only: l'envoi de la suggestion
@@ -175,7 +176,7 @@ modal:
       message: Message
       last-name: Nom
       first-name: Prénom
-      email: Courriel (nom@exemple.com)
+      email: Courriel
     submit: Valider
     submit-sr-only: l'envoi du mail de signalisation d'erreur
     email: Courriel
@@ -188,7 +189,7 @@ modal:
     close: Fermer
   notifed-form:   #Modal 12 notification de disponibilité de document
     title: Être prévenu(e) de son retour en rayon
-    field-email: Courriel (nom@exemple.com)
+    field-email: Courriel
     submit: Valider
     submit-sr-only: votre inscription à l'alerte de retour en rayon
   advanced-search:  #Modal 13 recheche avancé
@@ -304,7 +305,7 @@ page:
       page: page %current% sur %total%
   login:
     title: Authentification
-    login: Courriel (nom@exemple.com) *
+    login: Courriel *
     login-placeholder: nom@exemple.com
     password: Mot de passe *
     remember-me: Se souvenir

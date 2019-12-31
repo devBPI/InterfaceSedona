@@ -9,7 +9,6 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -26,8 +25,7 @@ final class ShareByMailType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('object', TextType::class,[
-                'required'  => true,
+            ->add('object', HiddenType::class,[
                 'label'     => 'modal.share.field.title',
                 'data'      => 'modal.share.field.title_value'
             ])
@@ -37,11 +35,13 @@ final class ShareByMailType extends AbstractType
             ])
             ->add('sender', EmailType::class,[
                 'required'  => true,
-                'label'     => 'modal.share.field.expeditor'
+                'label'     => 'modal.share.field.expeditor',
+                'label_attr' => ['compl' => 'modal.email-example']
             ])
             ->add('reciever', EmailType::class,[
                 'required'  => true,
-                'label'     => 'modal.share.field.recipient'
+                'label'     => 'modal.share.field.recipient',
+                'label_attr' => ['compl' => 'modal.email-example']
             ])
             ->add('link', HiddenType::class,[
             ])

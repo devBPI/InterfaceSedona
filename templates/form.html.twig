@@ -50,6 +50,9 @@
             {{ translation_domain is same as(false) ? label : label|trans({}, translation_domain) }}
 
             {% if required -%}<span>*</span>{%- endif -%}
+            {% if label_attr.compl is defined and label_attr.compl is not empty %}
+                {{ translation_domain is same as(false) ? label_attr.compl : label_attr.compl|trans({}, translation_domain) }}
+            {% endif %}
         </{{ element|default('label') }}>
     {%- endif -%}
 {%- endblock form_label %}
