@@ -1,26 +1,22 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: infra
- * Date: 18/10/19
- * Time: 17:24
- */
 
 namespace App\Controller;
 
 
 use App\Entity\UserSelectionDocument;
-use App\Service\NoticeBuildFileService;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-
 use App\Model\Form\ExportNotice;
+use App\Service\NoticeBuildFileService;
 use Knp\Bundle\SnappyBundle\Snappy\Response\PdfResponse;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 
-
+/**
+ * Class PrintController
+ * @package App\Controller
+ */
 final class PrintController extends AbstractController
 {
     /**
@@ -59,8 +55,6 @@ final class PrintController extends AbstractController
             ->setShortFormat($request->get('print-type', 'print-long') !== 'print-long')
         ;
 
-        return  $this->buildFileContent->buildFile($sendAttachement, UserSelectionDocument::class, $format);
+        return $this->buildFileContent->buildFile($sendAttachement, UserSelectionDocument::class, $format);
     }
-
-
 }

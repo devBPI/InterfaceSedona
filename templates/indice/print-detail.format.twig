@@ -1,4 +1,5 @@
-{{ pdf_occurence(notice, 'getFormRetenu','', format)|raw }}
+{% spaceless %}
+    {{ pdf_occurence(notice, 'getFormRetenu','', format)|raw }}
 {% set type = "bloc.autority-result-information.authority-type"|trans ~ ' : ' ~ "bloc.autority-result-information.type.indice"|trans %}
 {% if format =='pdf' %}
     <li>{{ type }}</li>
@@ -7,8 +8,8 @@
 {% endif %}
 
 {% if isPrintLong %}
-    {{ pdf_occurence (notice, 'getEmployedFor', 'bloc.autority-result-information.employed-for'|trans, format)|raw }}
-    {{ pdf_occurence (notice, 'getClassifiedNote', 'bloc.autority-result-information.classification-notes'|trans, format)|raw }}
+    {{ pdf_occurence(notice, 'getEmployedFor', 'bloc.autority-result-information.employed-for'|trans, format)|raw }}
+    {{ pdf_occurence(notice, 'getClassifiedNote', 'bloc.autority-result-information.classification-notes'|trans, format)|raw }}
 {% endif %}
 
 {% if format == 'pdf' %}
@@ -18,4 +19,4 @@
 {% else %}
     {{ notice.permalink }}
 {% endif %}
-
+{% endspaceless %}

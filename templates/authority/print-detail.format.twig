@@ -1,6 +1,5 @@
-{{ pdf_occurence (notice, 'getName', '' , format)|raw }}
-{{ pdf_occurence (notice, 'getType', "bloc.autority-result-information.authority-type"|trans, format)|raw }}
-
+{% spaceless %}
+    {{ pdf_occurence (notice, 'getType', "bloc.autority-result-information.authority-type"|trans, format)|raw }}
 {% if isPrintLong %}
     {{ pdf_occurence (notice, 'getFormParalella', '', format)|raw }}
     {{ pdf_occurence (notice, 'getCountries', 'bloc.autority-result-information.country'|trans, format)|raw }}
@@ -22,7 +21,6 @@
     {{ pdf_occurence (notice, 'getLanguages', 'bloc.autority-result-information.language'|trans, format)|raw }}
     {{ pdf_occurence (notice, 'getPrincipalActivities', 'bloc.autority-result-information.activity'|trans, format)|raw }}
 {% endif %}
-
 {% if format == 'pdf' %}
     <li>
         {%  if is_same_instance(notice,'App\\Model\\Authority'|trans, format) %}
@@ -32,4 +30,4 @@
 {% else %}
     {{ notice.permalink }}
 {% endif %}
-
+{% endspaceless %}

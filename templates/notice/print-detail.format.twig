@@ -1,3 +1,4 @@
+{% spaceless %}
 {% if isPrintLong %}
 	{{ include('notice/print-long-detail.format.twig') }}
 {% else %}
@@ -16,3 +17,4 @@
 		{{ pdf_occurence(copy, 'getSupport', "bloc.autority-result-information.support"|trans, format)|raw }}
 	{% endif %}
 {% endfor %}
+{% endspaceless %}

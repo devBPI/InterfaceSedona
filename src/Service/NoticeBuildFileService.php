@@ -192,7 +192,7 @@ class NoticeBuildFileService
 
         switch ($format){
             case 'txt':
-                return  new Response(
+                return new Response(
                 $content, 200, [
                     'Content-Type' => 'application/force-download',
                     'Content-Disposition' => 'attachment; filename="'.$filename.'.txt"',
@@ -218,6 +218,13 @@ class NoticeBuildFileService
      */
     public function buildContent(ExportNotice $attachement, string $type, string $format):string
     {
+        $output = null;
+        if ($format === 'html') {
+            $format = 'pdf';
+        } else {
+            $output = $format;
+        }
+
         switch ($type){
             case ObjSearch::class:
                 $content =  $this->buildFileForSearch($attachement, $format);
@@ -239,7 +246,7 @@ class NoticeBuildFileService
                 break;
         }
 
-        if ($format === 'pdf'){
+        if ($output === 'pdf'){
             return  $this->knpSnappy->getOutputFromHtml($content);
         }
 
