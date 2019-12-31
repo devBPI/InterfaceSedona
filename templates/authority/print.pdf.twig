@@ -5,13 +5,16 @@
     <div class="print__item">
         <div class="row">
             <div class="col-12">
-                <h2 class="n1">{{notice.title}}</h2>
+                <h2 class="n1">{{ notice.title }}</h2>
             </div>
+
             {% if includeImage %}
                 <div class="col-3">
-                    <img src="{{ absolute_url(asset('images/types/type-personne.svg')) }}" alt="" class="print__image" />
+                    {% set type = notice.type|slugify|default('personne') %}
+                    <img src="{{ absolute_url(asset('images/types/type-'~type~'.svg')) }}" alt="" class="print__image" />
                 </div>
             {% endif %}
+
             <div class="col">
                 <ul class="print__list">
                     {% include "authority/print-detail.format.twig" with {'element': notice, 'format': 'pdf'} %}
@@ -26,12 +29,13 @@
                     <div class="col-12">
                         <h2 class="n1">{{ loop.index ~')'}} {{ object.title }}</h2>
                     </div>
-                    {% if includeImage %}
 
+                    {% if includeImage %}
                         <div class="col-3">
                             <img src="{{ image_to_base64(path('binary_image', {'content':object.image, 'type': object.type|slugify})) }}" class="img-fluid" alt="" />
                         </div>
                     {% endif %}
+
                     <div class="col">
                         <ul class="print__list">
                             {% for author in object.authors %}
@@ -55,9 +59,13 @@
                             {{ loop.index ~')'}} {{ notice.title }}
  						</h2>
                     </div>
-                    <div class="col-3">
-                        <img src="{{ image_to_base64(path('binary_image', {'content':object.image, 'type': object.type|slugify})) }}" class="img-fluid" alt="" />
-                    </div>
+
+                    {% if includeImage %}
+                        <div class="col-3">
+                            <img src="{{ image_to_base64(path('binary_image', {'content':object.image, 'type': object.type|slugify})) }}" class="img-fluid" alt="" />
+                        </div>
+                    {% endif %}
+
                     <div class="col">
                         <ul class="print__list">
                             {% for author in object.authors %}

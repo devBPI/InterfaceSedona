@@ -1,32 +1,32 @@
-{{ pdf_occurence (notice, 'getName', '' , format) | raw }}
-{{ pdf_occurence (notice, 'getType', "bloc.autority-result-information.authority-type"| trans, format) | raw }}
-    {% if  isPrintLong %}
-        {{ pdf_occurence (notice, 'getFormParalella', '', format) | raw }}
-        {{ pdf_occurence (notice, 'getCountries', '', format) | raw }}
-        {{ pdf_occurence (notice, 'getLanguages', 'bloc.autority-result-information.language'| trans, format) | raw }}
-        {{ pdf_occurence (notice, 'getMusicalKinds', 'modal.advanced-search.facette.genreMusical'| trans, format) | raw }}
-        {{ pdf_occurence (notice, 'getBirthDate', 'bloc.autority-result-information.dates'| trans, format) | raw }}
-        {{ pdf_occurence (notice, 'getBirthLocation', 'bloc.autority-result-information.born-date'| trans, format) | raw }}
-        {{ pdf_occurence (notice, 'getDeathDate', 'bloc.autority-result-information.dead-date'| trans, format) | raw }}
-        {{ pdf_occurence (notice, 'getDeathLocation', ''| trans, format) | raw }}
-        {{ pdf_occurence (notice, 'getPrincipalActivities', 'bloc.autority-result-information.activity'| trans, format) | raw }}
-        {{ pdf_occurence (notice, 'getNotes', 'bloc.autority-result-information.nots'| trans, format) | raw }}
-        {{ pdf_occurence (notice, 'getOtherNames', 'bloc.autority-result-information.other-names'| trans, format) | raw }}
-        {{ pdf_occurence (notice, 'getAssocietedForm', 'bloc.autority-result-information.linked-names'| trans, format) | raw }}
-        {{ pdf_occurence (notice, 'getIsni', 'bloc.autority-result-information.insi'| trans, format) | raw }}
-        {{ pdf_occurence (notice, 'getOrigins', 'bloc.autority-result-information.origins'| trans, format) | raw }}
-    {% else %}
-        {{ pdf_occurence (notice, 'getOtherNames', 'bloc.autority-result-information.other-names'| trans, format) | raw }}
-        {{ pdf_occurence (notice, 'getBirthDate', 'bloc.autority-result-information.dates'| trans, format) | raw }}
-        {{ pdf_occurence (notice, 'getDeathDate', 'bloc.autority-result-information.dead-date'| trans, format) | raw }}
-        {{ pdf_occurence (notice, 'getCountries', 'bloc.autority-result-information.country'| trans, format) | raw }}
-        {{ pdf_occurence (notice, 'getLanguages', 'bloc.autority-result-information.language'| trans, format) | raw }}
-        {{ pdf_occurence (notice, 'getPrincipalActivities', 'bloc.autority-result-information.activity'| trans, format) | raw }}
-    {% endif %}
+{{ pdf_occurence (notice, 'getName', '' , format)|raw }}
+{{ pdf_occurence (notice, 'getType', "bloc.autority-result-information.authority-type"|trans, format)|raw }}
+
+{% if isPrintLong %}
+    {{ pdf_occurence (notice, 'getFormParalella', '', format)|raw }}
+    {{ pdf_occurence (notice, 'getCountries', 'bloc.autority-result-information.country'|trans, format)|raw }}
+    {{ pdf_occurence (notice, 'getLanguages', 'bloc.autority-result-information.language'|trans, format)|raw }}
+    {{ pdf_occurence (notice, 'getMusicalKinds', 'modal.advanced-search.facette.genre_musical'|trans, format)|raw }}
+    {{ pdf_occurence (notice, 'getPrintDates', 'bloc.autority-result-information.dates'|trans, format)|raw }}
+    {{ pdf_occurence (notice, 'getPrintBirthData', 'bloc.autority-result-information.born-date'|trans, format)|raw }}
+    {{ pdf_occurence (notice, 'getPrintDeathData', 'bloc.autority-result-information.dead-date'|trans, format)|raw }}
+    {{ pdf_occurence (notice, 'getPrincipalActivities', 'bloc.autority-result-information.activity'|trans, format)|raw }}
+    {{ pdf_occurence (notice, 'getNotes', 'bloc.autority-result-information.nots'|trans, format)|raw }}
+    {{ pdf_occurence (notice, 'getOtherNames', 'bloc.autority-result-information.other-names'|trans, format)|raw }}
+    {{ pdf_occurence (notice, 'getAssocietedForm', 'bloc.autority-result-information.linked-names'|trans, format)|raw }}
+    {{ pdf_occurence (notice, 'getIsni', 'bloc.autority-result-information.insi'|trans, format)|raw }}
+    {{ pdf_occurence (notice, 'getOrigins', 'bloc.autority-result-information.origins'|trans, format)|raw }}
+{% else %}
+    {{ pdf_occurence (notice, 'getOtherNames', 'bloc.autority-result-information.other-names'|trans, format)|raw }}
+    {{ pdf_occurence (notice, 'getPrintDates', ''|trans, format)|raw }}
+    {{ pdf_occurence (notice, 'getCountries', 'bloc.autority-result-information.country'|trans, format)|raw }}
+    {{ pdf_occurence (notice, 'getLanguages', 'bloc.autority-result-information.language'|trans, format)|raw }}
+    {{ pdf_occurence (notice, 'getPrincipalActivities', 'bloc.autority-result-information.activity'|trans, format)|raw }}
+{% endif %}
+
 {% if format == 'pdf' %}
     <li>
-        {%  if is_same_instance(notice,'App\\Model\\Authority'| trans, format) %}
-            <a href="{{ absolute_url(path('record_authority', {"permalink":notice.permalink})) }}">Lien de la notice</a>
+        {%  if is_same_instance(notice,'App\\Model\\Authority'|trans, format) %}
+            <a href="{{ absolute_url(path('record_authority', {"permalink": notice.permalink})) }}">Lien de la notice</a>
         {% endif %}
     </li>
 {% else %}

@@ -5,13 +5,15 @@
     <div class="print__item">
         <div class="row">
             <div class="col-12">
-                <h2 class="n1">{{notice.title}}</h2>
+                <h2 class="n1">{{ notice.title }}</h2>
             </div>
+
             {% if includeImage %}
                 <div class="col-3">
-                    <img src="{{ absolute_url(asset('images/types/type-personne.svg')) }}" alt="" class="print__image" />
+                    <img src="{{ absolute_url(asset('images/types/type-indice.svg')) }}" alt="" class="print__image" />
                 </div>
             {% endif %}
+
             <div class="col">
                 <ul class="print__list">
                     {% include "indice/print-detail.format.twig" with {'element': notice, 'format': 'pdf'} %}

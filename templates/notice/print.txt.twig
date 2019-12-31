@@ -1,6 +1,8 @@
 notice-bibliographique
 ----------------------
-	
+
+{{ notice.type }} - {{ notice.title }}</h2>
+{% if isPrintLong %}{{ notice.titleForm|join(' ') }}{% endif %}
 {% include "notice/print-detail.format.twig" with {'notice': notice, 'format': 'pdf'} %}
 
 Dans le même thème

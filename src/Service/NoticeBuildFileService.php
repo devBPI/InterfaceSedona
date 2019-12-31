@@ -1,11 +1,5 @@
 <?php
 declare(strict_types=1);
-/**
- * Created by PhpStorm.
- * User: infra
- * Date: 02/10/19
- * Time: 11:48
- */
 
 namespace App\Service;
 
@@ -23,6 +17,7 @@ use App\Utils\PrintNoticeWrapper;
 use Knp\Bundle\SnappyBundle\Snappy\Response\PdfResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Twig\Environment;
 
 /**
  * Class NoticeBuildFileService
@@ -58,7 +53,7 @@ class NoticeBuildFileService
         NoticeProvider $noticeProvider,
         NoticeAuthorityProvider $noticeAuthority,
          \Knp\Snappy\Pdf $knpSnappy,
-        \Twig_Environment $templating
+        Environment $templating
         )
     {
         $this->noticeProvider   = $noticeProvider;
@@ -193,7 +188,7 @@ class NoticeBuildFileService
     public function buildFile(ExportNotice $attachement, string $type, string $format)
     {
         $content = $this->buildContent($attachement, $type, $format);
-        $filename = 'search-'.date('Y-m-d_h-i-s');
+        $filename = 'vos-references_'.date('Y-m-d_h-i-s');
 
         switch ($format){
             case 'txt':

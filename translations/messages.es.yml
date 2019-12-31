@@ -446,6 +446,7 @@ bloc:
       rights: Droits
   autority-result-information: #Bloc 16 Notice bibliographique + Bloc 18 Informations de la notice d'autorité
     musique-author: 'Auteur(s), compositeur(s), interprète(s)'
+    other-musique-author: 'Autre(s) auteur(s), compositeur(s), interprète(s)'
     autor-dicover: Découvrir l'auteur
     tracks: Pistes
     contributor: 'Contributeur(s)'
