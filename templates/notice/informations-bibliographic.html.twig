@@ -25,13 +25,11 @@
     <li class="list-information__item">
         <span class="list-information__label">{{ 'modal.advanced-search.langage.title'|trans }}</span>
         <ul class="list-information__sub-list">
-            {% for element in notice.languages %}
-                <li class="list-information__sub-item">{{ element }}</li>
-            {% endfor %}
+            <li class="list-information__sub-item">{{ notice.languages|join(', ') }}</li>
             {% if notice.originalLanguages is not empty %}
-                {% for element in notice.originalLanguages %}
-                    <li class="list-information__sub-item">{{ (", traduit de : ") }}{{ element }}</li>
-                {% endfor %}
+                <li class="list-information__sub-item">
+                    {{ ', '~'modal.advanced-search.langage.title-translated'|trans }} : {{ notice.originalLanguages|join(', ') }}
+                </li>
             {% endif %}
         </ul>
 
