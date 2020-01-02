@@ -1,6 +1,6 @@
 {% import "common/macros/detail-macro.html.twig" as notice_macros %}
 
-{{ notice_macros.row_link(notice.otherAuthors, ('bloc.autority-result-information.'~( notice.type == constant('MUSIC',notice) ?'musique-author':'other-authors')), constant('App\\WordsList::AUTHOR_WORD')) }}
+{{ notice_macros.row_link(notice.otherAuthors, ('bloc.autority-result-information.other-'~( notice.type == constant('MUSIC',notice) ?'musique-author':'other-authors')), constant('App\\WordsList::AUTHOR_WORD')) }}
 {{ notice_macros.row_link(notice.contributeurs, 'bloc.autority-result-information.contributor'|trans, constant('App\\WordsList::AUTHOR_WORD')) }}
 {{ notice_macros.row_link(notice.editors, 'bloc.autority-result-information.editor'|trans, constant('App\\WordsList::AUTHOR_WORD')) }}
 
