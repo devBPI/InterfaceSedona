@@ -153,8 +153,8 @@ final class BreadCrumbBuilder
         $navigation = $request->get('navigation');
         $parcoursTerms =[];
 
-        if ($navigation instanceof NavigationService){
-            if (($parcours = $navigation->getSearch()->getCriteria()->getParcours()) && $parcours!=='general'){
+        if ($navigation instanceof NavigationService) {
+            if (($parcours = $navigation->getSearch()->getCriteria()->getParcours()) && $parcours!=='general') {
                 $parcoursTerms = ['parcours'=>$parcours];
                 $this->bctService->add(
                     'home_thematic',
@@ -162,14 +162,14 @@ final class BreadCrumbBuilder
                     $parcoursTerms
                 );
             }
-            if ($humanCriteria = $this->humanizeCriteria($request)){
+            if ($humanCriteria = $this->humanizeCriteria($request)) {
                 $this->bctService->add(
                     'refined_search',
                     'breadcrumb.search-terms',
                     array_merge([ObjSearch::PARAM_REQUEST_NAME  => $navigation->getHash()], $parcoursTerms),
                     ['%terms%'      => $humanCriteria]
                 );
-            }else {
+            } else {
                 $this->bctService->add(
                     'refined_search',
                     'breadcrumb.search',
@@ -177,7 +177,7 @@ final class BreadCrumbBuilder
                 );
             }
 
-        }else if (strpos($route, 'search')!==false){
+        } else if (strpos($route, 'search') !== false) {
             $parcoursTerms = [];
             if (($parcours = $request->get('parcours')) && $parcours !== 'general'){
                 $parcoursTerms = ['parcours'=>$parcours];
@@ -192,21 +192,7 @@ final class BreadCrumbBuilder
             if ($searchToken){
                  $parcoursTerms = array_merge([ObjSearch::PARAM_REQUEST_NAME=>$searchToken], $parcoursTerms);
             }
-/*            if ($humanCriteria = $this->humanizeCriteria($request)){
-                $this->bctService
-                    ->add(
-                        'refined_search',
-                        'breadcrumb.search-terms',
-                        $parcoursTerms,
-                        ['%terms%'=> $humanCriteria]);
-            }else {
-                $this->bctService->add(
-                    'refined_search',
-                    'breadcrumb.search',
-                    $parcoursTerms
-                );
-            }
-*/
+
             if ($humanCriteria = $this->humanizeCriteria($request)) {
                 $this->bctService->add(
                     null,
@@ -255,22 +241,20 @@ final class BreadCrumbBuilder
      * @param Request $request
      * @return SearchQuery|null
      */
-    private function getObjSearchQuery(Request $request):?SearchQuery
+    private function getObjSearchQuery(Request $request): ?SearchQuery
     {
-        $token      = $request->get('token',  $request->query->get(ObjSearch::PARAM_REQUEST_NAME));
+        $token      = $request->get('searchToken', $request->query->get(ObjSearch::PARAM_REQUEST_NAME));
         $route      = $request->get('_route');
 
         $searchQuery = null;
         $criteria = new Criteria();
-        if ($token ){
-            $searchQuery =  $this->getSearchQueryFromToken($token,$request);
-        }
-        else if ($route === 'advanced_search'){
+        if ($token) {
+            $searchQuery = $this->getSearchQueryFromToken($token,$request);
+        } else if ($route === 'advanced_search') {
             $criteria->setAdvancedSearch($request->query->all());
 
             $searchQuery =  new SearchQuery($criteria, new FacetFilter($request->query->all()), SearchQuery::ADVANCED_MODE);
-        }
-        else{
+        } else {
             $keyword = $request->get(Criteria::SIMPLE_SEARCH_KEYWORD, '');
             $criteria->setSimpleSearch($request->get(Criteria::SIMPLE_SEARCH_TYPE), $keyword);
 
@@ -290,7 +274,7 @@ final class BreadCrumbBuilder
      */
     private function humanizeCriteria(Request $request): string
     {
-        $objSearch =  new ObjSearch($this->getObjSearchQuery($request));
+        $objSearch = new ObjSearch($this->getObjSearchQuery($request));
         return implode(', ', $objSearch->getCriteria()->getKeywordsTitles());
     }
 }

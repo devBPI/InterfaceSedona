@@ -139,5 +139,10 @@ final class IndiceCdu  extends Cdu implements NoticeInterface, RecordInterface, 
     {
         return $this->classifiedNote;
     }
+
+    public function getPrintTitle(): string
+    {
+        return $this->getTitle();
+    }
 }
 

@@ -147,6 +147,17 @@ final class ObjSearch
     {
         return $this->keywords;
     }
+    /**
+     * @return string
+     */
+    public function getKeyword(): string
+    {
+        if (isset($this->keywords[0])) {
+            return array_values($this->keywords[0])[0];
+        }
+
+        return '';
+    }
 
     /**
      * @param Results $results

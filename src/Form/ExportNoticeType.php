@@ -28,59 +28,61 @@ final class ExportNoticeType extends AbstractType
     {
          $builder
              ->add('shortFormat', ChoiceType::class, [
-                 'required'=> true,
-                 'label'=> false,
-                 'expanded'=>true,
-                 'choices'=>[
-                     'Notices abrégées'=>true,
-                     'Notices complete'=>false,
+                 'required' => true,
+                 'label'    => false,
+                 'expanded' => true,
+                 'choices'  => [
+                     'modal.export.field.abstract' => true,
+                     'modal.export.field.long' => false
                  ],
-                 'data' => true
+                 'data' => true,
+                 'attr'      => ['autocomplete' => "off"]
              ])
              ->add('image', CheckboxType::class,[
                  'required' => false,
-                 'label' => 'modal.export.field.img'
+                 'label'    => 'modal.export.field.img',
+                 'attr'      => ['autocomplete' => "off"]
              ])
              ->add('notices', HiddenType::class,[
                  'required' => false,
-                 'attr'=>[
+                 'attr'     => [
                      'class' => 'js-print-notices'
                  ]
              ])
              ->add('authorities', HiddenType::class,[
                  'required' => false,
-                 'attr'=>[
+                 'attr'     => [
                      'class' => 'js-print-authorities'
                  ]
              ])
              ->add('indices', HiddenType::class,[
                  'required' => false,
-                 'attr'=>[
+                 'attr'     => [
                      'class' => 'js-print-indices'
                  ]
              ])
              ->add('reciever', EmailType::class, [
-                    'required'      => true,
-                    'label'         =>'modal.share.field.recipient',
-                    'attr'=>[
-                        'autocomplete'  =>"off",
-                        ]
-                 ])
+                'required'  => true,
+                'label'     => 'modal.share.field.recipient',
+                'attr'      => ['autocomplete' => "off"],
+                'label_attr'=> ['compl' => 'modal.email-example']
+            ])
              ->add('message', TextareaType::class,[
-                    'required' => false,
-                    'label' => 'modal.export.field.comments'
-                 ])
+                'required'  => false,
+                'label'     => 'modal.export.field.comments',
+                 'attr'      => ['autocomplete'=> 'off' ]
+            ])
              ->add('formatType', ChoiceType::class, [
-                     'required' => true,
-                     'label'=> false,
-                     'expanded'=>true,
-                     'choices' => [
-                         'Format texte brute'   =>'txt',
-                         'Mettre PDF en pièce jointe'           =>'pdf',
-                     ],
-                    'data' => 'txt'
-                 ])
-             ;
+                'required' => true,
+                'label'    => false,
+                'expanded' => true,
+                'data'     => 'txt',
+                'choices'  => [
+                    'modal.export.field.txt' => 'txt',
+                    'modal.export.field.pdf' => 'pdf'
+                ],
+                 'attr'      => ['autocomplete'=> 'off' ]
+             ]);
     }
 
     /**

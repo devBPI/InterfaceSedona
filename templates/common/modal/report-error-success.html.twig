@@ -1,16 +1,17 @@
 <div>
 	<div class="modal-header">
 		<h1 class="n1 modal-header__title" id="modal-report-title">{{ 'modal.report.title'|trans }}</h1>
-		<button class="close" type="button" data-dismiss="modal">
+		<button class="close" type="button" data-dismiss="modal" data-reload="true">
 			<img src="{{ asset('images/icones/icone-croix-blanc.svg') }}" alt="{{ 'global.modal-close'|trans }}" />
 		</button>
 	</div>
 
 	<div class="modal-body">
-		Le signalement a été envoyé avec succès
+		Le signalement a été envoyé avec succès.
 	</div>
 
 	<div class="modal-footer">
-		<button type="button" data-dismiss="modal" class="btn btn-lg btn-secondary">{{ 'global.modal-btn-close'|trans }}</button>
+		<button type="button" data-dismiss="modal" class="btn btn-lg btn-secondary" data-reload="true">
+			{{ 'global.modal-btn-close'|trans }}</button>
 	</div>
 </div>

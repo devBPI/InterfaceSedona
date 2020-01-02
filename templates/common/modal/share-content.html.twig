@@ -11,9 +11,15 @@
 			<div class="col-12 col-md-10">
 				{{ form_row(form.sender) }}
 				{{ form_row(form.reciever) }}
-				{{ form_row(form.object) }}
+				<div class="form-group row">
+					{{ form_label(form.object) }}
+					<div class="col-12 col-sm-8">
+						{{ form.object.vars.data|trans }}
+						{{ form_widget(form.object) }}
+					</div>
+				</div>
 				{{ form_row(form.message) }}
-				{{ form_row(form.link, {'value':link}) }}
+				{{ form_row(form.link, {'value': link}) }}
 			</div>
 		</div>
 

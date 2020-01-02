@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace App\Twig;
 
 
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\Yaml\Yaml;
 use Twig\Extension\AbstractExtension;
@@ -25,8 +26,11 @@ class MenuCreator extends AbstractExtension
      */
     public function __construct(RequestStack $requestStack, string $translationPath)
     {
-        $locale = $requestStack->getCurrentRequest()->getLocale();
-        $this->menus = Yaml::parseFile($translationPath.DIRECTORY_SEPARATOR.'menu.'.$locale.'.yml');
+        if ($requestStack->getCurrentRequest() instanceof Request){
+            $locale = $requestStack->getCurrentRequest()->getLocale();
+
+            $this->menus = Yaml::parseFile($translationPath.DIRECTORY_SEPARATOR.'menu.'.$locale.'.yml');
+        }
     }
 
     /**
@@ -53,14 +57,22 @@ class MenuCreator extends AbstractExtension
      */
     public function getHeaderMenu(): array
     {
-        return $this->menus['header'];
+        if (is_array($this->menus)) {
+            return $this->menus['header'];
+        }
+
+        return [];
     }
     /**
      * @return array
      */
     public function getFooterMenu(): array
     {
-        return $this->menus['footer'];
+        if (is_array($this->menus)) {
+            return $this->menus['footer'];
+        }
+
+        return [];
     }
 }
 

@@ -2,11 +2,18 @@
 	<div class="col-12 col-sm-10 col-md-9 col-lg-7">
 		<ul class="list-information account-form">
 			{% if app.user %}
-				{% include 'common/informations-list.html.twig' with {'details': {
-					'page.personal-data.profil.pseudo': app.user.username,
-					'page.personal-data.profil.name': app.user.lastname~' '~app.user.firstname,
-					'page.personal-data.profil.email': app.user.email
-				}} %}
+				<li class="list-information__item">
+					<span class="list-information__label">{{ 'page.personal-data.profil.pseudo'|trans }}</span>
+					<span class="list-information__sub-list">{{ app.user.username }}</span>
+				</li>
+				<li class="list-information__item">
+					<span class="list-information__label">{{ 'page.personal-data.profil.name'|trans }}</span>
+					<span class="list-information__sub-list">{{ app.user.lastname~' '~app.user.firstname }}</span>
+				</li>
+				<li class="list-information__item">
+					<span class="list-information__label">{{ 'page.personal-data.profil.email'|trans }}</span>
+					<span class="list-information__sub-list">{{ app.user.email }}</span>
+				</li>
 			{% endif %}
 		</ul>
 	</div>

@@ -1,10 +1,11 @@
-{% import "common/notice-available-macro.html.twig" as macros %}
+{% import "common/macros/notice-available-macro.html.twig" as macros %}
+
 {% if notice is not empty %}
-    <div class="list-result__content-item js-list-result-item" lang="fr" role="listitem">
+    <div class="list-result__content-item js-list-result-item" lang="fr" role="listitem" id="{{ notice.permalink }}">
         <div class="list-result__content-selector">
             <input type="checkbox" id="result-doc-{{ type }}-{{ index }}"
                    class="js-notice addableInList notice_{{ type }}"
-                   name="{% if  type == constant('App\\Model\\Notice::SEE_ONLINE') %}online[]{% else %}onshelves[]{% endif %}"
+                   name="{% if type == constant('App\\Model\\Notice::SEE_ONLINE') %}online[]{% else %}onshelves[]{% endif %}"
                    value="{{ notice.permalink }}"
                    data-notice="{{ notice.permalink }}"
                 {% if mode is defined and mode == 'detail' %}checked="checked"{% endif %}>
@@ -18,7 +19,7 @@
                 notice.permalink,
                 toggle_to_path_parcours('record_bibliographic', app.request.attributes.get(constant('App\\Model\\Search\\ObjSearch::PARAM_PARCOURS_NAME')), {'permalink': notice.permalink}),
                 notice.frontTitle,
-                notice.frontAuthor|join('; '),
+                notice.frontAuthor|join(' ; '),
                 notice.type,
                 class_name(notice)
             ) }}
@@ -52,11 +53,11 @@
                 {% endif %}
 
                 {% if notice.frontAuthor is not empty %}
-                    <p lang="fr"><span class="font-italic">par</span> {{ notice.frontAuthor|join('; ') }}</p>
+                    <p lang="fr"><span class="font-italic">par</span> {{ notice.frontAuthor|join(' ; ') }}</p>
                 {% endif %}
 
                 {% if notice.editors is not empty %}
-                    <p lang="fr">{{ notice.editors|join('; ') }}</p>
+                    <p lang="fr">{{ notice.editors|join(' ; ') }}</p>
                 {% endif %}
 
                 <p lang="fr">
@@ -84,37 +85,37 @@
                 
                 <ul class="availability">
                     {% for available in notice.copies %}
-                            {{ macros.availibility(available, notice) }}
+                        {{ macros.availibility(available, notice) }}
 
-                            {% if loop.first and not loop.last %}
-                                    <button type="button" class="btn btn-small-link" data-toggle="collapse"
-                                            data-target="#availabity-items-{{ index }}" aria-expanded="false"
-                                            aria-controls="availabity-items-{{ index }}">
-                                        {{ 'global.see-more'|trans }}
-                                    </button>
-                                    <ul class="collapse" id="availabity-items-{{ index }}">
-                            {% endif %}
+                        {% if loop.first and not loop.last %}
+                            <button type="button" class="btn btn-small-link" data-toggle="collapse"
+                                    data-target="#availabity-items-{{ index }}" aria-expanded="false"
+                                    aria-controls="availabity-items-{{ index }}">
+                                {{ 'global.see-more'|trans }}
+                            </button>
+                            <ul class="collapse" id="availabity-items-{{ index }}">
+                        {% endif %}
 
-                            {% if not loop.first and loop.last %}
-                                    </ul>
-                            {% endif %}
+                        {% if not loop.first and loop.last %}
+                            </ul>
+                        {% endif %}
                     {% endfor %}
 
                     {% for link in notice.links %}
-                            {{macros.availibility(link, notice) }}
+                        {{macros.availibility(link, notice) }}
 
-                            {% if loop.first and not loop.last %}
-                                    <button type="button" class="btn btn-small-link" data-toggle="collapse"
-                                            data-target="#links-items-{{ index }}" aria-expanded="false"
-                                            aria-controls="links-items-{{ index }}">
-                                        {{ 'global.see-more'|trans }}
-                                    </button>
-                                    <ul class="collapse" id="links-items-{{ index }}">
-                            {% endif %}
+                        {% if loop.first and not loop.last %}
+                            <button type="button" class="btn btn-small-link" data-toggle="collapse"
+                                    data-target="#links-items-{{ index }}" aria-expanded="false"
+                                    aria-controls="links-items-{{ index }}">
+                                {{ 'global.see-more'|trans }}
+                            </button>
+                            <ul class="collapse" id="links-items-{{ index }}">
+                        {% endif %}
 
-                            {% if not loop.first and loop.last %}
-                                    </ul>
-                            {% endif %}
+                        {% if not loop.first and loop.last %}
+                            </ul>
+                        {% endif %}
                     {% endfor %}
                 </ul>
 

@@ -324,7 +324,7 @@ class Notice extends AbstractImage implements NoticeInterface, RecordInterface
      * @var array
      * @JMS\Type("array<string>")
      * @JMS\SerializedName("titresAlternatifs")
-     * @JMS\XmlList("titreAlternatifs")
+     * @JMS\XmlList("titreAlternatif")
      */
     private $alternatifTitle;
     /**
@@ -651,9 +651,9 @@ class Notice extends AbstractImage implements NoticeInterface, RecordInterface
     }
 
     /**
-     * @return string|null
+     * @return array
      */
-    public function getIsbns():?array
+    public function getIsbns(): ?array
     {
         return $this->isbns;
     }
@@ -1188,7 +1188,7 @@ class Notice extends AbstractImage implements NoticeInterface, RecordInterface
     public function getTitle():string
     {
          $titles = $this->getTitles();
-         if (count($titles)>0){
+         if (count($titles) > 0) {
              return $titles[0];
          }
 
@@ -1291,5 +1291,9 @@ class Notice extends AbstractImage implements NoticeInterface, RecordInterface
         return $this->analyticalTitles;
     }
 
+    public function getPrintTitle(): string
+    {
+        return $this->type.' - '.$this->getTitle();
+    }
 }
 

@@ -87,3 +87,7 @@ select {
 .invalid-feedback {
 	@include font-size(13);
 }
+
+.disabled {
+	opacity: 0.5;
+}

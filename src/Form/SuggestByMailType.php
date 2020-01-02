@@ -28,18 +28,18 @@ final class SuggestByMailType extends AbstractType
         $builder
             ->add('title', TextType::class,[
                 'required'  => true,
-            ])
-            ->add('address', TextType::class,[
-                'required'  => false,
+                'attr'      => ['autocomplete'=> 'off' ]
             ])
             ->add('author', TextareaType::class,[
                 'required'  => false,
+                'attr'      => ['autocomplete'=> 'off' ]
             ])
             ->add('documentType', ChoiceType::class,[
-                    'required'=> false,
-                    'multiple' => false,
-                    'choices'=> SuggestByMail::DOCUMENT_TYPE
-                ])
+                'required'  => false,
+                'multiple'  => false,
+                'choices'   => SuggestByMail::DOCUMENT_TYPE,
+                'attr'      => ['autocomplete'=> 'off' ]
+            ])
             ->add('lastName', TextType::class,[
                 'required'  => false,
                 'attr'      => ['autocomplete'=> 'family-name' ]
@@ -49,11 +49,13 @@ final class SuggestByMailType extends AbstractType
                 'attr'      => ['autocomplete'=> 'name' ]
             ])
             ->add('editor', TextType::class,[
-                'required'  => false
+                'required'  => false,
+                'attr'      => ['autocomplete'=> 'off' ]
             ])
             ->add('email', EmailType::class,[
                 'required'  => false,
-                'attr'      => ['autocomplete'=> 'email' ]
+                'attr'      => ['autocomplete'=> 'email' ],
+                'label_attr' => ['compl' => 'modal.email-example']
             ])
         ;
     }
@@ -69,7 +71,7 @@ final class SuggestByMailType extends AbstractType
             'honeypot_field' => 'email_address',
             'honeypot_use_class' => false,
             'honeypot_hide_class' => 'hidden',
-            'honeypot_message' => 'message non localisée',
+            'honeypot_message' => 'Champs invalides',
         ]);
     }
 }

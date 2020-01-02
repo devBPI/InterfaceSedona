@@ -85,28 +85,29 @@ footer:
     rss: Les fils RSS de la Bpi
 
 modal:
+  email-example: (nom@exemple.com)
   list-create:          #Modal 01  Création d'une liste
     title: Créer une nouvelle liste
     mandatory-field: La saisie du titre de la liste est obligatoire
     field-title: Titre
     message-success: Vous avez bien créé la liste « %name% » avec les documents sélectionnés.
     submit: Valider
-    submit-sr-only:  la création de la liste
+    submit-sr-only: la création de la liste
   list-add:             #Modal 02 ajout à ma sélection
-    title-connected: Ajouter ..
-    title: Vous avez ajouté ..
-    add-to-profile: '.. à Mon compte dans :'
+    title-connected: Ajouter...
+    title: Vous avez ajouté...
+    add-to-profile: '... à Mon compte dans :'
     list: '%name%'
     new-list: Nouvelle liste
     field-title: Titre
-    add-to-tempory: .. à Ma sélection temporaire.
+    add-to-tempory: ... à Ma sélection.
     btn-return: Retourner à la liste des résultats
     btn-selection: Aller dans ma sélection
     btn-login: Pour la conserver, connectez-vous à Mon compte.
     btn-login2: Me connecter
     submit: Valider
-    submit-sr-only:  la création de la liste
-    message-success: Les documents ont bien été ajoutés à vos listes.
+    submit-sr-only: la création de la liste
+    message-success: ... à Ma sélection
     message-error:
       no-list: Aucune liste n'a été sélectionnée. Veuillez en sélectionner une ou en créer une nouvelle.
   list-edit:          #Modal 03 edition d'une liste
@@ -119,12 +120,12 @@ modal:
     title: Suppression d'éléments
     message-confirmation: Voulez-vous vraiment supprimer les éléments sélectionnés ?
     submit: Confirmer
-    submit-sr-only:  la suppression des éléments sélectionnés
+    submit-sr-only: la suppression des éléments sélectionnés
   export:           #Modal 05 export
     title: Paramétrer l'export
     subject: Catalogue BPI – Export de notices
     field:
-      recipient: Destinataire(s) (nom@exemple.com)
+      recipient: Destinataire(s)
       comments: Message
       abstract: Notices abrégées
       long: Notices complètes
@@ -140,18 +141,18 @@ modal:
       img: Exporter les images
     submit: Imprimer
   share:            #Modal 07 fin
-    title: Partage
+    title: Partager
     subtitle-1: Permalien
     url-page: URL de la page
     btn-cpoy: Copier
     btn-cpoy-sr-only: l'url
     subtitle-2: Envoyer cette page à un ami
     field:
-      text: Texte
-      title: Titre
+      text: Message
+      title: Objet
       title_value: Références du catalogue de la Bpi
-      recipient: Destinataire (nom@exemple.com)
-      expeditor: Expéditeur (nom@exemple.com)
+      recipient: Destinataire
+      expeditor: Expéditeur
     submit: Envoyer
   suggestion:     #Modal 08 suggestion d'achats
     title: Suggestion d'achat
@@ -163,7 +164,7 @@ modal:
       editor: Editeur
       last-name: Nom
       first-name: Prénom
-      email: Courriel (nom@exemple.com)
+      email: Courriel
       address: ' Coordonnées'
     submit: Valider
     submit-sr-only: l'envoi de la suggestion
@@ -175,9 +176,9 @@ modal:
       message: Message
       last-name: Nom
       first-name: Prénom
-      email: Courriel (nom@exemple.com)
+      email: Courriel
     submit: Valider
-    submit-sr-only:  l'envoi du mail de signalisation d'erreur
+    submit-sr-only: l'envoi du mail de signalisation d'erreur
     email: Courriel
   comments-edit:   #Modal 10  edition d'un commentaire
     title: Commentaire
@@ -188,7 +189,7 @@ modal:
     close: Fermer
   notifed-form:   #Modal 12 notification de disponibilité de document
     title: Être prévenu(e) de son retour en rayon
-    field-email: Courriel (nom@exemple.com)
+    field-email: Courriel
     submit: Valider
     submit-sr-only: votre inscription à l'alerte de retour en rayon
   advanced-search:  #Modal 13 recheche avancé
@@ -238,6 +239,7 @@ modal:
       select-aria: Sélectionner les langues
       select-sr-only: Sélection multiple en autocomplétion. La saisie clavier permet de filtrer les propositions.
       label: Choisissez une ou plusieurs langues
+      title-translated: traduit de
     available:
       in-shelf: Disponible en rayon
       in-ligne: Consultable en ligne
@@ -266,8 +268,8 @@ modal:
       subject: Sujets
       subjects: Sujet(s)
       date_publishing: Date de publication
-      configuration_name:  Base de recherche
-      materialSupport: 'Description matérielle'
+      configuration_name: Base de recherche
+      materialSupport: Description matérielle
     clear-search: Effacer ma recherche
     submit: Rechercher
   refine-search:  #Modal 14 affiné la recheche
@@ -304,11 +306,11 @@ page:
       page: page %current% sur %total%
   login:
     title: Authentification
-    login: Courriel (nom@exemple.com) *
+    login: Courriel *
     login-placeholder: nom@exemple.com
     password: Mot de passe *
     remember-me: Se souvenir
-    create-profil: Pas encore de compte?
+    create-profil: Pas encore de compte ?
     forgotten-password: Mot de passe oublié
     submit: Connexion
   personal-data:
@@ -340,10 +342,11 @@ bloc:
     share: Partager
     help: Aide
     help_search:
-    suggest: Suggestion d'achats
+    suggest: Suggestion d'achat
     report-error: Signaler une erreur
   search-zone:            #Bloc B  Zone de recherche simple
     autocompletion-notice: Utiliser les flèches haut et bas du clavier pour vous déplacer dans la liste de suggestions
+    autocompletion-notice-sr-only: Tapez les premières lettres pour faire apparaître des suggestions et utilisez la tabulation pour naviguer dans la liste de suggestions. Appuyez sur Entrée pour accéder à la page correspondant à votre sélection
     autocompletion-nb-result: '%nb% options affichées'
     input-sr-only: Saisir un mot clé
     input-placeholder: Rechercher
@@ -437,13 +440,14 @@ bloc:
     result-next: Document suivant
     result-current: '%current% sur %nb%'
     result-information:
-      authors-and-composer: Autre(s) auteur(s), compositeur(s), interprète(s)
+      authors-and-composer: Auteur(s), compositeur(s), interprète(s)
       date: Date(s)
       collection-series: Série / Collection
       conservation: Conservation
       rights: Droits
   autority-result-information: #Bloc 16 Notice bibliographique + Bloc 18 Informations de la notice d'autorité
     musique-author: 'Auteur(s), compositeur(s), interprète(s)'
+    other-musique-author: 'Autre(s) auteur(s), compositeur(s), interprète(s)'
     autor-dicover: Découvrir l'auteur
     tracks: Pistes
     contributor: 'Contributeur(s)'
@@ -498,14 +502,15 @@ bloc:
     content-table: Tables des matières
     periodicity-date: Date d'édition papier
     alternatif-title: Autre(s) forme(s) de titre
-    translated: "Traduction de"
-    translated_from: "Traduit de:"
+    translated: Traduction de
+    translated_from: 'Traduit de:'
     in: 'dans'
     by: 'Par'
     directors: 'Réalisateurs'
     your-references-autority: Vos références d'autorité
     your-references-bibliographic: Vos références bibliographiques
     conservation: Conservation
+    collections-et-services: Collections
   list-related-documents:  #Bloc 19 Liste de documents + Bloc 17 Documents liés
     link-title: Actualité %current% sur %nb%, %name%
     see-more: Voir tout
@@ -535,8 +540,8 @@ bloc:
     list-remove: Supprimer
     list-name: la liste
   list-user:            #Bloc 25 Liste des documents présents dans Ma sélection
-    list-select: "Sélectionner la liste : %name%"
-    list-name: '%name%'
+    list-select: 'Sélectionner la liste : %name%'
+    list-name: 'Ma sélection %name%'
     list-name-change: Changer le nom de la liste
     col:
       title: Titre
@@ -562,7 +567,7 @@ bloc:
 error:
   page_not_available: 'Cette page n’est pas accessible.'
   page_not_found: 404 - Page introuvable
-  link-go-back:  Revenir en arrière
+  link-go-back: Revenir en arrière
   link-home: Retourner à la page d'accueil
   title-form: Formulaire de contact
   page_boken: Oops! Une erreur est survenue
@@ -577,8 +582,8 @@ breadcrumb:
     cinema: Parcours Cinéma
   help_index: 'Aide'
   help:
-    help_search:  La recherche
-    help_result:  Exploitation des résultats
+    help_search: La recherche
+    help_result: Exploitation des résultats
     help_service: Services
     help_account: Mon compte
   user:
@@ -590,7 +595,7 @@ breadcrumb:
     actualites-revues: Parcours Actualités et revues
     autoformation: Parcours Autoformation
     cinema: Parcours Cinéma
-  search-terms: 'Résultats de recherche pour : %terms%'
+  search-terms: 'Résultats de recherche pour: %terms%'
   search: Résultats de recherche
   card:
     bibliographic: Document %title%

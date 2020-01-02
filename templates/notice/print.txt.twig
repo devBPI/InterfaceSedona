@@ -1,13 +1,14 @@
 notice-bibliographique
 ----------------------
-	
-{% include "notice/print-detail.format.twig" with {'notice': notice, 'format': 'pdf'} %}
+
+{{ notice.printTitle }}
+{% if isPrintLong %}{{ notice.titleForm|join(' ') }}{% endif %}
+{% include "notice/blocs-print/print-detail.format.twig" with {'notice': notice, 'format': 'txt'} %}
+
 
 Dans le même thème
 ----------------------
-{% for  object in noticeThemed.noticesList %}
-    {{ loop.index}}) {{ object.titles[0] }}
-    {% for author in object.authors %}
-        {{ author}}
-    {% endfor %}
+{% for object in noticeThemed.noticesList %}
+    {{ loop.index}}) {{ object.title }}
+    {{ object.authors|join(',') }}
 {% endfor %}

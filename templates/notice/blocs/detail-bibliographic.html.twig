@@ -1,5 +1,5 @@
-{% import "common/notice-available-macro.html.twig" as macros %}
-{% import "common/detail-macro.html.twig" as notice_macros %}
+{% import "common/macros/notice-available-macro.html.twig" as macros %}
+{% import "common/macros/detail-macro.html.twig" as notice_macros %}
 
 <div class="col-12 col-md">
     {% for title in notice.titles %}
@@ -47,17 +47,12 @@
             {% if notice.type == "Vidéo"%}
                 {% set label = 'bloc.autority-result-information.directors'|trans %}
             {% endif %}
-            {{ notice_macros.list_link(notice.frontAuthor, label, constant('App\\WordsList::AUTHOR_WORD'),"; ") }}
+            {{ notice_macros.list_link(notice.frontAuthor, label, constant('App\\WordsList::AUTHOR_WORD'), " ; ") }}
         </div>
-        {#
-        <div class="col-6 col-md-4">
-            <a href="#" class="link">{{ 'bloc.autority-result-information.autor-dicover'|trans }}</a>
-        </div>
-        #}
     </div>
 </div>
 
-{% if  notice.contents and notice.type == constant('App\\Model\\Notice::MUSIC')  %}
+{% if notice.contents and notice.type == constant('App\\Model\\Notice::MUSIC')  %}
     <div class="col-12">
         <div lang="fr">
             <h2 class="n2 bibliographic-result__subtitle">{{ 'bloc.autority-result-information.tracks'|trans }}</h2>
@@ -96,7 +91,7 @@
 
 <div class="col-12 col-md">
     <ul class="list-information bibliographic-result__infos js-list-information" lang="fr">
-        {% include 'notice/informations-bibliographic.html.twig' with {
+        {% include 'notice/blocs/informations-bibliographic.html.twig' with {
             'notice': notice,
             'prefix': 'bloc.autority-result-information.',
             'details': [

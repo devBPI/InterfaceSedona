@@ -26,7 +26,7 @@ use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 class CatalogClient
 {
     private const AUTH_KEY_HEADER = 'AuthOrigin';
-    private const DEFAULT_AUTH_VALUE = 'PUBLIC';
+    private const DEFAULT_AUTH_VALUE = 'INTERNET';
 
     /**
      * @var Client

@@ -27,11 +27,13 @@ final class ReportErrorType extends AbstractType
         $builder
             ->add('object', TextType::class,[
                 'required'  => true,
-                'label'     => 'modal.report.field.object'
+                'label'     => 'modal.report.field.object',
+                'attr'      => ['autocomplete'=> 'off' ]
             ])
             ->add('message', TextareaType::class,[
                 'required'  => true,
-                'label'     => 'modal.report.field.message'
+                'label'     => 'modal.report.field.message',
+                'attr'      => ['autocomplete'=> 'off' ]
             ])
             ->add('lastName', TextType::class,[
                 'required'  => false,
@@ -46,7 +48,8 @@ final class ReportErrorType extends AbstractType
             ->add('email', EmailType::class,[
                 'required'  => false,
                 'label'     => 'modal.report.field.email',
-                'attr'      => ['autocomplete'=> 'email' ]
+                'attr'      => ['autocomplete'=> 'email' ],
+                'label_attr' => ['compl' => 'modal.email-example']
             ])
         ;
     }
@@ -62,7 +65,7 @@ final class ReportErrorType extends AbstractType
             'honeypot_field' => 'email_address',
             'honeypot_use_class' => false,
             'honeypot_hide_class' => 'hidden',
-            'honeypot_message' => 'message non localisée',
+            'honeypot_message' => 'Champs invalides',
         ]);
     }
 }

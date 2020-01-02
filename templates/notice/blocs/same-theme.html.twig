@@ -1,0 +1,37 @@
+<div class="row">
+	<div id="carousel-theme" class="carousel carousel--secondary {{ class|default('') }} col-12" lang="fr">
+		<div class="carousel__header">
+			<h2 class="n1">{{ 'bloc.list-related-documents.carousel-theme'|trans }}</h2>
+		</div>
+
+		<div class="carousel-wrapper">
+			<div class="slick-carousel js-carousel-secondary" role="region" aria-roledescription="carrousel">
+				{% for subnotice in children %}
+					<div class="carousel__slide">
+						<a href="{{ path('record_bibliographic', {'permalink': subnotice.permalink}) }}" class="carousel__slide-link">
+							<span class="sr-only">
+								{{ subnotice.titles[0] }}
+							</span>
+						</a>
+						<div class="carousel__slide-image">
+							<img src="{{ path('binary_image', {'content':subnotice.image, 'type': subnotice.type|slugify}) }}" class="img-fluid" alt="" />
+						</div>
+						<p class="n1 carousel__slide-title">{{ subnotice.titles[0] }}</p>
+						<p class="n2 carousel__slide-subtitle">
+							{{ subnotice.authors|join }}
+						</p>
+					</div>
+				{% endfor %}
+			</div>
+		</div>
+
+		<div class="carousel__footer">
+			<a href="{{ path('search', {(constant('App\\Model\\Search\\Criteria::SIMPLE_SEARCH_KEYWORD')): object.notice.indice, (constant('App\\Model\\Search\\Criteria::SIMPLE_SEARCH_TYPE')):(constant('App\\WordsList::INDICE_COTE_WORD'))}) }}" class="link link--icone-end">
+				{{ "bloc.list-related-documents.see-more"|trans }}
+				<span class="sr-only">{{ "bloc.list-related-documents.see-more-sr-only"|trans }} </span>
+				<span>({{ object.results}})</span>
+				<img src="{{ asset('images/icones/icone-chevron-gauche.svg') }}" alt="" class="icone-chevron-right"/>
+			</a>
+		</div>
+	</div>
+</div>

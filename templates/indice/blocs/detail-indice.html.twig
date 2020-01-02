@@ -1,0 +1,26 @@
+{% import "common/macros/detail-macro.html.twig" as detail_macros %}
+
+<div class="col-12 col-md-auto">
+	<div class="authority-result__image">
+		<img src="{{ asset('images/types/type-' ~ notice.type|slugify ~ '.svg') }}" alt="" class="img-fluid" />
+	</div>
+</div>
+
+<div class="col-12 col-md">
+	<div class="authority-result__body">
+		<h1 class="n1 authority-result__title" lang="fr">{{ notice.cote }} - {{ notice.title }}</h1>
+		<ul class="js-list-information list-information" lang="fr">
+			<li class="list-information__item">
+				<span class="list-information__label">{{ "bloc.autority-result-information.authority-type" |trans }}</span>
+				<ul class="list-information__sub-list" >
+					<li class="list-information__sub-item">
+                        {{ ('bloc.autority-result-information.type.' ~ notice.type)|trans }}
+					</li>
+				</ul>
+			</li>
+
+            {{ detail_macros.detail(notice.employedFor, 'Employé pour') }}
+            {{ detail_macros.row(notice.classifiedNote, 'Notes sur le classement') }}
+		</ul>
+	</div>
+</div>

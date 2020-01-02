@@ -45,7 +45,8 @@ class NoticeThemed implements BpiConverterInterface
      */
     public function getNoticesSameTheme(): ?AbstractListNotices
     {
-        if ($this->onlineNoticesSameTheme instanceof NoticesOnline) {
+        if ($this->onlineNoticesSameTheme instanceof NoticesOnline &&
+            count($this->onlineNoticesSameTheme->getNoticesList()) > 0) {
             return $this->onlineNoticesSameTheme;
         }
 

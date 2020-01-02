@@ -1,11 +1,5 @@
 <?php
 declare(strict_types=1);
-/**
- * Created by PhpStorm.
- * User: infra
- * Date: 02/10/19
- * Time: 11:48
- */
 
 namespace App\Service;
 
@@ -23,6 +17,7 @@ use App\Utils\PrintNoticeWrapper;
 use Knp\Bundle\SnappyBundle\Snappy\Response\PdfResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Twig\Environment;
 
 /**
  * Class NoticeBuildFileService
@@ -52,13 +47,13 @@ class NoticeBuildFileService
      * @param NoticeProvider $noticeProvider
      * @param NoticeAuthorityProvider $noticeAuthority
      * @param \Knp\Snappy\Pdf $knpSnappy
-     * @param \Twig_Environment $templating
+     * @param Environment $templating
      */
     public function __construct(
         NoticeProvider $noticeProvider,
         NoticeAuthorityProvider $noticeAuthority,
          \Knp\Snappy\Pdf $knpSnappy,
-        \Twig_Environment $templating
+        Environment $templating
         )
     {
         $this->noticeProvider   = $noticeProvider;
@@ -80,7 +75,7 @@ class NoticeBuildFileService
         try {
             $noticeWrapper  = $this->getNoticeWrapper($attachement->getNotices(), $attachement->getAuthorities(), $attachement->getIndices());
 
-        }catch (\Exception $e){
+        } catch (\Exception $e) {
             /**
              * lunch an custom exception
              */
@@ -104,13 +99,13 @@ class NoticeBuildFileService
      * @throws \Twig\Error\RuntimeError
      * @throws \Twig\Error\SyntaxError
      */
-    private function buildFileForNotice(ExportNotice $attachement):string
+    private function buildFileForNotice(ExportNotice $attachement): string
     {
         $permalink = null;
-        try{
+        try {
             $permalink = $attachement->getNotices();
             $object = $this->noticeProvider->getNotice($permalink);
-        }catch(\Exception $e){
+        } catch(\Exception $e) {
            throw new NotFoundHttpException(sprintf('the permalink %s not referenced', $permalink));
         }
 
@@ -133,13 +128,13 @@ class NoticeBuildFileService
     private function buildFileForAuthority(ExportNotice $attachement)
     {
         $permalink = null;
-        try{
+        try {
             $permalink = $attachement->getAuthorities();
             $object             = $this->noticeAuthority->getAuthority($permalink);
             $relatedDocuments   = $this->noticeAuthority->getSubjectNotice($object->getId());
             $noticeAuthors      = $this->noticeAuthority->getAuthorsNotice($object->getId());
 
-        }catch(\Exception $e){
+        } catch(\Exception $e) {
             throw new NotFoundHttpException(sprintf('the permalink %s not referenced', $permalink));
         }
 
@@ -162,10 +157,11 @@ class NoticeBuildFileService
     private function buildFileForIndice(ExportNotice $attachement)
     {
         $permalink = null;
-        try{
+        try {
             $permalink          = $attachement->getIndices();
             $object             = $this->noticeAuthority->getIndiceCdu($permalink);
-        }catch(NoResultException|\Exception $e){
+            $relatedDocuments   = $this->noticeAuthority->getSubjectIndice($object->getId());
+        } catch(NoResultException|\Exception $e) {
             throw new NotFoundHttpException(sprintf('the permalink %s not referenced', $permalink));
         }
 
@@ -174,6 +170,7 @@ class NoticeBuildFileService
             'isPrintLong'       => !$attachement->isShortFormat(),
             'includeImage'      => $attachement->isImage(),
             'notice'            => $object,
+            'relatedDocuments'  => $relatedDocuments
         ]);
     }
 
@@ -188,11 +185,11 @@ class NoticeBuildFileService
     public function buildFile(ExportNotice $attachement, string $type)
     {
         $content = $this->buildContent($attachement, $type);
-        $filename = 'search-'.date('Y-m-d_h-i-s');
+        $filename = 'vos-references_'.date('Y-m-d_h-i-s');
 
         switch ($attachement->getFormatType()){
             case 'txt':
-                return  new Response(
+                return new Response(
                 $content, 200, [
                     'Content-Type' => 'application/force-download',
                     'Content-Disposition' => 'attachment; filename="'.$filename.'.txt"',
@@ -215,7 +212,7 @@ class NoticeBuildFileService
      * @throws \Twig\Error\RuntimeError
      * @throws \Twig\Error\SyntaxError
      */
-    public function buildContent(ExportNotice $attachement, string $type):string
+    public function buildContent(ExportNotice $attachement, string $type): string
     {
         switch ($type){
             case ObjSearch::class:
@@ -269,7 +266,7 @@ class NoticeBuildFileService
         try {
             $noticeWrapper = $this->getNoticeWrapper($attachement->getNotices(), $attachement->getAuthorities(), $attachement->getIndices());
 
-        }catch (\Exception|NoResultException $e){
+        } catch (\Exception|NoResultException $e) {
         }
 
         return  $this->templating->render(

@@ -26,7 +26,7 @@
     <td class="table__body-edit" data-order="false">
         {% if app.user %}
             {% if document.comment is not empty and document.comment|split("\n").0 is defined %}
-                <p>{{ document.comment|split("\n").0|trim|truncate(20) }}</p>
+                <p>{{ document.comment|split("\n").0|trim|truncate(14) }}</p>
                 <button data-content="{{ '<p>'~document.comment|nl2br~'</p>' }}" data-target="#modal-comments-view"
                         data-toggle="modal">
                     <span class="sr-only">{{ 'bloc.list-user.comments-see'|trans }}</span>

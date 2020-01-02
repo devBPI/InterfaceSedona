@@ -9,14 +9,10 @@ use App\Model\Notice;
 use App\Model\NoticeThemed;
 use App\Service\NavigationService;
 use App\Service\NoticeBuildFileService;
-use App\Service\Provider\NoticeProvider;
-use JMS\Serializer\SerializerInterface;
 use Knp\Bundle\SnappyBundle\Snappy\Response\PdfResponse;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
@@ -25,7 +21,6 @@ use Symfony\Component\Routing\Annotation\Route;
  */
 final class NoticeController extends AbstractController
 {
-
     /**
      * @var NoticeBuildFileService
      */
@@ -50,14 +45,16 @@ final class NoticeController extends AbstractController
      */
     public function bibliographicRecordAction(NoticeThemed $notice, NavigationService $navigation=null)
     {
+        $printRoute = $this->generateUrl(
+            'record_bibliographic_pdf',
+            [ 'permalink' => $notice->getNotice()->getPermalink(), 'format' => 'pdf' ]
+        );
 
-        return $this->render('notice/bibliographic.html.twig', [
+        return $this->render('notice/index.html.twig', [
             'object'            => $notice,
-            'notice'            => $notice->getNotice(),
             'toolbar'           => Notice::class,
             'navigation'        => $navigation,
-            'printRoute'        => $this->generateUrl(
-                'record_bibliographic_pdf',['permalink'=> $notice->getNotice()->getPermalink() ,'format'=> 'pdf'])
+            'printRoute'        => $printRoute
         ]);
     }
 
@@ -79,10 +76,10 @@ final class NoticeController extends AbstractController
                 ->setFormatType($format)
                 ->setShortFormat($request->get('print-type', 'print-long') !== 'print-long')
             ;
-        }catch(NoResultException $e){
+        } catch(NoResultException $e) {
             return $this->render('common/error.html.twig');
         }
 
-        return  $this->buildFileContent->buildFile($sendWithAttachement, Notice::class);
+        return $this->buildFileContent->buildFile($sendWithAttachement,Notice::class);
     }
 }
