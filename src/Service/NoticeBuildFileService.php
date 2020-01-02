@@ -82,7 +82,7 @@ class NoticeBuildFileService
         }
 
         return  $this->templating->render(
-            "search/index.".$attachement->getFormatType().".twig",
+            "search/index.".$attachement->getTemplateType().".twig",
             [
                 'toolbar'=> ObjSearch::class,
                 'isPrintLong'   => !$attachement->isShortFormat(),
@@ -109,7 +109,7 @@ class NoticeBuildFileService
            throw new NotFoundHttpException(sprintf('the permalink %s not referenced', $permalink));
         }
 
-        return  $this->templating->render("notice/print.".$attachement->getFormatType() .".twig", [
+        return  $this->templating->render("notice/print.".$attachement->getTemplateType() .".twig", [
             'toolbar'           => Notice::class,
             'isPrintLong'       => !$attachement->isShortFormat(),
             'includeImage'      => $attachement->isImage(),
@@ -138,7 +138,7 @@ class NoticeBuildFileService
             throw new NotFoundHttpException(sprintf('the permalink %s not referenced', $permalink));
         }
 
-        return  $this->templating->render("authority/print.".$attachement->getFormatType() .".twig", [
+        return  $this->templating->render("authority/print.".$attachement->getTemplateType() .".twig", [
             'toolbar'           => Authority::class,
             'isPrintLong'       => !$attachement->isShortFormat(),
             'includeImage'      => $attachement->isImage(),
@@ -165,7 +165,7 @@ class NoticeBuildFileService
             throw new NotFoundHttpException(sprintf('the permalink %s not referenced', $permalink));
         }
 
-        return  $this->templating->render("indice/print.".$attachement->getFormatType() .".twig", [
+        return  $this->templating->render("indice/print.".$attachement->getTemplateType() .".twig", [
             'toolbar'           => Authority::class,
             'isPrintLong'       => !$attachement->isShortFormat(),
             'includeImage'      => $attachement->isImage(),
@@ -270,7 +270,7 @@ class NoticeBuildFileService
         }
 
         return  $this->templating->render(
-            "user/print.".$attachement->getFormatType().".twig",
+            "user/print.".$attachement->getTemplateType().".twig",
             [
                 'toolbar'           => ObjSearch::class,
                 'isPrintLong'       => !$attachement->isShortFormat(),

@@ -143,6 +143,17 @@ final class ExportNotice
     {
         return $this->formatType;
     }
+    /**
+     * @return null|string
+     */
+    public function getTemplateType(): ?string
+    {
+        if ($this->formatType === 'html') {
+            return 'pdf';
+        }
+
+        return $this->formatType;
+    }
 
     /**
      * @param string $formatType
