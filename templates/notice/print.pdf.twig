@@ -1,4 +1,5 @@
 {% extends 'base.pdf.twig' %}
+{% from "common/macros/print-macro.html.twig" import image,list_subitems %}
 
 {% block title %}{{ 'bloc.autority-result-information.your-references-bibliographic'|trans }}{% endblock %}
 
@@ -6,15 +7,11 @@
 	<div class="print__item">
 		<div class="row">
 			<div class="col-12">
-				<h2 class="n1">{{ notice.type }} - {{ notice.title }}</h2>
+				<h2 class="n1">{{ notice.printTitle }}</h2>
 				{% if isPrintLong %}<i>{{ notice.titleForm|join(' ') }}</i>{% endif %}
 			</div>
 
-			{% if includeImage %}
-				<div class="col-3">
-					<img src="{{ image_to_base64(path("binary_image", {"content": notice.image, 'type': notice.type|slugify})) }}" class="img-fluid" alt="" />
-				</div>
-			{% endif %}
+            {{ image(notice, includeImage) }}
 
 			<div class="col">
 				<ul class="print__list">
@@ -25,30 +22,6 @@
 	</div>
 
 	{% if isPrintLong %}
-		{% for object in noticeThemed.noticesList %}
-			<div class="print__item">
-				<div class="row">
-					<div class="col-12">
-						<h2 class="n1">{{ loop.index }}) {{ object.titles[0] }} {{object.image  }}</h2>
-					</div>
-
-					{% if includeImage %}
-						<div class="col-3">
-							<img src="{{ image_to_base64(path('binary_image', {'content':object.image, 'type': notice.type|slugify})) }}" class="img-fluid" alt="" />
-						</div>
-					{% endif %}
-
-					<div class="col">
-						<ul class="print__list">
-							{% for author in object.authors %}
-								<li>
-									{{ author}}
-								</li>
-							{% endfor %}
-						</ul>
-					</div>
-				</div>
-			</div>
-		{% endfor %}
+        {{ list_subitems(noticeThemed.noticesList, includeImage) }}
 	{% endif %}
 {% endblock %}

@@ -1,6 +1,8 @@
 {% extends 'base.pdf.twig' %}
+{% from "common/macros/print-macro.html.twig" import image,list_subitems %}
 
 {% block title %}{{ 'bloc.autority-result-information.your-references-autority'|trans }}{% endblock %}
+
 {% block body %}
     <div class="print__item">
         <div class="row">
@@ -8,11 +10,7 @@
                 <h2 class="n1">{{ notice.title }}</h2>
             </div>
 
-            {% if includeImage %}
-                <div class="col-3">
-                    <img src="{{ absolute_url(asset('images/types/type-indice.svg')) }}" alt="" class="print__image" />
-                </div>
-            {% endif %}
+            {{ image(notice, includeImage) }}
 
             <div class="col">
                 <ul class="print__list">
@@ -21,4 +19,8 @@
             </div>
         </div>
     </div>
+
+    {% if isPrintLong %}
+        {{ list_subitems(relatedDocuments.mappedNotices, includeImage) }}
+    {% endif %}
 {% endblock %}

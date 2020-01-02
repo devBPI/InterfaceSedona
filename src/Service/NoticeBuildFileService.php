@@ -47,7 +47,7 @@ class NoticeBuildFileService
      * @param NoticeProvider $noticeProvider
      * @param NoticeAuthorityProvider $noticeAuthority
      * @param \Knp\Snappy\Pdf $knpSnappy
-     * @param \Twig_Environment $templating
+     * @param Environment $templating
      */
     public function __construct(
         NoticeProvider $noticeProvider,
@@ -76,7 +76,7 @@ class NoticeBuildFileService
         try {
             $noticeWrapper  = $this->getNoticeWrapper($attachement->getNotices(), $attachement->getAuthorities(), $attachement->getIndices());
 
-        }catch (\Exception $e){
+        } catch (\Exception $e) {
             /**
              * lunch an custom exception
              */
@@ -104,10 +104,10 @@ class NoticeBuildFileService
     private function buildFileForNotice(ExportNotice $attachement, string $format):string
     {
         $permalink = null;
-        try{
+        try {
             $permalink = $attachement->getNotices();
             $object = $this->noticeProvider->getNotice($permalink);
-        }catch(\Exception $e){
+        } catch(\Exception $e) {
            throw new NotFoundHttpException(sprintf('the permalink %s not referenced', $permalink));
         }
 
@@ -131,13 +131,13 @@ class NoticeBuildFileService
     private function buildFileForAuthority(ExportNotice $attachement, string $format)
     {
         $permalink = null;
-        try{
+        try {
             $permalink = $attachement->getAuthorities();
             $object             = $this->noticeAuthority->getAuthority($permalink);
             $relatedDocuments   = $this->noticeAuthority->getSubjectNotice($object->getId());
             $noticeAuthors      = $this->noticeAuthority->getAuthorsNotice($object->getId());
 
-        }catch(\Exception $e){
+        } catch(\Exception $e) {
             throw new NotFoundHttpException(sprintf('the permalink %s not referenced', $permalink));
         }
 
@@ -161,10 +161,11 @@ class NoticeBuildFileService
     private function buildFileForIndice(ExportNotice $attachement, string $format)
     {
         $permalink = null;
-        try{
+        try {
             $permalink          = $attachement->getIndices();
             $object             = $this->noticeAuthority->getIndiceCdu($permalink);
-        }catch(NoResultException|\Exception $e){
+            $relatedDocuments   = $this->noticeAuthority->getSubjectIndice($object->getId());
+        } catch(NoResultException|\Exception $e) {
             throw new NotFoundHttpException(sprintf('the permalink %s not referenced', $permalink));
         }
 
@@ -173,6 +174,7 @@ class NoticeBuildFileService
             'isPrintLong'       => !$attachement->isShortFormat(),
             'includeImage'      => $attachement->isImage(),
             'notice'            => $object,
+            'relatedDocuments'  => $relatedDocuments
         ]);
     }
 

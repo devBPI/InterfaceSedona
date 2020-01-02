@@ -1,6 +1,8 @@
 {% extends 'base.pdf.twig' %}
+{% from "common/macros/print-macro.html.twig" import image,list_subitems %}
 
 {% block title %}{{ 'bloc.autority-result-information.your-references-autority'|trans }}{% endblock %}
+
 {% block body %}
     <div class="print__item">
         <div class="row">
@@ -8,75 +10,18 @@
                 <h2 class="n1">{{ notice.title }}</h2>
             </div>
 
-            {% if includeImage %}
-                <div class="col-3">
-                    {% set type = notice.type|slugify|default('personne') %}
-                    <img src="{{ absolute_url(asset('images/types/type-'~type~'.svg')) }}" alt="" class="print__image" />
-                </div>
-            {% endif %}
+            {{ image(notice, includeImage) }}
 
             <div class="col">
                 <ul class="print__list">
-                    {% include "authority/print-detail.format.twig" with {'element': notice, 'format': 'pdf'} %}
+                    {% include "authority/blocs/print-detail.format.twig" with {'element': notice, 'format': 'pdf'} %}
                 </ul>
             </div>
         </div>
     </div>
-    {% if relatedDocuments.mappedNotices  is defined %}
-        {% for  object in relatedDocuments.mappedNotices %}
-            <div class="print__item">
-                <div class="row">
-                    <div class="col-12">
-                        <h2 class="n1">{{ loop.index ~')'}} {{ object.title }}</h2>
-                    </div>
 
-                    {% if includeImage %}
-                        <div class="col-3">
-                            <img src="{{ image_to_base64(path('binary_image', {'content':object.image, 'type': object.type|slugify})) }}" class="img-fluid" alt="" />
-                        </div>
-                    {% endif %}
-
-                    <div class="col">
-                        <ul class="print__list">
-                            {% for author in object.authors %}
-                                <li>
-                                    {{ author}}
-                                </li>
-                            {% endfor %}
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        {% endfor %}
-    {% endif %}
-
-    {% if noticeAuthors.mappedNotices  is defined %}
-        {% for  object in noticeAuthors.mappedNotices %}
-            <div class="print__item">
-                <div class="row">
-                    <div class="col-12">
-						<h2 class="n1">
-                            {{ loop.index ~')'}} {{ notice.title }}
- 						</h2>
-                    </div>
-
-                    {% if includeImage %}
-                        <div class="col-3">
-                            <img src="{{ image_to_base64(path('binary_image', {'content':object.image, 'type': object.type|slugify})) }}" class="img-fluid" alt="" />
-                        </div>
-                    {% endif %}
-
-                    <div class="col">
-                        <ul class="print__list">
-                            {% for author in object.authors %}
-                                <li>
-                                    {{ author}}
-                                </li>
-                            {% endfor %}
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        {% endfor %}
+    {% if isPrintLong %}
+        {{ list_subitems(relatedDocuments.mappedNotices, includeImage) }}
+        {{ list_subitems(noticeAuthors.mappedNotices, includeImage) }}
     {% endif %}
 {% endblock %}

@@ -1,12 +1,14 @@
-{% if notice.type != 'Musique' %}
-	{{ pdf_occurence(notice, 'getExportTitle', 'bloc.autority-result-information.in'|trans, format)|raw }}
-{% else %}
-	{{ pdf_occurence(notice, 'getAnalyliticalTitle', 'bloc.autority-result-information.in'|trans, format)|raw }}
-{% endif %}
+{% spaceless %}
+	{%- if notice.type != 'Musique' -%}
+		{{- pdf_occurence(notice, 'getExportTitle', 'bloc.autority-result-information.in'|trans, format)|raw -}}
+	{%- else -%}
+		{{- pdf_occurence(notice, 'getAnalyliticalTitle', 'bloc.autority-result-information.in'|trans, format)|raw -}}
+	{%- endif -%}
 
-{{ pdf_occurence(notice, 'getAuthors', 'bloc.autority-result-information.by'|trans, format)|raw }}
-{{ pdf_occurence(notice, 'getDirectors', 'bloc.autority-result-information.by'|trans, format)|raw }}
-{{ pdf_occurence(notice, 'getEditors', '', format)|raw }}
-{{ pdf_occurence(notice, 'getPublishedDates', ''|trans, format)|raw }}
-{{ pdf_occurence(notice, 'getFormats', ''|trans, format)|raw }}
-{{ pdf_occurence(notice, 'getNomPubliqueConfiguration', 'bloc.notice-simple.result-of-bdd'|trans|trans, format)|raw }}
+	{{- pdf_occurence(notice, 'getAuthors', 'bloc.autority-result-information.by'|trans, format)|raw -}}
+	{{- pdf_occurence(notice, 'getDirectors', 'bloc.autority-result-information.by'|trans, format)|raw -}}
+	{{- pdf_occurence(notice, 'getEditors', '', format)|raw -}}
+	{{- pdf_occurence(notice, 'getPublishedDates', ''|trans, format)|raw -}}
+	{{- pdf_occurence(notice, 'getFormats', ''|trans, format)|raw -}}
+	{{- pdf_occurence(notice, 'getNomPubliqueConfiguration', 'bloc.notice-simple.result-of-bdd'|trans|trans, format)|raw -}}
+{% endspaceless %}

@@ -1,20 +1,20 @@
 {% spaceless %}
-{% if isPrintLong %}
-	{% include 'notice/blocs-print/print-long-detail.format.twig' %}
-{% else %}
-	{% include 'notice/blocs-print/print-resume-detail.format.twig' %}
-{% endif %}
+    {% if isPrintLong %}
+        {% include 'notice/blocs-print/print-long-detail.format.twig' %}
+    {% else %}
+        {% include 'notice/blocs-print/print-resume-detail.format.twig' %}
+    {% endif %}
 
-{% if format == 'pdf' %}
-	<li><a href="{{ absolute_url(path('record_bibliographic', {"permalink": notice.permalink})) }}">Lien vers la notice</a></li>
-{% endif %}
+    {%- if format == 'pdf' %}
+        <li><a href="{{ absolute_url(path('record_bibliographic', {"permalink": notice.permalink})) }}">Lien vers la notice</a></li>
+    {% endif -%}
 
-{% for copy in notice.copies %}
-	{{ pdf_occurence(copy, 'getAvailability', "", format)|raw }}
+    {% for copy in notice.copies %}
+        {{- "\n" ~ pdf_occurence(copy, 'getAvailability', "", format)|raw -}}
 
-	{% if notice.isOnLine() == false %}
-		{{ pdf_occurence(copy, 'getCote', "bloc.autority-result-information.cote"|trans, format)|raw }}
-		{{ pdf_occurence(copy, 'getSupport', "bloc.autority-result-information.support"|trans, format)|raw }}
-	{% endif %}
-{% endfor %}
+        {% if notice.isOnLine() == false %}
+            {{- pdf_occurence(copy, 'getCote', "bloc.autority-result-information.cote"|trans, format)|raw -}}
+            {{- pdf_occurence(copy, 'getSupport', "bloc.autority-result-information.support"|trans, format)|raw -}}
+        {% endif %}
+    {% endfor %}
 {% endspaceless %}

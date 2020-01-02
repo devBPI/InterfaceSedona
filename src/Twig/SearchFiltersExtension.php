@@ -168,8 +168,12 @@ class SearchFiltersExtension extends AbstractExtension
                 if ($format === 'pdf') {
                     return sprintf("<li>%s : %s</li>", $label, $payload);
                 } elseif ($format === 'txt') {
-                    return sprintf("%s : %s", $label, $payload);
+                    return sprintf("%s : %s\n", $label, $payload);
                 }
+            }
+
+            if ($format === 'txt') {
+                $payload .= "\n";
             }
 
             return $payload;

@@ -234,7 +234,6 @@ final class Authority implements NoticeInterface, RecordInterface, BpiConverterI
     }
 
     /**
-     *
      * @return string
      */
     public function getTitle(): string
@@ -274,6 +273,10 @@ final class Authority implements NoticeInterface, RecordInterface, BpiConverterI
     public function getPrintDeathData(): ?string
     {
         return $this->concatenateData($this->deathDate, $this->deathLocation);
+    }
+    public function getPrintTitle(): string
+    {
+        return $this->getTitle();
     }
 }
 

@@ -1,29 +1,31 @@
-Imperssion Search PDF
+Impression de recherche
 ---------------------
 Résultats de recherche
 ---------------------
 
-{{ 'bloc.autority-result-information.your-references-autority'| trans }}
+{{ 'bloc.autority-result-information.your-references-autority'|trans }}
 =====================
 {% for element in printNoticeWrapper.noticeAuthority %}
-    {{ loop.index }}) {{ element.title }}
+    {{- "\n\n"~loop.index }}) {{ element.title -}}
     {% include "authority/blocs/print-detail.format.twig" with {'notice': element, 'format':'txt'} %}
 {% endfor %}
+{%- set countAuthors = printNoticeWrapper.noticeAuthority|length -%}
 
 {% for element in printNoticeWrapper.noticeIndice %}
-    {{ loop.index }}) {{ element.title }}
+    {{- "\n\n"~(loop.index + countAuthors) }}) {{ element.title -}}
     {% include "indice/blocs/print-detail.format.twig" with {'notice': element, 'format': 'txt'} %}
 {% endfor %}
 
 
-{{ 'bloc.autority-result-information.your-references-bibliographic'| trans }}
+{{ 'bloc.autority-result-information.your-references-bibliographic'|trans }}
 =====================
 {% for element in printNoticeWrapper.noticeOnShelves %}
-    {{ loop.index }}) {{ element.title }}
+    {{- "\n\n"~loop.index }}) {{ element.title -}}
     {% include "notice/blocs-print/print-detail.format.twig" with {'notice': element, 'format': 'txt'} %}
 {% endfor %}
+{%- set countNotices = printNoticeWrapper.noticeOnShelves|length -%}
 
 {% for element in printNoticeWrapper.noticeOnLine %}
-    {{ loop.index }}) {{ element.title }}
+    {{- "\n\n"~(loop.index + countNotices) }}) {{ element.title -}}
     {% include "notice/blocs-print/print-detail.format.twig" with {'notice': element, 'format': 'txt'} %}
 {% endfor %}
