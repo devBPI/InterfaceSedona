@@ -219,7 +219,7 @@ final class SelectionListService extends AuthenticationService
      * @throws \Doctrine\ORM\ORMException
      * @throws \Doctrine\ORM\OptimisticLockException
      */
-    public function applyAction(string $action, array $listObj=[]): void
+    public function applyAction(string $action = null, array $listObj=[]): void
     {
         if ($action === 'delete') {
             if ($this->hasConnectedUser()) {
