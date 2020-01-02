@@ -55,10 +55,14 @@ final class IndiceCduController extends AbstractController
     public function cduIndiceRecordAction(IndiceCdu $notice, NavigationService $navigation=null)
     {
         $subjects = $this->noticeAuhtority->getSubjectIndice($notice->getId());
+        $printRoute = $this->generateUrl(
+            'indice_pdf',
+            [ 'permalink' => $notice->getPermalink(), 'format' => 'pdf' ]
+        );
 
-        return $this->render('indice/indice.html.twig', [
+        return $this->render('indice/index.html.twig', [
                 'toolbar'         => IndiceCdu::class,
-                'printRoute'      => $this->generateUrl('indice_pdf',  ['permalink'=>$notice->getPermalink(), 'format'=>'pdf']),
+                'printRoute'      => $printRoute,
                 'subjects'        => $subjects,
                 'notice'          => $notice,
                 'navigation'      => $navigation,
@@ -77,7 +81,7 @@ final class IndiceCduController extends AbstractController
         try {
             $indiceCdu = $this->noticeAuhtority->getIndiceCduAroundOf($cote);
             return new JsonResponse([
-                'html'=> $this->renderView('indice/index-browsing.html.twig',
+                'html'=> $this->renderView('indice/blocs/index-browsing.html.twig',
                     ['indexList'=> $indiceCdu, 'current' => $current]
                 )
             ]);

@@ -18,8 +18,7 @@
 
 			<div class="col">
 				<ul class="print__list">
-					{% set template = isPrintLong ? "notice/print-long-detail.format.twig" : "notice/print-resume-detail.format.twig" %}
-					{% include template with {'notice': notice, 'format': 'pdf'} %}
+					{% include 'notice/blocs-print/print-detail.format.twig' with {'notice': notice, 'format': 'pdf'} %}
 				</ul>
 			</div>
 		</div>

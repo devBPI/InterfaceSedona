@@ -1,4 +1,4 @@
-{% import "common/detail-macro.html.twig" as notice_macros %}
+{% import "common/macros/detail-macro.html.twig" as notice_macros %}
 
 {{ notice_macros.row_link(notice.otherAuthors, ('bloc.autority-result-information.'~( notice.type == constant('MUSIC',notice) ?'musique-author':'other-authors')), constant('App\\WordsList::AUTHOR_WORD')) }}
 {{ notice_macros.row_link(notice.contributeurs, 'bloc.autority-result-information.contributor'|trans, constant('App\\WordsList::AUTHOR_WORD')) }}
@@ -36,7 +36,6 @@
     </li>
 {% endif %}
 
-
 {{ notice_macros.row(notice.materialDescriptions, 'modal.advanced-search.facette.materialSupport'|trans) }}
 {{ notice_macros.row_link(notice.collectionSeries, 'bloc.autority-result-information.collections-et-services'|trans, constant('App\\WordsList::COLLECTION_WORD')) }}
 {{ notice_macros.row_link(notice.togetherTitle, 'bloc.autority-result-information.title-together'|trans, constant('App\\WordsList::TITLE_WORD')) }}
@@ -63,7 +62,7 @@
 {{ notice_macros.row_link(notice.eras , 'bloc.autority-result-information.eras'|trans, constant('App\\WordsList::SUBJECT_WORD')) }}
 {{ notice_macros.row_link(notice.locations , 'bloc.autority-result-information.location'|trans, constant('App\\WordsList::SUBJECT_WORD')) }}
 {{ notice_macros.row_link(notice.kinds , 'bloc.autority-result-information.kind'|trans, constant('App\\WordsList::SUBJECT_WORD')) }}
-{#gender#}
+
 {{ notice_macros.row_link(notice.topics , 'bloc.autority-result-information.topics'|trans, constant('App\\WordsList::SUBJECT_WORD')) }}
 {{ notice_macros.detail(notice.isbns , 'ISBN') }}
 {{ notice_macros.detail(notice.issn , 'ISSN') }}
@@ -72,7 +71,7 @@
 
 {{ notice_macros.detail(notice.publics , 'bloc.autority-result-information.publics'|trans) }}
 
-{{ notice_macros.detail(notice.rights , "Droits"|trans, ". ") }}
+{{ notice_macros.detail(notice.rights , "Droits", ". ") }}
 
 {{ notice_macros.detail(notice.placesEvents , 'bloc.autority-result-information.manifestation-location') }}
 {{ notice_macros.detail(notice.origins , 'bloc.autority-result-information.origins'|trans ~ ': ', " ; ", " list-information__item--mentions") }}
@@ -88,7 +87,7 @@
     </li>
 {% endif %}
 
-{#result de quatrieme#}
+
 {% if notice.fourth and (notice.fourth.presentation or notice.fourth.biography or notice.fourth.editorInfo) %}
     <li class="list-information__item">
         <span class="list-information__label">{{ ("Quatrième de couverture")|trans }}</span>

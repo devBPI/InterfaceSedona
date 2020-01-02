@@ -1,4 +1,4 @@
-{% import "common/detail-macro.html.twig" as detail_macros %}
+{% import "common/macros/detail-macro.html.twig" as detail_macros %}
 
 {{ detail_macros.detail(author.type, 'bloc.autority-result-information.authority-type'|trans) }}
 {{ detail_macros.detail(author.otherNames|slice(0, 2), 'bloc.autority-result-information.other-names'|trans) }}

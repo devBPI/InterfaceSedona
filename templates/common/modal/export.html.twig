@@ -3,8 +3,8 @@
 		<div class="modal-content">
 			{% if toolbar in ['App\\Model\\Search\\ObjSearch', 'App\\Entity\\UserSelectionDocument'] %}
 				{{ render(controller('App\\Controller\\ExportController::sendNoticesOnAttachementAction', {'type': toolbar } )) }}
-			{% else %}
-                {{ render(controller('App\\Controller\\ExportController::sendNoticeWithAttachementAction', {'type': toolbar, 'permalink':notice.permalink } )) }}
+			{% elseif notice is defined %}
+                {{ render(controller('App\\Controller\\ExportController::sendNoticeWithAttachementAction', {'type': toolbar, 'permalink': notice.permalink } )) }}
 			{% endif %}
 		</div>
 	</div>

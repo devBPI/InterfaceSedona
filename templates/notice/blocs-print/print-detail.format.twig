@@ -1,8 +1,8 @@
 {% spaceless %}
 {% if isPrintLong %}
-	{{ include('notice/print-long-detail.format.twig') }}
+	{% include 'notice/blocs-print/print-long-detail.format.twig' %}
 {% else %}
-	{{ include('notice/print-resume-detail.format.twig') }}
+	{% include 'notice/blocs-print/print-resume-detail.format.twig' %}
 {% endif %}
 
 {% if format == 'pdf' %}

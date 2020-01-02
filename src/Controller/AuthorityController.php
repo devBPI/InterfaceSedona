@@ -6,17 +6,12 @@ namespace App\Controller;
 use App\Model\Authority;
 use App\Model\Exception\NoResultException;
 use App\Model\Form\ExportNotice;
-use App\Model\RankedAuthority;
 use App\Service\NavigationService;
 use App\Service\NoticeBuildFileService;
 use App\Service\Provider\NoticeAuthorityProvider;
-use JMS\Serializer\Serializer;
-use JMS\Serializer\SerializerInterface;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
@@ -50,20 +45,26 @@ final class AuthorityController extends AbstractController
     /**
      * @Route("/{parcours}/autorite/{permalink}", methods={"GET","HEAD"}, name="record_authority_parcours", requirements={"permalink"=".+"})
      * @Route("/autorite/{permalink}", methods={"GET","HEAD"}, name="record_authority", requirements={"permalink"=".+"})
+     * @param Authority $notice
+     * @param NavigationService|null $navigation
      * @return Response
      */
     public function authorityRecordAction(Authority $notice, NavigationService $navigation = null)
     {
         $subject = $this->noticeAuhtority->getSubjectNotice($notice->getId());
         $authors = $this->noticeAuhtority->getAuthorsNotice($notice->getId());
+        $printRoute = $this->generateUrl(
+            'record_authority_pdf',
+            [ 'permalink' => $notice->getPermalink(), 'format' => 'pdf']
+        );
 
-        return $this->render('authority/authority.html.twig', [
-                'toolbar'         => Authority::class,
-                'printRoute'      => $this->generateUrl('record_authority_pdf', ['permalink'=>$notice->getPermalink(), 'format'=>'pdf']),
-                'subjects'        => $subject,
-                'authors'         => $authors,
-                'notice'          => $notice,
-                'navigation'     => $navigation,
+        return $this->render('authority/index.html.twig', [
+                'toolbar'       => Authority::class,
+                'printRoute'    => $printRoute,
+                'subjects'      => $subject,
+                'authors'       => $authors,
+                'notice'        => $notice,
+                'navigation'    => $navigation,
             ]
         );
     }
@@ -80,7 +81,7 @@ final class AuthorityController extends AbstractController
      */
     public function authorityRecordPDFAction(Request $request, $format='pdf')
     {
-        try{
+        try {
             $sendAttachement = new ExportNotice();
 
             $sendAttachement
@@ -89,7 +90,7 @@ final class AuthorityController extends AbstractController
                 ->setFormatType($format)
                 ->setShortFormat($request->get('print-type', 'print-long') !== 'print-long')
             ;
-        }catch(NoResultException $e){
+        } catch(NoResultException $e) {
             return $this->render('common/error.html.twig');
         }
 

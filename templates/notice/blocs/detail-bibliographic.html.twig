@@ -1,5 +1,5 @@
-{% import "common/notice-available-macro.html.twig" as macros %}
-{% import "common/detail-macro.html.twig" as notice_macros %}
+{% import "common/macros/notice-available-macro.html.twig" as macros %}
+{% import "common/macros/detail-macro.html.twig" as notice_macros %}
 
 <div class="col-12 col-md">
     {% for title in notice.titles %}
@@ -91,7 +91,7 @@
 
 <div class="col-12 col-md">
     <ul class="list-information bibliographic-result__infos js-list-information" lang="fr">
-        {% include 'notice/informations-bibliographic.html.twig' with {
+        {% include 'notice/blocs/informations-bibliographic.html.twig' with {
             'notice': notice,
             'prefix': 'bloc.autority-result-information.',
             'details': [
