@@ -11,20 +11,21 @@
 }
 
 .search-autocomplet {
+	width: calc(100% + 4px);
 	background-color: $white;
 	box-shadow: $dropdown-shadow;
 	bottom: 0;
 	left: 0;
-	transform: translateY(99%);
+	transform: translateY(100%);
 	border: $border-default;
+	border-top: 0;
 	padding: $spacer;
 	position: absolute;
-	width: calc(100% - 328px);
 	z-index: $zindex-dropdown;
+	margin-left: -2px;
 
-	@include media-breakpoint-down(sm) {
-		transform: translateY(79%);
-		width: 100%;
+	@include media-breakpoint-up(md) {
+		border-top: $border-default;
 	}
 
 	&__list {

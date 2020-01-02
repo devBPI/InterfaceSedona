@@ -14,8 +14,8 @@
                    value="{{ objSearch is defined ? objSearch.simpleSearchKeyword : '' }}"
                    aria-expanded="false" aria-owns="autocompletion-list"
             />
+            <div id="autocompletion-list" class="search-autocomplet sr-only"></div>
         </div>
-        <div id="autocompletion-list" class="search-autocomplet sr-only"></div>
         <div class="form-group search-banner__select">
             <label for="search-words" class="sr-only">{{ 'bloc.search-zone.type-label'|trans }}</label>
             {% set select_name = constant('App\\Model\\Search\\Criteria::SIMPLE_SEARCH_TYPE') %}
