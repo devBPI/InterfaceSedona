@@ -103,7 +103,8 @@ final class ReportingController extends AbstractController
             );
         }
 
-        return $this->render('common/error-form.html.twig', [
+        $renderPage = $request->get('renderPage', true) == true;
+        return $this->render($renderPage ? 'common/error-form.html.twig' : 'common/error-form-modal.html.twig', [
             'form' => $form->createView(),
         ]);
     }
