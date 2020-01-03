@@ -2,11 +2,8 @@
 // Tableaux
 // -------------------------------
 
-.dataTables_scrollHead {
-
-	.table {
-		margin-bottom: 0;
-	}
+.dataTables_wrapper {
+	overflow: auto;
 }
 
 .table {

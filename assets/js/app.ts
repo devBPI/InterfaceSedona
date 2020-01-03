@@ -116,6 +116,15 @@ $(document)
                 .addClass('dropdown-toggle--close');
         }
     })
+    .on('focus', '.modal.show .close', function() {
+        let modalFooter = $('.modal.show .modal-footer :last-child');
+
+        $(this).keydown(function(e) {
+            if(e.shiftKey && e.keyCode === 9) {
+                modalFooter.focus();
+            }
+        })
+    })
 ;
 
 if ($(window).width() > 992) {
@@ -130,8 +139,8 @@ if ($(window).width() > 992) {
         menuSecondaireItems.removeAttr('role');
 }
 
-$('.js-seeMoreAvailability').children('button').on(    'click', function(e){
-    $(this).text(function(i,old){
-        return old.includes("plus")? 'Voir moins' :"Voir plus"
+$('.js-seeMoreAvailability').children('button').on( 'click', function(e){
+    $(this).text(function(i, old) {
+        return old.includes("plus") ? 'Voir moins' : "Voir plus"
     });
 });
