@@ -29,12 +29,12 @@
                 <input type="checkbox"
                        name="{{ constant('App\\Model\\Search\\FacetFilter::QUERY_NAME') ~'['~ key~'][]' }}"
                        class="form-check-input input-{{ key }}"
-                       id="rfn-{{ key }}-{{ index }}" value="{{ value }}"
+                       id="{{ origin }}-{{ key }}-{{ index }}" value="{{ value }}"
                         {% if key in selected|keys and value in selected[key] %}
                             checked="checked"
                         {% endif %}
                 >
-                <label class="form-check-label" for="rfn-{{ key }}-{{ index }}">
+                <label class="form-check-label" for="{{ origin }}-{{ key }}-{{ index }}">
                     {{ value }} {% if count is defined %}({{ count }}){% endif %}
                 </label>
             </div>
