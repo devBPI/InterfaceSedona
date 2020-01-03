@@ -2,7 +2,7 @@ version: '3.5'
 services:
   app:
     image: registry.sedona.fr/images/php:7-fpm
-#    user: '$UID:$UID'
+    user: '$UID:$UID'
     networks:
       - default
       - public
@@ -26,9 +26,12 @@ services:
 
   web:
     image: registry.sedona.fr/images/httpd:24
+    user: '$UID:$UID'
     networks:
-      - default
-      - public
+      default:
+        aliases:
+          - $PROJECT_HOSTNAME
+      public: ~
     labels:
       traefik.enable: true
       traefik.frontend.rule: "Host: $PROJECT_HOSTNAME"
