@@ -1,7 +1,7 @@
 <div>
     <div class="modal-header">
         <h1 class="n1 modal-header__title" id="modal-list-create-title">{{ ('modal.list-'~action~'.title')|trans }}</h1>
-        <button class="close" type="button" data-dismiss="modal" data-reload="true">
+        <button class="close" type="button" data-dismiss="modal">
             <img src="{{ asset('images/icones/icone-croix-blanc.svg') }}" alt="{{ 'global.modal-close'|trans }}" />
         </button>
     </div>
@@ -21,7 +21,6 @@
                 {{ 'modal.list-add.btn-selection'|trans }}</a>
         {% endif %}
 
-        <button type="button" data-dismiss="modal" class="btn btn-lg btn-secondary"
-                data-reload="true">{{ 'global.modal-btn-close'|trans }}</button>
+        <button type="button" data-dismiss="modal" class="btn btn-lg btn-secondary">{{ 'global.modal-btn-close'|trans }}</button>
     </div>
 </div>

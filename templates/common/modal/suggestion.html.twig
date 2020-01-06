@@ -1,6 +1,12 @@
 <div role="dialog" aria-modal="true" aria-labelledby="modal-suggest-title" class="modal fade" id="modal-suggest" tabindex="-1" lang="fr">
 	<div class="modal-dialog modal-dialog-centered">
 		<div class="modal-content">
+			<div class="modal-header">
+				<h1 class="n1 modal-header__title" id="modal-suggest-title">{{ 'modal.suggestion.title'|trans }}</h1>
+				<button class="close" type="button" data-dismiss="modal">
+					<img src="{{ asset('images/icones/icone-croix-blanc.svg') }}" alt="{{ 'global.modal-close'|trans }}" />
+				</button>
+			</div>
             {{ render(controller('App\\Controller\\ReportingController::suggestByMailAction')) }}
 		</div>
 	</div>

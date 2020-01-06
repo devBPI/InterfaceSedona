@@ -83,10 +83,31 @@ import {CollectionRow} from './collection-row.ts';
                 'openModal': function (event) {
                     event.stopPropagation();
                     var op = {'show': true};
-                    if ($this.is('[href]')) {
+
+                    var $modal = $($this.data('href')),
+                        reload = $this.attr('data-reload') !== undefined,
+                        overrideContent = $this.attr('data-content');
+
+                    if ($this.is('a[href]')) {
                         op['remote'] = $this.attr('href');
+                    } else if($this.attr('data-remote') !== undefined && $this.attr('data-remote') !== '') {
+                        op['remote'] = $this.attr('data-remote');
                     }
-                    $($this.data('href')).modal(op, this);
+
+                    if (reload) {
+                        var originalContent = $modal.find(".modal-content").html();
+                        $modal.on('hidden.bs.modal',function () {
+                            $modal
+                                .removeData('bs.modal')
+                                .find('.modal-content')
+                                .html(originalContent);
+                        });
+                    }
+
+                    if (overrideContent !== undefined) {
+                        $modal.find(".modal-body").html(overrideContent);
+                    }
+                    $modal.modal(op, this);
                     return false;
                 }
             };
@@ -139,7 +160,7 @@ import {CollectionRow} from './collection-row.ts';
                         .trigger('shown.bs.modal');
                 }
             }).fail(function (data) {
-                $form.replaceWith(data);
+                $form.replaceWith($(data.responseText));
             });
             return false;
         })
@@ -169,17 +190,17 @@ import {CollectionRow} from './collection-row.ts';
                 remote = $this.attr('data-remote');
             }
 
-            if (remote !== null && remote !== undefined) {
-                if (reload) {
-                    var originalContent = $modal.find(".modal-content").html();
-                    $modal.on('hidden.bs.modal',function () {
-                        $modal
-                            .removeData('bs.modal')
-                            .find('.modal-body')
-                            .html(originalContent);
-                    });
-                }
+            if (reload) {
+                var originalContent = $modal.find(".modal-content").html();
+                $modal.on('hidden.bs.modal',function () {
+                    $modal
+                        .removeData('bs.modal')
+                        .find('.modal-content')
+                        .html(originalContent);
+                });
+            }
 
+            if (remote !== null && remote !== undefined) {
                 $modal.find(".modal-content").load(remote);
             }
 
@@ -200,9 +221,6 @@ import {CollectionRow} from './collection-row.ts';
 
             $this.tab('show');
             return false;
-        })
-        .on('click', '[data-reload="true"]', function (e) {
-            location.reload();
         })
         .on('ifChanged click', '[data-toggle="check-all"]', function () {
             let $this = $(this),
