@@ -9,7 +9,6 @@ use App\Model\IndiceCdu;
 use App\Service\NavigationService;
 use App\Service\NoticeBuildFileService;
 use App\Service\Provider\NoticeAuthorityProvider;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -55,35 +54,39 @@ final class IndiceCduController extends AbstractController
      */
     public function cduIndiceRecordAction(IndiceCdu $notice, NavigationService $navigation=null)
     {
-        $subject = $this->noticeAuhtority->getSubjectNotice($notice->getId());
+        $subjects = $this->noticeAuhtority->getSubjectIndice($notice->getId());
+        $printRoute = $this->generateUrl(
+            'indice_pdf',
+            [ 'permalink' => $notice->getPermalink(), 'format' => 'pdf' ]
+        );
 
-        return $this->render('indice/indice.html.twig', [
-                  'toolbar'         => IndiceCdu::class,
-                  'printRoute'      => $this->generateUrl('indice_pdf',  ['permalink'=>$notice->getPermalink(), 'format'=>'pdf']),
-                  'subjects'        => $subject,
-                  'notice'          => $notice,
-                  'navigation'      => $navigation,
-              ]
+        return $this->render('indice/index.html.twig', [
+                'toolbar'         => IndiceCdu::class,
+                'printRoute'      => $printRoute,
+                'subjects'        => $subjects,
+                'notice'          => $notice,
+                'navigation'      => $navigation,
+            ]
         );
     }
 
     /**
-     * @Route("indice-cdu/around/{cote}", name="indice_around_indexes", requirements={"cote"=".+"})
+     * @Route("indice-cdu/{cote}/around/{current}", methods={"POST"}, name="indice_around_indexes", requirements={"cote"=".+", "current"=".+"})
      * @param string $cote
+     * @param string|null $current
      * @return JsonResponse
      */
-    public function aroundIndexesAction(string  $cote): JsonResponse
+    public function aroundIndexesAction(string $cote, string $current = null): JsonResponse
     {
-        try{
+        try {
             $indiceCdu = $this->noticeAuhtority->getIndiceCduAroundOf($cote);
             return new JsonResponse([
-                'html'=> $this->renderView('indice/index-browsing.html.twig',
-                    ['indexList'=> $indiceCdu]
+                'html'=> $this->renderView('indice/blocs/index-browsing.html.twig',
+                    ['indexList'=> $indiceCdu, 'current' => $current]
                 )
             ]);
-
-        }catch (\Exception $e){
-             return new JsonResponse([
+        } catch (\Exception $e) {
+            return new JsonResponse([
                 'message'=> $e->getMessage(),
                 'code'=> $e->getCode()
             ]);
@@ -102,7 +105,7 @@ final class IndiceCduController extends AbstractController
      */
     public function authorityRecordPDFAction(Request $request, $format='pdf')
     {
-        try{
+        try {
             $sendAttachement = new ExportNotice();
 
             $sendAttachement
@@ -111,13 +114,11 @@ final class IndiceCduController extends AbstractController
                 ->setFormatType($format)
                 ->setShortFormat($request->get('print-type', 'print-long') !== 'print-long')
             ;
-        }catch(NoResultException $e){
+        } catch(NoResultException $e) {
             return $this->render('common/error.html.twig');
         }
 
-        return  $this->buildFileContent->buildFile($sendAttachement, IndiceCdu::class, $format);
+        return  $this->buildFileContent->buildFile($sendAttachement, IndiceCdu::class);
     }
 
-
 }
-

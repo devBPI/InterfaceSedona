@@ -36,7 +36,7 @@
 						{% include "header/navbar-langue.html.twig" %}
 					</div>
 
-					<div class="d-flex align-items-center flex-wrap">
+					<div class="d-flex align-items-center flex-wrap justify-content-end">
 						<div id="menu-secondaire">
 							{% include "header/navbar-secondaire.html.twig" %}
 						</div>
@@ -57,7 +57,7 @@
 							<img src="{{ asset('images/bpi-logo.png') }}" alt="{{ 'header.logo_alt'|trans }}" />
 						</span>
 					{% else %}
-						<a href="{{ path('home') }}" title="{{ 'header.logo_title'|trans }}" class="header__logo-link">
+						<a href="{{ path('home2') }}" title="{{ 'header.logo_title'|trans }}" class="header__logo-link">
 							<img src="{{ asset('images/bpi-logo.png') }}" alt="{{ 'header.logo_alt'|trans }}" />
 						</a>
 					{%endif%}

@@ -1,0 +1,46 @@
+<div class="col-12">
+	<div class="index">
+		<div class="index__header">
+			<h2 class="n1 index__title">{{ 'bloc.index.title'|trans }}</h2>
+			<a href="https://pro.bpi.fr/plan-de-classement-de-la-bpi-1" target="_blank" title="{{ 'bloc.index.see-all'|trans }} - {{ 'global.new-windows'|trans }}">{{ 'bloc.index.see-all'|trans }}</a>
+		</div>
+		<div class="index__body">
+			<p tabindex="0" class="sr-only sr-only-focusable">{{ 'bloc.index.notice'|trans }}</p>
+			<a href="#fin-feuilletage" class="sr-only sr-only-focusable">{{ 'bloc.index.go-to-end'|trans }}</a>
+			<a href="#index-current" class="sr-only sr-only-focusable">{{ 'bloc.index.go-to current-index'|trans }}</a>
+
+			<div class="index__content">
+				<button type="button" class="js-5-indices-around btn index__button index__button--top" data-url="{{ path("indice_around_indexes", {"cote": indexList.previous, "current": current}) }}">
+					<img src="{{ asset('images/icones/icone-chevron-gauche.svg') }}" alt="" class="icone-chevron-top"/>10
+					<span class="sr-only">{{ 'bloc.index.name'|trans }}</span> {{ 'bloc.index.previous'|trans }}
+					<img src="{{ asset('images/icones/icone-chevron-gauche.svg') }}" alt="" class="icone-chevron-top"/>
+				</button>
+
+				<ul class="index__list">
+					{% for index in indexList.indexes %}
+						{% set itemLabel = index.cote~' - '~index.name %}
+						{% if index.cote is same as(current) %}
+							<li class="index__item index__item--current">
+								<p id="index-current" aria-current="page" lang="fr" tabindex="0">
+									<img src="{{ asset('images/icones/icone-chevron-gauche.svg') }}" alt="" class="icone-chevron-right"/>
+									{{ 'bloc.index.current'|trans({'%name%': itemLabel}) }} <span class="sr-only">{{ 'bloc.index.current-sr-only'|trans() }}</span>
+								</p>
+							</li>
+						{% else %}
+							<li class="index__item">
+								<a href="{{ path('search', {(constant('App\\Model\\Search\\Criteria::SIMPLE_SEARCH_KEYWORD')): index.cote, (constant('App\\Model\\Search\\Criteria::SIMPLE_SEARCH_TYPE')): 'indiceCote'}) }}" lang="fr">
+									{{ itemLabel }}</a></li>
+						{% endif %}
+					{% endfor %}
+				</ul>
+
+				<button type="button" class="js-5-indices-around btn index__button index__button--bottom" data-url="{{ path("indice_around_indexes", {"cote": indexList.next, "current": current}) }}">
+					<img src="{{ asset('images/icones/icone-chevron-gauche.svg') }}" alt="" class="icone-chevron-bottom"/>10
+					<span class="sr-only">{{ 'bloc.index.name'|trans }}</span>
+					{{ 'bloc.index.next'|trans }}
+					<img src="{{ asset('images/icones/icone-chevron-gauche.svg') }}" alt="" class="icone-chevron-bottom"/>
+				</button>
+			</div>
+		</div>
+	</div>
+</div>

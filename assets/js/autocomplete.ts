@@ -31,14 +31,29 @@ export default class Autocomplete {
 
 
     private initListener() {
-        this.element.addEventListener('keyup', () => this.onKeyUp());
-        this.type.addEventListener('change', () => this.onKeyUp());
+        this.element.addEventListener('keyup', (event: KeyboardEvent) => this.onKeyUp(event));
+        this.type.addEventListener('change', () => this.updateAutocompletion());
+        this.target.addEventListener('keyup', (event) => this.manageFocus(event));
         document.addEventListener('click', (event) => this.onClickOut(event))
     }
 
-    onKeyUp(): void {
+    onKeyUp(event: KeyboardEvent): void {
+        if (event.keyCode == 27) {
+            this.hideAutocompleteDiv();
+            return;
+        }
+
+        if (event.keyCode == 40 && this.target.querySelector('a')) {
+            this.target.querySelector('a').focus();
+            return;
+        }
+
+        this.updateAutocompletion();
+    }
+
+    updateAutocompletion(): void {
         window.clearTimeout(this.autocompleteRequest);
-        this.target.classList.add('d-none');
+        this.hideAutocompleteDiv();
 
         const {value} = this.element;
         if (value.length >= 3) {
@@ -46,7 +61,6 @@ export default class Autocomplete {
                 const params = $.param({word: value, type: this.mapping[this.type.value], mode: this.mode});
                 fetch(`${this.url}?${params}`)
                     .then(result => this.onAutocompleteFetched(result));
-
             }, 300);
         }
     }
@@ -55,12 +69,12 @@ export default class Autocomplete {
         let resultList = (await result.json()).html;
 
         if (resultList == '') {
-            this.target.classList.add('d-none');
+            this.hideAutocompleteDiv();
             return;
         }
 
-        this.target.classList.remove('d-none');
         this.target.innerHTML = resultList;
+        this.showAutocompleteDiv();
 
         if (this.mode !== 'link') {
             this.target.querySelectorAll('a').forEach((link) => {
@@ -71,7 +85,7 @@ export default class Autocomplete {
 
     onClickOut(event: MouseEvent): void {
         if (!this.target.contains(event.target as HTMLElement)) {
-            this.target.classList.add('d-none');
+            this.hideAutocompleteDiv();
         }
     }
 
@@ -80,6 +94,43 @@ export default class Autocomplete {
         event.preventDefault();
 
         this.element.value = (event.target as HTMLElement).innerText;
-        this.target.classList.add('d-none');
+        this.hideAutocompleteDiv();
+    }
+
+    private showAutocompleteDiv() {
+        if (this.target.classList.contains('sr-only')) {
+            this.target.classList.remove('sr-only');
+        }
+    }
+    private hideAutocompleteDiv() {
+        if (!this.target.classList.contains('sr-only')) {
+            this.target.innerHTML = '';
+            this.target.classList.add('sr-only');
+            this.element.focus();
+        }
+    }
+
+    private manageFocus(event) {
+        if (event.keyCode == 27) {
+            this.hideAutocompleteDiv();
+
+            event.stopPropagation();
+            event.preventDefault();
+        }
+
+        if (event.keyCode == 40) {
+            if (event.target.parentElement &&
+                event.target.parentElement.nextElementSibling &&
+                event.target.parentElement.nextElementSibling.firstElementChild) {
+                event.target.parentElement.nextElementSibling.firstElementChild.focus();
+            }
+        }
+        if (event.keyCode == 38) {
+            if (event.target.parentElement &&
+                event.target.parentElement.previousElementSibling &&
+                event.target.parentElement.previousElementSibling.firstElementChild) {
+                event.target.parentElement.previousElementSibling.firstElementChild.focus();
+            }
+        }
     }
 }

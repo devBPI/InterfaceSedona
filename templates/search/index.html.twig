@@ -16,11 +16,11 @@
 		</div>
 
 		<div class="col-auto">
-			{% include "search/blocs-searchextended/relaunch-search.html.twig" %}
+			{% include "search/blocs-searchextended/relaunch-search.html.twig" with {'keyword': objSearch.keyword} %}
 		</div>
 	</div>
 
-	<div class="row">
+	<div class="row mb-3 mb-lg-0">
 		<div class="col-12 col-sm-10 pr-sm-0">
 			{% include "search/blocs-searchextended/filters-search.html.twig"   %}
 		</div>
@@ -46,7 +46,7 @@
 		{% include "search/blocs-results/list-authorities.html.twig" %}
     </div>
 
-	<div class="row">
+	<div class="row justify-content-sm-between">
 		{% include "search/blocs-results/search-header.html.twig" %}
 	</div>
 	

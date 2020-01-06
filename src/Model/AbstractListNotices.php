@@ -44,6 +44,11 @@ abstract class AbstractListNotices
 
 
     /**
+     * @return array|Notice[]
+     */
+    abstract function getNoticesList(): array;
+
+    /**
      * @return Facet[]|array
      */
     public function getFacetsList(): array

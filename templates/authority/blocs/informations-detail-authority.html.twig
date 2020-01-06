@@ -1,0 +1,93 @@
+{% import "common/macros/detail-macro.html.twig" as detail_macros %}
+
+{% if (notice.formAdopted is not empty or notice.type is not empty) %}
+    <li class="list-information__item">
+        {% if notice.formAdopted is not empty %}
+            <li class="list-information__sub-item">
+                {{ notice.formAdopted }}
+            </li>
+        {% endif %}
+        {% if notice.type is not empty %}
+            <span class="list-information__label">{{ "bloc.autority-result-information.authority-type"|trans }}</span>
+            <ul class="list-information__sub-list" lang="fr">
+                <li class="list-information__sub-item">
+                    {{ notice.type }}
+                </li>
+            </ul>
+        {% endif %}
+    </li>
+{% endif %}
+
+{{ detail_macros.row(notice.formParalella) }}
+{{ detail_macros.detail(notice.countries, 'Pays') }}
+{{ detail_macros.detail(notice.languages, 'Langue(s)') }}
+{{ detail_macros.detail(notice.musicalKinds, 'Genre musical') }}
+
+{% if notice.dates is not empty %}
+    <li class="list-information__item">
+        <span class="list-information__label">{{ ('Date(s)')|trans }}</span>
+        <ul class="list-information__sub-list" lang="fr">
+            <li class="list-information__sub-item">
+                {% for element in notice.dates %}
+                    {% if not loop.first %} - {%endif%}
+                    {{ element }}
+                {% endfor %}
+            </li>
+        </ul>
+    </li>
+{% endif %}
+{% if notice.birthDate is not empty %}
+    <li class="list-information__item">
+        <span class="list-information__label">{{ ('Naissance')|trans }}</span>
+        <ul class="list-information__sub-list" lang="fr">
+            <li class="list-information__sub-item">
+                {% if notice.birthLocation  is not empty %}
+                    {{ notice.birthDate }}, {{ notice.birthLocation }}
+                {% else %}
+                     {{ notice.birthDate }}
+                {% endif %}
+            </li>
+        </ul>
+    </li>
+{% endif %}
+{% if notice.deathDate is not empty %}
+    <li class="list-information__item">
+        <span class="list-information__label">{{ ('Mort')|trans }}</span>
+        <ul class="list-information__sub-list" lang="fr">
+            <li class="list-information__sub-item">
+                {% if notice.deathLocation  is not empty %}
+                    {{ notice.deathDate }}, {{ notice.deathLocation }}
+                {% else %}
+                    {{ notice.deathDate }}
+                {% endif %}
+            </li>
+        </ul>
+    </li>
+{% endif %}
+
+{{ detail_macros.detail(notice.principalActivities, 'Activité(s) principale(s)') }}
+
+{{ detail_macros.row(notice.notes, 'Notes') }}
+{{ detail_macros.row(notice.otherNames, 'Autre(s) nom(s)') }}
+{{ detail_macros.row_link(notice.associetedForm, 'Nom(s) associé(s) / Nom(s) lié(s)') }}
+
+{{ detail_macros.row(notice.isni, 'ISNI') }}
+
+{% if notice.origins is not empty %}
+    <li class="list-information__item list-information__item--mentions">
+        <span class="list-information__label">{{ 'bloc.autority-result-information.origins'|trans }} :</span>
+        <ul class="list-information__sub-list" lang="fr">
+            {% for element in notice.origins %}
+                <li class="list-information__sub-item">
+                    {% if not loop.first %}; {% endif %}
+                    {{ element }}
+                </li>
+            {% endfor%}
+            {% if notice.originalUrl is not empty %}
+                <li class="list-information__sub-item">
+                    <a href="{{ notice.originalUrl }}">{{ notice.originalUrl }}</a>
+                </li>
+            {% endif %}
+        </ul>
+    </li>
+{% endif %}

@@ -1,0 +1,13 @@
+{% extends 'authority/index.html.twig' %}
+
+{% block detail %}
+    {% include "indice/blocs/detail-indice.html.twig" with {'notice': notice } %}
+{% endblock %}
+
+{% block linkedDocs %}
+    {{ parent() }}
+
+    <div class="row" id="around-index-wrapper">
+        {% include "indice/blocs/index-browsing.html.twig" with {"indexList": notice.aroundIndex, 'current': notice.cote} %}
+    </div>
+{% endblock %}

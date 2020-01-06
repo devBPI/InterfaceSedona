@@ -53,7 +53,7 @@ final class HistoryService extends AuthenticationService
     }
 
     /**
-     * @return array
+     * @return array|UserHistory[]
      */
     public function getHistory(): array
     {
@@ -85,7 +85,7 @@ final class HistoryService extends AuthenticationService
      * @throws \Doctrine\ORM\ORMException
      * @throws \Doctrine\ORM\OptimisticLockException
      */
-    public function applyAction(string $action, array $listObj): void
+    public function applyAction(string $action = null, array $listObj = []): void
     {
         if ($action === 'delete') {
             if ($this->hasConnectedUser()) {

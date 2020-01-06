@@ -1,4 +1,4 @@
-Imperssion de la sélection PDF
+Impression de la sélection PDF
 ---------------------
 Résultats de la sélection
 ---------------------
@@ -7,12 +7,12 @@ Notice d'autorité
 =====================
 {% for element in printNoticeWrapper.noticeAuthority %}
     {{ loop.index }}) {{ element.title }}
-    {% include "authority/print-detail.format.twig" with {'notice': element, 'format':'txt'} %}
+    {% include "authority/blocs/print-detail.format.twig" with {'notice': element, 'format':'txt'} %}
 {% endfor %}
 
 {% for element in printNoticeWrapper.noticeIndice %}
     {{ loop.index }}) {{ element.title }}
-    {% include "indice/print-detail.format.twig" with {'notice': element, 'format': 'txt'} %}
+    {% include "indice/blocs/print-detail.format.twig" with {'notice': element, 'format': 'txt'} %}
 {% endfor %}
 
 
@@ -20,5 +20,10 @@ Documents
 =====================
 {% for element in printNoticeWrapper.noticeOnShelves %}
     {{ loop.index }}) {{ element.title }}
-    {% include "notice/print-detail.format.twig" with {'notice': element, 'format': 'txt'} %}
+    {% include "notice/blocs-print/print-detail.format.twig" with {'notice': element, 'format': 'txt'} %}
+{% endfor %}
+
+{% for element in printNoticeWrapper.noticeOnLine %}
+    {{ loop.index }}) {{ element.title }}
+    {% include "notice/blocs-print/print-detail.format.twig" with {'notice': element, 'format': 'txt'} %}
 {% endfor %}

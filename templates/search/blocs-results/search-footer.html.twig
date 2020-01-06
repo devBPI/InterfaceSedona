@@ -3,12 +3,12 @@
 	<nav aria-label="{{ 'bloc.search-header-footer.footer.aria-label'|trans }}" role="navigation">
 		<ul class="pagination pagination--icone justify-content-center">
 			<li class="page-item">
-				<a href="{{ add_page_to_uri(1) }}" class="page-link link link--icone">
+				<a {% if page != 1 %}href="{{ add_page_to_uri(1) }}"{% endif %} class="page-link link link--icone {% if page == 1 %}disabled{% endif %}">
 					<img src="{{ asset('images/icones/icone-chevron-double-gauche.svg') }}" alt="" class="icone-chevron-double"/><span class="sr-only">{{ 'bloc.search-header-footer.footer.page-first'|trans }}</span>
 				</a>
 			</li>
 			<li class="page-item">
-				<a href="{{ add_page_to_uri(page - 1) }}" class="page-link link link--icone">
+				<a {% if page != 1 %}href="{{ add_page_to_uri(page - 1) }}"{% endif %} class="page-link link link--icone {% if page == 1 %}disabled{% endif %}">
 					<img src="{{ asset('images/icones/icone-chevron-gauche.svg') }}" alt="" class="icone-chevron"/>
 					<span class="sr-only">{{ 'bloc.search-header-footer.footer.page-previous'|trans }}</span>
 				</a>
@@ -16,27 +16,29 @@
 			<li class="page-item">
 				<div class="page-link page-link--reset">
 					<label for="pagination-input">
+						{% set pattern = '[0-9]' ~ (pagesTotal|length > 1 ? '{1,'~pagesTotal|length~'}' : '{1}') %}
+
 						<input
 							type="text"
-							data-url="{{ toggle_to_path_parcours('search',
-								app.request.attributes.get(constant('App\\Model\\Search\\ObjSearch::PARAM_PARCOURS_NAME')),
-								app.request.query.all|merge({'see-all':seeAll is defined?seeAll:null, (constant('App\\Model\\Search\\ObjSearch::PARAM_REQUEST_NAME')): objSearch.contextToken, 'page':-1 })
-							) }}"
-							class="js-pagination-select page-link__input"
+							class="page-link__input"
 							value="{{ page }}"
+							data-old="{{ page }}"
 							id="pagination-input"
+							min="1"
+							max="{{ pagesTotal }}"
+							pattern="{{ pattern }}"
 						>
 						<span class="sr-only">{{ 'bloc.search-header-footer.footer.input-start-sr-only'|trans }}</span> {{ 'bloc.search-header-footer.footer.input-of'|trans({'%nb%': pagesTotal }) }}<span class="sr-only">{{ 'bloc.search-header-footer.footer.input-end-sr-only'|trans }}</span>
 					</label>
 				</div>
 			</li>
 			<li class="page-item">
-				<a href="{{ add_page_to_uri(page + 1) }}" class="page-link link link--icone-end">
+				<a {% if page < pagesTotal %}href="{{ add_page_to_uri(page + 1) }}"{% endif %} class="page-link link link--icone-end {% if page >= pagesTotal %}disabled{% endif %}">
 					<img src="{{ asset('images/icones/icone-chevron-gauche.svg') }}" alt="" class="icone-chevron-double"/><span class="sr-only">{{ 'bloc.search-header-footer.footer.page-next'|trans }}</span>
 				</a>
 			</li>
 			<li class="page-item">
-				<a href="{{ add_page_to_uri(pagesTotal) }}" class="page-link link link--icone-end">
+				<a {% if page < pagesTotal %}href="{{ add_page_to_uri(pagesTotal) }}"{% endif %} class="page-link link link--icone-end {% if page >= pagesTotal %}disabled{% endif %}">
 					<img src="{{ asset('images/icones/icone-chevron-double-gauche.svg') }}" alt="" class="icone-chevron"/><span class="sr-only">{{ 'bloc.search-header-footer.footer.page-last'|trans }}</span>
 				</a>
 			</li>

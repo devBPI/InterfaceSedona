@@ -1,0 +1,20 @@
+<form method="post" novalidate="novalidate" action="{{ path('common-report-error-page',{'renderPage':false}) }}" data-toggle="form-remote">
+    <div class="modal-body">
+        <h2 class="n1">{{ 'error.title-form' |trans }}</h2>
+
+        {% if form.vars.errors|length > 0 %}
+            {{ form_errors(form) }}
+        {% endif %}
+
+        {{ form_row(form.object) }}
+        {{ form_row(form.message) }}
+        {{ form_row(form.email) }}
+        {{ form_rest(form) }}
+    </div>
+    <div class="modal-footer">
+        <button type="button" data-dismiss="modal" class="btn btn-lg btn-secondary">{{ 'global.modal-cancel'|trans }}</button>
+        <button type="submit" class="btn btn-lg btn-primary">
+            {{ 'modal.report.submit'|trans }}
+            <span class="sr-only"> {{ 'modal.report.submit-sr-only'|trans }}</span></button>
+    </div>
+</form>

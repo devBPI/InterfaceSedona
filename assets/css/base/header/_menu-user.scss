@@ -3,11 +3,6 @@
 // -------------------------------
 
 #menu-user {
-	display: none;
-
-	@include media-breakpoint-up(md) {
-		display: block;
-	}
 
 	@media print {
 		display: none;
@@ -15,6 +10,13 @@
 }
 
 .menu-user {
+	margin-bottom: rem(10);
+	margin-left: $spacer;
+
+	@include media-breakpoint-up(md) {
+		margin-bottom: 0;
+		margin-left: 0;
+	}
 
 	&__list {
 		list-style-type: none;

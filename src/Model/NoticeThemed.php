@@ -18,6 +18,12 @@ class NoticeThemed implements BpiConverterInterface
      * @JMS\SerializedName("notices-same-theme")
      */
     private $noticesSameTheme;
+    /**
+     * @var NoticesOnline
+     * @JMS\Type("App\Model\NoticesOnline")
+     * @JMS\SerializedName("notices-same-theme")
+     */
+    private $onlineNoticesSameTheme;
 
     /**
      * @var Notice
@@ -35,10 +41,15 @@ class NoticeThemed implements BpiConverterInterface
     private $results;
 
     /**
-     * @return Notices
+     * @return AbstractListNotices|null
      */
-    public function getNoticesSameTheme(): ?Notices
+    public function getNoticesSameTheme(): ?AbstractListNotices
     {
+        if ($this->onlineNoticesSameTheme instanceof NoticesOnline &&
+            count($this->onlineNoticesSameTheme->getNoticesList()) > 0) {
+            return $this->onlineNoticesSameTheme;
+        }
+
         return $this->noticesSameTheme;
     }
 

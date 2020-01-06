@@ -1,0 +1,23 @@
+{% from "common/macros/print-macro.html.twig" import list_objects %}
+
+<div class="print__bloc print__bloc--rayon">
+    {% if printNoticeWrapper is not empty and (printNoticeWrapper.noticeAuthority|length > 0 or printNoticeWrapper.noticeIndice|length > 0) %}
+        <div class="print__header">
+            <h2 class="n1">{{ 'bloc.autority-result-information.your-references-autority'|trans }}</h2>
+        </div>
+
+        {{ list_objects(printNoticeWrapper.noticeAuthority, includeImage, "authority/blocs/print-detail.format.twig", isPrintLong) }}
+        {{ list_objects(printNoticeWrapper.noticeIndice, includeImage, "indice/blocs/print-detail.format.twig", isPrintLong, printNoticeWrapper.noticeAuthority|length) }}
+    {% endif %}
+</div>
+
+<div class="print__bloc print__bloc--rayon">
+    {% if printNoticeWrapper is not empty and (printNoticeWrapper.noticeOnShelves|length > 0 or printNoticeWrapper.noticeOnLine|length > 0) %}
+        <div class="print__header">
+            <h2 class="n1">{{ "bloc.autority-result-information.your-references-bibliographic"|trans }}</h2>
+        </div>
+
+        {{ list_objects(printNoticeWrapper.noticeOnShelves, includeImage, "notice/blocs-print/print-detail.format.twig", isPrintLong) }}
+        {{ list_objects(printNoticeWrapper.noticeOnLine, includeImage, "notice/blocs-print/print-detail.format.twig", isPrintLong, printNoticeWrapper.noticeOnShelves|length) }}
+    {% endif %}
+</div>

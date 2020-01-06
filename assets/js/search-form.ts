@@ -41,6 +41,7 @@ export class SearchForm {
                 case "radio":
                 case "checkbox":
                     $(inputElement).iCheck('uncheck');
+                    $(inputElement).removeAttr('checked');
                     break;
                 default:
                     break;
@@ -55,6 +56,22 @@ export class SearchForm {
             }
 
         });
+
+        this.clearKeywordRows(this.form);
+    }
+
+    private clearKeywordRows(container: HTMLElement) {
+        let keywordsDiv = container.querySelector('.search-keyword') as HTMLDivElement;
+        if (keywordsDiv) {
+            let rows = keywordsDiv.querySelectorAll('.search-keyword__group');
+            if (rows.length > 1) {
+                rows.forEach((row: HTMLDivElement, index: number) => {
+                    if (index > 0) {
+                        row.remove();
+                    }
+                })
+            }
+        }
     }
 
     private displayTargetDiv(seeMoreButton: HTMLLinkElement) {
@@ -96,7 +113,7 @@ export class CopyKeyword {
     }
 
     copyKeywordValue() {
-        if (this.targetKeywordField.value == '') {
+        if (this.targetKeywordField && this.targetKeywordField.value == '') {
             this.targetKeywordField.value = this.originKeywordField.value;
             this.targetTypeField.value = this.originTypeField.value;
         }

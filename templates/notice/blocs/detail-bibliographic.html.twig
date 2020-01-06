@@ -1,0 +1,116 @@
+{% import "common/macros/notice-available-macro.html.twig" as macros %}
+{% import "common/macros/detail-macro.html.twig" as notice_macros %}
+
+<div class="col-12 col-md">
+    {% for title in notice.titles %}
+        <h1 class="n1 bibliographic-result__title" lang="fr">
+            {{ title }}
+        </h1>
+    {% endfor %}
+
+    {% if notice.titleForm %}
+        {% for title in notice.titleForm %}
+            <h1 class="n1 bibliographic-result__title" lang="fr">
+                <i>{{ title }}</i>
+            </h1>
+        {% endfor %}
+    {% endif %}
+</div>
+
+<div class="col-12 col-md-2">
+    <div class="bibliographic-result__type">
+        <img src="{{ asset('images/types/type-' ~ notice.slugifiedType ~ '.svg') }}" alt="{{ notice.type }}" title="{{ notice.type }}" />
+    </div>
+</div>
+<div class="col-12">
+    <div class="row align-items-md-center justify-content-between">
+        <div class="col-12">
+            {{ notice_macros.list_link(notice.translatedBy, 'bloc.autority-result-information.translated'|trans, constant('App\\WordsList::TITLE_WORD')) }}
+            {% if notice.type in constant('App\\Model\\Notice::NOTICE_CONTENT_REVUE_TYPE') and  notice.frontAnalyticalTitle is not empty %}
+                <p lang="fr" class="bibliographic-result__author">
+                    <i>{{ 'bloc.autority-result-information.in'|trans }}</i>
+                    {{ notice.frontAnalyticalTitle }}
+                </p>
+            {% endif %}
+
+            {% if notice.titleInformation is not empty %}
+                <p lang="fr" class="bibliographic-result__author">
+                    <i>{{ 'bloc.autority-result-information.in'|trans }}</i>
+                    {{ notice.exportTitle }}
+                </p>
+            {% endif %}
+
+            {% set label = 'bloc.autority-result-information.authors'|trans %}
+            {% if notice.type == "Musique"%}
+                {% set label = 'bloc.autority-result-information.musique-author'|trans %}
+            {% endif %}
+            {% if notice.type == "Vidéo"%}
+                {% set label = 'bloc.autority-result-information.directors'|trans %}
+            {% endif %}
+            {{ notice_macros.list_link(notice.frontAuthor, label, constant('App\\WordsList::AUTHOR_WORD'), " ; ") }}
+        </div>
+    </div>
+</div>
+
+{% if notice.contents and notice.type == constant('App\\Model\\Notice::MUSIC')  %}
+    <div class="col-12">
+        <div lang="fr">
+            <h2 class="n2 bibliographic-result__subtitle">{{ 'bloc.autority-result-information.tracks'|trans }}</h2>
+            <div class="bibliographic-result__resume">
+                {% for content in notice.contents %}
+                    <p class="mb-0">
+                        {{ content }}
+                    </p>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endif %}
+{% if notice.resume and notice.type != constant('App\\Model\\Notice::MUSIC') %}
+    <div class="col-12">
+        <div lang="fr">
+            <h2 class="n2 bibliographic-result__subtitle">{{ 'bloc.autority-result-information.resume'|trans }}</h2>
+            {% for resume in notice.resume %}
+                <p class="bibliographic-result__resume">
+                    {{ resume }}
+                </p>
+            {% endfor %}
+        </div>
+    </div>
+{% endif %}
+
+<div class="col-12">
+    <hr class="border-thin">
+</div>
+
+<div class="col-12 col-md-auto">
+    <div class="bibliographic-result__image">
+        <img src="{{ path('binary_image', {"content":object.notice.image, 'type': object.notice.type|slugify}) }}" alt="{% if object.notice.picture %}{{ object.notice.picture.description }}{% endif %}" class="img-fluid" />
+    </div>
+</div>
+
+<div class="col-12 col-md">
+    <ul class="list-information bibliographic-result__infos js-list-information" lang="fr">
+        {% include 'notice/blocs/informations-bibliographic.html.twig' with {
+            'notice': notice,
+            'prefix': 'bloc.autority-result-information.',
+            'details': [
+                'authors'
+            ]
+        } %}
+    </ul>
+</div>
+<div class="col-12">
+    <ul lang="fr" class="bibliographic-result__availability availability js-seeMoreAvailability">
+        {% for available in notice.copies %}
+            {{ macros.availibility(available, notice) }}
+        {% endfor %}
+
+        {% for link in notice.links %}
+            {{ macros.availibility(link, notice) }}
+        {% endfor %}
+    </ul>
+
+</div>
+
+{% include "search/modal/notified-form.html.twig" %}

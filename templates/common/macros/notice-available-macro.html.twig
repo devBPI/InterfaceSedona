@@ -1,0 +1,85 @@
+{% macro availibility(object, notice ) %}
+
+    {% if is_same_instance(object, "App\\Model\\NoticeAvailable")%}
+
+        {% if constant('App\\Model\\NoticeAvailable::AVAILABLE') in [object.availability, object.labelDisponibility] %}
+            <li class="availability--true availability--rayon">
+                <p class="font-weight-bold">
+                    <span class="availability__status">{{ 'bloc.notice-simple.document-available'|trans }} </span>{% if object.cote %} {{ object.cote }}{% endif %}
+                    {% if object.support %}- {{ object.support }}{% endif %}
+                </p>
+                {% if object.notes %}<p>{{ object.notes|join(' ') }}</p>{% endif %}
+                <p>{% if object.location %}{{ object.location }} {% endif %}{% if object.category %}- {{ object.category }} {% endif %}</p>
+            </li>
+        {% else %}
+            <li class="availability--false availability--rayon">
+                <p class="availability__status">
+                    {{ 'bloc.notice-simple.document-unavailable'|trans }}
+                    <span class="availability__status-detail"> : {{ object.availability }}</span></p>
+                    <a href="{{ path('notice_availablity_request', {"sourceId": notice.sourceId, 'configurationId':notice.configurationId}) }}"
+                       class="btn list-result__content-button"
+                       data-target="#modal-notified" data-toggle="modal" role="button"
+                       title="{{ 'bloc.notice-simple.availability-label'|trans }}">
+                        <img src="{{ asset('images/icones/icone-enveloppe.svg') }}" alt="" class="icone-enveloppe"/>
+                    </a>
+                </p>
+            </li>
+        {% endif %}
+        {% if object.lastNumber %}
+            <li class="availability--numbers">
+                <p class="font-weight-bold">
+                    <span class="availability__label">{{ 'bloc.notice-simple.last-publication'|trans }}</span>
+                    {{ object.lastNumber }}
+                </p>
+            </li>
+        {% endif %}
+        {% if object.reciviedNumber|length > 1 %}
+            <li class="availability--numbers">
+                <button type="button" class="btn btn-small-link" data-toggle="collapse"
+                        data-target="#availabity-n-items" aria-expanded="false"
+                        aria-controls="availabity-n-items">{{ 'global.see-more'|trans }}
+                </button>
+
+                <div class="collapse" id="availabity-n-items">
+                    <p class="availability__label">{{ 'bloc.notice-simple.publications'|trans }}</p>
+                    <ul class="availability__list">
+                    {% for number in object.reciviedNumber %}
+                        <li>
+                            <p class="font-weight-bold">
+                                {{ number }}
+                            </p>
+                        </li>
+                    {% endfor %}
+                    </ul>
+                </div>
+            </li>
+        {% endif %}
+
+    {% elseif is_same_instance(object, "App\\Model\\Link") %}
+        {% set objTitle = 'bloc.notice-simple.access'|trans %}
+        {% if object.title is not empty %}
+            {% set objTitle =  'bloc.notice-simple.access-to-bdd'|trans ~ ' ' ~ object.title %}
+        {% endif %}
+
+        {% if object.media is  defined and object.media is not empty %}
+            <li class="availability--true availability--online">
+                <a href="{{ path('media-link', {'permalink': object.media}) }}" class="link link--icone-end link--inline" target="_blank">
+                    {{ objTitle }}
+                    <img src="{{ asset('images/icones/icone-chevron-gauche.svg') }}" alt="" aria-hidden="true" />
+                </a>
+            </li>
+        {% elseif object.url is defined and object.url is not empty %}
+            <li class="availability--true availability--online">
+                <a href="{{ object.url }}" class="link link--icone-end link--inline" target="_blank">
+                    {{ objTitle }}
+                    <img src="{{ asset('images/icones/icone-chevron-gauche.svg') }}" alt="" aria-hidden="true" />
+                </a>
+            </li>
+        {% else %}
+            <li class="availability--false availability--online">
+                <p class="mb-0 font-weight-bold">{{ 'bloc.notice-simple.access-to-bpi'|trans }}</p>
+            </li>
+        {% endif %}
+
+    {% endif %}
+{% endmacro %}

@@ -1,5 +1,14 @@
 import {SelectionAdder} from './my-selection';
 
+import {DateSlider} from './date-input-search';
+new DateSlider(document.querySelector('#rfn-search-date-slider'));
+
+import Pagination from './pagination';
+let paginationField = document.querySelector('#pagination-input');
+if (paginationField) {
+    new Pagination(paginationField);
+}
+
 $(document)
 // Bouton "Voir plus" / "Voir moins" -----------------------------------------------------------------------------------
     .on('click', '.btn-see-more', function() {
@@ -14,14 +23,6 @@ $(document)
                 .text('Voir plus')
                 .removeClass('btn-see-more--less')
                 .addClass('btn-see-more--more');
-        }
-    })
-    .on('keyup','.js-pagination-select', function (e) {
-        if (e.keyCode === 13) {
-
-            let $this = $(this);
-            let page = $this.val();
-            window.location = $this.data('url').replace(-1, page);
         }
     })
     .on('click', '.js-delete-filter',  function(e){
@@ -42,6 +43,3 @@ $(document)
         adder.cleanContainer();
     })
 ;
-
-import {DateSlider} from './date-input-search';
-let dateSlider = new DateSlider(document.querySelector('#rfn-search-date-slider'));

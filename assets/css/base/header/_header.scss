@@ -22,7 +22,12 @@
 	}
 
 	&__menus {
+		margin-top: $spacer;
 		margin-bottom: $spacer;
+
+		@include media-breakpoint-up(md) {
+			margin-top: 0;
+		}
 	}
 
 	&__logo {

@@ -324,7 +324,7 @@ class Notice extends AbstractImage implements NoticeInterface, RecordInterface
      * @var array
      * @JMS\Type("array<string>")
      * @JMS\SerializedName("titresAlternatifs")
-     * @JMS\XmlList("titreAlternatifs")
+     * @JMS\XmlList("titreAlternatif")
      */
     private $alternatifTitle;
     /**
@@ -385,20 +385,7 @@ class Notice extends AbstractImage implements NoticeInterface, RecordInterface
      * @JMS\SerializedName("droits-infos")
      */
     private $rights;
-    /**
-     * @var array
-     * @JMS\Type("array<string>")
-     * @JMS\SerializedName("licences")
-     * @JMS\XmlList("licence")
-     */
-    private $licences;
-    /**
-     * @var array
-     * @JMS\Type("array<string>")
-     * @JMS\SerializedName("copyrights")
-     * @JMS\XmlList("copyright")
-     */
-    private $copyright;
+
     /**
      * @var array
      * @JMS\Type("array<string>")
@@ -480,6 +467,12 @@ class Notice extends AbstractImage implements NoticeInterface, RecordInterface
      * @JMS\XmlList("datePublication")
      */
     private $publishedDates;
+    /**
+     * @var string
+     * @JMS\Type("string")
+     * @JMS\SerializedName("anneeMaximaleSeriel")
+     */
+    private $maxPublishedDate;
 
     /**
      * @var array
@@ -597,27 +590,11 @@ class Notice extends AbstractImage implements NoticeInterface, RecordInterface
     }
 
     /**
-     * @return Right|null
-     */
-    public function getRights():?Right
-    {
-        return $this->rights;
-    }
-
-    /**
      * @return array
      */
-    public function getLicences(): array
+    public function getRights(): array
     {
-        return $this->licences;
-    }
-
-    /**
-     * @return array
-     */
-    public function getCopyright(): array
-    {
-        return $this->copyright;
+        return $this->rights->__toArray();
     }
 
     /**
@@ -674,9 +651,9 @@ class Notice extends AbstractImage implements NoticeInterface, RecordInterface
     }
 
     /**
-     * @return string|null
+     * @return array
      */
-    public function getIsbns():?array
+    public function getIsbns(): ?array
     {
         return $this->isbns;
     }
@@ -899,7 +876,13 @@ class Notice extends AbstractImage implements NoticeInterface, RecordInterface
      */
     public function getPublishedDates(): array
     {
-        return $this->publishedDates;
+        $dates = $this->publishedDates;
+
+        if ($this->maxPublishedDate) {
+            $dates[] = $this->maxPublishedDate;
+        }
+
+        return $dates;
     }
 
     /**
@@ -1205,7 +1188,7 @@ class Notice extends AbstractImage implements NoticeInterface, RecordInterface
     public function getTitle():string
     {
          $titles = $this->getTitles();
-         if (count($titles)>0){
+         if (count($titles) > 0) {
              return $titles[0];
          }
 
@@ -1308,5 +1291,9 @@ class Notice extends AbstractImage implements NoticeInterface, RecordInterface
         return $this->analyticalTitles;
     }
 
+    public function getPrintTitle(): string
+    {
+        return $this->type.' - '.$this->getTitle();
+    }
 }
 

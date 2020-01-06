@@ -1,7 +1,7 @@
 {% if author is not empty %}
     <div class="list-result__content-item js-list-result-item" lang="fr" role="listitem">
         <div class="list-result__content-selector">
-            <input type="checkbox" id="related-notice-result-{{ index }}" class="addableInList {% if author.indice %}js-indicecdu{%else%}js-authority{% endif %}"
+            <input type="checkbox" id="related-notice-result-{{ index }}" class="js-add-to-selection {% if author.indice %}js-indicecdu{%else%}js-authority{% endif %}"
                    name="{{ author.docType }}[]"
                    value="{{ author.permalink }}"
                    {% if author.indice %}
@@ -20,7 +20,7 @@
                 toggle_to_path_parcours('record_authority',app.request.attributes.get(constant('App\\Model\\Search\\ObjSearch::PARAM_PARCOURS_NAME')), {'permalink': author.permalink}),
                 author.title,
                 "",
-                "author",
+                author.type,
                 class_name(author)
             ) }}
         </div>
@@ -30,7 +30,7 @@
                 {% set pathName = author.indice ? 'record_indice_cdu' : 'record_authority' %}
                 <a href="{{ toggle_to_path_parcours(pathName,app.request.attributes.get(constant('App\\Model\\Search\\ObjSearch::PARAM_PARCOURS_NAME')),{ 'permalink':author.permalink, (constant('App\\Model\\Search\\ObjSearch::PARAM_REQUEST_NAME')): contextToken}) }}">
                     <span class="sr-only" title="{{ author.title }}">{{ author.title }}</span>
-                    <img src="{{ asset('images/types-autorite/autorite-'~ (author.type|slugify) ~'.svg') }}" alt="" class="img-fluid" />
+                    <img src="{{ asset('images/types/type-' ~ author.type|slugify ~ '.svg') }}" alt="" class="img-fluid" />
                 </a>
             </div>
             <div class="list-result__content-infos">

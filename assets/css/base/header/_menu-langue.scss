@@ -11,6 +11,11 @@
 .header {
 
 	.menu-langue {
+		margin-bottom: rem(10);
+
+		@include media-breakpoint-up(md) {
+			margin-bottom: 0;
+		}
 
 		&__button {
 			position: relative;
@@ -53,13 +58,21 @@
 				box-shadow: none;
 				border: 0;
 				border-right: 1px solid $grey;
-				padding: rem(20) 0 rem(10);
+				padding: rem(20) rem(5) rem(10) 0;
 			}
 
 			&-item {
 				color: $black;
 				@include font-size(12);
 				margin-bottom: 0;
+
+				& + .menu-langue__list-item {
+					margin-top: rem(10);
+
+					@include media-breakpoint-up(lg) {
+						margin-top: 0;
+					}
+				}
 
 				&:hover,
 				&:focus {
@@ -83,9 +96,27 @@
 
 				&.active {
 					color: $grey-disabled;
+					position: relative;
 
 					&:hover {
 						text-decoration: none;
+					}
+
+					&:after {
+						content: '';
+						position: absolute;
+						width: 0;
+						height: 0;
+						right: 0;
+						bottom: 0;
+						margin-right: $spacer;
+						margin-bottom: -5px;
+						border-bottom: 10px solid $grey-disabled;
+						border-left: 10px solid transparent;
+
+						@include media-breakpoint-up(lg) {
+							margin-right: 0;
+						}
 					}
 
 					abbr {

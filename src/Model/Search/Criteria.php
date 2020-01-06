@@ -88,7 +88,7 @@ class Criteria
     private $collection;
 
     /**
-     * @var integer
+     * @var string
      * @JMS\Type("int")
      * @JMS\SerializedName("date-publication")
      */
@@ -259,7 +259,10 @@ class Criteria
         foreach (WordsList::$operators as $operator) {
             $subCriteria = $this->getSubCriteriaOfOperator($operator);
             if ($subCriteria instanceof Criteria) {
-                $keywords[$operator] = $subCriteria->getKeywords(false);
+                $subKeywords = $subCriteria->getKeywords(false);
+                if (!empty($subKeywords)) {
+                    $keywords[$operator] = $subKeywords;
+                }
             }
         }
 
@@ -355,18 +358,25 @@ class Criteria
         return $this->notCriteria;
     }
 
-    /**
-     * @return string
-     */
-    public function getPublicationDateStart()
-    {
-        return $this->publicationDateStart;
-    }
 
     /**
      * @return string
      */
-    public function getPublicationDateEnd()
+    public function getPublicationDate(): ?string
+    {
+        return $this->publicationDate;
+    }
+    /**
+     * @return string
+     */
+    public function getPublicationDateStart(): ?string
+    {
+        return $this->publicationDateStart;
+    }
+    /**
+     * @return string
+     */
+    public function getPublicationDateEnd(): ?string
     {
         return $this->publicationDateEnd;
     }

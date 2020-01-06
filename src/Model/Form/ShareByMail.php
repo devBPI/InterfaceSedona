@@ -14,12 +14,12 @@ final class ShareByMail implements MessageInfoInterface
     use MessageInfoTrait;
     /**
      * @var string
-     * @Asset\NotBlank(message="title.empty");
+     * @Asset\NotBlank(message="object.empty");
      */
     private $object;
     /**
      * @var string
-     * @Asset\NotBlank(message="texte.empty");
+     * @Asset\NotBlank(message="message.empty");
      */
     private $message;
 

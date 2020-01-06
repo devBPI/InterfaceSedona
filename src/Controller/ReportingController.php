@@ -52,10 +52,10 @@ final class ReportingController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $repportError = $form->getData();
+            $reportData = $form->getData();
             if ($this->mailSenderService->sendMail(
                 'common/modal/content_error.email.twig',
-                ['data' => $repportError],
+                ['data' => $reportData],
                 MailSenderService::RECIEVER_EMAIL
             )) {
                 return $this->render('common/modal/report-error-success.html.twig');
@@ -103,7 +103,8 @@ final class ReportingController extends AbstractController
             );
         }
 
-        return $this->render('common/error-form.html.twig', [
+        $renderPage = $request->get('renderPage', true) == true;
+        return $this->render($renderPage ? 'common/error-form.html.twig' : 'common/error-form-modal.html.twig', [
             'form' => $form->createView(),
         ]);
     }

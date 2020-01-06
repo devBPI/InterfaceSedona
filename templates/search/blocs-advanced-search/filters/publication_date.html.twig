@@ -10,24 +10,32 @@
                 <label class="form-check-label"
                        for="adv-search-label-date">{{ 'modal.advanced-search.date.by-date'|trans }}</label>
             </div>
-            <div class="search-date__radio search-date__radio--period js-date-period form-check form-check-inline">
-                <input class="form-check-input" type="radio" id="adv-search-label-period"
+            <div class="search-date__radio search-date__radio--period form-check form-check-inline">
+                <input class="form-check-input js-date-period" type="radio" id="adv-search-label-period"
                        name="adv-search-date"
                        value="Periode" {% if modeDate == 'Periode' %}checked{% endif %}>
                 <label class="form-check-label"
                        for="adv-search-label-period">{{ 'modal.advanced-search.date.by-periode'|trans }}</label>
             </div>
         </div>
-        <div class="search-date__group">
+        <div class="search-date__group" id="js-date-div">
+            <div class="search-date__date form-group">
+                <label for="adv-search-date"
+                       class="sr-only">{{ 'modal.advanced-search.date.date'|trans }}</label>
+                <input type="text" class="form-control" placeholder="AAAA"
+                       name="{{ constant('App\\Model\\Search\\Criteria::QUERY_NAME') }}[publicationDate]"
+                       value="{{ objSearch.criteria.publicationDate }}">
+            </div>
+        </div>
+        <div class="search-date__group" id="js-period-div">
             <div class="search-date__date form-group">
                 <label for="adv-search-date-1"
-                       class="sr-only js-start-label">{{ 'modal.advanced-search.date.date-start'|trans }}</label>
+                       class="sr-only">{{ 'modal.advanced-search.date.date-start'|trans }}</label>
                 <input type="text" class="form-control" id="adv-search-date-1" placeholder="AAAA"
                        name="{{ constant('App\\Model\\Search\\Criteria::QUERY_NAME') }}[publicationDateStart]"
                        value="{{ objSearch.criteria.publicationDateStart }}">
             </div>
-            <div class="search-date__date search-date__date--second form-group
-                             {% if modeDate != 'Periode' %}d-none{% endif %}">
+            <div class="search-date__date search-date__date--second form-group">
                 <label for="adv-search-date-2"
                        class="sr-only">{{ 'modal.advanced-search.date.date-end'|trans }}</label>
                 <input type="text" class="form-control" id="adv-search-date-2" placeholder="AAAA"
@@ -38,11 +46,13 @@
     </div>
 {% endset %}
 
+{% set collapsed = objSearch.criteria.publicationDate or objSearch.criteria.publicationDateStart or objSearch.criteria.publicationDateEnd %}
+
 {{ display_form.display_collapse_filter(
     'advanced',
     'modal.advanced-search.date.title'|trans,
-    'dates',
-    objSearch.searchFilters,
+    'publicationDates',
+    collapsed,
     content,
     'modal.advanced-search.date.select-aria'|trans
 ) }}

@@ -1,0 +1,73 @@
+{% macro action_attributes(actionType, content, toolbar, buttonClass) %}
+    {% set active = toolbar is defined and toolbar is not empty %}
+    {% set isDetail = active and toolbar in ['App\\Model\\Notice', 'App\\Model\\Authority', 'App\\Model\\IndiceCdu'] %}
+    {% set targetClass = null %}
+    {% if toolbar == 'App\\Model\\Search\\ObjSearch' %}
+        {% set targetClass = 'js-add-to-selection' %}
+    {% elseif toolbar == 'App\\Entity\\UserSelectionDocument' %}
+        {% set targetClass = 'js-list-selectable' %}
+    {% endif %}
+
+    <li class="toolbar__item {% if not active %}toolbar__item--disabled{% endif %}">
+        {% if active %}
+            <button data-reload="true"
+                {%- if isDetail %}
+                    data-toggle="modal" data-target="#modal-{{ actionType }}"
+                {% elseif targetClass is not empty %}
+                    data-toggle="disable-if-no-found-modal" data-href="#modal-{{ actionType }}"
+                    data-spy='.{{ targetClass }},[data-toggle="check-all"]'
+                    data-target='.{{ targetClass }}:checked'
+                    {% if buttonClass is defined %}class="{{ buttonClass }}"{% endif %}
+                {% endif -%}
+            >
+        {% else %}
+            <p>
+        {% endif %}
+
+            {{ content }}
+
+        {% if active %}
+            </button>
+        {% else %}
+            </p>
+        {% endif %}
+    </li>
+{% endmacro %}
+
+
+{% macro add_list_link(toolbar) %}
+    {% from 'common/macros/toolbar-macro.html.twig' import action_attributes %}
+
+    {% set content %}
+        <img src="{{ asset('images/icones/icone-coeur.svg') }}" alt="" class="icone-coeur" />
+        <span><span class="sr-only">{{ 'bloc.toolbar.add_to'|trans }} </span>{{ 'bloc.toolbar.my_selection'|trans }}</span>
+    {% endset %}
+
+    {% if toolbar == 'App\\Entity\\UserSelectionDocument' %}
+        {% set toolbar = null %}
+    {% endif %}
+
+    {{ action_attributes('list-add', content, toolbar) }}
+{% endmacro %}
+
+{% macro export_link(toolbar) %}
+    {% from 'common/macros/toolbar-macro.html.twig' import action_attributes %}
+
+    {% set content %}
+        <img src="{{ asset('images/icones/icone-fichier.svg') }}" alt="" class="icone-fichier" />
+        <span>{{ 'bloc.toolbar.export'|trans }}</span>
+    {% endset %}
+
+    {{ action_attributes('export', content, toolbar, 'js-print-action') }}
+{% endmacro %}
+
+{% macro print_link(toolbar) %}
+    {% from 'common/macros/toolbar-macro.html.twig' import action_attributes %}
+
+    {% set content %}
+        <img src="{{ asset('images/icones/icone-imprimante.svg') }}" alt="" class="icone-imprimante"/>
+        <span>{{ 'bloc.toolbar.print'|trans }}</span>
+    {% endset %}
+
+    {{ action_attributes('print', content, toolbar, 'js-print-action') }}
+{% endmacro %}

@@ -8,6 +8,7 @@ use App\Model\Interfaces\RecordInterface;
 use App\Model\Traits\BreadcrumbTrait;
 use App\Model\Traits\IndiceAndAuthorityTrait;
 use App\Model\Traits\NoticeTrait;
+use App\Model\Traits\PrintTrait;
 use App\Request\ParamConverter\BpiConverterInterface;
 use JMS\Serializer\Annotation as JMS;
 
@@ -19,7 +20,8 @@ final class Authority implements NoticeInterface, RecordInterface, BpiConverterI
 {
     private const DOC_TYPE = 'authority';
     const BREAD_CRUMB_NAME = 'authority';
-    use NoticeTrait, IndiceAndAuthorityTrait, BreadcrumbTrait;
+
+    use NoticeTrait, IndiceAndAuthorityTrait, BreadcrumbTrait, PrintTrait;
 
     /**
      * @var int
@@ -232,7 +234,6 @@ final class Authority implements NoticeInterface, RecordInterface, BpiConverterI
     }
 
     /**
-     *
      * @return string
      */
     public function getTitle(): string
@@ -258,6 +259,24 @@ final class Authority implements NoticeInterface, RecordInterface, BpiConverterI
     public function getDocType(): string
     {
         return self::DOC_TYPE;
+    }
+
+    public function getPrintDates(): ?string
+    {
+        return $this->concatenateData($this->birthDate, $this->deathDate);
+    }
+
+    public function getPrintBirthData(): ?string
+    {
+        return $this->concatenateData($this->birthDate, $this->birthLocation);
+    }
+    public function getPrintDeathData(): ?string
+    {
+        return $this->concatenateData($this->deathDate, $this->deathLocation);
+    }
+    public function getPrintTitle(): string
+    {
+        return $this->getTitle();
     }
 }
 
