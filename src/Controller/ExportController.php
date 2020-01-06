@@ -69,7 +69,6 @@ final class ExportController extends AbstractController
                 'common/modal/content-export-notice.email.twig',
                 ['data' => $object],
                 $object->getReciever(),
-                MailSenderService::SENDER_EMAIL,
                 $attachment
             )) {
                 return $this->render('common/modal/share-success.html.twig');
@@ -119,8 +118,7 @@ final class ExportController extends AbstractController
             if ($this->mailSenderService->sendMail(
                 'common/modal/content-export-notice.email.twig',
                 ['data' => $object],
-               $object->getReciever(),
-                MailSenderService::SENDER_EMAIL,
+                $object->getReciever(),
                 $attachment
             )) {
                 return $this->render('common/modal/share-success.html.twig');
