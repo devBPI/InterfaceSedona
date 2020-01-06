@@ -85,7 +85,7 @@
 
 <div class="col-12 col-md-auto">
     <div class="bibliographic-result__image">
-        <img src="{{ path('binary_image', {"content":object.notice.image, 'type': object.notice.type|slugify}) }}" alt="{% if object.notice.picture %}{{ object.notice.picture.description }}{% endif %}" class="img-fluid" />
+        <img src="{{ object.notice.image is not empty ? path('binary_image', {'content':object.notice.image, 'type': object.notice.type | slugify}) : asset(object.notice.defaultImage) }}" alt="{% if object.notice.picture %}{{ object.notice.picture.description }}{% endif %}" class="img-fluid" />
     </div>
 </div>
 

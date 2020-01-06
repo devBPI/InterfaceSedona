@@ -1257,7 +1257,7 @@ class Notice extends AbstractImage implements NoticeInterface, RecordInterface
     /**
      * @return string
      */
-    public function getImage(): string
+    public function getImage(): ?string
     {
         if ($this->getPicture() instanceof Picture && !empty($this->getPicture()->getContent())){
             return $this->getPicture()->getContent();
@@ -1266,7 +1266,15 @@ class Notice extends AbstractImage implements NoticeInterface, RecordInterface
             return $this->getIsbnCover() ;
         }
 
-        return sprintf(ImageBuilderService::DEFAULT_PICTURE, $this->slugify($this->getType()));
+        return null;
+    }
+
+    /**
+     * @return string
+     */
+    public function getDefaultImage(): string
+    {
+        return ImageBuilderService::buildGenericPicture($this->getType());
     }
 
 

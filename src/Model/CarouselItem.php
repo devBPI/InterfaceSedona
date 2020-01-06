@@ -12,7 +12,7 @@ use JMS\Serializer\Annotation as JMS;
  */
 class CarouselItem extends AbstractImage
 {
-    use PathToContentTrait, TraitSlugify;
+    use PathToContentTrait;
     /**
      * @var string
      * @JMS\Type("string")
@@ -111,12 +111,19 @@ class CarouselItem extends AbstractImage
     /**
      * @return string
      */
-    public function getImage(): string
+    public function getImage(): ?string
     {
         if ($this->getImagePath()){
             return $this->pathToContent($this->getImagePath());
         }
+        return null;
+    }
 
-        return sprintf(ImageBuilderService::DEFAULT_PICTURE, $this->slugify($this->getType()));
+    /**
+     * @return string
+     */
+    public function getDefaultImage(): string
+    {
+        return ImageBuilderService::buildGenericPicture($this->getType());
     }
 }

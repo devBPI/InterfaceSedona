@@ -9,7 +9,7 @@ trait TraitSlugify
      * @param string|null $text
      * @return mixed|null|string|string[]
      */
-    protected function slugify(string $text=null)
+    static protected function slugify(string $text=null)
     {
         // convert vowel with accent to vowel without accent
         $text = str_replace(

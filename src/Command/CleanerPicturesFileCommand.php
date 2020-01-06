@@ -11,12 +11,14 @@ namespace App\Command;
 
 use App\Service\CleanerFiles;
 use App\Service\HistoryService;
+use App\Service\ImageBuilderService;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Helper\ProgressBar;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\Stopwatch\Stopwatch;
 
 
 class CleanerPicturesFileCommand extends Command
@@ -29,19 +31,20 @@ protected static $defaultName = 'folder:images:clean';
      * @var LoggerInterface
      */
     private $logger;
+
     /**
-     * @var CleanerFiles
+     * @var ImageBuilderService
      */
-    private $cleanerFiles;
+    private $imageBuilderService;
 
     /**
      * CleanerPicturesFileCommand constructor.
      * @param CleanerFiles $cleanerFiles
      */
-    public function __construct(CleanerFiles $cleanerFiles) {
+    public function __construct(ImageBuilderService $imageBuilderService) {
         parent::__construct(self::$defaultName);
 
-        $this->cleanerFiles = $cleanerFiles;
+        $this->imageBuilderService = $imageBuilderService;
     }
 
     protected function configure(): void
@@ -57,15 +60,17 @@ protected static $defaultName = 'folder:images:clean';
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $progress = new ProgressBar($output);
-        $progress->advance();
-        $output->writeln('<info>start cleaning Folders</info>');
 
-        $output->writeln('start cleaning history command');
+        $stw = new Stopwatch();
+        $stw->start("send");
+        $output->writeln('<info>start cleaning Folders at '.date("Y-m-d H:i:s").'</info>');
 
-        $count = $this->cleanerFiles->clean();
-
+        $count = $this->imageBuilderService->clean();
         $output->writeln(sprintf('%s files has deleted with success ', $count));
+
+        $event = $stw->stop("send");
+        $output->writeln("End at ".date("Y-m-d H:i:s").sprintf(' ( %.2F MiB - %d s )', $event->getMemory() / 1024 / 1024, $event->getDuration() /1000 ));
+        return 0;
 
     }
 }

@@ -13,7 +13,7 @@
 						<span class="sr-only">{{ 'bloc.carousel.item_desciption'|trans({'%index%': loop.index ,'%nb%' : carousel.elements|length , '%title%' : item.title , '%auteur%' : item.creator }) }}</span>
 					</a>
 					<div class="carousel__slide-image">
-						<img src="{{ path('binary_image', {'content':item.image, 'type': item.type | slugify}) }}" alt="" class="img-fluid"/>
+						<img src="{{ item.image is not empty ? path('binary_image', {'content':item.image, 'type': item.type | slugify}) : asset(item.defaultImage) }}" alt="" class="img-fluid"/>
 					</div>
 					<p class="n1 carousel__slide-title">{{ item.title }}</p>
 					{% if item.creator is not empty %}

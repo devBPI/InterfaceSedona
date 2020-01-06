@@ -35,7 +35,7 @@
                         (constant('App\\Model\\Search\\ObjSearch::PARAM_REQUEST_NAME')) : contextToken
                     })
                 }}">
-                    <img src="{{ path('binary_image', {"content":notice.image, 'type': notice.type | slugify})}}" alt="{{ notice.frontTitle }}" class="img-fluid" />
+                    <img src="{{ notice.image is not empty ? path('binary_image', {'content':notice.image, 'type': notice.type | slugify}) : asset(notice.defaultImage) }}" alt="{{ notice.frontTitle }}" class="img-fluid" />
                 </a>
             </div>
             <div class="list-result__content-infos js-seeMoreAvailability" >

@@ -14,5 +14,5 @@ abstract class AbstractImage
     /**
      * @return string
      */
-    abstract  public function getImage():string;
+    abstract  public function getImage(): ?string;
 }

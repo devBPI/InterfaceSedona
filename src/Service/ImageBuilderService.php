@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace App\Service;
 
 use Symfony\Component\Filesystem\Filesystem;
+use Symfony\Component\Finder\Finder;
 use Symfony\Component\HttpFoundation\File\File;
 
 /**
@@ -15,9 +16,10 @@ final class ImageBuilderService
     use TraitSlugify;
 
     private const IMAGE_FOLDER = 'images';
-    public const PARENT_FOLDER = 'imported_images';
-    public const BPI_FOLDER_NAME_ELECTRE = 'electre';
-    public const DEFAULT_PICTURE = 'couvertures-generiques/cg-%s.svg';
+    private const PARENT_FOLDER = 'imported_images';
+    private const DEFAULT_PICTURE = 'couvertures-generiques/cg-%s.svg';
+    private const BPI_FOLDER_NAME_ELECTRE = 'electre';
+
     public const THUMBNAIL = 'vignette';
     public const COVER = 'couverture';
     /**
@@ -75,65 +77,13 @@ final class ImageBuilderService
     }
 
     /**
-     * @param string      $path
-     * @param string|null $type
-     *
-     * @return null|string
-     */
-    public function getimage64(string $path, ?string $type = null): ?string
-    {
-        if ($type === null) {
-            $type = 'livre';
-        }
-        $prefix = sprintf('imported_images%s%s%1$s', DIRECTORY_SEPARATOR, $type);
-        $filePath = $this->buildImage(
-            str_replace($prefix, '', $path),
-            $type
-        );
-        $file = null;
-        try {
-            $file = new File($filePath, true);
-
-            if (isset($file) && (!$file->isFile() || 0 !== strpos($file->getMimeType(), 'image/'))) {
-                return null;
-            }
-        } catch (\Exception $e) {
-            return null;
-        }
-
-        $binary = file_get_contents($filePath);
-
-        if (false === $binary) {
-            return null;
-        }
-
-        return sprintf('data:image/%s;base64,%s', $file->guessExtension(), base64_encode($binary));
-    }
-
-    /**
      * @param string $type
      *
      * @return string
      */
-    private function buildGenericPicture(string $type): string
+    static public function buildGenericPicture(string $type): string
     {
-        $fs = new Filesystem();
-
-        $filePath = self::PARENT_FOLDER.DIRECTORY_SEPARATOR;
-        $filePath .= $this->slugify($type).DIRECTORY_SEPARATOR;
-        $filePath .= sprintf(self::DEFAULT_PICTURE, $this->slugify($type));
-
-        if ($fs->exists($filePath)) {
-            return $filePath;
-        }
-        $fs->copy(
-            self::IMAGE_FOLDER
-            .DIRECTORY_SEPARATOR
-            .sprintf(self::DEFAULT_PICTURE, $this->slugify($type)),
-            $filePath
-        );
-
-        return $filePath;
+        return self::IMAGE_FOLDER.DIRECTORY_SEPARATOR.sprintf(self::DEFAULT_PICTURE, self::slugify($type));
     }
 
     /**
@@ -146,6 +96,21 @@ final class ImageBuilderService
     {
         $fs = new Filesystem();
         $fs->dumpFile($this->imageDir.self::PARENT_FOLDER.DIRECTORY_SEPARATOR.$localPath, $content);
+    }
+
+    /**
+     * @return int
+     */
+    public function clean():int
+    {
+        $finder = new Finder();
+        $finder->in($this->imageDir.ImageBuilderService::PARENT_FOLDER)->date('< now - 24 hours')->files();
+        $count = $finder->count();
+
+        $fs = new Filesystem();
+        $fs->remove($finder);
+
+        return $count;
     }
 }
 

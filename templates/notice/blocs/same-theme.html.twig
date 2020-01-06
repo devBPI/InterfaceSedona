@@ -14,7 +14,7 @@
 							</span>
 						</a>
 						<div class="carousel__slide-image">
-							<img src="{{ path('binary_image', {'content':subnotice.image, 'type': subnotice.type|slugify}) }}" class="img-fluid" alt="" />
+							<img src="{{ subnotice.image is not empty ? path('binary_image', {'content':subnotice.image, 'type': subnotice.type | slugify}) : asset(subnotice.defaultImage) }}" class="img-fluid" alt="" />
 						</div>
 						<p class="n1 carousel__slide-title">{{ subnotice.titles[0] }}</p>
 						<p class="n2 carousel__slide-subtitle">

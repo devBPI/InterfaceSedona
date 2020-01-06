@@ -3,11 +3,10 @@
         <div class="col-3">
             {% set type = object.type|slugify %}
             {% if object.image is defined %}
-                {% set imgPath = path('binary_image', {'content': object.image, 'type': type}) %}
+                {% set imgPath = object.image is not empty ? path('binary_image', {'content':object.image, 'type': object.type | slugify}) : asset(object.defaultImage) %}
             {% else %}
                 {% set imgPath = asset('images/types/type-' ~ type ~ '.svg') %}
             {% endif %}
-
             <img src="{{ absolute_url(imgPath) }}" alt="" class="img-fluid print__image" />
         </div>
     {% endif %}
