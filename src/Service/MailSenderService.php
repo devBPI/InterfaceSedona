@@ -8,9 +8,10 @@ use Twig\Environment;
 
 class MailSenderService
 {
-    const RECIEVER_EMAIL            = 'catalogue.public@bpi.fr';
+    /**
+     * A déporter dans le fichier ENV
+     */
     const PURCHASE_SUGGESTION_EMAIL = 'organigramme.0302@bpi.fr';
-    const SENDER_EMAIL              = 'catalogue.public@bpi.fr';
 
     /**
      * @var Environment
@@ -60,9 +61,9 @@ class MailSenderService
     public function sendMail(
         string $templateName,
         array $context,
-        string $reciever=null,
-        string $senderEmail=null,
-        \Swift_Attachment $attachment = null
+        $reciever=null,
+        \Swift_Attachment $attachment = null,
+        string $replyTo = null
     ) {
 
         $context = $this->twig->mergeGlobals($context);
@@ -71,21 +72,21 @@ class MailSenderService
         $textBody = $template->renderBlock('body_text', $context);
         $htmlBody = $template->renderBlock('body_html', $context);
 
-        if (!$senderEmail){
-            $senderEmail = $this->sender;
-        }
-        if (!$reciever){
-            $reciever =  $this->replyTo;
-        }
+        $reciever  = empty($reciever) ? $this->replyTo : $reciever;
+        $replyTo  = empty($replyTo) ? $this->replyTo : $replyTo;
+
         $message = (new \Swift_Message($subject))
             ->setSubject($subject)
-            ->setFrom($senderEmail)
-            ->setTo($reciever )
-            ->setReplyTo($this->replyTo);
+            ->setFrom($this->sender)
+            ->setReplyTo($replyTo)
+            ->setTo($reciever)
+            ;
 
         if (!empty($htmlBody)) {
-            $message->setBody($htmlBody, 'text/html')
-                ->addPart($textBody, 'text/plain');
+            $message
+                ->setBody($htmlBody, 'text/html')
+                ->addPart($textBody, 'text/plain')
+            ;
         } else {
             $message->setBody($textBody);
         }
@@ -94,5 +95,13 @@ class MailSenderService
         }
 
         return $this->mailer->send($message);
+    }
+
+    /**
+     * @return array
+     */
+    public function getSenderForSuggestion()
+    {
+        return [self::PURCHASE_SUGGESTION_EMAIL, $this->replyTo];
     }
 }

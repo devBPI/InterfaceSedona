@@ -52,11 +52,14 @@ final class ReportingController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            /** @var ReportError $reportData */
             $reportData = $form->getData();
             if ($this->mailSenderService->sendMail(
                 'common/modal/content_error.email.twig',
                 ['data' => $reportData],
-                MailSenderService::RECIEVER_EMAIL
+                null,
+                null,
+                    $reportData->getEmail()
             )) {
                 return $this->render('common/modal/report-error-success.html.twig');
             } else {
@@ -92,8 +95,7 @@ final class ReportingController extends AbstractController
 
             if ($this->mailSenderService->sendMail(
                 'common/modal/content.email.twig',
-                ['data' => $reportError],
-                MailSenderService::RECIEVER_EMAIL
+                ['data' => $reportError]
             )) {
                 return $this->render('common/error-success.html.twig');
             }
@@ -133,11 +135,11 @@ final class ReportingController extends AbstractController
                 'common/modal/content.email.twig',
                 ['data' => $object],
                 $object->getReciever(),
+                null,
                 $object->getSender()
             )) {
                 return $this->render('common/modal/share-success.html.twig');
             } else {
-
                 $form->addError(
                     new FormError("Une erreur est survenue lors de l'envoi de l'e-mail \n veuillez réessayer plus tard SVP.")
                 );
@@ -167,11 +169,14 @@ final class ReportingController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()){
+            /** @var SuggestByMail $object */
             $object = $form->getData();
             if ($this->mailSenderService->sendMail(
                 'common/modal/suggestion-content.email.twig',
                 ['data' => $object],
-                MailSenderService::PURCHASE_SUGGESTION_EMAIL
+                $this->mailSenderService->getSenderForSuggestion(),
+                null,
+                $object->getEmail()
             )) {
                 return $this->render('common/modal/share-success.html.twig');
             } else {
