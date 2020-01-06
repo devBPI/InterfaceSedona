@@ -14,6 +14,7 @@ require('jquery');
 require('bootstrap');
 require('icheck');
 require('./data-toggle.js');
+require('./orejime.js');
 
 import './polyfill-ie';
 
@@ -133,10 +134,10 @@ if ($(window).width() > 992) {
         menuSecondaireList = $('.js-menu-secondaire-list'),
         menuSecondaireItems = menuSecondaireList.children();
 
-        menuLangueList.removeAttr('aria-labelledby role tabindex');
-        menuLangueItems.removeAttr('role');
-        menuSecondaireList.removeAttr('aria-labelledby role tabindex');
-        menuSecondaireItems.removeAttr('role');
+    menuLangueList.removeAttr('aria-labelledby role tabindex');
+    menuLangueItems.removeAttr('role');
+    menuSecondaireList.removeAttr('aria-labelledby role tabindex');
+    menuSecondaireItems.removeAttr('role');
 }
 
 $('.js-seeMoreAvailability').children('button').on( 'click', function(e){
