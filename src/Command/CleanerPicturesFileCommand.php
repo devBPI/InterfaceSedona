@@ -9,7 +9,6 @@
 namespace App\Command;
 
 
-use App\Service\CleanerFiles;
 use App\Service\HistoryService;
 use App\Service\ImageBuilderService;
 use Psr\Log\LoggerInterface;
@@ -39,7 +38,7 @@ protected static $defaultName = 'folder:images:clean';
 
     /**
      * CleanerPicturesFileCommand constructor.
-     * @param CleanerFiles $cleanerFiles
+     * @param ImageBuilderService $imageBuilderService
      */
     public function __construct(ImageBuilderService $imageBuilderService) {
         parent::__construct(self::$defaultName);
