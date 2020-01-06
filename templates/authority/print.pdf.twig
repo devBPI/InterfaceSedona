@@ -21,7 +21,12 @@
     </div>
 
     {% if isPrintLong %}
-        {{ list_subitems(relatedDocuments.mappedNotices, includeImage) }}
-        {{ list_subitems(noticeAuthors.mappedNotices, includeImage) }}
+        {% if relatedDocuments is not empty %}
+            {{ list_subitems(relatedDocuments.mappedNotices, includeImage) }}
+        {% endif %}
+
+        {% if noticeAuthors is not empty %}
+            {{ list_subitems(noticeAuthors.mappedNotices, includeImage) }}
+        {% endif %}
     {% endif %}
 {% endblock %}
