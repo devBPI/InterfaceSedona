@@ -45,26 +45,42 @@ Orejime.init({
             newWindow: "nouvelle fen\xEAtre",
 
             // -- config ---
+            "google-analytics": {
+                description: "Ces cookies servent à mesurer et analyser l’audience de notre site (volume de fréquentation, pages vues, temps moyen par visite, etc.) ; et ce afin d’en améliorer la performance. En acceptant ces cookies, vous contribuez à l’amélioration de notre site.",
+            },
             "google-tag-manager": {
                 description: "Ces cookies servent à mesurer et analyser l’audience de notre site (volume de fréquentation, pages vues, temps moyen par visite, etc.) ; et ce afin d’en améliorer la performance. En acceptant ces cookies, vous contribuez à l’amélioration de notre site.",
+            },
+            "add-this": {
+                description: "AddThis peut utiliser des cookies pour mémoriser vos informations de connexion, collecter des statistiques en vue d’optimiser la fonctionnalité du site et créer des documents marketing adaptés à vos centres d’intérêt.",
             },
             "always-on": {
                 description: "Ces cookies sont nécessaires pour assurer le fonctionnement optimal du site et ne peuvent être paramétrés.<br/>" +
                     "Ils nous permettent de vous offrir les principales fonctionnalités du site, de vous conseiller en ligne ou encore de sécuriser notre site contre les fraudes éventuelles.",
             },
             purposes: {
-                analytics: "Analytics"
+                analytics: "Outils d'analyse",
+                social: "Réseaux sociaux"
             }
         }
     },
     apps: [
         {
-            name: "google-tag-manager",
-            title: "Google Tag Manager",
+            name: "google-analytics",
+            title: "Google Analytics",
             cookies: [
                 "_ga",
                 "_gat",
                 "_gid",
+                // "_gat_gtag_" + GTM_UA,
+                // "_gat_" + GTM_UA
+            ],
+            purposes: ["analytics"]
+        },
+        {
+            name: "google-tag-manager",
+            title: "Google Tag Manager",
+            cookies: [
                 "__utma",
                 "__utmb",
                 "__utmc",
@@ -73,11 +89,32 @@ Orejime.init({
                 // "_gat_gtag_" + GTM_UA,
                 // "_gat_" + GTM_UA
             ],
-            purposes: ["analytics"],
+            purposes: ["analytics"]
+        },
+        {
+            name: "add-this",
+            title: "AddThis",
+            cookies: [
+                "__atuvc",
+                "__atuvs",
+                "bku",
+                "na_id",
+                "na_id",
+                "uid",
+                "uvc",
+                "na_tc",
+                "notice_gdpr_prefs",
+                "km_lv",
+                "loc",
+                "mus",
+                "notice_preferences",
+                "ouid"
+            ],
+            purposes: ["social"]
         },
         {
             name: "always-on",
-            title: "Required app",
+            title: "Cookie de fonctionnement",
             purposes: [],
             required: true
         }

@@ -2,8 +2,8 @@
 <html lang="{{ app.request.locale }}">
 	<head>
 		<!-- Global site tag (gtag.js) - Google Analytics -->
-		<script async src="https://www.googletagmanager.com/gtag/js?id=UA-56533762-6"></script>
-		<script type="opt-in" data-name="google-tag-manager">
+		<script type="opt-in" data-name="google-analytics" async data-src="https://www.googletagmanager.com/gtag/js?id=UA-56533762-6"></script>
+		<script type="opt-in" data-name="google-analytics">
 			window.dataLayer = window.dataLayer || [];
 			function gtag(){dataLayer.push(arguments);}
 			gtag('js', new Date());
@@ -11,7 +11,7 @@
 		</script>
 		
 		<!-- Google Tag Manager -->
-		<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+		<script type="opt-in" data-name="google-tag-manager">(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
 		new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
 		j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 		'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
@@ -35,7 +35,7 @@
 		height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 		<!-- End Google Tag Manager (noscript) -->
 
-		<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5d8e40891e23b4a0"></script>
+		<script type="opt-in" data-name="add-this" data-type="text/javascript" data-src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5d8e40891e23b4a0"></script>
 
 		<div id="menu-evitement" class="menu-evitement">
 			{% include "header/navbar-evitement.html.twig" %}
