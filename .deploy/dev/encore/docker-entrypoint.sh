@@ -3,6 +3,8 @@ set -e
 echo "NPM install ----- "
 yarn install
 
+#npm install --save react
+
 if [[ "$APP_ENV" == "prod" ]];
 then
   echo "Encore Start "

@@ -20,7 +20,7 @@
         </div>
     </div>
 
-    {% if isPrintLong %}
+    {% if isPrintLong and relatedDocuments is not empty %}
         {{ list_subitems(relatedDocuments.mappedNotices, includeImage) }}
     {% endif %}
 {% endblock %}

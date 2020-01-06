@@ -1,6 +1,6 @@
 #!/bin/sh
 
-make assets
+#make assets
 #dpkg --configure -a
 
 if ! [ -x "$(command -v wkhtmltopdf)" ]; then

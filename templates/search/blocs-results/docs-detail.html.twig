@@ -4,7 +4,7 @@
     <div class="list-result__content-item js-list-result-item" lang="fr" role="listitem" id="{{ notice.permalink }}">
         <div class="list-result__content-selector">
             <input type="checkbox" id="result-doc-{{ type }}-{{ index }}"
-                   class="js-notice addableInList notice_{{ type }}"
+                   class="js-notice js-add-to-selection notice_{{ type }}"
                    name="{% if type == constant('App\\Model\\Notice::SEE_ONLINE') %}online[]{% else %}onshelves[]{% endif %}"
                    value="{{ notice.permalink }}"
                    data-notice="{{ notice.permalink }}"

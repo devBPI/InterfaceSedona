@@ -6,9 +6,11 @@ notice-bibliographique
 {% include "notice/blocs-print/print-detail.format.twig" with {'notice': notice, 'format': 'txt'} %}
 
 
+{% if noticeThemed is not empty and noticeThemed.noticesList|length > 0 %}
 Dans le même thème
 ----------------------
 {% for object in noticeThemed.noticesList %}
     {{ loop.index}}) {{ object.title }}
     {{ object.authors|join(',') }}
 {% endfor %}
+{% endif %}
