@@ -33,7 +33,7 @@ $(document)
     .on('show.bs.modal', '#modal-list-add', function (e) {
         let adder = new SelectionAdder($(this).get(0));
 
-        let items = $('#contenu-site').find('input:checked.addableInList');
+        let items = $('#contenu-site').find('input:checked.js-add-to-selection');
         if (items.length > 0) {
             adder.displaySelectedResume(Object.entries(items));
         }
