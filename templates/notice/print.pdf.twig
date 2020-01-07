@@ -1,8 +1,6 @@
 {% extends 'base.pdf.twig' %}
 {% from "common/macros/print-macro.html.twig" import image,list_subitems %}
 
-{% block title %}{{ 'bloc.autority-result-information.your-references-bibliographic'|trans }}{% endblock %}
-
 {% block body %}
 	<div class="print__item">
 		<h2 class="n1">{{ notice.printTitle }}</h2>

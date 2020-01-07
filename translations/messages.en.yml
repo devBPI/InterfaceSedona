@@ -9,6 +9,7 @@ global:
   site-title: "| Catalogue Bpi"
   title-print: Catalogue Bpi - Export de notices
   see-more: Voir plus
+  print-title: Vos références
   form:
     email:
       placeholder: 'nom@example.com'

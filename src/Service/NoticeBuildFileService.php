@@ -243,7 +243,6 @@ class NoticeBuildFileService
                 'header-line'       => false,
                 'footer-right'      => '[page]',
                 'title'             => 'Catalogue Bpi - Export de notices',
-                'header-html'       => 'header.html'
             ]);
         }
 
