@@ -17,7 +17,7 @@ final class ImageBuilderService
 
     private const IMAGE_FOLDER = 'images';
     private const PARENT_FOLDER = 'imported_images';
-    private const DEFAULT_PICTURE = 'couvertures-generiques/cg-%s.svg';
+    private const DEFAULT_PICTURE = 'couvertures-generiques/cg-%s.jpg';
     private const BPI_FOLDER_NAME_ELECTRE = 'electre';
 
     public const THUMBNAIL = 'vignette';

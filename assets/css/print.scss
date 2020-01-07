@@ -7,7 +7,7 @@
 
 // Import Overwritten Bootstrap Variable
 @import 	"variable-custom-bootstrap",
-			"~bootstrap/scss/bootstrap";
+ 			"~bootstrap/scss/bootstrap";
 
 // Base
 @import 	"base/fonts",
@@ -17,5 +17,5 @@
 @import 	"print/header";
 
 // Component
-@import 	"components/list-information",
+ @import 	"components/list-information",
 			"print/content";

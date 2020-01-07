@@ -237,15 +237,13 @@ class NoticeBuildFileService
 
         if ($attachement->getFormatType() === 'pdf'){
             return  $this->knpSnappy->getOutputFromHtml($content,[
-                "orientation"       => 'Portrait',
+                'orientation'       => 'Portrait',
                 'page-size'         => 'A4',
                 'encoding'          => 'UTF-8',
-//                'margin-top'        => '20mm',
-//                "default-header"    => true,
-//                'header-spacing'    => 3,
-                "header-line"       => true,
-                "header-left"      => "[title]",
-                "header-center"     => "Page [page] of [toPage]"
+                'header-line'       => false,
+                'footer-right'      => '[page]',
+                'title'             => 'Catalogue Bpi - Export de notices',
+                'header-html'       => 'header.html'
             ]);
         }
 

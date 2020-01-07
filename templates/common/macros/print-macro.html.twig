@@ -1,14 +1,12 @@
 {% macro image(object, includeImage) %}
     {% if includeImage %}
-        <div class="col-3">
-            {% set type = object.type|slugify %}
-            {% if object.image is defined %}
-                {% set imgPath = object.image is not empty ? path('binary_image', {'content':object.image, 'type': object.type | slugify}) : asset(object.defaultImage) %}
-            {% else %}
-                {% set imgPath = asset('images/types/type-' ~ type ~ '.svg') %}
-            {% endif %}
-            <img src="{{ absolute_url(imgPath) }}" alt="" class="img-fluid print__image" />
-        </div>
+        {% set type = object.type|slugify %}
+        {% if object.image is defined %}
+            {% set imgPath = object.image is not empty ? path('binary_image', {'content':object.image, 'type': object.type | slugify}) : asset(object.defaultImage) %}
+        {% else %}
+            {% set imgPath = asset('images/types/type-' ~ type ~ '.png') %}
+        {% endif %}
+        <img src="{{ absolute_url(imgPath) }}" alt="" class="img-fluid print__image" />
     {% endif %}
 {% endmacro %}
 
@@ -18,18 +16,14 @@
     {% if listObjects is defined and listObjects is iterable %}
         {% for element in listObjects %}
             <div class="print__item">
-                <div class="row">
-                    <div class="col-12">
-                        <h2 class="n1">{{ (loop.index + startIndex) ~ ') ' ~ element.printTitle }}</h2>
-                    </div>
+                <h2 class="n1">{{ (loop.index + startIndex) ~ ') ' ~ element.printTitle }}</h2>
 
+                <div>
                     {{ image(element, includeImage) }}
 
-                    <div class="col">
-                        <ul class="print__list">
-                            {% include detailTemplate with {'notice': element, 'format':'pdf'} %}
-                        </ul>
-                    </div>
+                    <ul class="print__list">
+                        {% include detailTemplate with {'notice': element, 'format':'pdf'} %}
+                    </ul>
                 </div>
             </div>
         {% endfor %}
@@ -41,18 +35,14 @@
         {% from 'common/macros/print-macro.html.twig' import image %}
         {% for item in listItems %}
             <div class="print__item">
-                <div class="row">
-                    <div class="col-12">
-                        <h2 class="n1">{{ loop.index ~')'}} {{ item.title }}</h2>
-                    </div>
+                <h2 class="n1">{{ loop.index ~')'}} {{ item.title }}</h2>
 
+                <div>
                     {{ image(item, includeImage) }}
 
-                    <div class="col">
-                        <ul class="print__list">
-                            {{ item.authors|join(', ') }}
-                        </ul>
-                    </div>
+                    <ul class="print__list">
+                        {{ item.authors|join(', ') }}
+                    </ul>
                 </div>
             </div>
         {% endfor %}

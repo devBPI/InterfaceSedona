@@ -5,19 +5,15 @@
 
 {% block body %}
 	<div class="print__item">
-		<div class="row">
-			<div class="col-12">
-				<h2 class="n1">{{ notice.printTitle }}</h2>
-				{% if isPrintLong %}<i>{{ notice.titleForm|join(' ') }}</i>{% endif %}
-			</div>
+		<h2 class="n1">{{ notice.printTitle }}</h2>
+		{% if isPrintLong %}<i>{{ notice.titleForm|join(' ') }}</i>{% endif %}
 
-            {{ image(notice, includeImage) }}
+		<div>
+			{{ image(notice, includeImage) }}
 
-			<div class="col">
-				<ul class="print__list">
-					{% include 'notice/blocs-print/print-detail.format.twig' with {'notice': notice, 'format': 'pdf'} %}
-				</ul>
-			</div>
+			<ul class="print__list">
+				{% include 'notice/blocs-print/print-detail.format.twig' with {'notice': notice, 'format': 'pdf'} %}
+			</ul>
 		</div>
 	</div>
 

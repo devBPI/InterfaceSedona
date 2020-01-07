@@ -5,18 +5,14 @@
 
 {% block body %}
     <div class="print__item">
-        <div class="row">
-            <div class="col-12">
-                <h2 class="n1">{{ notice.title }}</h2>
-            </div>
+        <h2 class="n1">{{ notice.title }}</h2>
 
+        <div>
             {{ image(notice, includeImage) }}
 
-            <div class="col">
-                <ul class="print__list">
-                    {% include "indice/blocs/print-detail.format.twig" with {'element': notice, 'format': 'pdf'} %}
-                </ul>
-            </div>
+            <ul class="print__list">
+                {% include "indice/blocs/print-detail.format.twig" with {'element': notice, 'format': 'pdf'} %}
+            </ul>
         </div>
     </div>
 
