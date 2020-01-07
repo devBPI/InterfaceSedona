@@ -1,4 +1,5 @@
 var Orejime = require('orejime');
+const googleToken = 'UA-56533762-6';
 
 Orejime.init({
     appElement: "#contenu-site",
@@ -72,8 +73,11 @@ Orejime.init({
                 "_ga",
                 "_gat",
                 "_gid",
-                // "_gat_gtag_" + GTM_UA,
-                // "_gat_" + GTM_UA
+                "__utma",
+                "__utmb",
+                "__utmc",
+                "__utmt",
+                "__utmz"
             ],
             purposes: ["analytics"]
         },
@@ -81,13 +85,16 @@ Orejime.init({
             name: "google-tag-manager",
             title: "Google Tag Manager",
             cookies: [
+                "_ga",
+                "_gat",
+                "_gid",
                 "__utma",
                 "__utmb",
                 "__utmc",
                 "__utmt",
                 "__utmz",
-                // "_gat_gtag_" + GTM_UA,
-                // "_gat_" + GTM_UA
+                "_gat_gtag_" + googleToken,
+                "_gat_" + googleToken
             ],
             purposes: ["analytics"]
         },
