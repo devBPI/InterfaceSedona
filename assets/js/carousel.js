@@ -38,7 +38,6 @@ $('.js-carousel-primary')
         $('.carousel__pagination li.slick-active').attr('aria-selected', 'true');
 
         if( $('.slick-arrow').is(':focus') || $('.carousel__slide-link').is(':focus') || $('.carousel__pagination-dot').is(':focus') ) {
-            console.log('yo');
             $('.slick-active').find('.carousel__slide:first-child .carousel__slide-link').focus();
         }
     })
