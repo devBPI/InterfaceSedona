@@ -16,12 +16,12 @@ cache:
     - public/build/
     - gl-code-quality-report.json
 
-#quality:sonar:
-#  stage: quality
-#  image: "registry.sedona.fr/images/maven:latest-gitlab-ci"
-#  script:
-#    - make -B sonar-project.properties
-#    - sonar-scanner
+quality:sonar:
+  stage: quality
+  image: "registry.sedona.fr/images/maven:latest-gitlab-ci"
+  script:
+    - make -B sonar-project.properties
+    - sonar-scanner
 
 quality:insight:
   stage: quality
