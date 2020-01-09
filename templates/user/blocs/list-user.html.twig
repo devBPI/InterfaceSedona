@@ -7,7 +7,7 @@
                 <input type="checkbox" id="select-liste-{{ i }}" class="table-group__input"
                        name="{{ constant('App\\Controller\\UserSelectionController::INPUT_NAME') }}[{{ constant('App\\Controller\\UserSelectionController::INPUT_LIST') }}][]"
                        value="{{ list.id }}">
-                <p class="table-group__title">{{ 'bloc.list-user.list-name'|trans({'%name%': list.title}) }}</p>
+                <p class="table-group__title">{{ list.title }}</p>
                 <a href="{{ path('user_selection_list_edit', {'list': list.id}) }}" class="table-group__link"
                    data-target="#modal-list-edit" data-toggle="modal" role="button">
                     <span class="sr-only sr-only-focusable">{{ 'bloc.list-user.list-name-change'|trans({'%name%': list.title}) }}</span>
