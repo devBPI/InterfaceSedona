@@ -49,31 +49,29 @@ final class ImageBuilderService
      */
     public function buildImage(string $content, string $type = 'livre'): string
     {
-        $localFilePath = $this->slugify($type).DIRECTORY_SEPARATOR.$content;
+        $localFilePath = self::PARENT_FOLDER.DIRECTORY_SEPARATOR.$this->slugify($type).DIRECTORY_SEPARATOR.$content;
 
         $fs = new Filesystem();
-
         if (!$fs->exists($this->imageDir.$localFilePath)) {
             $filename = $content;
+            $fs->mkdir(str_replace($filename, '', $this->imageDir.$localFilePath));
 
             try {
                 $pictureURLparts = [$this->url, self::BPI_FOLDER_NAME_ELECTRE, $content];
                 $content = file_get_contents(implode(DIRECTORY_SEPARATOR, $pictureURLparts));
 
                 if ($content === false) {
-                    return $this->buildGenericPicture($type);
+                    $fs->copy($this->imageDir.$this->buildGenericPicture($type),$this->imageDir.$localFilePath );
+                } else {
+                    $this->saveLocalImage($content, $localFilePath);
                 }
             } catch (\ErrorException $e) {
-                return $this->buildGenericPicture($type);
+                $fs->copy($this->imageDir.$this->buildGenericPicture($type),$this->imageDir.$localFilePath );
             }
 
-            $fs->mkdir(
-                str_replace($filename, '', $this->imageDir.self::PARENT_FOLDER.DIRECTORY_SEPARATOR.$localFilePath)
-            );
-            $this->saveLocalImage($content, $localFilePath);
         }
 
-        return $this->imageDir.self::PARENT_FOLDER.DIRECTORY_SEPARATOR.$localFilePath;
+        return $this->imageDir.$localFilePath;
     }
 
     /**
@@ -95,7 +93,7 @@ final class ImageBuilderService
     private function saveLocalImage(string $content, string $localPath): void
     {
         $fs = new Filesystem();
-        $fs->dumpFile($this->imageDir.self::PARENT_FOLDER.DIRECTORY_SEPARATOR.$localPath, $content);
+        $fs->dumpFile($this->imageDir.$localPath, $content);
     }
 
     /**

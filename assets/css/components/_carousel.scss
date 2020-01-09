@@ -86,8 +86,6 @@
 
 		&-image {
 			margin-bottom: $spacer;
-			width: 100%;
-			display: flex;
 			max-height: 150px;
 			min-height: 150px;
 
@@ -99,14 +97,14 @@
 
 		&-title {
 			margin-bottom: 5px;
-			max-height: rem(92);
+			max-height: rem(83);
 			display: block;
 			overflow: hidden;
 		}
 
 		&-subtitle {
 			margin-bottom: 0;
-			max-height: rem(46);
+			max-height: rem(42);
 			display: block;
 			overflow: hidden;
 		}

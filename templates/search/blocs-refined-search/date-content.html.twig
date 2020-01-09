@@ -25,16 +25,8 @@
                            min="{{ facet.minValue }}" max="{{ facet.maxValue }}" value="{{ max_facet_value(facet.name, facet.maxValue) }}">
                 </div>
                 <div class="d-none">
-                    {% for index, facetChild in facet.values %}
-                        <input
-                            class="date-checkbox"
-                            type="checkbox"
-                            name="facets[{{ facet.name }}][]"
-                            value="{{ facetChild.name }}"
-                            tabindex="-1"
-                            {% if check_value_in_facet(facet.name, facetChild.name) %}
-                                checked="checked"
-                            {% endif %}>
+                    {% for index, facetChild in facet.values -%}
+                        <input class="date-checkbox" type="checkbox" name="facets[{{ facet.name }}][]" value="{{ facetChild.name }}" tabindex="-1" {% if check_value_in_facet(facet.name, facetChild.name) %} checked="checked"{% endif %}>
                     {% endfor %}
                 </div>
             </div>

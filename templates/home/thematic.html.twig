@@ -4,11 +4,14 @@
 {% block body %}
 
 	<h1 class="n1">{{ ('header.title.'~title) | trans }}</h1>
-	{% include "home/blocs/carousel.html.twig" %}
+
+	{% include "home/blocs/carousel.html.twig" with { 'origin': thematic.type } %}
+
 	<div class="card-container">
 		<h2 class="n1">{{ 'page.thematic.theme'|trans }}</h2>
 		<div class="row">
 			{% include "home/blocs/preview-thematic-links.html.twig" with {'thematic': thematic} %}
 		</div>
 	</div>
+
 {% endblock %}
