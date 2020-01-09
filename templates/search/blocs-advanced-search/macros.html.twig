@@ -18,46 +18,39 @@
 {% endmacro %}
 
 {% macro display_checkbox_list(origin, label, key, items, selected) %}
-    {% set content %}
-        {% for index, value in items %}
-            {% if value.name is defined %}
-                {% set count = value.totalCount %}
-                {% set value = value.name %}
-            {% endif %}
+{% set content %}
+    {% for index, value in items %}
+        {% if value.name is defined -%}
+            {%- set count = value.totalCount -%}
+            {%- set value = value.name -%}
+        {%- endif %}
 
-            <div class="form-check search-facette__item">
-                <input type="checkbox"
-                       name="{{ constant('App\\Model\\Search\\FacetFilter::QUERY_NAME') ~'['~ key~'][]' }}"
-                       class="form-check-input input-{{ key }}"
-                       id="{{ origin }}-{{ key }}-{{ index }}" value="{{ value }}"
-                        {% if key in selected|keys and value in selected[key] %}
-                            checked="checked"
-                        {% endif %}
-                >
-                <label class="form-check-label" for="{{ origin }}-{{ key }}-{{ index }}">
-                    {{ value }} {% if count is defined %}({{ count }}){% endif %}
-                </label>
-            </div>
+        <div class="form-check search-facette__item">
+            <input type="checkbox" name="{{ constant('App\\Model\\Search\\FacetFilter::QUERY_NAME') ~'['~ key~'][]' }}" class="form-check-input input-{{ key }}" id="{{ origin }}-{{ key }}-{{ index }}" value="{{ value }}" {% if key in selected|keys and value in selected[key] %} checked="checked"{% endif %}>
+            <label class="form-check-label" for="{{ origin }}-{{ key }}-{{ index }}">{% spaceless %}
+                {{ value }} {% if count is defined %}({{ count }}){% endif %}
+            {% endspaceless %}</label>
+        </div>
 
-            {% if not loop.first and not loop.last and loop.index % 6 == 0 %}
-                {% if loop.index != 6 %}</div>{% endif %}
-                <div class="js-hidden hidden-items" id="{{ origin }}-{{ key }}-{{ index }}">
-            {% endif %}
-        {% endfor %}
+        {%- if not loop.first and not loop.last and loop.index % 6 == 0 %}{% spaceless %}
+            {% if loop.index != 6 %}</div>{% endif %}
+            <div class="js-hidden hidden-items" id="{{ origin }}-{{ key }}-{{ index }}">
+        {% endspaceless %}{% endif %}
+    {% endfor %}
 
-        {% if items|length > 6 %}
-            </div>
-            <div class="d-none w-100">
-                <button type="button" class="btn btn-small-link js-see-more"
-                        data-target="#{{ origin }}-{{ key }}-5" aria-expanded="false"
-                        aria-controls="{{ origin }}-{{ key }}-5">
-                    {{ 'global.see-more'|trans }}
-                </button>
-            </div>
-        {% endif %}
-    {% endset %}
+    {% if items|length > 6 %}
+        </div>
+        <div class="d-none w-100">
+            <button type="button" class="btn btn-small-link js-see-more"
+                    data-target="#{{ origin }}-{{ key }}-5" aria-expanded="false"
+                    aria-controls="{{ origin }}-{{ key }}-5">
+                {{ 'global.see-more'|trans }}
+            </button>
+        </div>
+    {% endif %}
+{% endset %}
 
-    {{ _self.display_collapse_filter(origin, label, key, key in selected|keys, content) }}
+{{ _self.display_collapse_filter(origin, label, key, key in selected|keys, content) }}
 {% endmacro %}
 
 {% macro display_collapse_filter(origin, label, key, collapsed, content, aria_label = null) %}
