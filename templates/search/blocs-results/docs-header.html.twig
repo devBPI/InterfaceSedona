@@ -14,7 +14,7 @@
     </a>
 {% else %}
     <a href="{{ add_see_all_into_uri(type) }}"
-       class="list-result__header-link">{{ ('bloc.header-docs.'~type~'.see-more')|trans }}
+       class="list-result__header-link gtm-all-{{ type }}">{{ ('bloc.header-docs.'~type~'.see-more')|trans }}
         <span class="sr-only sr-only-focusable">{{ ('bloc.header-docs.'~type~'.see-more-sr-only')|trans }}</span>
     </a>
 {% endif %}

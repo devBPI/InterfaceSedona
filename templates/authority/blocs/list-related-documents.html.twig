@@ -7,7 +7,7 @@
 			{% for element in object.mappedNotices %}
 				<div class="carousel__slide">
 
-					<a href="{{ toggle_to_path_parcours('record_bibliographic', app.request.attributes.get(constant('App\\Model\\Search\\ObjSearch::PARAM_PARCOURS_NAME')), {'permalink': element.permalink}) }}" class="carousel__slide-link">
+					<a href="{{ toggle_to_path_parcours('record_bibliographic', app.request.attributes.get(constant('App\\Model\\Search\\ObjSearch::PARAM_PARCOURS_NAME')), {'permalink': element.permalink}) }}" class="carousel__slide-link gtm-carousel-{{ type }}">
 						<span class="sr-only">
 							{{ 'bloc.list-related-documents.link-title'|trans({'%current%': object.pagination.page, '%nb%': object.pagination.rows, '%name%': element.titles[0] }) }}</span>
 					</a>
