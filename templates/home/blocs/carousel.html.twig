@@ -9,7 +9,7 @@
 		<div class="slick-carousel js-carousel-primary" role="region" aria-roledescription="carrousel">
             {% for item in carousel.elements %}
 				<div class="carousel__slide">
-					<a href="{{ toggle_to_path_parcours('record_bibliographic', app.request.attributes.get(constant('App\\Model\\Search\\ObjSearch::PARAM_PARCOURS_NAME')), {'permalink': item.permalink}) }}" class="carousel__slide-link gtm-link-carousel-home">
+					<a href="{{ toggle_to_path_parcours('record_bibliographic', app.request.attributes.get(constant('App\\Model\\Search\\ObjSearch::PARAM_PARCOURS_NAME')), {'permalink': item.permalink}) }}" class="carousel__slide-link gtm-link-carousel-{{ origin|default('home') }}">
 						<span class="sr-only">{{ 'bloc.carousel.item_desciption'|trans({'%index%': loop.index ,'%nb%' : carousel.elements|length , '%title%' : item.title , '%auteur%' : item.creator }) }}</span>
 					</a>
 					<div class="carousel__slide-image">
