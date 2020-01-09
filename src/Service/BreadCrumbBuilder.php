@@ -1,13 +1,6 @@
 <?php
 declare(strict_types=1);
 
-/**
- * Created by PhpStorm.
- * User: infra
- * Date: 30/10/19
- * Time: 18:18
- */
-
 namespace App\Service;
 
 use App\Controller\SearchController;
@@ -21,20 +14,20 @@ use JMS\Serializer\SerializerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Translation\TranslatorInterface;
 
+/**
+ * Class BreadCrumbBuilder
+ * @package App\Service
+ */
 final class BreadCrumbBuilder
 {
     use SearchQueryTrait;
-    /**
-     * @param string $token
-     * @param Request $request
-     * @return SearchQuery
-     */
 
     const RECORD = 'record';
     const SEARCH = 'search';
     const HELP = 'help';
     const USER = 'user';
     const HOME = 'home';
+
     /**
      * @var BreadCrumbTrailService
      */
@@ -44,10 +37,7 @@ final class BreadCrumbBuilder
      * @var SerializerInterface
      */
     private $serializer;
-    /**
-     * @var UrlGeneratorInterface
-     */
-    private $routeCollection;
+
     /**
      * @var TranslatorInterface
      */
@@ -82,20 +72,22 @@ final class BreadCrumbBuilder
     {
         $route = $request->get('_route');
 
-        if (strpos($route, self::USER) !== false) {
-            return $this->buildForUserPage($request);
-        }
-        if (strpos($route, self::HELP) !== false) {
-            return $this->buildForHelpPage($request);
-        }
-        if (strpos($route, self::HOME) !== false && $route!=='home2'){
-            return $this->buildForHome($request);
-        }
-        if (strpos($route, self::RECORD) !== false) {
-            return $this->buildForCardPage($request);
-        }
-        if (strpos($route, self::SEARCH) !== false) {
-            return $this->buildForSearchPage($request);
+        if ($route !== null) {
+            if (strpos($route, self::USER) !== false) {
+                return $this->buildForUserPage($request);
+            }
+            if (strpos($route, self::HELP) !== false) {
+                return $this->buildForHelpPage($request);
+            }
+            if (strpos($route, self::HOME) !== false && $route !== 'home2') {
+                return $this->buildForHome($request);
+            }
+            if (strpos($route, self::RECORD) !== false) {
+                return $this->buildForCardPage($request);
+            }
+            if (strpos($route, self::SEARCH) !== false) {
+                return $this->buildForSearchPage($request);
+            }
         }
 
         return false;
