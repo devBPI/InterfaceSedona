@@ -971,6 +971,13 @@ acorn@^6.2.1:
   resolved "https://registry.yarnpkg.com/acorn/-/acorn-6.4.0.tgz#b659d2ffbafa24baf5db1cdbb2c94a983ecd2784"
   integrity sha512-gac8OEcQ2Li1dxIEWGZzsp2BitJxwkwcOm0zHAJLcPJaVvm58FRnk6RkuLRpU1EujipU2ZFODv2P9DLMfnV8mw==
 
+addthis-snippet@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/addthis-snippet/-/addthis-snippet-1.0.2.tgz#334e4218c86842c9393b5acd29b52b7542f1622e"
+  integrity sha512-m9II59zE1AfKMLM190KF28m87qSY/7y3qz3IgvcwCXNT1TmWvihI96hEBoTZ/JCSUeBoWZ1+giOTs71aBseMvg==
+  dependencies:
+    dynload "^1.0.2"
+
 adjust-sourcemap-loader@2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/adjust-sourcemap-loader/-/adjust-sourcemap-loader-2.0.0.tgz#6471143af75ec02334b219f54bc7970c52fb29a4"
@@ -2456,6 +2463,11 @@ duplexify@^3.4.2, duplexify@^3.6.0:
     inherits "^2.0.1"
     readable-stream "^2.0.0"
     stream-shift "^1.0.0"
+
+dynload@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/dynload/-/dynload-1.0.2.tgz#c6493d76d1f3cf86a9232abc7c4c258c41bf72df"
+  integrity sha1-xkk9dtHzz4apIyq8fEwljEG/ct8=
 
 ecc-jsbn@~0.1.1:
   version "0.1.2"

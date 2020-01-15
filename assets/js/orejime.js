@@ -112,6 +112,12 @@ var obj = Orejime.init({
 
 $('#modal-share').on('shown.bs.modal', function(e) {
     if (obj.internals.manager.getConsent('add-this')) {
-        $(document.body).append('<script type="text/javascript" src="/build/addthis_widget.js#pubid=ra-5d8e40891e23b4a0"></script>');
+        var addthis = require('addthis-snippet');
+        // Config, voir > https://www.addthis.com/academy/the-addthis_config-variable/
+        addthis({
+            pubid: 'ra-5d8e40891e23b4a0',
+            // data_ga_property: googleToken,
+            // data_ga_social: true
+        });
     }
 });

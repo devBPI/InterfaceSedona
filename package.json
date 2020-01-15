@@ -25,6 +25,7 @@
         "build": "encore production --progress"
     },
     "dependencies": {
+        "addthis-snippet": "^1.0.2",
         "bootstrap-slider": "^10.6.2",
         "datatables.net-bs4": "^1.10.19",
         "icheck": "^1.0.2",
