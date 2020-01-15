@@ -46,9 +46,6 @@ Orejime.init({
             newWindow: "nouvelle fen\xEAtre",
 
             // -- config ---
-            "google-analytics": {
-                description: "Ces cookies servent à mesurer et analyser l’audience de notre site (volume de fréquentation, pages vues, temps moyen par visite, etc.) ; et ce afin d’en améliorer la performance. En acceptant ces cookies, vous contribuez à l’amélioration de notre site.",
-            },
             "google-tag-manager": {
                 description: "Ces cookies servent à mesurer et analyser l’audience de notre site (volume de fréquentation, pages vues, temps moyen par visite, etc.) ; et ce afin d’en améliorer la performance. En acceptant ces cookies, vous contribuez à l’amélioration de notre site.",
             },
@@ -66,21 +63,6 @@ Orejime.init({
         }
     },
     apps: [
-        {
-            name: "google-analytics",
-            title: "Google Analytics",
-            cookies: [
-                "_ga",
-                "_gat",
-                "_gid",
-                "__utma",
-                "__utmb",
-                "__utmc",
-                "__utmt",
-                "__utmz"
-            ],
-            purposes: ["analytics"]
-        },
         {
             name: "google-tag-manager",
             title: "Google Tag Manager",
