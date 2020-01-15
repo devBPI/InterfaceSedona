@@ -13,6 +13,7 @@ use GuzzleHttp\Exception\BadResponseException;
 use GuzzleHttp\Exception\ClientException;
 use GuzzleHttp\Exception\ConnectException;
 use GuzzleHttp\Exception\ServerException;
+use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\UriInterface;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
@@ -54,7 +55,7 @@ class CatalogClient
      * @param string|UriInterface $uri
      * @param array|null          $query
      *
-     * @return mixed
+     * @return ResponseInterface
      */
     public function get($uri, array $query = null)
     {

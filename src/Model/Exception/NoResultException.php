@@ -7,5 +7,5 @@ namespace App\Model\Exception;
  * Class NoResultException
  * @package App\Model\Exception
  */
-class NoResultException extends \DomainException
+class NoResultException extends BPIException
 {}

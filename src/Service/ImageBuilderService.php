@@ -3,9 +3,16 @@ declare(strict_types=1);
 
 namespace App\Service;
 
+use App\Model\Exception\ApiException;
+use App\Model\Exception\BPIException;
+use App\Model\Exception\ErrorAccessApiException;
+use App\Model\Exception\NoResultException;
+use App\Service\APIClient\CatalogClient;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\Finder\Finder;
 use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 /**
  * Class ImageBuilderService
@@ -22,12 +29,14 @@ final class ImageBuilderService
 
     public const THUMBNAIL = 'vignette';
     public const COVER = 'couverture';
-    /**
-     * @var string
-     */
-    public $url;
+
     /** @var string */
     private $imageDir;
+
+    /**
+     * @var CatalogClient
+     */
+    private $catalogClient;
 
     /**
      * ImageBuilderService constructor.
@@ -35,10 +44,10 @@ final class ImageBuilderService
      * @param string $imageDir
      * @param        $url
      */
-    public function __construct(string $imageDir, string $url)
+    public function __construct(string $imageDir, CatalogClient $catalogClient)
     {
         $this->imageDir = $imageDir;
-        $this->url = $url;
+        $this->catalogClient = $catalogClient;
     }
 
     /**
@@ -49,29 +58,27 @@ final class ImageBuilderService
      */
     public function buildImage(string $content, string $type = 'livre'): string
     {
-        $localFilePath = self::PARENT_FOLDER.DIRECTORY_SEPARATOR.$this->slugify($type).DIRECTORY_SEPARATOR.$content;
+        // http://catalogue.bpi.docker/imported_images/livre-numerique/couverture/9782821854031.jpg
+        $localFilePath = $this->imageDir.self::PARENT_FOLDER.DIRECTORY_SEPARATOR.$this->slugify($type).DIRECTORY_SEPARATOR.$content.".jpg";
 
         $fs = new Filesystem();
-        if (!$fs->exists($this->imageDir.$localFilePath)) {
-            $filename = $content;
-            $fs->mkdir(str_replace($filename, '', $this->imageDir.$localFilePath));
-
+        if (!$fs->exists($localFilePath)) {
             try {
-                $pictureURLparts = [$this->url, self::BPI_FOLDER_NAME_ELECTRE, $content];
-                $content = file_get_contents(implode(DIRECTORY_SEPARATOR, $pictureURLparts));
-
-                if ($content === false) {
-                    $fs->copy($this->imageDir.$this->buildGenericPicture($type),$this->imageDir.$localFilePath );
-                } else {
-                    $this->saveLocalImage($content, $localFilePath);
+                $response = $this->catalogClient->get(self::BPI_FOLDER_NAME_ELECTRE.DIRECTORY_SEPARATOR.$content);
+                if ($response->getStatusCode() === 200) {
+                    $content = $response->getBody()->getContents();
+                    if (!empty($content)) {
+                        $fs->dumpFile($localFilePath, $content);
+                    }
                 }
-            } catch (\ErrorException $e) {
-                $fs->copy($this->imageDir.$this->buildGenericPicture($type),$this->imageDir.$localFilePath );
-            }
-
+            } catch (BPIException|NotFoundHttpException|AccessDeniedException $e) {}
         }
 
-        return $this->imageDir.$localFilePath;
+        if (!$fs->exists($localFilePath)) {
+            $fs->copy($this->imageDir.$this->buildGenericPicture($type),$localFilePath );
+        }
+
+        return $localFilePath;
     }
 
     /**
@@ -82,18 +89,6 @@ final class ImageBuilderService
     static public function buildGenericPicture(string $type): string
     {
         return self::IMAGE_FOLDER.DIRECTORY_SEPARATOR.sprintf(self::DEFAULT_PICTURE, self::slugify($type));
-    }
-
-    /**
-     * Save file in local from content
-     *
-     * @param string $content
-     * @param string $localPath
-     */
-    private function saveLocalImage(string $content, string $localPath): void
-    {
-        $fs = new Filesystem();
-        $fs->dumpFile($this->imageDir.$localPath, $content);
     }
 
     /**

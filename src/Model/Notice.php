@@ -18,7 +18,7 @@ use JMS\Serializer\Annotation as JMS;
  */
 class Notice extends AbstractImage implements NoticeInterface, RecordInterface
 {
-    use OriginTrait, TraitSlugify, NoticeMappedTrait, NoticeTrait, ImageIsbnTrait, BreadcrumbTrait;
+    use OriginTrait, TraitSlugify, NoticeMappedTrait, NoticeTrait, BreadcrumbTrait;
 
     private const SEPARATOR = ' ; ';
     const BREAD_CRUMB_NAME = 'bibliographic';
@@ -1273,6 +1273,22 @@ class Notice extends AbstractImage implements NoticeInterface, RecordInterface
         }
 
         return null;
+    }
+
+    /**
+     * @return string
+     */
+    public function getIsbnCover()
+    {
+        return ImageBuilderService::COVER.DIRECTORY_SEPARATOR.$this->getIsbn();
+    }
+
+    /**
+     * @return string
+     */
+    public function getIsbnThumbnail()
+    {
+        return ImageBuilderService::THUMBNAIL.DIRECTORY_SEPARATOR.$this->getIsbn();
     }
 
     /**

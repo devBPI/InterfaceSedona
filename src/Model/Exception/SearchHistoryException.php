@@ -7,5 +7,5 @@ namespace App\Model\Exception;
  * Class SearchHistoryException
  * @package App\Model\Exception
  */
-class SearchHistoryException extends \DomainException
+class SearchHistoryException extends BPIException
 {}

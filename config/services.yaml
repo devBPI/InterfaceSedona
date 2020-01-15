@@ -40,9 +40,8 @@ services:
     - '@eight_points_guzzle.client.bpi_catalog'
 
   App\Service\ImageBuilderService:
-    arguments: ['%kernel.project_dir%/public/', 'http://%env(CATALOG_API_HOST)%' ]
-  App\Service\CleanerFiles:
-    arguments: ['%kernel.project_dir%/public/']
+    arguments:
+      - '%kernel.project_dir%/public/'
   App\Service\HistoryService:
     arguments: ['@doctrine.orm.entity_manager']
   App\Service\SelectionListService:
