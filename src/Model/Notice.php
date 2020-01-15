@@ -27,6 +27,12 @@ class Notice extends AbstractImage implements NoticeInterface, RecordInterface
     const NOTICE_CONTENT_REVUE_TYPE = ['Revue, journal', 'Article', 'Revue numérique'];
     const MUSIC = 'Musique';
     const VIDEO = 'Vidéo';
+
+    const TYPE_LIVRE = 'Livre';
+    const TYPE_LIVRE_NUMERIQUE = 'Livre numérique';
+    const TYPE_BD = 'BD';
+    const NOTICE_CONTENT_BOOK_TYPE = [self::TYPE_LIVRE, self::TYPE_LIVRE_NUMERIQUE, self::TYPE_BD];
+
     const ON_LIGNE   = 'en ligne';
     const ON_SHELF   = 'en rayon';
     const ALL        = 'all';

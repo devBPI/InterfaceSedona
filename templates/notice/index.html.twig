@@ -15,6 +15,23 @@
 	{{  baseTitle }}
 {% endblock %}
 
+{% block headattr %}
+	{% if notice.type in constant('App\\Model\\Notice::NOTICE_CONTENT_BOOK_TYPE') or notice.type in constant('App\\Model\\Notice::NOTICE_CONTENT_REVUE_TYPE')  %}
+		prefix="og: http://ogp.me/ns# book: http://ogp.me/ns/book#"
+	{% endif %}
+{% endblock %}
+
+{% block share %}
+	<meta property="og:image" content="{{ absolute_url(notice.image is not empty ? path('binary_image', {'content':notice.image, 'type': notice.type | slugify}) : asset(notice.defaultImage)) }}">
+	{% if notice.type in constant('App\\Model\\Notice::NOTICE_CONTENT_BOOK_TYPE') or notice.type in constant('App\\Model\\Notice::NOTICE_CONTENT_REVUE_TYPE')  %}
+		{% if notice.resume|length >0 %}<meta property="og:description" content="{{ notice.resume|first }}" />{% endif %}
+		<meta property="og:type" content="book">
+		{% for isbn in notice.isbns %}<meta property="book:isbn" content="{{ isbn }}">{% endfor %}
+		{% for author in notice.frontAuthor %}<meta property="book:author" content="{{ author }}">{% endfor %}
+		{#<meta property="book:release_date" content="2011-10-24">#}
+	{% endif %}
+{% endblock %}
+
 {% block body %}
 	<div class="d-none">
 		{% include 'search/blocs-results/docs-detail.html.twig' with {'notice': notice, 'type': 'Notice', 'index': 0, 'mode': 'detail'} %}

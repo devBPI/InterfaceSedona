@@ -12,6 +12,15 @@
 	{{  baseTitle }}
 {% endblock %}
 
+
+{% block headattr %} prefix="og: http://ogp.me/ns# profile: http://ogp.me/ns/profile#"{% endblock %}
+
+{% block share %}
+    <meta property="og:image" content="{{ absolute_url(asset('images/types/type-' ~ notice.type|slugify ~ '.png')) }}">
+    <meta property="og:type" content="profile">
+    <meta property="profile:username" content="{{ notice.title }}">
+{% endblock %}
+
 {% block body %}
     <div class="d-none">
         {% include 'search/blocs-results/preview-authority.html.twig' with {'author': notice, 'level': 2, 'index': 0, 'mode': 'detail'} %}

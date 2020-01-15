@@ -1,6 +1,18 @@
 <!DOCTYPE html>
 <html lang="{{ app.request.locale }}">
-	<head>
+	<head {% spaceless %}{% block headattr %}{% endblock %}{% endspaceless %}>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="Content-Language" content="{{ app.request.locale }}" />
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>{% spaceless %}{% block title %}Titre{% endblock %}{% endspaceless %} | {{ 'global.site-title'|trans }}</title>
+		<meta property="og:title" content="{{ 'global.site-title'|trans }} - {{ block('title')|trim }}" />
+		<meta property="og:site_name" content="{{ 'global.site-title'|trans }}">
+		{% block share -%}
+		<meta property="og:type" content="website">
+		{%- endblock %}
+
+		<link rel="shortcut icon" href="/favicon.ico" />
 		<!-- Global site tag (gtag.js) - Google Analytics -->
 		<script async src="https://www.googletagmanager.com/gtag/js?id=UA-56533762-6"></script>
 		<script type="opt-in" data-name="google-tag-manager">
@@ -9,7 +21,7 @@
 			gtag('js', new Date());
 			gtag('config', 'UA-56533762-6');
 		</script>
-		
+
 		<!-- Google Tag Manager -->
 		<script type="opt-in" data-name="google-tag-manager">(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
 		new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -17,11 +29,6 @@
 		'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
 		})(window,document,'script','dataLayer','GTM-5JTHPTG');</script>
 		<!-- End Google Tag Manager -->
-
-		<meta charset="UTF-8">
-		<title>{% block title %}Titre{% endblock %} {{ 'global.site-title'|trans }}</title>
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<!-- Go to www.addthis.com/dashboard to customize your tools -->
 
         {% block stylesheets %}
 			{% if app.environment != 'test' %}
