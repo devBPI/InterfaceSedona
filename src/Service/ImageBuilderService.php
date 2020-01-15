@@ -58,7 +58,6 @@ final class ImageBuilderService
      */
     public function buildImage(string $content, string $type = 'livre'): string
     {
-        // http://catalogue.bpi.docker/imported_images/livre-numerique/couverture/9782821854031.jpg
         $localFilePath = $this->imageDir.self::PARENT_FOLDER.DIRECTORY_SEPARATOR.$this->slugify($type).DIRECTORY_SEPARATOR.$content.".jpg";
 
         $fs = new Filesystem();
