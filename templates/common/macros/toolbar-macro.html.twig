@@ -19,15 +19,9 @@
                     data-target='.{{ targetClass }}:checked'
                     {% if buttonClass is defined %}class="{{ buttonClass }}"{% endif %}
                 {% endif -%}
-            >
+            >{{ content }}</button>
         {% else %}
-            <p>
-        {% endif %}
-         {{ content }}
-        {% if active %}
-            </button>
-        {% else %}
-            </p>
+            <p>{{ content }}</p>
         {% endif %}
     </li>
 {% endmacro %}

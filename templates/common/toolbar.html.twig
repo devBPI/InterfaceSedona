@@ -7,7 +7,7 @@
 			<img src="{{ asset('images/icones/icone-coeur.svg') }}" alt="" class="icone-coeur" />
 			<span><span class="sr-only">{{ 'bloc.toolbar.add_to'|trans }} </span>{{ 'bloc.toolbar.my_selection'|trans }}</span>
 		{% endset %}
-		{{ action_attributes('list-add', (toolbar == 'App\\Entity\\UserSelectionDocument' ? null : toolbar), toolbar) }}
+		{{ action_attributes('list-add', content, (toolbar == 'App\\Entity\\UserSelectionDocument' ? null : toolbar)) }}
 
 		{% set content %}
 			<img src="{{ asset('images/icones/icone-fichier.svg') }}" alt="" class="icone-fichier" />
