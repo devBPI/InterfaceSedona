@@ -2,14 +2,13 @@
     {% if not first %}
         <label for="adv-search-condition-{{ index }}" class="sr-only">{{ 'modal.advanced-search.keyword.group-label'|trans }}</label>
         {% set operator_name = constant('App\\Model\\Search\\Criteria::ADVANCED_SEARCH_OPERATOR')~'['~index~']' %}
-        <select name="{{ operator_name }}" class="form-control"
-                id="adv-search-condition-{{ index }}">
+        <select name="{{ operator_name }}" class="form-control" id="adv-search-condition-{{ index }}">{% spaceless %}
             {% for operator in words_operators() %}
-                <option value="{{ operator }}"
-                        {% if current_operator is defined and current_operator == operator %}selected="selected"{% endif %}>
-                    {{ ('modal.advanced-search.keyword.group.'~operator)|trans }}</option>
+                <option value="{{ operator }}" {% if current_operator is defined and current_operator == operator %}selected="selected"{% endif %}>
+                    {{ ('modal.advanced-search.keyword.group.'~operator)|trans }}
+                </option>
             {% endfor %}
-        </select>
+        {% endspaceless %}</select>
     {% endif %}
 </div>
 <div class="col-9 search-keyword__input">
@@ -29,13 +28,13 @@
 <div class="col-12 col-sm-4 pr-sm-0">
     <label for="adv-search-choice-{{ index }}" class="sr-only">{{ 'modal.advanced-search.keyword.type-label'|trans }}</label>
     {% set select_name = constant('App\\Model\\Search\\Criteria::ADVANCED_SEARCH_LABEL')~'['~index~']['~constant('App\\Model\\Search\\Criteria::FIELD_LABEL')~']' %}
-    <select name="{{ select_name }}" class="form-control" id="adv-search-choice-{{ index }}">
+    <select name="{{ select_name }}" class="form-control" id="adv-search-choice-{{ index }}">{% spaceless %}
         {% for word in search_words() %}
-            <option value="{{ word }}"
-                    {% if current_type is defined and current_type == word %}selected="selected"{% endif %}>
-                {{ ('modal.advanced-search.keyword.type.'~word)|trans }}</option>
+            <option value="{{ word }}" {% if current_type is defined and current_type == word %}selected="selected"{% endif %}>
+                {{ ('modal.advanced-search.keyword.type.'~word)|trans }}
+            </option>
         {% endfor %}
-    </select>
+    {% endspaceless %}</select>
 </div>
 <div class="col-12 col-sm-1 text-right">
     {% if not first %}

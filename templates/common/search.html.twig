@@ -1,4 +1,3 @@
-
 <form method="get" role="search" id="form-search" action="{{ toggle_to_path_parcours('search', app.request.attributes.get(constant('App\\Model\\Search\\ObjSearch::PARAM_PARCOURS_NAME'))) }}">
     <div class="sr-only" id="autocompletion-infos">{{ 'bloc.search-zone.autocompletion-notice'|trans }}</div>
     <div class="search-banner" id="search-banner">
@@ -19,13 +18,13 @@
         <div class="form-group search-banner__select">
             <label for="search-words" class="sr-only">{{ 'bloc.search-zone.type-label'|trans }}</label>
             {% set select_name = constant('App\\Model\\Search\\Criteria::SIMPLE_SEARCH_TYPE') %}
-            <select name="{{ select_name }}" class="form-control" id="search-words" lang="fr">
+            <select name="{{ select_name }}" class="form-control" id="search-words" lang="fr">{% spaceless %}
                 {% for word in search_words() %}
-                    <option value="{{ word }}"
-                            {% if objSearch is defined and objSearch.simpleSearchType == word %}selected="selected"{% endif %}>
-                        {{ ('modal.advanced-search.keyword.type.'~word)|trans }}</option>
+                    <option value="{{ word }}" {% if objSearch is defined and objSearch.simpleSearchType == word %} selected="selected"{% endif %}>
+                        {{ ('modal.advanced-search.keyword.type.'~word)|trans }}
+                    </option>
                 {% endfor %}
-            </select>
+            {% endspaceless %}</select>
         </div>
         <button type="submit" class="search-banner__submit" name="action">
             <img src="{{ asset('images/icones/icone-loupe.svg') }}" alt="" class="icone-loupe"/>

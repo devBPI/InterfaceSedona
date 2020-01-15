@@ -29,8 +29,7 @@
         <ul class="list-information__sub-list" lang="fr">
             <li class="list-information__sub-item">
                 {% for element in notice.dates %}
-                    {% if not loop.first %} - {%endif%}
-                    {{ element }}
+                    {% if not loop.first %} - {%endif%}{{ element }}
                 {% endfor %}
             </li>
         </ul>

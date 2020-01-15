@@ -3,16 +3,11 @@
 
 <div class="col-12 col-md">
     {% for title in notice.titles %}
-        <h1 class="n1 bibliographic-result__title" lang="fr">
-            {{ title }}
-        </h1>
+        <h1 class="n1 bibliographic-result__title" lang="fr">{{ title }}</h1>
     {% endfor %}
-
     {% if notice.titleForm %}
         {% for title in notice.titleForm %}
-            <h1 class="n1 bibliographic-result__title" lang="fr">
-                <i>{{ title }}</i>
-            </h1>
+            <h1 class="n1 bibliographic-result__title" lang="fr"><i>{{ title }}</i></h1>
         {% endfor %}
     {% endif %}
 </div>
@@ -41,10 +36,10 @@
             {% endif %}
 
             {% set label = 'bloc.autority-result-information.authors'|trans %}
-            {% if notice.type == "Musique"%}
+            {% if notice.type == constant('App\\Model\\Notice::MUSIC') %}
                 {% set label = 'bloc.autority-result-information.musique-author'|trans %}
             {% endif %}
-            {% if notice.type == "Vidéo"%}
+            {% if notice.type == constant('App\\Model\\Notice::VIDEO')%}
                 {% set label = 'bloc.autority-result-information.directors'|trans %}
             {% endif %}
             {{ notice_macros.list_link(notice.frontAuthor, label, constant('App\\WordsList::AUTHOR_WORD'), " ; ") }}
@@ -58,9 +53,7 @@
             <h2 class="n2 bibliographic-result__subtitle">{{ 'bloc.autority-result-information.tracks'|trans }}</h2>
             <div class="bibliographic-result__resume">
                 {% for content in notice.contents %}
-                    <p class="mb-0">
-                        {{ content }}
-                    </p>
+                    <p class="mb-0">{{ content }}</p>
                 {% endfor %}
             </div>
         </div>
@@ -71,9 +64,7 @@
         <div lang="fr">
             <h2 class="n2 bibliographic-result__subtitle">{{ 'bloc.autority-result-information.resume'|trans }}</h2>
             {% for resume in notice.resume %}
-                <p class="bibliographic-result__resume">
-                    {{ resume }}
-                </p>
+                <p class="bibliographic-result__resume">{{ resume }}</p>
             {% endfor %}
         </div>
     </div>
