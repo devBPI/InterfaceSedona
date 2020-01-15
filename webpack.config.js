@@ -23,6 +23,7 @@ Encore
     .addEntry('carousel', './assets/js/carousel.js')
     .addEntry('datatable', './assets/js/datatable.js')
     .addEntry('error_404', './assets/js/error404.js')
+    .addEntry('addthis_widget', './assets/js/addthis_widget.js')
 
     .addEntry('print-css', './assets/css/print.scss')
 

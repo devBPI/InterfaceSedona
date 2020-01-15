@@ -1,12 +1,25 @@
-{% from 'common/macros/toolbar-macro.html.twig' import add_list_link, export_link, print_link %}
+{% from 'common/macros/toolbar-macro.html.twig' import action_attributes %}
+{% if toolbar is not defined %}{% set toolbar = null %}{% endif %}
 
 <div class="toolbar" lang="fr">
 	<ul class="toolbar__list">
-		{{ add_list_link(toolbar|default(null)) }}
+		{% set content %}
+			<img src="{{ asset('images/icones/icone-coeur.svg') }}" alt="" class="icone-coeur" />
+			<span><span class="sr-only">{{ 'bloc.toolbar.add_to'|trans }} </span>{{ 'bloc.toolbar.my_selection'|trans }}</span>
+		{% endset %}
+		{{ action_attributes('list-add', (toolbar == 'App\\Entity\\UserSelectionDocument' ? null : toolbar), toolbar) }}
 
-		{{ export_link(toolbar|default(null)) }}
+		{% set content %}
+			<img src="{{ asset('images/icones/icone-fichier.svg') }}" alt="" class="icone-fichier" />
+			<span>{{ 'bloc.toolbar.export'|trans }}</span>
+		{% endset %}
+		{{ action_attributes('export', content, toolbar, 'js-print-action') }}
 
-		{{ print_link(toolbar|default(null)) }}
+		{% set content %}
+			<img src="{{ asset('images/icones/icone-imprimante.svg') }}" alt="" class="icone-imprimante"/>
+			<span>{{ 'bloc.toolbar.print'|trans }}</span>
+		{% endset %}
+		{{ action_attributes('print', content, toolbar, 'js-print-action') }}
 
 		<li class="toolbar__item">
 			<button data-target="#modal-share" data-toggle="modal" data-reload="true">

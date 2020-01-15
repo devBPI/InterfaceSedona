@@ -1,7 +1,7 @@
 var Orejime = require('orejime');
 const googleToken = 'UA-56533762-6';
 
-Orejime.init({
+var obj = Orejime.init({
     appElement: "#contenu-site",
     privacyPolicy: "http://www.bpi.fr/home/gestion/informations-sur-les-cookies.html",
     lang:"fr",
@@ -108,4 +108,10 @@ Orejime.init({
             required: true
         }
     ]
+});
+
+$('#modal-share').on('shown.bs.modal', function(e) {
+    if (obj.internals.manager.getConsent('add-this')) {
+        $(document.body).append('<script type="text/javascript" src="/build/addthis_widget.js#pubid=ra-5d8e40891e23b4a0"></script>');
+    }
 });

@@ -23,9 +23,7 @@
         {% else %}
             <p>
         {% endif %}
-
-            {{ content }}
-
+         {{ content }}
         {% if active %}
             </button>
         {% else %}
@@ -34,40 +32,3 @@
     </li>
 {% endmacro %}
 
-
-{% macro add_list_link(toolbar) %}
-    {% from 'common/macros/toolbar-macro.html.twig' import action_attributes %}
-
-    {% set content %}
-        <img src="{{ asset('images/icones/icone-coeur.svg') }}" alt="" class="icone-coeur" />
-        <span><span class="sr-only">{{ 'bloc.toolbar.add_to'|trans }} </span>{{ 'bloc.toolbar.my_selection'|trans }}</span>
-    {% endset %}
-
-    {% if toolbar == 'App\\Entity\\UserSelectionDocument' %}
-        {% set toolbar = null %}
-    {% endif %}
-
-    {{ action_attributes('list-add', content, toolbar) }}
-{% endmacro %}
-
-{% macro export_link(toolbar) %}
-    {% from 'common/macros/toolbar-macro.html.twig' import action_attributes %}
-
-    {% set content %}
-        <img src="{{ asset('images/icones/icone-fichier.svg') }}" alt="" class="icone-fichier" />
-        <span>{{ 'bloc.toolbar.export'|trans }}</span>
-    {% endset %}
-
-    {{ action_attributes('export', content, toolbar, 'js-print-action') }}
-{% endmacro %}
-
-{% macro print_link(toolbar) %}
-    {% from 'common/macros/toolbar-macro.html.twig' import action_attributes %}
-
-    {% set content %}
-        <img src="{{ asset('images/icones/icone-imprimante.svg') }}" alt="" class="icone-imprimante"/>
-        <span>{{ 'bloc.toolbar.print'|trans }}</span>
-    {% endset %}
-
-    {{ action_attributes('print', content, toolbar, 'js-print-action') }}
-{% endmacro %}
