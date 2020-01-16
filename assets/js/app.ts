@@ -14,7 +14,7 @@ require('jquery');
 require('bootstrap');
 require('icheck');
 require('./data-toggle.js');
-require('./orejime.js');
+require('./orejime-and-addthis.js');
 
 import './polyfill-ie';
 

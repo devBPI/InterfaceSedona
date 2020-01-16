@@ -1,7 +1,9 @@
 var Orejime = require('orejime');
 const googleToken = 'UA-56533762-6';
 
-var obj = Orejime.init({
+// ----------- Orejime ------------------------------------------------------------------------------------------------
+
+var orejimeInstance = Orejime.init({
     appElement: "#contenu-site",
     privacyPolicy: "http://www.bpi.fr/home/gestion/informations-sur-les-cookies.html",
     lang:"fr",
@@ -110,14 +112,31 @@ var obj = Orejime.init({
     ]
 });
 
-$('#modal-share').on('shown.bs.modal', function(e) {
-    if (obj.internals.manager.getConsent('add-this')) {
-        var addthis = require('addthis-snippet');
-        // Config, voir > https://www.addthis.com/academy/the-addthis_config-variable/
-        addthis({
-            pubid: 'ra-5d8e40891e23b4a0',
-            // data_ga_property: googleToken,
-            // data_ga_social: true
-        });
-    }
-});
+// ----------- Add-This ------------------------------------------------------------------------------------------------
+var addthisInit = false,
+    originalContent = null;
+$('#modal-share')
+    .on('shown.bs.modal', function(e) {
+        if (addthisInit === false && orejimeInstance.internals.manager.getConsent('add-this')) {
+            addthisInit = true;
+            var addthis = require('addthis-snippet');
+            // Config, voir > https://www.addthis.com/academy/the-addthis_config-variable/
+            addthis({
+                pubid: 'ra-5d8e40891e23b4a0',
+                // data_ga_property: googleToken,
+                // data_ga_social: true
+            });
+        }
+        if (originalContent === null) {
+            var $modal = $(this);
+            originalContent = $modal.find(".modal-form").html();
+        }
+    })
+    .on('hidden.bs.modal', function(e) {
+        var $modal = $(this);
+        $modal
+            .removeData('bs.modal')
+            .find('.modal-form')
+            .html(originalContent);
+    })
+;
