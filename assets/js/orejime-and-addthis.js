@@ -1,5 +1,6 @@
 var Orejime = require('orejime');
-const googleToken = 'UA-56533762-6';
+const gaToken = 'UA-56533762-6';
+const gtmToken = 'GTM-5JTHPTG';
 
 // ----------- Orejime ------------------------------------------------------------------------------------------------
 
@@ -48,6 +49,9 @@ var orejimeInstance = Orejime.init({
             newWindow: "nouvelle fen\xEAtre",
 
             // -- config ---
+            "google-analytics": {
+                description: "Ces cookies servent à mesurer et analyser l’audience de notre site (volume de fréquentation, pages vues, temps moyen par visite, etc.) ; et ce afin d’en améliorer la performance. En acceptant ces cookies, vous contribuez à l’amélioration de notre site.",
+            },
             "google-tag-manager": {
                 description: "Ces cookies servent à mesurer et analyser l’audience de notre site (volume de fréquentation, pages vues, temps moyen par visite, etc.) ; et ce afin d’en améliorer la performance. En acceptant ces cookies, vous contribuez à l’amélioration de notre site.",
             },
@@ -66,6 +70,37 @@ var orejimeInstance = Orejime.init({
     },
     apps: [
         {
+            name: "google-analytics",
+            title: "Google Analytics",
+            cookies: [
+                "UIDR",
+                "uid",
+                "UID",
+                "rv",
+                "rrs",
+                "rds",
+                "ipinfo",
+                "id",
+                "FLC",
+                "fc",
+                "exchange_uid",
+                "clid",
+                "acs",
+                "_drt_",
+                "__utmz",
+                "__utmt",
+                "__utmc",
+                "__utmb",
+                "__utma",
+                "__gads",
+                "_ga",
+                "_gat",
+                "_gat_" + gaToken,
+                "_gid"
+            ],
+            purposes: ["analytics"]
+        },
+        {
             name: "google-tag-manager",
             title: "Google Tag Manager",
             cookies: [
@@ -77,8 +112,8 @@ var orejimeInstance = Orejime.init({
                 "__utmc",
                 "__utmt",
                 "__utmz",
-                "_gat_gtag_" + googleToken,
-                "_gat_" + googleToken
+                "_gat_gtag_" + gtmToken,
+                "_gat_" + gtmToken
             ],
             purposes: ["analytics"]
         },
