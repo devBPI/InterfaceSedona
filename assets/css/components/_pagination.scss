@@ -64,6 +64,7 @@
 			&__input {
 				max-width: rem(90);
 			}
+
 		}	
 	}
 
@@ -77,6 +78,20 @@
 
 		.page-link {
 			margin-left: 0;
+
+			&:hover {
+				text-decoration: none;
+				color: $black;
+			}
+
+			&.link--icone,
+			&.link--icone-end {
+
+				&:hover {
+					text-decoration: underline;
+					color: $red;
+				}
+			}
 		}
 	}
 }
