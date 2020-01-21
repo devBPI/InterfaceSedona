@@ -84,7 +84,7 @@
             {% endfor%}
             {% if notice.originalUrl is not empty %}
                 <li class="list-information__sub-item">
-                    <a href="{{ notice.originalUrl }}">{{ notice.originalUrl }}</a>
+                    <a href="{{ notice.originalUrl }}" target="_blank">{{ notice.originalUrl }}<span class="sr-only"> - {{ 'global.new-windows'|trans }}</span></a>
                 </li>
             {% endif %}
         </ul>
