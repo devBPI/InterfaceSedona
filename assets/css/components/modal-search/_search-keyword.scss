@@ -23,6 +23,7 @@
 		border: $border-thin;
 		padding: 5px;
 		width: 100%;
+		margin-left: 0;
 
 		@include media-breakpoint-down(sm) {
 			transform: translateY(99%);
