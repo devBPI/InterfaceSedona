@@ -19,10 +19,10 @@ header:
           name: Misiones y organización
           link: https://www.bpi.fr/la-biblioteca/misiones-y-organizacion
           children:
-            Rapports d'activité: https://www.bpi.fr/la-biblioteca/misiones-y-organizacion/informes-de-actividad
             Organigramme: https://www.bpi.fr/la-biblioteca/misiones-y-organizacion/organigrama
             La bibliothèque en rénovation: https://www.bpi.fr/la-biblioteca/misiones-y-organizacion/projectos
             Chartes: https://www.bpi.fr/la-biblioteca/misiones-y-organizacion/cartas
+            Rapports d'activité: https://www.bpi.fr/la-biblioteca/misiones-y-organizacion/informes-de-actividad
 
         -
           name: Colecciones
@@ -41,7 +41,7 @@ header:
           name: Ofertas culturales y mediaciones
           link: https://www.bpi.fr/la-biblioteca/ofertas-culturales-y-mediaciones
           children:
-            Eventosculturales: https://www.bpi.fr/la-biblioteca/ofertas-culturales-y-mediaciones/eventos-culturales
+            Eventos culturales: https://www.bpi.fr/la-biblioteca/ofertas-culturales-y-mediaciones/eventos-culturales
             Mediaciones: https://www.bpi.fr/la-biblioteca/ofertas-culturales-y-mediaciones/mediaciones
             Ofertas a distancia: https://www.bpi.fr/la-biblioteca/ofertas-a-distancia
         -
