@@ -68,7 +68,7 @@ header:
           link: https://www.bpi.fr/la-biblioteca/historia-de-la-bpi
 
   Informaciones prácticas:
-    link: https://www.bpi.fr/informaciones-practicaslist
+    link: https://www.bpi.fr/informaciones-practicas
     sronly: Accéder aux informations pratiques
     list:
       id: ul-infos
@@ -96,7 +96,7 @@ header:
           Renseignements et orientation: https://www.bpi.fr/es/sites/SiteInstitutionnel/home/informations-pratiques/les-services/renseignements-et-orientation.html
           Internet y el wifi: https://www.bpi.fr/informaciones-practicas/los-servicios/internet-y-el-wifi
           El otro internet: https://www.bpi.fr/informaciones-practicas/los-servicios/el-otro-internet
-          Los otros servicios: https://www.bpi.fr/informaciones-practicas/los-servicios/el-otro-internet
+          Los otros servicios: https://www.bpi.fr/informaciones-practicas/los-servicios/los-otros-servicios
       -
         name: Las ofertas por tipo de público
         link: https://www.bpi.fr/informaciones-practicas/las-ofertas-por-tipo-de-publico
@@ -142,7 +142,7 @@ header:
           name: Communiqués et dossiers de presse
           link: https://www.bpi.fr/es/sites/SiteInstitutionnel/home/presse--partenariats/communiques-et-dossiers-de-press.html
           children:
-            Archives des communiqués: https://www.bpi.fr/es/sites/SiteInstitutionnel/home/presse--partenariats/communiques-et-dossiers-de-press.html
+            Archives des communiqués: https://www.bpi.fr/es/sites/SiteInstitutionnel/home/presse--partenariats/communiques-et-dossiers-de-press/archives-des-communiques.html
         -
           name: Tournages et prises de vues
           link: https://www.bpi.fr/es/sites/SiteInstitutionnel/home/presse--partenariats/tournages-et-prises-de-vues.html
