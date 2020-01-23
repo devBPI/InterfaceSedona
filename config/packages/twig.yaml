@@ -5,3 +5,4 @@ twig:
     form_themes: ['form.html.twig']
     globals:
         IP_SEDONA: 77.158.146.242
+        contact_email: '%env(REPLY_TO_EMAIL)%'

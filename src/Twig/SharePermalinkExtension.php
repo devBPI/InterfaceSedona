@@ -42,7 +42,7 @@ class SharePermalinkExtension extends AbstractExtension
     public function getCurrentPermalink(): ?string
     {
         $request = $this->requestStack->getCurrentRequest();
-        if (array_key_exists('permalink', $request->get('_route_params'))) {
+        if (is_array($request->get('_route_params')) && array_key_exists('permalink', $request->get('_route_params'))) {
             return strtok($request->getUri(), '?');
         }
 

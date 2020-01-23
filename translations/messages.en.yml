@@ -571,8 +571,9 @@ bloc:
 error:
   page_not_available: 'Cette page n’est pas accessible.'
   page_not_found: 404 - Page introuvable
-  link-go-back: Revenir en arrière
-  link-home: Retourner à la page d'accueil
+  link-go-back: Pour <a href="%link%">revenir en arrière</a>
+  link-home: Pour retourner à la <a href="%link%">page d’accueil du catalogue de la Bpi</a>
+  contact-admin: Contacter <a href="mailto:%email%">l’administrateur du catalogue de la Bpi</a>
   title-form: Formulaire de contact
   page_boken: Oops! Une erreur est survenue
   page_broken_message: |
