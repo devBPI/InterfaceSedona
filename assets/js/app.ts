@@ -64,13 +64,13 @@ $('input').iCheck({
 $(document)
     .on('focus', '.nav-link', function() {
         if ($(window).width() > 768) {
-            $('.dropdown-link .nav-link, .dropdown .nav-link').removeClass('active');
+            $('.dropdown-link .nav-link').removeClass('active');
             $('.dropdown-menu').removeClass('show');
         }
     })
     .on('focus', '.dropdown-link .nav-link, .nav-pills .dropdown .dropdown-toggle', function() {
         if ($(window).width() > 768) {
-            $('.dropdown-link .nav-link, .dropdown .nav-link').removeClass('active');
+            $('.dropdown-link .nav-link').removeClass('active');
             $('.dropdown-menu').removeClass('show');
             $(this).addClass('active');
             $(this).siblings('.dropdown-menu').addClass('show');
@@ -78,15 +78,15 @@ $(document)
     })
     .on('focus', '.dropdown-item__sub, .dropdown-item__title', function() {
         if ($(window).width() > 768) {
-            $('.dropdown-link .nav-link, .dropdown .nav-link').removeClass('active');
+            $('.dropdown-link .nav-link').removeClass('active');
             $('.dropdown-menu').removeClass('show');
             $(this).parents('.dropdown-menu').siblings('.nav-link').addClass('active');
             $(this).parents('.dropdown-menu').addClass('show');
         }
     })
-    .on('focusout', '.dropdown-menu [class^="col-"]:last-child .dropdown-item:last-child', function () {
+    .on('focusout', '.dropdown-menu [class^="col-"]:last-child .dropdown-item:last-child, .navbar--help .dropdown-menu .dropdown-item:last-child, .navbar--help', function () {
         if ($(window).width() > 768) {
-            $('.dropdown-link .nav-link, .dropdown .nav-link').removeClass('active');
+            $('.dropdown-link .nav-link').removeClass('active');
             $('.dropdown-menu').removeClass('show');
         }
     })

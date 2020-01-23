@@ -191,9 +191,9 @@
 				width: 100%;
 				padding: 30px $spacer 10px;
 				position: absolute;
-				margin-left: -10000px;
+				margin-left: -1000000px;
 				margin-top: 1px;
-				z-index: 9999;
+				z-index: $zindex-dropdown;
 				left: 0;
 			}
 
@@ -279,6 +279,101 @@
 				&:focus {
 					color: $red;
 				}
+			}
+		}
+	}
+
+
+	// Gestion navigation page d'aide
+	&--help {
+		margin-bottom: $spacer;
+
+		.nav {
+
+			&-item {
+				border: 0;
+				position: relative;
+				min-width: 100%;
+				flex: 0 0 100%;
+	
+				@include media-breakpoint-up(sm) {
+					min-width: auto;
+					flex: 1;
+				}
+
+				&:first-child {
+
+					.nav-link {
+
+						@include media-breakpoint-up(sm) {
+							border-left: $border-thin;
+						}
+					}
+				}
+
+				&:last-child {
+
+					.nav-link {
+						border-bottom: $border-thin;
+
+						@include media-breakpoint-up(sm) {
+							border-right: $border-thin;
+						}
+
+						&.active {
+
+							@include media-breakpoint-up(sm) {
+								border-bottom: 0;
+							}
+						}
+					}
+				}
+			}
+
+			&-link {
+				border: $border-thin;
+				border-bottom: 0;
+				font-size: 1rem;
+				padding: .5rem 1rem;
+				font-weight: $font-regular;
+
+				@include media-breakpoint-up(sm) {
+					border-bottom: $border-thin;
+					border-left: 0;
+				}
+
+				&:focus {
+					outline-offset: -3px;
+				}
+			}
+		}
+
+		.dropdown {
+
+			&-toggle {
+
+				&:after {
+					display: none;
+
+					@include media-breakpoint-up(md) {
+						display: inline-block;
+					}
+				}
+			}
+
+			&-item {
+				font-size: 1rem;
+				padding: 5px $spacer;
+				font-weight: $font-regular;
+
+				&:before {
+					display: none;
+				}
+			}
+
+			&-menu {
+				padding: $spacer 0 0;
+				margin-top: -1px;
 			}
 		}
 	}
