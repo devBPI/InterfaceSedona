@@ -2,9 +2,9 @@
 	<div class="collapse navbar-collapse" id="navbar-principale-content">
 		<ul class="navbar-nav nav">
             {% for label, nav in header_menu() %}
-				<li class="nav-item {% if nav.list is defined %}dropdown-link{% endif %} {% if nav.active is defined %}active{% endif %}">
+				<li class="nav-item{% if nav.list is defined %} dropdown-link{% endif %}{% if nav.active is defined %} active{% endif %}">
                     {% if nav.active is defined %}<span class="sr-only"> - page active</span>{% endif %}
-					<a href="{{ nav.link }}" class="nav-link {% if nav.list is defined %}dropdown-toggle{% endif %}">{{ label }}</a>
+					<a href="{{ nav.link }}" class="nav-link{% if nav.list is defined %} dropdown-toggle{% endif %}">{{ label }}</a>
                     {% if nav.list is defined %}
 						<span class="sr-only">{{ nav.sronly }}</span>
 						<button class="dropdown-toggle dropdown-toggle--responsive dropdown-toggle--close" data-toggle="dropdown" aria-controls="{{ nav.list.id }}" aria-expanded="false">
