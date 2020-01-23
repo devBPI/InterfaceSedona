@@ -11,9 +11,8 @@
 							<span class="sr-only js-label-aria">Ouvrir</span><span class="sr-only"> le sous-menu de la rubrique {{ label }}</span>
 						</button>
 
-                        {% for listId, list in nav.list %}
-                            {% include "header/navbar-principal-dropdown.html.twig" %}
-                        {% endfor %}
+
+						{% include "header/navbar-principal-dropdown.html.twig" with {'list': nav.list} %}
                     {% endif %}
 				</li>
             {% endfor %}
