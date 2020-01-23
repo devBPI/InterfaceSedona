@@ -1,39 +1,39 @@
-<div lang="fr">
-	<ul class="nav nav-pills nav-fill">
-		<li class="nav-item dropdown">
-			<a class="nav-link dropdown-toggle" href="{{ path('help_search') }}" aria-haspopup="listbox" aria-expanded="false">La recherche</a>
-			<div class="dropdown-menu" role="listbox">
-				<a href="{{ path('help_search') }}#section-01-01" class="dropdown-item" role="option">Recherche simple</a>
-				<a href="{{ path('help_search') }}#section-01-02" class="dropdown-item" role="option">Recherche avancée</a>
-				<a href="{{ path('help_search') }}#section-01-03" class="dropdown-item" role="option">Parcours de recherche</a>
+<div lang="fr" class="navbar navbar-expand navbar--help">
+	<ul class="navbar-nav nav">
+		<li class="nav-item dropdown-link">
+			<a class="nav-link dropdown-toggle" href="{{ path('help_search') }}" aria-expanded="false">La recherche</a>
+			<div class="dropdown-menu">
+				<a href="{{ path('help_search') }}#section-01-01" class="dropdown-item dropdown-item__title">Recherche simple</a>
+				<a href="{{ path('help_search') }}#section-01-02" class="dropdown-item dropdown-item__title">Recherche avancée</a>
+				<a href="{{ path('help_search') }}#section-01-03" class="dropdown-item dropdown-item__title">Parcours de recherche</a>
 			</div>
 		</li>
-		<li class="nav-item dropdown">
-			<a class="nav-link dropdown-toggle" href="{{ path('help_result') }}" aria-haspopup="listbox" aria-expanded="false">Exploitation des résultats</a>
-			<div class="dropdown-menu" role="listbox">
-				<a href="{{ path('help_result') }}#section-02-01" class="dropdown-item" role="option">Liste de résultats</a>
-				<a href="{{ path('help_result') }}#section-02-02" class="dropdown-item" role="option">Affiner sa recherche</a>
-				<a href="{{ path('help_result') }}#section-02-03" class="dropdown-item" role="option">Notice détaillée</a>
-				<a href="{{ path('help_result') }}#section-02-04" class="dropdown-item" role="option">Notice d'autorité</a>
-				<a href="{{ path('help_result') }}#section-02-05" class="dropdown-item" role="option">Relancer la recherche dans d'autre catalogues</a>
+		<li class="nav-item dropdown-link">
+			<a class="nav-link dropdown-toggle" href="{{ path('help_result') }}" aria-expanded="false">Exploitation des résultats</a>
+			<div class="dropdown-menu">
+				<a href="{{ path('help_result') }}#section-02-01" class="dropdown-item dropdown-item__title">Liste de résultats</a>
+				<a href="{{ path('help_result') }}#section-02-02" class="dropdown-item dropdown-item__title">Affiner sa recherche</a>
+				<a href="{{ path('help_result') }}#section-02-03" class="dropdown-item dropdown-item__title">Notice détaillée</a>
+				<a href="{{ path('help_result') }}#section-02-04" class="dropdown-item dropdown-item__title">Notice d'autorité</a>
+				<a href="{{ path('help_result') }}#section-02-05" class="dropdown-item dropdown-item__title">Relancer la recherche dans d'autre catalogues</a>
 			</div>
 		</li>
-		<li class="nav-item dropdown">
-			<a class="nav-link dropdown-toggle" href="{{ path('help_service') }}" aria-haspopup="listbox" aria-expanded="false">Services</a>
-			<div class="dropdown-menu" role="listbox">
-				<a href="{{ path('help_service') }}#section-03-01" class="dropdown-item" role="option">Alerte de mise en rayon</a>
-				<a href="{{ path('help_service') }}#section-03-02" class="dropdown-item" role="option">Impression et export</a>
-				<a href="{{ path('help_service') }}#section-03-03" class="dropdown-item" role="option">Suggestion d'achat</a>
-				<a href="{{ path('help_service') }}#section-03-04" class="dropdown-item" role="option">Historique de recherche</a>
-				<a href="{{ path('help_service') }}#section-03-05" class="dropdown-item" role="option">Ma sélection</a>
-				<a href="{{ path('help_service') }}#section-03-06" class="dropdown-item" role="option">Signaler une erreur</a>
+		<li class="nav-item dropdown-link">
+			<a class="nav-link dropdown-toggle" href="{{ path('help_service') }}" aria-expanded="false">Services</a>
+			<div class="dropdown-menu">
+				<a href="{{ path('help_service') }}#section-03-01" class="dropdown-item dropdown-item__title">Alerte de mise en rayon</a>
+				<a href="{{ path('help_service') }}#section-03-02" class="dropdown-item dropdown-item__title">Impression et export</a>
+				<a href="{{ path('help_service') }}#section-03-03" class="dropdown-item dropdown-item__title">Suggestion d'achat</a>
+				<a href="{{ path('help_service') }}#section-03-04" class="dropdown-item dropdown-item__title">Historique de recherche</a>
+				<a href="{{ path('help_service') }}#section-03-05" class="dropdown-item dropdown-item__title">Ma sélection</a>
+				<a href="{{ path('help_service') }}#section-03-06" class="dropdown-item dropdown-item__title">Signaler une erreur</a>
 			</div>
 		</li>
-		<li class="nav-item dropdown">
-			<a class="nav-link dropdown-toggle" href="{{ path('help_account') }}" aria-haspopup="listbox" aria-expanded="false">Mon compte</a>
-			<div class="dropdown-menu" role="listbox">
-				<a href="{{ path('help_account') }}#section-04-01" class="dropdown-item" role="option">Mes listes</a>
-				<a href="{{ path('help_account') }}#section-04-02" class="dropdown-item" role="option">Mon historique</a>
+		<li class="nav-item dropdown-link">
+			<a class="nav-link dropdown-toggle" href="{{ path('help_account') }}" aria-expanded="false">Mon compte</a>
+			<div class="dropdown-menu">
+				<a href="{{ path('help_account') }}#section-04-01" class="dropdown-item dropdown-item__title">Mes listes</a>
+				<a href="{{ path('help_account') }}#section-04-02" class="dropdown-item dropdown-item__title">Mon historique</a>
 			</div>
 		</li>
 	</ul>
