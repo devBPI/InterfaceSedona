@@ -10,7 +10,7 @@ header:
     link: https://www.bpi.fr/agenda
 
   La Bibliothèque:
-    link: https://www.bpi.fr/la-biblioteca
+    link: https://www.bpi.fr/la-bibliotheque
     sronly: Accéder à la bibliothèque
     list:
       id: ul-bibliotheque
@@ -19,10 +19,10 @@ header:
           name: Missions et organisation
           link: https://www.bpi.fr/la-bibliotheque/missions-et-organisation
           children:
-            Rapports d'activité: https://www.bpi.fr/la-bibliotheque/missions-et-organisation/organigramme
             Organigramme: https://www.bpi.fr/la-bibliotheque/missions-et-organisation/projets
             La bibliothèque en rénovation: https://www.bpi.fr/la-bibliotheque/missions-et-organisation/chartes
             Chartes: https://www.bpi.fr/la-bibliotheque/missions-et-organisation/rapports-d-activite
+            Rapports d'activité: https://www.bpi.fr/la-bibliotheque/missions-et-organisation/organigramme
 
         -
           name: Collections
@@ -50,7 +50,7 @@ header:
           children:
             Programme de la Bpi: https://www.bpi.fr/a-bibliotheque/publications-et-supports-de-communication/programme-de-la-bpi
             'Lettres d''information': https:////www.bpi.fr/newsletters
-            Magazine Balises: https://www.bpi.fr/la-bibliotheque/publications-et-supports-de-communication/de-ligne-en-ligne
+            Magazine Balises: https://www.bpi.fr/sites/SiteInstitutionnel/home/la-bibliotheque/publications-et-supports-de-comm/magazine-balises.html
             Supports de communication: https://www.bpi.fr/la-bibliotheque/publications-et-supports-de-communication/supports-de-communication
             'Editions de la Bibliothèque publique d''information': https://www.bpi.fr/la-bibliotheque/publications-et-supports-de-communication/editions-de-la-bibliotheque
             Web TV / Web Radio: http://webtv.bpi.fr/
@@ -153,12 +153,10 @@ header:
           name: Visuels
           link: https://www.bpi.fr/espace-presse/visuels
           children:
-            Espaces de la bibliothèque: https://www.bpi.fr/es/sites/SiteInstitutionnel/home/presse--partenariats/visuels2/espaces-de-la-bibliotheque.html
-            'Plus vite, plus haut, plus fort : filmer le sport': https://www.bpi.fr/es/sites/SiteInstitutionnel/home/presse--partenariats/visuels2/plus-vite-plus-haut-plus-fort--f.html
-            'Sergueï Loznitsa : l''intégrale': https://www.bpi.fr/es/sites/SiteInstitutionnel/home/presse--partenariats/visuels2/serguei-loznitsa--lintegrale.html
+            Espaces de la bibliothèque: https://www.bpi.fr/sites/SiteInstitutionnel/home/presse--partenariats/visuels2/espaces-de-la-bibliotheque.html
         -
           name: Partenariats
-          link: https://www.bpi.fr/es/sites/SiteInstitutionnel/home/presse--partenariats/partenariats.html
+          link: https://www.bpi.fr/sites/SiteInstitutionnel/home/presse--partenariats/partenariats.html
 
 footer:
   La Bpi:

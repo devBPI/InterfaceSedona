@@ -19,7 +19,7 @@
 	transform: translateY(100%);
 	border: $border-default;
 	border-top: 0;
-	padding: $spacer;
+	padding: 10px;
 	position: absolute;
 	z-index: $zindex-dropdown;
 	margin-left: -2px;
@@ -37,12 +37,23 @@
 	}
 
 	&__item {
-		padding: 3px 0;
 
 		&-content {
+			display: block;
+			padding: 4px 7px;
 
 			&:hover {
 				cursor: pointer;
+			}
+
+			&:not([href]) {
+				color: inherit;
+				text-decoration: none;
+
+				&:hover {
+					color: $white;
+					background-color: #3875d7;
+				}
 			}
 		}
 	}

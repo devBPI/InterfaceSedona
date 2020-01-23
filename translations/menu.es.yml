@@ -19,10 +19,10 @@ header:
           name: Misiones y organización
           link: https://www.bpi.fr/la-biblioteca/misiones-y-organizacion
           children:
-            Rapports d'activité: https://www.bpi.fr/la-biblioteca/misiones-y-organizacion/informes-de-actividad
             Organigramme: https://www.bpi.fr/la-biblioteca/misiones-y-organizacion/organigrama
             La bibliothèque en rénovation: https://www.bpi.fr/la-biblioteca/misiones-y-organizacion/projectos
             Chartes: https://www.bpi.fr/la-biblioteca/misiones-y-organizacion/cartas
+            Rapports d'activité: https://www.bpi.fr/la-biblioteca/misiones-y-organizacion/informes-de-actividad
 
         -
           name: Colecciones
@@ -41,7 +41,7 @@ header:
           name: Ofertas culturales y mediaciones
           link: https://www.bpi.fr/la-biblioteca/ofertas-culturales-y-mediaciones
           children:
-            Eventosculturales: https://www.bpi.fr/la-biblioteca/ofertas-culturales-y-mediaciones/eventos-culturales
+            Eventos culturales: https://www.bpi.fr/la-biblioteca/ofertas-culturales-y-mediaciones/eventos-culturales
             Mediaciones: https://www.bpi.fr/la-biblioteca/ofertas-culturales-y-mediaciones/mediaciones
             Ofertas a distancia: https://www.bpi.fr/la-biblioteca/ofertas-a-distancia
         -
@@ -68,7 +68,7 @@ header:
           link: https://www.bpi.fr/la-biblioteca/historia-de-la-bpi
 
   Informaciones prácticas:
-    link: https://www.bpi.fr/informaciones-practicaslist
+    link: https://www.bpi.fr/informaciones-practicas
     sronly: Accéder aux informations pratiques
     list:
       id: ul-infos
@@ -96,7 +96,7 @@ header:
           Renseignements et orientation: https://www.bpi.fr/es/sites/SiteInstitutionnel/home/informations-pratiques/les-services/renseignements-et-orientation.html
           Internet y el wifi: https://www.bpi.fr/informaciones-practicas/los-servicios/internet-y-el-wifi
           El otro internet: https://www.bpi.fr/informaciones-practicas/los-servicios/el-otro-internet
-          Los otros servicios: https://www.bpi.fr/informaciones-practicas/los-servicios/el-otro-internet
+          Los otros servicios: https://www.bpi.fr/informaciones-practicas/los-servicios/los-otros-servicios
       -
         name: Las ofertas por tipo de público
         link: https://www.bpi.fr/informaciones-practicas/las-ofertas-por-tipo-de-publico
@@ -142,7 +142,7 @@ header:
           name: Communiqués et dossiers de presse
           link: https://www.bpi.fr/es/sites/SiteInstitutionnel/home/presse--partenariats/communiques-et-dossiers-de-press.html
           children:
-            Archives des communiqués: https://www.bpi.fr/es/sites/SiteInstitutionnel/home/presse--partenariats/communiques-et-dossiers-de-press.html
+            Archives des communiqués: https://www.bpi.fr/es/sites/SiteInstitutionnel/home/presse--partenariats/communiques-et-dossiers-de-press/archives-des-communiques.html
         -
           name: Tournages et prises de vues
           link: https://www.bpi.fr/es/sites/SiteInstitutionnel/home/presse--partenariats/tournages-et-prises-de-vues.html
@@ -154,8 +154,6 @@ header:
           link: https://www.bpi.fr/es/sites/SiteInstitutionnel/home/presse--partenariats/visuels2.html
           children:
             Espaces de la bibliothèque: https://www.bpi.fr/es/sites/SiteInstitutionnel/home/presse--partenariats/visuels2/espaces-de-la-bibliotheque.html
-            'Plus vite, plus haut, plus fort : filmer le sport': https://www.bpi.fr/es/sites/SiteInstitutionnel/home/presse--partenariats/visuels2/plus-vite-plus-haut-plus-fort--f.html
-            'Sergueï Loznitsa : l''intégrale': https://www.bpi.fr/es/sites/SiteInstitutionnel/home/presse--partenariats/visuels2/serguei-loznitsa--lintegrale.html
         -
           name: Partenariats
           link: https://www.bpi.fr/es/sites/SiteInstitutionnel/home/presse--partenariats/partenariats.html
