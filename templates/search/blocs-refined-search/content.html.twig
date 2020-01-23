@@ -1,24 +1,22 @@
 {% from 'search/blocs-advanced-search/macros.html.twig' import display_checkbox_list %}
 
 {% for facet in objSearch.results.facets.facets if facet.values|length > 0 %}
-    <div class="modal-body">
-        {% if facet.name == 'date_publishing' %}
-            {% include 'search/blocs-refined-search/date-content.html.twig' %}
-        {% else %}
-            {% set defaultFilterOpened = {
-                'type' :'',
-                'disponibilite' :'',
-                'creator' :''
-            } %}
-            {% set filterSelected = defaultFilterOpened|merge(objSearch.searchFilters) %}
+    {% if facet.name == 'date_publishing' %}
+        {% include 'search/blocs-refined-search/date-content.html.twig' %}
+    {% else %}
+        {% set defaultFilterOpened = {
+            'type' :'',
+            'disponibilite' :'',
+            'creator' :''
+        } %}
+        {% set filterSelected = defaultFilterOpened|merge(objSearch.searchFilters) %}
 
-            {{ display_checkbox_list(
-                'refine',
-                facet.label,
-                facet.name,
-                facet.values,
-                filterSelected
-            ) }}
-        {% endif %}
-    </div>
+        {{ display_checkbox_list(
+            'refine',
+            facet.label,
+            facet.name,
+            facet.values,
+            filterSelected
+        ) }}
+    {% endif %}
 {% endfor %}

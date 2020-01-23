@@ -76,11 +76,12 @@ class SearchFiltersExtension extends AbstractExtension
     }
 
     /**
+     * @param string $type
      * @return array
      */
-    public function getSearchWords(): array
+    public function getSearchWords(string $type=WordsList::SEARCH_TYPE_DEFAULT): array
     {
-        return WordsList::$words[$this->masterRequest->get('parcours', WordsList::THEME_DEFAULT)];
+        return WordsList::getWords($type, $this->masterRequest->get('parcours', WordsList::THEME_DEFAULT));
     }
 
     /**

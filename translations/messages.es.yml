@@ -211,6 +211,7 @@ modal:
         publicationDate: Date de publication
         isbnIssnNumcommercial: ISBN, ISSN...
         indiceCote: Indice / Cote
+        collection: Collection
       type-label: Chercher sur
       group:
         or: Ou
@@ -272,6 +273,7 @@ modal:
       date_publishing: Date de publication
       configuration_name: Base de recherche
       materialSupport: Description matérielle
+      collection: Collection
     clear-search: Effacer ma recherche
     submit: Rechercher
   refine-search:  #Modal 14 affiné la recheche

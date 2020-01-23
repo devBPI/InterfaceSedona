@@ -246,7 +246,7 @@ class Criteria
     public function getKeywords($first = true): array
     {
         $keywords = [];
-        foreach (WordsList::$words[WordsList::THEME_DEFAULT] as $field) {
+        foreach (WordsList::$words[WordsList::ALL] as $field) {
             if (!empty($this->$field)) {
                 if ($first) {
                     $keywords[] = [$field => $this->$field];
@@ -289,7 +289,7 @@ class Criteria
     public function getKeywordsTitles(bool $withFields = false): array
     {
         $keywords = [];
-        foreach (WordsList::$words[WordsList::THEME_DEFAULT] as $field) {
+        foreach (WordsList::$words[WordsList::ALL] as $field) {
             if (!empty($this->$field)) {
                 if ($withFields) {
                     $keywords[] = [$field => $this->$field];
@@ -321,7 +321,7 @@ class Criteria
             $historyTitle = $translator->trans('header.title.'.$this->getParcours()). ' ';
         }
 
-        foreach (WordsList::$words[WordsList::THEME_DEFAULT] as $field) {
+        foreach (WordsList::$words[WordsList::ALL] as $field) {
             if (!empty($this->$field)) {
                 $historyTitle .= $this->$field. ' ('.$translator->trans('modal.advanced-search.keyword.type.'.$field).')';
             }

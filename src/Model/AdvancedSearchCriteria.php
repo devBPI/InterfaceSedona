@@ -199,13 +199,17 @@ class AdvancedSearchCriteria
             'type',
             'material_support',
             'language',
-            'genre_musical',
-            'genre_film',
-            'genre_litteraire'
         ];
 
-        if ($parcours !== WordsList::THEME_AUTOFORMATION) {
+        if ($parcours === WordsList::THEME_CINEMA) {
+            $list[] = 'genre_film';
+        } elseif ($parcours === WordsList::THEME_AUTOFORMATION) {
+            $list[] = 'genre_film';
             $list[] = 'audience';
+        } elseif ($parcours !== WordsList::THEME_PRESS) {
+            $list[] = 'genre_musical';
+            $list[] = 'genre_film';
+            $list[] = 'genre_litteraire';
         }
 
         $list[] = 'secteur';

@@ -29,7 +29,7 @@
     <label for="adv-search-choice-{{ index }}" class="sr-only">{{ 'modal.advanced-search.keyword.type-label'|trans }}</label>
     {% set select_name = constant('App\\Model\\Search\\Criteria::ADVANCED_SEARCH_LABEL')~'['~index~']['~constant('App\\Model\\Search\\Criteria::FIELD_LABEL')~']' %}
     <select name="{{ select_name }}" class="form-control" id="adv-search-choice-{{ index }}">{% spaceless %}
-        {% for word in search_words() %}
+        {% for word in search_words('advanced') %}
             <option value="{{ word }}" {% if current_type is defined and current_type == word %}selected="selected"{% endif %}>
                 {{ ('modal.advanced-search.keyword.type.'~word)|trans }}
             </option>
