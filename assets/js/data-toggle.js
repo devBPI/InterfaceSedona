@@ -96,7 +96,7 @@ import {CollectionRow} from './collection-row.ts';
 
                     if (reload) {
                        $modal.find('input:radio, input:checkbox').iCheck('destroy');
-                        var $originalContent = $modal.find(".modal-content").html();
+                        var originalContent = $modal.find(".modal-content").html();
 
                         $modal.find('input:radio, input:checkbox').iCheck({
                             checkboxClass: 'check check--checkbox',
@@ -200,7 +200,7 @@ import {CollectionRow} from './collection-row.ts';
 
             if (reload) {
                 $modal.find('input:radio, input:checkbox').iCheck('destroy');
-                var $originalContent = $modal.find(".modal-content").html();
+                var originalContent = $modal.find(".modal-content").html();
 
                 $modal.find('input:radio, input:checkbox').iCheck({
                     checkboxClass: 'check check--checkbox',
