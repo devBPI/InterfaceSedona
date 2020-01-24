@@ -131,11 +131,14 @@ class UserSelectionDocument
     }
 
     /**
+     * @param string $locale
      * @return string
      */
-    public function getUrl(): string
+    public function getUrl(string $locale='fr'): string
     {
-        return $this->url;
+        $urlParts = explode('/', $this->url);
+        $urlParts[1] = $locale;
+        return implode('/', $urlParts);
     }
 
     /**

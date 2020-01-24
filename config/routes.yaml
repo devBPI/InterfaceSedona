@@ -24,7 +24,7 @@ fos_js_routing:
   resource: "@FOSJsRoutingBundle/Resources/config/routing/routing.xml"
 
 app_logout:
-  path: /logout
+  path: /{_locale}/logout
   methods: GET
 
 # config/routes/dev/twig.yaml
