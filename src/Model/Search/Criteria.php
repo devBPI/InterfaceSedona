@@ -366,25 +366,33 @@ class Criteria
      */
     public function getPublicationDate(): ?string
     {
-        $date = $this->publicationDate;
-        if (!is_string($date)) {
-            $date = (string) $date;
-        }
-        return $date;
+        return $this->formatString($this->publicationDate);
     }
     /**
      * @return string
      */
     public function getPublicationDateStart(): ?string
     {
-        return $this->publicationDateStart;
+        return $this->formatString($this->publicationDateStart);
     }
     /**
      * @return string
      */
     public function getPublicationDateEnd(): ?string
     {
-        return $this->publicationDateEnd;
+        return $this->formatString($this->publicationDateEnd);
+    }
+
+    /**
+     * @param $value
+     * @return null|string
+     */
+    private function formatString($value): ?string
+    {
+        if (!is_string($value)) {
+            $value = (string) $value;
+        }
+        return $value;
     }
 
     /**
