@@ -83,7 +83,7 @@ export class SearchForm {
         }
 
         let partsId = targetId.split('-');
-        let nextId = partsId[0]+'-'+partsId[1]+'-'+(Number(partsId[2]) + 6);
+        let nextId = partsId[0]+'-'+partsId[1]+'-'+partsId[2]+'-'+(Number(partsId[3]) + 6);
         let nextDiv = document.querySelector(nextId) as HTMLDivElement;
 
         if (nextDiv == null) {
