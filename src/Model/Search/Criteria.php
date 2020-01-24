@@ -364,7 +364,11 @@ class Criteria
      */
     public function getPublicationDate(): ?string
     {
-        return $this->publicationDate;
+        $date = $this->publicationDate;
+        if (!is_string($date)) {
+            $date = (string) $date;
+        }
+        return $date;
     }
     /**
      * @return string
