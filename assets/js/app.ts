@@ -132,11 +132,13 @@ $(document)
         }
     })
     .on('focus', '.modal.show .close', function() {
-        let modalFooter = $('.modal.show .modal-footer :last-child');
 
         $(this).keydown(function(e) {
-            if(e.shiftKey && e.keyCode === 9) {
-                modalFooter.focus();
+            var keyCode = (window.event) ? e.which : e.keyCode;
+
+            if(e.shiftKey && keyCode === 9) {
+                e.preventDefault();
+                $('.modal.show .modal-footer *:last-child').focus();
             }
         })
     })
