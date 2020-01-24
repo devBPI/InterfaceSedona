@@ -735,6 +735,10 @@ class Notice extends AbstractImage implements NoticeInterface, RecordInterface
      */
     public function getFrontResume(): string
     {
+        if (in_array($this->type, self::NOTICE_CONTENU_TYPE, true)) {
+            return implode('. ', $this->contents);
+        }
+
         return implode('. ', $this->resume);
     }
 
