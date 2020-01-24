@@ -260,6 +260,8 @@ modal:
       available: Disponibilité
       theme: Thèmes
       author: Auteur(s)
+      editor: Editeur
+      realisator: Réalisateur
       creator: Auteurs, Contributeurs
       bdd: Base de recherche
       langue: Langue(s)

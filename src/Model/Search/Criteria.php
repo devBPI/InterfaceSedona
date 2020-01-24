@@ -240,13 +240,15 @@ class Criteria
     }
 
     /**
+     * @param string $mode
      * @param bool $first
      * @return array
      */
-    public function getKeywords($first = true): array
+    public function getKeywords($mode = SearchQuery::SIMPLE_MODE, $first = true): array
     {
         $keywords = [];
-        foreach (WordsList::$words[WordsList::ALL] as $field) {
+        $listKey = $mode === SearchQuery::SIMPLE_MODE ? WordsList::ALL : WordsList::FOR_KEYS;
+        foreach (WordsList::$words[$listKey] as $field) {
             if (!empty($this->$field)) {
                 if ($first) {
                     $keywords[] = [$field => $this->$field];
@@ -259,7 +261,7 @@ class Criteria
         foreach (WordsList::$operators as $operator) {
             $subCriteria = $this->getSubCriteriaOfOperator($operator);
             if ($subCriteria instanceof Criteria) {
-                $subKeywords = $subCriteria->getKeywords(false);
+                $subKeywords = $subCriteria->getKeywords($mode, false);
                 if (!empty($subKeywords)) {
                     $keywords[$operator] = $subKeywords;
                 }

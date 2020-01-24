@@ -52,7 +52,7 @@ final class ObjSearch
     {
         $this->searchQuery = $searchQuery;
         $this->advancedMode = $searchQuery->getMode() === SearchQuery::ADVANCED_MODE;
-        $this->keywords = $searchQuery->getCriteria()->getKeywords();
+        $this->keywords = $searchQuery->getCriteria()->getKeywords($searchQuery->getMode());
     }
 
     /**
@@ -191,6 +191,15 @@ final class ObjSearch
     public function getAdvancedCriteria(): array
     {
         $criteria = $this->searchQuery->getCriteria()->getKeywordsTitles(true);
+        if (
+            $this->searchQuery->getCriteria()->getPublicationDateStart() ||
+            $this->searchQuery->getCriteria()->getPublicationDateEnd()
+        ) {
+            $criteria[] = ['date_publishing' =>
+                $this->searchQuery->getCriteria()->getPublicationDateStart().' - '.
+                $this->searchQuery->getCriteria()->getPublicationDateEnd()
+            ];
+        }
 
         foreach ($this->getSearchFilters() as $name => $values) {
             if ($name === 'date_publishing' && is_array($values)) {

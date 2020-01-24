@@ -10,6 +10,7 @@ namespace App;
 final class WordsList
 {
     public const ALL = 'all';
+    public const FOR_KEYS = 'keys';
     public const THEME_DEFAULT = 'general';
     public const THEME_PRESS = 'actualites-revues';
     public const THEME_CINEMA = 'cinema';
@@ -24,7 +25,18 @@ final class WordsList
             self::TITLE_WORD,
             self::AUTHOR_WORD,
             self::SUBJECT_WORD,
-//            self::PUBLICATION_DATE_WORD,
+            self::PUBLICATION_DATE_WORD,
+            self::ISBN_WORD,
+            self::INDICE_COTE_WORD,
+            self::THEME_WORD,
+            self::EDITOR_WORD,
+            self::COLLECTION_WORD
+        ],
+        self::FOR_KEYS => [
+            self::GENERAL_WORD,
+            self::TITLE_WORD,
+            self::AUTHOR_WORD,
+            self::SUBJECT_WORD,
             self::ISBN_WORD,
             self::INDICE_COTE_WORD,
             self::THEME_WORD,
@@ -37,7 +49,7 @@ final class WordsList
                 self::TITLE_WORD,
                 self::AUTHOR_WORD,
                 self::SUBJECT_WORD,
-//                self::PUBLICATION_DATE_WORD,
+                self::PUBLICATION_DATE_WORD,
                 self::ISBN_WORD,
                 self::INDICE_COTE_WORD
             ],
@@ -47,7 +59,7 @@ final class WordsList
                 self::AUTHOR_WORD,
                 self::REALISATOR_WORD,
                 self::SUBJECT_WORD,
-//                self::PUBLICATION_DATE_WORD,
+                self::PUBLICATION_DATE_WORD,
                 self::ISBN_WORD,
                 self::INDICE_COTE_WORD
             ],
@@ -58,7 +70,7 @@ final class WordsList
                 self::SUBJECT_WORD,
                 self::THEME_WORD,
                 self::EDITOR_WORD,
-//                self::PUBLICATION_DATE_WORD,
+                self::PUBLICATION_DATE_WORD,
                 self::ISBN_WORD,
                 self::INDICE_COTE_WORD
             ]

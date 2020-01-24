@@ -52,7 +52,7 @@ final class AdvancedSearchController extends AbstractController
         } else {
             $criteria = new Criteria();
             $criteria->setAdvancedSearch($request->query->all());
-            $searchQuery = new SearchQuery($criteria, new FacetFilter($request->query->all()));
+            $searchQuery = new SearchQuery($criteria, new FacetFilter($request->query->all()), SearchQuery::ADVANCED_MODE);
         }
         $searchQuery->getCriteria()->setParcours($request->get(ObjSearch::PARAM_PARCOURS_NAME));
 
