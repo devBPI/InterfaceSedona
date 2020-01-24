@@ -49,12 +49,10 @@ export class SearchForm {
         });
 
         this.form.querySelectorAll('select').forEach((selectElement: HTMLSelectElement) => {
-            if (selectElement.options.item(0).value === 'general') {
+            if (selectElement.selectedOptions.length > 0) {
                 selectElement.selectedOptions.item(0).removeAttribute('selected');
-            } else {
                 $(selectElement).val(null).trigger('change');
             }
-
         });
 
         this.clearKeywordRows(this.form);
