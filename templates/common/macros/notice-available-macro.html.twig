@@ -6,7 +6,7 @@
             <li class="availability--true availability--rayon">
                 <p class="font-weight-bold">
                     <span class="availability__status">
-                        {{ 'bloc.notice-simple.document-available'|trans }}
+                        {{ 'bloc.notice-simple.document-available'|trans ~ ' - ' }}
 
                         {% if object.availability is not empty and object.availability != 'bloc.notice-simple.document-available'|trans %}
                             {{ ' - '~object.availability }}
