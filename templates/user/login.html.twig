@@ -24,16 +24,16 @@
                 {% endif %}
 
                 <div class="form-group row">
-                    <label for="account-mail" class="col-12 col-md-4">{{ 'page.login.login'|trans }}</label>
+                    <label for="account-mail" class="col-12 col-md-4">{{ 'page.login.login'|trans }} ({{ 'page.login.login-placeholder'|trans }})</label>
                     <div class="col-12 col-md-8">
-                        <input name="_username" type="email" class="form-control {{ error_class }}" id="account-mail"
+                        <input name="_username" type="email" class="form-control {{ error_class }}" id="account-mail" required="required"
                                {% if last_login is defined %}value="{{ last_login }}"{% endif %} autocomplete="email" placeholder="{{ 'page.login.login-placeholder'|trans }}">
                     </div>
                 </div>
                 <div class="form-group row">
                     <label for="account-password" class="col-12 col-md-4">{{ 'page.login.password'|trans }}</label>
                     <div class="col-12 col-md-8">
-                        <input name="_password" type="password" class="form-control {{ error_class }}"
+                        <input name="_password" type="password" class="form-control {{ error_class }}" required="required"
                                id="account-password" autocomplete="current-password">
                     </div>
                 </div>
