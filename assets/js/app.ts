@@ -55,7 +55,7 @@ $('[data-toggle="tooltip"]').tooltip({
     template: '<div class="tooltip" role="tooltip"><div class="tooltip-inner"></div></div>'
 });
 
-$('input').iCheck({
+$('input:radio, input:checkbox').iCheck({
     checkboxClass: 'check check--checkbox',
     radioClass: 'check check--radio',
     focusClass: 'focus'

@@ -95,7 +95,15 @@ import {CollectionRow} from './collection-row.ts';
                     }
 
                     if (reload) {
-                        var originalContent = $modal.find(".modal-content").html();
+                       $modal.find('input:radio, input:checkbox').iCheck('destroy');
+                        var $originalContent = $modal.find(".modal-content").html();
+
+                        $modal.find('input:radio, input:checkbox').iCheck({
+                            checkboxClass: 'check check--checkbox',
+                            radioClass: 'check check--radio',
+                            focusClass: 'focus'
+                        });
+
                         $modal.on('hidden.bs.modal',function () {
                             $modal
                                 .removeData('bs.modal')
@@ -191,7 +199,15 @@ import {CollectionRow} from './collection-row.ts';
             }
 
             if (reload) {
-                var originalContent = $modal.find(".modal-content").html();
+                $modal.find('input:radio, input:checkbox').iCheck('destroy');
+                var $originalContent = $modal.find(".modal-content").html();
+
+                $modal.find('input:radio, input:checkbox').iCheck({
+                    checkboxClass: 'check check--checkbox',
+                    radioClass: 'check check--radio',
+                    focusClass: 'focus'
+                });
+
                 $modal.on('hidden.bs.modal',function () {
                     $modal
                         .removeData('bs.modal')
