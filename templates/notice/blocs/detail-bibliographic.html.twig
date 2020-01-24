@@ -63,9 +63,9 @@
     <div class="col-12">
         <div lang="fr">
             <h2 class="n2 bibliographic-result__subtitle">{{ 'bloc.autority-result-information.resume'|trans }}</h2>
-            {% for resume in notice.resume %}
-                <p class="bibliographic-result__resume">{{ resume }}</p>
-            {% endfor %}
+            <p class="bibliographic-result__resume">
+                {{ notice.resume|join('<br>')|raw }}
+            </p>
         </div>
     </div>
 {% endif %}
