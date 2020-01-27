@@ -1,61 +1,59 @@
 {% extends app.request.isXmlHttpRequest() ? "empty.html.twig" : "base.html.twig" %}
 
-{% block title %} {% endblock %}
+{% block title %}{{ 'error.page_error'|trans }}{% endblock %}
 
-{% block container %}
+{% block body %}
+    {% set content %}
+        <p>{{ 'error.page_broken_message'|trans|nl2br }}</p>
+
+        {% if app.environment == 'dev' or IP_SEDONA in app.request.clientIps %}
+            {# affichage de la raison de l'erreur pour Sedona #}
+            <fieldset>
+                <legend>Erreur remontée : {{ exception.message }}</legend>
+                <pre>{{ exception.toarray|json_encode }}</pre>
+            </fieldset>
+        {% endif %}
+
+        <ul class="list-link">
+            {% if app.request.headers.get('referer') %}
+                <li>
+                    {{ 'error.link-go-back'|trans({'%link%': app.request.headers.get('referer')})|raw }}
+                </li>
+            {% endif %}
+
+            <li>
+                {{ 'error.link-home'|trans({'%link%': path('home')})|raw }}
+            </li>
+        </ul>
+
+        <p>{{ 'error.contact-admin'|trans({'%email%': contact_email})|raw }}</p>
+    {% endset %}
+
     {% if app.request.isXmlHttpRequest() %}
         <div>
             <div class="modal-header">
-                <h1 class="n1 modal-header__title">{{ 'error.page_boken'|trans }}</h1>
+                <h1 class="n1 modal-header__title">{{ 'error.page_not_found'|trans }}</h1>
                 <button class="close" type="button" data-dismiss="modal">
                     <img src="{{ asset('images/icones/icone-croix-blanc.svg') }}" alt="{{ 'global.modal-close'|trans }}" />
                 </button>
             </div>
 
             <div class="modal-body">
-                <p>{{ 'error.page_broken_message'|trans|nl2br }}</p>
+                <p>{{ 'error.page_broken'| trans }}</p>
 
-                {% if app.environment == 'dev' or IP_SEDONA in app.request.clientIps %}
-                    {# affichage de la raison de l'erreur pour Sedona #}
-                    <p>Erreur remontée : {{ exception.message }}</p>
-                    <pre>{{ exception.toarray|json_encode }}</pre>
-                {% endif %}
-
-                <ul class="list-link">
-                    {% if app.session.get(constant('App\\Model\\Search\\ObjSearch::PARAM_REQUEST_NAME')) is defined and app.session.get(constant('App\\Model\\Search\\ObjSearch::PARAM_REQUEST_NAME')) is not null %}
-                        <li>
-                            <a href="{{ toggle_to_path_parcours('search', app.request.attributes.get(constant('App\\Model\\Search\\ObjSearch::PARAM_PARCOURS_NAME')), {(constant('App\\Model\\Search\\ObjSearch::PARAM_REQUEST_NAME')): app.session.get(constant('App\\Model\\Search\\ObjSearch::PARAM_REQUEST_NAME')) }) }}">{{ 'error.link-go-back' |trans }}</a>
-                        </li>
-                    {% endif %}
-                </ul>
+                {{ content }}
             </div>
+
             {{ render(controller('App\\Controller\\ReportingController::reportErrorPageAction',{'renderPage': false})) }}
         </div>
     {% else %}
+        <h1 class="n1">{{ 'error.page_broken'|trans }}</h1>
 
-        <h1 class="n1 mt-3">{{ 'error.page_boken'|trans }}</h1>
-        <p>{{ 'error.page_broken_message'|trans|nl2br }}</p>
-
-        {% if app.environment == 'dev' or IP_SEDONA in app.request.clientIps %}
-            {# affichage de la raison de l'erreur pour Sedona #}
-            <p>Erreur remontée : {{ exception.message }}</p>
-            <pre>{{ exception.toarray|json_encode }}</pre>
-        {% endif %}
-
-        <ul class="list-link">
-            {% if app.session.get(constant('App\\Model\\Search\\ObjSearch::PARAM_REQUEST_NAME')) is defined and app.session.get(constant('App\\Model\\Search\\ObjSearch::PARAM_REQUEST_NAME')) is not null %}
-                <li>
-                    <a href="{{ toggle_to_path_parcours('search', app.request.attributes.get(constant('App\\Model\\Search\\ObjSearch::PARAM_PARCOURS_NAME')), {(constant('App\\Model\\Search\\ObjSearch::PARAM_REQUEST_NAME')): app.session.get(constant('App\\Model\\Search\\ObjSearch::PARAM_REQUEST_NAME')) }) }}">{{ 'error.link-go-back' |trans }}</a>
-                </li>
-            {% endif %}
-            <li>
-                <a href="{{ path('home') }}">{{ 'error.link-home' |trans }}</a>
-            </li>
-        </ul>
+        {{ content }}
 
         <div class="row justify-content-center">
             <div class="col-12 col-sm-11 col-md-10">
-                <h2 class="n2">{{ 'error.title-form' |trans }}</h2>
+                <h2 class="n2">{{ 'error.title-form'|trans }}</h2>
                 {{ render(controller('App\\Controller\\ReportingController::reportErrorPageAction')) }}
             </div>
         </div>

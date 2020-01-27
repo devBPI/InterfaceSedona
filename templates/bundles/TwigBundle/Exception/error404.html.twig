@@ -16,11 +16,12 @@
         {% endif %}
 
         <ul class="list-link">
-            {% if app.session.get(constant('App\\Model\\Search\\ObjSearch::PARAM_REQUEST_NAME')) is defined and app.session.get(constant('App\\Model\\Search\\ObjSearch::PARAM_REQUEST_NAME')) is not null %}
+            {% if app.request.headers.get('referer') %}
                 <li>
-                    {{ 'error.link-go-back'|trans({'%link%': toggle_to_path_parcours('search', app.request.attributes.get(constant('App\\Model\\Search\\ObjSearch::PARAM_PARCOURS_NAME')), {(constant('App\\Model\\Search\\ObjSearch::PARAM_REQUEST_NAME')): app.session.get(constant('App\\Model\\Search\\ObjSearch::PARAM_REQUEST_NAME')) })})|raw }}
+                    {{ 'error.link-go-back'|trans({'%link%': app.request.headers.get('referer')})|raw }}
                 </li>
             {% endif %}
+
             <li>
                 {{ 'error.link-home'|trans({'%link%': path('home')})|raw }}
             </li>
