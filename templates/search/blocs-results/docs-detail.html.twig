@@ -102,7 +102,7 @@
                     {% endfor %}
 
                     {% for link in notice.links %}
-                        {{macros.availibility(link, notice) }}
+                        {{ macros.availibility(link, notice) }}
 
                         {% if loop.first and not loop.last %}
                             <button type="button" class="btn btn-small-link" data-toggle="collapse"

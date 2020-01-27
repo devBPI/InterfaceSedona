@@ -88,6 +88,13 @@ class NoticeAvailable
      * @JMS\SerializedName("dernier-numero")
      */
     private $lastNumber;
+    /**
+     * @var string
+     *
+     * @JMS\Type("string")
+     * @JMS\SerializedName("last_received")
+     */
+    private $lastReceived;
 
     /**
      * @var array
@@ -211,7 +218,7 @@ class NoticeAvailable
      */
     public function getLastNumber(): ?string
     {
-        return $this->lastNumber;
+        return $this->lastNumber ?? $this->lastReceived;
     }
 
     /**
