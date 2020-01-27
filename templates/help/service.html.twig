@@ -4,15 +4,17 @@
 
 {% block body %}
 
-	<h1 class="n1" lang="fr">Aide - Services</h1>
+	<h1 class="n1" lang="fr">Services</h1>
+	<p>Les services détaillés ci-dessous sont, sauf indication contraire, accessibles sur toutes les pages via la barre verticale affichée en permanence à droite de 						l’écran.</p>
+	<img src="{{ asset('/public/images/aide/09barre-utilitaires-verticale.png') }}" alt="Barre utilitaires verticale" />
+	<p>Lors de l’affichage sur tablette ou mobile, cette barre est positionnée horizontalement en haut des résultats ou des notices.</p>
+	<img src="{{ asset('/public/images/aide/10barre-utilitaires-horizontale.png') }}" alt="Barre utilitaires horizontale" />
+	<p>Selon la page où vous vous trouvez, un service peut être inactif, la vignette correspondante est alors en grisé dans la barre.</p>
 	
 	{% include "help/blocs/navigation.html.twig" %}
 
 	<div lang="fr">
 		<div id="section-03-01">
-			<p>Les services détaillés ci-dessous sont, sauf indication contraire, accessibles sur toutes les pages via la barre verticale affichée en permanence à droite de l’écran.</p>
-			<p>Lors de l’affichage sur tablette ou mobile, cette barre est positionnée horizontalement en haut des résultats ou des notices.</p>
-			<p>Selon la page où vous vous trouvez, un service peut être inactif, la vignette correspondante est alors en grisé dans la barre.</p>
 			<h2 class="n1">Alerte de mise en rayon</h2>
 			<p>Ce service n’est présent que sur les notices de documents indisponibles à la bibliothèque (en commande, envoi chez le relieur, ...)
 			L’alerte permet d’être informé(e) de leur disponibilité à la Bpi. Cliquez sur l’icône enveloppe à côté du libellé “Indisponible”. Indiquez votre adresse électronique et 				cliquez sur “Envoyer”. Vous recevrez un message lorsque le document sera disponible. Attention : ceci ne correspond pas à une réservation du document.</p>
