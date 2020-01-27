@@ -19,8 +19,6 @@ use Symfony\Component\Translation\TranslatorInterface;
  */
 final class SearchService
 {
-    use SearchQueryTrait;
-
     /**
      * @var Translator
      */
@@ -58,27 +56,6 @@ final class SearchService
     }
 
     /**
-     * @param SearchQuery $searchQuery
-     * @return string
-     */
-    private function getTitleFromSearchQuery(SearchQuery $searchQuery): string
-    {
-        $title = [];
-        if ($searchQuery->getCriteria()->getParcours() !== WordsList::THEME_DEFAULT) {
-            $title[] = $this->translator->trans('header.result.title.'.$searchQuery->getCriteria()->getParcours());
-        } else {
-            $title[] = $this->translator->trans('page.search.title.'.strtolower($searchQuery->getMode()));
-        }
-
-        $keywords = $searchQuery->getCriteria()->getKeywordsTitles();
-        if (count($keywords) > 0) {
-            $title[] = implode(', ', $keywords);
-        }
-
-        return implode(' - ', $title);
-    }
-
-    /**
      * @param SearchQuery $search
      * @param Request $request
      * @return ObjSearch
@@ -105,6 +82,37 @@ final class SearchService
         return $objSearch;
     }
 
+    /**
+     * @param SearchQuery $searchQuery
+     * @return string
+     */
+    private function getTitleFromSearchQuery(SearchQuery $searchQuery): string
+    {
+        $title = [];
+        if ($searchQuery->getCriteria()->getParcours() !== WordsList::THEME_DEFAULT) {
+            $title[] = $this->translator->trans('header.result.title.'.$searchQuery->getCriteria()->getParcours());
+        } else {
+            $title[] = $this->translator->trans('page.search.title.'.strtolower($searchQuery->getMode()));
+        }
+
+        $keywords = $searchQuery->getCriteria()->getKeywordsTitles();
+        if (count($keywords) > 0) {
+            $title[] = implode(', ', $keywords);
+        }
+
+        return implode(' - ', $title);
+    }
+
+    /**
+     * @param string $token
+     * @param Request $request
+     * @return SearchQuery
+     */
+    public function getSearchQueryFromToken(string $token, Request $request): SearchQuery
+    {
+        /** @var SearchQuery $search */
+        return $this->deserializeSearchQuery($request->getSession()->get($token));
+    }
 
     /**
      * @param string $object
@@ -112,13 +120,11 @@ final class SearchService
      */
     public function deserializeSearchQuery(string $object): SearchQuery
     {
-        return $this
-            ->serializer
-            ->deserialize(
-                $object,
-                SearchQuery::class,
-                'json'
-            );
+        return $this->serializer->deserialize(
+            $object,
+            SearchQuery::class,
+            'json'
+        );
     }
 
 }

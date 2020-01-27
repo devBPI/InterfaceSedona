@@ -49,6 +49,8 @@ services:
   App\Service\SearchService:
     arguments:
       $logger : '@monolog.logger'
+  App\Service\BreadCrumbBuilder:
+    arguments: ['@doctrine.orm.entity_manager']
   App\Twig\MenuCreator:
     arguments:
       $translationPath : '%kernel.project_dir%/translations'

@@ -4,15 +4,15 @@ declare(strict_types=1);
 namespace App\Service;
 
 use App\Controller\SearchController;
+use App\Entity\SearchHistory;
 use App\Model\Interfaces\RecordInterface;
 use App\Model\NoticeThemed;
 use App\Model\Search\Criteria;
 use App\Model\Search\FacetFilter;
 use App\Model\Search\ObjSearch;
 use App\Model\Search\SearchQuery;
-use JMS\Serializer\SerializerInterface;
+use Doctrine\ORM\EntityManager;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Translation\TranslatorInterface;
 
 /**
  * Class BreadCrumbBuilder
@@ -20,13 +20,17 @@ use Symfony\Component\Translation\TranslatorInterface;
  */
 final class BreadCrumbBuilder
 {
-    use SearchQueryTrait;
-
     const RECORD = 'record';
     const SEARCH = 'search';
     const HELP = 'help';
     const USER = 'user';
     const HOME = 'home';
+
+
+    /**
+     * @var EntityManager
+     */
+    private $entityManager;
 
     /**
      * @var BreadCrumbTrailService
@@ -34,29 +38,24 @@ final class BreadCrumbBuilder
     private $bctService;
 
     /**
-     * @var SerializerInterface
+     * @var SearchService
      */
-    private $serializer;
-
-    /**
-     * @var TranslatorInterface
-     */
-    private $translator;
+    private $searchService;
 
     /**
      * BreadCrumbBuilder constructor.
+     * @param EntityManager $entityManager
      * @param BreadCrumbTrailService $bctService
-     * @param SerializerInterface $serializer
-     * @param TranslatorInterface $translator
+     * @param SearchService $searchService
      */
     public function __construct(
+        EntityManager $entityManager,
         BreadCrumbTrailService $bctService,
-        SerializerInterface $serializer,
-        TranslatorInterface $translator
+        SearchService $searchService
     ) {
+        $this->entityManager = $entityManager;
         $this->bctService = $bctService;
-        $this->serializer = $serializer;
-        $this->translator = $translator;
+        $this->searchService = $searchService;
     }
 
     /**
@@ -252,28 +251,31 @@ final class BreadCrumbBuilder
      */
     private function getObjSearchQuery(Request $request): ?SearchQuery
     {
-        $token = $request->get('searchToken', $request->query->get(ObjSearch::PARAM_REQUEST_NAME));
+        $token = $request->get(ObjSearch::PARAM_REQUEST_NAME);
         $route = $request->get('_route');
 
         $searchQuery = null;
         $criteria = new Criteria();
         if ($token) {
-            $searchQuery = $this->getSearchQueryFromToken($token, $request);
-        } else {
-            if ($route === 'advanced_search' || $route === 'advanced_search_parcours') {
-                $criteria->setAdvancedSearch($request->query->all());
-
-                $searchQuery = new SearchQuery(
-                    $criteria,
-                    new FacetFilter($request->query->all()),
-                    SearchQuery::ADVANCED_MODE
-                );
-            } else {
-                $keyword = $request->get(Criteria::SIMPLE_SEARCH_KEYWORD, '');
-                $criteria->setSimpleSearch($request->get(Criteria::SIMPLE_SEARCH_TYPE), $keyword);
-
-                $searchQuery = new SearchQuery($criteria);
+            $searchQuery = $this->searchService->getSearchQueryFromToken($token, $request);
+        } elseif ($route === 'saved_search') {
+            $searchHistory = $this->entityManager->getRepository(SearchHistory::class)->find($request->get('id'));
+            if ($searchHistory instanceof SearchHistory) {
+                $searchQuery = $this->searchService->deserializeSearchQuery($searchHistory->getQueryString());
             }
+        } elseif ($route === 'advanced_search' || $route === 'advanced_search_parcours') {
+            $criteria->setAdvancedSearch($request->query->all());
+
+            $searchQuery = new SearchQuery(
+                $criteria,
+                new FacetFilter($request->query->all()),
+                SearchQuery::ADVANCED_MODE
+            );
+        } else {
+            $keyword = $request->get(Criteria::SIMPLE_SEARCH_KEYWORD, '');
+            $criteria->setSimpleSearch($request->get(Criteria::SIMPLE_SEARCH_TYPE), $keyword);
+
+            $searchQuery = new SearchQuery($criteria);
         }
 
         if ($route === 'refined_search') {
