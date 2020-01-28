@@ -1,24 +1,21 @@
 <?php
 declare(strict_types=1);
-/**
- * Created by PhpStorm.
- * User: infra
- * Date: 12/09/19
- * Time: 16:50
- */
 
-namespace App\Utils;
+namespace App\Model\Search;
 
 use App\Model\Interfaces\NoticeInterface;
 use App\Model\Traits\NoticeTrait;
 
-class NavigationNotice implements NoticeInterface
+/**
+ * Class NavigationLink
+ * @package App\Model\Searc
+ */
+class NavigationLink implements NoticeInterface
 {
-
     use NoticeTrait;
 
     /**
-     * NavigationNotice constructor.
+     * NavigationLink constructor.
      * @param string $permalink
      * @param string $type
      */
@@ -35,6 +32,14 @@ class NavigationNotice implements NoticeInterface
     public function getTitle(): string
     {
         return $this->permalink;
+    }
+
+    /**
+     * @return string
+     */
+    public function getClassName(): string
+    {
+        return 'navigationLink';
     }
 }
 

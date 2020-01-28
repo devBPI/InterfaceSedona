@@ -1,20 +1,12 @@
 <?php
 declare(strict_types=1);
-/**
- * Created by PhpStorm.
- * User: infra
- * Date: 16/08/19
- * Time: 10:50
- */
 
 namespace App\Model;
 use JMS\Serializer\Annotation as JMS;
 
 /**
- *
  * Class NoticeMappedAuthority
  * @package App\Model
- *
  */
 class NoticeMappedAuthority
 {

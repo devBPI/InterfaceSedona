@@ -2,13 +2,14 @@
 
 namespace App\Model;
 
+use App\Model\Interfaces\NavigationInterface;
 use JMS\Serializer\Annotation as JMS;
 
 /**
  * Class AbstractListNotices
  * @package App\Model
  */
-abstract class AbstractListNotices
+abstract class AbstractListNotices implements NavigationInterface
 {
     /**
      * @var array|Facet[]

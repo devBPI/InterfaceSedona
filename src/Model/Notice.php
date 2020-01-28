@@ -1175,7 +1175,7 @@ class Notice extends AbstractImage implements NoticeInterface, RecordInterface
         return $this->permalink;
     }
 
-    public function getClassName()
+    public function getClassName(): string
     {
         return self::class;
     }

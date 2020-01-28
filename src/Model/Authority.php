@@ -278,5 +278,10 @@ final class Authority implements NoticeInterface, RecordInterface, BpiConverterI
     {
         return $this->getTitle();
     }
+
+    public function getClassName(): string
+    {
+        return self::class;
+    }
 }
 

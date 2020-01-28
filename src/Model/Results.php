@@ -74,14 +74,6 @@ class Results implements SearchResultInterface
     private $rows;
 
     /**
-     * @return RankedAuthority[]|array
-     */
-    public function getAuthoritiesList()
-    {
-        return $this->authoritiesList;
-    }
-
-    /**
      * @return int
      */
     public function getPage(): int

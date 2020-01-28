@@ -14,7 +14,7 @@ use JMS\Serializer\Annotation as JMS;
  * Class IndiceCdu
  * @package App\Model
  */
-final class IndiceCdu  extends Cdu implements NoticeInterface, RecordInterface, BpiConverterInterface
+final class IndiceCdu extends Cdu implements NoticeInterface, RecordInterface, BpiConverterInterface
 {
 
     const BREAD_CRUMB_NAME = 'indice_cdu';
@@ -143,6 +143,11 @@ final class IndiceCdu  extends Cdu implements NoticeInterface, RecordInterface, 
     public function getPrintTitle(): string
     {
         return $this->getTitle();
+    }
+
+    public function getClassName(): string
+    {
+        return self::class;
     }
 }
 

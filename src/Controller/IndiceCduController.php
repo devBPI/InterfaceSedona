@@ -9,6 +9,7 @@ use App\Model\IndiceCdu;
 use App\Service\NavigationService;
 use App\Service\NoticeBuildFileService;
 use App\Service\Provider\NoticeAuthorityProvider;
+use Psr\Log\LoggerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -30,35 +31,49 @@ final class IndiceCduController extends AbstractController
      * @var NoticeBuildFileService
      */
     private $buildFileContent;
+    /**
+     * @var NavigationService
+     */
+    private $navigationService;
 
 
     /**
      * IndiceCduController constructor.
-     * @param NoticeAuthorityProvider $noticeAuhtority
+     * @param NoticeAuthorityProvider $noticeAuthority
      * @param NoticeBuildFileService $buildFileContent
+     * @param NavigationService $navigationService
      */
     public function __construct(
-        NoticeAuthorityProvider $noticeAuhtority,
-        NoticeBuildFileService $buildFileContent
+        NoticeAuthorityProvider $noticeAuthority,
+        NoticeBuildFileService $buildFileContent,
+        NavigationService $navigationService
     ) {
-        $this->noticeAuhtority = $noticeAuhtority;
+        $this->noticeAuhtority = $noticeAuthority;
         $this->buildFileContent = $buildFileContent;
+        $this->navigationService = $navigationService;
     }
 
     /**
      * @Route("/{parcours}/indice-cdu/{permalink}", methods={"GET","HEAD"}, name="record_indice_cdu_parcours", requirements={"permalink"=".+"})
      * @Route("/indice-cdu/{permalink}", methods={"GET","HEAD"}, name="record_indice_cdu", requirements={"permalink"=".+"})
      * @param IndiceCdu $notice
-     * @param NavigationService $navigation
+     * @param LoggerInterface $logger
      * @return Response
      */
-    public function cduIndiceRecordAction(IndiceCdu $notice, NavigationService $navigation=null)
+    public function cduIndiceRecordAction(IndiceCdu $notice, LoggerInterface $logger)
     {
         $subjects = $this->noticeAuhtority->getSubjectIndice($notice->getId());
         $printRoute = $this->generateUrl(
             'indice_pdf',
             [ 'permalink' => $notice->getPermalink(), 'format' => 'pdf' ]
         );
+
+        try {
+            $navigation = $this->navigationService->buildAuthorities($notice);
+        } catch (\Exception $e) {
+            $logger->error('Navigation failed for indice '.$notice->getPermalink(). ' : '.$e->getMessage());
+            $navigation = null;
+        }
 
         return $this->render('indice/index.html.twig', [
                 'toolbar'         => IndiceCdu::class,
@@ -95,7 +110,6 @@ final class IndiceCduController extends AbstractController
 
     /**
      * @Route("/print/indice.{format}/{permalink}", methods={"GET"}, name="indice_pdf", requirements={"permalink"=".+", "format" = "html|pdf|txt"}, defaults={"format" = "pdf"})
-
      * @param Request $request
      * @param string $format
      * @return mixed|string

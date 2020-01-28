@@ -9,9 +9,11 @@ use App\Model\Form\ExportNotice;
 use App\Model\Notice;
 use App\Model\Search\Criteria;
 use App\Model\Search\FacetFilter;
+use App\Model\Search\ListNavigation;
 use App\Model\Search\ObjSearch;
 use App\Model\Search\SearchQuery;
 use App\Model\SuggestionList;
+use App\Service\NavigationService;
 use App\Service\NoticeBuildFileService;
 use App\Service\Provider\SearchProvider;
 use App\Service\SearchService;
@@ -246,6 +248,7 @@ final class SearchController extends AbstractController
         $objSearch->setResults($this->searchProvider->getListBySearch($search));
         $request->query->remove('action');
 
+        $request->getSession()->set(NavigationService::SESSION_KEY, serialize(new ListNavigation($objSearch)));
 
         $seeAll = $request->get('see-all', Notice::ALL);
         $template = 'search/index.html.twig';

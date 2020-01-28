@@ -10,6 +10,7 @@ use App\Model\NoticeThemed;
 use App\Service\NavigationService;
 use App\Service\NoticeBuildFileService;
 use Knp\Bundle\SnappyBundle\Snappy\Response\PdfResponse;
+use Psr\Log\LoggerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -25,30 +26,44 @@ final class NoticeController extends AbstractController
      * @var NoticeBuildFileService
      */
     private $buildFileContent;
+    /**
+     * @var NavigationService
+     */
+    private $navigationService;
 
     /**
      * NoticeController constructor.
      * @param NoticeBuildFileService $buildFileContent
+     * @param NavigationService $navigationService
      */
     public function __construct(
-        NoticeBuildFileService $buildFileContent
+        NoticeBuildFileService $buildFileContent,
+        NavigationService $navigationService
     ) {
         $this->buildFileContent = $buildFileContent;
+        $this->navigationService = $navigationService;
     }
 
     /**
      * @Route("/{parcours}/document/{permalink}", methods={"GET","HEAD"}, name="record_bibliographic_parcours", requirements={"permalink"=".+"})
      * @Route("/document/{permalink}", methods={"GET","HEAD"}, name="record_bibliographic", requirements={"permalink"=".+"})
      * @param NoticeThemed $notice
-     * @param NavigationService|null $navigation
+     * @param LoggerInterface $logger
      * @return Response
      */
-    public function bibliographicRecordAction(NoticeThemed $notice, NavigationService $navigation=null)
+    public function bibliographicRecordAction(NoticeThemed $notice, LoggerInterface $logger)
     {
         $printRoute = $this->generateUrl(
             'record_bibliographic_pdf',
             [ 'permalink' => $notice->getNotice()->getPermalink(), 'format' => 'pdf' ]
         );
+
+        try {
+            $navigation = $this->navigationService->buildNotices($notice->getNotice());
+        } catch (\Exception $e) {
+            $logger->error('Navigation failed for notice '.$notice->getPermalink(). ' : '.$e->getMessage());
+            $navigation = null;
+        }
 
         return $this->render('notice/index.html.twig', [
             'object'            => $notice,

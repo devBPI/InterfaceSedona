@@ -8,12 +8,11 @@ use App\Model\Traits\SearchResultTrait;
 use JMS\Serializer\Annotation as JMS;
 
 /**
- * Class Search
- * @package App\Model
+ * Class SearchQuery
+ * @package App\Model\Search
  */
 class SearchQuery implements SearchResultInterface
 {
-
     const SORT_DEFAULT = 'DEFAULT';
     const SORT = [
         'pertinence' => self::SORT_DEFAULT,
@@ -156,7 +155,7 @@ class SearchQuery implements SearchResultInterface
     }
 
     /**
-     * @param Criteria $facets
+     * @param Criteria $criteria
      */
     public function setCriteria(Criteria $criteria)
     {

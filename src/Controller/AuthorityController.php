@@ -9,6 +9,7 @@ use App\Model\Form\ExportNotice;
 use App\Service\NavigationService;
 use App\Service\NoticeBuildFileService;
 use App\Service\Provider\NoticeAuthorityProvider;
+use Psr\Log\LoggerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -28,28 +29,35 @@ final class AuthorityController extends AbstractController
      * @var NoticeBuildFileService
      */
     private $buildFileContent;
+    /**
+     * @var NavigationService
+     */
+    private $navigationService;
 
     /**
      * AuthorityController constructor.
      * @param NoticeAuthorityProvider $noticeAuhtority
      * @param NoticeBuildFileService $buildFileContent
+     * @param NavigationService $navigationService
      */
     public function __construct(
         NoticeAuthorityProvider $noticeAuhtority,
-        NoticeBuildFileService $buildFileContent
+        NoticeBuildFileService $buildFileContent,
+        NavigationService $navigationService
     ) {
         $this->noticeAuhtority = $noticeAuhtority;
         $this->buildFileContent = $buildFileContent;
+        $this->navigationService = $navigationService;
     }
 
     /**
      * @Route("/{parcours}/autorite/{permalink}", methods={"GET","HEAD"}, name="record_authority_parcours", requirements={"permalink"=".+"})
      * @Route("/autorite/{permalink}", methods={"GET","HEAD"}, name="record_authority", requirements={"permalink"=".+"})
      * @param Authority $notice
-     * @param NavigationService|null $navigation
+     * @param LoggerInterface $logger
      * @return Response
      */
-    public function authorityRecordAction(Authority $notice, NavigationService $navigation = null)
+    public function authorityRecordAction(Authority $notice, LoggerInterface $logger)
     {
         $subject = $this->noticeAuhtority->getSubjectNotice($notice->getId());
         $authors = $this->noticeAuhtority->getAuthorsNotice($notice->getId());
@@ -57,6 +65,13 @@ final class AuthorityController extends AbstractController
             'record_authority_pdf',
             [ 'permalink' => $notice->getPermalink(), 'format' => 'pdf']
         );
+
+        try {
+            $navigation = $this->navigationService->buildAuthorities($notice);
+        } catch (\Exception $e) {
+            $logger->error('Navigation failed for author '.$notice->getPermalink(). ' : '.$e->getMessage());
+            $navigation = null;
+        }
 
         return $this->render('authority/index.html.twig', [
                 'toolbar'       => Authority::class,

@@ -100,8 +100,8 @@ class RankedAuthority implements NoticeInterface
     /**
      * @return null|string
      */
-    public function getClassName(): ?string
+    public function getClassName(): string
     {
-        return get_class($this->getAuthor());
+        return get_class($this->getAuthor()) ?? '';
     }
 }
