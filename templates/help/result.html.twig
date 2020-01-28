@@ -3,66 +3,50 @@
 {% block title %}Aide - Exploitation des résultats{% endblock %}
 
 {% block body %}
-
-	<h1 class="n1" lang="fr">Aide - Exploitation des résultats</h1>
 	
 	{% include "help/blocs/navigation.html.twig" %}
 
+	<h1 class="n1" lang="fr">Exploitation des résultats</h1>
 	<div lang="fr">
 		<div id="section-02-01">
 			<h2 class="n1">Liste de résultats</h2>
-			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet animi temporibus nesciunt, tempore modi omnis quae atque, quod repellendus accusantium magni. Aspernatur obcaecati veritatis ut facilis id quam harum vel.</p>
-			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet animi temporibus nesciunt, tempore modi omnis quae atque, quod repellendus accusantium magni. Aspernatur obcaecati veritatis ut facilis id quam harum vel.</p>
-			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet animi temporibus nesciunt, tempore modi omnis quae atque, quod repellendus accusantium magni. Aspernatur obcaecati veritatis ut facilis id quam harum vel.</p>
-			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet animi temporibus nesciunt, tempore modi omnis quae atque, quod repellendus accusantium magni. Aspernatur obcaecati veritatis ut facilis id quam harum vel.</p>
-			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet animi temporibus nesciunt, tempore modi omnis quae atque, quod repellendus accusantium magni. Aspernatur obcaecati veritatis ut facilis id quam harum vel.</p>
-			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet animi temporibus nesciunt, tempore modi omnis quae atque, quod repellendus accusantium magni. Aspernatur obcaecati veritatis ut facilis id quam harum vel.</p>
-			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet animi temporibus nesciunt, tempore modi omnis quae atque, quod repellendus accusantium magni. Aspernatur obcaecati veritatis ut facilis id quam harum vel.</p>
-			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet animi temporibus nesciunt, tempore modi omnis quae atque, quod repellendus accusantium magni. Aspernatur obcaecati veritatis ut facilis id quam harum vel.</p>
+				<h3 class="n2">Les résultats</h3>
+				<p>Les résultats s’affichent sur deux colonnes : la colonne de gauche présente les références des documents imprimés proposés à la Bpi. La colonne de droite affiche 					les références des documents électroniques et leur lien d’accès.</p>
+				<p>Par défaut, l’ordre d’affichage des résultats est basé sur la pertinence des réponses par rapport à la recherche. Il est modifiable au moyen du bouton “Trier par” 					visible au-dessus de la liste. Les autres affichages possibles sont par classements alphabétiques des auteurs ou des titres et par classement chronologique des 						dates.</p>
+				<p>Sous l’encart de recherche, vous pouvez relancer la recherche sur d’autres orthographes proposées ou sur des suggestions de sujets liés à votre recherche (sujets 					voisins à la recherche effectuée).</p>
+				<p>La liste de résultats fournit les informations essentielles pour identifier et localiser le document dans la bibliothèque ou y accéder s’il s’agit d’un document 					électronique. Lorsqu’un document dispose d’un résumé, un “i” apparaît à côté du titre. Au passage de la souris sur le “i”, le résumé s’affiche dans une infobulle.</p>
+				<img src="{{ asset('/images/aide/07infobulle-resume.png') }}" alt="Infobulle Résumé" />
+				<p>Au clic sur le titre, vous accédez à <a href="/fr/aide/resultat#section-02-03">la description complète et détaillée du document.</a></p>
+				<h3 class="n2">L'autorité</h3>
+				<p>La notice qui se trouve au-dessus de la liste de résultats présente une entité (nommée Autorité dans le monde des bibliothèques). Elle ne décrit pas un document 					mais un terme employé pour désigner de manière univoque et non ambigüe les auteurs ou les sujets d’un document.</p>
+				<p>Ce peut être un nom de personne physique ou de collectivité, un nom commun, un nom géographique, un titre d’œuvre ou un indice de classement utilisé dans la 						bibliothèque.</p>
+				<p>Le terme cité en haut de la liste est celui qui est le plus représenté dans les références documentaires affichées en résultat. Il est proposé à titre informatif et 				peut être l’objet d’une nouvelle recherche dans le catalogue. En cliquant sur le terme, vous accédez à la <a href="/fr/aide/resultat#section-02-04"> description 						complète de l’Autorité.</a></p>
 		</div>
 		<div id="section-02-02">
 			<h2 class="n1">Affiner sa recherche</h2>
-			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet animi temporibus nesciunt, tempore modi omnis quae atque, quod repellendus accusantium magni. Aspernatur obcaecati veritatis ut facilis id quam harum vel.</p>
-			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet animi temporibus nesciunt, tempore modi omnis quae atque, quod repellendus accusantium magni. Aspernatur obcaecati veritatis ut facilis id quam harum vel.</p>
-			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet animi temporibus nesciunt, tempore modi omnis quae atque, quod repellendus accusantium magni. Aspernatur obcaecati veritatis ut facilis id quam harum vel.</p>
-			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet animi temporibus nesciunt, tempore modi omnis quae atque, quod repellendus accusantium magni. Aspernatur obcaecati veritatis ut facilis id quam harum vel.</p>
-			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet animi temporibus nesciunt, tempore modi omnis quae atque, quod repellendus accusantium magni. Aspernatur obcaecati veritatis ut facilis id quam harum vel.</p>
-			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet animi temporibus nesciunt, tempore modi omnis quae atque, quod repellendus accusantium magni. Aspernatur obcaecati veritatis ut facilis id quam harum vel.</p>
-			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet animi temporibus nesciunt, tempore modi omnis quae atque, quod repellendus accusantium magni. Aspernatur obcaecati veritatis ut facilis id quam harum vel.</p>
-			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet animi temporibus nesciunt, tempore modi omnis quae atque, quod repellendus accusantium magni. Aspernatur obcaecati veritatis ut facilis id quam harum vel.</p>
-		</div>
+			<p>Il est possible d’agir sur la liste de résultats pour en restreindre le nombre. Cliquez sur le bouton “Affiner” en haut de la liste.</p>
+			<p>Plusieurs filtres sont proposés (exemples : type de document, support, date, ...) et, pour chacun, des listes de propositions à cocher s’affichent. Chacune des 						propositions est suivie d’un chiffre qui correspond au nombre de documents rattachés. Tous les filtres ont un fonctionnement semblable (cases à cocher) sauf le filtre Date 			qui prend la forme d’une réglette dont les curseurs permettent de choisir un intervalle de dates. 
+			Après avoir choisi vos filtres, cliquez sur “Affiner” en bas à droite.
+			Si vous souhaitez changer les filtres, cliquez à nouveau sur “Affiner”, vous retrouvez les filtres choisis précédemment prêts à être modifiés.</p>
 		<div id="section-02-03">
 			<h2 class="n1">Notice détaillée</h2>
-			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet animi temporibus nesciunt, tempore modi omnis quae atque, quod repellendus accusantium magni. Aspernatur obcaecati veritatis ut facilis id quam harum vel.</p>
-			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet animi temporibus nesciunt, tempore modi omnis quae atque, quod repellendus accusantium magni. Aspernatur obcaecati veritatis ut facilis id quam harum vel.</p>
-			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet animi temporibus nesciunt, tempore modi omnis quae atque, quod repellendus accusantium magni. Aspernatur obcaecati veritatis ut facilis id quam harum vel.</p>
-			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet animi temporibus nesciunt, tempore modi omnis quae atque, quod repellendus accusantium magni. Aspernatur obcaecati veritatis ut facilis id quam harum vel.</p>
-			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet animi temporibus nesciunt, tempore modi omnis quae atque, quod repellendus accusantium magni. Aspernatur obcaecati veritatis ut facilis id quam harum vel.</p>
-			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet animi temporibus nesciunt, tempore modi omnis quae atque, quod repellendus accusantium magni. Aspernatur obcaecati veritatis ut facilis id quam harum vel.</p>
-			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet animi temporibus nesciunt, tempore modi omnis quae atque, quod repellendus accusantium magni. Aspernatur obcaecati veritatis ut facilis id quam harum vel.</p>
-			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet animi temporibus nesciunt, tempore modi omnis quae atque, quod repellendus accusantium magni. Aspernatur obcaecati veritatis ut facilis id quam harum vel.</p>
+			<p>La notice détaillée affiche la description complète du document, ainsi que sa localisation dans la bibliothèque ou son lien d’accès si c’est un document électronique. 				Certains éléments de la description, identifiables par la couleur bleue, sont cliquables et relancent une nouvelle recherche dans le catalogue. Exemples : les auteurs, les 			contributeurs, les sujets, les éditeurs, les titres d’œuvres, ...</p>
+			<p>En fin de page, la rubrique “Sur le même thème” signale les autres documents qui sont classés dans la même section que le document courant.</p>	
 		</div>
 		<div id="section-02-04">
 			<h2 class="n1">Notice d'autorité</h2>
-			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet animi temporibus nesciunt, tempore modi omnis quae atque, quod repellendus accusantium magni. Aspernatur obcaecati veritatis ut facilis id quam harum vel.</p>
-			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet animi temporibus nesciunt, tempore modi omnis quae atque, quod repellendus accusantium magni. Aspernatur obcaecati veritatis ut facilis id quam harum vel.</p>
-			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet animi temporibus nesciunt, tempore modi omnis quae atque, quod repellendus accusantium magni. Aspernatur obcaecati veritatis ut facilis id quam harum vel.</p>
-			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet animi temporibus nesciunt, tempore modi omnis quae atque, quod repellendus accusantium magni. Aspernatur obcaecati veritatis ut facilis id quam harum vel.</p>
-			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet animi temporibus nesciunt, tempore modi omnis quae atque, quod repellendus accusantium magni. Aspernatur obcaecati veritatis ut facilis id quam harum vel.</p>
-			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet animi temporibus nesciunt, tempore modi omnis quae atque, quod repellendus accusantium magni. Aspernatur obcaecati veritatis ut facilis id quam harum vel.</p>
-			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet animi temporibus nesciunt, tempore modi omnis quae atque, quod repellendus accusantium magni. Aspernatur obcaecati veritatis ut facilis id quam harum vel.</p>
-			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet animi temporibus nesciunt, tempore modi omnis quae atque, quod repellendus accusantium magni. Aspernatur obcaecati veritatis ut facilis id quam harum vel.</p>
+				<h3 class="n2">La notice d'autorité détaillée</h3>
+				<p>La notice d’autorité détaillée fournit l’ensemble des informations relatives à l’entité, notamment ses différents synonymes ou son contexte d’utilisation. 
+				Certains éléments de la description, identifiables par la couleur bleue, sont cliquables et relancent une nouvelle recherche dans le catalogue.</p>
+				<h3 class="n2">Les documents liés</h3>
+				<p>En seconde partie d’écran, sont affichés les documents pour lesquels l’entité est auteur ou sujet.</p>
+				<h3 class="n2">Les documents liés</h3>
+				<p>Pour les autorités de type “indice de classement”, une rubrique “Feuilletage d’indices” s’affiche dans la troisième partie d’écran. Un indice de classement situe le 				sujet de l’ouvrage dans une classification de connaissances. À la Bpi, l’indice est majoritairement constitué de chiffres, et plus rarement de lettres (exemples : 						l’indice 670.5 concerne les documents sur l’horlogerie-bijouterie ; l’indice PRA H3 concerne les documents sur les guides pratiques des promenades en Île-de-France). 					Le feuilletage permet de naviguer parmi les indices de proche en proche et de relancer une recherche sur un autre indice.</p>
 		</div>
 		<div id="section-02-05">
 			<h2 class="n1">Relancer la recherche dans d'autres catalogues</h2>
-			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet animi temporibus nesciunt, tempore modi omnis quae atque, quod repellendus accusantium magni. Aspernatur obcaecati veritatis ut facilis id quam harum vel.</p>
-			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet animi temporibus nesciunt, tempore modi omnis quae atque, quod repellendus accusantium magni. Aspernatur obcaecati veritatis ut facilis id quam harum vel.</p>
-			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet animi temporibus nesciunt, tempore modi omnis quae atque, quod repellendus accusantium magni. Aspernatur obcaecati veritatis ut facilis id quam harum vel.</p>
-			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet animi temporibus nesciunt, tempore modi omnis quae atque, quod repellendus accusantium magni. Aspernatur obcaecati veritatis ut facilis id quam harum vel.</p>
-			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet animi temporibus nesciunt, tempore modi omnis quae atque, quod repellendus accusantium magni. Aspernatur obcaecati veritatis ut facilis id quam harum vel.</p>
-			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet animi temporibus nesciunt, tempore modi omnis quae atque, quod repellendus accusantium magni. Aspernatur obcaecati veritatis ut facilis id quam harum vel.</p>
-			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet animi temporibus nesciunt, tempore modi omnis quae atque, quod repellendus accusantium magni. Aspernatur obcaecati veritatis ut facilis id quam harum vel.</p>
-			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet animi temporibus nesciunt, tempore modi omnis quae atque, quod repellendus accusantium magni. Aspernatur obcaecati veritatis ut facilis id quam harum vel.</p>
+			<p>Le catalogue permet de relancer votre recherche dans d’autres catalogues de bibliothèques. Cliquez sur “Relancer la recherche dans” situé sous le formulaire de 						recherche et choisissez un catalogue dans le menu. Un nouvel onglet s’ouvre, affichant les résultats dans le catalogue. Seuls les termes de la recherche initiale sont 					repris mais pas les critères.</p>
+			<img src="{{ asset('/images/aide/08relance-autres-catalogues.png') }}" alt="Relance autres catalogues" />
 		</div>
 	</div>
 

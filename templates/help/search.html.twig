@@ -3,42 +3,48 @@
 {% block title %}Aide - La recherche{% endblock %}
 
 {% block body %}
-
-	<h1 class="n1" lang="fr">Aide - La recherche</h1>
 	
 	{% include "help/blocs/navigation.html.twig" %}
+
+	<h1 class="n1" lang="fr">La recherche</h1>
 
 	<div lang="fr">
 		<div id="section-01-01">
 			<h2 class="n1">Recherche simple</h2>
-			<p>Le catalogue permet d’effectuer des recherches à travers les 3 millions de références des documents proposés par la Bpi, issues de nombreuses bases de données. Il permet aussi d’accéder aux documents numériques.</p>
-				<h3 class="n1">Les critères de recherche</h3>
-				<p>La barre de recherche, toujours visible en haut des pages, permet de saisir les termes à rechercher ainsi que les critères de recherche : le titre, le nom de l’auteur, le sujet, … 
-Le critère “Tous les mots” correspond à la recherche la plus large car les mots sont recherchés à tous les endroits de la référence (titre, auteur, sujet, résumé, …). C’est le critère qui est proposé par défaut.</p>
-				<h3 class="n1">L'autocomplétion</h3>
+			<p>Le catalogue permet d’effectuer des recherches à travers les 3 millions de références des documents proposés par la Bpi, issues de nombreuses bases de données. Il 					permet aussi d’accéder aux documents numériques.</p>
+				<h3 class="n2">Les critères de recherche</h3>
+				<p>La barre de recherche, toujours visible en haut des pages, permet de saisir les termes à rechercher ainsi que les critères de recherche : le titre, le nom de 						l’auteur, le sujet, … 
+				Le critère “Tous les mots” correspond à la recherche la plus large car les mots sont recherchés à tous les endroits de la référence (titre, auteur, sujet, résumé, …). 					C’est le critère qui est proposé par défaut.</p>
+				<img src="{{ asset('/images/aide/01criteres-de-recherche.png') }}" alt="Critères" />
+				<h3 class="n2">L'autocomplétion</h3>
 				<p>Le catalogue vous suggère des mots à rechercher dès la troisième lettre saisie. Les propositions de mots sont adaptées au critère de recherche choisi.</p>
+				<img src="{{ asset('/images/aide/02autocompletion.png') }}" alt="Autocomplétion" />
 		</div>
 		<div id="section-01-02">
 			<h2 class="n1">Recherche avancée</h2>
 			<p>La recherche avancée permet une interrogation plus fine du catalogue. Cliquez sur “Recherche avancée” situé à droite de la barre de recherche.
-Tous les critères présentés peuvent être utilisés de manière indépendante ou cumulée.  
-Deux barres de recherche s’affichent pour la saisie de termes supplémentaires (possibilité d’ajouter une troisième barre grâce au bouton +). Selon votre recherche, vous combinez les termes entre eux grâce aux opérateurs ET, OU, SAUF.</p>
-				<h3 class="n1">Présentation de quelques critères :</h3>
+			Tous les critères présentés peuvent être utilisés de manière indépendante ou cumulée.  
+			Deux barres de recherche s’affichent pour la saisie de termes supplémentaires (possibilité d’ajouter une troisième barre grâce au bouton +). Selon votre recherche, vous 				combinez les termes entre eux grâce aux opérateurs ET, OU, SAUF.</p>
+			<img src="{{ asset('/images/aide/03barres-de-recherche-supplementaires.png') }}" alt="Barres de recherche supplémentaires" />
+			<p>Des critères de recherche avec des propositions à cocher s’affichent également sous les barres de recherche : date, langues, supports, secteurs de la bibliothèque, … 				pour lesquels vous choisissez des valeurs dans les listes fournies. Il est possible de cocher plusieurs valeurs par critère.</p>
+			<img src="{{ asset('/images/aide/04critere-ferme.png') }}" alt="Critère fermé" />
+			<img src="{{ asset('/images/aide/05critere-ouvert.png') }}" alt="Critère ouvert" />
+			<p>Exemple : pour le critère “Support”, en cochant “Papier” et “En ligne”, on effectue une recherche sur des documents imprimés ou numériques.</p>
+				<h3 class="n2">Présentation de quelques critères :</h3>
 				<p>Le critère “Date de publication” permet de choisir une année ou une période. </p>
-				<p>Le critère “Langue” permet de choisir la langue des documents. Les langues se présentent sous forme de liste. Vous pouvez aussi rechercher une langue en tapant ses premières lettres dans l’encart de recherche en haut de la liste. 
-Cocher plusieurs langues dans la liste revient à rechercher un livre multilingue comprenant toutes ces langues.</p>
-				<p>Pour appliquer les critères, cliquez sur “Rechercher” en bas à droite.
-Si vous souhaitez modifier les critères avancés, cliquez à nouveau sur “Recherche avancée”.</p>
+				<img src="{{ asset('/images/aide/06date-de-publication.png') }}" alt="Date de publication" />
+				<p>Le critère “Langue” permet de choisir la langue des documents. Les langues se présentent sous forme de liste. Vous pouvez aussi rechercher une langue en tapant ses 					premières lettres dans l’encart de recherche en haut de la liste. 
+				Cocher plusieurs langues dans la liste revient à rechercher un livre multilingue comprenant toutes ces langues.</p>
+				<p>Pour appliquer les critères, cliquez sur “Rechercher” en bas à droite.</p>
+				<p>Si vous souhaitez modifier les critères avancés, cliquez à nouveau sur “Recherche avancée”.</p>
 		</div>
 		<div id="section-01-03">
 			<h2 class="n1">Parcours de recherche</h2>
-			<p>Pour rechercher des ressources concernant l’actualité et les revues, l’autoformation ou le cinéma, vous pouvez utiliser les parcours de recherche dédiés à ces thématiques (rubrique “Découvrir les parcours”). Cela permet de limiter la recherche à un ensemble de documents relevant de la thématique choisie.
-La recherche dans les parcours est identique à la recherche générale, avec des critères de recherche supplémentaires proposés.
-
-Outre la recherche, les parcours thématiques proposent, sur leur page d’accueil, des focus sur différents groupes de documents. Ce sont les rubriques  “Les Essentiels”. 
-Exemples : les revues sur la musique dans le parcours Actualités et revues ; les tests de langue dans le parcours Autoformation ; les spectacles et concerts filmés dans le parcours Cinéma. 
-
-Vous pouvez revenir à tout moment à l’accueil de la recherche générale en cliquant sur le logo Bpi en haut à gauche de la page.</p>
+			<p>Pour rechercher des ressources concernant l’actualité et les revues, l’autoformation ou le cinéma, vous pouvez utiliser les parcours de recherche dédiés à ces 						thématiques (rubrique “Découvrir les parcours”). Cela permet de limiter la recherche à un ensemble de documents relevant de la thématique choisie.
+			La recherche dans les parcours est identique à la recherche générale, avec des critères de recherche supplémentaires proposés.</p>
+			<p>Outre la recherche, les parcours thématiques proposent, sur leur page d’accueil, des focus sur différents groupes de documents. Ce sont les rubriques  “Les Essentiels”. 
+			Exemples : les revues sur la musique dans le parcours Actualités et revues ; les tests de langue dans le parcours Autoformation ; les spectacles et concerts filmés dans le 			parcours Cinéma.</p>
+			<p>Vous pouvez revenir à tout moment à l’accueil de la recherche générale en cliquant sur le logo Bpi en haut à gauche de la page.</p>
 		</div>
 	</div>
 
