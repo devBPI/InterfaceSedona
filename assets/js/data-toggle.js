@@ -1,5 +1,6 @@
 import Autocomplete from './autocomplete.ts';
 import {CollectionRow} from './collection-row.ts';
+import 'icheck/icheck';
 
 (function($) {
     "use strict";
@@ -173,13 +174,42 @@ import {CollectionRow} from './collection-row.ts';
             return false;
         })
         .on('shown.bs.modal', '.modal', function () {
-            let firstInput = $(this).find( 'input.is-invalid:visible:first');
+            let $this = $(this),
+                firstInput = $this.find( 'input.is-invalid:visible:first');
             if (firstInput.length === 0) {
-                firstInput = $(this).find( 'input:visible:first');
+                firstInput = $this.find( 'input:visible:first');
             }
             if (firstInput.get(0) !== undefined) {
                 firstInput.get(0).focus();
             }
+
+            // if ($this.find('input:radio, input:checkbox').length > 1000) {
+            //     $this.find('input:radio:visible, input:checkbox:visible').iCheck({
+            //         checkboxClass: 'check check--checkbox',
+            //         radioClass: 'check check--radio',
+            //         focusClass: 'focus'
+            //     });
+            //     let hidden = $this.find('input:radio:hidden, input:checkbox:hidden');
+            //     var a = window.setTimeInterval(function () {
+            //         let toActivate = hidden.slice(0,500);
+            //         toActivate.iCheck({
+            //             checkboxClass: 'check check--checkbox',
+            //             radioClass: 'check check--radio',
+            //             focusClass: 'focus'
+            //         });
+            //
+            //         if (hidden.length === 0) {
+            //             window.clearInterval(a);
+            //         }
+            //     }, 2000);
+            // } else {
+                $this.find('input:radio, input:checkbox').iCheck({
+                    checkboxClass: 'check check--checkbox',
+                    radioClass: 'check check--radio',
+                    focusClass: 'focus'
+                });
+
+            // }
         })
         .on('click', '[data-toggle=modal]', function(e) {
             var $this = $(this),

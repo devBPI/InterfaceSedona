@@ -43,3 +43,10 @@ $(document)
         adder.cleanContainer();
     })
 ;
+
+import 'icheck/icheck';
+$('input:checkbox:visible').iCheck({
+    checkboxClass: 'check check--checkbox',
+    radioClass: 'check check--radio',
+    focusClass: 'focus'
+});

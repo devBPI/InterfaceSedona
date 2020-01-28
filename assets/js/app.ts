@@ -12,7 +12,6 @@ require('../css/app.scss');
 // Need jQuery? Install it with "yarn add jquery", then uncomment to require it.
 require('jquery');
 require('bootstrap');
-require('icheck');
 require('./data-toggle.js');
 require('./orejime-and-addthis.js');
 
@@ -53,12 +52,6 @@ Routing.setRoutingData(routes);
 $('[data-toggle="tooltip"]').tooltip({
     trigger: 'hover focus',
     template: '<div class="tooltip" role="tooltip"><div class="tooltip-inner"></div></div>'
-});
-
-$('input:radio, input:checkbox').iCheck({
-    checkboxClass: 'check check--checkbox',
-    radioClass: 'check check--radio',
-    focusClass: 'focus'
 });
 
 $(document)
