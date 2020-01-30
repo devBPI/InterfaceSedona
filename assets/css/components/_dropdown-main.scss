@@ -13,6 +13,10 @@
 				color: $red;
 				text-decoration: underline;
 			}
+
+			&[data-toggle="dropdown"] {
+				border: 0;
+			}
 		}
 
 		&-menu {
