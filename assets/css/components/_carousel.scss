@@ -97,16 +97,18 @@
 
 		&-title {
 			margin-bottom: 5px;
-			max-height: rem(83);
+			max-height: rem(71);
 			display: block;
 			overflow: hidden;
+			line-height: 1.2;
 		}
 
 		&-subtitle {
 			margin-bottom: 0;
-			max-height: rem(42);
+			max-height: rem(45);
 			display: block;
 			overflow: hidden;
+			line-height: 1.2;
 		}
 	}
 
