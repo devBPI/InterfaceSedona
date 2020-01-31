@@ -512,7 +512,7 @@ bloc:
     translated_from: 'Traduit de:'
     in: 'dans'
     by: 'Par'
-    directors: 'Réalisateurs'
+    directors: Réalisateur(s)
     your-references-autority: Vos références d'autorité
     your-references-bibliographic: Vos références bibliographiques
     conservation: Conservation
