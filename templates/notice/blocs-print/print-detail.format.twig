@@ -11,7 +11,7 @@
 
     {% for copy in notice.copies %}
         {% if notice.isOnLine() %}
-            {{ 'bloc.notice-simple.access-to-bpi'|trans }}
+            {{- "\n" ~ 'bloc.notice-simple.access-to-bpi'|trans }}
         {% elseif copy.isAvailable() %}
             {{- "\n" ~ pdf_occurence(copy, 'getAvailability', "", format)|raw -}}
             {{- pdf_occurence(copy, 'getCote', "bloc.autority-result-information.cote"|trans, format)|raw -}}
@@ -21,7 +21,7 @@
                 {{- pdf_occurence(copy, 'getPrintLocation', "bloc.autority-result-information.print-location"|trans, format)|raw -}}
             {% endif %}
         {% else %}
-            {{ 'bloc.notice-simple.document-unavailable'|trans }}
+            {{- "\n" ~ 'bloc.notice-simple.document-unavailable'|trans -}}
         {% endif %}
     {% endfor %}
 {% endspaceless %}
