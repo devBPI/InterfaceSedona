@@ -10,11 +10,14 @@
     {% endif -%}
 
     {% for copy in notice.copies %}
-        {{- "\n" ~ pdf_occurence(copy, 'getAvailability', "", format)|raw -}}
-
-        {% if notice.isOnLine() == false %}
+        {% if notice.isOnLine() %}
+            {{ 'bloc.notice-simple.access-to-bpi'|trans }}
+        {% elseif copy.isAvailable() %}
+            {{- "\n" ~ pdf_occurence(copy, 'getAvailability', "", format)|raw -}}
             {{- pdf_occurence(copy, 'getCote', "bloc.autority-result-information.cote"|trans, format)|raw -}}
             {{- pdf_occurence(copy, 'getSupport', "bloc.autority-result-information.support"|trans, format)|raw -}}
+        {% else %}
+            {{ 'bloc.notice-simple.document-unavailable'|trans }}
         {% endif %}
     {% endfor %}
 {% endspaceless %}

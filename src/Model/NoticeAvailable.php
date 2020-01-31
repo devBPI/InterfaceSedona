@@ -134,7 +134,7 @@ class NoticeAvailable
      */
     public function isAvailable(): bool
     {
-        return $this->availability === self::LABEL_AVAILABLE;
+        return $this->availability === self::LABEL_AVAILABLE || $this->disponibilite === self::AVAILABLE;
     }
 
     /**

@@ -16,9 +16,9 @@ trait PrintTrait
      * @param string|null $secondText
      * @return string
      */
-    private function concatenateData(string $firstText, ?string $secondText): string
+    private function concatenateData(?string $firstText, ?string $secondText): string
     {
-        $finalText = $firstText;
+        $finalText = $firstText ?? '';
 
         if (!empty($secondText)) {
             $finalText .= self::$separator.$secondText;
