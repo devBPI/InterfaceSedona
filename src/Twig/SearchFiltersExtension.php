@@ -157,11 +157,8 @@ class SearchFiltersExtension extends AbstractExtension
         $payload = "";
         if (method_exists($object, $method) && !empty($object->{$method}())) {
             if (is_array($object->{$method}())) {
-                foreach ($object->{$method}() as $value) {
-                    $payload .= $value.' ';
-                }
-
-            } elseif (!empty($object->{$method}()) && ((string) $object->{$method}()) !=='') {
+                $payload .= implode(' ; ', $object->{$method}());
+            } elseif (!empty($object->{$method}()) && ((string) $object->{$method}()) !== '') {
                 $payload .= $object->{$method}();
             }
 

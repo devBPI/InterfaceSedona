@@ -249,4 +249,13 @@ class NoticeAvailable
         return $this->notes;
     }
 
+    public function getPrintLocation(): ?string
+    {
+        $location = $this->getLocation();
+        if (!empty($this->getCategory())) {
+            $location .= ' - '.$this->getCategory();
+        }
+
+        return $location;
+    }
 }

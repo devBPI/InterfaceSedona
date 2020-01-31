@@ -113,8 +113,7 @@ class NoticeBuildFileService
             'toolbar'           => Notice::class,
             'isPrintLong'       => !$attachement->isShortFormat(),
             'includeImage'      => $attachement->isImage(),
-            'notice'            => $object->getNotice(),
-            'noticeThemed'      => $object->getNoticesSameTheme(),
+            'notice'            => $object->getNotice()
         ]);
     }
 

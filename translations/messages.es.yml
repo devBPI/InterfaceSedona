@@ -494,6 +494,7 @@ bloc:
     meeting: Réunit
     eras: Epoque
     location: Lieu
+    print-location: Localisation
     kind: Genre
     indices: Indice
     topics: Thème(s)

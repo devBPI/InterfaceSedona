@@ -16,6 +16,10 @@
             {{- "\n" ~ pdf_occurence(copy, 'getAvailability', "", format)|raw -}}
             {{- pdf_occurence(copy, 'getCote', "bloc.autority-result-information.cote"|trans, format)|raw -}}
             {{- pdf_occurence(copy, 'getSupport', "bloc.autority-result-information.support"|trans, format)|raw -}}
+            {% if isPrintLong %}
+                {{- pdf_occurence(copy, 'getNotes', "bloc.autority-result-information.nots"|trans, format)|raw -}}
+                {{- pdf_occurence(copy, 'getPrintLocation', "bloc.autority-result-information.print-location"|trans, format)|raw -}}
+            {% endif %}
         {% else %}
             {{ 'bloc.notice-simple.document-unavailable'|trans }}
         {% endif %}
