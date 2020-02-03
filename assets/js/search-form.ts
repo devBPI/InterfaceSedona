@@ -1,4 +1,4 @@
-import 'icheck';
+import InputDecorator from './input-decorator';
 
 export class SearchForm {
     resetButton: HTMLButtonElement;
@@ -40,8 +40,8 @@ export class SearchForm {
                     break;
                 case "radio":
                 case "checkbox":
-                    $(inputElement).iCheck('uncheck');
-                    $(inputElement).removeAttr('checked');
+                    let inputDecorator = new InputDecorator($(inputElement));
+                    inputDecorator.uncheck();
                     break;
                 default:
                     break;

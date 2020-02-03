@@ -1,6 +1,6 @@
-import Autocomplete from './autocomplete.ts';
-import {CollectionRow} from './collection-row.ts';
-import 'icheck/icheck';
+import Autocomplete from './autocomplete';
+import {CollectionRow} from './collection-row';
+import InputDecorator from './input-decorator';
 
 (function($) {
     "use strict";
@@ -96,14 +96,10 @@ import 'icheck/icheck';
                     }
 
                     if (reload) {
-                       $modal.find('input:radio, input:checkbox').iCheck('destroy');
+                        let inputDecorator = new InputDecorator($modal.find('input:radio, input:checkbox'));
+                        inputDecorator.destroy();
                         var originalContent = $modal.find(".modal-content").html();
-
-                        $modal.find('input:radio, input:checkbox').iCheck({
-                            checkboxClass: 'check check--checkbox',
-                            radioClass: 'check check--radio',
-                            focusClass: 'focus'
-                        });
+                        inputDecorator.decorate();
 
                         $modal.on('hidden.bs.modal',function () {
                             $modal
@@ -182,34 +178,8 @@ import 'icheck/icheck';
             if (firstInput.get(0) !== undefined) {
                 firstInput.get(0).focus();
             }
-
-            // if ($this.find('input:radio, input:checkbox').length > 1000) {
-            //     $this.find('input:radio:visible, input:checkbox:visible').iCheck({
-            //         checkboxClass: 'check check--checkbox',
-            //         radioClass: 'check check--radio',
-            //         focusClass: 'focus'
-            //     });
-            //     let hidden = $this.find('input:radio:hidden, input:checkbox:hidden');
-            //     var a = window.setTimeInterval(function () {
-            //         let toActivate = hidden.slice(0,500);
-            //         toActivate.iCheck({
-            //             checkboxClass: 'check check--checkbox',
-            //             radioClass: 'check check--radio',
-            //             focusClass: 'focus'
-            //         });
-            //
-            //         if (hidden.length === 0) {
-            //             window.clearInterval(a);
-            //         }
-            //     }, 2000);
-            // } else {
-                $this.find('input:radio, input:checkbox').iCheck({
-                    checkboxClass: 'check check--checkbox',
-                    radioClass: 'check check--radio',
-                    focusClass: 'focus'
-                });
-
-            // }
+            let inputDecorator = new InputDecorator($('input:radio, input:checkbox'));
+            inputDecorator.decorate();
         })
         .on('click', '[data-toggle=modal]', function(e) {
             var $this = $(this),
@@ -229,14 +199,10 @@ import 'icheck/icheck';
             }
 
             if (reload) {
-                $modal.find('input:radio, input:checkbox').iCheck('destroy');
+                let inputDecorator = new InputDecorator($modal.find('input:radio, input:checkbox'));
+                inputDecorator.destroy();
                 var originalContent = $modal.find(".modal-content").html();
-
-                $modal.find('input:radio, input:checkbox').iCheck({
-                    checkboxClass: 'check check--checkbox',
-                    radioClass: 'check check--radio',
-                    focusClass: 'focus'
-                });
+                inputDecorator.decorate();
 
                 $modal.on('hidden.bs.modal',function () {
                     $modal
@@ -292,6 +258,10 @@ import 'icheck/icheck';
         })
         .ready(function () {
             $('[data-toggle*="-if-no-found"]').ifNoFound();
+        })
+        .on('click', '[data-toggle="collapse"]', function () {
+            let inputDecorator = new InputDecorator($($(this).data('target')).find(':checkbox'));
+            inputDecorator.decorate();
         })
     ;
 

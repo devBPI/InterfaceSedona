@@ -44,9 +44,6 @@ $(document)
     })
 ;
 
-import 'icheck/icheck';
-$('input:checkbox:visible').iCheck({
-    checkboxClass: 'check check--checkbox',
-    radioClass: 'check check--radio',
-    focusClass: 'focus'
-});
+import InputDecorator from './input-decorator';
+let inputDecorator = new InputDecorator($('input:checkbox:visible'));
+inputDecorator.decorate();
