@@ -276,7 +276,7 @@ final class Authority implements NoticeInterface, RecordInterface, BpiConverterI
     }
     public function getPrintTitle(): string
     {
-        return $this->getTitle();
+        return $this->getFormAdopted() ?? $this->getTitle();
     }
 
     public function getClassName(): string

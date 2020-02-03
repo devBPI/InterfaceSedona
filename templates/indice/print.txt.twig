@@ -1,4 +1,4 @@
-notice-autorite
-=============
-{{ notice.title }}
+{{ 'bloc.print.subtitles.your-reference-autority'|trans }}
+=====================
+{{ notice.printTitle ~ "\n" }}
 {% include "indice/blocs/print-detail.format.twig" with {'notice': notice, 'format': 'txt'} %}

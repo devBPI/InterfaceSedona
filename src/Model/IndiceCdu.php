@@ -142,7 +142,7 @@ final class IndiceCdu extends Cdu implements NoticeInterface, RecordInterface, B
 
     public function getPrintTitle(): string
     {
-        return $this->getTitle();
+        return $this->getFormAdopted() ?? ($this->getCote().' - '.$this->getName());
     }
 
     public function getClassName(): string

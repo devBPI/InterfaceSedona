@@ -15,7 +15,7 @@ trait IndiceAndAuthorityTrait
     /**
      * @var string
      * @JMS\Type("string")
-     * @JMS\SerializedName("formRetenue")
+     * @JMS\SerializedName("formeRetenue")
      */
     private $formAdopted;
 

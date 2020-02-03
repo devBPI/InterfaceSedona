@@ -1,6 +1,5 @@
-notice-bibliographique
-----------------------
-
+{{ 'bloc.print.subtitles.your-reference-bibliographic'|trans }}
+=====================
 {{ notice.printTitle ~ "\n" }}
 {% if isPrintLong %}{{ notice.titleForm|join(' ') }}{% endif %}
 {% include "notice/blocs-print/print-detail.format.twig" with {'notice': notice, 'format': 'txt'} %}

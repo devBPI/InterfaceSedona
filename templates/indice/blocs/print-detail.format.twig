@@ -1,11 +1,9 @@
 {% spaceless %}
-    {{- pdf_occurence(notice, 'getFormRetenu','', format)|raw -}}
-
-    {%- set type = "bloc.autority-result-information.authority-type"|trans ~ ' : ' ~ "bloc.autority-result-information.type.indice"|trans -%}
+    {% set type = 'bloc.autority-result-information.authority-type'|trans ~ ' : ' ~ 'bloc.autority-result-information.type.indice'|trans %}
     {%- if format == 'pdf' %}
         <li>{{ type }}</li>
     {% else %}
-        {{- type -}}
+        {{- (type ~ "\n")|raw -}}
     {% endif -%}
 
     {%- if isPrintLong %}
@@ -18,6 +16,6 @@
             <a href="{{ absolute_url(path('record_indice_cdu', {"permalink": notice.permalink})) }}">Lien de la notice</a>
         </li>
     {% else %}
-        {{- notice.permalink -}}
+        {{- notice.permalink ~ "\n" -}}
     {% endif -%}
 {% endspaceless %}

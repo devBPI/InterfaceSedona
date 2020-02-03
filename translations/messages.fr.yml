@@ -473,7 +473,7 @@ bloc:
     genre: 'Genre'
     indice: 'Indice'
     publication-receve: 'Numéros reçus'
-    authority-type: "Type d'autorité"
+    authority-type: Type d'autorité
     cote: "Cote"
     other-names: "Autre(s) nom(s)"
     employed-for: "Employé pour"
@@ -514,8 +514,6 @@ bloc:
     in: 'dans'
     by: 'Par'
     directors: Réalisateur(s)
-    your-references-autority: Vos références d'autorité
-    your-references-bibliographic: Vos références bibliographiques
     conservation: Conservation
     collections-et-services: Collections
   list-related-documents:  #Bloc 19 Liste de documents + Bloc 17 Documents liés
@@ -570,7 +568,15 @@ bloc:
       date: Recherché le
     select-ligne: 'Sélectionner la ligne : %title%'
     reload: Relancer la recherche %title%'
-
+  print:
+    titles:
+      search: Résultats de recherche
+      selection: Résultats de la sélection
+    subtitles:
+      your-references-autority: Vos références d'autorité
+      your-reference-autority: Votre référence d'autorité
+      your-references-bibliographic: Vos références bibliographiques
+      your-reference-bibliographic: Votre référence bibliographique
 error:
   page_not_available: 'Cette page n’est pas accessible.'
   page_not_found: 404 - Page introuvable

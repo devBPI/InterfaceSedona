@@ -1,10 +1,7 @@
-Impression de recherche
----------------------
-Résultats de recherche
----------------------
-
+{{ 'global.print-title'|trans }}
+--------------------------------
 {% if printNoticeWrapper.noticeAuthority|length + printNoticeWrapper.noticeIndice|length > 0 %}
-{{ 'bloc.autority-result-information.your-references-autority'|trans }}
+{{ 'bloc.print.subtitles.your-references-autority'|trans }}
 =====================
 {% for element in printNoticeWrapper.noticeAuthority %}
     {{- "\n\n"~loop.index }}) {{ element.title ~ "\n" -}}
@@ -21,7 +18,7 @@ Résultats de recherche
 {% if printNoticeWrapper.noticeOnShelves|length + printNoticeWrapper.noticeOnLine|length > 0 %}
 
 
-{{ 'bloc.autority-result-information.your-references-bibliographic'|trans }}
+{{ 'bloc.print.subtitles.your-references-bibliographic'|trans }}
 =====================
 {% for element in printNoticeWrapper.noticeOnShelves %}
     {{- "\n\n"~loop.index }}) {{ element.title ~ "\n" -}}

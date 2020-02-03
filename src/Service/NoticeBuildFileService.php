@@ -190,7 +190,7 @@ class NoticeBuildFileService
             case 'txt':
                 return new Response(
                 $content, 200, [
-                    'Content-Type' => 'application/force-download',
+                    'Content-Type' => 'application/force-download; charset=utf-8',
                     'Content-Disposition' => 'attachment; filename="'.$filename.'.txt"',
                 ]
             );
