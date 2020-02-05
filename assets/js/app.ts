@@ -63,23 +63,38 @@ $(document)
     })
     .on('focus', '.dropdown-link .nav-link, .nav-pills .dropdown .dropdown-toggle', function() {
         if ($(window).width() > 768) {
-            $('.dropdown-link .nav-link').removeClass('active');
+            $('.dropdown-link .nav-link')
+                .removeClass('active')
+                .attr('aria-expanded', 'false');
             $('.dropdown-menu').removeClass('show');
             $(this).addClass('active');
-            $(this).siblings('.dropdown-menu').addClass('show');
+            $(this)
+                .siblings('.dropdown-menu')
+                .addClass('show');
+            $(this).attr('aria-expanded', 'true');
         }
     })
     .on('focus', '.dropdown-item__sub, .dropdown-item__title', function() {
         if ($(window).width() > 768) {
-            $('.dropdown-link .nav-link').removeClass('active');
+            $('.dropdown-link .nav-link')
+                .removeClass('active')
+                .attr('aria-expanded', 'false');
             $('.dropdown-menu').removeClass('show');
-            $(this).parents('.dropdown-menu').siblings('.nav-link').addClass('active');
-            $(this).parents('.dropdown-menu').addClass('show');
+            $(this)
+                .parents('.dropdown-menu')
+                .siblings('.nav-link')
+                .addClass('active')
+                .attr('aria-expanded', 'true');
+            $(this)
+                .parents('.dropdown-menu')
+                .addClass('show');
         }
     })
     .on('focusout', '.dropdown-menu [class^="col-"]:last-child .dropdown-item:last-child, .navbar--help .dropdown-menu .dropdown-item:last-child, .navbar--help', function () {
         if ($(window).width() > 768) {
-            $('.dropdown-link .nav-link').removeClass('active');
+            $('.dropdown-link .nav-link')
+                .removeClass('active')
+                .attr('aria-expanded', 'false');
             $('.dropdown-menu').removeClass('show');
         }
     })
