@@ -67,7 +67,7 @@
                         {% if notice.type in constant('App\\Model\\Notice::NOTICE_CONTENU_TYPE') %}
                             {% set title = 'modal.comments-edit.field-content'|trans %}
                         {% endif %}
-                    - <button class="list-result__content-resume" type="button" data-toggle="tooltip" title="{{ title }} : {{ notice.frontResume }}">
+                    - <button class="list-result__content-resume" type="button" data-toggle="tooltip" title="{{ title }} : {{ notice.frontResume }}" role="tooltip">
                         <img src="{{ asset('images/icones/icone-resume.svg') }}" alt=""/>
                         <span class="sr-only">{{ 'bloc.notice-simple.resume-label'|trans }}</span>
                     </button>

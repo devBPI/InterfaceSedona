@@ -51,7 +51,7 @@ Routing.setRoutingData(routes);
 
 $('[data-toggle="tooltip"]').tooltip({
     trigger: 'hover focus',
-    template: '<div class="tooltip" role="tooltip"><div class="tooltip-inner"></div></div>'
+    template: '<div class="tooltip"><div class="tooltip-inner"></div></div>'
 });
 
 $(document)
