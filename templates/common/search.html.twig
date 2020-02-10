@@ -11,7 +11,7 @@
                    data-toggle="autocomplete" data-target="#autocompletion-list" data-type="#search-words" data-mode="link"
                    placeholder="{{ ('bloc.search-zone.input-'~app.request.attributes.get('parcours', constant('App\\Controller\\SearchController::GENERAL') )~'-placeholder')|trans}}"
                    value="{{ objSearch is defined ? objSearch.simpleSearchKeyword : '' }}"
-                   aria-expanded="false" aria-owns="autocompletion-list"
+                   aria-expanded="false" aria-control="autocompletion-list"
             />
             <div id="autocompletion-list" class="search-autocomplet sr-only"></div>
         </div>

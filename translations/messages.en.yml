@@ -616,3 +616,10 @@ breadcrumb:
     bibliographic: Document %title%
     indice_cdu: Authority %title%
     authority: Authority %title%
+
+    form:
+      fieldset:
+        legend:
+          shortFormat: Contenu de la notice
+          formatType: Format de l'export
+    
