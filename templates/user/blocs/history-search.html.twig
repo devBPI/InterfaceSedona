@@ -1,20 +1,18 @@
 <div class="historique">
-    <table class="table table-striped">
+    <table class="table table-striped" aria-readonly="true">
         <caption class="sr-only">{{ 'bloc.historic-search.title'|trans }}</caption>
         <thead class="table__thead">
         <tr>
-            <th role="presentation"></th>
-            <th scope="col" aria-sort="none">
-                <button class="btn table__button" type="button"
-                        aria-label="{{ 'bloc.historic-search.col.name'|trans }} {{ 'global.list-ordering'|trans }}">{{ 'bloc.historic-search.col.name'|trans }}
-                    <span class="caret"></span></button>
+            <th role="presentation" class="nosort"></th>
+            <th scope="col" role="columnheader">
+                {{ 'bloc.historic-search.col.name'|trans }}
+                <span class="caret"></span>
             </th>
-            <th scope="col" aria-sort="none">
-                <button class="btn table__button" type="button"
-                        aria-label="{{ 'bloc.historic-search.col.date'|trans }} {{ 'global.list-ordering'|trans }}">{{ 'bloc.historic-search.col.date'|trans }}
-                    <span class="caret"></span></button>
+            <th scope="col" role="columnheader">
+                {{ 'bloc.historic-search.col.date'|trans }}
+                <span class="caret"></span>
             </th>
-            <th role="presentation"></th>
+            <th role="presentation" class="nosort"></th>
         </tr>
         </thead>
         <tbody class="table__body">

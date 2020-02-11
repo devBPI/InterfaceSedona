@@ -2,6 +2,12 @@ require('datatables.net/js/jquery.dataTables.min.js');
 
 $(document).ready(function () {
     $('table.table-striped').dataTable({
+        "columnDefs": [
+          {
+            "targets": 'nosort',
+            "orderable": false
+          }
+        ],
         "language": {
           "emptyTable": "Il n'y a aucun document dans votre liste",
           "aria": {
@@ -9,7 +15,6 @@ $(document).ready(function () {
             "sortDescending": ": activer pour trier par ordre descendant"
           }
         },
-        "tabIndex": '-1',
         "paging":   false,
         "info":   false,
         "searching":   false
