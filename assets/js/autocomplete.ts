@@ -33,7 +33,7 @@ export default class Autocomplete {
     private initListener() {
         this.element.addEventListener('keyup', (event: KeyboardEvent) => this.onKeyUp(event));
         this.type.addEventListener('change', () => this.updateAutocompletion());
-        this.target.addEventListener('keyup', (event) => this.manageFocus(event));
+        this.target.addEventListener('keyup', (event) => this.manageFocus(event, this.mode !== 'link'));
         document.addEventListener('click', (event) => this.onClickOut(event))
     }
 
@@ -98,11 +98,13 @@ export default class Autocomplete {
     }
 
     private showAutocompleteDiv() {
+        this.element.setAttribute('aria-expanded', 'true');
         if (this.target.classList.contains('sr-only')) {
             this.target.classList.remove('sr-only');
         }
     }
     private hideAutocompleteDiv() {
+        this.element.setAttribute('aria-expanded', 'false');
         if (!this.target.classList.contains('sr-only')) {
             this.target.innerHTML = '';
             this.target.classList.add('sr-only');
@@ -110,7 +112,7 @@ export default class Autocomplete {
         }
     }
 
-    private manageFocus(event) {
+    private manageFocus(event, arrowNavig: boolean) {
         if (event.keyCode == 27) {
             this.hideAutocompleteDiv();
 
@@ -118,18 +120,20 @@ export default class Autocomplete {
             event.preventDefault();
         }
 
-        if (event.keyCode == 40) {
-            if (event.target.parentElement &&
-                event.target.parentElement.nextElementSibling &&
-                event.target.parentElement.nextElementSibling.firstElementChild) {
-                event.target.parentElement.nextElementSibling.firstElementChild.focus();
+        if (arrowNavig) {
+            if (event.keyCode == 40) {
+                if (event.target.parentElement &&
+                    event.target.parentElement.nextElementSibling &&
+                    event.target.parentElement.nextElementSibling.firstElementChild) {
+                    event.target.parentElement.nextElementSibling.firstElementChild.focus();
+                }
             }
-        }
-        if (event.keyCode == 38) {
-            if (event.target.parentElement &&
-                event.target.parentElement.previousElementSibling &&
-                event.target.parentElement.previousElementSibling.firstElementChild) {
-                event.target.parentElement.previousElementSibling.firstElementChild.focus();
+            if (event.keyCode == 38) {
+                if (event.target.parentElement &&
+                    event.target.parentElement.previousElementSibling &&
+                    event.target.parentElement.previousElementSibling.firstElementChild) {
+                    event.target.parentElement.previousElementSibling.firstElementChild.focus();
+                }
             }
         }
     }
