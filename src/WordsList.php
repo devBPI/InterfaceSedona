@@ -81,10 +81,10 @@ final class WordsList
                 self::TITLE_WORD,
                 self::AUTHOR_WORD,
                 self::SUBJECT_WORD,
-                self::ISBN_WORD,
-                self::INDICE_COTE_WORD,
                 self::THEME_WORD,
                 self::EDITOR_WORD,
+                self::ISBN_WORD,
+                self::INDICE_COTE_WORD,
                 self::COLLECTION_WORD
             ],
             self::THEME_CINEMA => [
@@ -93,10 +93,10 @@ final class WordsList
                 self::AUTHOR_WORD,
                 self::REALISATOR_WORD,
                 self::SUBJECT_WORD,
-                self::ISBN_WORD,
-                self::INDICE_COTE_WORD,
                 self::THEME_WORD,
                 self::EDITOR_WORD,
+                self::ISBN_WORD,
+                self::INDICE_COTE_WORD,
                 self::COLLECTION_WORD
             ]
         ]

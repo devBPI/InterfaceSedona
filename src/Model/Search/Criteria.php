@@ -83,7 +83,7 @@ class Criteria
     /**
      * @var string
      * @JMS\Type("string")
-     * @JMS\SerializedName("collection-namer")
+     * @JMS\SerializedName("collection")
      */
     private $collection;
 
