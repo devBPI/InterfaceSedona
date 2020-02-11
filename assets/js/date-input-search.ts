@@ -85,17 +85,19 @@ export class DatePeriod {
     private dateDiv: HTMLDivElement;
     private periodDiv: HTMLDivElement;
 
-    constructor(periodRadioElement: HTMLInputElement) {
+    constructor(periodRadioDiv: HTMLDivElement) {
+        let periodRadioElement = periodRadioDiv.querySelector('input');
+
         this.dateDiv = document.querySelector('#js-date-div');
         this.periodDiv = document.querySelector('#js-period-div');
         this.init($(periodRadioElement).is(':checked'));
 
 
-        $(periodRadioElement)
-            .on('ifChecked', () => {
+        $(periodRadioDiv)
+            .on('ifChecked', 'input', () => {
                 this.showPeriod();
             })
-            .on('ifUnchecked', () => {
+            .on('ifUnchecked', 'input', () => {
                 this.hidePeriod();
             });
     }
