@@ -73,22 +73,21 @@ final class BreadCrumbBuilder
     public function build(Request $request): bool
     {
         $route = $request->get('_route');
-
         if ($route !== null) {
-            if (strpos($route, self::USER) !== false) {
-                return $this->buildForUserPage($request);
-            }
-            if (strpos($route, self::HELP) !== false) {
-                return $this->buildForHelpPage($request);
-            }
-            if (strpos($route, self::HOME) !== false && $route !== 'home2') {
-                return $this->buildForHome($request);
-            }
-            if (strpos($route, self::RECORD) !== false) {
-                return $this->buildForCardPage($request);
-            }
-            if (strpos($route, self::SEARCH) !== false) {
-                return $this->buildForSearchPage($request);
+            switch (true) {
+
+                case strpos($route, self::USER) !== false:
+                    return $this->buildForUserPage($request);
+                case strpos($route, self::HELP) !== false:
+                    return $this->buildForHelpPage($request);
+                case strpos($route, self::HOME) !== false && $route !== 'home2':
+                    return $this->buildForHome($request);
+                case strpos($route, self::RECORD) !== false:
+                    return $this->buildForCardPage($request);
+                case strpos($route, self::SEARCH) !== false:
+                    return $this->buildForSearchPage($request);
+                default:
+                    return false;
             }
         }
 
@@ -145,7 +144,6 @@ final class BreadCrumbBuilder
     {
         $notice = $request->get('notice');
         $this->buildForSearchPage($request);
-
         if ($notice instanceof NoticeThemed) {
             $notice = $notice->getNotice();
         }
@@ -172,36 +170,13 @@ final class BreadCrumbBuilder
     private function buildForSearchPage(Request $request): bool
     {
         $route = $request->get('_route');
-        $navigation = $request->get('navigation');
+        $hash = $request->get('searchToken');
         $parcoursTerms = [];
+        $parcours = $request->get('parcours', null);
 
-        if ($navigation instanceof NavigationService) {
-            if (($parcours = $navigation->getSearch()->getCriteria()->getParcours()) && $parcours !== 'general') {
-                $parcoursTerms = ['parcours' => $parcours];
-                $this->bctService->add(
-                    'home_thematic',
-                    sprintf('breadcrumb.parcours.%s', $parcours),
-                    $parcoursTerms
-                );
-            }
-            if ($humanCriteria = $this->humanizeCriteria($request)) {
-                $this->bctService->add(
-                    'refined_search',
-                    'breadcrumb.search-terms',
-                    array_merge([ObjSearch::PARAM_REQUEST_NAME => $navigation->getHash()], $parcoursTerms),
-                    ['%terms%' => $humanCriteria]
-                );
-            } else {
-                $this->bctService->add(
-                    'refined_search',
-                    'breadcrumb.search',
-                    array_merge([ObjSearch::PARAM_REQUEST_NAME => $navigation->getHash()], $parcoursTerms)
-                );
-            }
-
-        } else if (strpos($route, 'search') !== false) {
+        if ($hash !==null && strpos($route, 'search') !== false) {
             $parcoursTerms = [];
-            if (($parcours = $request->get('parcours')) && $parcours !== 'general') {
+            if ($parcours !== 'general') {
                 $parcoursTerms = ['parcours' => $parcours];
                 $this->bctService->add(
                     'home_thematic',
@@ -210,10 +185,7 @@ final class BreadCrumbBuilder
                 );
             }
 
-            $searchToken = $request->getSession()->get(ObjSearch::PARAM_REQUEST_NAME);
-            if ($searchToken) {
-                $parcoursTerms = array_merge([ObjSearch::PARAM_REQUEST_NAME => $searchToken], $parcoursTerms);
-            }
+            $parcoursTerms = array_merge([ObjSearch::PARAM_REQUEST_NAME => $hash], $parcoursTerms);
 
             if ($humanCriteria = $this->humanizeCriteria($request)) {
                 $this->bctService->add(
@@ -230,9 +202,39 @@ final class BreadCrumbBuilder
                     $parcoursTerms
                 );
             }
-        }
+            return true;
+        }elseif ($hash !==null) {
 
-        return true;
+            if ($parcours && $parcours !== 'general') {
+                $parcoursTerms = ['parcours' => $parcours];
+                $this->bctService->add(
+                    'home_thematic',
+                    sprintf('breadcrumb.parcours.%s', $parcours),
+                    $parcoursTerms
+                );
+            }
+
+            if ($humanCriteria = $this->humanizeCriteria($request)) {
+
+                $this->bctService->add(
+                    'refined_search',
+                    'breadcrumb.search-terms',
+                    array_merge([ObjSearch::PARAM_REQUEST_NAME => $hash], $parcoursTerms),
+                    ['%terms%' => $humanCriteria]
+                );
+
+            } else {
+
+                $this->bctService->add(
+                    'refined_search',
+                    'breadcrumb.search',
+                    array_merge([ObjSearch::PARAM_REQUEST_NAME => $hash], $parcoursTerms)
+                );
+            }
+
+            return true;
+        }
+        return false;
     }
 
     /**
@@ -242,6 +244,7 @@ final class BreadCrumbBuilder
     private function humanizeCriteria(Request $request): string
     {
         $objSearch = new ObjSearch($this->getObjSearchQuery($request));
+
         return implode(', ', $objSearch->getCriteria()->getKeywordsTitles());
     }
 
@@ -253,10 +256,9 @@ final class BreadCrumbBuilder
     {
         $token = $request->get(ObjSearch::PARAM_REQUEST_NAME);
         $route = $request->get('_route');
-
         $searchQuery = null;
         $criteria = new Criteria();
-        if ($token) {
+        if ($token && ($object = $request->getSession()->get($token))) {
             $searchQuery = $this->searchService->getSearchQueryFromToken($token, $request);
         } elseif ($route === 'saved_search') {
             $searchHistory = $this->entityManager->getRepository(SearchHistory::class)->find($request->get('id'));

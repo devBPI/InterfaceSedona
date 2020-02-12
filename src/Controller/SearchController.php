@@ -127,7 +127,13 @@ final class SearchController extends AbstractController
      */
     public function refinedSearchAction(Request $request, string $parcours=self::GENERAL): Response
     {
+        if (!$request->getSession()->get($request->get(ObjSearch::PARAM_REQUEST_NAME, null))){
+            return $this->redirect(
+                $this->generateUrl('search_parcours', ['parcours' => $parcours])
+            );
+        }
         $search = $this->searchService->getSearchQueryFromToken($request->get(ObjSearch::PARAM_REQUEST_NAME, null), $request);
+
         $criteria = $search->getCriteria()->setParcours($parcours);
         $search
             ->setFacets(new FacetFilter($request->query->all()))
@@ -139,7 +145,6 @@ final class SearchController extends AbstractController
             $request
         );
     }
-
 
     /**
      * @Route("/recherche-retour/{searchToken}", methods={"GET"}, name="back_search")
