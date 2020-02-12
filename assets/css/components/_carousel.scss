@@ -120,7 +120,7 @@
 		list-style-type: none;
 		margin-top: $spacer;
 		margin-right: $spacer;
-		padding: 0 35px 0 0;
+		padding: 0 rem(35) 0 0;
 
 		.slick-active &-dot {
 			background-color: $red;
@@ -129,8 +129,8 @@
 		&-dot {
 			-moz-appearance: none;
 			-webkit-appearance: none;
-			width: 25px;
-			height: 15px;
+			width: rem(25);
+			height: rem(15);
 			display: inline-block;
 			border: 1px solid $red;
 			margin-left: 5px;
@@ -148,8 +148,8 @@
 		position: absolute;
 		bottom: 0;
 		right: 0;
-		width: 15px;
-		height: 15px;
+		width: rem(25);
+		height: rem(15);
 		margin-right: $spacer;
 		z-index: 100;
 	}
@@ -157,8 +157,8 @@
 	&__button {
 		-moz-appearance: none;
 		-webkit-appearance: none;
-		width: 25px;
-		height: 15px;
+		width: rem(25);
+		height: rem(15);
 		border: 1px solid transparent;
 		padding: 0;
 		position: absolute;
