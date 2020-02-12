@@ -22,34 +22,43 @@ export default class SelectList {
             }
         })
         .on('select2-removed', (e) => {
-            let generatedElement = document.querySelector('input.select2-input');
+            let generatedElement = document.querySelector('input.select2-input') as HTMLInputElement;
             if (generatedElement) {
                 this.updateTotalElement(generatedElement);
             }
         })
         .on('select2-open', () => {
             let object = $(this).data('select2');
-            object.select.before(object.liveRegion);
+            if (object !== undefined) {
+                object.select.before(object.liveRegion);
+            }
         });
 
         setTimeout(() => {
-            $("[data-toggle=select2]").each( (el) => {
+            $("[data-toggle=select2]").each((el) => {
                 let $this = $(this), 
                     generatedListId = 'select2-adv-' + $this.attr('id'),
                     object = $this.data('select2');
-                object.selection.attr('id', generatedListId);
-                object.search
-                    .attr('role', 'button')
-                    .attr('aria-controls', generatedListId)
-                    .attr('aria-expanded', 'false');
+
+                if (object !== undefined) {
+                    object.selection.attr('id', generatedListId);
+                    object.search
+                        .attr('role', 'button')
+                        .attr('aria-controls', generatedListId)
+                        .attr('aria-expanded', 'false');
+
                     this.updateTotalElement(object.search);
+                }
             });
         }, 0);
     }
 
     private updateTotalElement(list:any) {
-        let countChoices = document.querySelector('ul.select2-choices').children.length - 1;
+        let choicesList = document.querySelector('ul.select2-choices') as HTMLUListElement;
+        if (choicesList) {
+            let countChoices = choicesList.children.length - 1;
 
-        list.setAttribute('aria-label', countChoices + ' éléments sélectionnés');
+            list.setAttribute('aria-label', countChoices + ' éléments sélectionnés');
+        }
     }
 }

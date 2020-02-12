@@ -30,6 +30,10 @@ export class SearchForm {
     }
 
     private resetAllInput() {
+        this.form.querySelectorAll('select').forEach((selectElement: HTMLSelectElement) => {
+            this.clearSelectBox(selectElement);
+        });
+
         this.form.querySelectorAll('input').forEach((inputElement: HTMLInputElement) => {
             switch (inputElement.type.toLowerCase()) {
                 case "text":
@@ -48,14 +52,22 @@ export class SearchForm {
             }
         });
 
-        this.form.querySelectorAll('select').forEach((selectElement: HTMLSelectElement) => {
-            if (selectElement.selectedOptions.length > 0) {
-                selectElement.selectedOptions.item(0).removeAttribute('selected');
-                $(selectElement).val(null).trigger('change');
-            }
-        });
-
         this.clearKeywordRows(this.form);
+    }
+
+    private clearSelectBox(selectElement: HTMLSelectElement) {
+        if (selectElement.selectedOptions.length > 0) {
+            let selectedOptions = new Array() as Array<HTMLOptionElement>;
+            for (let index = 0; index < selectElement.selectedOptions.length; index++) {
+                selectedOptions.push(selectElement.selectedOptions.item(index));
+            }
+
+            selectedOptions.forEach((option: HTMLOptionElement) => {
+                option.removeAttribute('selected');
+            })
+        }
+
+        $(selectElement).val(null).trigger('change');
     }
 
     private clearKeywordRows(container: HTMLElement) {
