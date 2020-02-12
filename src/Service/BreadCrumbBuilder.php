@@ -170,10 +170,9 @@ final class BreadCrumbBuilder
     private function buildForSearchPage(Request $request): bool
     {
         $route = $request->get('_route');
-        $hash = $request->get('searchToken');
+        $hash = $request->get('searchToken', $request->getSession()->get('searchToken'));
         $parcoursTerms = [];
         $parcours = $request->get('parcours', null);
-
         if ($hash !==null && strpos($route, 'search') !== false) {
             $parcoursTerms = [];
             if ($parcours !== 'general') {

@@ -84,6 +84,7 @@ final class SearchController extends AbstractController
         $criteria = new Criteria();
         $criteria->setSimpleSearch($type, $keyword);
         $criteria->setParcours($parcours);
+
         return $this->displaySearch(new SearchQuery($criteria), $request);
     }
 
@@ -254,6 +255,7 @@ final class SearchController extends AbstractController
         $request->query->remove('action');
 
         $request->getSession()->set(NavigationService::SESSION_KEY, serialize(new ListNavigation($objSearch)));
+        $request->getSession()->set('searchToken', serialize($objSearch));
 
         $seeAll = $request->get('see-all', Notice::ALL);
         $template = 'search/index.html.twig';
