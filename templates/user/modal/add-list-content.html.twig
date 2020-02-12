@@ -71,20 +71,8 @@
 
 
     <div class="modal-footer">
-        {% if not is_granted('IS_AUTHENTICATED_FULLY') %}
-            {# Pas authentifié #}
-            <p class="modal-footer__quote">{{ 'modal.list-add.btn-login'|trans }}</p>
-        {% endif %}
-
-        {# Authentifié + Pas authentifié #}
         <button type="button" data-dismiss="modal"
                 class="btn btn-lg btn-secondary">{{ 'global.modal-cancel'|trans }}</button>
-
-        {% if not is_granted('IS_AUTHENTICATED_FULLY') %}
-            {# Pas authentifié #}
-            <a href="{{ path('user_login') }}" class="btn btn-lg btn-primary">
-                {{ 'modal.list-add.btn-login2'|trans }}</a>
-        {% endif %}
 
         <button type="submit" class="btn btn-lg btn-primary">
             {{ 'modal.list-add.submit'|trans }}
