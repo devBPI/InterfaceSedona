@@ -8,66 +8,64 @@
 
     <h1 class="n1">{{ 'page.login.title'|trans }}</h1>
 
-    <div class="row justify-content-center">
-        <div class="col-12 col-sm-10 col-lg-8">
-            <form action="{{ path('user_login') }}" method="post" class="account-form gtm-form-sign-in">
-            
-                <p class="modal-form__indication">* {{ 'global.form-mandatory-field'|trans }}</p> 
-                {% set error_class = '' %}
-                {% if error is defined and error is not empty %}
-                    <div class="form-group row justify-content-md-end">
-                        <div class="col-12 col-md-8">
-                            <span class="invalid-feedback d-block">{{ error|trans }}</span>
-                        </div>
+    <div class="account-form account-form--bloc">
+        <form action="{{ path('user_login') }}" method="post" class="gtm-form-sign-in">
+        
+            <p class="modal-form__indication">* {{ 'global.form-mandatory-field'|trans }}</p> 
+            {% set error_class = '' %}
+            {% if error is defined and error is not empty %}
+                <div class="form-group row justify-content-md-end">
+                    <div class="col-12 col-md-8">
+                        <span class="invalid-feedback d-block">{{ error|trans }}</span>
                     </div>
-                    {% set error_class = 'is-invalid' %}
-                {% endif %}
+                </div>
+                {% set error_class = 'is-invalid' %}
+            {% endif %}
 
-                <div class="form-group row">
-                    <label for="account-mail" class="col-12 col-md-4">{{ 'page.login.login'|trans }} ({{ 'page.login.login-placeholder'|trans }})</label>
-                    <div class="col-12 col-md-8">
-                        <input name="_username" type="email" class="form-control {{ error_class }}" id="account-mail" required="required"
-                               {% if last_login is defined %}value="{{ last_login }}"{% endif %} autocomplete="email" placeholder="{{ 'page.login.login-placeholder'|trans }}">
+            <div class="form-group row">
+                <label for="account-mail" class="col-12 col-md-4">{{ 'page.login.login'|trans }} ({{ 'page.login.login-placeholder'|trans }})</label>
+                <div class="col-12 col-md-8">
+                    <input name="_username" type="email" class="form-control {{ error_class }}" id="account-mail" required="required"
+                            {% if last_login is defined %}value="{{ last_login }}"{% endif %} autocomplete="email" placeholder="{{ 'page.login.login-placeholder'|trans }}">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="account-password" class="col-12 col-md-4">{{ 'page.login.password'|trans }}</label>
+                <div class="col-12 col-md-8">
+                    <input name="_password" type="password" class="form-control {{ error_class }}" required="required"
+                            id="account-password" autocomplete="current-password">
+                </div>
+            </div>
+            <div class="row justify-content-end">
+                <div class="col-12 col-md-8">
+                    <div class="form-group form-check">
+                        <input type="checkbox" class="form-check-input" id="account-keep">
+                        <label class="form-check-label"
+                                for="account-keep">{{ 'page.login.remember-me'|trans }}</label>
                     </div>
                 </div>
-                <div class="form-group row">
-                    <label for="account-password" class="col-12 col-md-4">{{ 'page.login.password'|trans }}</label>
-                    <div class="col-12 col-md-8">
-                        <input name="_password" type="password" class="form-control {{ error_class }}" required="required"
-                               id="account-password" autocomplete="current-password">
-                    </div>
-                </div>
-                <div class="row justify-content-end">
-                    <div class="col-12 col-md-8">
-                        <div class="form-group form-check">
-                            <input type="checkbox" class="form-check-input" id="account-keep">
-                            <label class="form-check-label"
-                                   for="account-keep">{{ 'page.login.remember-me'|trans }}</label>
+            </div>
+            <div class="row justify-content-end">
+                <div class="col-12 col-md-8">
+                    <div class="account-form__footer">
+                        <div class="account-form__footer-content">
+                            <a href="http://authz.bpi.fr/mail.pl?skin=bootstrap" target="_blank"
+                                class="account-form__link"
+                                title="{{ 'page.login.forgotten-password'|trans }} - {{ 'global.new-windows'|trans }}">
+                                {{ 'page.login.forgotten-password'|trans }}</a>
+                            <button type="submit"
+                                    class="btn btn-lg btn-primary">{{ 'page.login.submit'|trans }}</button>
+                        </div>
+                        <div class="account-form__footer-content">
+                            <a href="https://www.bpi.fr/formulaire-inscription-bpi" target="_blank"
+                                class="account-form__link"
+                                title="{{ 'page.login.create-profil'|trans }} - {{ 'global.new-windows'|trans }}">
+                                {{ 'page.login.create-profil'|trans }}</a>
                         </div>
                     </div>
                 </div>
-                <div class="row justify-content-end">
-                    <div class="col-12 col-md-8">
-                        <div class="account-form__footer">
-                            <div class="account-form__footer-content">
-                                <a href="http://authz.bpi.fr/mail.pl?skin=bootstrap" target="_blank"
-                                   class="account-form__link"
-                                   title="{{ 'page.login.forgotten-password'|trans }} - {{ 'global.new-windows'|trans }}">
-                                    {{ 'page.login.forgotten-password'|trans }}</a>
-                                <button type="submit"
-                                        class="btn btn-lg btn-primary">{{ 'page.login.submit'|trans }}</button>
-                            </div>
-                            <div class="account-form__footer-content">
-                                <a href="https://www.bpi.fr/formulaire-inscription-bpi" target="_blank"
-                                   class="account-form__link"
-                                   title="{{ 'page.login.create-profil'|trans }} - {{ 'global.new-windows'|trans }}">
-                                    {{ 'page.login.create-profil'|trans }}</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <input type="hidden" name="_target_path" value="{{ referer }}" />
-            </form>
-        </div>
+            </div>
+            <input type="hidden" name="_target_path" value="{{ referer }}" />
+        </form>
     </div>
 {% endblock %}
