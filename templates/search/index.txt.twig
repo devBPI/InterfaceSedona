@@ -1,33 +1,31 @@
 {{ 'global.print-title'|trans }}
 --------------------------------
-{% if printNoticeWrapper.noticeAuthority|length + printNoticeWrapper.noticeIndice|length > 0 %}
-{{ 'bloc.print.subtitles.your-references-autority'|trans }}
-=====================
-{% for element in printNoticeWrapper.noticeAuthority %}
-    {{- "\n\n"~loop.index }}) {{ element.title ~ "\n" -}}
-    {% include "authority/blocs/print-detail.format.twig" with {'notice': element, 'format':'txt'} %}
-{% endfor %}
-{%- set countAuthors = printNoticeWrapper.noticeAuthority|length -%}
+{% if  printNoticeWrapper and (printNoticeWrapper.noticeAuthority|length + printNoticeWrapper.noticeIndice|length) > 0 %}
+    {{ 'bloc.print.subtitles.your-references-autority'|trans }}
+    =====================
+    {% for element in printNoticeWrapper.noticeAuthority %}
+        {{- "\n\n"~loop.index }}) {{ element.title ~ "\n" -}}
+        {% include "authority/blocs/print-detail.format.twig" with {'notice': element, 'format':'txt'} %}
+    {% endfor %}
+    {%- set countAuthors = printNoticeWrapper.noticeAuthority|length -%}
 
-{% for element in printNoticeWrapper.noticeIndice %}
-    {{- "\n\n"~(loop.index + countAuthors) }}) {{ element.title ~ "\n" -}}
-    {% include "indice/blocs/print-detail.format.twig" with {'notice': element, 'format': 'txt'} %}
-{% endfor %}
+    {% for element in printNoticeWrapper.noticeIndice %}
+        {{- "\n\n"~(loop.index + countAuthors) }}) {{ element.title ~ "\n" -}}
+        {% include "indice/blocs/print-detail.format.twig" with {'notice': element, 'format': 'txt'} %}
+    {% endfor %}
 {% endif %}
 
-{% if printNoticeWrapper.noticeOnShelves|length + printNoticeWrapper.noticeOnLine|length > 0 %}
+{% if printNoticeWrapper and printNoticeWrapper.noticeOnShelves|length + printNoticeWrapper.noticeOnLine|length > 0 %}
+    {{ 'bloc.print.subtitles.your-references-bibliographic'|trans }}
+    =====================
+    {% for element in printNoticeWrapper.noticeOnShelves %}
+        {{- "\n\n"~loop.index }}) {{ element.title ~ "\n" -}}
+        {% include "notice/blocs-print/print-detail.format.twig" with {'notice': element, 'format': 'txt'} %}
+    {% endfor %}
+    {%- set countNotices = printNoticeWrapper.noticeOnShelves|length -%}
 
-
-{{ 'bloc.print.subtitles.your-references-bibliographic'|trans }}
-=====================
-{% for element in printNoticeWrapper.noticeOnShelves %}
-    {{- "\n\n"~loop.index }}) {{ element.title ~ "\n" -}}
-    {% include "notice/blocs-print/print-detail.format.twig" with {'notice': element, 'format': 'txt'} %}
-{% endfor %}
-{%- set countNotices = printNoticeWrapper.noticeOnShelves|length -%}
-
-{% for element in printNoticeWrapper.noticeOnLine %}
-    {{- "\n\n"~(loop.index + countNotices) }}) {{ element.title -}}
-    {% include "notice/blocs-print/print-detail.format.twig" with {'notice': element, 'format': 'txt'} %}
-{% endfor %}
+    {% for element in printNoticeWrapper.noticeOnLine %}
+        {{- "\n\n"~(loop.index + countNotices) }}) {{ element.title -}}
+        {% include "notice/blocs-print/print-detail.format.twig" with {'notice': element, 'format': 'txt'} %}
+    {% endfor %}
 {% endif %}
