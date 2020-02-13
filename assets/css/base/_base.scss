@@ -95,3 +95,21 @@ select {
 .form-control {
 	font-family: sans-serif;
 }
+
+.container {
+	max-width: 100%;
+
+	@include media-breakpoint-up(md) {
+		width: 52rem;
+	}
+
+	@include media-breakpoint-up(lg) {
+		width: 65.33333333rem;
+		max-width: 83%;
+	}
+
+	@include media-breakpoint-up(xl) {
+		width: 69.33333333rem;
+		max-width: 85%;
+	}
+}

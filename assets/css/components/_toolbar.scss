@@ -33,17 +33,15 @@
 	&__item {
 		text-align: center;
 		margin-right: rem(5);
+		margin-top: rem(5);
 
 		@include media-breakpoint-up(lg) {
+			margin-top: 0;
 			margin-right: 0;
 		}
 
 		& + .toolbar__item {
 			margin-top: rem(5);
-
-			@include media-breakpoint-up(lg) {
-				margin-top: rem(5);
-			}
 		}
 
 		img {
