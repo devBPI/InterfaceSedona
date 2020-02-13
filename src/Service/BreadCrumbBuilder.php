@@ -169,13 +169,15 @@ final class BreadCrumbBuilder
      */
     private function buildForSearchPage(Request $request): bool
     {
+
         $route = $request->get('_route');
         $hash = $request->get('searchToken', $request->getSession()->get('searchToken'));
         $parcoursTerms = [];
         $parcours = $request->get('parcours', null);
         if ($hash !==null && strpos($route, 'search') !== false) {
+
             $parcoursTerms = [];
-            if ($parcours !== 'general') {
+            if ($parcours!==null && $parcours !== 'general') {
                 $parcoursTerms = ['parcours' => $parcours];
                 $this->bctService->add(
                     'home_thematic',
@@ -203,7 +205,6 @@ final class BreadCrumbBuilder
             }
             return true;
         }elseif ($hash !==null) {
-
             if ($parcours && $parcours !== 'general') {
                 $parcoursTerms = ['parcours' => $parcours];
                 $this->bctService->add(

@@ -25,6 +25,7 @@ final class WordsList
             self::TITLE_WORD,
             self::AUTHOR_WORD,
             self::SUBJECT_WORD,
+            self::REALISATOR_WORD,
             self::PUBLICATION_DATE_WORD,
             self::ISBN_WORD,
             self::INDICE_COTE_WORD,
