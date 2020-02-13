@@ -19,7 +19,7 @@ final class HelpController extends AbstractController
 	}
 
 	/**
-	* @Route("/aide/resultat", methods={"GET","HEAD"}, name="help_result")
+	* @Route("/aide/exploitationresultats", methods={"GET","HEAD"}, name="help_result")
 	*/
 	public function resultAction(Request $request)
 	{
@@ -27,7 +27,7 @@ final class HelpController extends AbstractController
 	}
 
 	/**
-	* @Route("/aide/service", methods={"GET","HEAD"}, name="help_service")
+	* @Route("/aide/services", methods={"GET","HEAD"}, name="help_service")
 	*/
 	public function serviceAction(Request $request)
 	{
