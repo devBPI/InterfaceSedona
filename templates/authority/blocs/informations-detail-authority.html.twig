@@ -1,27 +1,23 @@
 {% import "common/macros/detail-macro.html.twig" as detail_macros %}
 
-{% if (notice.formAdopted is not empty or notice.type is not empty) %}
+{% if notice.type is not empty %}
     <li class="list-information__item">
-        {% if notice.formAdopted is not empty %}
+        <span class="list-information__label">{{ "bloc.autority-result-information.authority-type"|trans }}</span>
+        <ul class="list-information__sub-list" lang="fr">
             <li class="list-information__sub-item">
-                {{ notice.formAdopted }}
+                {{ notice.type }}
             </li>
-        {% endif %}
-        {% if notice.type is not empty %}
-            <span class="list-information__label">{{ "bloc.autority-result-information.authority-type"|trans }}</span>
-            <ul class="list-information__sub-list" lang="fr">
-                <li class="list-information__sub-item">
-                    {{ notice.type }}
-                </li>
-            </ul>
-        {% endif %}
+        </ul>
     </li>
-{% endif %}
 
+{% endif %}
 {{ detail_macros.row(notice.formParalella) }}
 {{ detail_macros.detail(notice.countries, 'Pays') }}
 {{ detail_macros.detail(notice.languages, 'Langue(s)') }}
 {{ detail_macros.detail(notice.musicalKinds, 'Genre musical') }}
+
+
+
 
 {% if notice.dates is not empty %}
     <li class="list-information__item">
