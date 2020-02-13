@@ -22,6 +22,8 @@
 		margin: 0;
 		display: flex;
 		flex-wrap: wrap;
+		overflow: auto;
+		max-height: 100vh;
 
 		@include media-breakpoint-up(lg) {
 			display: inline-block;
@@ -31,11 +33,17 @@
 	&__item {
 		text-align: center;
 		margin-right: rem(5);
-		margin-bottom: rem(5);
 
 		@include media-breakpoint-up(lg) {
 			margin-right: 0;
-			margin-bottom: rem(5);
+		}
+
+		& + .toolbar__item {
+			margin-top: rem(5);
+
+			@include media-breakpoint-up(lg) {
+				margin-top: rem(5);
+			}
 		}
 
 		img {
