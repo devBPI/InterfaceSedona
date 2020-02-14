@@ -14,7 +14,7 @@
         </div>
     </div>
 
-    {% if isPrintLong %}
+    {#% if isPrintLong %}
         {% if relatedDocuments is not empty %}
             {{ list_subitems(relatedDocuments.mappedNotices, includeImage) }}
         {% endif %}
@@ -22,5 +22,5 @@
         {% if noticeAuthors is not empty %}
             {{ list_subitems(noticeAuthors.mappedNotices, includeImage) }}
         {% endif %}
-    {% endif %}
+    {% endif %#}
 {% endblock %}

@@ -12,7 +12,7 @@
 
 
 	{%- if notice.type == constant('App\\Model\\Notice::MUSIC') %}
-		{{- pdf_occurence(notice, 'getResume', 'bloc.autority-result-information.resumes'|trans, format)|raw -}}
+		{{- pdf_occurence(notice, 'getResume', 'bloc.autority-result-information.resume'|trans, format)|raw -}}
 		{{- pdf_occurence(notice, 'getContents', 'bloc.autority-result-information.tracks'|trans, format)|raw -}}
 	{% endif -%}
 

@@ -2,6 +2,7 @@
 --------------------------------
 {% if  printNoticeWrapper and (printNoticeWrapper.noticeAuthority|length + printNoticeWrapper.noticeIndice|length) > 0 %}
     {{ 'bloc.print.subtitles.your-references-autority'|trans }}
+
     =====================
     {% for element in printNoticeWrapper.noticeAuthority %}
         {{- "\n\n"~loop.index }}) {{ element.title ~ "\n" -}}
@@ -17,9 +18,10 @@
 
 {% if printNoticeWrapper and printNoticeWrapper.noticeOnShelves|length + printNoticeWrapper.noticeOnLine|length > 0 %}
     {{ 'bloc.print.subtitles.your-references-bibliographic'|trans }}
+
     =====================
     {% for element in printNoticeWrapper.noticeOnShelves %}
-        {{- "\n\n"~loop.index }}) {{ element.title ~ "\n" -}}
+        {{- "\n\n"~loop.index }}) {{ element.printTitle ~ "\n" -}}
         {% include "notice/blocs-print/print-detail.format.twig" with {'notice': element, 'format': 'txt'} %}
     {% endfor %}
     {%- set countNotices = printNoticeWrapper.noticeOnShelves|length -%}
