@@ -22,7 +22,7 @@
 		margin: 0;
 		display: flex;
 		flex-wrap: wrap;
-		overflow: auto;
+		overflow-y: auto;
 		max-height: 100vh;
 
 		@include media-breakpoint-up(lg) {
