@@ -14,6 +14,9 @@
 		height: 100%;
 		display: flex;
 		align-items: center;
+		overflow-y: auto;
+		overflow-x: hidden;
+		max-height: 100vh;
 	}
 
 	&__list {
@@ -22,7 +25,6 @@
 		margin: 0;
 		display: flex;
 		flex-wrap: wrap;
-		overflow-y: auto;
 		max-height: 100vh;
 
 		@include media-breakpoint-up(lg) {
