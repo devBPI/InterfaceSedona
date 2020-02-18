@@ -19,6 +19,10 @@
 		max-height: 100vh;
 	}
 
+	@media (max-width: rem(992)) {
+		position: relative;
+	}
+
 	&__list {
 		list-style-type: none;
 		padding: 0;
@@ -30,6 +34,11 @@
 		@include media-breakpoint-up(lg) {
 			display: inline-block;
 		}
+
+		@media (max-width: rem(992)) {
+			display: flex;
+			margin-bottom: rem(5);
+		}
 	}
 
 	&__item {
@@ -40,6 +49,11 @@
 		@include media-breakpoint-up(lg) {
 			margin-top: 0;
 			margin-right: 0;
+		}
+
+		@media (max-width: rem(992)) {
+			margin-right: rem(5);
+			margin-top: rem(5);
 		}
 
 		& + .toolbar__item {
