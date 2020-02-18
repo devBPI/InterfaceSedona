@@ -1,4 +1,5 @@
 import 'select2';
+require('../../node_modules/select2/select2_locale_fr.js');
 
 export default class SelectList {
     private placeholder: string;
@@ -27,11 +28,9 @@ export default class SelectList {
                 this.updateTotalElement(generatedElement);
             }
         })
-        .on('select2-open', () => {
-            let object = $(this).data('select2');
-            if (object !== undefined) {
-                object.select.before(object.liveRegion);
-            }
+        .on('select2-open', function () {
+            var object = $(this).data('select2');
+            object.select.before(object.liveRegion);
         });
 
         setTimeout(() => {
@@ -40,7 +39,7 @@ export default class SelectList {
                     generatedListId = 'select2-adv-' + $this.attr('id'),
                     object = $this.data('select2');
 
-                if (object !== undefined) {
+                if (object !== 'undefined') {
                     object.selection.attr('id', generatedListId);
                     object.search
                         .attr('role', 'button')
