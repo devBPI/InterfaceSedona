@@ -31,10 +31,11 @@ export default class Autocomplete {
 
 
     private initListener() {
+        this.type.addEventListener('focus', () => this.hideAutocompleteDiv(false));
         this.element.addEventListener('keyup', (event: KeyboardEvent) => this.onKeyUp(event));
         this.type.addEventListener('change', () => this.updateAutocompletion());
         this.target.addEventListener('keyup', (event) => this.manageFocus(event, this.mode !== 'link'));
-        document.addEventListener('click', (event) => this.onClickOut(event))
+        document.addEventListener('click', (event) => this.onClickOut(event));
     }
 
     onKeyUp(event: KeyboardEvent): void {
@@ -103,12 +104,14 @@ export default class Autocomplete {
             this.target.classList.remove('sr-only');
         }
     }
-    private hideAutocompleteDiv() {
+    private hideAutocompleteDiv(autofocus = true) {
         this.element.setAttribute('aria-expanded', 'false');
         if (!this.target.classList.contains('sr-only')) {
             this.target.innerHTML = '';
             this.target.classList.add('sr-only');
-            this.element.focus();
+            if (autofocus) {
+                this.element.focus();
+            }
         }
     }
 
