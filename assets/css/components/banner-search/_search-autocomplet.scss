@@ -55,6 +55,10 @@
 					background-color: #3875d7;
 				}
 			}
+
+			&:focus {
+				outline-offset: -2px;
+			}
 		}
 	}
 }
