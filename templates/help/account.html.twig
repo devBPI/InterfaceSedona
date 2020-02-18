@@ -7,12 +7,12 @@
 
 {% include "help/blocs/navigation.html.twig" %}
 
-<h1 class="n1" lang="fr">Mon compte</h1>
-		<img src="{{ asset('/images/aide/mon-compte-header.png') }}" alt="Mon Compte">
-	<pclass="text-justify">L’élément Mon compte est positionné tout en haut à droite de l’écran. Il permet de sauvegarder les recherches effectuées et les références de documents sur le long terme. Il 		offre aussi la possibilité de classer vos notices dans des listes et de les commenter.</p>
-	<br>
+	<h1 class="n1" lang="fr">Mon compte</h1>
 	<div lang="fr">
-		<div id="listes" lang="fr">
+		<img src="{{ asset('/images/aide/mon-compte-header.png') }}" alt="Mon Compte" class="img-fluid mx-auto d-block" />
+		<p class="text-justify">L’élément Mon compte est positionné tout en haut à droite de l’écran. Il permet de sauvegarder les recherches effectuées et les références de documents sur le long terme. Il 		offre aussi la possibilité de classer vos notices dans des listes et de les commenter.</p>
+		<br>
+		<div id="listes">
 			<h2 class="n2">Mes listes</h2>
 			<p class="text-justify">Lorsque vous êtes connecté(e) à votre compte lecteur, vous pouvez mettre de côté des notices. Pour cela vous utilisez <a href="/fr/aide/services#selection">Ma sélection</a> dont l’usage est identique à une utilisation sans compte tout en étant pérenne.</p>
 			<p class="text-justify">Pour créer des listes dans la Sélection, sélectionnez “+ Créer une nouvelle liste”.</p>
@@ -20,7 +20,7 @@
 			<img src="{{ asset('/images/aide/21listes.png') }}" alt="Listes" class="mb-5">
 			<br>
 		</div>
-		<div id="mon-historique" lang="fr">
+		<div id="mon-historique">
 			<h2 class="n2">Mon historique</h2>
 			<p class="text-justify">L’historique du compte fonctionne comme <a href="/fr/aide/services#historique">l’Historique</a> hors compte. La seule différence réside dans le temps de conservation : l’historique du compte a une durée de conservation de 4 mois.</p>
 			<br>
