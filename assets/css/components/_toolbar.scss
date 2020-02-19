@@ -5,6 +5,10 @@
 .toolbar {
 	margin-bottom: rem(10);
 
+	@media (max-width: rem(992)) {
+		position: relative;
+	}
+
 	@include media-breakpoint-up(lg) {
 		margin-bottom: 0;
 		position: fixed;
@@ -19,10 +23,6 @@
 		max-height: 100vh;
 	}
 
-	@media (max-width: rem(992)) {
-		position: relative;
-	}
-
 	&__list {
 		list-style-type: none;
 		padding: 0;
@@ -31,13 +31,13 @@
 		flex-wrap: wrap;
 		max-height: 100vh;
 
-		@include media-breakpoint-up(lg) {
-			display: inline-block;
-		}
-
 		@media (max-width: rem(992)) {
 			display: flex;
 			margin-bottom: rem(5);
+		}
+
+		@include media-breakpoint-up(lg) {
+			display: inline-block;
 		}
 	}
 
@@ -46,14 +46,14 @@
 		margin-right: rem(5);
 		margin-top: rem(5);
 
-		@include media-breakpoint-up(lg) {
-			margin-top: 0;
-			margin-right: 0;
-		}
-
 		@media (max-width: rem(992)) {
 			margin-right: rem(5);
 			margin-top: rem(5);
+		}
+
+		@include media-breakpoint-up(lg) {
+			margin-top: 0;
+			margin-right: 0;
 		}
 
 		& + .toolbar__item {
