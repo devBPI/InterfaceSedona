@@ -61,7 +61,7 @@ $(document)
             $('.dropdown-menu').removeClass('show');
         }
     })
-    .on('focus', '.dropdown-link .nav-link, .nav-pills .dropdown .dropdown-toggle', function() {
+    .on('focus', '.dropdown-link .nav-link', function() {
         if ($(window).width() > 768) {
             $('.dropdown-link .nav-link')
                 .removeClass('active')
@@ -100,6 +100,15 @@ $(document)
     })
     .on('mouseenter', '.dropdown-link .nav-link', function() {
         $('.search-banner__select select').blur();
+        $('.dropdown-link .nav-link')
+            .removeClass('active')
+            .attr('aria-expanded', 'false');
+        $(this).attr('aria-expanded', 'true');
+    })
+    .on('mouseleave', '.navbar-nav', function() {
+        $('.dropdown-link .nav-link')
+            .removeClass('active')
+            .attr('aria-expanded', 'false');
     })
     .on('click', '.js-5-indices-around', function (event) {
         let url = $(this).data('url');
