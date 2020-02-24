@@ -1,4 +1,5 @@
 import InputDecorator from './input-decorator';
+import {CollectionRow} from './collection-row';
 
 export class SearchForm {
     resetButton: HTMLButtonElement;
@@ -70,17 +71,11 @@ export class SearchForm {
         $(selectElement).val(null).trigger('change');
     }
 
-    private clearKeywordRows(container: HTMLElement) {
-        let keywordsDiv = container.querySelector('.search-keyword') as HTMLDivElement;
-        if (keywordsDiv) {
-            let rows = keywordsDiv.querySelectorAll('.search-keyword__group');
-            if (rows.length > 1) {
-                rows.forEach((row: HTMLDivElement, index: number) => {
-                    if (index > 0) {
-                        row.remove();
-                    }
-                })
-            }
+    private clearKeywordRows(container: HTMLFormElement) {
+        let adder = container.querySelector('[data-toggle="collection-add"]') as HTMLInputElement;
+        if (adder) {
+            let collectionRow = new CollectionRow(adder);
+            collectionRow.clear();
         }
     }
 
