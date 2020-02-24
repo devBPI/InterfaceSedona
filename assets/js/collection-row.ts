@@ -91,16 +91,4 @@ export class CollectionRow {
             input.focus();
         }
     }
-
-    clear() {
-        this.target.querySelectorAll('.search-keyword__group').forEach(
-            (row: HTMLDivElement, index: number) => {
-                if (index > 0) {
-                    row.remove();
-                }
-            });
-
-        this.count = 1;
-        this.hideAdder();
-    }
 }
