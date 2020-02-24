@@ -4,10 +4,16 @@ import {CollectionRow} from './collection-row';
 export class SearchForm {
     resetButton: HTMLButtonElement;
     seeMoreButtonList: NodeListOf<HTMLLinkElement>;
+    collectionRowList: Array<CollectionRow>;
 
     constructor(private form: HTMLFormElement) {
         this.resetButton = form.querySelector('button.js-clean') as HTMLButtonElement;
         this.seeMoreButtonList = form.querySelectorAll('.js-see-more');
+
+        this.collectionRowList = new Array;
+        let collectionAdder = form.querySelectorAll('[data-toggle="collection-add"]').forEach(
+            (adder: HTMLInputElement) => this.collectionRowList.push(new CollectionRow(adder))
+        );
 
         this.hideJsHidden();
         this.initListener();
@@ -71,18 +77,10 @@ export class SearchForm {
         $(selectElement).val(null).trigger('change');
     }
 
-    private clearKeywordRows(container: HTMLElement) {
-        let keywordsDiv = container.querySelector('.search-keyword') as HTMLDivElement;
-        if (keywordsDiv) {
-            let rows = keywordsDiv.querySelectorAll('.search-keyword__group');
-            if (rows.length > 1) {
-                rows.forEach((row: HTMLDivElement, index: number) => {
-                    if (index > 0) {
-                        row.remove();
-                    }
-                })
-            }
-        }
+    private clearKeywordRows(container: HTMLFormElement) {
+        this.collectionRowList.forEach((collectionRow) => {
+            collectionRow.clear();
+        })
     }
 
     private displayTargetDiv(seeMoreButton: HTMLLinkElement) {
