@@ -40,7 +40,6 @@ export class SearchForm {
                 case "text":
                 case "password":
                 case "textarea":
-                case "hidden":
                     inputElement.setAttribute('value', '');
                     break;
                 case "radio":
