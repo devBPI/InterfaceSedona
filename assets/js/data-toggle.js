@@ -1,5 +1,4 @@
 import Autocomplete from './autocomplete';
-import {CollectionRow} from './collection-row';
 import InputDecorator from './input-decorator';
 
 (function($) {
@@ -269,8 +268,5 @@ import InputDecorator from './input-decorator';
         new Autocomplete(result);
     })
 
-    document.querySelectorAll('[data-toggle="collection-add"]').forEach(result => {
-        new CollectionRow(result);
-    })
 
 })(window.jQuery || window.Zepto);
