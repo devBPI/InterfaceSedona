@@ -31,7 +31,7 @@ class UserSelectionDocument
     private $title;
 
     /**
-     * @ORM\Column(type="string", length=250, nullable=false)
+     * @ORM\Column(type="text", nullable=false)
      * @var string
      */
     private $author;
