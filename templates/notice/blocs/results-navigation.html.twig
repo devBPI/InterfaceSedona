@@ -22,11 +22,17 @@
 					{% endif %}
 				</li>
 				<li class="page-item">
-					<span class="page-link page-link--nolink">{{ 'bloc.results-navigation.result-current'|trans({'%nb%': navigation.total, '%current%': navigation.currentIndex }) }}</span>
+					<span class="page-link page-link--nolink">{{ 'bloc.results-navigation.result-current'|trans({'%nb%': navigation.total==0?1:navigation.total, '%current%': navigation.currentIndex==0?1:navigation.currentIndex }) }}</span>
 				</li>
 				<li class="page-item">
 					{% if navigation.nextLink is defined and navigation.nextLink is not empty %}
-						<a href="{{  toggle_to_path_parcours(route_by_object(navigation.nextLink.type),app.request.get('parcours'),{'permalink':navigation.nextLink.permalink, (constant('App\\Model\\Search\\ObjSearch::PARAM_REQUEST_NAME')):navigation.hash}) }}" class="page-link link link--icone-end">
+						<a href="{{  toggle_to_path_parcours(
+							route_by_object(navigation.nextLink.type),
+							app.request.get('parcours'),
+							{'permalink':navigation.nextLink.permalink, (constant('App\\Model\\Search\\ObjSearch::PARAM_REQUEST_NAME')):navigation.hash}
+						) }}"
+						   class="page-link link link--icone-end"
+						>
 							<span>{{ 'bloc.results-navigation.result-next'|trans }}</span>
 							<img src="{{ asset('images/icones/icone-chevron-gauche.svg') }}" alt="" class="icone-chevron"/>
 						</a>
