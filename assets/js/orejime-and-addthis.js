@@ -1,6 +1,6 @@
 var Orejime = require('orejime');
 const gaToken = 'UA-56533762-6';
-const gtmToken = 'GTM-5JTHPTG';
+const gtmToken = 'GTM-WLTB479';
 
 // ----------- Orejime ------------------------------------------------------------------------------------------------
 
