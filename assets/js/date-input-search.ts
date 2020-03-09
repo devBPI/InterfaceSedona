@@ -46,6 +46,7 @@ export class DateSlider {
                 sliderValues[index] = currentValue;
 
                 this.slider.setValue(sliderValues);
+                this.changeInputValues(sliderValues);
             } else {
                 console.log('Please input date between '+sliderMinValue+' and '+sliderMaxValue);
             }
