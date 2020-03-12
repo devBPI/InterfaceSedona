@@ -139,6 +139,7 @@ final class HistoryService extends AuthenticationService
     public function saveCurrentSearchInSession(ObjSearch $objSearch, string $serializedData, $savedHistory = false)
     {
         $hash = SearchHistory::getSearchHash($serializedData);
+
         $this->setSession($hash, $serializedData);
 
         $objSearch->setContext($hash, $serializedData);
@@ -146,7 +147,6 @@ final class HistoryService extends AuthenticationService
         if ($savedHistory) {
             $this->saveUserHistory($objSearch);
         }
-
     }
 
     /**
@@ -163,7 +163,7 @@ final class HistoryService extends AuthenticationService
 
         $searchHistory = $this->findOrCreateSearchHistory(
             $historyTitle,
-            $objSearch->getContextConfig());
+            $objSearch);
 
         $userHistory = $this->findOrCreateUserHistory($searchHistory);
 
@@ -177,12 +177,16 @@ final class HistoryService extends AuthenticationService
 
     /**
      * @param string $title
-     * @param string $data
+     * @param ObjSearch $objSearch
      * @return SearchHistory
      * @throws \Doctrine\ORM\ORMException
+     * @throws \Doctrine\ORM\OptimisticLockException
      */
-    private function findOrCreateSearchHistory(string $title, string $data): SearchHistory
+    private function findOrCreateSearchHistory(string $title, ObjSearch $objSearch): SearchHistory
     {
+
+        $data = $objSearch->getContextConfig();
+        $parcours = $objSearch->getCriteria()?$objSearch->getCriteria()->getParcours():null;
         $searchHash = SearchHistory::getSearchHash($data);
         $searchHistory = $this->entityManager->getRepository(SearchHistory::class)
             ->find($searchHash);
@@ -191,8 +195,10 @@ final class HistoryService extends AuthenticationService
             return $searchHistory;
         }
 
-        $searchHistory = new SearchHistory($title, $data);
+        $searchHistory = new SearchHistory($title, $data, $parcours);
+
         $this->entityManager->persist($searchHistory);
+        $this->entityManager->flush();
 
         return $searchHistory;
     }
@@ -235,6 +241,7 @@ final class HistoryService extends AuthenticationService
     private function getUserHistoryFromSession(SearchHistory $searchHistory): ?UserHistory
     {
         $histories = $this->getSession(self::SESSION_HISTORY_ID);
+
         if (array_key_exists($searchHistory->getId(), $histories)) {
             return unserialize($histories[$searchHistory->getId()]);
         }

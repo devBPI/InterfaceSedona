@@ -29,17 +29,24 @@ class SearchHistory
      * @var string
      */
     private $queryString;
+    /**
+     * @ORM\Column(type="string", length=250, nullable=true)
+     * @var string
+     */
+    private $parcours;
 
     /**
      * SearchHistory constructor.
      * @param string $title
      * @param string $queryString
+     * @param string  $parcours
      */
-    public function __construct(string $title, string $queryString)
+    public function __construct(string $title, string $queryString, string $parcours=null)
     {
         $this->id = self::getSearchHash($queryString);
         $this->title = $title;
         $this->queryString = $queryString;
+        $this->parcours= $parcours;
     }
 
     /**
@@ -73,6 +80,14 @@ class SearchHistory
     public function getQueryString(): string
     {
         return $this->queryString;
+    }
+
+    /**
+     * @return null|string
+     */
+    public function getParcours(): ?string
+    {
+        return $this->parcours;
     }
 
 }

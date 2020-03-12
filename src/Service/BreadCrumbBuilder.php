@@ -73,6 +73,7 @@ final class BreadCrumbBuilder
     public function build(Request $request): bool
     {
         $route = $request->get('_route');
+
         if ($route !== null) {
             switch (true) {
 
@@ -169,11 +170,11 @@ final class BreadCrumbBuilder
      */
     private function buildForSearchPage(Request $request): bool
     {
-
         $route = $request->get('_route');
         $hash = $request->get('searchToken', $request->getSession()->get('searchToken'));
         $parcoursTerms = [];
         $parcours = $request->get('parcours', null);
+
         if ($hash !==null && strpos($route, 'search') !== false) {
 
             $parcoursTerms = [];
@@ -206,6 +207,7 @@ final class BreadCrumbBuilder
             return true;
         }elseif ($hash !==null) {
             if ($parcours && $parcours !== 'general') {
+
                 $parcoursTerms = ['parcours' => $parcours];
                 $this->bctService->add(
                     'home_thematic',
@@ -215,7 +217,6 @@ final class BreadCrumbBuilder
             }
 
             if ($humanCriteria = $this->humanizeCriteria($request)) {
-
                 $this->bctService->add(
                     'refined_search',
                     'breadcrumb.search-terms',
@@ -224,12 +225,12 @@ final class BreadCrumbBuilder
                 );
 
             } else {
-
+             /*
                 $this->bctService->add(
                     'refined_search',
                     'breadcrumb.search',
                     array_merge([ObjSearch::PARAM_REQUEST_NAME => $hash], $parcoursTerms)
-                );
+                );*/
             }
 
             return true;
