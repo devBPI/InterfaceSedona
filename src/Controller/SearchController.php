@@ -178,6 +178,12 @@ final class SearchController extends AbstractController
      */
     public function savedSearchAction(SearchHistory $searchHistory, Request $request): Response
     {
+        if ($searchHistory->getParcours()){
+            /**
+             * we add a supplemantary field to save "parkours" because it's lost in creteria
+             */
+            $request->request->set('parcours', $searchHistory->getParcours());
+        }
         return $this->displaySearch(
             $this->searchService->deserializeSearchQuery($searchHistory->getQueryString()),
             $request

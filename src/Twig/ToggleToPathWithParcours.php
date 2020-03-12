@@ -45,6 +45,8 @@ final class ToggleToPathWithParcours extends AbstractExtension
      */
     public function togglePathPacours(string $pathName, string $parcours=null, array $pathParameters=[]):string
     {
+
+
         if ($parcours === SearchController::GENERAL || $parcours===null ){
             return $this->routeCollection->generate($pathName, $pathParameters);
         }

@@ -151,6 +151,18 @@ class UserHistory
 
         return null;
     }
+    /**
+     * @return null|string
+     */
+    public function getParcours(): ?string
+    {
+
+        if ($this->Search instanceof SearchHistory) {
+            return $this->Search->getParcours();
+        }
+
+        return null;
+    }
 
     /**
      * @return SearchHistory

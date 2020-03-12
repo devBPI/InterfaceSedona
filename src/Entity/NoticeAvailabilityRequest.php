@@ -24,7 +24,7 @@ class NoticeAvailabilityRequest
     private $id;
 
     /**
-     * @ORM\Column(type="bigint", nullable=false)
+     * @ORM\Column(type="bigint", nullable=true)
      * @var integer
      */
     private $notice_configuration_id;
