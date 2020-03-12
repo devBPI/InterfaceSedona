@@ -186,7 +186,7 @@ final class HistoryService extends AuthenticationService
     {
 
         $data = $objSearch->getContextConfig();
-        $parcours = $objSearch->getCriteria()->getParcours();
+        $parcours = $objSearch->getCriteria()?$objSearch->getCriteria()->getParcours():null;
         $searchHash = SearchHistory::getSearchHash($data);
         $searchHistory = $this->entityManager->getRepository(SearchHistory::class)
             ->find($searchHash);

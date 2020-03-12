@@ -225,10 +225,10 @@ final class BreadCrumbBuilder
                 );
 
             } else {
-             /*   dump($hash); die;
+             /*
                 $this->bctService->add(
                     'refined_search',
-                    'breadcrumb.search',Document précédent
+                    'breadcrumb.search',
                     array_merge([ObjSearch::PARAM_REQUEST_NAME => $hash], $parcoursTerms)
                 );*/
             }
