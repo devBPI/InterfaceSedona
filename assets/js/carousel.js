@@ -23,6 +23,7 @@ $('.js-carousel-primary')
         autoplaySpeed: 5000,
         prevArrow: '<button class="slick-prev" aria-label="Actualité précédente" type="button">Précédent</button>',
         nextArrow: '<button class="slick-next" aria-label="Actualité suivante" type="button">Suivant</button>',
+        appendDots: '.carousel__control',
         dotsClass: 'carousel__pagination',
         customPaging: function (slider, i) {
             var timestamp = new Date().getTime();
@@ -36,10 +37,6 @@ $('.js-carousel-primary')
             .attr('aria-selected', 'false')
             .removeAttr('role');
         $('.carousel__pagination li.slick-active').attr('aria-selected', 'true');
-
-        if( $('.slick-arrow').is(':focus') || $('.carousel__slide-link').is(':focus') || $('.carousel__pagination-dot').is(':focus') ) {
-            $('.slick-active').find('.carousel__slide:first-child .carousel__slide-link').focus();
-        }
     })
 ;
 

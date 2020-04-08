@@ -11,6 +11,7 @@
 
 	&-wrapper {
 		position: relative;
+		padding-bottom: .1rem;
 	}
 
 	// Gestion Carousel Secondary
@@ -117,10 +118,10 @@
 		display: flex;
 		flex-wrap: wrap;
 		justify-content: flex-end;
-		list-style-type: none;
-		margin-top: $spacer;
-		margin-right: $spacer;
-		padding: 0 rem(35) 0 0;
+		list-style-type: none;    
+		margin-bottom: 0;
+		margin-right: 15px;
+		padding: 0;
 
 		.slick-active &-dot {
 			background-color: $red;
@@ -143,15 +144,15 @@
 		}
 	}
 	
-	// Gestion Bouton Pause/Play
 	&__control {
 		position: absolute;
 		bottom: 0;
 		right: 0;
-		width: rem(25);
-		height: rem(15);
 		margin-right: $spacer;
 		z-index: 100;
+		display: flex;
+		flex-direction: row-reverse;
+		align-items: center;
 	}
 
 	&__button {
@@ -161,9 +162,6 @@
 		height: rem(15);
 		border: 1px solid transparent;
 		padding: 0;
-		position: absolute;
-		top: 0;
-		left: 0;
 		background-position: center center;
 		background-repeat: no-repeat;
 		background-size: contain;
