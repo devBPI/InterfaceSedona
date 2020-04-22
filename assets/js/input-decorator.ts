@@ -1,4 +1,4 @@
-import 'icheck/icheck.min';
+require('./icheck.js');
 
 export default class InputDecorator {
     selector: any;
