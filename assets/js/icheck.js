@@ -231,7 +231,7 @@
 
           // Click
           if (type == _click) {
-            // return false;
+            return false;
 
           // Keydown
           } else if (type == 'keydown' && key == 32) {
