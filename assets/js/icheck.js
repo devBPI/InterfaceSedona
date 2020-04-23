@@ -215,11 +215,11 @@
                 }
               }
 
-              // if (_mobile) {
-              //   event.stopPropagation();
-              // } else {
-              //   return false;
-              // }
+              if (_mobile) {
+                event.stopPropagation();
+              } else {
+                return false;
+              }
             }
           });
         }
