@@ -3,16 +3,18 @@
 {% if notice is not empty %}
     <div class="list-result__content-item js-list-result-item" lang="fr" role="listitem" id="{{ notice.permalink }}">
         <div class="list-result__content-selector">
-            <input type="checkbox" id="result-doc-{{ type }}-{{ index }}"
-                   class="js-notice js-add-to-selection notice_{{ type }}"
-                   name="{% if type == constant('App\\Model\\Notice::SEE_ONLINE') %}online[]{% else %}onshelves[]{% endif %}"
-                   value="{{ notice.permalink }}"
-                   data-notice="{{ notice.permalink }}"
-                {% if mode is defined and mode == 'detail' %}checked="checked"{% endif %}>
-            <label for="result-doc-{{ type }}-{{ index }}">
-                <span class="sr-only">{{ 'bloc.notice-simple.result'|trans }} {{ index }}, {{ 'bloc.notice-simple.select'|trans }} {{ notice.frontTitle }}</span>
-                {{ index }}
-            </label>
+            <div class="form-check">
+                <input type="checkbox" id="result-doc-{{ type }}-{{ index }}"
+                    class="js-notice js-add-to-selection notice_{{ type }}"
+                    name="{% if type == constant('App\\Model\\Notice::SEE_ONLINE') %}online[]{% else %}onshelves[]{% endif %}"
+                    value="{{ notice.permalink }}"
+                    data-notice="{{ notice.permalink }}"
+                    {% if mode is defined and mode == 'detail' %}checked="checked"{% endif %}>
+                <label for="result-doc-{{ type }}-{{ index }}">
+                    <span class="sr-only">{{ 'bloc.notice-simple.result'|trans }} {{ index }}, {{ 'bloc.notice-simple.select'|trans }} {{ notice.frontTitle }}</span>
+                    {{ index }}
+                </label>
+            </div>
 
             {% from 'search/blocs-results/macros.html.twig' import add_to_list_form %}
             {{ add_to_list_form(

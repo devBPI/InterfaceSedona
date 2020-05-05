@@ -1,4 +1,4 @@
-require('./icheck.js');
+// require('./icheck.js');
 
 export default class InputDecorator {
     selector: any;

@@ -1,14 +1,17 @@
 <tr>
     <td>
-        <input class="table__input js-list-selectable js-{{document.noticeType}}" type="checkbox" value="{{ document.id }}"
-               name="{{ constant('App\\Controller\\UserSelectionController::INPUT_NAME') }}[{{ constant('App\\Controller\\UserSelectionController::INPUT_DOCUMENT') }}][]"
-               data-{{ document.noticeType }}="{{ document.permalink }}"
-               aria-label="{{ 'bloc.list-user.select-ligne'|trans(
-                   {
-                       '%title%': document.title,
-                       '%auteur%': document.author,
-                       '%document-type%': document.documentType
-                   }) }}">
+        <div class="form-check">
+            <input class="table__input js-list-selectable js-{{document.noticeType}}" type="checkbox" value="{{ document.id }}"
+                    name="{{ constant('App\\Controller\\UserSelectionController::INPUT_NAME') }}[{{ constant('App\\Controller\\UserSelectionController::INPUT_DOCUMENT') }}][]"
+                    data-{{ document.noticeType }}="{{ document.permalink }}"
+                    aria-label="{{ 'bloc.list-user.select-ligne'|trans(
+                        {
+                            '%title%': document.title,
+                            '%auteur%': document.author,
+                            '%document-type%': document.documentType
+                        }) }}">
+            <label></label>
+        </div>
     </td>
     <td class="table__body-title">
         <a href="{{ document.url(app.request.attributes.get('_locale')) }}" title="{{ document.title }}"

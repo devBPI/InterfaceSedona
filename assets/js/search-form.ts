@@ -1,4 +1,4 @@
-import InputDecorator from './input-decorator';
+// import InputDecorator from './input-decorator';
 import {CollectionRow} from './collection-row';
 
 export class SearchForm {
@@ -50,9 +50,9 @@ export class SearchForm {
                     break;
                 case "radio":
                 case "checkbox":
-                    let inputDecorator = new InputDecorator($(inputElement));
-                    inputDecorator.uncheck();
-                    break;
+                    // let inputDecorator = new InputDecorator($(inputElement));
+                    // inputDecorator.uncheck();
+                    // break;
                 default:
                     break;
             }

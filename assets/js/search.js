@@ -44,6 +44,6 @@ $(document)
     })
 ;
 
-import InputDecorator from './input-decorator';
-let inputDecorator = new InputDecorator($('input:checkbox:visible'));
-inputDecorator.decorate();
+// import InputDecorator from './input-decorator';
+// let inputDecorator = new InputDecorator($('input:checkbox:visible'));
+// inputDecorator.decorate();

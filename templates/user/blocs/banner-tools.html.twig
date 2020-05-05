@@ -1,9 +1,11 @@
 <div class="col-12 col-md-auto">
     <div class="banner-tools__list">
-        <div class="form-check banner-tools__link">
-            <input class="form-check-input" type="checkbox" id="account-{{ type }}-select-all" data-toggle="check-all">
-            <label class="form-check-label"
-                   for="account-{{ type }}-select-all">{{ 'bloc.banner-tools.select-all'|trans }}</label>
+        <div class="banner-tools__link">
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="account-{{ type }}-select-all" data-toggle="check-all">
+                <label class="form-check-label"
+                    for="account-{{ type }}-select-all">{{ 'bloc.banner-tools.select-all'|trans }}</label>
+            </div>
         </div>
         <div class="banner-tools__link">
             <button class="btn-small-link" data-toggle="disable-if-no-found-modal"

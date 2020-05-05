@@ -2,9 +2,9 @@ import {SelectionAdder, SelectionList} from './my-selection';
 
 let selectionListObject = new SelectionList();
 
-import InputDecorator from './input-decorator';
-let inputDecorator = new InputDecorator($('input:radio, input:checkbox'));
-inputDecorator.decorate();
+// import InputDecorator from './input-decorator';
+// let inputDecorator = new InputDecorator($('input:radio, input:checkbox'));
+// inputDecorator.decorate();
 
 $(document)
 	.on('show.bs.modal', '#modal-list-add,#modal-list-create', function (e) {
