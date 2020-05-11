@@ -63,7 +63,50 @@ $('.js-carousel-primary .slick-slide').removeAttr('role');
 $('.carousel__pagination').attr('aria-label', "Choix d'un groupe d'actualités à afficher");
 $('.carousel__pagination li').attr('aria-selected', 'false').removeAttr('role');
 $('.carousel__pagination li.slick-active').attr('aria-selected', 'true');
-$('.carousel__pagination .carousel__pagination-dot').removeAttr('aria-label');
+$('.carousel__pagination .carousel__pagination-dot')
+    .removeAttr('aria-label')
+    .on('focus', function() {
+
+        $(this).keydown(function(e) {
+
+            switch(e.which) {
+                case 37: // Arrow Left
+                    $('.js-carousel-primary').on('afterChange', function() {
+                        $('.carousel__pagination .slick-active .carousel__pagination-dot').focus();
+                    });
+                break;
+                case 39: // Arrow Right
+                    $('.js-carousel-primary').on('afterChange', function() {
+                        $('.carousel__pagination .slick-active .carousel__pagination-dot').focus();
+                    });
+                break;
+                default: return; 
+            }
+            e.preventDefault();
+        })
+    })
+$('.carousel__slide-link')
+    .on('focus', function() {
+
+        $(this).keydown(function(e) {
+
+            switch(e.which) {
+                case 37: // Arrow Left
+                    $('.js-carousel-primary').on('afterChange', function() {
+                        $('.slick-current .carousel__slide:first-child .carousel__slide-link').focus();
+                    });
+                break;
+                case 39: // Arrow Right
+                    $('.js-carousel-primary').on('afterChange', function() {
+                        $('.slick-current .carousel__slide:first-child .carousel__slide-link').focus();
+                    });
+                break;
+                default: return; 
+            }
+            e.preventDefault();
+        })
+    })
+;
 
 // Configuration Carousel Secondary (Notices) --------------------------------------------------------------------------
 $('.js-carousel-secondary').slick({
