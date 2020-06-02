@@ -86,33 +86,29 @@ export class DatePeriod {
     private dateDiv: HTMLDivElement;
     private periodDiv: HTMLDivElement;
 
-    constructor(periodRadioDiv: HTMLDivElement) {
-        let periodRadioElement = periodRadioDiv.querySelector('input');
-
+    constructor(radios: NodeListOf<HTMLInputElement>) {
         this.dateDiv = document.querySelector('#js-date-div');
         this.periodDiv = document.querySelector('#js-period-div');
-        this.init($(periodRadioElement).is(':checked'));
 
-
-        $(periodRadioDiv)
-            .on('ifChecked', 'input', () => {
-                this.showPeriod();
-            })
-            .on('ifUnchecked', 'input', () => {
-                this.hidePeriod();
+        radios.forEach((radioElement: HTMLInputElement) => {
+            if (radioElement.value === 'Periode') {
+                this.togglePeriod(radioElement.checked, false);
+            }
+            radioElement.addEventListener('click', (event) => {
+                let target = event.target as HTMLInputElement;
+                this.togglePeriod(target.value === 'Periode', true);
             });
+        })
     }
 
     private hidePeriod(): void {
         this.dateDiv.classList.remove('d-none');
         this.periodDiv.classList.add('d-none');
-        this.clearInput(this.periodDiv);
     }
 
     private showPeriod(): void {
         this.dateDiv.classList.add('d-none');
         this.periodDiv.classList.remove('d-none');
-        this.clearInput(this.dateDiv);
     }
 
     private clearInput(containerDiv: HTMLDivElement) {
@@ -121,11 +117,17 @@ export class DatePeriod {
         })
     }
 
-    private init(periodChecked: boolean) {
+    private togglePeriod(periodChecked: boolean, clear: boolean) {
         if (periodChecked) {
             this.showPeriod();
+            if (clear) {
+                this.clearInput(this.dateDiv);
+            }
         } else {
             this.hidePeriod();
+            if (clear) {
+                this.clearInput(this.periodDiv);
+            }
         }
     }
 }
