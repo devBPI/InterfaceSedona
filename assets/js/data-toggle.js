@@ -101,7 +101,7 @@ import Autocomplete from './autocomplete';
                 }
             };
 
-            $(document).on('click change keyup ifChecked ifUnchecked', object.$spy, object.test);
+            $(document).on('click change keyup', object.$spy, object.test);
             object.test();
             $this.data('ifNoFound', object);
 
