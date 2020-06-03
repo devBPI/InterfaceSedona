@@ -6,7 +6,7 @@
 parameters:
   locale: 'fr'
   api_dir_name: '/CatalogueWebService/api/'
-  api_base_url: "https://%env(CATALOG_API_HOST)%%api_dir_name%"
+  api_base_url: "%env(CATALOG_API_HOST)%%api_dir_name%"
 
 services:
   # default configuration for services in *this* file
