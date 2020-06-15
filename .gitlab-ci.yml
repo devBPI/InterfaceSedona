@@ -74,9 +74,9 @@ build:package:
   needs: ["compileJS"]
   dependencies:
     - compileJS
-   only:
-     - master
-     - tags
+  only:
+    - master
+    - tags
   image: registry.sedona.fr/images/php:7
   cache:
     key: "$CI_PIPELINE_ID-$CI_COMMIT_REF_SLUG"
@@ -119,9 +119,9 @@ publish:package:
   needs: ["compileJS","build:package"]
   dependencies:
     - build:package
-   only:
-     - master
-     - tags
+  only:
+    - master
+    - tags
   image: "registry.sedona.fr/images/maven:latest-gitlab-ci"
   cache:
     key: "$CI_PIPELINE_ID-$CI_COMMIT_REF_SLUG"
