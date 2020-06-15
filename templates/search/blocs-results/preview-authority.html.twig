@@ -1,19 +1,21 @@
 {% if author is not empty %}
     <div class="list-result__content-item js-list-result-item" lang="fr" role="listitem">
         <div class="list-result__content-selector">
-            <input type="checkbox" id="related-notice-result-{{ index }}" class="js-add-to-selection {% if author.indice %}js-indicecdu{%else%}js-authority{% endif %}"
-                   name="{{ author.docType }}[]"
-                   value="{{ author.permalink }}"
-                   {% if author.indice %}
-                        data-indicecdu="{{ author.permalink }}"
-                   {% else %}
-                       data-authority="{{ author.permalink }}"
-                    {% endif %}
-                   {% if mode is defined and mode == 'detail' %}checked="checked"{% endif %}>
-            <label for="related-notice-result-{{ index }}">
-                <span class="sr-only">{{ 'bloc.preview-authority.first'|trans({'%name%': author.title}) }}</span>
-                {{ index }}
-            </label>
+            <div class="form-check">
+                <input type="checkbox" id="related-notice-result-{{ index }}" class="js-add-to-selection {% if author.indice %}js-indicecdu{%else%}js-authority{% endif %}"
+                    name="{{ author.docType }}[]"
+                    value="{{ author.permalink }}"
+                    {% if author.indice %}
+                            data-indicecdu="{{ author.permalink }}"
+                    {% else %}
+                        data-authority="{{ author.permalink }}"
+                        {% endif %}
+                    {% if mode is defined and mode == 'detail' %}checked="checked"{% endif %}>
+                <label for="related-notice-result-{{ index }}">
+                    <span class="sr-only">{{ 'bloc.preview-authority.first'|trans({'%name%': author.title}) }}</span>
+                    {{ index }}
+                </label>
+            </div>
             {% from 'search/blocs-results/macros.html.twig' import add_to_list_form %}
             {{ add_to_list_form(
                 author.permalink,

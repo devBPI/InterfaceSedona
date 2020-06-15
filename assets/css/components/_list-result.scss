@@ -154,10 +154,7 @@
 			display: flex;
 			align-items: center;
 			flex-wrap: wrap;
-		}
-
-		&-checkbox {
-			margin-right: 5px;
+			flex: 1;
 		}
 
 		&-title {
@@ -170,11 +167,9 @@
 
 		&-link {
 			margin-left: 22px;
-			margin-top: 10px;
 
 			@include media-breakpoint-only(md) {
 				margin-left: 20px;
-				margin-top: 3px;
 			}
 		}
 	}

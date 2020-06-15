@@ -6,7 +6,7 @@
             <div class="search-date__radio form-check form-check-inline">
                 <input class="form-check-input" type="radio" id="adv-search-label-date"
                        name="adv-search-date"
-                       value="Date" checked>
+                       value="Date" {% if modeDate != 'Periode' %}checked{% endif %}>
                 <label class="form-check-label"
                        for="adv-search-label-date">{{ 'modal.advanced-search.date.by-date'|trans }}</label>
             </div>

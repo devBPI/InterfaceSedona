@@ -34,7 +34,7 @@ if (select2Element) {
 }
 
 import {DatePeriod} from './date-input-search';
-new DatePeriod(document.querySelector('.js-date-period'));
+new DatePeriod(document.querySelectorAll('[name="adv-search-date"]'));
 
 import {Printer, CopyToClipboard} from './printer';
 let printers = document.querySelectorAll('.js-print-action, .js-export-form');

@@ -1,5 +1,4 @@
 import Autocomplete from './autocomplete';
-import InputDecorator from './input-decorator';
 
 (function($) {
     "use strict";
@@ -94,20 +93,6 @@ import InputDecorator from './input-decorator';
                         op['remote'] = $this.attr('data-remote');
                     }
 
-                    if (reload) {
-                        let inputDecorator = new InputDecorator($modal.find('input:radio, input:checkbox'));
-                        inputDecorator.destroy();
-                        var originalContent = $modal.find(".modal-content").html();
-                        inputDecorator.decorate();
-
-                        $modal.on('hidden.bs.modal',function () {
-                            $modal
-                                .removeData('bs.modal')
-                                .find('.modal-content')
-                                .html(originalContent);
-                        });
-                    }
-
                     if (overrideContent !== undefined) {
                         $modal.find(".modal-body").html(overrideContent);
                     }
@@ -116,7 +101,7 @@ import InputDecorator from './input-decorator';
                 }
             };
 
-            $(document).on('click change keyup ifChecked ifUnchecked', object.$spy, object.test);
+            $(document).on('click change keyup', object.$spy, object.test);
             object.test();
             $this.data('ifNoFound', object);
 
@@ -177,8 +162,6 @@ import InputDecorator from './input-decorator';
             if (firstInput.get(0) !== undefined) {
                 firstInput.get(0).focus();
             }
-            let inputDecorator = new InputDecorator($('input:radio, input:checkbox'));
-            inputDecorator.decorate();
         })
         .on('click', '[data-toggle=modal]', function(e) {
             var $this = $(this),
@@ -195,20 +178,6 @@ import InputDecorator from './input-decorator';
                 remote = $this.attr('href');
             } else if($this.attr('data-remote') !== undefined && $this.attr('data-remote') !== '') {
                 remote = $this.attr('data-remote');
-            }
-
-            if (reload) {
-                let inputDecorator = new InputDecorator($modal.find('input:radio, input:checkbox'));
-                inputDecorator.destroy();
-                var originalContent = $modal.find(".modal-content").html();
-                inputDecorator.decorate();
-
-                $modal.on('hidden.bs.modal',function () {
-                    $modal
-                        .removeData('bs.modal')
-                        .find('.modal-content')
-                        .html(originalContent);
-                });
             }
 
             if (remote !== null && remote !== undefined) {
@@ -257,10 +226,6 @@ import InputDecorator from './input-decorator';
         })
         .ready(function () {
             $('[data-toggle*="-if-no-found"]').ifNoFound();
-        })
-        .on('click', '[data-toggle="collapse"]', function () {
-            let inputDecorator = new InputDecorator($($(this).data('target')).find(':checkbox'));
-            inputDecorator.decorate();
         })
     ;
 

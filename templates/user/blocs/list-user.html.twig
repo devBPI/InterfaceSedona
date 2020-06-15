@@ -2,17 +2,19 @@
     {% for i, list in lists %}
         <div class="table-group">
             <div class="table-group__header">
-                <label for="select-liste-{{ i }}"
-                       class="sr-only">{{ 'bloc.list-user.list-select'|trans({'%name%': list.title}) }}</label>
-                <input type="checkbox" id="select-liste-{{ i }}" class="table-group__input"
-                       name="{{ constant('App\\Controller\\UserSelectionController::INPUT_NAME') }}[{{ constant('App\\Controller\\UserSelectionController::INPUT_LIST') }}][]"
-                       value="{{ list.id }}">
-                <p class="table-group__title">{{ list.title }}</p>
-                <a href="{{ path('user_selection_list_edit', {'list': list.id}) }}" class="table-group__link"
-                   data-target="#modal-list-edit" data-toggle="modal" role="button">
-                    <span class="sr-only sr-only-focusable">{{ 'bloc.list-user.list-name-change'|trans({'%name%': list.title}) }}</span>
-                    <img src="{{ asset('images/icones/icone-crayon-gris.svg') }}" alt="" class="icone-pen"/>
-                </a>
+                <div class="form-check">
+                    <label for="select-liste-{{ i }}"
+                        class="sr-only">{{ 'bloc.list-user.list-select'|trans({'%name%': list.title}) }}</label>
+                    <input type="checkbox" id="select-liste-{{ i }}" class="table-group__input"
+                        name="{{ constant('App\\Controller\\UserSelectionController::INPUT_NAME') }}[{{ constant('App\\Controller\\UserSelectionController::INPUT_LIST') }}][]"
+                        value="{{ list.id }}">
+                    <p class="table-group__title form-check--label">{{ list.title }}</p>
+                    <a href="{{ path('user_selection_list_edit', {'list': list.id}) }}" class="table-group__link"
+                    data-target="#modal-list-edit" data-toggle="modal" role="button">
+                        <span class="sr-only sr-only-focusable">{{ 'bloc.list-user.list-name-change'|trans({'%name%': list.title}) }}</span>
+                        <img src="{{ asset('images/icones/icone-crayon-gris.svg') }}" alt="" class="icone-pen"/>
+                    </a>
+                </div>
             </div>
 
             <table class="table table-striped table-group__table" aria-readonly="true">
