@@ -1,16 +1,14 @@
 Bibliothèque Publique d'Information - Interface catalogue
 ======================
 
-[![SensioLabsInsight](https://insight.sensiolabs.com/projects/5574329e-b59f-4e10-a071-9a8ae7169614/big.png)](https://insight.sensiolabs.com/projects/5574329e-b59f-4e10-a071-9a8ae7169614)
 
 1. [Présentation du projet](#pr%C3%A9sentation-du-projet)
 2. [Environnement Technique](#environnement-technique)
 3. [Insaller le projet en local](/docs/INSTALL.md)
 4. [Liste des environements](/docs/ENV.md)
-5. [Liste des contatcs](https://docs.google.com/spreadsheets/d/1oLXZrI8RDVNglhhWxlhl2TetXOWEDdTc9FaI4wzY64w)
-6. [Processus de livraison](/docs/DEPLOY.md)
-7. [Test et Intégration continue](/docs/CI-AND-TEST.md)
-8. [Liste des commands & Crontab](/docs/COMMANDS.md)
+5. [Processus de livraison](/docs/DEPLOY.md)
+6. [Test et Intégration continue](/docs/CI-AND-TEST.md)
+7. [Liste des commands & Crontab](/docs/COMMANDS.md)
 
 # Présentation du projet
 
