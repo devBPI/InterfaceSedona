@@ -75,6 +75,15 @@ final class SearchService
                 $this->serializer->serialize($search, 'json'),
                 $request->get('action', null) !== null
             );
+            //$this->logger->error('######################################');
+            //$this->logger->error('######################################');
+            //$this->logger->debug('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~');
+            //$this->logger->error('######################################');
+            //$this->logger->error($this->serializer->serialize($search, 'json'));
+            //$this->logger->error('######################################');
+            //$this->logger->info('&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&');
+            //$this->logger->error('######################################');
+            //$this->logger->error('######################################');
         } catch (\Exception $e) {
             $this->logger->error('Search history failed : '.$e->getMessage());
         }

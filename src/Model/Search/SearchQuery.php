@@ -13,6 +13,7 @@ use JMS\Serializer\Annotation as JMS;
  */
 class SearchQuery implements SearchResultInterface
 {
+
     const SORT_DEFAULT = 'DEFAULT';
     const SORT = [
         'pertinence' => self::SORT_DEFAULT,
@@ -35,6 +36,12 @@ class SearchQuery implements SearchResultInterface
     const ADVANCED_MODE = 'advanced';
 
     use SearchResultTrait;
+
+    /**
+     * @var FilterFilter
+     * @JMS\Type("App\Model\Search\FilterFilter")
+     */
+    private $filters;
 
     /**
      * @var FacetFilter
@@ -68,16 +75,25 @@ class SearchQuery implements SearchResultInterface
     /**
      * SearchQuery constructor.
      * @param Criteria $criteria
+     * @param FilterFilter|null $filters
      * @param FacetFilter|null $facets
      * @param string $mode
      */
-    public function __construct(Criteria $criteria, FacetFilter $facets = null, string $mode = self::SIMPLE_MODE)
+    public function __construct(Criteria $criteria, FilterFilter $filters = null, FacetFilter $facets = null, string $mode = self::SIMPLE_MODE)
     {
         $this->criteria = $criteria;
+        $this->filters = $filters ?? new FilterFilter();
         $this->facets = $facets ?? new FacetFilter();
         $this->mode = $mode;
     }
 
+    /**
+     * @return FilterFilter
+     */
+    public function getFilters(): FilterFilter
+    {
+        return $this->filters;
+    }
     /**
      * @return FacetFilter
      */
@@ -139,6 +155,17 @@ class SearchQuery implements SearchResultInterface
     public function setPage($page): self
     {
         $this->page = $page > 1 ? $page : 1;
+
+        return $this;
+    }
+
+    /**
+     * @param FilterFilter $filters
+     * @return SearchQuery
+     */
+    public function setFilters(FilterFilter $filters):SearchQuery
+    {
+        $this->filters = $filters;
 
         return $this;
     }

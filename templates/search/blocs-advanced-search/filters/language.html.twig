@@ -3,7 +3,7 @@
 {% set content %}
     <span class="sr-only">{{ 'modal.advanced-search.langage.select-sr-only'|trans }}</span>
     <label for="adv-search-langage">{{ 'modal.advanced-search.langage.label'|trans }}</label>
-    <select id="adv-search-langage" multiple="multiple" name="{{ constant('App\\Model\\Search\\FacetFilter::QUERY_NAME') }}[{{ key }}][]" data-value="{{ 'modal.advanced-search.langage.select-aria'|trans }}">{% spaceless %}
+    <select id="adv-search-langage" multiple="multiple" name="{{ constant('App\\Model\\Search\\FilterFilter::QUERY_NAME') }}[{{ key }}][]" data-value="{{ 'modal.advanced-search.langage.select-aria'|trans }}">{% spaceless %}
         {% for lang in criteria.language %}
             <option value="{{ lang }}"
                     {%- if key in objSearch.searchFilters|keys and lang in objSearch.searchFilters[key] -%}

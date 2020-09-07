@@ -85,7 +85,7 @@ final class ImageBuilderService
      *
      * @return string
      */
-    static public function buildGenericPicture(string $type): string
+    static public function buildGenericPicture(?string $type): string
     {
         return self::IMAGE_FOLDER.DIRECTORY_SEPARATOR.sprintf(self::DEFAULT_PICTURE, self::slugify($type));
     }

@@ -46,6 +46,7 @@ class SearchProvider extends AbstractProvider
         /** @var Results $searchResult */
         $searchResult = $this->hydrateFromResponse('/search/all',  [
             'criters' => $this->serializer->serialize($search->getCriteria(), 'xml'),
+            'filters' => $this->templating->render('search/facet-filters.xml.twig', ['attributes' => $search->getFilters()->getAttributes(), 'translateNames'=>true]),
             'facets' => $this->templating->render('search/facet-filters.xml.twig', ['attributes' => $search->getFacets()->getAttributes(), 'translateNames'=>true]),
             'page' => $search->getPage(),
             'sort' => $search->getSort()??'DEFAULT',

@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace App\Twig;
 
 
+use App\Model\Search\FilterFilter;
 use App\Model\Search\FacetFilter;
 use App\Service\NavigationService;
 use App\WordsList;
@@ -22,6 +23,10 @@ class SearchFiltersExtension extends AbstractExtension
      * @var Request
      */
     private $masterRequest;
+    /**
+     * @var array
+     */
+    private $filterQueries;
     /**
      * @var array
      */

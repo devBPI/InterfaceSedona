@@ -8,6 +8,7 @@ use App\Entity\SearchHistory;
 use App\Model\Form\ExportNotice;
 use App\Model\Notice;
 use App\Model\Search\Criteria;
+use App\Model\Search\FilterFilter;
 use App\Model\Search\FacetFilter;
 use App\Model\Search\ListNavigation;
 use App\Model\Search\ObjSearch;
@@ -108,7 +109,7 @@ final class SearchController extends AbstractController
         $criteria->setParcours($parcours);
 
         return $this->displaySearch(
-            new SearchQuery($criteria, new FacetFilter($request->query->all()), SearchQuery::ADVANCED_MODE),
+            new SearchQuery($criteria, new FilterFilter($request->query->all()), new FacetFilter($request->query->all()), SearchQuery::ADVANCED_MODE),
             $request
         );
     }

@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace App\Model;
 
+use App\Model\ValueComplement;
 use App\Model\Interfaces\NoticeInterface;
 use App\Model\Interfaces\RecordInterface;
 use App\Model\Traits\BreadcrumbTrait;
@@ -90,6 +91,13 @@ final class Authority implements NoticeInterface, RecordInterface, BpiConverterI
      */
     private $associetedForm;
 
+    /**
+     * @var array|ValueComplement[]
+     * @JMS\Type("array<App\Model\ValueComplement>")
+     * @JMS\SerializedName("formesAssocieesAvecComplements")
+     * @JMS\XmlList("formeAssocieeAvecComplement")
+     */
+    private $associatedValueComplementForm;
 
     /**
      * @var array
@@ -207,6 +215,14 @@ final class Authority implements NoticeInterface, RecordInterface, BpiConverterI
         return $this->associetedForm;
     }
 
+    /*
+     * @return ValueComplement[]|array
+     */
+    public function getAssociatedValueComplementForm()
+    {
+        return $this->associatedValueComplementForm;
+    }
+
     /**
      * @return array
      */
@@ -256,7 +272,7 @@ final class Authority implements NoticeInterface, RecordInterface, BpiConverterI
     /**
      * @return string
      */
-    public function getDocType(): string
+    public function getDocType(): ?string
     {
         return self::DOC_TYPE;
     }
