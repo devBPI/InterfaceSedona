@@ -10,7 +10,7 @@ eight_points_guzzle:
             # Request options: http://docs.guzzlephp.org/en/stable/request-options.html
             options:
                 # timeout in seconds
-                timeout: 10
+                timeout: 60
 
                 # set to false to disable throwing exceptions on an HTTP protocol errors (4xx and 5xx responses)
                 http_errors: true
