@@ -8,21 +8,21 @@ interface NoticeInterface
     /**
      * @return string
      */
-    public function getPermalink(): string;
+    public function getPermalink(): ?string;
 
     /**
      * @return string
      */
-    public function getType(): string;
+    public function getType(): ?string;
 
     /**
      * @return string
      */
-    public function getTitle(): string;
+    public function getTitle(): ?string;
 
     /**
      * @return string
      */
-    public function getClassName(): string;
+    public function getClassName(): ?string;
 
 }

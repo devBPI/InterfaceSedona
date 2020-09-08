@@ -60,24 +60,30 @@ class RankedAuthority implements NoticeInterface
     /**
      * @return string
      */
-    public function getPermalink(): string
+    public function getPermalink(): ?string
     {
+	if(null == $this->getAuthor())
+		return null;
         return $this->getAuthor()->getPermalink();
     }
 
     /**
      * @return string
      */
-    public function getTitle(): string
+    public function getTitle(): ?string
     {
+	if(null == $this->getAuthor())
+		return null;
         return $this->getAuthor()->getTitle();
     }
 
     /**
      * @return string
      */
-    public function getType(): string
+    public function getType(): ?string
     {
+	if(null == $this->getAuthor())
+		return null;
         return $this->getAuthor()->getType();
     }
 
@@ -100,8 +106,10 @@ class RankedAuthority implements NoticeInterface
     /**
      * @return null|string
      */
-    public function getClassName(): string
+    public function getClassName(): ?string
     {
+	if(null == $this->getAuthor())
+		return null;
         return get_class($this->getAuthor()) ?? '';
     }
 }

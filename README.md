@@ -47,3 +47,9 @@ liste des dépendances nécessaires au bon fonctionnement de l'appli :
 * PHP 7.2.* qui est la dernière version stable depuis Février 2017
 * Postgre 9.6
 * Apache 2.4
+
+# INSTALLATION
+* composer install
+* yarn install
+* yarn encore production
+* make package
