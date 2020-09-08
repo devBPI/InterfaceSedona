@@ -585,7 +585,7 @@ error:
   contact-admin: Contacter <a href="mailto:%email%">l’administrateur du catalogue de la Bpi</a>
   title-form: Formulaire de contact
   page_error: Page en erreur
-  page_broken: Oops! Une erreur est survenue
+  page_broken: Cette page est inaccessible
   page_broken_message: |
     Le site rencontre actuellement un problème technique, merci de renouveller votre visite ultèrieurement.
     Nous allons le réparer dès que possible. Désolé pour tout inconvénient causé.
