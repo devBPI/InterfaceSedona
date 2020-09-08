@@ -844,9 +844,9 @@ class Notice extends AbstractImage implements NoticeInterface, RecordInterface
      */
     public function getContributeurs(): ?array
     {
-        if ($this->getType() === self::VIDEO) {
+        /*if ($this->getType() === self::VIDEO) {
             return null;
-        }
+        }*/
         return $this->contributeurs;
     }
 
@@ -857,7 +857,8 @@ class Notice extends AbstractImage implements NoticeInterface, RecordInterface
     {
             return $this->pictures;
 
-    }    /**
+    }
+    /**
      * @return Picture|mixed|null
      */
     public function getPicture()
