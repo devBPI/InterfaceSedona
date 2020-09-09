@@ -727,7 +727,8 @@ class Notice extends AbstractImage implements NoticeInterface, RecordInterface
             return max($this->dates);
         }
 
-        return implode(self::SEPARATOR, $this->dates);
+        //return implode(self::SEPARATOR, $this->dates);
+		return implode(' - ', $this->dates);
     }
 
     /**
