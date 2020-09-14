@@ -15,7 +15,7 @@
                 {{ render(controller('App\\Controller\\AdvancedSearchController::index', {'request': app.request})) }}
 
                 <div class="modal-footer">
-                    <button type="reset" class="btn-link btn js-clean">
+                    <button type="button" class="btn-link btn js-clean">
                         {{ 'modal.advanced-search.clear-search'|trans }}
                     </button>
                     <button type="submit"
