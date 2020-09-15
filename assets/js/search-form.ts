@@ -77,7 +77,8 @@ export class SearchForm {
             //selectedOptions[0].setAttribute('selected', 'selected');
 
             $(selectElement).val(null).trigger('change');
-            selectElement.selectedIndex = 0;
+            if(selectElement.id=="adv-search-choice-0")
+                selectElement.selectedIndex = 0;
         }
     }
 
