@@ -53,3 +53,4 @@ liste des dépendances nécessaires au bon fonctionnement de l'appli :
 * yarn install
 * yarn encore production
 * make package
+* composer install && yarn install && yarn encore production && make package
