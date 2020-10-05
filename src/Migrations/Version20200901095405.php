@@ -14,7 +14,7 @@ final class Version20200901095405 extends AbstractMigration
 {
 	public function getDescription() : string
 	{
-		return '';
+		return 'Updated Essentiels';
 	}
 
 	public function up(Schema $schema) : void
