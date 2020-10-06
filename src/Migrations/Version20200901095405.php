@@ -38,7 +38,7 @@ SQL;
 
 	$url_tl2 = 'actualites-revues/recherche-avancee?advanced_search%5B0%5D%5Btext%5D=0%28*&advanced_search%5B0%5D%5Bfield%5D=indiceCote&advanced_search_operator%5B1%5D=notCriteria&advanced_search%5B1%5D%5Btext%5D=0%2844%29&advanced_search%5B1%5D%5Bfield%5D=indiceCote&adv-search-date=Date&criteria%5BpublicationDate%5D=&criteria%5BpublicationDateStart%5D=&criteria%5BpublicationDateEnd%5D=&filters%5Bmaterial_support%5D%5B%5D=En+ligne&filters%5Bmaterial_support%5D%5B%5D=Papier&action=';
 	$query = <<<SQL
-UPDATE public.theme_level SET url = '{"en": "$url_tl2", "es": "$url_tl2", "fr": "$url_tl_tl2"}' WHERE id = 2;
+UPDATE public.theme_level SET url = '{"en": "$url_tl2", "es": "$url_tl2", "fr": "$url_tl2"}' WHERE id = 2;
 SQL;
 		$this->addSql($query);
 
@@ -68,7 +68,7 @@ SQL;
 
 	$url_tl6 = 'actualites-revues/recherche-simple?mot=%22Gallica+%3A+Presse+et+revues%22&type=title&action=';
 	$query = <<<SQL
-UPDATE public.theme_level SET url = '{"en": "$url_tl6", "es": "$url_tl6", "fr": "$url_tl5"}' WHERE id = 6;
+UPDATE public.theme_level SET url = '{"en": "$url_tl6", "es": "$url_tl6", "fr": "$url_tl6"}' WHERE id = 6;
 SQL;
 		$this->addSql($query);
 
