@@ -43,19 +43,20 @@
                 <p>{{ 'error.page_not_available'| trans }}</p>
 
                 {{ content }}
+
             </div>
 
-            {{ render(controller('App\\Controller\\ReportingController::reportErrorPageAction',{'renderPage': false})) }}
+           <!-- {{ render(controller('App\\Controller\\ReportingController::reportErrorPageAction',{'renderPage': false})) }} -->
         </div>
-    {% else %}
-        <h1 class="n1">{{ 'error.page_not_found'|trans }}</h1>
-
+    {% else %}	
+        <h1 class="n1">  <!-- {{ 'error.page_not_found'|trans }} --></h1>
         {{ content }}
 
         <div class="row justify-content-center">
             <div class="col-12 col-sm-11 col-md-10">
-                <h2 class="n2">{{ 'error.title-form'|trans }}</h2>
-                {{ render(controller('App\\Controller\\ReportingController::reportErrorPageAction')) }}
+                <h2 class="n2"> <!-- {{ 'error.title-form'|trans }} --></h2>
+
+                <!-- {{ render(controller('App\\Controller\\ReportingController::reportErrorPageAction')) }} -->
             </div>
         </div>
     {% endif %}
