@@ -59,7 +59,7 @@ liste des dépendances nécessaires au bon fonctionnement de l'appli :
 * yum install http://rpms.remirepo.net/enterprise/remi-release-7.rpm
 * yum-config-manager --enable remi-php74
 * php -v
-* yum install php php-common php-opcache php-mcrypt php-cli php-gd php-curl php-mysqlnd php-xml php-ldap php-mb    string
+* yum install php php-common php-opcache php-mcrypt php-cli php-gd php-curl php-mysqlnd php-xml php-ldap php-mbstring
 
 # NodeJS
 
