@@ -38,14 +38,10 @@
                     <img src="{{ asset('images/icones/icone-croix-blanc.svg') }}" alt="{{ 'global.modal-close'|trans }}" />
                 </button>
             </div>
-
             <div class="modal-body">
                 <p>{{ 'error.page_not_available'| trans }}</p>
-
                 {{ content }}
-
             </div>
-
            <!-- {{ render(controller('App\\Controller\\ReportingController::reportErrorPageAction',{'renderPage': false})) }} -->
         </div>
     {% else %}	
