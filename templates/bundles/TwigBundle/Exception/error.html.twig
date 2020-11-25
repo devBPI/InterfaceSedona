@@ -20,13 +20,11 @@
                     {{ 'error.link-go-back'|trans({'%link%': app.request.headers.get('referer')})|raw }}
                 </li> -->
             {% endif %}
-
             <li>
                 {{ 'error.link-home'|trans({'%link%': path('home')})|raw }}
             </li>
         </ul>
-
-        <!-- <p>{{ 'error.contact-admin'|trans({'%email%': contact_email})|raw }}</p> -->
+        {{ 'error.contact-admin'|trans({'%email%': contact_email})|raw }}</p>
     {% endset %}
 
     {% if app.request.isXmlHttpRequest() %}
