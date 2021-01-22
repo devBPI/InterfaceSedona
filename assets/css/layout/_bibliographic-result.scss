@@ -4,6 +4,21 @@
 
 .bibliographic-result {
 
+	.decouvrirButton {
+		margin-left: 0.5em;
+		padding: 3px;
+		padding-top: 1px;
+		padding-bottom: 1px;
+		color: #C28100;
+		border: 2px solid #C28100;
+		font-weight: bold;
+		&:hover {
+			background: #C28100;
+			color: white;
+			text-decoration: none;
+		}
+	}
+
 	.link {
 		color: $black;
 

@@ -42,7 +42,7 @@
             {% if notice.type == constant('App\\Model\\Notice::VIDEO')%}
                 {% set label = 'bloc.autority-result-information.directors'|trans %}
             {% endif %}
-            {{ notice_macros.list_link(notice.frontAuthor, label, constant('App\\WordsList::AUTHOR_WORD'), " ; ") }}
+            {{ notice_macros.list_link_front_authors(notice.frontDiscoveryAuthor, label, constant('App\\WordsList::AUTHOR_WORD'), " ; ") }}
         </div>
     </div>
 </div>

@@ -146,8 +146,8 @@ class Notice extends AbstractImage implements NoticeInterface, RecordInterface
     private $authors;
 
     /**
-     * @var array|Value[]
-     * @JMS\Type("array<App\Model\Value>")
+     * @var array|ValueComplementReference[]
+     * @JMS\Type("array<App\Model\ValueComplementReference>")
      * @JMS\SerializedName("auteurs")
      * @JMS\XmlList("auteur")
      */
@@ -705,7 +705,7 @@ class Notice extends AbstractImage implements NoticeInterface, RecordInterface
 
         if (is_array($this->authorsValue)) {
             foreach ($this->authorsValue as $value){
-                if ($value instanceof Value && $value->getValue()){
+                if ($value instanceof ValueComplementReference && $value->getValue()){
                     $authors[] = $value->getValue();
                 }
             }
@@ -713,6 +713,38 @@ class Notice extends AbstractImage implements NoticeInterface, RecordInterface
 
         if (is_array($this->directors)){
             $authors = array_merge($authors, $this->directors);
+        }
+
+        return array_unique(array_filter($authors));
+    }
+
+    /**
+     * @return array
+     */
+    public function getFrontDiscoveryAuthor(): ?array
+    {
+        $authors = [];
+
+        if (is_array($this->authorsValue)) {
+            $authors = array_merge($authors, $this->authorsValue);
+        }
+
+        /*if (is_array($this->authorsValue)) {
+            foreach ($this->authorsValue as $value){
+                if ($value instanceof ValueComplementReference && $value->getValue()){
+                    $authors[] = $value->getValue();
+                }
+            }
+        }*/
+
+        if (null != $this->directors && is_array($this->directors)) {
+            foreach ($this->directors as $director) {
+                if (null != $director) {
+                    $vcr = new ValueComplementReference();
+                    $vcr->setValue($director);
+                    array_push($authors, $vcr);
+                }
+            }
         }
 
         return array_unique(array_filter($authors));
