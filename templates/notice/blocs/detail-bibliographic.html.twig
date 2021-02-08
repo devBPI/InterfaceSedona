@@ -12,9 +12,15 @@
     {% endif %}
 </div>
 
-<div class="col-12 col-md-2">
-    <div class="bibliographic-result__type">
+<!--<div class="col-12 col-md-2">-->
+<div class="">
+    <div class="bibliographic-result__type" style="display: flex; flex-direction: row;">
+	<div style="flex: auto;">
+        {{ notice_macros.list_discover_authors(notice.frontDiscoveryAuthor, label, constant('App\\WordsList::AUTHOR_WORD'), " ; ") }}
+        </div>
+	<div style="flex: auto;">
         <img src="{{ asset('images/types/type-' ~ notice.slugifiedType ~ '.svg') }}" alt="{{ notice.type }}" title="{{ notice.type }}" />
+        </div>
     </div>
 </div>
 <div class="col-12">
