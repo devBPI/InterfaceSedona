@@ -45,6 +45,27 @@
 {{ notice_macros.detail(notice.otherEdition, 'bloc.autority-result-information.other-edition'|trans) }}
 {{ notice_macros.detail(notice.conservations, 'bloc.autority-result-information.conservation') }}
 
+{% if notice.links|length>0 %}
+    <li class="list-information__item" >
+        <span class="list-information__label">Conservation</span>
+        <ul class="list-information__sub-list list-information__sub-list--bloc">
+            {% for element in notice.links %}
+                <li class="list-information__sub-item">
+                    <p>
+                        {% if element.accessNumFirstIssueOnline is not empty %}n.{{ element.accessNumFirstIssueOnline }}, {% endif %}
+                        {% if element.accessNumFirstVolOnline is not empty %}vol.{{ element.accessNumFirstVolOnline }}, {% endif %}
+                        {% if element.accessDateFirstIssueOnline is not empty %}{{ element.accessDateFirstIssueOnline }} {% endif %}
+                        {% if element.accessDateFirstIssueOnline is not empty or element.accessNumLastIssueOnline is not empty or element.accessDateLastIssueOnline is not empty %}- {% endif %}
+                        {% if element.accessNumLastIssueOnline is not empty %}n.{{ element.accessNumLastIssueOnline }}, {% endif %}
+                        {% if element.accessNumLastVolOnline is not empty %}vol.{{ element.accessNumLastVolOnline }}, {% endif %}
+                        {% if element.accessDateLastIssueOnline is not empty %}{{ element.accessDateLastIssueOnline }} {% endif %}
+                    </p>
+                </li> 
+            {% endfor %}
+        </ul>
+    </li>
+{% endif %}
+
 {% if notice.subject|length>0 %}
     <li class="list-information__item" >
         <span class="list-information__label">{{ 'modal.advanced-search.facette.subjects'|trans }}</span>
