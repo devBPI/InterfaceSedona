@@ -86,7 +86,7 @@
 
                 
                 <ul class="availability">
-                    {% for available in notice.copies %}
+                    {% for available in notice.copies | sort((a, b) => a.cote <=> b.cote) %}
                         {{ macros.availibility(available, notice) }}
 
                         {% if loop.first and not loop.last %}
@@ -103,7 +103,7 @@
                         {% endif %}
                     {% endfor %}
 
-                    {% for link in notice.links %}
+                    {% for link in notice.links | sort((a, b) => a.title <=> b.title) %}
                         {{ macros.availibility(link, notice) }}
 
                         {% if loop.first and not loop.last %}

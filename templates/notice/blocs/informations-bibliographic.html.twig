@@ -45,20 +45,29 @@
 {{ notice_macros.detail(notice.otherEdition, 'bloc.autority-result-information.other-edition'|trans) }}
 {{ notice_macros.detail(notice.conservations, 'bloc.autority-result-information.conservation') }}
 
+
+{% set conservationFound = false %}
 {% if notice.links|length>0 %}
+    {% for element in notice.links if not conservationFound %}
+        {% if element.accessNumFirstIssueOnline is not empty and element.accessNumFirstIssueOnline != 0 %}
+            {% set conservationFound = true %}
+        {% endif %}
+    {% endfor %} 
+{% endif %}
+{% if notice.links|length>0 and conservationFound %}
     <li class="list-information__item" >
         <span class="list-information__label">Conservation</span>
         <ul class="list-information__sub-list list-information__sub-list--bloc">
-            {% for element in notice.links %}
+            {% for element in notice.links %} 
                 <li class="list-information__sub-item">
                     <p>
-                        {% if element.accessNumFirstIssueOnline is not empty %}n.{{ element.accessNumFirstIssueOnline }}, {% endif %}
-                        {% if element.accessNumFirstVolOnline is not empty %}vol.{{ element.accessNumFirstVolOnline }}, {% endif %}
-                        {% if element.accessDateFirstIssueOnline is not empty %}{{ element.accessDateFirstIssueOnline }} {% endif %}
-                        {% if element.accessDateFirstIssueOnline is not empty or element.accessNumLastIssueOnline is not empty or element.accessDateLastIssueOnline is not empty %}- {% endif %}
-                        {% if element.accessNumLastIssueOnline is not empty %}n.{{ element.accessNumLastIssueOnline }}, {% endif %}
-                        {% if element.accessNumLastVolOnline is not empty %}vol.{{ element.accessNumLastVolOnline }}, {% endif %}
-                        {% if element.accessDateLastIssueOnline is not empty %}{{ element.accessDateLastIssueOnline }} {% endif %}
+                        {% if element.accessNumFirstIssueOnline is not empty and element.accessNumFirstIssueOnline != 0 %}n.{{ element.accessNumFirstIssueOnline }}, {% endif %}
+                        {% if element.accessNumFirstVolOnline is not empty and element.accessNumFirstVolOnline != 0 %}vol.{{ element.accessNumFirstVolOnline }}, {% endif %}
+                        {% if element.accessDateFirstIssueOnline is not empty and element.accessDateFirstIssueOnline != 0 %}{{ element.accessDateFirstIssueOnline }} {% endif %}
+                        {% if element.accessDateFirstIssueOnline is not empty and element.accessDateFirstIssueOnline != 0 or element.accessNumLastIssueOnline is not empty and element.accessNumLastIssueOnline != 0 or element.accessDateLastIssueOnline is not empty and element.accessDateLastIssueOnline != 0 %}- {% endif %}
+                        {% if element.accessNumLastIssueOnline is not empty and element.accessNumLastIssueOnline != 0 %}n.{{ element.accessNumLastIssueOnline }}, {% endif %}
+                        {% if element.accessNumLastVolOnline is not empty and element.accessNumLastVolOnline != 0 %}vol.{{ element.accessNumLastVolOnline }}, {% endif %}
+                        {% if element.accessDateLastIssueOnline is not empty and element.accessDateLastIssueOnline != 0 %}{{ element.accessDateLastIssueOnline }} {% endif %}
                     </p>
                 </li> 
             {% endfor %}
