@@ -131,7 +131,7 @@
                                 (constant('App\\Model\\Search\\Criteria::SIMPLE_SEARCH_TYPE')): type,
                             } %}
                             <a href="{{ toggle_to_path_parcours('search', app.request.attributes.get(constant('App\\Model\\Search\\ObjSearch::PARAM_PARCOURS_NAME')), pathAttr) }}">
-                                {{ element.complement }} {{ element.value }}
+                                {{ element.value }} {{ element.complement }}
                             </a>
                         </li>
                     {% endfor %}

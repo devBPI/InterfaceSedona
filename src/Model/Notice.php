@@ -290,16 +290,16 @@ class Notice extends AbstractImage implements NoticeInterface, RecordInterface
      */
     private $topics;
     /**
-     * @var array|Value[]
-     * @JMS\Type("array<App\Model\Value>")
+     * @var array|ValueComplement[]
+     * @JMS\Type("array<App\Model\ValueComplement>")
      * @JMS\SerializedName("contributeurs")
      * @JMS\XmlList("contributeur")
      */
     private $contributeurs;
 
     /**
-     * @var array|Value[]
-     * @JMS\Type("array<App\Model\Value>")
+     * @var array|ValueComplement[]
+     * @JMS\Type("array<App\Model\ValueComplement>")
      * @JMS\SerializedName("contributeursVide")
      * @JMS\XmlList("contributeurVideo")
      */

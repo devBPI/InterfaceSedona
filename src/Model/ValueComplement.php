@@ -2,13 +2,14 @@
 
 namespace App\Model;
 
+use App\Model\Interfaces\ValueBPIInterface;
 use JMS\Serializer\Annotation as JMS;
 
 /**
  * Class ValueComplement
  * @package App\Model
  */
-class ValueComplement
+class ValueComplement implements ValueBpiInterface
 {
     /**
      * @var string
@@ -45,5 +46,10 @@ class ValueComplement
         }
 
         return $this->complement;
+    }
+
+    public function __toString(): string
+    {
+        return ''.$this->getValue();
     }
 }
