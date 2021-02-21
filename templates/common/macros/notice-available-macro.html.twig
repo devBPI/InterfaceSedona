@@ -16,6 +16,7 @@
                     {% if object.support %}- {{ object.support }}{% endif %}
                 </p>
                 {% if object.notes %}<p>{{ object.notes|join(' ') }}</p>{% endif %}
+                <p>{% if object.bookbinding %}{{ object.bookbinding }} {% endif %}</p>
                 <p>{% if object.location %}{{ object.location }} {% endif %}{% if object.category %}- {{ object.category }} {% endif %}</p>
             </li>
         {% else %}
@@ -30,6 +31,7 @@
                         <img src="{{ asset('images/icones/icone-enveloppe.svg') }}" alt="" class="icone-enveloppe"/>
                     </a>
                 </p>
+                <p>{% if object.bookbinding %}{{ object.bookbinding }} {% endif %}</p>
             </li>
         {% endif %}
         {% if object.lastNumber %}
