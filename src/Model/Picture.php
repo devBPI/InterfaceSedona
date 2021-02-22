@@ -18,14 +18,20 @@ class Picture implements PictureInterface
     use PathToContentTrait;
     /**
      * @var string
-     * @JMS\TYPE("string")
      *
+     *
+     * @var string
+     * @JMS\Type("string")
+     * @JMS\SerializedName("description")
      */
     private $description;
 
     /**
      * @var string
-     * @JMS\TYPE("string")
+     *
+     * @var string
+     * @JMS\Type("string")
+     * @JMS\SerializedName("url")
      *
      */
     private $url;
