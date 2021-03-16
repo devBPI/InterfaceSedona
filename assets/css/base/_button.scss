@@ -39,7 +39,7 @@
 	}
 
 	&-lg {
-		@include font-size(15);
+		font-size: $font-base px;
 
 		@include media-breakpoint-up(md) {
 			@include font-size(21);
@@ -48,7 +48,7 @@
 	}
 
 	&-link {
-		@include font-size(15);
+		font-size: $font-base px;
 		font-weight: $font-bold;
 		color: $red;
 		padding: 0;

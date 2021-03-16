@@ -91,7 +91,7 @@
 
 		&-link {
 			color: $black;
-			@include font-size(15);
+			font-size: $font-base px;
 			font-weight: $font-medium;
 			line-height: 1;
 
@@ -218,7 +218,7 @@
 
 			&__title {
 				padding: 5px 0 5px;
-				@include font-size(15);
+				font-size: $font-base px;
 				color: $black;
 				display: inline-block;
 	

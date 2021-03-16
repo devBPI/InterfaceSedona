@@ -11,7 +11,7 @@
 
 	&__button {
 		padding: 0;
-		@include font-size(15);
+		font-size: $font-base px;
 		font-weight: $font-bold;
 		display: flex;
 		align-items: center;
