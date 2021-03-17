@@ -38,9 +38,24 @@
 	&__select {
 		flex: 0 0 50%;
 		order: 3;
+		position: relative;
 		min-height: 45px;
 		margin-bottom: 0;
 		border-right: $border-default;
+
+		&:after {
+			content: "";
+			position: absolute;
+			width: rem(10);
+			height: rem(10);
+			top: 50%;
+			right: 0;
+			margin-right: rem(5);
+			transform: translateY(-50%);
+			background-image: url('/images/icones/icone-caret-bas-blanche.svg');
+			background-repeat: no-repeat;
+			background-position: right center;
+		}
 
 		@include media-breakpoint-up(md) {
 			flex: 0 0 auto;
@@ -56,6 +71,7 @@
 			-webkit-appearance: none;
 			background-color: $grey-disabled;
 			color: $white;
+			padding-right: rem(20);
 
 			&:focus {
 				-moz-appearance: none;
