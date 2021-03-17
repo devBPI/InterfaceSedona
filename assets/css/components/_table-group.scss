@@ -14,7 +14,7 @@
 
 	&__title {
 		margin: 0 10px 0 5px;
-		@include font-size(15);
+		font-size: $font-base px;
 	}
 
 	&__link {
