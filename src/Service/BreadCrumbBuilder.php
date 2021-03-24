@@ -11,6 +11,7 @@ use App\Model\Search\Criteria;
 use App\Model\Search\FacetFilter;
 use App\Model\Search\ObjSearch;
 use App\Model\Search\SearchQuery;
+use App\WordsList;
 use Doctrine\ORM\EntityManager;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -245,8 +246,17 @@ final class BreadCrumbBuilder
     private function humanizeCriteria(Request $request): string
     {
         $objSearch = new ObjSearch($this->getObjSearchQuery($request));
+        try {
+            $fields = $objSearch->getCriteria()->getKeywordsTitles(true);
+            $payload = $objSearch->getCriteria()->getFieldsWithOperator( $objSearch->getCriteria()->getKeywordsTitles(true),$objSearch->getCriteria() );
+            $t =  $objSearch->getCriteria()->getKeywordsTitles(true);
 
-        return implode(', ', $objSearch->getCriteria()->getKeywordsTitles());
+           // dump($objSearch->getCriteria(),$t, $fields, $payload, $this->searchService->humanise($payload));
+        }catch (\Exception $e){
+            dump($e->getMessage());
+        }
+
+        return  $this->searchService->humanise($payload); // implode(', ', $objSearch->getCriteria()->getKeywordsTitles());
     }
 
     /**

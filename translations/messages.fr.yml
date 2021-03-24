@@ -1,4 +1,6 @@
 Bad credentials.: Votre email et/ou mot de passe ne sont pas valides.
+and: ET
+or: OU
 global:
   new-windows: Nouvelle fenêtre
   form-mandatory-field: champs obligatoires
@@ -96,6 +98,8 @@ modal:
     submit: Valider
     submit-sr-only: la création de la liste
   list-add:             #Modal 02 ajout à ma sélection
+    title-already-exist: Liste existe déjà
+    message-already-exist: L'élélement existe déjà dans la liste
     title-connected: Ajouter...
     title: Vous avez ajouté...
     add-to-profile: '... à Mon compte dans :'
@@ -291,7 +295,7 @@ modal:
 page:
   breadcrumb: Fil d'ariane
   home:
-    page_title: Accueil
+    page_title: Accueil - Catalogue
     title: Accueil - Catalogue de la Bpi
     thematic: Découvrir les parcours
   thematic:

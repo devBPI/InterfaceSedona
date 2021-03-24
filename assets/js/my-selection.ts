@@ -10,6 +10,23 @@ export class SelectionList {
     updateDocumentCount(count: number) {
         $('#countSelectionDocument span').html('('+ count +')');
     }
+
+    onClickMyList(id: number) {
+
+        var element = <HTMLInputElement> document.getElementById('select-liste-'+id);
+        var items =  document.getElementsByClassName('js-my_selection_'+id);
+        if (element.checked){
+            for (var i=0; i < items.length; i++) {
+                var  item = <HTMLInputElement> document.getElementById( items[i].id);
+                item.checked = true;
+            }
+        }else{
+            for (var i=0; i < items.length; i++) {
+                var  item = <HTMLInputElement> document.getElementById( items[i].id);
+                item.checked = false;
+            }
+        }
+    }
 }
 
 

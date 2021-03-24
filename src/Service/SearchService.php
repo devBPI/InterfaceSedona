@@ -127,4 +127,19 @@ final class SearchService
         );
     }
 
+    /**
+     * @param $advancedSearch
+     * @return string|null
+     */
+    public  function humanise($advancedSearch): ?string
+    {
+        $payload = [];
+
+        foreach ($advancedSearch as $key => $value){
+            $payload[] = $this->translator->trans($value['operator']) . ' ' . $value['value'];
+        }
+
+        return implode(' ', $payload);
+    }
+
 }

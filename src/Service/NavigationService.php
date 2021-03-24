@@ -5,12 +5,14 @@ namespace App\Service;
 
 use App\Model\Authority;
 use App\Model\Exception\NoResultException;
+use App\Model\Facets;
 use App\Model\IndiceCdu;
 use App\Model\Interfaces\NoticeInterface;
 use App\Model\Notice;
 use App\Model\Search\ListNavigation;
 use App\Model\Search\Navigation;
 use App\Model\Search\ObjSearch;
+use App\Model\Search\SearchQuery;
 use App\Service\Provider\SearchProvider;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
@@ -41,6 +43,10 @@ final class NavigationService
      */
     private $searchService;
 
+    /**
+     * @var int
+     */
+    public $page;
 
     /**
      * NavigationService constructor.
@@ -92,7 +98,6 @@ final class NavigationService
 
         $navigation = $notice->isOnLine() ? $listNavigation->getListOnlineNotices() : $listNavigation->getListNotices();
         $navigation->setCurrentIndex($notice->getPermalink());
-
         try {
             $navigation->setPreviousLink();
         } catch (NoResultException $exception) {
@@ -100,6 +105,7 @@ final class NavigationService
                 $navigation->setPreviousLink();
             }
         }
+
         try {
             $navigation->setNextLink();
         } catch (NoResultException $exception) {
@@ -169,5 +175,20 @@ final class NavigationService
 
         return false;
     }
+
+    public function getSearchRows(){
+        $request = $this->requestStack->getCurrentRequest();
+
+        $searchToken = $request->get(ObjSearch::PARAM_REQUEST_NAME, null);
+        if (!$searchToken ||  !$this->session->has($searchToken)) {
+return SearchQuery::ROWS_DEFAULT;
+        }
+        $query = json_decode($this->session->get($searchToken), true);
+
+       return array_key_exists('rows', $query)?$query['rows']:null;
+    }
+
+
+
 
 }

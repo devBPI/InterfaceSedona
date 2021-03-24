@@ -54,6 +54,8 @@ class SearchFiltersExtension extends AbstractExtension
             new TwigFunction('max_facet_value', [$this, 'getMaxValueOfFacetQueries']),
             new TwigFunction('route_by_object', [$this, 'getRouteByObject']),
             new TwigFunction('pdf_occurence', [$this, 'getPdfOccurence']),
+            new TwigFunction('cut_filter_from_search', [$this, 'cutfilterFromSearch']),
+            new TwigFunction('is_advanced_search', [$this, 'isAdvancedSaerch']),
 
         ];
     }
@@ -179,6 +181,40 @@ class SearchFiltersExtension extends AbstractExtension
 
         return null;
     }
+
+    public function cutfilterFromSearch($type, $value){
+        $url = $this->masterRequest->getRequestUri();
+        $payload =    explode('&', urldecode($url));
+        $link = $payload[0];
+        unset($payload[0]);
+     //   dump($payload);
+        try {
+
+            $t = array_filter($payload, function ($element)use($value, $type){
+           //     dump($element, strpos($element, 'advanced_search')>0 );
+                if(strpos($element, 'facets')===false){
+                    return true;
+                }
+                if ($type === 'date_publishing' && strpos($element, $type)>0){
+                    return false;
+                }
+                list($ftype, $fvalue) = explode('=', $element);
+                return strpos($element, $type) === false || strpos($value, $fvalue)===false;
+            });
+        }catch (\Exception $e ){
+
+        }
+      //  dump($t);
+        //dump(urldecode($url), $this->masterRequest->getUri(), urldecode($this->masterRequest->getUri()), $type, $value);
+
+        if (count($t)===count($payload)){
+            return "";
+        }
+
+        return sprintf('%s&%s', $link, implode('&', $t));
+    }
+
+
 
 }
 

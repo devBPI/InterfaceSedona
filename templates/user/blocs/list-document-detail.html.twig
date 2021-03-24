@@ -1,7 +1,7 @@
 <tr>
     <td>
         <div class="form-check">
-            <input class="table__input js-list-selectable js-{{document.noticeType}}" type="checkbox" value="{{ document.id }}"
+            <input id="js-my_selection_{{ document.id }}" class="table__input js-list-selectable js-{{document.noticeType}} js-my_selection_{{ list.id }}" type="checkbox" value="{{ document.id }}"
                     name="{{ constant('App\\Controller\\UserSelectionController::INPUT_NAME') }}[{{ constant('App\\Controller\\UserSelectionController::INPUT_DOCUMENT') }}][]"
                     data-{{ document.noticeType }}="{{ document.permalink }}"
                     aria-label="{{ 'bloc.list-user.select-ligne'|trans(
@@ -9,7 +9,8 @@
                             '%title%': document.title,
                             '%auteur%': document.author,
                             '%document-type%': document.documentType
-                        }) }}">
+                        }) }}"
+                   >
             <label></label>
         </div>
     </td>

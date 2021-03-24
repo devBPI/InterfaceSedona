@@ -12,7 +12,12 @@ final class ObjSearch
 {
     CONST PARAM_REQUEST_NAME = 'searchToken';
     CONST PARAM_PARCOURS_NAME = 'parcours';
+    public static $advancedParamter = [
+        'configuration_name',
+        '',
 
+
+    ];
     /**
      * @var string
      */
@@ -185,12 +190,50 @@ final class ObjSearch
         return $this->searchQuery->getCriteria();
     }
 
+    public function getAdvancedCriteriaWithOperator(){
+
+        $criteria = $this->getCriteria()->getFieldsWithOperator( $this->getCriteria()->getKeywordsTitles(true),$this->getCriteria());
+
+        if (
+            $this->searchQuery->getCriteria()->getPublicationDateStart() ||
+            $this->searchQuery->getCriteria()->getPublicationDateEnd()
+        ) {
+            $criteria[] =
+                ['value'=> $this->searchQuery->getCriteria()->getPublicationDateStart().' - '.
+                    $this->searchQuery->getCriteria()->getPublicationDateEnd() ,
+                    'field'=>'date_publishing',
+                    'operator'=>''
+                ]
+
+            ;
+        }
+
+     //   dump($this, $this->getSearchFilters()); //die;
+        foreach ($this->getSearchFilters() as $name => $values) {
+            if ($name === 'date_publishing' && is_array($values)) {
+                $values = min($values).' - '.max($values);
+            }
+
+            if (is_array($values)) {
+                $values = implode(', ', $values);
+            }
+
+            $criteria[] =  ['value'=> $values,
+                'field'=>$name,
+                'operator'=>''
+            ];
+        }
+
+        return $criteria;
+    }
+
     /**
      * @return array
      */
     public function getAdvancedCriteria(): array
     {
         $criteria = $this->searchQuery->getCriteria()->getKeywordsTitles(true);
+
         if (
             $this->searchQuery->getCriteria()->getPublicationDateStart() ||
             $this->searchQuery->getCriteria()->getPublicationDateEnd()

@@ -74,4 +74,31 @@ class UserSelectionListRepository extends EntityRepository
             ->setParameter('user', $user->getUid())
             ->getSingleScalarResult();
     }
+
+    /**
+     * @param LdapUser $user
+     * @param $permalink
+     * @param UserSelectionList|null $list
+     * @return int
+     * @throws \Doctrine\ORM\NonUniqueResultException
+     */
+    public function getList(LdapUser $user, $permalink, UserSelectionList $list =null):int
+    {
+        $d =  $this->createQueryBuilder('list')
+            ->join('list.documents', 'doc')
+            ->where('list.user_uid = :user')
+            ->andWhere('doc.permalink = :permalink');
+        if($list instanceof UserSelectionList){
+            $d->andWhere('list.id = :id');
+        }
+  $d          ->select('count(doc.id)')
+            ->setParameter('user', $user->getUid())
+            ->setParameter('permalink', $permalink);
+        if($list instanceof UserSelectionList){
+            $d->setParameter('id', $list->getId());
+        }
+        return $d->getQuery()->getSingleScalarResult();
+
+    }
+
 }

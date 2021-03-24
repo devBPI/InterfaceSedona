@@ -104,6 +104,10 @@ final class UserSelectionController extends AbstractController
      */
     public function addListAction(Request $request): Response
     {
+        if ($this->selectionService->isSelected($request->get('permalink', null))){
+            return $this->render('user/modal/list-already-added-success.html.twig');
+        }
+
         $params = [];
         if ($request->request->count() > 0) {
             try {
@@ -177,7 +181,4 @@ final class UserSelectionController extends AbstractController
             'document' => $document
         ]);
     }
-
-
-
 }

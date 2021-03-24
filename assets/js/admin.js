@@ -15,5 +15,11 @@ $(document)
     .on('ifChanged click', ':checkbox', function () {
         selectionListObject.updateListCount($('[name="selection[list][]"]:checked').length);
         selectionListObject.updateDocumentCount($('[name="selection[document][]"]:checked').length);
-    })
+    }).
+    on('click', '.js-my_list', function () {
+    selectionListObject.onClickMyList(
+        $(this).val()
+    );
+
+})
 ;

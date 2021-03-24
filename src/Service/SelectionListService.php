@@ -72,6 +72,14 @@ final class SelectionListService extends AuthenticationService
 
         foreach ($this->getListsFromRequest($request) as $userSelectionCategory) {
             foreach ($documents as $document) {
+                /** @var UserSelectionDocument $document */
+                // if element in document then
+                if($this->entityManager
+                    ->getRepository(UserSelectionList::class)
+                    ->getList($this->getUser(), $document->getPermalink(), $userSelectionCategory)){
+                    continue;
+                }
+                // endif
                 $userSelectionCategory->addDocument(clone $document);
             }
         }
@@ -147,6 +155,7 @@ final class SelectionListService extends AuthenticationService
             $listTitle = UserSelectionList::DEFAULT_TITLE . ' '.date('d/m/Y H:i:s');
 
             $list = $this->createList($listTitle);
+
             foreach ($this->getSession(self::SESSION_SELECTION_ID) as $document) {
                 $list->addDocument(new UserSelectionDocument($document));
             }
@@ -334,6 +343,7 @@ final class SelectionListService extends AuthenticationService
         }
 
         $docs = $this->getSession(self::SESSION_SELECTION_ID) ?? [];
+
         return count($docs);
     }
 
@@ -383,5 +393,34 @@ final class SelectionListService extends AuthenticationService
     private function addDocumentsInSession(array $documents = [])
     {
         $this->appendSession(self::SESSION_SELECTION_ID, $documents);
+    }
+
+
+    /**
+     * @param $permalink
+     * @return bool
+     */
+    public function isSelected($permalink)
+    {
+        if ($permalink===null){
+            return false;
+        }
+        $list = $this->getSelectionObjects();
+        // si on est en mode connecté
+        if ($this->hasConnectedUser()){
+            $list =  $this->entityManager
+                ->getRepository(UserSelectionList::class)
+                ->getList($this->getUser(), $permalink);
+
+            return $list!==0;
+        }
+     //sinon
+
+           $list = array_filter($list['documents'], function (UserSelectionDocument $udocument) use ($permalink){
+                return $udocument->getPermalink()===$permalink;
+            });
+
+          return count($list)>0;
+
     }
 }

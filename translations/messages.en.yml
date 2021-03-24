@@ -1,3 +1,5 @@
+and: ET
+or: OU
 Bad credentials.: Votre email et/ou mot de passe ne sont pas valides.
 global:
   new-windows: Nouvelle fenêtre
@@ -291,7 +293,7 @@ modal:
 page:
   breadcrumb: Fil d'ariane
   home:
-    page_title: Home
+    page_title: Home - Catalogue
     title: Accueil - Catalogue de la Bpi
     thematic: Découvrir les parcours
   thematic:
@@ -622,4 +624,3 @@ breadcrumb:
         legend:
           shortFormat: Contenu de la notice
           formatType: Format de l'export
-    

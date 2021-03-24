@@ -31,6 +31,7 @@ final class NoticeController extends AbstractController
      */
     private $navigationService;
 
+
     /**
      * NoticeController constructor.
      * @param NoticeBuildFileService $buildFileContent
@@ -53,13 +54,16 @@ final class NoticeController extends AbstractController
      */
     public function bibliographicRecordAction(NoticeThemed $notice, LoggerInterface $logger)
     {
+
         $printRoute = $this->generateUrl(
             'record_bibliographic_pdf',
             [ 'permalink' => $notice->getNotice()->getPermalink(), 'format' => 'pdf' ]
         );
-
+        $page = 1;
         try {
             $navigation = $this->navigationService->buildNotices($notice->getNotice());
+            $page = (int) ceil($navigation->getCurrentIndex()/$this->navigationService->getSearchRows());
+
         } catch (\Exception $e) {
             $logger->error('Navigation failed for notice '.$notice->getPermalink(). ' : '.$e->getMessage());
             $navigation = null;
@@ -69,7 +73,8 @@ final class NoticeController extends AbstractController
             'object'            => $notice,
             'toolbar'           => Notice::class,
             'navigation'        => $navigation,
-            'printRoute'        => $printRoute
+            'printRoute'        => $printRoute,
+            'page'              => $page
         ]);
     }
 

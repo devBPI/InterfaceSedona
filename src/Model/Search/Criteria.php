@@ -288,29 +288,97 @@ class Criteria
      * @param bool $withFields
      * @return array
      */
-    public function getKeywordsTitles(bool $withFields = false): array
+    public function getKeywordsTitles(bool $withFields = false, $withOperator = false): array
     {
         $keywords = [];
         foreach (WordsList::$words[WordsList::ALL] as $field) {
             if (!empty($this->$field)) {
                 if ($withFields) {
-                    $keywords[] = [$field => $this->$field];
+                    $keywords[] = [$field =>  $this->$field];
                 } else {
                     $keywords[] = $this->$field;
                 }
             }
         }
 
+        $toto= [];
         foreach (WordsList::$operators as $operator) {
             $subCriteria = $this->getSubCriteriaOfOperator($operator);
             if ($subCriteria instanceof Criteria) {
+                $toto[] =[$operator=>$subCriteria->getKeywordsTitles($withFields)];
+
                 $keywords = array_merge($keywords, $subCriteria->getKeywordsTitles($withFields));
             }
         }
 
+
         return $keywords;
     }
 
+    public function getFieldsWithOperator($fields, Criteria $criteria){
+
+        $operator = '';
+        $result = [];
+        $andCriteria = $criteria->getAndCrteria();
+        foreach ($fields  as $index =>  $field){
+            foreach ($field as $key => $value){
+                $result[$index]['value'] =$value;
+                $result[$index]['field'] =$key;
+
+                if ($index === 0){
+                    $result[$index]['operator'] = '';
+                    continue;
+                }
+
+                if ($andCriteria instanceof Criteria && $andCriteria->getValueOf($key) == $value){
+                    $result[$index]['operator'] = 'and';
+                    continue;
+                }
+
+                $andand = $andCriteria instanceof Criteria ? $andCriteria->getAndCrteria():null;
+
+                if ($andand instanceof Criteria && $andand->getValueOf($key) == $value) {
+                    $result[$index]['operator'] = 'and';
+                    continue;
+                }
+
+                $andor= $andCriteria instanceof Criteria? $andCriteria->getOrCrteria():null;
+                if ($andor instanceof Criteria && $andor->getValueOf($key)==$value)
+                {
+                    $result[$index]['operator'] = 'or';
+                    continue;
+                }
+
+                $or = $criteria->getOrCrteria();
+
+                if($or instanceof Criteria && $or->getValueOf($key) == $value){
+                    $result[$index]['operator'] = 'or';
+                    continue;
+                }
+                $orand = $or instanceof Criteria? $or->getAndCrteria():null;
+
+                if($orand instanceof Criteria  && $orand->getValueOf($key)==$value) {
+                    $result[$index]['operator'] ='and';
+                    continue;
+                }
+                $oror= $or instanceof Criteria? $or->getOrCrteria():null;
+
+                if($oror instanceof Criteria && $oror->getValueOf($key)==$value) {
+                    $result[$index]['operator'] = 'or';
+                    continue;
+                }
+
+            }
+        }
+
+        return $result;
+    }
+
+    public function getValueOf($key){
+        if(!empty($this->$key)) {
+            return $this->$key;
+        }
+    }
     /**
      * @param TranslatorInterface $translator
      * @param string $operator
@@ -412,5 +480,20 @@ class Criteria
         $this->parcours = $parcours;
 
         return $this;
+    }
+
+    /**
+     * @return Criteria|null
+     */
+    public function getAndCrteria(): ?Criteria
+    {
+        return $this->and?$this->and[0]:null;
+    }
+    /**
+     * @return Criteria|null
+     */
+    public function getOrCrteria(): ?Criteria
+    {
+        return $this->or?$this->or[0]:null;
     }
 }

@@ -44,6 +44,11 @@ final class Navigation
     private $nextLink;
 
     /**
+     * @var int
+     */
+    private $page;
+
+    /**
      * Navigation constructor.
      * @param string $hash
      * @param NavigationInterface $results
@@ -52,6 +57,7 @@ final class Navigation
     {
         $this->hash = $hash;
         $this->total = $results->getTotalCount();
+        $results->getRows();
         $this->list = $this->getPermalinkList($results);
     }
 
@@ -118,6 +124,8 @@ final class Navigation
     {
         $this->currentIndex = $this->getIndexOfList($permalink);
     }
+
+
 
     /**
      * @param string $permalink

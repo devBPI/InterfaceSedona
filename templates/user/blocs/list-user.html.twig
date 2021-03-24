@@ -3,9 +3,9 @@
         <div class="table-group">
             <div class="table-group__header">
                 <div class="form-check">
-                    <label for="select-liste-{{ i }}"
+                    <label for="select-liste-{{ list.id }}"
                         class="sr-only">{{ 'bloc.list-user.list-select'|trans({'%name%': list.title}) }}</label>
-                    <input type="checkbox" id="select-liste-{{ i }}" class="table-group__input"
+                    <input type="checkbox" id="select-liste-{{ list.id }}" class="table-group__input js-my_list  js-list-selectable"
                         name="{{ constant('App\\Controller\\UserSelectionController::INPUT_NAME') }}[{{ constant('App\\Controller\\UserSelectionController::INPUT_LIST') }}][]"
                         value="{{ list.id }}">
                     <p class="table-group__title form-check--label">{{ list.title }}</p>
