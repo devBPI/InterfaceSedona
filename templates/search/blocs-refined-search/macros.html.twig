@@ -1,0 +1,79 @@
+{% import _self as self %}
+
+{% macro display_keyword_form(keywords_list, start = 0) %}
+    {% for current_operator, keywords in keywords_list %}
+        {% set index = loop.index0 + start %}
+        {% set first = loop.first and start == 0 %}
+
+        {% for current_type, current_keyword in keywords %}
+            {% if current_keyword is iterable %}
+                {{ _self.display_keyword_form({(current_type): current_keyword}, index + 1) }}
+            {% else %}
+                <div class="search-keyword__group row" id="keyword-group-{{ index }}">
+                    {% include 'search/blocs-advanced-search/keyword-row.html.twig' %}
+                </div>
+            {% endif %}
+        {% endfor %}
+    {% endfor %}
+{% endmacro %}
+
+{% macro display_checkbox_list(origin, label, key, items, selected) %}
+<div class="modal-body">
+    {% set content %}
+        {% for index, value in items %}
+            {% if value.name is defined %}
+                {% set count = value.totalCount %}
+                {% set value = value.name %}
+            {% endif %}
+
+            <div class="form-check search-facette__item">
+                <input type="checkbox"
+                       name="{{ constant('App\\Model\\Search\\FacetFilter::QUERY_NAME') ~'['~ key~'][]' }}"
+                       class="form-check-input input-{{ key }}"
+                       id="{{ origin }}-{{ key }}-{{ index }}" value="{{ value }}"
+                        {% if key in selected|keys and value in selected[key] %}
+                            checked="checked"
+                        {% endif %}
+                >
+                <label class="form-check-label" for="{{ origin }}-{{ key }}-{{ index }}">
+                    {{ value }} {% if count is defined %}({{ count }}){% endif %}
+                </label>
+            </div>
+
+            {% if not loop.first and not loop.last and loop.index % 6 == 0 %}
+                {% if loop.index != 6 %}</div>{% endif %}
+                <div class="js-hidden hidden-items" id="div-{{ origin }}-{{ key }}-{{ index }}">
+            {% endif %}
+        {% endfor %}
+
+        {% if items|length > 6 %}
+            </div>
+            <div class="d-none w-100">
+                <button type="button" class="btn btn-small-link js-see-more"
+                        data-target="#div-{{ origin }}-{{ key }}-5" aria-expanded="false"
+                        aria-controls="div-{{ origin }}-{{ key }}-5">
+                    {{ 'global.see-more'|trans }}
+                </button>
+            </div>
+        {% endif %}
+    {% endset %}
+
+    {{ _self.display_collapse_filter(origin, label, key, key in selected|keys, content) }}
+</div>
+{% endmacro %}
+
+{% macro display_collapse_filter(origin, label, key, collapsed, content, aria_label = null) %}
+    <div class="search-facette">
+        <button type="button" class="btn search-facette__button {% if collapsed %}collapsed{% endif %}"
+                data-toggle="collapse" aria-expanded="{{ collapsed ? 'true' : 'false' }}"
+                aria-controls="{{ origin }}-{{ key }}" data-target="#{{ origin }}-{{ key }}">
+            {{ label }}
+        </button>
+        <div class="collapse search-facette__body {% if collapsed %}collapse show{% endif %}"
+             id="{{ origin }}-{{ key }}" role="group" aria-label="{{ aria_label|default(label) }}">
+            <div class="search-facette__content">
+                {{ content }}
+            </div>
+        </div>
+    </div>
+{% endmacro %}

@@ -21,12 +21,10 @@
                     {{ 'error.link-go-back'|trans({'%link%': app.request.headers.get('referer')})|raw }}
                 </li>
             {% endif %}
-
             <li>
                 {{ 'error.link-home'|trans({'%link%': path('home')})|raw }}
             </li>
         </ul>
-
         <p>{{ 'error.contact-admin'|trans({'%email%': contact_email})|raw }}</p>
     {% endset %}
 
@@ -38,24 +36,21 @@
                     <img src="{{ asset('images/icones/icone-croix-blanc.svg') }}" alt="{{ 'global.modal-close'|trans }}" />
                 </button>
             </div>
-
             <div class="modal-body">
                 <p>{{ 'error.page_not_available'| trans }}</p>
-
                 {{ content }}
             </div>
-
-            {{ render(controller('App\\Controller\\ReportingController::reportErrorPageAction',{'renderPage': false})) }}
+           <!-- {{ render(controller('App\\Controller\\ReportingController::reportErrorPageAction',{'renderPage': false})) }} -->
         </div>
-    {% else %}
-        <h1 class="n1">{{ 'error.page_not_found'|trans }}</h1>
-
+    {% else %}	
+        <h1 class="n1">  <!-- {{ 'error.page_not_found'|trans }} --></h1>
         {{ content }}
 
         <div class="row justify-content-center">
             <div class="col-12 col-sm-11 col-md-10">
-                <h2 class="n2">{{ 'error.title-form'|trans }}</h2>
-                {{ render(controller('App\\Controller\\ReportingController::reportErrorPageAction')) }}
+                <h2 class="n2"> <!-- {{ 'error.title-form'|trans }} --></h2>
+
+                <!-- {{ render(controller('App\\Controller\\ReportingController::reportErrorPageAction')) }} -->
             </div>
         </div>
     {% endif %}

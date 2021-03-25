@@ -176,7 +176,7 @@
 
 				<div class="footer__credit">
 					<p>
-						© Copyright {{ "now"|date("Y") }}
+						 Accessibilité : totalement conforme &nbsp-&nbsp © Copyright {{ "now"|date("Y") }}
 						{% if app.environment == 'dev' or IP_SEDONA in app.request.clientIps %}
 							{%- set package_info = get_package_info() -%}
 							{% if package_info.tag is defined and package_info.tag %}

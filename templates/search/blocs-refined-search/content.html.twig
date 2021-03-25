@@ -1,15 +1,16 @@
-{% from 'search/blocs-advanced-search/macros.html.twig' import display_checkbox_list %}
+{% from 'search/blocs-refined-search/macros.html.twig' import display_checkbox_list %}
 
 {% for facet in objSearch.results.facets.facets if facet.values|length > 0 %}
     {% if facet.name == 'date_publishing' %}
         {% include 'search/blocs-refined-search/date-content.html.twig' %}
     {% else %}
-
         {% set defaultFilterOpened = {
             'type' :'',
             'disponibilite' :'',
             'creator' :''
         } %}
+
+        {#% set filterSelected = defaultFilterOpened|merge(objSearch.searchFacets) %#}
 
         {% if app.request.attributes.get(constant('App\\Model\\Search\\ObjSearch::PARAM_PARCOURS_NAME')) == 'autoformation' %}
             {% set defaultFilterOpened = {

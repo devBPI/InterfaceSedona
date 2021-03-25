@@ -4,7 +4,7 @@
 
 {% block body %}
     {% set content %}
-        <p>{{ 'error.page_broken_message'|trans|nl2br }}</p>
+        <!-- <p>{{ 'error.page_broken_message'|trans|nl2br }}</p> -->
 
         {% if app.environment == 'dev' or IP_SEDONA in app.request.clientIps %}
             {# affichage de la raison de l'erreur pour Sedona #}
@@ -16,17 +16,15 @@
 
         <ul class="list-link">
             {% if app.request.headers.get('referer') %}
-                <li>
+                <!-- <li>
                     {{ 'error.link-go-back'|trans({'%link%': app.request.headers.get('referer')})|raw }}
-                </li>
+                </li> -->
             {% endif %}
-
             <li>
                 {{ 'error.link-home'|trans({'%link%': path('home')})|raw }}
             </li>
         </ul>
-
-        <p>{{ 'error.contact-admin'|trans({'%email%': contact_email})|raw }}</p>
+        {{ 'error.contact-admin'|trans({'%email%': contact_email})|raw }}</p>
     {% endset %}
 
     {% if app.request.isXmlHttpRequest() %}
@@ -37,24 +35,19 @@
                     <img src="{{ asset('images/icones/icone-croix-blanc.svg') }}" alt="{{ 'global.modal-close'|trans }}" />
                 </button>
             </div>
-
             <div class="modal-body">
                 <p>{{ 'error.page_broken'| trans }}</p>
-
                 {{ content }}
             </div>
-
-            {{ render(controller('App\\Controller\\ReportingController::reportErrorPageAction',{'renderPage': false})) }}
+           <!-- {{ render(controller('App\\Controller\\ReportingController::reportErrorPageAction',{'renderPage': false})) }} -->
         </div>
     {% else %}
         <h1 class="n1">{{ 'error.page_broken'|trans }}</h1>
-
         {{ content }}
-
         <div class="row justify-content-center">
             <div class="col-12 col-sm-11 col-md-10">
-                <h2 class="n2">{{ 'error.title-form'|trans }}</h2>
-                {{ render(controller('App\\Controller\\ReportingController::reportErrorPageAction')) }}
+                <h2 class="n2">  <!-- {{ 'error.title-form'|trans }} --></h2>
+                <!-- {{ render(controller('App\\Controller\\ReportingController::reportErrorPageAction')) }} -->
             </div>
         </div>
     {% endif %}

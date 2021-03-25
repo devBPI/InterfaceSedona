@@ -170,10 +170,18 @@ final class ObjSearch
 
     /**
      * @return array
+    */
+    public function getSearchFacets(): array
+    {
+        return $this->searchQuery->getFacets()->getAttributes();
+    }
+
+    /**
+     * @return array
      */
     public function getSearchFilters(): array
     {
-        return $this->searchQuery->getFacets()->getAttributes();
+        return $this->searchQuery->getFilters()->getAttributes();
     }
 
     /**
@@ -247,7 +255,19 @@ final class ObjSearch
                 $values = implode(', ', $values);
             }
 
-            $criteria[] = [$name => $values];
+            $criteria[] = [($name) => $values];
+        }
+
+        foreach ($this->getSearchFacets() as $name => $values) {
+            if ($name === 'date_publishing' && is_array($values)) {
+                $values = min($values).' - '.max($values);
+            }
+
+            if (is_array($values)) {
+                $values = implode(', ', $values);
+            }
+
+            $criteria[] = [($name) => $values];
         }
 
         return $criteria;

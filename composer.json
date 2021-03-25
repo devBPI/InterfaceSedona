@@ -1,6 +1,6 @@
 {
     "name": "bpi/catalogue-site",
-    "version": "1.0.01-dev",
+    "version": "1.0.2-dev",
     "description": "Site Web Catalogue de la BPI",
     "type": "project",
     "license": "proprietary",
@@ -8,8 +8,8 @@
         "php": "^7.3",
         "ext-ctype": "*",
         "ext-iconv": "*",
-        "ext-ldap": "*",
         "ext-json": "*",
+        "ext-ldap": "*",
         "doctrine/doctrine-bundle": "^1.11",
         "doctrine/doctrine-migrations-bundle": "^2.0",
         "doctrine/orm": "^2.6",
@@ -39,7 +39,7 @@
         "symfony/twig-bundle": "3.4.*",
         "symfony/validator": "3.4.*",
         "symfony/web-link": "3.4.*",
-        "symfony/webpack-encore-bundle": "^1.6",
+        "symfony/webpack-encore-bundle": "^1.7",
         "symfony/yaml": "3.4.*",
         "twig/extensions": "^1.5"
     },

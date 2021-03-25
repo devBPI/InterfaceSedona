@@ -583,13 +583,13 @@ bloc:
       your-reference-bibliographic: Votre référence bibliographique
 error:
   page_not_available: 'Cette page n’est pas accessible.'
-  page_not_found: 404 - Page introuvable
+  page_not_found: Cette page est inaccessible.
   link-go-back: Pour <a href="%link%">revenir en arrière</a>
   link-home: Pour retourner à la <a href="%link%">page d’accueil du catalogue de la Bpi</a>
   contact-admin: Contacter <a href="mailto:%email%">l’administrateur du catalogue de la Bpi</a>
   title-form: Formulaire de contact
   page_error: Page en erreur
-  page_broken: Oops! Une erreur est survenue
+  page_broken: Cette page est inaccessible.
   page_broken_message: |
     Le site rencontre actuellement un problème technique, merci de renouveller votre visite ultèrieurement.
     Nous allons le réparer dès que possible. Désolé pour tout inconvénient causé.

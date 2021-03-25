@@ -39,7 +39,10 @@ trait NoticeTrait
      */
     public function getType(): string
     {
-        return $this->type;
+        if($this->type)
+            return $this->type;
+        else
+            return "";
     }
 
 }

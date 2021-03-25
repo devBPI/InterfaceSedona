@@ -79,26 +79,38 @@
                 {% if object is iterable %}
                     {% for element in object %}
                             <li class="list-information__sub-item">
-                            {%  if simpleSearchKeword ==''%}
-                              {% set    pathAttr = {
-                                (simpleSearchKeword): ''~(element is defined ?element:''),
-                                (constant('App\\Model\\Search\\Criteria::SIMPLE_SEARCH_TYPE')): type,
-                                }
-                                %}
-                                <a href="{{ toggle_to_path_parcours('advanced_search', app.request.attributes.get(constant('App\\Model\\Search\\ObjSearch::PARAM_PARCOURS_NAME')), pathAttr) }}">
-                                    {{ element }}
-                                </a>
-                            {% else %}
-                                {% set    pathAttr = {
-                                    'advanced_search[0][text]': ''~(element is defined ?element:''),
-                                    'advanced_search[0][field]':simpleSearchKeword
-                                }
-                                %}
-                                <a href="{{ toggle_to_path_parcours('advanced_search', app.request.attributes.get(constant('App\\Model\\Search\\ObjSearch::PARAM_PARCOURS_NAME')), pathAttr) }}">
-                                    {{ element }}
-                                </a>
-                            {% endif %}
+                                 {% if type == "indiceCote" %}
 
+                                     {% set pathAttr = {
+                                         (constant('App\\Model\\Search\\Criteria::SIMPLE_SEARCH_KEYWORD')): ''~(element.cote is defined ?element.cote:''),
+                                         (constant('App\\Model\\Search\\Criteria::SIMPLE_SEARCH_TYPE')): type,
+                                     } %}
+                                     <a href="{{ toggle_to_path_parcours('search', app.request.attributes.get(constant('App\\Model\\Search\\ObjSearch::PARAM_PARCOURS_NAME')), pathAttr) }}">
+                                         {{ element.cote }}
+                                     </a> {{element}}
+
+                                 {% else %}
+                                    {%  if simpleSearchKeword ==''%}
+                                      {% set    pathAttr = {
+                                        (simpleSearchKeword): ''~(element is defined ?element:''),
+                                            (constant('App\\Model\\Search\\Criteria::SIMPLE_SEARCH_TYPE')): type,
+                                        }
+                                        %}
+                                        <a href="{{ toggle_to_path_parcours('advanced_search', app.request.attributes.get(constant('App\\Model\\Search\\ObjSearch::PARAM_PARCOURS_NAME')), pathAttr) }}">
+                                            {{ element }}
+                                        </a>
+                                    {% else %}
+                                        {% set    pathAttr = {
+                                            'advanced_search[0][text]': ''~(element is defined ?element:''),
+                                            'advanced_search[0][field]':simpleSearchKeword
+                                        }
+                                        %}
+                                        <a href="{{ toggle_to_path_parcours('advanced_search', app.request.attributes.get(constant('App\\Model\\Search\\ObjSearch::PARAM_PARCOURS_NAME')), pathAttr) }}">
+                                            {{ element }}
+                                        </a>
+                                    {% endif %}
+
+                                 {% endif %}
 
                         </li>
                     {% endfor %}
@@ -110,6 +122,39 @@
                         } %}
                         <a href="{{ toggle_to_path_parcours('search', app.request.attributes.get(constant('App\\Model\\Search\\ObjSearch::PARAM_PARCOURS_NAME')), pathAttr) }}">
                             {{ object }}
+                        </a>{{'--'}}{{element.cote}}{{'--'}}{{element.accessDateFirstIssueOnline}}{{'--'}}{{element.accessNumLastVolOnline}}
+                    </li>
+                {% endif %}
+            </ul>
+        </li>
+    {% endif %}
+{% endmacro %}
+
+{% macro value_complement_link(object, label, type) %}
+    {% if object is not empty %}
+        <li class="list-information__item">
+            <span class="list-information__label">{{ label|trans }}</span>
+            <ul class="list-information__sub-list list-information__sub-list--bloc" lang="fr">
+                {% if object is iterable %}
+                    {% for element in object %}
+                        <li class="list-information__sub-item">
+                            {% set pathAttr = {
+                                (constant('App\\Model\\Search\\Criteria::SIMPLE_SEARCH_KEYWORD')): ''~(element.value is defined ? element.value:''),
+                                (constant('App\\Model\\Search\\Criteria::SIMPLE_SEARCH_TYPE')): type,
+                            } %}
+                            <a href="{{ toggle_to_path_parcours('search', app.request.attributes.get(constant('App\\Model\\Search\\ObjSearch::PARAM_PARCOURS_NAME')), pathAttr) }}">
+                                {{ element.value }} {{ element.complement }}
+                            </a>
+                        </li>
+                    {% endfor %}
+                {% else %}
+                    <li class="list-information__sub-item">
+                        {% set pathAttr = {
+                            (constant('App\\Model\\Search\\Criteria::SIMPLE_SEARCH_KEYWORD')): ''~object.value,
+                            (constant('App\\Model\\Search\\Criteria::SIMPLE_SEARCH_TYPE')): type,
+                        } %}
+                        <a href="{{ toggle_to_path_parcours('search', app.request.attributes.get(constant('App\\Model\\Search\\ObjSearch::PARAM_PARCOURS_NAME')), pathAttr) }}">
+                            {{ object.complement }} {{ object.value }}
                         </a>
                     </li>
                 {% endif %}
@@ -142,6 +187,63 @@
                 <a href="{{ toggle_to_path_parcours('search', app.request.attributes.get(constant('App\\Model\\Search\\ObjSearch::PARAM_PARCOURS_NAME')), pathAttr) }}">
                     {{ object }}
                 </a>
+            {% endif %}
+        </p>
+    {% endif %}
+{% endmacro %}
+
+{% macro list_link_front_authors(object, label, type, glue =", ") %}
+    {% if object is not empty %}
+        <p lang="fr" class="bibliographic-result__author">
+            {{ label|trans }} :
+
+            {% if object is iterable %}
+                {% for element in object %}
+                    {% set pathAttr = {
+                        (constant('App\\Model\\Search\\Criteria::SIMPLE_SEARCH_KEYWORD')): ''~element,
+                        (constant('App\\Model\\Search\\Criteria::SIMPLE_SEARCH_TYPE')): type,
+                    } %}
+                    <a href="{{ toggle_to_path_parcours('search', app.request.attributes.get(constant('App\\Model\\Search\\ObjSearch::PARAM_PARCOURS_NAME')), pathAttr) }}">
+                        {{ element }}
+                    </a>
+                    {% if not loop.last %}{{ glue|nl2br }} {% endif %}
+                {% endfor %}
+            {% else %}
+                {% set pathAttr = {
+                    (constant('App\\Model\\Search\\Criteria::SIMPLE_SEARCH_KEYWORD')): ''~object,
+                    (constant('App\\Model\\Search\\Criteria::SIMPLE_SEARCH_TYPE')): type,
+                } %}
+                <a href="{{ toggle_to_path_parcours('search', app.request.attributes.get(constant('App\\Model\\Search\\ObjSearch::PARAM_PARCOURS_NAME')), pathAttr) }}">
+                    {{ object }}
+                </a>
+            {% endif %}
+        </p>
+    {% endif %}
+{% endmacro %}
+
+{% macro list_discover_authors(object, label, type, glue =", ") %}
+    {% if object is not empty %}
+        <p lang="fr" class="bibliographic-result__author">
+            {% if object is iterable %}
+                {% set break = false %}
+                {% for element in object if not break %}
+                    {% set pathAttr = {
+                        (constant('App\\Model\\Search\\Criteria::SIMPLE_SEARCH_KEYWORD')): ''~element,
+                        (constant('App\\Model\\Search\\Criteria::SIMPLE_SEARCH_TYPE')): type,
+                    } %}
+                    {% if element.reference is defined and element.reference is not null %}
+                        <a class='decouvrirButton' href="{{ toggle_to_path_parcours('record_authority',app.request.attributes.get(constant('App\\Model\\Search\\ObjSearch::PARAM_PARCOURS_NAME')),{ 'permalink':element.reference }) }}">Découvrir l'auteur <img src="{{ asset('images/icones/icone-resume.svg') }}" alt=""/></a>
+                    {% endif %}
+                    {% set break = true %}
+                {% endfor %}
+            {% else %}
+                {% set pathAttr = {
+                    (constant('App\\Model\\Search\\Criteria::SIMPLE_SEARCH_KEYWORD')): ''~object,
+                    (constant('App\\Model\\Search\\Criteria::SIMPLE_SEARCH_TYPE')): type,
+                } %}
+                {% if object.reference is defined and object.reference is not null %}
+                    <a class='decouvrirButton' href="{{ toggle_to_path_parcours('record_authority',app.request.attributes.get(constant('App\\Model\\Search\\ObjSearch::PARAM_PARCOURS_NAME')),{ 'permalink':object.reference }) }}">Découvrir l'auteur <img src="{{ asset('images/icones/icone-resume.svg') }}" alt=""/></a>
+                {% endif %}
             {% endif %}
         </p>
     {% endif %}

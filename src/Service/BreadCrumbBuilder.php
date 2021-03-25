@@ -8,6 +8,7 @@ use App\Entity\SearchHistory;
 use App\Model\Interfaces\RecordInterface;
 use App\Model\NoticeThemed;
 use App\Model\Search\Criteria;
+use App\Model\Search\FilterFilter;
 use App\Model\Search\FacetFilter;
 use App\Model\Search\ObjSearch;
 use App\Model\Search\SearchQuery;
@@ -284,7 +285,8 @@ final class BreadCrumbBuilder
 
             $searchQuery = new SearchQuery(
                 $criteria,
-                new FacetFilter($request->query->all()),
+                new FilterFilter($request->query->all()),
+                null,
                 SearchQuery::ADVANCED_MODE
             );
         } else {

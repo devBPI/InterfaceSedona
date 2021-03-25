@@ -59,7 +59,7 @@ export default class Autocomplete {
         const {value} = this.element;
         if (value.length >= 3) {
             this.autocompleteRequest = window.setTimeout(() => {
-                const params = $.param({word: value, type: this.mapping[this.type.value], mode: this.mode});
+                const params = $.param({word: value, type: this.type.value, mode: this.mode});
                 fetch(`${this.url}?${params}`)
                     .then(result => this.onAutocompleteFetched(result));
             }, 300);

@@ -12,9 +12,15 @@
     {% endif %}
 </div>
 
-<div class="col-12 col-md-2">
-    <div class="bibliographic-result__type">
+<!--<div class="col-12 col-md-2">-->
+<div class="">
+    <div class="bibliographic-result__type" style="display: flex; flex-direction: row;">
+	<div style="flex: auto;">
+        {{ notice_macros.list_discover_authors(notice.frontDiscoveryAuthor, label, constant('App\\WordsList::AUTHOR_WORD'), " ; ") }}
+        </div>
+	<div style="flex: auto;">
         <img src="{{ asset('images/types/type-' ~ notice.slugifiedType ~ '.svg') }}" alt="{{ notice.type }}" title="{{ notice.type }}" />
+        </div>
     </div>
 </div>
 <div class="col-12">
@@ -42,7 +48,7 @@
             {% if notice.type == constant('App\\Model\\Notice::VIDEO')%}
                 {% set label = 'bloc.autority-result-information.directors'|trans %}
             {% endif %}
-            {{ notice_macros.list_link(notice.frontAuthor, label, constant('App\\WordsList::AUTHOR_WORD'), " ; ") }}
+            {{ notice_macros.list_link_front_authors(notice.frontDiscoveryAuthor, label, constant('App\\WordsList::AUTHOR_WORD'), " ; ") }}
         </div>
     </div>
 </div>
@@ -93,11 +99,11 @@
 </div>
 <div class="col-12">
     <ul lang="fr" class="bibliographic-result__availability availability js-seeMoreAvailability">
-        {% for available in notice.copies %}
+        {% for available in notice.copies | sort((a, b) => a.cote <=> b.cote) %}
             {{ macros.availibility(available, notice) }}
         {% endfor %}
 
-        {% for link in notice.links %}
+        {% for link in notice.links | sort((a, b) => a.title <=> b.title) %}
             {{ macros.availibility(link, notice) }}
         {% endfor %}
     </ul>

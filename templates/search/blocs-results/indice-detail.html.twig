@@ -8,14 +8,14 @@
     </ul>
 </li>
 
-{% if author.cote is defined and author.cote is not null %}
-    <li class="list-information__item">
-        <span class="list-information__label">{{ 'bloc.autority-result-information.cote'|trans }}</span>
-        <ul class="list-information__sub-list">
-            <li class="list-information__sub-item">
+ {# {% if author.cote is defined and author.cote is not null %} #}
+     {#<li class="list-information__item"> #}
+        {# <span class="list-information__label">{{ 'bloc.autority-result-information.cote'|trans }}</span> #}
+        {# <ul class="list-information__sub-list"> #}
+             {# <li class="list-information__sub-item"> #}
                 {#% if link is not empty and label is not empty %}<a href="{{ link }}" aria-label="{{ 'bloc.autority-result-information.search-with'|trans({'%theme%': label }) }}">{{ label }}</a>{% else %}{{ label }}{% endif %#}
-                {{ author.cote }}
-            </li>
-        </ul>
-    </li>
-{% endif %}
+                 {#{{ author.cote }} #}
+            {# </li> #}
+        {# </ul> #}
+     {# </li> #}
+ {# {% endif %} #}

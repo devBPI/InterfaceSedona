@@ -22,7 +22,8 @@ class AdvancedSearchProvider extends AbstractProvider
     public function getAdvancedSearchCriteria(SearchQuery $search): AdvancedSearchCriteria
     {
         try {
-            return $this->hydrateFromResponse('/advanced-search/list-elements', [
+            //return $this->hydrateFromResponse('/advanced-search/list-elements', [
+            return $this->hydrateFromResponse('/advanced-search/lists-elements', [
                 'criters' => $this->serializer->serialize($search->getCriteria(), 'xml'),
             ]);
         } catch (ErrorAccessApiException|XmlErrorException $exception) {
