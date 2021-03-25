@@ -288,7 +288,7 @@ class Criteria
      * @param bool $withFields
      * @return array
      */
-    public function getKeywordsTitles(bool $withFields = false, $withOperator = false): array
+    public function getKeywordsTitles(bool $withFields = false): array
     {
         $keywords = [];
         foreach (WordsList::$words[WordsList::ALL] as $field) {
@@ -301,23 +301,17 @@ class Criteria
             }
         }
 
-        $toto= [];
         foreach (WordsList::$operators as $operator) {
             $subCriteria = $this->getSubCriteriaOfOperator($operator);
             if ($subCriteria instanceof Criteria) {
-                $toto[] =[$operator=>$subCriteria->getKeywordsTitles($withFields)];
-
                 $keywords = array_merge($keywords, $subCriteria->getKeywordsTitles($withFields));
             }
         }
-
 
         return $keywords;
     }
 
     public function getFieldsWithOperator($fields, Criteria $criteria){
-
-        $operator = '';
         $result = [];
         $andCriteria = $criteria->getAndCrteria();
         foreach ($fields  as $index =>  $field){
@@ -343,7 +337,7 @@ class Criteria
                 }
 
                 $andor= $andCriteria instanceof Criteria? $andCriteria->getOrCrteria():null;
-                if ($andor instanceof Criteria && $andor->getValueOf($key)==$value)
+                if ($andor instanceof Criteria && $andor->getValueOf($key) ==   $value)
                 {
                     $result[$index]['operator'] = 'or';
                     continue;
@@ -357,13 +351,13 @@ class Criteria
                 }
                 $orand = $or instanceof Criteria? $or->getAndCrteria():null;
 
-                if($orand instanceof Criteria  && $orand->getValueOf($key)==$value) {
+                if($orand instanceof Criteria  && $orand->getValueOf($key) == $value) {
                     $result[$index]['operator'] ='and';
                     continue;
                 }
                 $oror= $or instanceof Criteria? $or->getOrCrteria():null;
 
-                if($oror instanceof Criteria && $oror->getValueOf($key)==$value) {
+                if($oror instanceof Criteria && $oror->getValueOf($key) == $value) {
                     $result[$index]['operator'] = 'or';
                     continue;
                 }
@@ -374,10 +368,16 @@ class Criteria
         return $result;
     }
 
-    public function getValueOf($key){
+    /**
+     * @param $key
+     * @return string|null
+     */
+    private function getValueOf($key):?string{
         if(!empty($this->$key)) {
             return $this->$key;
         }
+
+        return null;
     }
     /**
      * @param TranslatorInterface $translator

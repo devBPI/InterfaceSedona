@@ -12,12 +12,6 @@ final class ObjSearch
 {
     CONST PARAM_REQUEST_NAME = 'searchToken';
     CONST PARAM_PARCOURS_NAME = 'parcours';
-    public static $advancedParamter = [
-        'configuration_name',
-        '',
-
-
-    ];
     /**
      * @var string
      */

@@ -242,21 +242,24 @@ final class BreadCrumbBuilder
     /**
      * @param Request $request
      * @return string
+     * @throws \Exception
      */
     private function humanizeCriteria(Request $request): string
     {
         $objSearch = new ObjSearch($this->getObjSearchQuery($request));
         try {
-            $fields = $objSearch->getCriteria()->getKeywordsTitles(true);
-            $payload = $objSearch->getCriteria()->getFieldsWithOperator( $objSearch->getCriteria()->getKeywordsTitles(true),$objSearch->getCriteria() );
-            $t =  $objSearch->getCriteria()->getKeywordsTitles(true);
+            $payload = $objSearch
+                ->getCriteria()
+                ->getFieldsWithOperator(
+                    $objSearch->getCriteria()->getKeywordsTitles(true),
+                    $objSearch->getCriteria()
+                );
 
-           // dump($objSearch->getCriteria(),$t, $fields, $payload, $this->searchService->humanise($payload));
         }catch (\Exception $e){
-            dump($e->getMessage());
+            throw new \Exception(sprintf("Erreur survenu lors de la construction du fil d'ariane:   %s", $e->getMessage()));
         }
 
-        return  $this->searchService->humanise($payload); // implode(', ', $objSearch->getCriteria()->getKeywordsTitles());
+        return  $this->searchService->humanise($payload);
     }
 
     /**

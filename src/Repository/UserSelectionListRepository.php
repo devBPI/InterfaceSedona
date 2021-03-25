@@ -84,20 +84,24 @@ class UserSelectionListRepository extends EntityRepository
      */
     public function getList(LdapUser $user, $permalink, UserSelectionList $list =null):int
     {
-        $d =  $this->createQueryBuilder('list')
-            ->join('list.documents', 'doc')
-            ->where('list.user_uid = :user')
-            ->andWhere('doc.permalink = :permalink');
+        $q =  $this->createQueryBuilder('list')
+                ->join('list.documents', 'doc')
+                ->where('list.user_uid = :user')
+                ->andWhere('doc.permalink = :permalink')
+        ;
+
         if($list instanceof UserSelectionList){
-            $d->andWhere('list.id = :id');
+            $q->andWhere('list.id = :id');
         }
-  $d          ->select('count(doc.id)')
+        $q->select('count(doc.id)')
             ->setParameter('user', $user->getUid())
-            ->setParameter('permalink', $permalink);
+            ->setParameter('permalink', $permalink)
+        ;
         if($list instanceof UserSelectionList){
-            $d->setParameter('id', $list->getId());
+            $q->setParameter('id', $list->getId());
         }
-        return $d->getQuery()->getSingleScalarResult();
+
+        return $q->getQuery()->getSingleScalarResult();
 
     }
 

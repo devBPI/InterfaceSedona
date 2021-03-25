@@ -98,6 +98,7 @@ modal:
     submit: Valider
     submit-sr-only: la création de la liste
   list-add:             #Modal 02 ajout à ma sélection
+    already-exist: Cette référence est déjà dans votre sélection.
     title-connected: Ajouter...
     title: Vous avez ajouté...
     add-to-profile: '... à Mon compte dans :'
