@@ -3,6 +3,7 @@
 
 namespace App\Controller;
 
+use App\Controller\Traits\ObjSearchInstanceTrait;
 use App\Controller\Traits\PrintTrait;
 use App\Entity\SearchHistory;
 use App\Model\Form\ExportNotice;
@@ -32,7 +33,7 @@ use Symfony\Component\Routing\Annotation\Route;
  */
 final class SearchController extends AbstractController
 {
-    use PrintTrait;
+    use PrintTrait, ObjSearchInstanceTrait;
 
     public const GENERAL ='general';
 
@@ -260,6 +261,7 @@ final class SearchController extends AbstractController
         $objSearch = $this->searchService->createObjSearch($search, $request);
         $objSearch->setResults($this->searchProvider->getListBySearch($search));
         $request->query->remove('action');
+        $objSearchBis = new ObjSearch($this->getObjSearchQuery($request));
 
         $request->getSession()->set(NavigationService::SESSION_KEY, serialize(new ListNavigation($objSearch)));
         $request->getSession()->set('searchToken', serialize($objSearch));
@@ -276,9 +278,13 @@ final class SearchController extends AbstractController
                 'toolbar'   => ObjSearch::class,
                 'seeAll'    => $seeAll,
                 'objSearch' => $objSearch,
+                'objSearchBis'=>$objSearchBis,
                 'printRoute' => $this->generateUrl('search_pdf', ['format' => 'pdf']),
             ]
         );
     }
+
+
+
 
 }

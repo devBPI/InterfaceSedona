@@ -27,9 +27,9 @@ trait NoticeTrait
     private $type;
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getPermalink(): string
+    public function getPermalink(): ?string
     {
         return $this->permalink;
     }

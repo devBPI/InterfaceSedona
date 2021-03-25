@@ -42,7 +42,7 @@
                 <h{{ level }} lang="fr" class="n{{ level }} search-result__title">
                     {% set pathName = author.indice ? 'record_indice_cdu' : 'record_authority' %}
                     <a href="{{ toggle_to_path_parcours(pathName,app.request.attributes.get(constant('App\\Model\\Search\\ObjSearch::PARAM_PARCOURS_NAME')),{ 'permalink':author.permalink, (constant('App\\Model\\Search\\ObjSearch::PARAM_REQUEST_NAME')): contextToken}) }}">  
-			{% if author.cote is not empty %}
+			{% if  author.cote is defined and author.cote is not empty %}
 			 	{{author.cote~' - '~author.title }}
 			{% else %}
 				{{author.title}}

@@ -1,5 +1,6 @@
 and: ET
 or: OU
+not: SAUF
 Bad credentials.: Votre email et/ou mot de passe ne sont pas valides.
 global:
   new-windows: Nouvelle fenêtre

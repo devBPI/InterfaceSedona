@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace App\Service;
 
 use App\Controller\SearchController;
+use App\Controller\Traits\ObjSearchInstanceTrait;
 use App\Entity\SearchHistory;
 use App\Model\Interfaces\RecordInterface;
 use App\Model\NoticeThemed;
@@ -22,6 +23,7 @@ use Symfony\Component\HttpFoundation\Request;
  */
 final class BreadCrumbBuilder
 {
+    use ObjSearchInstanceTrait;
     const RECORD = 'record';
     const SEARCH = 'search';
     const HELP = 'help';
@@ -255,7 +257,6 @@ final class BreadCrumbBuilder
                     $objSearch->getCriteria()->getKeywordsTitles(true),
                     $objSearch->getCriteria()
                 );
-
         }catch (\Exception $e){
             throw new \Exception(sprintf("Erreur survenu lors de la construction du fil d'ariane:   %s", $e->getMessage()));
         }
@@ -263,44 +264,5 @@ final class BreadCrumbBuilder
         return  $this->searchService->humanise($payload);
     }
 
-    /**
-     * @param Request $request
-     * @return SearchQuery|null
-     */
-    private function getObjSearchQuery(Request $request): ?SearchQuery
-    {
-        $token = $request->get(ObjSearch::PARAM_REQUEST_NAME);
-        $route = $request->get('_route');
-        $searchQuery = null;
-        $criteria = new Criteria();
-        if ($token && ($object = $request->getSession()->get($token))) {
-            $searchQuery = $this->searchService->getSearchQueryFromToken($token, $request);
-        } elseif ($route === 'saved_search') {
-            $searchHistory = $this->entityManager->getRepository(SearchHistory::class)->find($request->get('id'));
-            if ($searchHistory instanceof SearchHistory) {
-                $searchQuery = $this->searchService->deserializeSearchQuery($searchHistory->getQueryString());
-            }
-        } elseif ($route === 'advanced_search' || $route === 'advanced_search_parcours') {
-            $criteria->setAdvancedSearch($request->query->all());
-
-            $searchQuery = new SearchQuery(
-                $criteria,
-                new FilterFilter($request->query->all()),
-                null,
-                SearchQuery::ADVANCED_MODE
-            );
-        } else {
-            $keyword = $request->get(Criteria::SIMPLE_SEARCH_KEYWORD, '');
-            $criteria->setSimpleSearch($request->get(Criteria::SIMPLE_SEARCH_TYPE), $keyword);
-
-            $searchQuery = new SearchQuery($criteria);
-        }
-
-        if ($route === 'refined_search') {
-            $searchQuery->setFacets(new FacetFilter($request->query->all()));
-        }
-
-        return $searchQuery;
-    }
 }
 

@@ -195,7 +195,6 @@ final class ObjSearch
     public function getAdvancedCriteriaWithOperator(){
 
         $criteria = $this->getCriteria()->getFieldsWithOperator( $this->getCriteria()->getKeywordsTitles(true),$this->getCriteria());
-
         if (
             $this->searchQuery->getCriteria()->getPublicationDateStart() ||
             $this->searchQuery->getCriteria()->getPublicationDateEnd()

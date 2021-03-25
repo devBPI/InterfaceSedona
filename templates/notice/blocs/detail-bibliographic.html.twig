@@ -11,7 +11,13 @@
         {% endfor %}
     {% endif %}
 </div>
-
+{% set label = 'bloc.autority-result-information.authors'|trans %}
+            {% if notice.type == constant('App\\Model\\Notice::MUSIC') %}
+                {% set label = 'bloc.autority-result-information.musique-author'|trans %}
+            {% endif %}
+            {% if notice.type == constant('App\\Model\\Notice::VIDEO')%}
+                {% set label = 'bloc.autority-result-information.directors'|trans %}
+            {% endif %}
 <!--<div class="col-12 col-md-2">-->
 <div class="">
     <div class="bibliographic-result__type" style="display: flex; flex-direction: row;">
@@ -41,13 +47,7 @@
                 </p>
             {% endif %}
 
-            {% set label = 'bloc.autority-result-information.authors'|trans %}
-            {% if notice.type == constant('App\\Model\\Notice::MUSIC') %}
-                {% set label = 'bloc.autority-result-information.musique-author'|trans %}
-            {% endif %}
-            {% if notice.type == constant('App\\Model\\Notice::VIDEO')%}
-                {% set label = 'bloc.autority-result-information.directors'|trans %}
-            {% endif %}
+
             {{ notice_macros.list_link_front_authors(notice.frontDiscoveryAuthor, label, constant('App\\WordsList::AUTHOR_WORD'), " ; ") }}
         </div>
     </div>

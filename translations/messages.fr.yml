@@ -1,6 +1,7 @@
 Bad credentials.: Votre email et/ou mot de passe ne sont pas valides.
 and: ET
 or: OU
+not: SAUF
 global:
   new-windows: Nouvelle fenêtre
   form-mandatory-field: champs obligatoires
