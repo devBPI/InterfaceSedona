@@ -182,7 +182,7 @@
 
 {% macro list_link_front_discover_authors(object, label, type, glue =", ") %}
     {% if object is not empty %}
-        <p lang="fr" class="bibliographic-result__author">
+        <div lang="fr" class="bibliographic-result__author">
             <table style="width: 100%;">
                 <tbody style="vertical-align: top;">
                     <tr>
@@ -222,6 +222,6 @@
                     </tr>
                 </tbody>
             </table>
-        </p>
+        </div>
     {% endif %}
 {% endmacro %}
