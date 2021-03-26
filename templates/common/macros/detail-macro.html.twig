@@ -209,6 +209,52 @@
     {% endif %}
 {% endmacro %}
 
+{% macro list_link_front_discover_authors(object, label, type, glue =", ") %}
+    {% if object is not empty %}
+        <p lang="fr" class="bibliographic-result__author">
+            <table style="width: 100%;">
+                <tbody style="vertical-align: top;">
+                    <tr>
+                        <td style="width: 1%; white-space:nowrap;">
+                            <span>{{ label|trans }} :</span>
+                        </td>
+                        <td style="width: 100%;">
+
+                            {% if object is iterable %}
+                                {% for element in object %}
+                                    {% set pathAttr = {
+                                        (constant('App\\Model\\Search\\Criteria::SIMPLE_SEARCH_KEYWORD')): ''~element,
+                                        (constant('App\\Model\\Search\\Criteria::SIMPLE_SEARCH_TYPE')): type,
+                                    } %}
+                                    <a href="{{ toggle_to_path_parcours('search', app.request.attributes.get(constant('App\\Model\\Search\\ObjSearch::PARAM_PARCOURS_NAME')), pathAttr) }}">
+                                        {{ element }}
+                                    </a>
+                                    {% if element.reference is defined and element.reference is not null and loop.first %}
+                                        <a class='decouvrirButton link' href="{{ toggle_to_path_parcours('record_authority',app.request.attributes.get(constant('App\\Model\\Search\\ObjSearch::PARAM_PARCOURS_NAME')),{ 'permalink':element.reference }) }}"><span class="under">Découvrir l'auteur</span> <img src="{{ asset('images/icones/icone-resume.svg') }}" alt=""/></a>
+                                        <br />
+                                    {% endif %}
+                                    {% if not loop.last and not loop.first %}{{ glue|nl2br }} {% endif %}
+                                {% endfor %}
+                            {% else %}
+                                {% set pathAttr = {
+                                    (constant('App\\Model\\Search\\Criteria::SIMPLE_SEARCH_KEYWORD')): ''~object,
+                                    (constant('App\\Model\\Search\\Criteria::SIMPLE_SEARCH_TYPE')): type,
+                                } %}
+                                <a href="{{ toggle_to_path_parcours('search', app.request.attributes.get(constant('App\\Model\\Search\\ObjSearch::PARAM_PARCOURS_NAME')), pathAttr) }}">
+                                    {{ object }}
+                                </a>
+                                {% if object.reference is defined and object.reference is not null %}
+                                    <a class='decouvrirButton link' href="{{ toggle_to_path_parcours('record_authority',app.request.attributes.get(constant('App\\Model\\Search\\ObjSearch::PARAM_PARCOURS_NAME')),{ 'permalink':object.reference }) }}"><span class="under">Découvrir l'auteur</span> <img src="{{ asset('images/icones/icone-resume.svg') }}" alt=""/></a
+                                {% endif %}
+                            {% endif %}
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </p>
+    {% endif %}
+{% endmacro %}
+
 {% macro list_discover_authors(object, label, type, glue =", ") %}
     {% if object is not empty %}
         <p lang="fr" class="bibliographic-result__author">
