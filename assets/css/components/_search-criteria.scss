@@ -34,15 +34,17 @@
 		position: relative;
 		margin-right: 5px;
 
-		&:after {
-			content: ';';
-			right: 0;
-		}
+		a {
+			color: $black;
 
-		&:last-child {
+			&:hover,
+			&:focus {
+				color: $red;
+			}
 
-			&:after {
-				display: none;
+			img {
+				width: rem(10);
+				vertical-align: baseline;
 			}
 		}
 	}

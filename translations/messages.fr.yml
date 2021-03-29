@@ -391,6 +391,7 @@ bloc:
   filters-search:         #Bloc 10 Rappel des critères de recherche
     simple-title: 'Recherche simple :'
     advanced-title: 'Recherche avancée :'
+    remove-criteria: Supprimer le filtre
   preview-authority:      #Bloc 11 Aperçu d'une autorité
     first: Sélectionner %name%
     see-more: Voir plus

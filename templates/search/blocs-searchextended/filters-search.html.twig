@@ -5,11 +5,17 @@
 		<ul class="search-criteria__list">
 			{% for criteria in objSearchBis.getAdvancedCriteriaWithOperator %}
 				{#% for criteria in criterias %#}
-					<li >
+					<li class="search-criteria__item">
 
 						{% if not loop.first and not  is_search_word(criteria.field) %}
 							;
 						{% endif %}
+
+						{% if  cut_filter_from_search(criteria.field, criteria.value)!='' %}
+							<a href="{{ cut_filter_from_search(criteria.field, criteria.value) }}">
+								<span class="sr-only">{{ 'bloc.filters-search.remove-criteria'|trans }}</span>
+						{% endif %}
+
 						{% if is_search_word(criteria.field) %}
 							 &nbsp;{{ criteria.operator |trans }}&nbsp;{{ ('modal.advanced-search.keyword.type.'~criteria.field)|trans }} :
 						{% else %}
@@ -18,7 +24,11 @@
 
 						{{ criteria.value }}
 						{% if  cut_filter_from_search(criteria.field, criteria.value)!='' %}
-							<a href="{{ cut_filter_from_search(criteria.field, criteria.value) }}">X</a>
+							
+								<span>
+                                    <img src="{{ asset('images/icones/icone-croix-rouge.svg') }}" />
+                                </span>
+							</a>
 						{% endif %}
 					</li>
 				{#% endfor %#}
