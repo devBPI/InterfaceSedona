@@ -421,9 +421,9 @@ class Criteria
         if(!empty($this->$key)) {
             return $this->$key;
         }
-elseif($criteria instanceof Criteria){
-    return $criteria->$key;
-}
+        elseif($criteria instanceof Criteria){
+            return $criteria->$key;
+        }
         return null;
     }
     /**

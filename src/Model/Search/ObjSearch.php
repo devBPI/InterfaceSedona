@@ -194,6 +194,8 @@ final class ObjSearch
 
     public function getAdvancedCriteriaWithOperator(){
 
+
+
         $criteria = $this->getCriteria()->getFieldsWithOperator( $this->getCriteria()->getKeywordsTitles(true),$this->getCriteria());
         if (
             $this->searchQuery->getCriteria()->getPublicationDateStart() ||
@@ -209,7 +211,6 @@ final class ObjSearch
             ;
         }
 
-     //   dump($this, $this->getSearchFilters()); //die;
         foreach ($this->getSearchFilters() as $name => $values) {
             if ($name === 'date_publishing' && is_array($values)) {
                 $values = min($values).' - '.max($values);
@@ -220,6 +221,22 @@ final class ObjSearch
             }
 
             $criteria[] =  ['value'=> $values,
+                'field'=>$name,
+                'operator'=>''
+            ];
+        }
+
+
+        foreach ($this->getSearchFacets() as $name => $values) {
+            if ($name === 'date_publishing' && is_array($values)) {
+                $values = min($values).' - '.max($values);
+            }
+
+            if (is_array($values)) {
+                $values = implode(', ', $values);
+            }
+
+            $criteria[] = ['value'=> $values,
                 'field'=>$name,
                 'operator'=>''
             ];

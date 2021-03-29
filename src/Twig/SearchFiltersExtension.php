@@ -159,12 +159,12 @@ class SearchFiltersExtension extends AbstractExtension
      * @param string $format
      * @return string
      */
-    public function getPdfOccurence($object, string $method, string $label, string $format = 'pdf'): ?string
+    public function getPdfOccurence($object, string $method, string $label, string $format = 'pdf', $glue = ' ; '): ?string
     {
         $payload = "";
         if (method_exists($object, $method) && !empty($object->{$method}())) {
             if (is_array($object->{$method}())) {
-                $payload .= implode(' ; ', $object->{$method}());
+                $payload .= implode($glue,  $object->{$method}());
             } elseif (!empty($object->{$method}()) && ((string) $object->{$method}()) !== '') {
                 $payload .= $object->{$method}();
             }
@@ -191,12 +191,11 @@ class SearchFiltersExtension extends AbstractExtension
         $url = $this->masterRequest->getRequestUri();
         $payload =    explode('&', urldecode($url));
         $link = $payload[0];
-        unset($payload[0]);
-     //   dump($payload);
-        try {
 
+        unset($payload[0]);
+        try {
             $t = array_filter($payload, function ($element)use($value, $type){
-           //     dump($element, strpos($element, 'advanced_search')>0 );
+            //    dump($element, strpos($element, 'advanced_search')>0 );
                 if(strpos($element, 'facets')===false){
                     return true;
                 }
@@ -207,10 +206,8 @@ class SearchFiltersExtension extends AbstractExtension
                 return strpos($element, $type) === false || strpos($value, $fvalue)===false;
             });
         }catch (\Exception $e ){
-
+            throw new \Exception('an error accured when cutting paramters from url search criteria %', $e->getMessage());
         }
-      //  dump($t);
-        //dump(urldecode($url), $this->masterRequest->getUri(), urldecode($this->masterRequest->getUri()), $type, $value);
 
         if (count($t)===count($payload)){
             return "";
@@ -218,8 +215,6 @@ class SearchFiltersExtension extends AbstractExtension
 
         return sprintf('%s&%s', $link, implode('&', $t));
     }
-
-
 
 }
 
