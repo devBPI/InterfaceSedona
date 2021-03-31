@@ -3,12 +3,18 @@
 
 {% block body %}
 	<div class="print__item">
-		<h2 class="n1">{{ notice.printTitle }}</h2>
-		{% if isPrintLong %}<i>{{ notice.titleForm|join(' ') }}</i>{% endif %}
+		{% for title in notice.titles %}
+			<h1 class="n1">{{ title }}</h1>
+		{% endfor %}
+		{% if notice.titleForm %}
+			{% for title in notice.titleForm %}
+				<h2 class="n1">{{ title }}</h2>
+			{% endfor %}
+		{% endif %}
 
+		{% if isPrintLong %}<i>{{ notice.titleForm|join(' ') }}</i>{% endif %}
 		<div>
 			{{ image(notice, includeImage) }}
-
 			<ul class="print__list">
 				{% include 'notice/blocs-print/print-detail.format.twig' with {'notice': notice, 'format': 'pdf'} %}
 			</ul>

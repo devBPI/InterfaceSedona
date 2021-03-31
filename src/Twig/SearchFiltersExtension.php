@@ -187,6 +187,8 @@ class SearchFiltersExtension extends AbstractExtension
         return null;
     }
 
+
+
     public function cutfilterFromSearch($type, $value){
         $url = $this->masterRequest->getRequestUri();
         $payload =    explode('&', urldecode($url));
@@ -195,9 +197,8 @@ class SearchFiltersExtension extends AbstractExtension
         unset($payload[0]);
         try {
             $t = array_filter($payload, function ($element)use($value, $type){
-            //    dump($element, strpos($element, 'advanced_search')>0 );
                 if(strpos($element, 'facets')===false){
-                    return true;
+                //    return true;
                 }
                 if ($type === 'date_publishing' && strpos($element, $type)>0){
                     return false;

@@ -105,7 +105,8 @@ final class IndiceCdu extends Cdu implements NoticeInterface, RecordInterface, B
      */
     public function __toString(): string
     {
-        return $this->getName();
+        return $this->getCote().'  '.$this->getName();
+
     }
 
     /**

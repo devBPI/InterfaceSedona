@@ -11,7 +11,7 @@
 							;
 						{% endif %}
 
-						{% if  cut_filter_from_search(criteria.field, criteria.value)!='' %}
+						{% if not is_search_word(criteria.field) and  cut_filter_from_search(criteria.field, criteria.value)!='' %}
 							<a href="{{ cut_filter_from_search(criteria.field, criteria.value) }}">
 								<span class="sr-only">{{ 'bloc.filters-search.remove-criteria'|trans }}</span>
 						{% endif %}
@@ -23,7 +23,7 @@
 						{% endif %}
 
 						{{ criteria.value }}
-						{% if  cut_filter_from_search(criteria.field, criteria.value)!='' %}
+								{% if not is_search_word(criteria.field) and  cut_filter_from_search(criteria.field, criteria.value)!='' %}
 							
 								<span>
                                     <img src="{{ asset('images/icones/icone-croix-rouge.svg') }}" />

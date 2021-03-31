@@ -4,26 +4,56 @@
     {% else %}
         {% include 'notice/blocs-print/print-resume-detail.format.twig' %}
     {% endif %}
-
+{% set lineBreak = '' %}
     {% if format == 'pdf' %}
-        <li><a href="{{ absolute_url(path('record_bibliographic', {"permalink": notice.permalink})) }}">Lien vers la notice</a></li>
+        {% set lineBreak = '<br/>' %}
+        <li><a href="{{ absolute_url(path('record_bibliographic', {"permalink": notice.permalink})) }}">Permalien</a></li>
     {% else%}
-        {{- notice.permalink }}
+        Permalien :   {{ absolute_url(path('record_bibliographic', {"permalink": notice.permalink})) }}
     {% endif %}
 
     {% for copy in notice.copies %}
-        {% if notice.isOnLine() %}
-            {{- "\n" ~ 'bloc.notice-simple.access-to-bpi'|trans }}
+        {% set isOnline = false %}
+        {#  en attendant de BPI d'avoir une vriable isOnLine remplie et correct nous faison ce traitement pour le calculer#}
+        {% if copy.media is defined and copy.media is not empty %}
+        {% elseif copy.url is defined and copy.url is not empty %}
+        {% else %}
+          {% set   isOnline = true %}
+        {% endif %}
+        {% if isOnline %}
+            {{ lineBreak |raw }}
+            -------------------
+            <li>
+
+                {{- "\n" ~ 'bloc.notice-simple.access-to-bpi'|trans }}
+            </li>
         {% elseif copy.isAvailable() %}
-            {{- "\n" ~ pdf_occurence(copy, 'getAvailability', "", format)|raw -}}
-            {{- pdf_occurence(copy, 'getCote', "bloc.autority-result-information.cote"|trans, format)|raw -}}
-            {{- pdf_occurence(copy, 'getSupport', "bloc.autority-result-information.support"|trans, format)|raw -}}
+            {{ lineBreak |raw }}
+            {% if format == 'pdf' %}
+                <li>
+            {% endif %}
+            {% if  copy.getAvailability  %}
+                {{ copy.getAvailability|upper }}{% if  copy.getCote or copy.getSupport  %} - {% endif %}
+            {% endif %}
+            {% if  copy.getCote  %}
+                {{ copy.getCote }}{% if copy.getSupport %}, {% endif %}
+            {% endif %}
+            {% if  copy.getSupport  %}
+                {{ copy.getSupport }}
+            {% endif %}
+
+            {% if format == 'pdf' %}
+                </li>
+             {% endif %}
+
             {% if isPrintLong %}
                 {{- pdf_occurence(copy, 'getNotes', "bloc.autority-result-information.nots"|trans, format)|raw -}}
             {% endif %}
             {{- pdf_occurence(copy, 'getPrintLocation','', format)|raw -}}
 
         {% else %}
+            {{ lineBreak |raw }}
+
             {{- "\n" ~ 'bloc.notice-simple.document-unavailable'|trans -}}
         {% endif %}
     {% endfor %}
