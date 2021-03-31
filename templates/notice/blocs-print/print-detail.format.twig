@@ -11,23 +11,26 @@
     {% else%}
         Permalien :   {{ absolute_url(path('record_bibliographic', {"permalink": notice.permalink})) }}
     {% endif %}
-
+    {% set isOnline = false %}
     {% for copy in notice.copies %}
-        {% set isOnline = false %}
         {#  en attendant de BPI d'avoir une vriable isOnLine remplie et correct nous faison ce traitement pour le calculer#}
         {% if copy.media is defined and copy.media is not empty %}
         {% elseif copy.url is defined and copy.url is not empty %}
         {% else %}
-          {% set   isOnline = true %}
+          {% set   isOnline =  isOnline == true?false:true %}
         {% endif %}
-        {% if isOnline %}
+        {#% if isOnline %}
             {{ lineBreak |raw }}
             -------------------
-            <li>
-
-                {{- "\n" ~ 'bloc.notice-simple.access-to-bpi'|trans }}
-            </li>
-        {% elseif copy.isAvailable() %}
+            {% if format == 'pdf' %}
+                <li>
+            {% endif %}
+            {{- "\n" ~ 'bloc.notice-simple.access-to-bpi'|trans }}
+            {% if format == 'pdf' %}
+                </li>
+            {% endif %}
+        {% endif %#}
+        {% if copy.isAvailable() %}
             {{ lineBreak |raw }}
             {% if format == 'pdf' %}
                 <li>
