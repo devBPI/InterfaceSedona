@@ -5,24 +5,30 @@
 .bibliographic-result {
 
 	.decouvrirButton {
-		margin-left: 0.5em;
+		float: right;
 		padding: 0;
-		padding-right: 75px;
-		padding-top: 1px;
-		padding-bottom: 1px;
-		color: black;
-		font-size: 0.9em;
+		//margin-left: 0.5em;
+		//padding-right: 0.5em;
+		//padding-top: 1px;
+		//padding-bottom: 1px;
+		margin-right: 100px;
+		text-decoration: none;
+		//color: black;
+		//font-size: 0.9em;
 		//color: #C28100;
 		//border: 2px solid #C28100;
 		//font-weight: bold;
-		//&:hover {
-		//	background: #C28100;
-		//	color: white;
-		//	text-decoration: none;
-		//}
+		&:hover {
+			//background: #C28100;
+			//color: white;
+		}
+		&:hover .under {
+			text-decoration: underline;
+		}
 		& img {
-			width: 0.9rem;
-			height: 0.9rem;
+			transform: scaleX(1);
+			width: 1.33333rem;
+			height: 1.33333rem;
 		}
 	}
 

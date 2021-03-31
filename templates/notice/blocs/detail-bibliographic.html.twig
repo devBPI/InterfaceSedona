@@ -11,22 +11,10 @@
         {% endfor %}
     {% endif %}
 </div>
-{% set label = 'bloc.autority-result-information.authors'|trans %}
-            {% if notice.type == constant('App\\Model\\Notice::MUSIC') %}
-                {% set label = 'bloc.autority-result-information.musique-author'|trans %}
-            {% endif %}
-            {% if notice.type == constant('App\\Model\\Notice::VIDEO')%}
-                {% set label = 'bloc.autority-result-information.directors'|trans %}
-            {% endif %}
-<!--<div class="col-12 col-md-2">-->
-<div class="">
-    <div class="bibliographic-result__type" style="display: flex; flex-direction: row;">
-	<div style="flex: auto;">
-        {{ notice_macros.list_discover_authors(notice.frontDiscoveryAuthor, label, constant('App\\WordsList::AUTHOR_WORD'), " ; ") }}
-        </div>
-	<div style="flex: auto;">
+
+<div class="col-12 col-md-2">
+    <div class="bibliographic-result__type">
         <img src="{{ asset('images/types/type-' ~ notice.slugifiedType ~ '.svg') }}" alt="{{ notice.type }}" title="{{ notice.type }}" />
-        </div>
     </div>
 </div>
 <div class="col-12">
@@ -47,8 +35,14 @@
                 </p>
             {% endif %}
 
-
-            {{ notice_macros.list_link_front_authors(notice.frontDiscoveryAuthor, label, constant('App\\WordsList::AUTHOR_WORD'), " ; ") }}
+            {% set label = 'bloc.autority-result-information.authors'|trans %}
+            {% if notice.type == constant('App\\Model\\Notice::MUSIC') %}
+                {% set label = 'bloc.autority-result-information.musique-author'|trans %}
+            {% endif %}
+            {% if notice.type == constant('App\\Model\\Notice::VIDEO')%}
+                {% set label = 'bloc.autority-result-information.directors'|trans %}
+            {% endif %}
+            {{ notice_macros.list_link_front_discover_authors(notice.frontDiscoveryAuthor, label, constant('App\\WordsList::AUTHOR_WORD'), " ; ") }}
         </div>
     </div>
 </div>
