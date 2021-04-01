@@ -61,6 +61,11 @@ class ValueComplementReference implements ValueBPIInterface
        return $this->complement;
     }
 
+    public function setComplement($complement)
+    {
+        $this->complement = $complement;
+    }
+
     /**
      * @return null|string
      */
@@ -71,6 +76,11 @@ class ValueComplementReference implements ValueBPIInterface
         }
 
         return $this->reference;
+    }
+
+    public function setReference($reference)
+    {
+        $this->reference = $reference;
     }
 
     public function __toString(): string
