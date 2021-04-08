@@ -211,7 +211,7 @@
                                         {{ element }}
                                     </a>
                                     {% if element.reference is defined and element.reference is not null and loop.first %}
-                                        <a class='decouvrirButton link' href="{{ toggle_to_path_parcours('record_authority',app.request.attributes.get(constant('App\\Model\\Search\\ObjSearch::PARAM_PARCOURS_NAME')),{ 'permalink':element.reference }) }}"><span class="under">Découvrir l'auteur</span> <img src="{{ asset('images/icones/icone-resume.svg') }}" alt=""/></a>
+                                        <a class='decouvrirButton link' href="{{ toggle_to_path_parcours('record_authority',app.request.attributes.get(constant('App\\Model\\Search\\ObjSearch::PARAM_PARCOURS_NAME')),{ 'permalink':element.reference }) }}"><span class="under">Découvrir l'auteur</span><img src="{{ asset('images/icones/icone-resume.svg') }}" alt=""/></a>
                                         {% if not loop.last %}<br />{% endif %}
                                     {% endif %}
                                     {% if not loop.last and not loop.first %}{{ glue|nl2br }} {% endif %}

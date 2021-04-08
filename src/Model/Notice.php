@@ -444,7 +444,7 @@ class Notice extends AbstractImage implements NoticeInterface, RecordInterface
      */
     private $indices;
     /**
-     * @var array#
+     * @var array
      * @JMS\Type("array<string>")
      * @JMS\SerializedName("contenus")
      * @JMS\XmlList("contenu")
@@ -458,6 +458,14 @@ class Notice extends AbstractImage implements NoticeInterface, RecordInterface
      * @JMS\XmlList("realisateur")
      */
     private $directors;
+
+    /**
+     * @var array|ValueComplementReference[]
+     * @JMS\Type("array<App\Model\ValueComplementReference>")
+     * @JMS\SerializedName("realisateursReferenced")
+     * @JMS\XmlList("realisateurReferenced")
+     */
+    private $directorsReferenced;
 
     /**
      * @var array
@@ -729,22 +737,8 @@ class Notice extends AbstractImage implements NoticeInterface, RecordInterface
             $authors = array_merge($authors, $this->authorsValue);
         }
 
-        /*if (is_array($this->authorsValue)) {
-            foreach ($this->authorsValue as $value){
-                if ($value instanceof ValueComplementReference && $value->getValue()){
-                    $authors[] = $value->getValue();
-                }
-            }
-        }*/
-
-        if (null != $this->directors && is_array($this->directors)) {
-            foreach ($this->directors as $director) {
-                if (null != $director) {
-                    $vcr = new ValueComplementReference();
-                    $vcr->setValue($director);
-                    array_push($authors, $vcr);
-                }
-            }
+        if (is_array($this->directorsReferenced)) {
+            $authors = array_merge($authors, $this->directorsReferenced);
         }
 
         return array_unique(array_filter($authors));
@@ -854,6 +848,22 @@ class Notice extends AbstractImage implements NoticeInterface, RecordInterface
     {
         return $this->directors;
     }
+
+    /**
+      * @return ValueComplementReference[]|array
+      */
+     public function getDirectorsReferenced()
+     {
+         return $this->directorsReferenced;
+     }
+
+    /**
+      * @return ValueComplementReference[]|array
+      */
+     public function getDirectorsValue()
+     {
+         return $this->directorsValue;
+     }
 
     /**
      * @return array
@@ -1105,7 +1115,7 @@ class Notice extends AbstractImage implements NoticeInterface, RecordInterface
     }
 
     /**
-     * @return Value[]|array
+     * @return ValueComplementReference[]|array
      */
     public function getAuthorsValue()
     {
