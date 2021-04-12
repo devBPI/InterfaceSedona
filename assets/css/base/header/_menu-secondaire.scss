@@ -71,11 +71,19 @@
 				&:hover,
 				&:focus {
 					color: $red;
-					text-decoration: $hover-target;
+					text-decoration: $hover;
 				}
 
 				@include media-breakpoint-up(lg) {
 					padding: 0 rem(10);
+				}
+
+				&[target="_blank"] {
+
+					&:hover,
+					&:focus {
+						text-decoration: $hover-target;
+					}
 				}
 
 				&--active {
