@@ -77,6 +77,7 @@ final class SelectionListService extends AuthenticationService
                 if($this->entityManager
                     ->getRepository(UserSelectionList::class)
                     ->getList($this->getUser(), $document->getPermalink(), $userSelectionCategory)){
+
                     continue;
                 }
                 // endif
@@ -405,6 +406,7 @@ final class SelectionListService extends AuthenticationService
         if ($permalink===null){
             return false;
         }
+
         $list = $this->getSelectionObjects();
         // si on est en mode connecté
         if ($this->hasConnectedUser()){
@@ -414,13 +416,11 @@ final class SelectionListService extends AuthenticationService
 
             return $list!==0;
         }
-     //sinon
 
-           $list = array_filter($list['documents'], function (UserSelectionDocument $udocument) use ($permalink){
-                return $udocument->getPermalink()===$permalink;
-            });
+        $list = array_filter($list['documents'], function (UserSelectionDocument $udocument) use ($permalink){
+            return $udocument->getPermalink()===$permalink;
+        });
 
-          return count($list)>0;
-
+        return count($list)>0;
     }
 }

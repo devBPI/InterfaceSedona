@@ -2,7 +2,7 @@
 
 {{ notice_macros.row_link(notice.otherAuthors, ('bloc.autority-result-information.other-'~( notice.type == constant('MUSIC',notice) ?'musique-author':'authors')), constant('App\\WordsList::AUTHOR_WORD')) }}
 {{ notice_macros.value_complement_link(notice.contributeurs, 'bloc.autority-result-information.contributor'|trans, constant('App\\WordsList::AUTHOR_WORD')) }}
-{{ notice_macros.row_link(notice.editors, 'bloc.autority-result-information.editor'|trans, '', 'Editeur') }}
+{{ notice_macros.row_link(notice.editors, 'bloc.autority-result-information.editor'|trans, '', 'editor') }}
 
 {{ notice_macros.detail(notice.publishedDates, 'bloc.autority-result-information.date'|trans, ' - ') }}
 {{ notice_macros.detail(notice.otherDates, 'bloc.autority-result-information.edition-date'|trans) }}

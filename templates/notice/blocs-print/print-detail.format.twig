@@ -11,17 +11,25 @@
     {% else%}
         Permalien :   {{ absolute_url(path('record_bibliographic', {"permalink": notice.permalink})) }}
     {% endif %}
-    {% set isOnline = false %}
+
+
+    {% set i = 0 %}
+
     {% for copy in notice.copies %}
+        {% set isOnline = false %}
         {#  en attendant de BPI d'avoir une vriable isOnLine remplie et correct nous faison ce traitement pour le calculer#}
         {% if copy.media is defined and copy.media is not empty %}
         {% elseif copy.url is defined and copy.url is not empty %}
         {% else %}
-          {% set   isOnline =  isOnline == true?false:true %}
+          {% set   isOnline = true %}
         {% endif %}
-        {#% if isOnline %}
+        {% if isOnline == true %}
             {{ lineBreak |raw }}
+            {% if i ==0 %}
             -------------------
+            {% endif %}
+            {% set i = i+1 %}
+
             {% if format == 'pdf' %}
                 <li>
             {% endif %}
@@ -29,7 +37,7 @@
             {% if format == 'pdf' %}
                 </li>
             {% endif %}
-        {% endif %#}
+        {% endif %}
         {% if copy.isAvailable() %}
             {{ lineBreak |raw }}
             {% if format == 'pdf' %}
@@ -54,7 +62,32 @@
             {% endif %}
             {{- pdf_occurence(copy, 'getPrintLocation','', format)|raw -}}
 
-        {% else %}
+        {% elseif notice.links %}
+            {% for copy in notice.links | sort((a, b) => a.title <=> b.title) %}
+                {% set isOnline = false %}
+                {#  en attendant de BPI d'avoir une vriable isOnLine remplie et correct nous faison ce traitement pour le calculer#}
+                {% if copy.media is defined and copy.media is not empty %}
+                {% elseif copy.url is defined and copy.url is not empty %}
+                {% else %}
+
+                    {% if i ==0 %}
+                        {{ lineBreak |raw }}
+                        -------------------
+                    {% endif %}
+                    {% set i = i+1 %}
+
+                    {% if format == 'pdf' %}
+                        <li>
+                    {% endif %}
+                    {{- "\n" ~ 'bloc.notice-simple.access-to-bpi'|trans }}
+                    {% if format == 'pdf' %}
+                        </li>
+                    {% endif %}
+
+                {% endif %}
+
+            {% endfor %}
+            {% else %}
             {{ lineBreak |raw }}
 
             {{- "\n" ~ 'bloc.notice-simple.document-unavailable'|trans -}}

@@ -20,6 +20,7 @@ use App\Service\NoticeBuildFileService;
 use App\Service\Provider\SearchProvider;
 use App\Service\SearchService;
 use App\WordsList;
+use Doctrine\ORM\EntityManagerInterface;
 use Knp\Bundle\SnappyBundle\Snappy\Response\PdfResponse;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -50,14 +51,21 @@ final class SearchController extends AbstractController
      * @var NoticeBuildFileService
      */
     private $buildFileContent;
+    /**
+     * @var EntityManagerInterface
+     */
+    private $entityManager;
+
 
     /**
      * SearchController constructor.
+     * @param EntityManagerInterface $entityManager
      * @param SearchProvider $searchProvider
      * @param SearchService $searchService
      * @param NoticeBuildFileService $service
      */
     public function __construct(
+        EntityManagerInterface $entityManager,
         SearchProvider $searchProvider,
         SearchService $searchService,
         NoticeBuildFileService $service
@@ -65,6 +73,7 @@ final class SearchController extends AbstractController
         $this->searchProvider = $searchProvider;
         $this->searchService = $searchService;
         $this->buildFileContent = $service;
+        $this->entityManager = $entityManager;
     }
 
     /**

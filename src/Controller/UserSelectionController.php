@@ -53,8 +53,8 @@ final class UserSelectionController extends AbstractController
     public function selectionAction(Request $request): Response
     {
         if (count($request->request->all()) > 0) {
-            $listObj = $request->get(self::INPUT_NAME, []);
-            $action = $request->get('action');
+            $listObj    = $request->get(self::INPUT_NAME, []);
+            $action     = $request->get('action');
             $this->selectionService->applyAction($action, $listObj);
         }
 
@@ -104,11 +104,21 @@ final class UserSelectionController extends AbstractController
      */
     public function addListAction(Request $request): Response
     {
-        if ($this->selectionService->isSelected($request->get('permalink', null))){
+        $permalink = $request->get('permalink', null);
+        if ($permalink === null){
+            //from search
+            $document = $request->get('document', []);
+            if (count($document) === 1){
+                //if it's an action from Search, we just compare if we have only one item
+                $permalink = $document[0]['id'];
+            }
+        }
+        if ($this->selectionService->isSelected($permalink)){
             return $this->render('user/modal/list-already-added-success.html.twig');
         }
 
         $params = [];
+
         if ($request->request->count() > 0) {
             try {
                 $this->selectionService->addDocumentsToLists($request);
@@ -120,6 +130,7 @@ final class UserSelectionController extends AbstractController
                 ];
             }
         }
+
 
         $params += [
             'lists' => $this->selectionService->getListsOfCurrentUser()

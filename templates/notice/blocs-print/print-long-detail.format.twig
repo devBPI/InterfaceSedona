@@ -37,11 +37,13 @@
 	{% endif -%}
 
 
-	{% set languages = notice.languages|merge(notice.originalLanguages) %}
+	{% set languages = notice.languages %}
 	{%- if languages|length > 0 %}
 		{%- if format == 'pdf' -%}<li>{%- endif -%}
 			{{ 'bloc.autority-result-information.language'|trans }} :
-			{{- ' '~languages|join(' ; ') -}}
+			{{ 'bloc.autority-result-information.language'|trans }} :
+		 	{{- ' '~languages|join(' ; ') -}} {% if notice.originalLanguages %}                    {{ ', '~'modal.advanced-search.langage.title-translated'|trans }} : {{ notice.originalLanguages|join(', ') }}
+	{% endif %}
 			{% if format == 'txt' %}
 				{{- "\n" -}}
 			{% endif %}
@@ -67,7 +69,7 @@
 	{{- pdf_occurence(notice, 'getIsbn', "ISBN", format)|raw -}}
 	{{- pdf_occurence(notice, 'getIssn', "ISSN", format)|raw -}}
 	{{- pdf_occurence(notice, 'getCommercialNumbers', "bloc.autority-result-information.comercial-number"|trans, format)|raw -}}
-	{{- pdf_occurence(notice, 'getIndices', "bloc.autority-result-information.indice"|trans, format)|raw -}}
+	{{- pdf_occurence(notice, 'getIndices', "bloc.autority-result-information.indice"|trans, format, ' ')|raw -}}
 	{{- pdf_occurence(notice, 'getPublics', "bloc.autority-result-information.publics"|trans, format)|raw -}}
 
 	{%- if notice.rights|length > 0 -%}
