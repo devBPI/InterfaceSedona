@@ -399,9 +399,10 @@ final class SelectionListService extends AuthenticationService
 
     /**
      * @param $permalink
+     * @param array $listIds
      * @return bool
      */
-    public function isSelected($permalink)
+    public function isSelected($permalink, $listIds=[])
     {
         if ($permalink===null){
             return false;
@@ -410,9 +411,15 @@ final class SelectionListService extends AuthenticationService
         $list = $this->getSelectionObjects();
         // si on est en mode connecté
         if ($this->hasConnectedUser()){
+            if ($listIds == [] || count($listIds)>1){
+                return false;
+            }
+            $selection = $this->entityManager->getRepository(UserSelectionList::class)
+                ->find($listIds[0]);
+
             $list =  $this->entityManager
                 ->getRepository(UserSelectionList::class)
-                ->getList($this->getUser(), $permalink);
+                ->getList($this->getUser(), $permalink, $selection);
 
             return $list!==0;
         }

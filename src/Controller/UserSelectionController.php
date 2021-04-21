@@ -105,15 +105,18 @@ final class UserSelectionController extends AbstractController
     public function addListAction(Request $request): Response
     {
         $permalink = $request->get('permalink', null);
-        if ($permalink === null){
+        $list= $request->get('list', []);
+
+        if ($permalink == null){
             //from search
-            $document = $request->get('document', []);
-            if (count($document) === 1){
+            if (count($request->get('document', [])) === 1){
+                $document = $request->get('document', []);
                 //if it's an action from Search, we just compare if we have only one item
                 $permalink = $document[0]['id'];
             }
         }
-        if ($this->selectionService->isSelected($permalink)){
+
+        if ($this->selectionService->isSelected($permalink, $list)){
             return $this->render('user/modal/list-already-added-success.html.twig');
         }
 
