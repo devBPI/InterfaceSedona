@@ -43,6 +43,7 @@ header:
     balises: Balises
     pro: Professionnels
     cinemadureel: Cinéma du réel
+    effractions: Effractions
   navbar-user:
     selection: Ma sélection
     history: Historique
@@ -66,11 +67,11 @@ header:
 footer:
   credit-list:
     espace-presse: Presse et partenariats
-    emplois-et-stages: Emplois & stages
+    emplois-et-stages: Emplois et stages
     marches-publics: Marchés publics
     mentions-legales: Mentions légales
     aide-et-accessibilite: Aide et accessiblité
-    contacts-bpi: Contacts
+    contacts-bpi: Contactez-nous
   links-externe:
     mensuel: Le mensuel de la Bpi
     actualite: L'actualité de la Bpi
