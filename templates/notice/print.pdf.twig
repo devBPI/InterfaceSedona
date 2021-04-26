@@ -1,5 +1,5 @@
 {% extends 'base.pdf.twig' %}
-{% from "common/macros/print-macro.html.twig" import image,list_subitems %}
+{% import "common/macros/print-macro.html.twig" as macros %}
 
 {% block body %}
 	<div class="print__item">
@@ -14,7 +14,7 @@
 
 		{% if isPrintLong %}<i>{{ notice.titleForm|join(' ') }}</i>{% endif %}
 		<div>
-			{{ image(notice, includeImage) }}
+			{{ macros.image(notice, includeImage) }}
 			<ul class="print__list">
 				{% include 'notice/blocs-print/print-detail.format.twig' with {'notice': notice, 'format': 'pdf'} %}
 			</ul>
