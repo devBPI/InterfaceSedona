@@ -124,7 +124,6 @@ final class NavigationService
     public function buildAuthorities(NoticeInterface $notice): ?Navigation
     {
         $listNavigation = $this->getContainer();
-
         $navigation = $listNavigation->getAuthorities();
         $navigation->setCurrentIndex($notice->getPermalink());
         try {
@@ -176,19 +175,38 @@ final class NavigationService
         return false;
     }
 
-    public function getSearchRows(){
-        $request = $this->requestStack->getCurrentRequest();
+    /**
+     * @return int|null
+     */
+    public function getSearchRows():?int{
 
-        $searchToken = $request->get(ObjSearch::PARAM_REQUEST_NAME, null);
+        $searchToken = $this->getSearchToken();
         if (!$searchToken ||  !$this->session->has($searchToken)) {
-return SearchQuery::ROWS_DEFAULT;
+            return SearchQuery::ROWS_DEFAULT;
         }
         $query = json_decode($this->session->get($searchToken), true);
 
        return array_key_exists('rows', $query)?$query['rows']:null;
     }
 
+    /**
+     * @return string|null
+     */
+    public function getSeeAll():?string
+    {
+        $searchToken = $this->getSearchToken();
+        if (!$searchToken ||  !$this->session->has($searchToken)) {
+            return null;
+        }
 
+        $query = json_decode($this->session->get($searchToken), true);
 
+        return array_key_exists('see-all', $query)?$query['see-all']:null;
+    }
+
+    private function getSearchToken(){
+        $request = $this->requestStack->getCurrentRequest();
+       return $request->get(ObjSearch::PARAM_REQUEST_NAME, null);
+    }
 
 }

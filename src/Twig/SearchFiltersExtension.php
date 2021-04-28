@@ -79,6 +79,7 @@ class SearchFiltersExtension extends AbstractExtension
      */
     public function isSearchWord(string $word): bool
     {
+
         return in_array($word, $this->getSearchWords(), true);
     }
 
@@ -204,12 +205,13 @@ class SearchFiltersExtension extends AbstractExtension
                     return false;
                 }
                 list($ftype, $fvalue) = explode('=', $element);
+
                 return strpos($element, $type) === false || strpos($value, $fvalue)===false;
             });
-        }catch (\Exception $e ){
-            throw new \Exception('an error accured when cutting paramters from url search criteria %', $e->getMessage());
-        }
 
+        }catch (\Exception $e ){
+            throw new \Exception('an error was occurred when cutting parameters from url search criteria %', $e->getMessage());
+        }
         if (count($t)===count($payload)){
             return "";
         }

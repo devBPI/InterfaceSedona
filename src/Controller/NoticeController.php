@@ -71,14 +71,14 @@ final class NoticeController extends AbstractController
             $navigation = null;
         }
         $rows = $this->navigationService->getSearchRows();
-
         return $this->render('notice/index.html.twig', [
             'object'            => $notice,
             'toolbar'           => Notice::class,
             'navigation'        => $navigation,
             'printRoute'        => $printRoute,
             'page'              => $page,
-            'rows'              => $rows
+            'rows'              => $rows,
+            'seeAll'           => $this->navigationService->getSeeAll(),
         ]);
     }
 

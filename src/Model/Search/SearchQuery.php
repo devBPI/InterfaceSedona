@@ -59,6 +59,11 @@ class SearchQuery implements SearchResultInterface
      * @JMS\Type("string")
      */
     private $sort;
+    /**
+     * @var string
+     * @JMS\Type("string")
+     */
+    private $seeAll;
 
     /**
      * @var int
@@ -196,5 +201,25 @@ class SearchQuery implements SearchResultInterface
     {
         return $this->mode;
     }
+
+    /**
+     * @return string
+     */
+    public function getSeeAll(): string
+    {
+        return $this->seeAll;
+    }
+
+    /**
+     * @param string|null $seeAll
+     * @return SearchQuery
+     */
+    public function setSeeAll(string $seeAll=null): SearchQuery
+    {
+        $this->seeAll = $seeAll;
+
+        return $this;
+    }
+
 
 }

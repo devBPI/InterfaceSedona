@@ -62,9 +62,12 @@ final class SearchService
      */
     public function createObjSearch(SearchQuery $search, Request $request): ObjSearch
     {
-        $search->setSort($request->get(FiltersQuery::SORT_LABEL, SearchQuery::SORT_DEFAULT));
-        $search->setRows($request->get(FiltersQuery::ROWS_LABEL, SearchQuery::ROWS_DEFAULT));
-        $search->setPage($request->get(FiltersQuery::PAGE_LABEL, 1));
+        $search
+            ->setSort($request->get(FiltersQuery::SORT_LABEL, SearchQuery::SORT_DEFAULT))
+            ->setRows($request->get(FiltersQuery::ROWS_LABEL, SearchQuery::ROWS_DEFAULT))
+            ->setSeeAll($request->get('see-all', null))
+            ->setPage($request->get(FiltersQuery::PAGE_LABEL, 1))
+        ;
 
         $objSearch = new ObjSearch($search);
         $objSearch->setTitle($this->getTitleFromSearchQuery($search));
@@ -75,15 +78,6 @@ final class SearchService
                 $this->serializer->serialize($search, 'json'),
                 $request->get('action', null) !== null
             );
-            //$this->logger->error('######################################');
-            //$this->logger->error('######################################');
-            //$this->logger->debug('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~');
-            //$this->logger->error('######################################');
-            //$this->logger->error($this->serializer->serialize($search, 'json'));
-            //$this->logger->error('######################################');
-            //$this->logger->info('&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&');
-            //$this->logger->error('######################################');
-            //$this->logger->error('######################################');
         } catch (\Exception $e) {
             $this->logger->error('Search history failed : '.$e->getMessage());
         }

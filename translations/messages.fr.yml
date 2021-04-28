@@ -101,7 +101,7 @@ modal:
     submit-sr-only: la création de la liste
   list-add:             #Modal 02 ajout à ma sélection
     already-exist: Cette référence est déjà dans votre sélection.
-    message-already-exist: L'élélement existe déjà dans la liste
+    message-already-exist: L'élément existe déjà dans la liste
     title-connected: Ajouter...
     title: Vous avez ajouté...
     add-to-profile: '... à Mon compte dans :'
