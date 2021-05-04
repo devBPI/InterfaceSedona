@@ -6,7 +6,9 @@
         {{- pdf_occurence (notice, 'getCountries', 'bloc.autority-result-information.country'|trans, format)|raw -}}
         {{- pdf_occurence (notice, 'getLanguages', 'bloc.autority-result-information.language'|trans, format)|raw -}}
         {{- pdf_occurence (notice, 'getMusicalKinds', 'modal.advanced-search.facette.genre_musical'|trans, format)|raw -}}
-        {{- pdf_occurence (notice, 'getPrintDates', 'bloc.autority-result-information.dates'|trans, format)|raw -}}
+
+        {{- pdf_occurence (notice, 'getDates', 'bloc.autority-result-information.dates'|trans, format, ' - ')|raw -}}
+
         {{- pdf_occurence (notice, 'getPrintBirthData', 'bloc.autority-result-information.born-date'|trans, format)|raw -}}
         {{- pdf_occurence (notice, 'getPrintDeathData', 'bloc.autority-result-information.dead-date'|trans, format)|raw -}}
         {{- pdf_occurence (notice, 'getPrincipalActivities', 'bloc.autority-result-information.activity'|trans, format)|raw -}}
