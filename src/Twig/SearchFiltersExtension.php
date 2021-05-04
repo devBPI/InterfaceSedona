@@ -189,7 +189,6 @@ class SearchFiltersExtension extends AbstractExtension
     }
 
 
-
     public function cutfilterFromSearch($type, $value){
         $url = $this->masterRequest->getRequestUri();
         $payload =    explode('&', urldecode($url));
@@ -202,7 +201,7 @@ class SearchFiltersExtension extends AbstractExtension
                 //    return true;
                 }
                 if ($type === 'date_publishing' && strpos($element, $type)>0){
-                    return false;
+                   // return false;
                 }
                 list($ftype, $fvalue) = explode('=', $element);
 
@@ -215,8 +214,22 @@ class SearchFiltersExtension extends AbstractExtension
         if (count($t)===count($payload)){
             return "";
         }
+        if(count($t)>0){
+            $url = sprintf('%s&%s', $link, implode('&', $t));
+        }else{
+            $url = $link;
+        }
+        
+        if ($type === 'date_publishing'){
+            $re = '/(facets\[date_publishing\]\[\]\=[0-9]{4}\&)/m';
+            $result = preg_replace($re, '', $url);
+            $re = '/(facets\[date_publishing\]\[\]\=[0-9]{4})/m';
+            $result = preg_replace($re, '', $result);
 
-        return sprintf('%s&%s', $link, implode('&', $t));
+            return $result;
+        }
+
+        return $url;
     }
 
 }

@@ -19,7 +19,7 @@
             } %}
         {% endif %}
 
-        {% set filterSelected = defaultFilterOpened|merge(objSearch.searchFilters) %}
+        {% set filterSelected = defaultFilterOpened|merge(objSearch.searchFacets) %}
                 {{ display_checkbox_list(
                     'refine',
                     facet.label,

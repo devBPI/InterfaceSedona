@@ -3,7 +3,7 @@
 		<p class="search-criteria__label">
 			{{ objSearch.advancedMode ? 'bloc.filters-search.advanced-title'|trans : 'bloc.filters-search.simple-title'|trans }}</p>
 		<ul class="search-criteria__list">
-			{% for criteria in objSearchBis.getAdvancedCriteriaWithOperator %}
+			{% for criteria in objSearch.getAdvancedCriteriaWithOperator(objSearchBis.getSearchCriteriaOperator) %}
 				{#% for criteria in criterias %#}
 					<li class="search-criteria__item">
 
@@ -17,7 +17,7 @@
 						{% endif %}
 
 						{% if is_search_word(criteria.field) %}
-							 &nbsp;{{ criteria.operator |trans }}&nbsp;{{ ('modal.advanced-search.keyword.type.'~criteria.field)|trans }} :
+							 &nbsp;{{ criteria.operator |trans }}&nbsp;&nbsp;{{ ('modal.advanced-search.keyword.type.'~criteria.field)|trans }} :
 						{% else %}
 							{{ ('modal.advanced-search.facette.'~criteria.field)|trans }} :
 						{% endif %}

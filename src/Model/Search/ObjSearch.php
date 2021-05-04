@@ -192,11 +192,18 @@ final class ObjSearch
         return $this->searchQuery->getCriteria();
     }
 
-    public function getAdvancedCriteriaWithOperator(){
+    /**
+     * @return array
+     */
+    public function getSearchCriteriaOperator(){
+        return $this->getCriteria()->getFieldsWithOperator( $this->getCriteria()->getKeywordsTitles(true),$this->getCriteria());
+    }
 
-
-
-        $criteria = $this->getCriteria()->getFieldsWithOperator( $this->getCriteria()->getKeywordsTitles(true),$this->getCriteria());
+    /**
+     * @param $criteria
+     * @return mixed
+     */
+    public function getAdvancedCriteriaWithOperator($criteria){
         if (
             $this->searchQuery->getCriteria()->getPublicationDateStart() ||
             $this->searchQuery->getCriteria()->getPublicationDateEnd()
@@ -251,7 +258,6 @@ final class ObjSearch
     public function getAdvancedCriteria(): array
     {
         $criteria = $this->searchQuery->getCriteria()->getKeywordsTitles(true);
-
         if (
             $this->searchQuery->getCriteria()->getPublicationDateStart() ||
             $this->searchQuery->getCriteria()->getPublicationDateEnd()
