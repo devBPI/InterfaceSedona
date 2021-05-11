@@ -9,7 +9,7 @@ header:
   Agenda:
     link: https://agenda.bpi.fr/
 
-  La Bibliothèque:
+  La bibliothèque:
     link: https://www.bpi.fr/la-bibliotheque
     sronly: Accéder à la bibliothèque
     list:
@@ -36,7 +36,7 @@ header:
             Collections audiovisuelles: https://www.bpi.fr/la-bibliotheque/collections/collections-audiovisuelles
             Musiques et documents parlés: https://www.bpi.fr/la-bibliotheque/collections/musiques-et-documents-parles
             Nouvelle génération: https://www.bpi.fr/la-bibliotheque/collections/nouvelle-generation
-            Cartes et plans: https://www.bpi.fr/sites/SiteInstitutionnel/home/la-bibliotheque/collections/cartes-et-plans.html
+            Cartes et plans: https://www.bpi.fr/la-bibliotheque/collections/cartes-et-plans/
         -
           name: Offres culturelles et médiations
           link: https://www.bpi.fr/la-bibliotheque/offres-culturelles-et-mediations
@@ -120,7 +120,7 @@ header:
           Les autres services à disposition des personnes handicapées: https://www.bpi.fr/informations-pratiques/handicap-et-accessibilite/les-autres-services-a-disposition-des-personnes-handicapees/
       -
         name: Foire aux questions
-        link: https://www.bpi.fr/sites/SiteInstitutionnel/home/informations-pratiques/foire-aux-questions.html
+        link: https://www.bpi.fr/informations-pratiques/foire-aux-questions/
 
   Presse et partenariats:
     link: https://www.bpi.fr/presse-et-partenariats/
