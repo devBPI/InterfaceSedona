@@ -1,11 +1,16 @@
 <div class="dropdown-menu" {% if list.id is defined %}id="{{ list.id }}"{% endif %}>
     <div class="row">
+        {# ticker redmine  demande d'alice #25076 ajout ouvrir les deux onglets dans une nouvelle page,
+        @TODO utiliser les paramètres définit dans le fichier menu.{lang} pour webtv et effractions et remplacer les lien en clair 12
+        #}
         {% for item in list.items %}
             <div class="col-12 col-md-3">
                 <a href="{{ item.link }}" class="dropdown-item dropdown-item__title">{{ item.name }}</a>
                 {% if item.children is defined %}
                     {% for subName, subLink in item.children %}
-                        <a href="{{ subLink }}" class="dropdown-item dropdown-item__sub">{{ subName }}</a>
+
+<a href="{{ subLink }}" class="dropdown-item dropdown-item__sub" {% if subLink == 'http://webtv.bpi.fr/' or subLink == 'https://effractions.bpi.fr' %}target="_blank"{% endif %}
+>{{ subName }}</a>
                     {% endfor %}
                 {% endif %}
             </div>

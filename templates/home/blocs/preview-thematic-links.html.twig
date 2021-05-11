@@ -5,6 +5,8 @@
 		</div>
 	{% endif %}
 
+
+
 	<div class="col-12 col-sm-6 col-lg-3">
 		<div lang="fr" class="card">
 			<img src="{{ asset('images/parcours/'~thematic.type~'/'~element.image) }}" alt="" class="img-fluid card-img-top" />
@@ -14,14 +16,26 @@
 					<ul class="card__list">
 						{% for level in element.levels|sort((a, b) => a.id <=> b.id) %}
 							<li class="card__item">
-								<a href="{{ level.url(app.request.locale) }}">{{ level.title(app.request.locale) }}</a>
+								{% set pathAttr = {
+									(constant('App\\Model\\Search\\Criteria::SIMPLE_SEARCH_KEYWORD')):  level.title(app.request.locale) ,
+									(constant('App\\Model\\Search\\Criteria::SIMPLE_SEARCH_TYPE')): 'general' ,
+									'parcours': thematic.type
+								} %}
+								<a href="{{  path('search_parcours', pathAttr) }}">{{ level.title(app.request.locale) }}</a>
 							</li>
 						{% endfor %}
 					</ul>
                 {% endif %}
 			</div>
             {% if element.levels.count == 0 %}
-				<a href="{{ element.url(app.request.locale) }}" class="card__link">
+				{% set pathAttr = {
+					(constant('App\\Model\\Search\\Criteria::SIMPLE_SEARCH_KEYWORD')):element.title(app.request.locale),
+					(constant('App\\Model\\Search\\Criteria::SIMPLE_SEARCH_TYPE')): 'general' ,
+					'parcours': thematic.type
+
+				} %}
+
+				<a href="{{  path('search_parcours', pathAttr) }}" class="card__link">
 					<span class="sr-only">{{ "bloc.preview-thematic-links.link-sr-only"|trans({'%name%' : element.title(app.request.locale) }) }}</span>
 				</a>
             {% endif %}
