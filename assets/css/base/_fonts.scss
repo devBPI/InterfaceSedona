@@ -3,31 +3,31 @@
 // -------------------------------
 
 @font-face {
-	font-family: 'DINPro';
+	font-family: 'DINWeb';
 	font-style: normal;
 	font-weight: normal;
-	src: 	url('/build/fonts/DINPro-Regular.woff2') format('woff2'),
-			url('/build/fonts/DINPro-Regular.woff') format('woff'),
-			url('/build/fonts/DINPro-Regular.ttf') format('truetype'),
-			url('/build/fonts/DINPro-Regular.svg#DINPro-Regular') format('svg');
+	src:	url('/build/fonts/DINWeb.eot');
+	src: 	url('/build/fonts/DINWeb.eot?#iefix') format('embedded-opentype'),
+			url('/build/fonts/DINWeb.woff') format('woff'),
+			url('/build/fonts/DINComp.ttf') format('truetype');
 }
 
 @font-face {
-	font-family: 'DINPro';
+	font-family: 'DINWeb';
 	font-style: normal;
 	font-weight: 500;
-	src: 	url('/build/fonts/DINPro-Medium.woff2') format('woff2'),
-			url('/build/fonts/DINPro-Medium.woff') format('woff'),
-			url('/build/fonts/DINPro-Medium.ttf') format('truetype'),
-			url('/build/fonts/DINPro-Medium.svg#DINPro-Medium') format('svg');
+	src:	url('/build/fonts/DINWeb-Medium.eot');
+	src: 	url('/build/fonts/DINWeb-Medium.eot?#iefix') format('embedded-opentype'),
+			url('/build/fonts/DINWeb-Medium.woff') format('woff'),
+			url('/build/fonts/DINComp-Medium.ttf') format('truetype');
 }
 
 @font-face {
-	font-family: 'DINPro';
+	font-family: 'DINWeb';
 	font-style: normal;
 	font-weight: bold;
-	src: 	url('/build/fonts/DINPro-Bold.woff2') format('woff2'),
-			url('/build/fonts/DINPro-Bold.woff') format('woff'),
-			url('/build/fonts/DINPro-Bold.ttf') format('truetype'),
-			url('/build/fonts/DINPro-Bold.svg#DINPro-Bold') format('svg');
+	src:	url('/build/fonts/DINWeb-Bold.eot');
+	src: 	url('/build/fonts/DINWeb-Bold.eot?#iefix') format('embedded-opentype'),
+			url('/build/fonts/DINWeb-Bold.woff') format('woff'),
+			url('/build/fonts/DINComp-Bold.ttf') format('truetype');
 }
