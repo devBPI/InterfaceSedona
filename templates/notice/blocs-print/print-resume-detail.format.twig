@@ -1,14 +1,13 @@
 {% spaceless %}
 	{%- if notice.type != 'Musique' -%}
 		{{- pdf_occurence(notice, 'getExportTitle', 'bloc.autority-result-information.in'|trans, format)|raw -}}
-	{%- elseif notice.type in constant('App\\Model\\Notice::NOTICE_CONTENT_REVUE_TYPE')  and  notice.frontAnalyticalTitle is not empty -%}
-		{{- pdf_occurence(notice, 'getAnalyliticalTitle', 'bloc.autority-result-information.in'|trans, format)|raw -}}
-	{%- endif -%}
-
+	{% endif %}
+	{{- pdf_occurence(notice, 'getFrontAnalyticalTitle', 'bloc.autority-result-information.in'|trans, format)|raw -}}
 	{{- pdf_occurence(notice, 'getAuthors', 'bloc.autority-result-information.by'|trans, format)|raw -}}
+	{{- pdf_occurence(notice, 'getOtherAuthors', ('bloc.autority-result-information.other-'~( notice.type == constant('MUSIC',notice) ?'musique-author':'authors'))|trans, format)|raw -}}
 	{{- pdf_occurence(notice, 'getDirectors', 'bloc.autority-result-information.by'|trans, format)|raw -}}
 	{{- pdf_occurence(notice, 'getEditors', '', format)|raw -}}
 	{{- pdf_occurence(notice, 'getPublishedDates', ''|trans, format, ' - ')|raw -}}
 	{{- pdf_occurence(notice, 'getFormats', ''|trans, format)|raw -}}
-	{{- pdf_occurence(notice, 'getConfigurationName', 'bloc.notice-simple.result-of-bdd'|trans|trans, format)|raw -}}
+	{{- pdf_occurence(notice, 'getConfigurationName', 'bloc.notice-simple.result-of-bdd'|trans, format)|raw -}}
 {% endspaceless %}

@@ -131,12 +131,21 @@ final class BreadCrumbBuilder
     private function buildForHome(Request $request): bool
     {
         $parcours = $request->get('parcours');
+        $essential = $request->get('essentiels');
 
         $this->bctService->add(
             'home_thematic',
             sprintf('breadcrumb.home.%s', $parcours),
             ['parcours' => $parcours]
         );
+        if($essential){
+            $this->bctService->add(
+                'home_thematic',
+                $essential,
+                ['parcours' => $parcours,
+                    'essentiels' => $essential]
+            );
+        }
 
         return true;
     }
@@ -178,9 +187,9 @@ final class BreadCrumbBuilder
         $hash = $request->get('searchToken', $request->getSession()->get('searchToken'));
         $parcoursTerms = [];
         $parcours = $request->get('parcours', null);
+        $essential = $request->get('essentiels', null);
 
         if ($hash !==null && strpos($route, 'search') !== false) {
-
             $parcoursTerms = [];
             if ($parcours!==null && $parcours !== 'general') {
                 $parcoursTerms = ['parcours' => $parcours];
@@ -189,6 +198,15 @@ final class BreadCrumbBuilder
                     sprintf('breadcrumb.parcours.%s', $parcours),
                     $parcoursTerms
                 );
+
+                if ($essential){
+                    $this->bctService->add(
+                        'home_thematic',
+                        $essential,
+                        ['parcours' => $parcours,
+                            'essentiels' => $essential]
+                    );
+                }
             }
 
             $parcoursTerms = array_merge([ObjSearch::PARAM_REQUEST_NAME => $hash], $parcoursTerms);

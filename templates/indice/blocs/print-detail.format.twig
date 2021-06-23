@@ -16,7 +16,6 @@
             <a href="{{ absolute_url(path('record_indice_cdu', {"permalink": notice.permalink})) }}">Permalien</a>
         </li>
     {% else %}
-        Permalien : {{ absolute_url(path('record_indice_cdu', {"permalink": notice.permalink})) }}
-        {{ "\n" }}
+Permalien : {{ absolute_url(path('record_indice_cdu', {"permalink": notice.permalink})) }}{{ "\n" }}
     {% endif -%}
 {% endspaceless %}

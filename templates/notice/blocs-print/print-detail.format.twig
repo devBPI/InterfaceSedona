@@ -3,7 +3,6 @@
 {% spaceless %}
     {% if isPrintLong %}
         {% include 'notice/blocs-print/print-long-detail.format.twig' %}
-
     {% else %}
         {% include 'notice/blocs-print/print-resume-detail.format.twig' %}
     {% endif %}
@@ -11,47 +10,20 @@
     {% if format == 'pdf' %}
         {% set lineBreak = '<br/>' %}
         <li><a href="{{ absolute_url(path('record_bibliographic', {"permalink": notice.permalink})) }}">Permalien</a></li>
-    {% else%}
-        Permalien :   {{ absolute_url(path('record_bibliographic', {"permalink": notice.permalink})) }}
-    {% endif %}
-
-    {% for copy in notice.copies %}
-        {% if copy.isAvailable() %}
-            {{ lineBreak |raw }}
-            {% if format == 'pdf' %}
-                <li>
-            {% endif %}
-            {% if  copy.getAvailability  %}
-                {{ copy.getAvailability }}{% if  copy.getCote or copy.getSupport  %}, {% endif %}
-            {% endif %}
-            {% if  copy.getCote  %}
-                {{ copy.getCote }}{% if copy.getSupport %}, {% endif %}
-            {% endif %}
-            {% if  copy.getSupport  %}
-                {{ copy.getSupport }}
-            {% endif %}
-
-            {% if format == 'pdf' %}
-                </li>
-             {% endif %}
-
-            {% if isPrintLong %}
-                {{- pdf_occurence(copy, 'getNotes', "bloc.autority-result-information.nots"|trans, format)|raw -}}
-            {% endif %}
-            {{- pdf_occurence(copy, 'getPrintLocation','', format)|raw -}}
-
-        {% else %}
-            {{ lineBreak |raw }}
-
-            {{- "\n" ~ 'bloc.notice-simple.document-unavailable'|trans -}}
-        {% endif %}
-    {% endfor %}
-
-
-
-        {% for link in notice.links | sort((a, b) => a.title <=> b.title) %}
-            {{ macros.availibility_access_to_bpi(link, notice, format) }}
-
-        {% endfor %}
-
+    {% else%}{{ "\n" }}
+Permalien : {{ absolute_url(path('record_bibliographic', {"permalink": notice.permalink})) ~ "\n"  }}
+{% endif %}
+{% for copy in notice.copies %}{% if copy.isAvailable() %}
+{% if format == 'pdf' %}{{ lineBreak |raw }}<li>{% endif %}
+{% if  copy.getAvailability  %}{{ copy.getAvailability }}{% if  copy.getCote or copy.getSupport  %}, {% endif %}{% endif %}
+{% if  copy.getCote  %}{{ copy.getCote }}{% if copy.getSupport %}, {% endif %}{% endif %}
+{% if  copy.getSupport  %}{{ copy.getSupport }}{% endif %}
+{% if format == 'pdf' %}</li>{% else  %}{{ "\n" }}{% endif %}
+{% if isPrintLong %}{{- pdf_occurence(copy, 'getNotes', "bloc.autority-result-information.nots"|trans, format)|raw -}}{% endif %}
+{{- pdf_occurence(copy, 'getPrintLocation','', format)|raw -}}
+{% else %}{% if format == 'pdf' %}{{ lineBreak |raw }}{% else %}{{ "\n" }}{% endif %}
+{{- "\n" ~ 'bloc.notice-simple.document-unavailable'|trans -}}{% endif %}{% endfor %}
+{% for link in notice.links | sort((a, b) => a.title <=> b.title) %}
+{{ macros.availibility_access_to_bpi(link, notice, format) }}
+{% endfor %}
 {% endspaceless %}

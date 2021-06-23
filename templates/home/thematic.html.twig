@@ -1,6 +1,10 @@
 {% extends 'home/base.html.twig' %}
 
-{% block title %}Parcours {{ ('header.title.'~title) | trans }}{% endblock %}
+{% block title %}Parcours {{ ('header.title.'~title) | trans }}
+{% if app.request.get('essentiels') is defined and app.request.get('essentiels') !=''  %}
+	- Essentiels - {{ app.request.get('essentiels') }}
+{% endif %}
+{% endblock %}
 {% block body %}
 
 	<h1 class="n1">{{ ('header.title.'~title) | trans }}</h1>

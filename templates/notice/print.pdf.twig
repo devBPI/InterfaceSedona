@@ -11,6 +11,11 @@
 				<h2 class="n1">{{ title }}</h2>
 			{% endfor %}
 		{% endif %}
+		{% if notice.analyticalTitles %}
+			{% for title in notice.analyticalTitles %}
+				<h2 class="n1">{{ title }}</h2>
+			{% endfor %}
+		{% endif %}
 
 		{% if isPrintLong %}<i>{{ notice.titleForm|join(' ') }}</i>{% endif %}
 		<div>

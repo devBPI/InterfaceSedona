@@ -61,6 +61,7 @@ class SearchFiltersExtension extends AbstractExtension
             new TwigFunction('pdf_occurence', [$this, 'getPdfOccurence']),
             new TwigFunction('cut_filter_from_search', [$this, 'cutfilterFromSearch']),
             new TwigFunction('is_advanced_search', [$this, 'isAdvancedSaerch']),
+            new TwigFunction('add_parameter_url', [$this, 'addParameterUrl']),
 
         ];
     }
@@ -176,6 +177,12 @@ class SearchFiltersExtension extends AbstractExtension
                 } elseif ($format === 'txt') {
                     return sprintf("%s : %s\n", $label, $payload);
                 }
+            }elseif($label ==''){
+                if ($format === 'pdf') {
+                    return sprintf("<li>%s</li>", $payload);
+                } elseif ($format === 'txt') {
+                    return sprintf("%s\n", $payload);
+                }
             }
 
             if ($format === 'txt') {
@@ -227,6 +234,25 @@ class SearchFiltersExtension extends AbstractExtension
             $result = preg_replace($re, '', $result);
 
             return $result;
+        }
+
+        return $url;
+    }
+
+    /**
+     * @param string|null $url
+     * @return string|null
+     */
+    public function addParameterUrl(string $url = null, $value):?string
+    {
+        if($url === null){
+            return $url;
+        }
+
+        if(!strpos($url, '?')){
+            return sprintf($url.'?essentiels=%s', $value) ;
+        }else{
+            return $url.'&essentiels='.$value;
         }
 
         return $url;
