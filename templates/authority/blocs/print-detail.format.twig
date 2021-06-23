@@ -27,9 +27,9 @@
 
     {%- if format == 'pdf' %}
         <li>
-            <a href="{{ absolute_url(path('record_authority', {"permalink": notice.permalink})) }}">Lien de la notice</a>
+            <a href="{{ absolute_url(path('record_authority', {"permalink": notice.permalink})) }}">Permalien</a>
         </li>
     {% else %}
-        {{- notice.permalink -}}
+        Permalien : {{- absolute_url(path('record_authority', {"permalink": notice.permalink})) -}}
     {% endif -%}
 {% endspaceless %}
