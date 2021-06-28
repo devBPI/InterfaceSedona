@@ -1,11 +1,8 @@
 {{ 'bloc.print.subtitles.your-reference-bibliographic'|trans }}
 =====================
-{% for title in notice.titles %}
-{{ title ~ "\n" }}
-{% endfor %}
-{% if notice.titleForm %}{% for title in notice.titleForm %}
-{{ title ~ "\n" }}
-{% endfor %}{% endif %}
+{% for title in notice.titles %}{{ title ~ "\n" }}{% endfor %}
+{% if notice.titleForm %}
+{% for title in notice.titleForm %}{{ title ~ "\n" }}{% endfor %}{% endif %}
 {% if notice.analyticalTitles %}{% for title in notice.analyticalTitles %}
 {{ title ~ "\n" }}{% endfor %}{% endif %}
 {% if isPrintLong %}{{ notice.titleForm|join(' ')~ "\n"  }}{% endif %}

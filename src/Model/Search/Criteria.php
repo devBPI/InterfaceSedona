@@ -317,11 +317,13 @@ class Criteria
             foreach ($field as $key => $value){
                 $result[$index]['value'] =$value;
                 $result[$index]['field'] =$key;
+                $result[$index]['operator'] ='';
 
                 if ($index === 0){
                     $result[$index]['operator'] = '';
                     continue;
                 }
+
                 $andCriteria = $criteria->getAndCrteria();
 
                 if($andCriteria instanceof Criteria){
