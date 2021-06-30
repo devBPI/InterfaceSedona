@@ -21,6 +21,6 @@
 {% else %}{% if format == 'pdf' %}{{ lineBreak |raw }}{% else %}{{ "\n" }}{% endif %}
 {{- "\n" ~ 'bloc.notice-simple.document-unavailable'|trans -}}{% endif %}{% endfor %}
 {% for link in notice.links | sort((a, b) => a.title <=> b.title) %}
-{{ macros.availibility_access_to_bpi(link, notice, format) }}
+{% if format == 'pdf' %}{{ macros.availibility_access_to_bpi(link, notice, format) }}{% else %}{{  macros.availibility_access_to_bpi_txt(link, notice)}}{% endif %}
 {% endfor %}
 {% endspaceless %}

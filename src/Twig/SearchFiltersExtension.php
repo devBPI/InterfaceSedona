@@ -241,22 +241,25 @@ class SearchFiltersExtension extends AbstractExtension
 
     /**
      * @param string|null $url
+     * @param $value
      * @return string|null
      */
     public function addParameterUrl(string $url = null, $value):?string
     {
-        if($url === null){
+        if ($url === null){
             return $url;
         }
 
-        if(!strpos($url, '?')){
-            return sprintf($url.'?essentiels=%s', $value) ;
-        }else{
-            return $url.'&essentiels='.$value;
+        $payload = str_replace(['/recherche-avancee', '/recherche-simple'],'/resultats/essentiels/'.$value, $url);
+
+        if (strpos($url, "recherche-avancee")) {
+            if(!strpos($url, '?')){
+                return $payload.'?search-type=advanced';
+            }else{
+                return $payload.'&search-type=advanced';
+            }
         }
 
-        return $url;
+        return $payload;
     }
-
 }
-

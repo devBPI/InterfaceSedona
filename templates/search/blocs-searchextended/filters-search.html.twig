@@ -3,7 +3,12 @@
 		<p class="search-criteria__label">
 			{{ objSearch.advancedMode ? 'bloc.filters-search.advanced-title'|trans : 'bloc.filters-search.simple-title'|trans }}</p>
 		<ul class="search-criteria__list">
-			{% for criteria in objSearch.getAdvancedCriteriaWithOperator(objSearchBis.getSearchCriteriaOperator) %}
+			{% set criteriaTerms = objSearch.getSearchCriteriaOperator %}
+			{% if objSearchBis.getSearchCriteriaOperator is not empty %}
+				{% set criteriaTerms = objSearchBis.getSearchCriteriaOperator %}
+
+			{% endif %}
+			{% for criteria in objSearch.getAdvancedCriteriaWithOperator(criteriaTerms) %}
 				{#% for criteria in criterias %#}
 					<li class="search-criteria__item">
 
