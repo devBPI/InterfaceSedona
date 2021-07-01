@@ -3,7 +3,7 @@
 {%- if format == 'pdf' %}
         <li>{{ type }}</li>
 {% else %}
-{{- (type ~ "\n")|raw -}}
+{{- (type)|raw -}}{{ "\n" }}
 {% endif -%}
 {%- if isPrintLong %}
 {{- pdf_occurence(notice, 'getEmployedFor', 'bloc.autority-result-information.employed-for'|trans, format)|raw -}}
