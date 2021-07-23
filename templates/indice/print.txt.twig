@@ -1,4 +1,4 @@
 {{ 'bloc.print.subtitles.your-reference-autority'|trans }}
 =====================
-{{ notice.cote }} - {{ notice.title ~ "\n" }}
+{{ notice.cote | raw }} - {{ notice.title ~ "\n" }}
 {% include "indice/blocs/print-detail.format.twig" with {'notice': notice, 'format': 'txt'} %}

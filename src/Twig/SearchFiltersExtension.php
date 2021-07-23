@@ -249,7 +249,6 @@ class SearchFiltersExtension extends AbstractExtension
         if ($url === null){
             return $url;
         }
-
        $payload = str_replace(['/recherche-avancee', '/recherche-simple'],'/resultats/essentiels/'.$value, $url);
 
         if (strpos($url, "recherche-avancee")) {
@@ -257,7 +256,7 @@ class SearchFiltersExtension extends AbstractExtension
                 return $payload.'?search-type=advanced';
             }else{
                 $urlArray = explode('&',$url);
-                    if(array_key_exists(count($urlArray)-1, $urlArray) && !strpos('=', $urlArray[count($urlArray)-1])){
+                    if(array_key_exists(count($urlArray)-1, $urlArray) && !strpos( $urlArray[count($urlArray)-1], "=")){
                         return  $payload.'=&search-type=advanced';
                     }
                 return $payload.'&search-type=advanced';

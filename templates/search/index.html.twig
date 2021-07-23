@@ -1,12 +1,12 @@
 {% extends 'search/base.html.twig' %}
 
 {% block title %}
-    {{ objSearch.title }}
 	{% if app.request.get('essentiels') is defined and app.request.get('essentiels') !=''  %}
-		- Essentiels - {{ app.request.get('essentiels') }} -
+		{{ ('header.result.title.' ~  app.request.get('parcours') ) | trans }} - Essentiels - {{ app.request.get('essentiels') }} -
+	{% else %}
+		{{ objSearch.title }} -
 	{% endif %}
 	{{ 'page.search.title.page'|trans({'%current%': objSearch.results.page, '%total%': objSearch.results.pageTotal}) }}
-
 {% endblock %}
 
 {% block searchextended %}

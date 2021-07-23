@@ -69,7 +69,7 @@
 {% if object.localisation is defined and object.localisation is not empty and object.categorie is defined and object.categorie is not empty %}{{ object.localisation|raw }} - {{object.categorie|raw}}{% endif %}{% endif %}{{"\n" }}
 {% elseif object.url is defined and object.url is not empty %}{{  "\n" }}
 {% if notice.type is defined and (notice.type == 'Formation' or notice.type == 'Débat et enregistrement' or notice.type == 'Livre audio' or notice.type == 'Musique') %}
-{% if object.cote is defined and object.cote is not empty %}{{ object.cote}}{% endif %}
+{% if object.cote is defined and object.cote is not empty %}{{ object.cote|raw}}{% endif %}
 {% if object.localisation is defined and object.localisation is not empty and object.categorie is defined and object.categorie is not empty %}{{ object.localisation|raw }} - {{object.categorie|raw}}{% endif %}{% endif %}{% else %}{{ 'bloc.notice-simple.access-to-bpi'|trans }}{{  "\n" }}{% endif %}{% endif %}
 {% endmacro %}
 
@@ -81,7 +81,7 @@
 {% if format == 'pdf' %}<li >{% endif %}
 {% if notice.type is defined and (notice.type == 'Formation' or notice.type == 'Débat et enregistrement' or notice.type == 'Livre audio' or notice.type == 'Musique') %}
 {% if object.cote is defined and object.cote is not empty %}
-    {{ object.cote}}
+    {{ object.cote|raw}}
 {% endif %}
   {#  <!-- saut de page- !> #}
 {% if object.localisation is defined and object.localisation is not empty and object.categorie is defined and object.categorie is not empty %}

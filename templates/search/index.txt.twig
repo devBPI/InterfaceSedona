@@ -11,7 +11,7 @@
     {%- set countAuthors = printNoticeWrapper.noticeAuthority|length -%}
 
     {% for element in printNoticeWrapper.noticeIndice %}
-        {{- "\n\n"~(loop.index + countAuthors) }}) {{ element.cote }} - {{ element.title ~ "\n" -}}
+        {{- "\n\n"~(loop.index + countAuthors) }}) {{ element.cote | raw}} - {{ element.title ~ "\n" -}}
 
         {% include "indice/blocs/print-detail.format.twig" with {'notice': element, 'format': 'txt'} %}
     {% endfor %}
