@@ -59,7 +59,7 @@ services:
       - default
 
   db:
-    image: registry.sedona.fr/images/postgres:9.6
+    image: postgres:9.6
     ports:
       - "15432:5432"
     environment:

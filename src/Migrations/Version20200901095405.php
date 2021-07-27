@@ -23,7 +23,9 @@ final class Version20200901095405 extends AbstractMigration
 	$this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'postgresql', 'Migration can only be executed safely on \'postgresql\'.');
 
 	$this->addSql('ALTER TABLE notice_availability_request ADD COLUMN status VARCHAR(128) DEFAULT \'TO_DO\'');
-	$this->addSql('CREATE SEQUENCE notice_avail_rqst_id_seq');
+	if (!$schema->hasSequence("notice_avail_rqst_id_seq")) {
+        $this->addSql('CREATE SEQUENCE notice_avail_rqst_id_seq');
+    }
 	$this->addSql('ALTER TABLE notice_availability_request ALTER COLUMN id SET DEFAULT nextval(\'notice_avail_rqst_id_seq\')');
 
 	/*********************/
