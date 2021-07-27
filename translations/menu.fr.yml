@@ -45,7 +45,6 @@ header:
             Festival Effractions: https://effractions.bpi.fr
             Evénements culturels: https://www.bpi.fr/la-bibliotheque/offres-culturelles-et-mediations/evenements-culturels
             Médiations: https://www.bpi.fr/la-bibliotheque/offres-culturelles-et-mediations/mediations
-            Offres à distance: https://www.bpi.fr/la-bibliotheque/offres-culturelles-et-mediations/offres-a-distance
             Valorisations et bibliographies: https://www.bpi.fr/la-bibliotheque/offres-culturelles-et-mediations/valorisations-et-bibliographies/
         -
           name: Publications et supports de communication
@@ -99,7 +98,6 @@ header:
         children:
           Renseignements et orientation: https://www.bpi.fr/informations-pratiques/les-services/renseignements-et-orientation/
           Internet et le wifi: https://www.bpi.fr/informations-pratiques/les-services/internet-et-le-wifi
-          'L''autre Internet': https://www.bpi.fr/informations-pratiques/les-services/lautre-internet
           Les autres services: https://www.bpi.fr/informations-pratiques/les-services/les-autres-services
       -
         name: Les offres par type de public
@@ -122,27 +120,28 @@ header:
         name: Foire aux questions
         link: https://www.bpi.fr/informations-pratiques/foire-aux-questions/
 
-  Presse et partenariats:
-    link: https://www.bpi.fr/presse-et-partenariats/
-    sronly: Accéder à la presse et aux partenariats
+  Bpi Numérique:
+    link: https://www.bpi.fr/bpi-numerique/
+    sronly: Accéder à la Bpi numérique
     list:
       id: ul-presse
       items:
         -
-          name: Communiqués et dossiers de presse
-          link: https://www.bpi.fr/presse-et-partenariats/communiques-et-dossiers-de-presse/
+          name: Nos collections numériques
+          link: https://www.bpi.fr/nos-collections-numeriques/
         -
-          name: Tournages et prises de vues
-          link: https://www.bpi.fr/presse-et-partenariats/tournages-et-prises-de-vue/
+          name: Actualités numériques
+          link: https://www.bpi.fr/actualites-numeriques/
         -
-          name: Logos de la Bpi
-          link: https://www.bpi.fr/presse-et-partenariats/logos-de-la-bpi/
+          name: La Bpi chez vous
+          link: https://www.bpi.fr/la-bpi-chez-vous
         -
-          name: Visuels pour la presse
-          link: https://www.bpi.fr/presse-et-partenariats/visuels-pour-la-presse/
+          name: Autres services numériques
+          link: https://www.bpi.fr/autres-services-numeriques/
         -
-          name: Partenariats
-          link: https://www.bpi.fr/presse-et-partenariats/partenariats/
+          name: FAQ Bpi Numérique
+          link: https://www.bpi.fr/faq-bpi-numerique/
+
 
 footer:
   La Bpi:
@@ -150,7 +149,7 @@ footer:
     Agenda: https://www.bpi.fr/agenda
     La bibliothèque: https://www.bpi.fr/la-bibliotheque
     Informations pratiques: https://www.bpi.fr/informations-pratiques
-    Presse et partenariats: https://www.bpi.fr/presse-et-partenariats/
+    Bpi Numérique: https://www.bpi.fr/bpi-numerique/
 
   Balises:
     WebTV / WebRadio: https://webtv.bpi.fr/
