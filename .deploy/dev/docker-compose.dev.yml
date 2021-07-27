@@ -33,7 +33,7 @@ services:
           - $PROJECT_HOSTNAME
       public: ~
     labels:
-      traefik.enable: true
+      traefik.enable: 1
       traefik.frontend.rule: "Host: $PROJECT_HOSTNAME"
       traefik.frontend.entryPoints: http,https
       traefik.docker.network: "$PUBLIC_NETWORK"
@@ -54,7 +54,7 @@ services:
     depends_on:
       - app
     labels:
-      traefik.enable: false
+      traefik.enable: 0
     networks:
       - default
 
