@@ -10,10 +10,12 @@ Lancer powershell, et dans celui-ci lancez les commandes ci-dessous :
 ## 1)  Installer Docker
  * Windows :  voir avec l'infra 
  * Linux :  https://redmine.sedona.fr/projects/php/wiki
-
-  Et lancer la commande
+ 
+ Definir un token depuis [gitlab](https://git.sedona.fr/-/profile/personal_access_tokens) avec comme droit : read_registry
+ 
+ Et lancer la commande
 ```
-$ docker login registry.sedona.fr
+docker login registry.sedona.fr -u <username> -p <token> 
 ```
 
 ## 2) installer [portainer.io](https://portainer.io/) et [traefik.io](https://traefik.io/)
