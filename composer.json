@@ -16,7 +16,7 @@
         "eightpoints/guzzle-bundle": "^7.4",
         "friendsofsymfony/jsrouting-bundle": "^2.3",
         "h4cc/wkhtmltopdf-amd64": "^0.12.4",
-        "isometriks/spam-bundle": "^1.0",
+        "isometriks/spam-bundle": "<=1.0.5",
         "jms/serializer-bundle": "^3.3",
         "knplabs/knp-snappy-bundle": "^1.6",
         "roave/security-advisories": "dev-master",
