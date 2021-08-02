@@ -311,7 +311,7 @@ db-init: db-create db-update
 
 package: $(BUILD_DIR) package_info.json c-install assets dotenv-clear
 	@printf "Building ${BUILD_DIR}/${PACKAGE_NAME}\n"
-	tar --ignore-failed-read --exclude-from=./.deploy/.package-ignore -czf ${BUILD_DIR}/${PACKAGE_NAME} .
+	tar --ignore-failed-read --exclude-from=./.package-ignore -czf ${BUILD_DIR}/${PACKAGE_NAME} .
 .PHONY: package
 
 image: package_info.json
