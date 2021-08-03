@@ -5,9 +5,6 @@ stages:
   - publish
   - deploy
 
-variables:
-  SENSIO_INSIGHT_PROJECT_ID: "d00b38e4-085a-4648-b87f-86de05d98aab"
-
 cache:
   key: "$CI_PIPELINE_ID-$CI_COMMIT_REF_NAME"
   untracked: false
@@ -16,46 +13,19 @@ cache:
     - public/build/
     - gl-code-quality-report.json
 
-#quality:sonar:
-#  stage: quality
-#  image: "registry.sedona.fr/images/maven:latest-gitlab-ci"
-#  script:
-#    - make -B sonar-project.properties
-#    - sonar-scanner
-
-quality:insight:
+quality:sonar:
   stage: quality
-  image: "registry.sedona.fr/images/php:7-fpm"
+  image: "registry.sedona.fr/images/maven:latest-gitlab-ci"
   script:
-    - apt-get install -y -qq jq wget
-    - export PR_ID=$(curl -s "https://git.sedona.fr/api/v4/projects/${CI_PROJECT_ID}/merge_requests?private_token=${USER_TOKEN}&state=opened" | jq -r ".[]|select(.sha == \"$CI_COMMIT_SHA\")|.iid")
-    - echo $PR_ID
-    - >
-        if [[ ! -z "$PR_ID" ]] ; then
-            wget https://github.com/bdemalglaive/insight/raw/master/build/insight.phar
-            php insight.phar diff ${SENSIO_INSIGHT_PROJECT_ID} --user-uuid=${SENSIO_INSIGHT_USER_UUID} --api-token=${SENSIO_INSIGHT_USER_TOKEN} --format=md --reference-base=$(git rev-parse master) --reference-head=$(git rev-parse HEAD) > gl-code-quality-report.json
-            export LAST_NOTES_ID=$(curl -s "https://git.sedona.fr/api/v4/projects/${CI_PROJECT_ID}/merge_requests/${PR_ID}/notes?private_token=LkssJDBWsn4TuspWeQty&state=opened" | jq -r ".[]|select(.author.id == 106)|.id")
-            [ -z "${LAST_NOTES_ID}" ] && curl -i -X POST -H 'Content-Type: application/json' -d '@gl-code-quality-report.json' "https://git.sedona.fr/api/v4/projects/${CI_PROJECT_ID}/merge_requests/${PR_ID}/notes?private_token=${USER_TOKEN}" || curl -i -X PUT -H 'Content-Type: application/json' -d '@gl-code-quality-report.json' "https://git.sedona.fr/api/v4/projects/${CI_PROJECT_ID}/merge_requests/${PR_ID}/notes/${LAST_NOTES_ID}?private_token=${USER_TOKEN}"
-        fi
-  artifacts:
-    paths: [gl-code-quality-report.json]
-
-#quality:w3c:
-#  stage: quality
-#  image: registry.sedona.fr/images/php:7
-#  script:
-#    - make dotenv-make c-install behat-w3c
-#  artifacts:
-#    name: "test"
-#    paths:
-#      - build/
-#    when: on_failure
-#    expire_in: 20 minutes
-#    untracked: true
+    - make -B sonar-project.properties
+    - sonar-scanner
 
 compileJS:
   stage: compileJS
   image: node:10-alpine
+  only:
+    - master
+    - tags
   cache:
     key: "$CI_PIPELINE_ID-$CI_COMMIT_REF_SLUG"
     untracked: true
@@ -72,8 +42,6 @@ compileJS:
 build:package:
   stage: build
   needs: ["compileJS"]
-  dependencies:
-    - compileJS
   only:
     - master
     - tags
@@ -93,10 +61,9 @@ build:package:
 build:image:
   stage: build
   needs: ["compileJS"]
-  dependencies:
-    - compileJS
   only:
-    - feature-coloriage
+    - master
+    - tags
   image: docker:latest
   cache:
     key: "$CI_PIPELINE_ID-$CI_COMMIT_REF_SLUG"
@@ -117,8 +84,6 @@ build:image:
 publish:package:
   stage: publish
   needs: ["compileJS","build:package"]
-  dependencies:
-    - build:package
   only:
     - master
     - tags
@@ -141,10 +106,9 @@ publish:package:
 publish:image:
   stage: publish
   needs: ["compileJS", "build:image"]
-  dependencies:
-    - build:image
   only:
-    - feature-coloriage
+    - master
+    - tags
   before_script:
     - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN registry.sedona.fr
     - apk update
