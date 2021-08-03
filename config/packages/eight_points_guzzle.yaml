@@ -23,6 +23,7 @@ eight_points_guzzle:
                     User-Agent: "EightPointsGuzzleBundle/v7"
                     Content-Type: "application/xml"
 
+                decode_content: false
             # Find plugins here:
             # https://github.com/8p/EightPointsGuzzleBundle#known-and-supported-plugins
             plugin: ~
