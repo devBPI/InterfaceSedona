@@ -88,8 +88,9 @@
 			padding: 0;
 
 			@include media-breakpoint-up(lg) {
-				width: rem(62);
-				height: rem(62);
+				width: rem(64);
+				height: auto;
+				min-height: rem(64);
 				@include font-size(12.5);
 				@include line-height(11, 12);
 			}
