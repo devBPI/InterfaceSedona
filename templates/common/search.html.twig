@@ -3,7 +3,7 @@
     <div class="search-banner" id="search-banner">
 
         <div class="input-group search-banner__input">
-            <label for="search-input" id="search-label" class="sr-only">{{ 'bloc.search-zone.input-sr-only'|trans }}
+            <label for="search-input" id="search-label" class="sr-only">{{ ('bloc.search-zone.input-'~app.request.attributes.get('parcours', constant('App\\Controller\\SearchController::GENERAL') )~'-placeholder')|trans}}
                 <span class="sr-only">{{ 'bloc.search-zone.autocompletion-notice-sr-only'|trans }}</span></label>
             {% set field_name = constant('App\\Model\\Search\\Criteria::SIMPLE_SEARCH_KEYWORD') %}
             <input name="{{ field_name }}" autocomplete="off" type="text" id="search-input"
