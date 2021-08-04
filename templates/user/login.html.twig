@@ -9,14 +9,14 @@
     <h1 class="n1">{{ 'page.login.title'|trans }}</h1>
 
     <div class="account-form account-form--bloc">
-        <form action="{{ path('user_login') }}" method="post" class="gtm-form-sign-in">
+        <form action="{{ path('user_login') }}" method="post" class="gtm-form-sign-in" novalidate="novalidate">
         
             <p class="modal-form__indication">* {{ 'global.form-mandatory-field'|trans }}</p> 
             {% set error_class = '' %}
             {% if error is defined and error is not empty %}
                 <div class="form-group row justify-content-md-end">
                     <div class="col-12 col-md-8">
-                        <span class="invalid-feedback d-block">{{ error|trans }}</span>
+                        <p class="invalid-feedback d-block mb-0" aria-describedby="account-mail">{{ error|trans }}</p>
                     </div>
                 </div>
                 {% set error_class = 'is-invalid' %}

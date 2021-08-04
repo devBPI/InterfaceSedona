@@ -81,13 +81,13 @@
 
 {% block form_errors -%}
     {%- if errors|length > 0 -%}
-        <span id="{{ form.vars.id }}-errors" class="{% if form is not rootform %}invalid-feedback{% else %}alert alert-danger{% endif %} d-block">
+        <p id="{{ form.vars.id }}-errors" class="{% if form is not rootform %}invalid-feedback{% else %}alert alert-danger{% endif %} d-block" aria-describedby="{{ form.vars.id }}">
             {%- for error in errors -%}
                 <span class="d-block">
                     <span class="form-error-icon badge badge-danger text-uppercase">{{ 'Error'|trans({}, 'validators') }}</span> <span class="form-error-message">{{ error.message }}</span>
                 </span>
             {%- endfor -%}
-        </span>
+        </p>
     {%- endif %}
 {%- endblock form_errors %}
 
