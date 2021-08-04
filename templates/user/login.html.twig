@@ -27,6 +27,11 @@
                 <div class="col-12 col-md-8">
                     <input name="_username" type="email" class="form-control {{ error_class }}" id="account-mail" required="required"
                             {% if last_login is defined %}value="{{ last_login }}"{% endif %} autocomplete="email" placeholder="{{ 'page.login.login-placeholder'|trans }}">
+                    {% if error_username is defined %}
+                        <p class="invalid-feedback d-block" aria-describedby="account-mail">
+                            <span class="d-block"><span class="form-error-icon badge badge-danger text-uppercase">{{ 'Error'|trans({}, 'validators') }}</span> <span class="form-error-message">{{ error_username|trans({}, 'validators') }}</span></span>
+                        </p>
+                    {% endif %}
                 </div>
             </div>
             <div class="form-group row">
@@ -34,6 +39,11 @@
                 <div class="col-12 col-md-8">
                     <input name="_password" type="password" class="form-control {{ error_class }}" required="required"
                             id="account-password" autocomplete="current-password">
+                    {% if error_password is defined %}
+                        <p class="invalid-feedback d-block" aria-describedby="account-mail">
+                            <span class="d-block"><span class="form-error-icon badge badge-danger text-uppercase">{{ 'Error'|trans({}, 'validators') }}</span> <span class="form-error-message">{{ error_password|trans({}, 'validators') }}</span></span>
+                        </p>
+                    {% endif %}
                 </div>
             </div>
             <div class="row justify-content-end">

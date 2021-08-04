@@ -8,3 +8,5 @@ formattype.empty: Le champ ne doit pas être vide, veuillez saisir du texte dans
 reciever.empty: Le champ ne doit pas être vide, veuillez saisir du texte dans le champ "Destinataire"
 sender.empty: Le champ ne doit pas être vide, veuillez saisir du texte dans le champ "Expéditeur"
 The CSRF token is invalid. Please try to resubmit the form.: 'un problème technique est survenu. Veuillez renvoyer le formulaire.'
+_username.empty: Le champ ne doit pas être vide, veuillez saisir du texte dans le champ "Courriel"
+_password.empty: Le champ ne doit pas être vide, veuillez saisir du texte dans le champ "Mot de passe"

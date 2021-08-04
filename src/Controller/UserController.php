@@ -33,6 +33,15 @@ final class UserController extends AbstractController
                 'error' => $authenticationError->getMessage(),
                 'last_login' => $authUtils->getLastUsername()
             ];
+            if (empty($request->get("_username"))) {
+                $attr['error_username'] = "_username.empty";
+            } elseif (!preg_match('/^.+\@\S+\.\S+$/', $request->get("_username"))) {
+                // voir Symfony\Component\Validator\Constraints\EmailValidator
+                $attr['error_username'] = "This value is not a valid email address.";
+            }
+            if (empty($request->get("_password"))) {
+                $attr['error_password'] = "_password.empty";
+            }
         }
 
         if ($request->headers->get('referer') !== $request->getUri()) {
