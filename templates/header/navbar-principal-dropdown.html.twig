@@ -1,4 +1,4 @@
-<div class="dropdown-menu" {% if list.id is defined %}id="{{ list.id }}"{% endif %}>
+<div class="dropdown-menu" {% if list.id is defined %}id="{{ list.id }}"{% endif %} aria-labelledby="{{ nav.list.id }}">
     <div class="row">
         {# ticker redmine  demande d'alice #25076 ajout ouvrir les deux onglets dans une nouvelle page,
         @TODO utiliser les paramètres définit dans le fichier menu.{lang} pour webtv et effractions et remplacer les lien en clair 12

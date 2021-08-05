@@ -10,11 +10,15 @@ header:
     link: https://agenda.bpi.fr/
 
   La bibliothèque:
-    link: https://www.bpi.fr/la-bibliotheque
+    link: #
     sronly: Accéder à la bibliothèque
     list:
       id: ul-bibliotheque
       items:
+        -
+          name: La bibliothèque
+          link: https://www.bpi.fr/la-bibliotheque
+
         -
           name: Missions et organisation
           link: https://www.bpi.fr/la-bibliotheque/missions-et-organisation
@@ -70,11 +74,14 @@ header:
           link: https://www.bpi.fr/la-bibliotheque/histoire-de-la-bpi
 
   Informations pratiques:
-    link: https://www.bpi.fr/informations-pratiques
+    link: #
     sronly: Accéder aux informations pratiques
     list:
       id: ul-infos
       items:
+      -
+        name: Informations pratiques
+        link: https://www.bpi.fr/informations-pratiques
       -
         name: Venir à la Bpi
         link: https://www.bpi.fr/informations-pratiques/venir-a-la-bpi/
@@ -121,11 +128,14 @@ header:
         link: https://www.bpi.fr/informations-pratiques/foire-aux-questions/
 
   Bpi Numérique:
-    link: https://www.bpi.fr/bpi-numerique/
+    link: #
     sronly: Accéder à la Bpi numérique
     list:
       id: ul-presse
       items:
+        -
+          name: Bpi Numérique
+          link: https://www.bpi.fr/bpi-numerique/
         -
           name: Nos collections numériques
           link: https://www.bpi.fr/nos-collections-numeriques/
