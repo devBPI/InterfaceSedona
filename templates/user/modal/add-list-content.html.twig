@@ -1,7 +1,7 @@
 <form id="list_add_form" class="modal-form list-docs" action="{{ path('user_selection_list_add') }}"
       method="post" data-toggle="form-remote">
     <div class="modal-header">
-        <p id="selected-list-container" class="sr-only" data-text="Vous allez ajouter le titre '{title}' a la séléction"></p>
+        <p id="selected-list-container" class="sr-only" role="status" data-text-begin="{{ 'modal.list-add.title-ajout-before-sr-only'|trans }}" data-text-end="{{ 'modal.list-add.title-ajout-after-sr-only'|trans }}"></p>
         <h1 class="n1 modal-header__title" id="modal-list-add-title">
             {{ 'modal.list-add.title-connected'|trans }}
         </h1>

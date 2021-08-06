@@ -106,8 +106,10 @@ modal:
     already-exist: Cette référence est déjà dans votre sélection.
     message-already-exist: L'élément existe déjà dans la liste
     title-connected: Ajouter...
-    title-ajout-sr-only: Vous allez ajouter '{title}' à Ma sélection.
-    title-ajouter-sr-only: Vous avez bien ajouter '{title}' à Ma sélection.
+    title-ajout-before-sr-only: Vous allez ajouter 
+    title-ajout-after-sr-only: à Ma sélection.
+    title-ajouter-before-sr-only: Vous avez bien ajouter 
+    title-ajouter-after-sr-only: à Ma sélection.
     title: Vous avez ajouté...
     add-to-profile: '... à Mon compte dans :'
     list: '%name%'

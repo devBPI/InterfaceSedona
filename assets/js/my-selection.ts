@@ -32,14 +32,14 @@ export class SelectionList {
 
 export class SelectionAdder {
     private container: HTMLDivElement;
-    private listrgaa: HTMLDivElement;
-    private text_rgaa: String;
+    private psronly: HTMLDivElement;
+    private titles: Array<String>;
 
 
     constructor(private element: HTMLInputElement) {
         this.container = this.element.querySelector('#resume-container');
-        this.listrgaa = this.element.querySelector('#selected-list-container');
-        this.text_rgaa = this.listrgaa.getAttribute("data-text");
+        this.psronly = this.element.querySelector('#selected-list-container');
+        this.titles = [];
     }
 
     hideContainer() {
@@ -48,14 +48,17 @@ export class SelectionAdder {
 
     displaySelectedResume(objects) {
         this.container.innerHTML = '';
-        this.listrgaa.innerHTML = '';
+
         for (let [key, value] of objects) {
             let container = $(value).parents('.js-list-result-item');
             if (container.length > 0) {
                 this.cloneSelectedItemInContainer(container.get(0), key);
             }
         }
+
+        this.psronly.innerHTML = this.psronly.dataset.textBegin+' '+this.titles.join(', ').trim()+' '+this.psronly.dataset.textEnd;
     }
+
     displayCurrentItemResume() {
         fetch(Routing.generate('recorded'))
     }
@@ -69,9 +72,8 @@ export class SelectionAdder {
 
         this.container.append(clone);
 
-        var title = $(clone).find('.list-result__content-title').text().trim();
-        var newligne = $('<div>'+this.text_rgaa.replace('{title}', title)+'</div>')
-        this.listrgaa.append(newligne.get(0));
+        var title = $(clone).find('.js-add-title').text().trim();
+        this.titles[index] = title;
     }
 
     replaceChildrenNameByIndex(container: HTMLElement, index: string) {
@@ -84,6 +86,5 @@ export class SelectionAdder {
 
     cleanContainer() {
         while (this.container.firstChild) this.container.removeChild(this.container.firstChild);
-        while (this.listrgaa.firstChild) this.listrgaa.removeChild(this.listrgaa.firstChild);
     }
 }
