@@ -73,9 +73,12 @@ footer:
     aide-et-accessibilite: Aide et accessiblité
     contacts-bpi: Contactez-nous
   links-externe:
-    mensuel: Programme bibliothèque publique d'information, le mensuel de la Bpi
-    actualite: Lettres d'information, l'actualité de la Bpi
-    magazine: Balises, le magazine de la Bpi
+    sr-mensuel: Programme bibliothèque publique d'information, le mensuel de la Bpi
+    mensuel: Le mensuel de la Bpi
+    sr-actualite: Lettres d'information, l'actualité de la Bpi
+    actualite: L'actualité de la Bpi
+    sr-magazine: Balises, le magazine de la Bpi
+    magazine: Le magazine de la Bpi
   partenaires:
     eurekoi: Eurêkoi
     culture: Ministère de la Culture
@@ -103,6 +106,8 @@ modal:
     already-exist: Cette référence est déjà dans votre sélection.
     message-already-exist: L'élément existe déjà dans la liste
     title-connected: Ajouter...
+    title-ajout-sr-only: Vous allez ajouter '{title}' à Ma sélection.
+    title-ajouter-sr-only: Vous avez bien ajouter '{title}' à Ma sélection.
     title: Vous avez ajouté...
     add-to-profile: '... à Mon compte dans :'
     list: '%name%'

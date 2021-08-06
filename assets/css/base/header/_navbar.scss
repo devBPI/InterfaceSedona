@@ -179,7 +179,7 @@
 
 			&__title {
 				padding: 5px 0 5px;
-				font-size: font-size(15);
+				@include font-size(15);
 				color: $black;
 				display: inline-block;
 	

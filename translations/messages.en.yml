@@ -73,9 +73,12 @@ footer:
     aide-et-accessibilite: Help and accessibility
     contacts-bpi: Contacts
   links-externe:
-    mensuel: Programme bibliothèque publique d'information, the monthly of the Bpi
-    actualite: Lettres d'information, the Bpi news
-    magazine: Balises, the Bpi magazine
+    sr-mensuel: Programme bibliothèque publique d'information, the monthly of the Bpi
+    mensuel: The monthly of the Bpi
+    sr-actualite: Lettres d'information, the Bpi news
+    actualite: The Bpi news
+    sr-magazine: Balises, the Bpi magazine
+    magazine: The Bpi magazine
   partenaires:
     eurekoi: Eurêkoi
     culture: Ministry of culture
@@ -101,7 +104,10 @@ modal:
     submit-sr-only: la création de la liste
   list-add:             #Modal 02 ajout à ma sélection
     already-exist: Cette référence est déjà dans votre sélection.
+    message-already-exist: L'élément existe déjà dans la liste
     title-connected: Ajouter...
+    title-ajout-sr-only: Vous allez ajouter '{title}' à Ma sélection.
+    title-ajouter-sr-only: Vous avez bien ajouter '{title}' à Ma sélection.
     title: Vous avez ajouté...
     add-to-profile: '... à Mon compte dans :'
     list: '%name%'
