@@ -72,7 +72,7 @@ export class SelectionAdder {
 
         this.container.append(clone);
 
-        var title = $(clone).find('.js-add-title').text().trim();
+        var title = $(clone).find('[data-selection-title]').attr('data-selection-title').trim();
         this.titles[index] = title;
     }
 

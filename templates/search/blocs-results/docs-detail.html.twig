@@ -41,7 +41,7 @@
                 </a>
             </div>
             <div class="list-result__content-infos js-seeMoreAvailability" >
-                <div class="list-result__content-title js-add-title">
+                <div class="list-result__content-title" data-selection-title="{{ notice.frontTitle }}, {{ notice.type }}{% if notice.frontAuthor is not empty %} par {{ notice.frontAuthor|join(' ; ') }}{% endif %}">
                     <img src="{{ asset('images/types/type-' ~ notice.slugifiedType ~ '.svg') }}" alt="{{ notice.type }}" title="{{ notice.type }}" class="list-result__content-type" />
                     <a href="{{ toggle_to_path_parcours('record_bibliographic', app.request.attributes.get(constant('App\\Model\\Search\\ObjSearch::PARAM_PARCOURS_NAME')), {'permalink': notice.permalink, (constant('App\\Model\\Search\\ObjSearch::PARAM_REQUEST_NAME')): contextToken}) }}"
                     lang="fr"
