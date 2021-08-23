@@ -4,5 +4,5 @@ twig:
     strict_variables: '%kernel.debug%'
     form_themes: ['form.html.twig']
     globals:
-        IP_SEDONA: 77.158.146.242
+        IP_SEDONA: 213.182.58.194
         contact_email: '%env(REPLY_TO_EMAIL)%'
