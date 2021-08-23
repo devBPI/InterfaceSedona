@@ -19,4 +19,6 @@ $(document).ready(function () {
         "info":   false,
         "searching":   false
 	});
+
+  $('.table__thead-title').removeAttr('aria-label');
 });
