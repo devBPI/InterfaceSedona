@@ -152,7 +152,7 @@ class Results implements SearchResultInterface
     /**
      * @return SuggestionList
      */
-    public function getSuggestionList(): SuggestionList
+    public function getSuggestionList(): ?SuggestionList
     {
         return $this->suggestionList;
     }
