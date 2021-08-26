@@ -46,6 +46,7 @@ final class PrintController extends AbstractController
     public function printSelection(Request $request, string $format='pdf')
     {
         $sendAttachement = new ExportNotice();
+
         $sendAttachement
             ->setNotices($request->get('notices'))
             ->setAuthorities($request->get('authorities'))

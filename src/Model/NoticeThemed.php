@@ -19,6 +19,12 @@ class NoticeThemed implements BpiConverterInterface
      */
     private $noticesSameTheme;
     /**
+     * @var Notice
+     * @JMS\Type("App\Model\Notice")
+     * @JMS\SerializedName("notice-online")
+     */
+    private $onlineNotices;
+    /**
      * @var NoticesOnline
      * @JMS\Type("App\Model\NoticesOnline")
      * @JMS\SerializedName("notices-same-theme")
@@ -54,11 +60,11 @@ class NoticeThemed implements BpiConverterInterface
     }
 
     /**
-     * @return Notice
+     * @return Notice|null
      */
-    public function getNotice(): Notice
+    public function getNotice(): ?Notice
     {
-        return $this->notice;
+        return $this->notice instanceof Notice?$this->notice:$this->onlineNotices;
     }
 
     /**

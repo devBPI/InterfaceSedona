@@ -20,9 +20,12 @@
                     {% if buttonClass is defined %}class="{{ buttonClass }}"{% endif %}
                 {% endif -%}
             >{{ content }}</button>
+
+
         {% else %}
             <p>{{ content }}</p>
         {% endif %}
     </li>
+
 {% endmacro %}
 

@@ -27,12 +27,14 @@
 				<span>{{ 'bloc.toolbar.share'|trans }}</span>
 			</button>
 		</li>
+
 		<li class="toolbar__item">
 			<a href="{{ path('help_search') }}" title="{{ 'bloc.toolbar.help'|trans }} - {{ 'global.new-windows'|trans }}" target="_blank">
 				<img src="{{ asset('images/icones/icone-aide.svg') }}" alt="" class="icone-interrogation" />
 				<span>{{ 'bloc.toolbar.help'|trans }}</span>
 			</a>
 		</li>
+
 		<li class="toolbar__item">
 			<button data-target="#modal-suggest" data-toggle="modal" data-reload="true">
 				<img src="{{ asset('images/icones/icone-suggestion.svg') }}" alt="" class="icone-livre" />
@@ -44,6 +46,9 @@
 				<img src="{{ asset('images/icones/icone-error.svg') }}" alt="" class="icone-enveloppe" />
 				<span>{{ 'bloc.toolbar.report-error'|trans }}</span>
 			</button>
+		</li>
+		<li class="toolbar__item">
+
 		</li>
 	</ul>
 </div>
@@ -59,6 +64,5 @@
 {% include "common/modal/share.html.twig" %}
 
 {% include "common/modal/suggestion.html.twig" %}
-
 
 {% include "common/modal/report-error.html.twig" %}

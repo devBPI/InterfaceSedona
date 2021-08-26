@@ -134,7 +134,6 @@ final class UserSelectionController extends AbstractController
             }
         }
 
-
         $params += [
             'lists' => $this->selectionService->getListsOfCurrentUser()
         ];
@@ -195,4 +194,6 @@ final class UserSelectionController extends AbstractController
             'document' => $document
         ]);
     }
+
+
 }
