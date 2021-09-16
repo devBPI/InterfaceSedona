@@ -114,6 +114,13 @@ class Notice extends AbstractImage implements NoticeInterface, RecordInterface
      * @JMS\Type("string")
      * @JMS\SerializedName("resultatDe")
      */
+    private $resultatDe;
+
+    /**
+     * @var string
+     * @JMS\Type("string")
+     * @JMS\SerializedName("configurationId")
+     */
     private $configurationId;
 
     /**
@@ -1078,6 +1085,10 @@ class Notice extends AbstractImage implements NoticeInterface, RecordInterface
      */
     public function getConfigurationId(): ?string
     {
+        if ($this->resultatDe) {
+            return $this->resultatDe;
+        }
+
         return $this->configurationId;
     }
 
