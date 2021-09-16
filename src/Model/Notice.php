@@ -101,12 +101,20 @@ class Notice extends AbstractImage implements NoticeInterface, RecordInterface
      * @JMS\SerializedName("urlPubliqueConfiguration")
      */
     private $urlPubliqueConfiguration;
+
     /**
      * @var string
      * @JMS\Type("string")
      * @JMS\SerializedName("configurationPublicUrl")
      */
     private $configurationPublicUrl;
+
+    /**
+     * @var string
+     * @JMS\Type("string")
+     * @JMS\SerializedName("resultatDe")
+     */
+    private $configurationId;
 
     /**
      * @var string
@@ -1052,6 +1060,7 @@ class Notice extends AbstractImage implements NoticeInterface, RecordInterface
 
         return $this->configurationName;
     }
+
     /**
      * @return null|string
      */
@@ -1062,6 +1071,14 @@ class Notice extends AbstractImage implements NoticeInterface, RecordInterface
         }
 
         return $this->configurationPublicUrl;
+    }
+
+    /**
+     * @return null|string
+     */
+    public function getConfigurationId(): ?string
+    {
+        return $this->configurationId;
     }
 
     /**
