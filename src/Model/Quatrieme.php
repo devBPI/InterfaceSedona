@@ -44,7 +44,8 @@ class Quatrieme
      */
     public function getPresentation(): ?string
     {
-        return $this->presentation?implode("<br />", $this->presentation):null;
+        //return $this->presentation?implode("<br />", $this->presentation):null;
+        return $this->presentation?$this->presentation[0]:null;
     }
 
     /**
