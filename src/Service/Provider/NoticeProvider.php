@@ -4,6 +4,8 @@ declare(strict_types=1);
 namespace App\Service\Provider;
 
 use App\Model\NoticeThemed;
+use App\Model\Status;
+use App\Service\NoticeBuildFileService;
 
 /**
  * Class NoticeProvider
@@ -17,11 +19,22 @@ class NoticeProvider extends AbstractProvider
      * @param string $query
      * @return NoticeThemed
      */
-    public function getNotice(string $query): NoticeThemed
+    public function getNotice(string $query, $shortType = null): NoticeThemed
     {
+        if ($shortType !== null && $shortType === NoticeBuildFileService::SHORT_PRINT) {
+            return $this->hydrateFromResponse(sprintf('/details/notice-short/%s', $query));
+        }
 
         return $this->hydrateFromResponse(sprintf('/details/notice-themed/%s', $query));
     }
 
+    /**
+     * @param string $query
+     * @return Status
+     */
+    public function checkNotice(string $query): Status
+    {
+        return $this->hydrateFromResponse(sprintf('/CatalogueWebService/check/notice/%s', $query),[], Status::class);
+    }
 }
 

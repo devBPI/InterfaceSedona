@@ -138,4 +138,13 @@ final class ExportController extends AbstractController
             ]
         );
     }
+
+    /**
+     * @param Request $request
+     */
+    public function checkNoticeAction(Request $request)
+    {
+        die('toto'); die;
+        //        return $this->render('user/modal/comments-edit.html.twig',);
+    }
 }

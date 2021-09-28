@@ -150,9 +150,9 @@ class Results implements SearchResultInterface
     }
 
     /**
-     * @return SuggestionList
+     * @return SuggestionList|null
      */
-    public function getSuggestionList(): SuggestionList
+    public function getSuggestionList(): ?SuggestionList
     {
         return $this->suggestionList;
     }

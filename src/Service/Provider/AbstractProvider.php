@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace App\Service\Provider;
 
 use App\Model\NoticeMappedAuthority;
+use App\Model\Status;
 use App\Service\APIClient\CatalogClient;
 use GuzzleHttp\Psr7\Response;
 use JMS\Serializer\Serializer;

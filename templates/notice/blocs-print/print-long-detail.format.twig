@@ -20,7 +20,7 @@
 	{{- pdf_occurence(notice, 'getContributeurs', 'bloc.autority-result-information.contributor'|trans, format)|raw -}}
 	{{- pdf_occurence(notice, 'getEditors', 'modal.advanced-search.keyword.type.editors'|trans, format)|raw -}}
 	{{- pdf_occurence(notice, 'getPublishedDates', ''|trans, format, ' - ')|raw -}}
-	{#  {- pdf_occurence(notice, 'getFormats', ''|trans, format, ' - ')|raw -}#}
+	{#  {- pdf_occurence(notice, 'getMaterialDescriptions', ''|trans, format, ' - ')|raw -}#}
 	{{- pdf_occurence(notice, 'getOtherDates', "bloc.autority-result-information.edition-date"|trans, format)|raw -}}
 	{{- pdf_occurence(notice, 'getPeriodicity', "bloc.autority-result-information.periodicity"|trans, format)|raw -}}
 	{{- pdf_occurence(notice, 'getUniformTitle', "bloc.autority-result-information.ouvre"|trans, format)|raw -}}

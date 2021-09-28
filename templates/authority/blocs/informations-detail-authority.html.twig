@@ -12,12 +12,11 @@
 
 {% endif %}
 {{ detail_macros.row(notice.formParalella) }}
-{{ detail_macros.detail(notice.countries, 'Pays') }}
+{% if  notice.type == 'Collectivité' or notice.type =='Personne' %}
+    {{ detail_macros.detail(notice.countries, 'Pays') }}
+{% endif %}
 {{ detail_macros.detail(notice.languages, 'Langue(s)') }}
 {{ detail_macros.detail(notice.musicalKinds, 'Genre musical') }}
-
-
-
 
 {% if notice.dates is not empty %}
     <li class="list-information__item">

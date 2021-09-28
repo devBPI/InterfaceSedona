@@ -70,6 +70,7 @@ final class NoticeController extends AbstractController
             $logger->error('Navigation failed for notice '.$notice->getPermalink(). ' : '.$e->getMessage());
             $navigation = null;
         }
+
         $rows = $this->navigationService->getSearchRows();
         return $this->render('notice/index.html.twig', [
             'object'            => $notice,
