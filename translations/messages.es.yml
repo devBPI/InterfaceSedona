@@ -634,3 +634,6 @@ breadcrumb:
         legend:
           shortFormat: Contenu de la notice
           formatType: Format de l'export
+
+table:
+  caption: " - activez les en-têtes du tableau pour trier les données"
