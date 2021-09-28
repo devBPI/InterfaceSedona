@@ -20,7 +20,7 @@
         {{- pdf_occurence (notice, 'getIsni', 'bloc.autority-result-information.insi'|trans, format)|raw -}}
         {{- pdf_occurence (notice, 'getOrigins', 'bloc.autority-result-information.origins'|trans, format)|raw -}}
     {% else %}
-        {%   if  notice.type in ['Nom géographique et Concept', 'Nom géographique', 'Concept'])%}
+        {%   if  notice.type in ['Nom géographique et Concept', 'Nom géographique', 'Concept']%}
             {{- pdf_occurence (notice, 'getOtherNames', 'bloc.autority-result-information.other-names'|trans, format)|raw -}}
         {% endif %}
         {% if notice.type in ['Personne', 'collectivité', 'oeuvre'] %}

@@ -1,4 +1,4 @@
-{% macro action_attributes(actionType, content, toolbar, buttonClass) %}
+{% macro action_attributes(actionType, content, toolbar, buttonClass, url='') %}
     {% set active = toolbar is defined and toolbar is not empty %}
     {% set isDetail = active and toolbar in ['App\\Model\\Notice', 'App\\Model\\Authority', 'App\\Model\\IndiceCdu'] %}
     {% set targetClass = null %}
@@ -19,9 +19,8 @@
                     data-target='.{{ targetClass }}:checked'
                     {% if buttonClass is defined %}class="{{ buttonClass }}"{% endif %}
                 {% endif -%}
+                    {% if url !='' %}data-url="{{ path('user_selection_check_list_document', {'action':url}) }}"{% endif %}
             >{{ content }}</button>
-
-
         {% else %}
             <p>{{ content }}</p>
         {% endif %}

@@ -8,6 +8,8 @@ use App\Entity\UserSelectionDocument;
 use App\Entity\UserSelectionList;
 use App\Model\Exception\SelectionCategoryException;
 use App\Model\LdapUser;
+use App\Model\PermalinksStatus;
+use App\Model\PermalinkStatus;
 use App\Repository\UserSelectionListRepository;
 use Doctrine\ORM\EntityManager;
 use Symfony\Component\HttpFoundation\Request;
@@ -212,6 +214,23 @@ final class SelectionListService extends AuthenticationService
     }
 
     /**
+     * @return array|UserSelectionList[]
+     */
+    public function getListsOfCurrentUserByPermalinks(array $permalinks): array
+    {
+        if ($this->hasConnectedUser()) {
+            /** @var UserSelectionListRepository $userSelectionRepo */
+            $userSelectionRepo = $this->entityManager->getRepository(UserSelectionList::class);
+
+            return $userSelectionRepo
+                ->findAllOrderedByPermalinks($this->getUser(), $permalinks);
+        }
+
+        return [];
+    }
+
+
+    /**
      * @param UserSelectionDocument $document
      * @param string $comment
      * @throws \Doctrine\ORM\ORMException
@@ -360,6 +379,20 @@ final class SelectionListService extends AuthenticationService
         return ['documents' => $this->getDocumentsFromSession()];
     }
 
+
+    public function getSelectionOfobjectByPermalinks(array $permalinks = []){
+        if ($permalinks === []){
+            return $this->getSelectionObjects();
+        }
+
+        if ($this->hasConnectedUser()) {
+            return ['lists' => $this->getListsOfCurrentUserByPermalinks($permalinks)];
+        }
+
+        return ['documents' => $this->getDocumentsFromSessionByPermalink($permalinks)];
+
+
+    }
     /**
      * @return array|UserSelectionDocument[]
      */
@@ -369,6 +402,24 @@ final class SelectionListService extends AuthenticationService
         return array_map(
             function ($document) {
                 return new UserSelectionDocument($document);
+            },
+            $this->getSession(self::SESSION_SELECTION_ID)
+        );
+    }
+    /**
+     * @return array|UserSelectionDocument[]
+     */
+    public function getDocumentsFromSessionByPermalink(array $permalinks = []): array
+    {
+        if ($permalinks===[]){
+            return [];
+        }
+
+        return array_map(
+            function ($document) use ($permalinks) {
+                if(in_array($document['id'], $permalinks)){
+                   return new UserSelectionDocument($document);
+                }
             },
             $this->getSession(self::SESSION_SELECTION_ID)
         );
@@ -429,5 +480,33 @@ final class SelectionListService extends AuthenticationService
         });
 
         return count($list)>0;
+    }
+
+    /**
+     * @param array $permalinks
+     * @return \App\Entity\UserSelectionDocument[][]|\App\Entity\UserSelectionList[][]|array[]
+     */
+    public function getListByPermalinks(array $permalinks)
+    {
+        /**
+         * @return array
+         */
+
+            if ($this->hasConnectedUser()) {
+                return ['lists' => $this->getListsOfCurrentUser()];
+            }
+
+            return ['documents' => $this->getDocumentsFromSession()];
+    }
+
+    public function getPermalinks( PermalinksStatus $checkValidNoticePermalink)
+    {
+        return array_unique(array_map(
+            function (PermalinkStatus $document){
+                if (strtolower($document->getStatus())!=='found'){
+                    return $document->getPermalink();
+                }},
+            $checkValidNoticePermalink->getPermalinkStatus()
+        ));
     }
 }

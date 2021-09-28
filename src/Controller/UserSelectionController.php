@@ -5,6 +5,7 @@ namespace App\Controller;
 
 use App\Entity\UserSelectionList;
 use App\Entity\UserSelectionDocument;
+use App\Service\Provider\SearchProvider;
 use App\Service\SelectionListService;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -28,6 +29,10 @@ final class UserSelectionController extends AbstractController
     const INPUT_LIST_TITLE = 'selection_list_title';
     const INPUT_DOCUMENT = 'document';
     const INPUT_DOC_COMMENT = 'selection_document_comment';
+    /**
+     * @var SearchProvider
+     */
+    private $searchProvider;
 
     /**
      * @var SelectionListService
@@ -38,9 +43,10 @@ final class UserSelectionController extends AbstractController
      * UserSelectionController constructor.
      * @param SelectionListService $selectionListService
      */
-    public function __construct(SelectionListService $selectionListService)
+    public function __construct(SelectionListService $selectionListService, SearchProvider $searchProvider)
     {
         $this->selectionService = $selectionListService;
+        $this->searchProvider = $searchProvider;
     }
 
     /**
@@ -196,4 +202,53 @@ final class UserSelectionController extends AbstractController
     }
 
 
+    /**
+     * @Route("/list/check", methods={"GET","POST"}, name="_check_list_document")
+     * @param Request $request
+     * @return JsonResponse
+     * @throws \Doctrine\ORM\ORMException
+     * @throws \Doctrine\ORM\OptimisticLockException
+     */
+    public function checkListsPermalinks(Request $request): JsonResponse
+    {
+        $contents = json_decode($request->getContent(), true);
+
+        $listPermalinkNotice = $this->selectionService->getPermalinks($this->searchProvider->CheckValidNoticePermalink($this->prepareXmlRequest($contents['notices'])));
+        if($this->prepareXmlRequest($contents['autorities'])){
+
+            $listPermalinkNotice +=$this->selectionService->getPermalinks($this->searchProvider->CheckValidAuthorityPermalink($this->prepareXmlRequest($contents['autorities'])));
+        }
+        if( $this->prepareXmlRequest($contents['indices'])){
+            $listPermalinkNotice +=$this->selectionService->getPermalinks($this->searchProvider->CheckValidIndicePermalink($this->prepareXmlRequest($contents['indices'])));
+        }
+        if (count($listPermalinkNotice)===0 || (count($listPermalinkNotice) === 1 && empty($listPermalinkNotice[0])) ){
+            return new JsonResponse([
+                    $request->get('action', 'export')]
+            );
+        }
+
+        return new JsonResponse([
+             $this->renderView('user/modal/check-permalink-list-success.html.twig',
+                $this->selectionService->getSelectionOfobjectByPermalinks($listPermalinkNotice)+
+                ['action'=>$request->get('action', 'export')]
+            )]
+        );
+    }
+    /**
+     * @param $payload
+     * @return string
+     */
+    private function prepareXmlRequest($payload )
+    {
+        $payload    = json_decode($payload, true);
+        $list = [];
+        $list[]='<list>';
+
+        foreach ($payload as  $item){
+            $list[]=sprintf('<string>%s</string>', $item);
+        }
+        $list[] = '</list>';
+
+        return implode(' ', $list);
+    }
 }

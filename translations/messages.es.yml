@@ -7,6 +7,8 @@ global:
   form-mandatory-field: champs obligatoires
   modal-close: Fermer cette fenêtre
   modal-cancel: Annuler
+  modal-confirm: Confirmer
+
   modal-btn-close: Fermer
   list-ordering: ": activer pour trier par ordre ascendant/descendant"
   site-title: "Catalogue Bpi"
@@ -91,6 +93,12 @@ footer:
     rss: Suscribirse al RSS de la Bpi
 
 modal:
+  wait-message: Veuillez patienter
+  confirm-message:
+    print: Ils n'apparaîtront pas dans la liste que vous imprimez
+    export: Ils n'apparaîtront pas dans la liste que vous exportez
+  check-list:
+    title: "Attention, un ou plusieurs éléments de votre sélection ne sont plus présents dans le catalogue"
   email-example: (nom@exemple.com)
   list-create:          #Modal 01  Création d'une liste
     title: Créer une nouvelle liste
