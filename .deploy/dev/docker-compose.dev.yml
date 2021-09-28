@@ -1,7 +1,7 @@
 version: '3.5'
 services:
   app:
-    image: registry.sedona.fr/images/php:7-fpm
+    image: registry.sedona.fr/images/php:7.3-fpm
 #    user: '$UID:$UID'
     networks:
       - default
