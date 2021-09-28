@@ -1,5 +1,6 @@
 This value is not a valid email address.: 'Veuillez saisir une adresse e-mail valide. Exemple : contact@bpi.fr.'
-email.empty: Veuillez saisir un email dans le champ ci-dessus
+email.format: 'Veuillez saisir une adresse e-mail valide. Exemple : contact@bpi.fr.'
+email.empty: 'Veuillez saisir un email dans le champ ci-dessus. Exemple : contact@bpi.fr.'
 text.empty: Le champ ne doit pas être vide, veuillez saisir du texte dans le champ ci-dessus
 title.empty: Le champ ne doit pas être vide, veuillez saisir du texte dans le champ "Titre"
 object.empty: Le champ ne doit pas être vide, veuillez saisir du texte dans le champ "Objet"

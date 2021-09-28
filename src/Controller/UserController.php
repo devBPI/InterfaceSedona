@@ -37,7 +37,7 @@ final class UserController extends AbstractController
                 $attr['error_username'] = "_username.empty";
             } elseif (!preg_match('/^.+\@\S+\.\S+$/', $request->get("_username"))) {
                 // voir Symfony\Component\Validator\Constraints\EmailValidator
-                $attr['error_username'] = "This value is not a valid email address.";
+                $attr['error_username'] = "email.format";
             }
             if (empty($request->get("_password"))) {
                 $attr['error_password'] = "_password.empty";

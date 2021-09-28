@@ -57,7 +57,7 @@ class NoticeAvailabilityRequest
      * @ORM\Column(type="string", length=1024, nullable=true)
      * @var string
      * @Assert\NotBlank(message="email.empty")
-     * @Assert\Email
+     * @Assert\Email(message="email.format")
      */
     private $notification_email;
 

@@ -14,7 +14,7 @@ final class ExportNotice
     /**
      * @var string
      * @Assert\NotBlank(message="email.empty");
-     * @Assert\Email();
+     * @Assert\Email(message="email.format");
      */
     private $reciever;
     /**
