@@ -40,7 +40,7 @@ final class NoticeAvailabilityController extends AbstractController
      * @param int $configurationId
      * @return Response
      */
-    public function indexAction(Request $request, int $sourceId, int $configurationId = null): Response
+    public function indexAction(Request $request, int $sourceId, int $configurationId=1): Response
     {
         $noticeAvailabilityRequest = new NoticeAvailabilityRequest(
             $sourceId,

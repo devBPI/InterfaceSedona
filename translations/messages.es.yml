@@ -382,7 +382,7 @@ bloc:
     type-label: Chercher sur
     submit: Valider la recherche
     advanced-title: Recherche avancée
-    advanced-sr-only: Rercherche Avancée - ouverture formulaire
+    advanced-sr-only: Recherche Avancée - ouverture formulaire
   carousel:               #Bloc 01 diaporama nouveautés et/ou articles
     title: Carousel d'actualités
     item_desciption: Actualité %index% sur %nb%, %title% %auteur%
