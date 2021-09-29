@@ -124,6 +124,7 @@
 {% endif %}
 
 
+{#
 {% if notice.fourth and (notice.fourth.presentation or notice.fourth.biography or notice.fourth.editorInfo) %}
     <li class="list-information__item">
         <span class="list-information__label">{{ ("Quatrième de couverture")|trans }}</span>
@@ -149,5 +150,8 @@
         </ul>
     </li>
 {% endif %}
+#}
+
+{{ notice_macros.raw_detail(notice.fourth , 'bloc.autority-result-information.fourth'|trans) }}
 
 {{ notice_macros.detail(notice.contentsTable , 'bloc.autority-result-information.content-table'|trans) }}
