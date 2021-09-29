@@ -431,16 +431,16 @@ class Notice extends AbstractImage implements NoticeInterface, RecordInterface
     private $commercialNumbers;
 
     /**
-     * @var Quatrieme|null
-     * @JMS\Type("App\Model\Quatrieme")
-     * @JMS\SerializedName("quatrieme")
+     * @var string|null
+     * @JMS\Type("string")
+     * @JMS\SerializedName("quatrieme-html")
      */
     private $fourth;
 
     /**
      * @var string
      * @JMS\Type("string")
-     * @JMS\SerializedName("table-des-matieres")
+     * @JMS\SerializedName("table-des-matieres-html")
      */
     private $contentsTable;
 
@@ -635,9 +635,9 @@ class Notice extends AbstractImage implements NoticeInterface, RecordInterface
     }
 
     /**
-     * @return Quatrieme|null
+     * @return string|null
      */
-    public function getFourth(): ?Quatrieme
+    public function getFourth(): ?string
     {
         return $this->fourth;
     }

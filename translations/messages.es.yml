@@ -512,6 +512,7 @@ bloc:
     manifestation-location: 'Lieu de la manifestation'
     result-de: 'Résultat de'
     origins: 'Origine de la notice'
+    fourth: Quatrième de couverture
     content-table: Tables des matières
     periodicity-date: Date d'édition papier
     alternatif-title: Autre(s) forme(s) de titre

@@ -18,6 +18,26 @@
     {% endif %}
 {% endmacro %}
 
+{% macro raw_detail(object, label, glue =" ; ", classAppend="") %}
+    {% if object is not empty %}
+        <li class="list-information__item {{ classAppend }}">
+            <span class="list-information__label">{{ label|trans }}</span>
+            <ul class="list-information__sub-list" lang="fr">
+                {% if object is iterable %}
+                    {% for element in object %}
+                        <li class="list-information__sub-item">
+                            {{ element|raw }}
+                            {% if not loop.last %}{{ glue|nl2br }}{% endif %}
+                        </li>
+                    {% endfor %}
+                {% else %}
+                    <li class="list-information__sub-item">{{ object|raw }}</li>
+                {% endif %}
+            </ul>
+        </li>
+    {% endif %}
+{% endmacro %}
+
 {% macro detail_link(object, label, type, glue =", ") %}
     {% if object is not empty %}
         <li class="list-information__item">
