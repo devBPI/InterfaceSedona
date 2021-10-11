@@ -25,13 +25,12 @@
                     {{ 'bloc.notice-simple.document-unavailable'|trans }}
                     <span class="availability__status-detail"> : {{ object.availability }}</span></p>
                     {#<p> sourceId : {{ notice.sourceId }} - configurationId : {{ notice.configurationId }}</p>#}
-                    <a href="{{ path('notice_availablity_request', {"sourceId": notice.sourceId, 'configurationId':notice.configurationId}) }}"
-                    {#<a href="{{ path('notice_availablity_request', {"sourceId": notice.sourceId, 'configurationId':1}) }}"#}
+                    {#<a href="{{ path('notice_availablity_request', {"sourceId": notice.sourceId, 'configurationId':notice.configurationId}) }}"
                        class="btn list-result__content-button"
                        data-target="#modal-notified" data-toggle="modal" role="button"
                        title="{{ 'bloc.notice-simple.availability-label'|trans }}">
                         <img src="{{ asset('images/icones/icone-enveloppe.svg') }}" alt="" class="icone-enveloppe"/>
-                    </a>
+                    </a>#}
                 </p>
                 <p>{% if object.bookbinding %}{{ object.bookbinding }} {% endif %}</p>
             </li>
