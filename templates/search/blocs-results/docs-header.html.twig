@@ -11,7 +11,7 @@
 
 {% if seeAll is defined and (seeAll in [constant('App\\Model\\Notice::SEE_ONSHELF') , constant('App\\Model\\Notice::SEE_ONLINE')]) %}
     <a href="{{ add_see_all_into_uri(constant('App\\Model\\Notice::ALL')) }}" class="list-result__header-link">
-        {{ ('bloc.header-docs.'~type~'.see-more')|trans }}
+        {{ ('bloc.header-docs.'~type~'.see-all')|trans }}
         <span class="sr-only sr-only-focusable">{{ ('bloc.header-docs.'~type~'.see-more-sr-only')|trans }}</span>
     </a>
 {% else %}

@@ -413,11 +413,13 @@ bloc:
       title-sr-only: Documents en rayon, sélectionner tous les résultats
       in-ligne: 'Documents en rayon :'
       see-more: Voir tout
+      see-all: Voir tous les résultats
       see-more-sr-only: les documents en rayons
     online:
       title-sr-only: Documents en ligne, sélectionner tous les résultats
       in-ligne: 'Documents en ligne :'
       see-more: Voir tout
+      see-all: Voir tous les résultats
       see-more-sr-only: les documents en ligne
   notice-simple:          #Bloc 13 Notices simples en 2 colonnes
     result: Résultat numéro
