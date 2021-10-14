@@ -212,14 +212,21 @@ final class UserSelectionController extends AbstractController
     public function checkListsPermalinks(Request $request): JsonResponse
     {
         $contents = json_decode($request->getContent(), true);
-
-        $listPermalinkNotice = $this->selectionService->getPermalinks($this->searchProvider->CheckValidNoticePermalink($this->prepareXmlRequest($contents['notices'])));
-        if($this->prepareXmlRequest($contents['autorities'])){
-
-            $listPermalinkNotice +=$this->selectionService->getPermalinks($this->searchProvider->CheckValidAuthorityPermalink($this->prepareXmlRequest($contents['autorities'])));
+        $items = [];
+        $listPermalinkNotice = [];
+        if($xml = $this->prepareXmlRequest($contents['notices'])){
+            $listPermalinkNotice = $this->selectionService->getPermalinks($this->searchProvider->CheckValidNoticePermalink($xml));
+            $items['notices'] = $listPermalinkNotice;
         }
-        if( $this->prepareXmlRequest($contents['indices'])){
-            $listPermalinkNotice +=$this->selectionService->getPermalinks($this->searchProvider->CheckValidIndicePermalink($this->prepareXmlRequest($contents['indices'])));
+
+
+        if($xml =  $this->prepareXmlRequest($contents['autorities'])){
+            $items['autorites'] = $this->selectionService->getPermalinks($this->searchProvider->CheckValidAuthorityPermalink($xml));
+            $listPermalinkNotice += $items['autorites'] ;
+        }
+        if( $xml = $this->prepareXmlRequest($contents['indices'])){
+            $items['indices'] = $this->selectionService->getPermalinks($this->searchProvider->CheckValidIndicePermalink($xml));
+            $listPermalinkNotice +=$items['indices'];
         }
         if (count($listPermalinkNotice)===0 || (count($listPermalinkNotice) === 1 && empty($listPermalinkNotice[0])) ){
             return new JsonResponse([
@@ -227,6 +234,7 @@ final class UserSelectionController extends AbstractController
             );
         }
 
+        $request->getSession()->set('ItemsNotAvailable', \GuzzleHttp\json_encode($items));
         return new JsonResponse([
              $this->renderView('user/modal/check-permalink-list-success.html.twig',
                 $this->selectionService->getSelectionOfobjectByPermalinks($listPermalinkNotice)+

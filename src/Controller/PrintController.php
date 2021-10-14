@@ -58,4 +58,17 @@ final class PrintController extends AbstractController
 
         return $this->buildFileContent->buildFile($sendAttachement, UserSelectionDocument::class);
     }
+
+    private function getitemsIds($itemType, Request $request){
+        $items = $request->get($itemType);
+        $itemsUnvailable = (json_decode($request->getSession()->get('ItemsNotAvailable')))[$itemType];
+        if(count($itemsUnvailable)==0){
+            return $items;
+        }
+        $payload = array_filter($items, function($item) use($itemsUnvailable){
+            return !in_array($item, $itemsUnvailable);
+        });
+
+        return array_unique($payload);
+    }
 }

@@ -10,6 +10,7 @@ use App\Model\Exception\SelectionCategoryException;
 use App\Model\LdapUser;
 use App\Model\PermalinksStatus;
 use App\Model\PermalinkStatus;
+use App\Repository\UserSelectionDocumentRepository;
 use App\Repository\UserSelectionListRepository;
 use Doctrine\ORM\EntityManager;
 use Symfony\Component\HttpFoundation\Request;
@@ -386,12 +387,10 @@ final class SelectionListService extends AuthenticationService
         }
 
         if ($this->hasConnectedUser()) {
-            return ['lists' => $this->getListsOfCurrentUserByPermalinks($permalinks)];
+            return ['documents' => $this->getDocumentsOfCurrentUserByPermalinks($permalinks)];
         }
 
         return ['documents' => $this->getDocumentsFromSessionByPermalink($permalinks)];
-
-
     }
     /**
      * @return array|UserSelectionDocument[]
@@ -503,10 +502,23 @@ final class SelectionListService extends AuthenticationService
     {
         return array_unique(array_map(
             function (PermalinkStatus $document){
-                if (strtolower($document->getStatus())!=='found'){
+                if (strtolower($document->getStatus())!=='found' && strtolower($document->getStatus())!=='gone' ){
                     return $document->getPermalink();
                 }},
             $checkValidNoticePermalink->getPermalinkStatus()
         ));
+    }
+
+    private function getDocumentsOfCurrentUserByPermalinks(array $permalinks)
+    {
+        if ($this->hasConnectedUser()) {
+            /** @var UserSelectionDocumentRepository $userSelectionRepo */
+            $userSelectionRepo = $this->entityManager->getRepository(UserSelectionDocument::class);
+
+            return $userSelectionRepo
+                ->findAllOrderedByPermalinks($this->getUser(), $permalinks);
+        }
+
+        return [];
     }
 }

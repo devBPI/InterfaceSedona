@@ -286,20 +286,38 @@ class NoticeBuildFileService
     private function getNoticeWrapper(ExportNotice $attachment):PrintNoticeWrapper
     {
         $permalinkN = \json_decode($attachment->getNotices());
+
         $permalinkA = \json_decode($attachment->getAuthorities());
         $permalinkI = \json_decode($attachment->getIndices());
         $i=[];
         $n=[];
         $a=[];
         foreach ($permalinkA as $value){
-            $a[] = $this->noticeAuthority->getAuthority($value, !$attachment->isShortFormat()?:self::SHORT_PRINT);
+            try{
+                $a[] = $this->noticeAuthority->getAuthority($value, !$attachment->isShortFormat()?:self::SHORT_PRINT);
+            }catch(NoResultException $e){
+                continue;
+                // we ignore autorities when we get 410
+            }
         }
         foreach ($permalinkN as $value){
-            $n[] = $this->noticeProvider->getNotice($value, !$attachment->isShortFormat()?:self::SHORT_PRINT)->getNotice();
+            try {
+
+                $n[] = $this->noticeProvider->getNotice($value, !$attachment->isShortFormat()?:self::SHORT_PRINT)->getNotice();
+            }catch (NoResultException $e){
+                // we ignore notices when we get 410
+                continue;
+            }
         }
 
         foreach ($permalinkI as $value){
-            $i[] = $this->noticeAuthority->getIndiceCdu($value);
+            try{
+
+                $i[] = $this->noticeAuthority->getIndiceCdu($value);
+            }catch(NoResultException $exception){
+                // we ignore indices when we get 410
+                continue;
+            }
         }
 
         return new PrintNoticeWrapper([],  $a, $n, $i);
