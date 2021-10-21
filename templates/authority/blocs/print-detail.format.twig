@@ -20,15 +20,10 @@
         {{- pdf_occurence (notice, 'getIsni', 'bloc.autority-result-information.insi'|trans, format)|raw -}}
         {{- pdf_occurence (notice, 'getOrigins', 'bloc.autority-result-information.origins'|trans, format)|raw -}}
     {% else %}
-        {%   if  notice.type in ['Nom géographique et Concept', 'Nom géographique', 'Concept']%}
-            {{- pdf_occurence (notice, 'getOtherNames', 'bloc.autority-result-information.other-names'|trans, format)|raw -}}
-        {% endif %}
-        {% if notice.type in ['Personne', 'collectivité', 'oeuvre'] %}
-            {{- pdf_occurence (notice, 'getPrintDates', '', format)|raw -}}
-        {% endif %}
-        {% if notice.type in ['Personne', 'collectivité'] %}
-            {{- pdf_occurence (notice, 'getCountries', 'bloc.autority-result-information.country'|trans, format)|raw -}}
-        {% endif %}
+{%   if  notice.type in ['Nom géographique et Concept', 'Nom géographique', 'Concept']%}
+            {{- pdf_occurence (notice, 'getOtherNames', 'bloc.autority-result-information.other-names'|trans, format)|raw -}}{% endif %}
+{% if (notice.type|lower) in ['personne', 'collectivité', 'oeuvre'] %}{{- pdf_occurence (notice, 'getPrintDates', '', format)|raw -}}{% endif %}
+{% if (notice.type|lower) in ['personne', 'collectivité'] %}{{- pdf_occurence (notice, 'getCountries', 'bloc.autority-result-information.country'|trans, format)|raw -}}{% endif %}
         {{- pdf_occurence (notice, 'getLanguages', 'bloc.autority-result-information.language'|trans, format)|raw -}}
         {{- pdf_occurence (notice, 'getPrincipalActivities', 'bloc.autority-result-information.activity'|trans, format)|raw -}}
     {% endif %}

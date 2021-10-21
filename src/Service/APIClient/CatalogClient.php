@@ -70,9 +70,14 @@ class CatalogClient
             $this->manageResponseCode($response);
 
             return $response;
-        } catch (ConnectException $exception) {
+        }
+        catch (ConnectException $exception) {
             throw new ErrorAccessApiException(ErrorAccessApiException::MESSAGE, 500, $exception);
         } catch (ClientException|ServerException $exception) {
+            if ($exception->getCode()===410){
+                throw new NoResultException($exception->getMessage(), $exception->getCode(), $exception);
+            }
+
             $this->formatException($exception);
         }
     }

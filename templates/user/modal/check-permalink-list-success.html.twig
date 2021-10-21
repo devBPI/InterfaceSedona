@@ -16,19 +16,13 @@
                 <div class="col-12 col-md-10">
                     {% if app.user %}
                         <ul class="list-group">
-
-                        {% for i, list in lists %}
-
-                            {% for document in list.documents %}
-                                    <li > {{ document.title|truncate(35) }}</li>
-                            {% endfor %}
-
+                        {% for i, item in documents %}
+                                    <li > {{ item.title|truncate(35) }}</li>
                         {% endfor %}
                         </ul>
 
                     {% else %}
                         <ul class="list-group">
-
                         {% for document in documents %}
                             {% if document %}
                                     <li > {{ document.title|truncate(35) }}</li>
