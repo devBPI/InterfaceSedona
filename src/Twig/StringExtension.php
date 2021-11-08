@@ -25,6 +25,7 @@ class StringExtension extends AbstractExtension
             new TwigFilter('slugify', [$this, 'toSlugify']),
             new TwigFilter('wordwrap', [$this, 'wordwrap']),
             new TwigFilter('truncate', [$this, 'truncate']),
+            new TwigFilter('carrouselTitle', [$this, 'carrouselTitle']),
         ];
     }
 
@@ -97,6 +98,18 @@ class StringExtension extends AbstractExtension
     public function truncate(string $text, int $length = 20, string $ellipsis = '[...]'): string
     {
         return mb_strlen($text)>$length ? substr($text,0,$length).$ellipsis : $text;
+    }
+
+    public function carrouselTitle(string $text,$width = 25, string $ellipsis = '[...]') :string
+    {
+        $playlod = $this->wordwrap($text,$width);
+        if (count($playlod)>2) {
+            return $playlod[0]."/n".substr($playlod[1],0, $width-strlen($ellipsis)).$ellipsis;
+        } elseif (count($playlod) == 2) {
+            return implode("/n",$playlod);
+        } else {
+            return $playlod[0];
+        }
     }
 
     /**
