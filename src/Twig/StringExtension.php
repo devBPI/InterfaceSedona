@@ -23,6 +23,8 @@ class StringExtension extends AbstractExtension
             new TwigFilter('snake', [$this, 'toSnakeCase']),
             new TwigFilter('camel', [$this, 'toCamelCase']),
             new TwigFilter('slugify', [$this, 'toSlugify']),
+            new TwigFilter('wordwrap', [$this, 'wordwrap']),
+            new TwigFilter('truncate', [$this, 'truncate']),
         ];
     }
 
@@ -73,6 +75,30 @@ class StringExtension extends AbstractExtension
     public function toSnakeCase(string $text): string
     {
         return strtolower(ltrim(preg_replace('/([A-Z])/', '_\\1', $text), '_'));
+    }
+
+    /**
+     * @param string $text
+     * @return array
+     */
+    public function wordwrap(string $text,
+                             $width = 25,
+                             string $break = "\n",
+                             bool $cut_long_words = true
+    ): array
+    {
+        return explode($break, wordwrap($text,$width,$break,$cut_long_words));
+    }
+
+    /**
+     * @param string $text
+     * @return string
+     */
+    public function truncate(string $text,
+                             int $length = 20, string $ellipsis = '...'
+    ): string
+    {
+        return mb_strlen($text)>$length ? substr($text,0,$length).$ellipsis : $text;
     }
 
     /**
