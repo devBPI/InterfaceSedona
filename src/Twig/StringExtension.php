@@ -94,9 +94,7 @@ class StringExtension extends AbstractExtension
      * @param string $text
      * @return string
      */
-    public function truncate(string $text,
-                             int $length = 20, string $ellipsis = '...'
-    ): string
+    public function truncate(string $text, int $length = 20, string $ellipsis = '[...]'): string
     {
         return mb_strlen($text)>$length ? substr($text,0,$length).$ellipsis : $text;
     }
