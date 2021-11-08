@@ -104,9 +104,9 @@ class StringExtension extends AbstractExtension
     {
         $playlod = $this->wordwrap($text,$width);
         if (count($playlod)>2) {
-            return $playlod[0]."/n".substr($playlod[1],0, $width-strlen($ellipsis)).$ellipsis;
+            return $playlod[0]."\n".substr($playlod[1],0, $width-strlen($ellipsis)).$ellipsis;
         } elseif (count($playlod) == 2) {
-            return implode("/n",$playlod);
+            return implode("\n",$playlod);
         } else {
             return $playlod[0];
         }
