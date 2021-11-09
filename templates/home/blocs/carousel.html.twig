@@ -15,9 +15,9 @@
 					<div class="carousel__slide-image">
 						<img src="{{ item.image is not empty ? path('binary_image', {'content':item.image, 'type': item.type | slugify}) : asset(item.defaultImage) }}" alt="" class="img-fluid"/>
 					</div>
-					<p class="n1 carousel__slide-title">{{ item.title }}</p>
+					<p class="n1 carousel__slide-title">{{ item.title|carrouselTitle|nl2br }}</p>
 					{% if item.creator is not empty %}
-						<p class="n2 carousel__slide-subtitle">{{ item.creator }}</p>
+						<p class="n2 carousel__slide-subtitle">{{ item.creator|carrouselTitle|nl2br }}</p>
 					{% endif %}
 				</div>
 			{% endfor %}
