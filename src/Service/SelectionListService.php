@@ -502,7 +502,7 @@ final class SelectionListService extends AuthenticationService
     {
         return array_unique(array_map(
             function (PermalinkStatus $document){
-                if (strtolower($document->getStatus())!=='found' && strtolower($document->getStatus())!=='gone' ){
+                if (strtolower($document->getStatus())!=='found'){
                     return $document->getPermalink();
                 }},
             $checkValidNoticePermalink->getPermalinkStatus()
