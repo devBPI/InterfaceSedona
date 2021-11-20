@@ -219,21 +219,22 @@ final class UserSelectionController extends AbstractController
             $items['notices'] = $listPermalinkNotice;
         }
 
-
         if($xml =  $this->prepareXmlRequest($contents['autorities'])){
             $items['autorites'] = $this->selectionService->getPermalinks($this->searchProvider->CheckValidAuthorityPermalink($xml));
-            $listPermalinkNotice += $items['autorites'] ;
+            $listPermalinkNotice = array_merge($listPermalinkNotice,$items['autorites']) ;
         }
         if( $xml = $this->prepareXmlRequest($contents['indices'])){
             $items['indices'] = $this->selectionService->getPermalinks($this->searchProvider->CheckValidIndicePermalink($xml));
-            $listPermalinkNotice +=$items['indices'];
+            $listPermalinkNotice =  array_merge($listPermalinkNotice, $items['indices']);
         }
+
+        $listPermalinkNotice =  array_unique($listPermalinkNotice);
+
         if (count($listPermalinkNotice)===0 || (count($listPermalinkNotice) === 1 && empty($listPermalinkNotice[0])) ){
             return new JsonResponse([
                     $request->get('action', 'export')]
             );
         }
-
         $request->getSession()->set('ItemsNotAvailable', \GuzzleHttp\json_encode($items));
         return new JsonResponse([
              $this->renderView('user/modal/check-permalink-list-success.html.twig',
