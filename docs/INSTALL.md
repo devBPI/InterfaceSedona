@@ -37,6 +37,7 @@ et lancer les commandes suivantes dans le dossier d'installation
     $ git clone git@git.sedona.fr:bpi/catalogue/bpi-catalogue.git
 
     $ cd bpi-catalogue
+    $ cp .env.dist .env
     $ docker-compose up
 ```
 
