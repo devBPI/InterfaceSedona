@@ -516,7 +516,7 @@ final class SelectionListService extends AuthenticationService
             $userSelectionRepo = $this->entityManager->getRepository(UserSelectionDocument::class);
 
             return $userSelectionRepo
-                ->findAllOrderedByPermalinks($this->getUser(), $permalinks);
+                ->getByPermalinks($this->getUser(), $permalinks);
         }
 
         return [];

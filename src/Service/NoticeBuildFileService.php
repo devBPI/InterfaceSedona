@@ -15,7 +15,9 @@ use App\Service\Provider\NoticeAuthorityProvider;
 use App\Service\Provider\NoticeProvider;
 use App\Utils\PrintNoticeWrapper;
 use Knp\Bundle\SnappyBundle\Snappy\Response\PdfResponse;
+use mysql_xdevapi\Exception;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Twig\Environment;
 
@@ -42,6 +44,10 @@ class NoticeBuildFileService
      * @var \Twig_Environment
      */
     private $templating;
+    /**
+     * @var SessionInterface
+     */
+    private $session;
 
     /**
      * NoticeBuildFileService constructor.
@@ -49,18 +55,21 @@ class NoticeBuildFileService
      * @param NoticeAuthorityProvider $noticeAuthority
      * @param \Knp\Snappy\Pdf $knpSnappy
      * @param Environment $templating
+     * @param SessionInterface $session
      */
     public function __construct(
         NoticeProvider $noticeProvider,
         NoticeAuthorityProvider $noticeAuthority,
          \Knp\Snappy\Pdf $knpSnappy,
-        Environment $templating
+        Environment $templating,
+        SessionInterface $session
         )
     {
         $this->noticeProvider   = $noticeProvider;
         $this->noticeAuthority  = $noticeAuthority;
         $this->knpSnappy        = $knpSnappy;
         $this->templating       = $templating;
+        $this->session = $session;
     }
 
     /**
@@ -292,34 +301,37 @@ class NoticeBuildFileService
         $i=[];
         $n=[];
         $a=[];
+
+        $listPermalinks = json_decode($this->session->get('ItemsNotAvailable', ['notices'=>[],'autorites'=>[], 'indices'=>[]]), true);
         foreach ($permalinkA as $value){
             try{
-                $a[] = $this->noticeAuthority->getAuthority($value, !$attachment->isShortFormat()?:self::SHORT_PRINT);
+            if(!in_array($value, $listPermalinks['autorites'])){
+                $a[] = $this->noticeAuthority->getAuthority($value, !$attachment->isShortFormat() ?: self::SHORT_PRINT);
+            }
             }catch(NoResultException $e){
-                continue;
                 // we ignore autorities when we get 410
             }
         }
         foreach ($permalinkN as $value){
             try {
-
-                $n[] = $this->noticeProvider->getNotice($value, !$attachment->isShortFormat()?:self::SHORT_PRINT)->getNotice();
-            }catch (NoResultException $e){
+                if(!in_array($value, $listPermalinks['notices'])) {
+                    $n[] = $this->noticeProvider->getNotice($value, !$attachment->isShortFormat() ?: self::SHORT_PRINT)->getNotice();
+                }
+            }catch (\Exception $e){
                 // we ignore notices when we get 410
-                continue;
             }
         }
 
         foreach ($permalinkI as $value){
             try{
-
-                $i[] = $this->noticeAuthority->getIndiceCdu($value);
+                if(!in_array($value, $listPermalinks['indices'])) {
+                    $i[] = $this->noticeAuthority->getIndiceCdu($value);
+                }
             }catch(NoResultException $exception){
+
                 // we ignore indices when we get 410
-                continue;
             }
         }
-
         return new PrintNoticeWrapper([],  $a, $n, $i);
     }
 }
