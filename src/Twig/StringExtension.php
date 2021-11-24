@@ -95,16 +95,19 @@ class StringExtension extends AbstractExtension
      * @param string $text
      * @return string
      */
-    public function truncate(string $text, int $length = 20, string $ellipsis = '[...]'): string
+    public function truncate(string $text, int $length = 20, string $ellipsis = '[…]'): string
     {
         return mb_strlen($text)>$length ? substr($text,0,$length).$ellipsis : $text;
     }
 
-    public function carrouselTitle(string $text,$width = 25, string $ellipsis = '[...]') :string
+    public function carrouselTitle(string $text,$width = 24, string $ellipsis = '[…]') :string
     {
         $playlod = $this->wordwrap($text,$width);
         if (count($playlod)>2) {
-            return $playlod[0]."\n".substr($playlod[1],0, $width-strlen($ellipsis)).$ellipsis;
+            $nb = $width-strlen($ellipsis);
+            $subPayload = $this->wordwrap($playlod[1],$nb,"\n", false);
+            $subPayload[0] = strlen($subPayload[0]) < $nb ? trim($subPayload[0])." " : trim($subPayload[0]);
+            return $playlod[0]."\n".$subPayload[0].$ellipsis;
         } elseif (count($playlod) == 2) {
             return implode("\n",$playlod);
         } else {
