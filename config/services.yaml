@@ -6,7 +6,7 @@
 parameters:
   locale: 'fr'
   api_dir_name: '/CatalogueWebService/api/'
-  api_base_url: "https://%env(CATALOG_API_HOST)%%api_dir_name%"
+  api_base_url: "http://%env(CATALOG_API_HOST)%%api_dir_name%"
 #  api_base_url: "%env(CATALOG_API_PROTOCOL)%://%env(CATALOG_API_HOST)%%api_dir_name%"
 
 services:
@@ -46,8 +46,13 @@ services:
   App\Service\HistoryService:
     arguments: ['@doctrine.orm.entity_manager']
   App\Service\SelectionListService:
-    arguments: ['@doctrine.orm.entity_manager']
+    arguments:
+      $entityManager : '@doctrine.orm.entity_manager'
+      $logger : '@monolog.logger'
   App\Service\SearchService:
+    arguments:
+      $logger : '@monolog.logger'
+  App\Service\LoggerService:
     arguments:
       $logger : '@monolog.logger'
   App\Service\BreadCrumbBuilder:
