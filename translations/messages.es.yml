@@ -96,13 +96,14 @@ footer:
     rss: Suscribirse al RSS de la Bpi
 
 modal:
+  email-example: (nom@exemple.com)
   wait-message: Veuillez patienter
   confirm-message:
     print: Ils n'apparaîtront pas dans la liste que vous imprimez
     export: Ils n'apparaîtront pas dans la liste que vous exportez
+    email-example: (nom@exemple.com)
   check-list:
     title: "Attention, un ou plusieurs éléments de votre sélection ne sont plus présents dans le catalogue"
-  email-example: (nom@exemple.com)
   list-create:          #Modal 01  Création d'une liste
     title: Créer une nouvelle liste
     mandatory-field: La saisie du titre de la liste est obligatoire

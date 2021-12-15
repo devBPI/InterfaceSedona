@@ -95,6 +95,7 @@ footer:
     rss: Bpi RSS feed
 
 modal:
+  email-example: (nom@exemple.com)
   wait-message: Veuillez patienter
   confirm-message:
     print: Ils n'apparaîtront pas dans la liste que vous imprimez
