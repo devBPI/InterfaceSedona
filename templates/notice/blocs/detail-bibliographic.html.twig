@@ -92,16 +92,20 @@
     </ul>
 </div>
 <div class="col-12">
+    {% if notice.copies is defined and notice.copies is not null and notice.copies|length %}
     <ul lang="fr" class="bibliographic-result__availability availability js-seeMoreAvailability">
         {% for available in notice.copies | sort((a, b) => a.cote <=> b.cote) %}
             {{ macros.availibility(available, notice) }}
         {% endfor %}
     </ul>
+    {% endif %}
+    {% if notice.links is defined and  notice.links is not null and notice.links|length %}
     <ul lang="fr" class="bibliographic-result__availability availability js-seeMoreAvailability">
         {% for link in notice.links | sort((a, b) => a.title <=> b.title) %}
             {{ macros.availibility(link, notice) }}
         {% endfor %}
     </ul>
+    {% endif %}
 
 </div>
 
