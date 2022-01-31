@@ -21,6 +21,8 @@ use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Twig\Environment;
 
+use Monolog\Logger;
+
 /**
  * Class NoticeBuildFileService
  * @package App\Service
@@ -48,6 +50,10 @@ class NoticeBuildFileService
      * @var SessionInterface
      */
     private $session;
+    /**
+     * @var Logger
+     */
+    private $logger;
 
     /**
      * NoticeBuildFileService constructor.
@@ -62,7 +68,8 @@ class NoticeBuildFileService
         NoticeAuthorityProvider $noticeAuthority,
          \Knp\Snappy\Pdf $knpSnappy,
         Environment $templating,
-        SessionInterface $session
+        SessionInterface $session,
+        Logger $logger
         )
     {
         $this->noticeProvider   = $noticeProvider;
@@ -70,6 +77,7 @@ class NoticeBuildFileService
         $this->knpSnappy        = $knpSnappy;
         $this->templating       = $templating;
         $this->session = $session;
+        $this->logger = $logger;
     }
 
     /**
@@ -294,6 +302,12 @@ class NoticeBuildFileService
      */
     private function getNoticeWrapper(ExportNotice $attachment):PrintNoticeWrapper
     {
+
+        /*$this->logger->info("#####################1");
+        $this->logger->info("###a ".($attachment->getAuthorities()));
+        $this->logger->info("###n ".($attachment->getNotices()));
+        $this->logger->info("###i ".($attachment->getIndices()));
+        $this->logger->info("#####################1.5");*/
         $permalinkN = \json_decode($attachment->getNotices());
 
         $permalinkA = \json_decode($attachment->getAuthorities());
@@ -302,36 +316,56 @@ class NoticeBuildFileService
         $n=[];
         $a=[];
 
+        /*$this->logger->info("###a ".implode("|", $permalinkA));
+        $this->logger->info("###n ".implode("|", $permalinkN));
+        $this->logger->info("###i ".implode("|", $permalinkI));*/
+        //$listPermalinks = \json_decode($this->session->get('ItemsNotAvailable', ['notices'=>[],'autorites'=>[], 'indices'=>[]]), true);
+        /*$this->logger->info("#####################2");
+        $listPermalinks = $this->session->get('ItemsNotAvailable', ['notices'=>[],'autorites'=>[], 'indices'=>[]]);
+        $this->logger->info("###~ ". $listPermalinks);
+        $this->logger->info("#####################2.5");*/
         $listPermalinks = json_decode($this->session->get('ItemsNotAvailable', ['notices'=>[],'autorites'=>[], 'indices'=>[]]), true);
+        /*$this->logger->info("#####################2.6");
+        //$this->logger->info("###! ".implode("|", $listPermalinks));
+        $this->logger->info("#####################3");*/
         foreach ($permalinkA as $value){
             try{
             if(!in_array($value, $listPermalinks['autorites'])){
                 $a[] = $this->noticeAuthority->getAuthority($value, !$attachment->isShortFormat() ?: self::SHORT_PRINT);
+                //array_push($a, $this->noticeAuthority->getAuthority($value, !$attachment->isShortFormat() ?: self::SHORT_PRINT));
             }
             }catch(NoResultException $e){
                 // we ignore autorities when we get 410
             }
         }
+        //$this->logger->info("#####################4");
         foreach ($permalinkN as $value){
             try {
                 if(!in_array($value, $listPermalinks['notices'])) {
                     $n[] = $this->noticeProvider->getNotice($value, !$attachment->isShortFormat() ?: self::SHORT_PRINT)->getNotice();
+                    //array_push($n, $this->noticeProvider->getNotice($value, !$attachment->isShortFormat() ?: self::SHORT_PRINT)->getNotice());
                 }
             }catch (\Exception $e){
                 // we ignore notices when we get 410
             }
         }
-
+        //$this->logger->info("#####################5");
         foreach ($permalinkI as $value){
             try{
                 if(!in_array($value, $listPermalinks['indices'])) {
+                    //$i[] = $this->noticeAuthority->getIndiceCdu($value);
                     $i[] = $this->noticeAuthority->getIndiceCdu($value);
+                    //array_push($i, $this->noticeAuthority->getIndiceCdu($value));
                 }
             }catch(NoResultException $exception){
 
                 // we ignore indices when we get 410
             }
         }
+        /*$this->logger->info("#####################6");
+        $this->logger->info("###a ".implode("|", $a));
+        $this->logger->info("###n ".implode("|", $n));
+        $this->logger->info("###i ".implode("|", $i));*/
         return new PrintNoticeWrapper([],  $a, $n, $i);
     }
 }

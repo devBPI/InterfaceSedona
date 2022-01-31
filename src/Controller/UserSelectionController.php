@@ -250,7 +250,7 @@ final class UserSelectionController extends AbstractController
                     $request->get('action', 'export')]
             );
         }
-        $request->getSession()->set('ItemsNotAvailable', \GuzzleHttp\json_encode($items));
+        $request->getSession()->set('ItemsNotAvailable', json_encode($items));
         return new JsonResponse([
              $this->renderView('user/modal/check-permalink-list-success.html.twig',
                 $this->selectionService->getSelectionOfobjectByPermalinks($listPermalinkNotice)+
