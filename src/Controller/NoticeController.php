@@ -56,17 +56,26 @@ final class NoticeController extends AbstractController
 	 */
  	public function bibliographicRecordAction(NoticeThemed $notice, LoggerInterface $logger)
 	{
-		$simpleXml = new SimpleXMLElement($notice->getNotice()->getContentsTable());
-		$xmlTxt =  $simpleXml->asXML();
-		$xml = new DOMDocument('1.0', 'utf-8');
-		$xml->loadXML($xmlTxt);
+		$tableMatieres = null;
+		if(null != $notice->getNotice()->getContentsTable())
+		{
+			$simpleXml = new SimpleXMLElement($notice->getNotice()->getContentsTable());
+			$xmlTxt =  $simpleXml->asXML();
+			$xml = new DOMDocument('1.0', 'utf-8');
+			$xml->loadXML($xmlTxt);
 
-		$xslHeadUrl = "../templates/xslt/table-matieres.xsl";
-		$xsl = new DOMDocument('1.0', 'utf-8');
-		$xsl->load($xslHeadUrl);
-		$xslt = new XSLTProcessor();
-		$xslt->importStylesheet($xsl);
-		$tableMatieres = $xslt->transformToXML($xml);
+			$xslHeadUrl = "../templates/xslt/table-matieres.xsl";
+			$xsl = new DOMDocument('1.0', 'utf-8');
+			$xsl->load($xslHeadUrl);
+			$xslt = new XSLTProcessor();
+			$xslt->importStylesheet($xsl);
+			$tableMatieres = $xslt->transformToXML($xml);
+		}
+		$quatrieme = null;
+		if(null != $notice->getNotice()->getFourth())
+		{
+			$quatrieme = "<div id=\"quatrieme\">".$notice->getNotice()->getFourth()."</div>";
+		}
 
 		$printRoute = $this->generateUrl(
 			'record_bibliographic_pdf',
@@ -88,13 +97,14 @@ final class NoticeController extends AbstractController
 		$rows = $this->navigationService->getSearchRows();
 		return $this->render('notice/index.html.twig', [
 			'object'            => $notice,
+			'quatrieme'         => $quatrieme,
 			'tableMatieres'     => $tableMatieres,
 			'toolbar'           => Notice::class,
 			'navigation'        => $navigation,
 			'printRoute'        => $printRoute,
 			'page'              => $page,
 			'rows'              => $rows,
-			'seeAll'           => $this->navigationService->getSeeAll(),
+			'seeAll'            => $this->navigationService->getSeeAll(),
 		]);
 	}
 
