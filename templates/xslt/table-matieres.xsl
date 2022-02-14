@@ -30,7 +30,7 @@
 				</ul>
 				<!--<xsl:value-of select="."/>-->
 			</div>
-			<button onclick="voirPlusMoins(this);">Voir plus</button>
+			<button class="btn btn-small-link" onclick="voirPlusMoins(this);">Voir plus</button>
 		</div>
 		<br />
 	</xsl:template>
