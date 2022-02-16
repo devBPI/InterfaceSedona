@@ -152,6 +152,66 @@ header:
           name: FAQ Bpi Numérique
           link: https://www.bpi.fr/faq-bpi-numerique/
 
+help:
+  La recherche:
+    link: #
+    sronly: Accéder à l'aide sur la recherche
+    list:
+      id: ul-recherche
+      items:
+        -
+          name: La recherche
+          link: /fr/aide/recherche
+          children:
+            Recherche simple: /fr/aide/recherche#recherche-simple
+            Recherche avancée: /fr/aide/recherche#recherche-avancee
+            Parcours de recherche: /fr/aide/recherche#parcours-recherche
+
+  Exploitation des résultats:
+    link: #
+    sronly: Accéder à l'aide sur l'exploitation des résultats
+    list:
+      id: ul-recherche
+      items:
+        -
+          name: Exploitation des résultats
+          link: /fr/aide/exploitationresultats
+          children:
+            Liste de résultats: /fr/aide/exploitationresultats#liste-resultats
+            Affiner sa recherche: /fr/aide/exploitationresultats#affiner
+            Notice détaillée: /fr/aide/exploitationresultats#notice-detaillee
+            Notice d'autorité: /fr/aide/exploitationresultats#notice-autorite
+            Relancer la recherche dans d'autre catalogues: /fr/aide/exploitationresultats#relance-recherche
+
+  Services:
+    link: #
+    sronly: Accéder à l'aide sur les services
+    list:
+      id: ul-recherche
+      items:
+        -
+          name: Services
+          link: /fr/aide/services
+          children:
+            Alerte de mise en rayon: /fr/aide/services#alerte-mise-en-rayo
+            Impression et export: /fr/aide/services#impression-export
+            Suggestion d'achat: /fr/aide/services#suggestion-achat
+            Historique de recherche: /fr/aide/services#historique
+            Ma sélection: /fr/aide/services#selection
+            Signaler une erreur: /fr/aide/services#signaler-erreur
+
+  Mon compte:
+    link: #
+    sronly: Accéder à l'aide sur son compte
+    list:
+      id: ul-recherche
+      items:
+        -
+          name: Mon compte
+          link: /fr/aide/compte
+          children:
+            Mes listes: /fr/aide/compte#listes
+            Mon historique: /fr/aide/compte#mon-historique
 
 footer:
   La Bpi:

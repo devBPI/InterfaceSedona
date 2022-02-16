@@ -40,6 +40,7 @@ class MenuCreator extends AbstractExtension
     {
         return [
             new TwigFunction('header_menu', [$this, 'getHeaderMenu']),
+            new TwigFunction('help_menu',   [$this, 'getHelpMenu']),
             new TwigFunction('footer_menu', [$this, 'getFooterMenu'])
         ];
     }
@@ -59,6 +60,17 @@ class MenuCreator extends AbstractExtension
     {
         if (is_array($this->menus)) {
             return $this->menus['header'];
+        }
+
+        return [];
+    }
+    /**
+     * @return array
+     */
+    public function getHelpMenu(): array
+    {
+        if (is_array($this->menus)) {
+            return $this->menus['help'];
         }
 
         return [];

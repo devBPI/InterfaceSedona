@@ -92,6 +92,7 @@
 			font-size: $font-base px;
 			font-weight: $font-medium;
 			line-height: 1;
+			border: 1px solid #727272;
 
 			@include media-breakpoint-up(md) {
 				border-right: $border-thin;
@@ -135,7 +136,7 @@
 		&-toggle {
 
 			&:after {
-				display: none;
+				//display: none;
 			}
 		}
 
@@ -284,7 +285,8 @@
 				&:last-child {
 
 					.nav-link {
-						border-bottom: $border-thin;
+						//border-bottom: $border-thin;
+						//border: 1px solid #727272;
 
 						@include media-breakpoint-up(sm) {
 							border-right: $border-thin;
@@ -349,6 +351,31 @@
 	}
 }
 
+#navbar-help {
+	margin-bottom: 15px;
+	border: none;
+	.nav-item {
+		.nav-link {
+			border: 1px solid $grey;
+			border-right: none;
+			font-weight: normal;
+			&:focus {
+				border-bottom: 1px solid transparent;
+			}
+		}
+		&:last-child {
+			.nav-link {
+				border-right: 1px solid $grey;
+			}
+		}
+		.dropdown-menu {
+			padding-top: 15px;
+			.dropdown-item {
+				font-size: 1rem;
+			}
+		}
+	}
+}
 
 // Icone Burger 
 
