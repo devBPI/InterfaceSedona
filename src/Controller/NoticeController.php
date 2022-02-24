@@ -47,6 +47,25 @@ final class NoticeController extends AbstractController
 		$this->navigationService = $navigationService;
 	}
 
+	private function xsltTransform(string $baseXml, string $xslUrl)
+	{
+		$simpleXml = new SimpleXMLElement($baseXml);
+		$xmlTxt =  $simpleXml->asXML();
+
+		$xml = new DOMDocument('1.0', 'utf-8');
+		$xml->loadXML($xmlTxt);
+
+		$xsl = new DOMDocument('1.0', 'utf-8');
+		$xsl->load($xslUrl);
+
+		$xslt = new XSLTProcessor();
+		$xslt->importStylesheet($xsl);
+
+		$result = $xslt->transformToXML($xml);
+
+		return $result;
+	}
+
 	/**
 	 * @Route("/{parcours}/document/{permalink}", methods={"GET","HEAD"}, name="record_bibliographic_parcours", requirements={"permalink"=".+"})
 	 * @Route("/document/{permalink}", methods={"GET","HEAD"}, name="record_bibliographic", requirements={"permalink"=".+"})
@@ -59,22 +78,13 @@ final class NoticeController extends AbstractController
 		$tableMatieres = null;
 		if(null != $notice->getNotice()->getContentsTable())
 		{
-			$simpleXml = new SimpleXMLElement($notice->getNotice()->getContentsTable());
-			$xmlTxt =  $simpleXml->asXML();
-			$xml = new DOMDocument('1.0', 'utf-8');
-			$xml->loadXML($xmlTxt);
-
-			$xslHeadUrl = "../templates/xslt/table-matieres.xsl";
-			$xsl = new DOMDocument('1.0', 'utf-8');
-			$xsl->load($xslHeadUrl);
-			$xslt = new XSLTProcessor();
-			$xslt->importStylesheet($xsl);
-			$tableMatieres = $xslt->transformToXML($xml);
+			$tableMatieres = $this->xsltTransform($notice->getNotice()->getContentsTable(), "../templates/xslt/table-matieres.xsl");
 		}
 		$quatrieme = null;
 		if(null != $notice->getNotice()->getFourth())
 		{
-			$quatrieme = "<div id=\"quatrieme\">".$notice->getNotice()->getFourth()."</div>";
+			//$quatrieme = "<div id=\"quatrieme\"><div class=\"voirPlusMoins plie\">".$notice->getNotice()->getFourth()."</div><button class=\"btn btn-small-link\" onclick=\"voirPlusMoins(this);\">Voir plus</button></div>";
+			$quatrieme = $this->xsltTransform($notice->getNotice()->getFourth(), "../templates/xslt/quatrieme.xsl");
 		}
 
 		$printRoute = $this->generateUrl(
