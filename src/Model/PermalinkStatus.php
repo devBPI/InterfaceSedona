@@ -13,11 +13,13 @@ class PermalinkStatus
     /**
       * @var string
      * @JMS\Type("string")
+     * @JMS\SerializedName("status")
      */
     private $status;
     /**
      * @var string
      * @JMS\Type("string")
+     * @JMS\SerializedName("permalink")
      */
     private $permalink;
 
@@ -33,7 +35,7 @@ class PermalinkStatus
      * @param string $status
      * @return $this
      */
-    public function setStatus(string $status): Status
+    public function setStatus(string $status): string
     {
         $this->status = $status;
         return $this;
@@ -42,16 +44,16 @@ class PermalinkStatus
     /**
      * @return mixed
      */
-    public function getPermalink()
+    public function getPermalink(): string
     {
         return $this->permalink;
     }
 
     /**
-     * @param mixed $permalink
+     * @param string $permalink
      * @return PermalinkStatus
      */
-    public function setPermalink($permalink)
+    public function setPermalink($permalink): string
     {
         $this->permalink = $permalink;
         return $this;

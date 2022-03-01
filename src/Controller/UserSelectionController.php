@@ -245,12 +245,13 @@ final class UserSelectionController extends AbstractController
 
         $listPermalinkNotice =  array_unique($listPermalinkNotice);
 
+        $request->getSession()->set('ItemsNotAvailable', json_encode($items)); //Important de se trouver avant les returns pour le capter dans src/Service/NoticeBuildFileService.php->getNoticeWrapper
+
         if (count($listPermalinkNotice)===0 || (count($listPermalinkNotice) === 1 && empty($listPermalinkNotice[0])) ){
             return new JsonResponse([
                     $request->get('action', 'export')]
             );
         }
-        $request->getSession()->set('ItemsNotAvailable', json_encode($items));
         return new JsonResponse([
              $this->renderView('user/modal/check-permalink-list-success.html.twig',
                 $this->selectionService->getSelectionOfobjectByPermalinks($listPermalinkNotice)+
