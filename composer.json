@@ -2,6 +2,7 @@
     "name": "bpi/catalogue-site",
     "version": "1.1.2-dev",
     "description": "Site Web Catalogue de la BPI",
+    //1.1.2 - CTLG-550, CTLG-551, CTLG-574
     "type": "project",
     "license": "proprietary",
     "require": {
