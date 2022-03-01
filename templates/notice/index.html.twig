@@ -54,9 +54,10 @@
 {% endblock %}
 
 {% block javascripts %}
-    {{ parent() }}
+	{{ parent() }}
 
-    {% if app.environment != 'test' %}
-        {{ encore_entry_script_tags('carousel') }}
-    {% endif %}
+	{% if app.environment != 'test' %}
+		{{ encore_entry_script_tags('carousel') }}
+		{{ encore_entry_script_tags('widgets') }}
+	{% endif %}
 {% endblock %}

@@ -1,0 +1,9 @@
+.voirPlusMoins
+{
+	line-height: 1.5em;
+	&.plie
+	{
+		max-height: 3em;
+		overflow: hidden;
+	}
+}

@@ -1,7 +1,7 @@
-<div lang="fr" class="navbar navbar-expand navbar--help">
+<!--<nav lang="fr" class="navbar navbar-expand-md navbar--help">
 	<ul class="navbar-nav nav">
-		<li class="nav-item dropdown-link">
-			<a class="nav-link dropdown-toggle" href="{{ path('help_search') }}" aria-expanded="false">La recherche</a>
+		<li class="nav-item dropdown">
+			<a class="nav-link dropdown-toggle"  href="{#{ path('help_search') }#}" role="button" data-toggle="dropdown" aria-haspopup="true"  aria-expanded="false">La recherche</a>
 			<div class="dropdown-menu">
 				<a href="{{ path('help_search') }}#recherche-simple" class="dropdown-item dropdown-item__title">Recherche simple</a>
 				<a href="{{ path('help_search') }}#recherche-avancee" class="dropdown-item dropdown-item__title">Recherche avancée</a>
@@ -37,4 +37,29 @@
 			</div>
 		</li>
 	</ul>
-</div>
+</nav>-->
+
+
+
+
+
+<nav class="navbar navbar-expand-md" role="navigation" aria-label="menu principal" id="navbar-help">
+	<div class="collapse navbar-collapse" id="navbar-help-content">
+		<ul class="navbar-nav nav">
+			{% for label, nav in help_menu() %}
+				<li style="position: relative; width: auto;" class="nav-item{% if nav.list is defined %} dropdown{% endif %}{% if nav.active is defined %} active{% endif %}">
+					{% if nav.active is defined %}
+						<span class="sr-only"> - page active</span>
+					{% endif %}
+
+					{% if nav.list is defined %}
+						<a class="nav-link dropdown-toggle" href="{{ nav.link }}" id="{{ nav.list.id }}" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="button">{{ label }}</a>
+						{% include "help/navbar-help-dropdown.html.twig" with {'list': nav.list} %}
+					{% else %}
+						<a href="{{ nav.link }}" class="nav-link">{{ label }}</a>
+					{% endif %}
+				</li>
+			{% endfor %}
+		</ul>
+	</div>
+</nav>
