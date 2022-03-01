@@ -13,7 +13,7 @@
 		//max-height: calc(var(--lh) * var(--max-lines));
 		overflow: hidden;
 
-		&::before
+		/*&::before
 		{
 			content: "[...]";
 			//position: absolute;
@@ -23,7 +23,7 @@
 			//right: 0;
 			float: right;
 			margin-left: 0.5em;
-		}
+		}*/
 
 		&::after
 		{
