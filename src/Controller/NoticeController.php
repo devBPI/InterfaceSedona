@@ -19,6 +19,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use \Exception;
 
 /**
  * Class NoticeController
@@ -49,6 +50,8 @@ final class NoticeController extends AbstractController
 
 	private function xsltTransform(string $baseXml, string $xslUrl)
 	{
+		//$e = new Exception();;
+		//echo $baseXml;
 		$simpleXml = new SimpleXMLElement($baseXml);
 		$xmlTxt =  $simpleXml->asXML();
 
@@ -62,8 +65,8 @@ final class NoticeController extends AbstractController
 		$xslt->importStylesheet($xsl);
 
 		$result = $xslt->transformToXML($xml);
-
 		return $result;
+		return null;
 	}
 
 	/**
@@ -78,13 +81,25 @@ final class NoticeController extends AbstractController
 		$tableMatieres = null;
 		if(null != $notice->getNotice()->getContentsTable())
 		{
-			$tableMatieres = $this->xsltTransform($notice->getNotice()->getContentsTable(), "../templates/xslt/table-matieres.xsl");
+			try
+			{
+				$tableMatieres = $this->xsltTransform($notice->getNotice()->getContentsTable(), "../templates/xslt/table-matieres.xsl");
+			} catch(Exception $e)
+			{
+				$logger->error("Erreur durant le traitement de la table des matières : ".$e->getMessage()." : ".$notice->getNotice()->getContentsTable());
+			}
 		}
 		$quatrieme = null;
 		if(null != $notice->getNotice()->getFourth())
 		{
 			//$quatrieme = "<div id=\"quatrieme\"><div class=\"voirPlusMoins plie\">".$notice->getNotice()->getFourth()."</div><button class=\"btn btn-small-link\" onclick=\"voirPlusMoins(this);\">Voir plus</button></div>";
-			$quatrieme = $this->xsltTransform($notice->getNotice()->getFourth(), "../templates/xslt/quatrieme.xsl");
+			try
+			{
+				$quatrieme = $this->xsltTransform($notice->getNotice()->getFourth(), "../templates/xslt/quatrieme.xsl");
+			} catch(Exception $e)
+			{
+				$logger->error("Erreur durant le traitement de le quatrième de couverture : ".$e->getMessage()." : ".$notice->getNotice()->getContentsTable());
+			}
 		}
 
 		$printRoute = $this->generateUrl(
