@@ -64,12 +64,12 @@ class MailSenderService
 	 * @throws \Twig\Error\SyntaxError
 	 */
 	public function sendEmail(
-	string $templateName,
-	array $context,
-	string $from=null,
-	string $to=null,
-	string $replyTo=null,
-	\Swift_Attachment $attachment = null
+		string $templateName,
+		array $context,
+		string $from=null,
+		$to=null,
+		string $replyTo=null,
+		\Swift_Attachment $attachment = null
 	)
 	{
 		/*$this->logger->error("#####################");
@@ -119,7 +119,7 @@ class MailSenderService
 		return $this->mailer->send($message);
 	}
 
-	/**
+	/*
 	 * @param string $templateName
 	 * @param array $context
 	 * @param string|null $reciever
@@ -130,7 +130,7 @@ class MailSenderService
 	 * @throws \Twig\Error\LoaderError
 	 * @throws \Twig\Error\SyntaxError
 	 */
-	public function sendMail(
+	/*public function sendMail(
 	string $templateName,
 	array $context,
 	$reciever=null,
@@ -169,7 +169,7 @@ class MailSenderService
 		}
 
 		return $this->mailer->send($message);
-	}
+	}*/
 
 	/**
 	 * @return array
