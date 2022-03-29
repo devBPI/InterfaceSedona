@@ -59,7 +59,10 @@ final class ReportingController extends AbstractController
                 ['data' => $reportData],
                 null,
                 null,
-                    $reportData->getEmail()
+                $reportData->getEmail(),
+		null
+                //$reportData->getEmail()
+                //$form->getEmail()
             )) {
                 return $this->render('common/modal/report-error-success.html.twig');
             } else {
@@ -92,13 +95,27 @@ final class ReportingController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $reportError = $form->getData();
+            echo($reportError->getEmail());
 
-            if ($this->mailSenderService->sendMail(
+            if ($this->mailSenderService->sendEmail(
                 'common/modal/content.email.twig',
-                ['data' => $reportError]
+                ['data' => $reportError],
+                null,
+                null,
+                "".$reportError->getEmail()
             )) {
                 return $this->render('common/error-success.html.twig');
             }
+            /*if ($this->mailSenderService->sendMail(
+                'common/modal/content.email.twig',
+                ['data' => $reportError],
+                null,
+                null,
+                "".$reportError->getEmail()/*,
+                $reportData->getEmail()*/
+            /*)) {
+                return $this->render('common/error-success.html.twig');
+            }*/
 
             $form->addError(
                 new FormError("Une erreur est survenue lors de l'envoie de l'e-mail \n veuillez reessayer plus tard SVP.")
