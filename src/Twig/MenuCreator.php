@@ -16,75 +16,71 @@ use Twig\TwigFunction;
  */
 class MenuCreator extends AbstractExtension
 {
-    /** @var array  */
-    private $menus;
+	/** @var array  */
+	private $menus;
 
-    /**
-     * MenuCreator constructor.
-     * @param RequestStack $requestStack
-     * @param string $translationPath
-     */
-    public function __construct(RequestStack $requestStack, string $translationPath)
-    {
-        if ($requestStack->getCurrentRequest() instanceof Request){
-            $locale = $requestStack->getCurrentRequest()->getLocale();
+	/**
+	 * MenuCreator constructor.
+	 * @param RequestStack $requestStack
+	 * @param string $translationPath
+	 */
+	public function __construct(RequestStack $requestStack, string $translationPath)
+	{
+		if ($requestStack->getCurrentRequest() instanceof Request)
+		{
+			$locale = $requestStack->getCurrentRequest()->getLocale();
+			$this->menus = Yaml::parseFile($translationPath.DIRECTORY_SEPARATOR.'menu.'.$locale.'.yml');
+		}
+	}
 
-            $this->menus = Yaml::parseFile($translationPath.DIRECTORY_SEPARATOR.'menu.'.$locale.'.yml');
-        }
-    }
+	/**
+	 * @return array|TwigFunction[]
+	 */
+	public function getFunctions(): array
+	{
+		return [
+			new TwigFunction('header_menu', [$this, 'getHeaderMenu']),
+			new TwigFunction('help_menu',   [$this, 'getHelpMenu']),
+			new TwigFunction('footer_menu', [$this, 'getFooterMenu'])
+		];
+	}
 
-    /**
-     * @return array|TwigFunction[]
-     */
-    public function getFunctions(): array
-    {
-        return [
-            new TwigFunction('header_menu', [$this, 'getHeaderMenu']),
-            new TwigFunction('help_menu',   [$this, 'getHelpMenu']),
-            new TwigFunction('footer_menu', [$this, 'getFooterMenu'])
-        ];
-    }
+	/**
+	 * @return string
+	 */
+	public function getName(): string
+	{
+		return 'menu_creator';
+	}
 
-    /**
-     * @return string
-     */
-    public function getName(): string
-    {
-        return 'menu_creator';
-    }
+	/**
+	 * @return array
+	 */
+	public function getHeaderMenu(): array
+	{
+		if (is_array($this->menus))
+			return $this->menus['header'];
+		return [];
+	}
 
-    /**
-     * @return array
-     */
-    public function getHeaderMenu(): array
-    {
-        if (is_array($this->menus)) {
-            return $this->menus['header'];
-        }
+	/**
+	 * @return array
+	 */
+	public function getHelpMenu(): array
+	{
+		if (is_array($this->menus))
+			return $this->menus['help'];
+		return [];
+	}
 
-        return [];
-    }
-    /**
-     * @return array
-     */
-    public function getHelpMenu(): array
-    {
-        if (is_array($this->menus)) {
-            return $this->menus['help'];
-        }
-
-        return [];
-    }
-    /**
-     * @return array
-     */
-    public function getFooterMenu(): array
-    {
-        if (is_array($this->menus)) {
-            return $this->menus['footer'];
-        }
-
-        return [];
-    }
+	/**
+	 * @return array
+	 */
+	public function getFooterMenu(): array
+	{
+		if (is_array($this->menus))
+			return $this->menus['footer'];
+		return [];
+	}
 }
 

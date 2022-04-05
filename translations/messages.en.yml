@@ -67,12 +67,19 @@ header:
     cinema: Cinéma
 footer:
   credit-list:
-    espace-presse: Press / Partnership
-    emplois-et-stages: Employment & Internships
-    marches-publics: Public procurement contracts
-    mentions-legales: Legal Notices
+    espace-presse: Press and partnerships
+    emplois-et-stages: Jobs and internships
+    marches-publics: Public contract
+    mentions-legales: Legal notice
     aide-et-accessibilite: Help and accessibility
-    contacts-bpi: Contacts
+    contacts-bpi: Contact the Bpi
+  credit-list-urls:
+    espace-presse: https://www.bpi.fr/en/press-and-partnerships/
+    emplois-et-stages: https://www.bpi.fr/en/jobs-and-internships/
+    marches-publics: https://www.bpi.fr/en/public-contract/
+    mentions-legales: https://www.bpi.fr/en/legal-notice/
+    aide-et-accessibilite: https://www.bpi.fr/en/help-and-accessibility/
+    contacts-bpi: https://www.bpi.fr/en/contact-the-bpi/
   links-externe:
     sr-mensuel: Programme bibliothèque publique d'information, the monthly of the Bpi
     mensuel: The monthly of the Bpi

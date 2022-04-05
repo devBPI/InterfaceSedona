@@ -73,6 +73,13 @@ footer:
     mentions-legales: Mentions légales
     aide-et-accessibilite: Aide et accessiblité
     contacts-bpi: Contactez-nous
+  credit-list-urls:
+    espace-presse: https://www.bpi.fr/presse-et-partenariats/
+    emplois-et-stages: https://www.bpi.fr/emplois-et-stages/
+    marches-publics: https://www.bpi.fr/marches-publics/
+    mentions-legales: https://www.bpi.fr/mentions-legales
+    aide-et-accessibilite: https://www.bpi.fr/aide-et-accessibilite
+    contacts-bpi: https://www.bpi.fr/contactez-nous/
   links-externe:
     sr-mensuel: Programme bibliothèque publique d'information, le mensuel de la Bpi
     mensuel: Le mensuel de la Bpi
