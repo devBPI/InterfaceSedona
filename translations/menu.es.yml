@@ -13,11 +13,11 @@ header:
     link: https://www.bpi.fr/es/la-biblioteca/
     sronly: Accéder à la bibliothèque
 
-  Información prácticas:
+  Información práctica:
     link: https://www.bpi.fr/es/informacion-practica/
     sronly: Accéder aux informations pratiques
 
-  Bpi-Digital:
+  Bpi Digital:
     link: https://www.bpi.fr/es/bpi-digital/
     sronly: Bpi Digital
 
@@ -86,7 +86,7 @@ footer:
   La BPI:
     Inicio: https://www.bpi.fr/es/inicio
     Catálogo: http://catalogue.bpi.fr/es/
-    La Biblioteca: https://www.bpi.fr/es/la-biblioteca/
+    La biblioteca: https://www.bpi.fr/es/la-biblioteca/
     Información práctica: https://www.bpi.fr/es/informacion-practica/
     Bpi Digital: https://www.bpi.fr/es/bpi-digital/
 
