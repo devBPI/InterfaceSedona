@@ -601,10 +601,13 @@ bloc:
 error:
   page_not_available: 'Cette page n’est pas accessible.'
   page_not_found: Cette page est inaccessible.
-  link-go-back: Pour <a href="%link%">revenir en arrière</a>
-  link-home: Pour retourner à la <a href="%link%">page d’accueil du catalogue de la Bpi</a>
-  contact-admin: Contacter <a href="mailto:%email%">l’administrateur du catalogue de la Bpi</a>
   title-form: Formulaire de contact
+#  link-go-back: Pour <a href="%link%">revenir en arrière</a>
+  link-go-back: Retourner à la <a href="javascript:history.back()">page précédente</a>
+#  link-home: Pour retourner à la <a href="%link%">page d’accueil du catalogue de la Bpi</a>
+  link-home: Retourner à la <a href="%link%">page d’accueil du catalogue de la Bpi</a>
+#  contact-admin: Contacter <a href="mailto:%email%">l’administrateur du catalogue de la Bpi</a>
+  contact-admin: Contacter l'administrateur du catalogue de la BPI en remplissant le formulaire ci-dessous :
   page_error: Page en erreur
   page_broken: Cette page est inaccessible.
   page_broken_message: |
