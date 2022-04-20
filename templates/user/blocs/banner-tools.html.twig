@@ -21,7 +21,7 @@
             {% if app.user %}
                 <p class="banner-tools__infos" id="countSelectionList">{{ 'bloc.banner-tools.selected-list'|trans }} <span>(0)</span></p>
             {% endif %}
-            <p class="banner-tools__infos" id="countSelectionDocument">{{ 'bloc.banner-tools.selected-document'|trans }} <span>(0)</span></p>
+            <p class="banner-tools__infos" id="countSelectionDocument" role="status" aria-atomic="true">{{ 'bloc.banner-tools.selected-document'|trans }} <span>(0)</span></p>
         </div>
     </div>
 {% endif %}

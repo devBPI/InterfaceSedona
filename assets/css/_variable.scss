@@ -4,7 +4,7 @@
 
 // Colors
 
-$red: 					#B40626;
+$red: 					#B50626;
 $blue:					#375AC0;
 $green:					#387522;
 
@@ -30,7 +30,8 @@ $font-bold:				bold;
 
 // States
 
-$outline:				thin dotted $red;
+//$outline:				thin dotted $red;
+$outline:				thin solid $red;
 $hover:					underline;
 $hover-target:			underline dotted $red;
 
