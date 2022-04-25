@@ -577,6 +577,7 @@ bloc:
       add-to: Ajoutée le
       comments: Commentaire
     select-ligne: 'Sélectionner toute la ligne : %title%, %auteur%, %document-type%'
+    select-ligne-sans-auteur: 'Sélectionner toute la ligne : %title%, %document-type%'
     link: Accéder à %title%
     comments-see: Voir le commentaire
     comments-add: Ecrire un commentaire
