@@ -1,13 +1,11 @@
 {% extends app.request.isXmlHttpRequest() ? "empty.html.twig" : "base.html.twig" %}
 
 {% block title %}{{ 'error.page_error'|trans }}{% endblock %}
-
 {% block body %}
     {% set content %}
         <!-- <p>{{ 'error.page_broken_message'|trans|nl2br }}</p> -->
 
         {% if app.environment == 'dev' or IP_SEDONA in app.request.clientIps %}
-            {# affichage de la raison de l'erreur pour Sedona #}
             <fieldset>
                 <legend>Erreur remontée : {{ exception.message }}</legend>
                 <pre>{{ exception.toarray|json_encode }}</pre>

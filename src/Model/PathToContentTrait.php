@@ -15,11 +15,13 @@ use App\Service\ImageBuilderService;
 trait PathToContentTrait
 {
     /**
-     * @param string $path
+     * @param $path
      * @return string
      */
-    private function pathToContent(string  $path):string
+    private function pathToContent(?string $path):?string
     {
+	if(null == $path)
+		return null;
         return ImageBuilderService::COVER.'/'.basename($path);
     }
 }
