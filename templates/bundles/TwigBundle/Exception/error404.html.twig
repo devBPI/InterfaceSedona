@@ -5,7 +5,7 @@
 
 {% block body %}
     {% set content %}
-        <p>{{ 'error.page_not_available'|trans }}</p>
+        {#<p>{{ 'error.page_not_available'|trans }}</p>#}
 
         {% if app.environment == 'dev' or IP_SEDONA in app.request.clientIps %}
             {# affichage de la raison de l'erreur pour Sedona #}
@@ -16,16 +16,20 @@
         {% endif %}
 
         <ul class="list-link">
-            {% if app.request.headers.get('referer') %}
+            {#% if app.request.headers.get('referer') %}
                 <li>
                     {{ 'error.link-go-back'|trans({'%link%': app.request.headers.get('referer')})|raw }}
                 </li>
-            {% endif %}
+            {% endif %#}
+            <li>
+                {{ 'error.link-go-back'|trans|raw }}
+            </li>
             <li>
                 {{ 'error.link-home'|trans({'%link%': path('home')})|raw }}
             </li>
         </ul>
-        <p>{{ 'error.contact-admin'|trans({'%email%': contact_email})|raw }}</p>
+        {#<p>{{ 'error.contact-admin'|trans({'%email%': contact_email})|raw }}</p>#}
+        {#<p>Contacter l'administrateur du catalogue de la BPI en remplissant le formulaire ci-dessous :</p>#}
     {% endset %}
 
     {% if app.request.isXmlHttpRequest() %}
@@ -40,11 +44,13 @@
                 <p>{{ 'error.page_not_available'| trans }}</p>
                 {{ content }}
             </div>
-           {{ render(controller('App\\Controller\\ReportingController::reportErrorPageAction',{'renderPage': false})) }}
+           {#{ render(controller('App\\Controller\\ReportingController::reportErrorPageAction',{'renderPage': false})) }#}
         </div>
-    {% else %}	
+    {% else %}
         <h1 class="n1">{{ 'error.page_not_found'|trans }}</h1>
+        <p>Le permalien n'est pas actif, il a été supprimé ou est erroné.</p>
         {{ content }}
+        <p>{{ 'error.contact-admin'|trans({'%email%': contact_email})|raw }}</p>
 
         <div class="row justify-content-center">
             <div class="col-12 col-sm-11 col-md-10">
