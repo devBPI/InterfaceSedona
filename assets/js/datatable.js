@@ -61,7 +61,8 @@ $(document).ready(function () {
 	$('table.table-striped').removeAttr('role');*/
 	removeAttributeWithValue($('table.table-striped'), "role", "grid");//CTLG-584
 	removeAttributeWithValue($('table.table-striped'), "role", "row");//CTLG-584
-	removeAttributeWithValue($('table.table-striped'), "role", "columhear");//CTLG-584
+	removeAttributeWithValue($('table.table-striped'), "role", "columnhear");//CTLG-584
+	removeAttributeWithValue($('table.table-striped'), "role", "columnheader");//CTLG-584
 /*    $('table.table-striped').on( 'order.dt', function () {
         // This will show: "Ordering on column 1 (asc)", for example
         window.setTimeout(function (){
