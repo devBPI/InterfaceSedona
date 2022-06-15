@@ -324,13 +324,15 @@ class NoticeBuildFileService
         $listPermalinks = $this->session->get('ItemsNotAvailable', ['notices'=>[],'autorites'=>[], 'indices'=>[]]);
         $this->logger->info("###~ ". $listPermalinks);
         $this->logger->info("#####################2.5");*/
-        $listPermalinks = json_decode($this->session->get('ItemsNotAvailable', ['notices'=>[],'autorites'=>[], 'indices'=>[]]), true);
+	$listUnavailablePermalinks = null;
+	if($this->session->has('ItemsNotAvailable'))
+		$listUnavailablePermalinks = json_decode($this->session->get('ItemsNotAvailable', ['notices'=>[],'autorites'=>[], 'indices'=>[]]), true);
         /*$this->logger->info("#####################2.6");
         //$this->logger->info("###! ".implode("|", $listPermalinks));
         $this->logger->info("#####################3");*/
         foreach ($permalinkA as $value){
             try{
-            if(!in_array($value, $listPermalinks['autorites'])){
+            if(null==$listUnavailablePermalinks || !in_array($value, $listUnavailablePermalinks['autorites'])){
                 $a[] = $this->noticeAuthority->getAuthority($value, !$attachment->isShortFormat() ?: self::SHORT_PRINT);
                 //array_push($a, $this->noticeAuthority->getAuthority($value, !$attachment->isShortFormat() ?: self::SHORT_PRINT));
             }
@@ -341,7 +343,7 @@ class NoticeBuildFileService
         //$this->logger->info("#####################4");
         foreach ($permalinkN as $value){
             try {
-                if(!in_array($value, $listPermalinks['notices'])) {
+                if(null==$listUnavailablePermalinks || !in_array($value, $listUnavailablePermalinks['notices'])) {
                     $n[] = $this->noticeProvider->getNotice($value, !$attachment->isShortFormat() ?: self::SHORT_PRINT)->getNotice();
                     //array_push($n, $this->noticeProvider->getNotice($value, !$attachment->isShortFormat() ?: self::SHORT_PRINT)->getNotice());
                 }
@@ -352,7 +354,7 @@ class NoticeBuildFileService
         //$this->logger->info("#####################5");
         foreach ($permalinkI as $value){
             try{
-                if(!in_array($value, $listPermalinks['indices'])) {
+                if(null==$listUnavailablePermalinks || !in_array($value, $listUnavailablePermalinks['indices'])) {
                     //$i[] = $this->noticeAuthority->getIndiceCdu($value);
                     $i[] = $this->noticeAuthority->getIndiceCdu($value);
                     //array_push($i, $this->noticeAuthority->getIndiceCdu($value));
