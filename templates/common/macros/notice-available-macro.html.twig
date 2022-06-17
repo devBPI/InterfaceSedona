@@ -78,11 +78,11 @@
                     <img src="{{ asset('images/icones/icone-chevron-gauche.svg') }}" alt="" aria-hidden="true" />
                 </a>
                 {% if notice.type is defined and (notice.type == 'Formation' or notice.type == 'Débat et enregistrement' or notice.type == 'Livre audio' or notice.type == 'Musique') %}
-                    <p>
+                    {# CTLG-501 <p> #}
                         {% if object.cote is defined and object.cote is not empty %}
-                            {{ object.cote}}
+                            - {{ object.cote}}
                         {% endif %}
-                    </p>
+                    {# CTLG-501 </p> #}
                     <p>
                         {% if object.localisation is defined and object.localisation is not empty and object.categorie is defined and object.categorie is not empty %}
                             {{ object.localisation }} - {{object.categorie}}
@@ -97,11 +97,11 @@
                     <img src="{{ asset('images/icones/icone-chevron-gauche.svg') }}" alt="" aria-hidden="true" />
                 </a>
                 {% if notice.type is defined and (notice.type == 'Formation' or notice.type == 'Débat et enregistrement' or notice.type == 'Livre audio' or notice.type == 'Musique') %}
-                    <p>
+                    {# CTLG-501 <p> #}
                         {% if object.cote is defined and object.cote is not empty %}
-                            {{ object.cote}}
+                            - {{ object.cote}}
                         {% endif %}
-                    </p>
+                    {# CTLG-501 </p> #}
                     <p>
                         {% if object.localisation is defined and object.localisation is not empty and object.categorie is defined and object.categorie is not empty %}
                             {{ object.localisation }} - {{object.categorie}}
