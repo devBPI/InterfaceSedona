@@ -66,7 +66,7 @@ class NoticeBuildFileService
     public function __construct(
         NoticeProvider $noticeProvider,
         NoticeAuthorityProvider $noticeAuthority,
-         \Knp\Snappy\Pdf $knpSnappy,
+        \Knp\Snappy\Pdf $knpSnappy,
         Environment $templating,
         SessionInterface $session,
         Logger $logger
