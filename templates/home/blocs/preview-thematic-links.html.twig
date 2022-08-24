@@ -1,4 +1,4 @@
-{% for element in thematic.themes %}
+{% for element in thematic.themes|sort((a, b) => a.id <=> b.id) %}
 	{% if thematic.type == constant('App\\WordsList::THEME_AUTOFORMATION') and loop.index == 9 %}
 		<div class="col-12">
 			<h2 class="n1">{{ 'page.thematic.andMore'|trans }}</h2>
@@ -10,21 +10,22 @@
 			<img src="{{ asset('images/parcours/'~thematic.type~'/'~element.image) }}" alt="" class="img-fluid card-img-top" />
 			<div class="card-body">
 				<h3 class="n2 card__title{% if element.levels.count == 0 %} card__title--link{% endif %}">{{ element.title(app.request.locale) }}</h3>
-                {% if element.levels.count > 0 %}
+				{% if element.levels.count > 0 %}
 					<ul class="card__list">
-						{% for level in element.levels %}
+						{% for level in element.levels|sort((a, b) => a.id <=> b.id) %}
 							<li class="card__item">
-								<a href="{{ level.url(app.request.locale) }}">{{ level.title(app.request.locale) }}</a>
+								<a href="{{ add_parameter_url(level.url(app.request.locale), level.title(app.request.locale)) }}">{{ level.title(app.request.locale) }}</a>
+
 							</li>
 						{% endfor %}
 					</ul>
-                {% endif %}
+				{% endif %}
 			</div>
-            {% if element.levels.count == 0 %}
-				<a href="{{ element.url(app.request.locale) }}" class="card__link">
+			{% if element.levels.count == 0 %}
+				<a href="{{ add_parameter_url(element.url(app.request.locale),element.title(app.request.locale) )  }}" class="card__link">
 					<span class="sr-only">{{ "bloc.preview-thematic-links.link-sr-only"|trans({'%name%' : element.title(app.request.locale) }) }}</span>
 				</a>
-            {% endif %}
+			{% endif %}
 		</div>
 	</div>
 {% endfor %}

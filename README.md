@@ -47,3 +47,38 @@ liste des dépendances nécessaires au bon fonctionnement de l'appli :
 * PHP 7.2.* qui est la dernière version stable depuis Février 2017
 * Postgre 9.6
 * Apache 2.4
+
+### INSTALLATION
+
+## Requirements
+
+# PHP
+
+* curl -sS https://getcomposer.org/installer > composer.php
+* yum install epel-release yum-utils
+* yum install http://rpms.remirepo.net/enterprise/remi-release-7.rpm
+* yum-config-manager --enable remi-php74
+* php -v
+* yum install php php-common php-opcache php-mcrypt php-cli php-gd php-curl php-mysqlnd php-xml php-ldap php-mbstring
+
+# NodeJS
+
+* curl -sL https://rpm.nodesource.com/setup_12.x > nodejs_12.x_setup
+* yum remove -y nodejs npm
+* (cat nodejs_12.x_setup ) | bash -
+
+# Yarn
+
+* wget https://dl.yarnpkg.com/rpm/yarn.repo
+* mv yarn.repo /etc/yum.repos.d/
+* yum install yarn
+
+## Build
+
+* #a voir selon les codes d'erreur #(rm composer.lock)
+* composer install
+* yarn install
+* yarn encore production
+* make package
+
+* composer install && yarn install && yarn encore production && make package

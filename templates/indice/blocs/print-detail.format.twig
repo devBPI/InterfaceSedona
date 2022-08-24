@@ -1,21 +1,16 @@
 {% spaceless %}
-    {% set type = 'bloc.autority-result-information.authority-type'|trans ~ ' : ' ~ 'bloc.autority-result-information.type.indice'|trans %}
-    {%- if format == 'pdf' %}
+{% set type = 'bloc.autority-result-information.authority-type'|trans ~ ' : ' ~ 'bloc.autority-result-information.type.indice'|trans %}
+{%- if format == 'pdf' %}
         <li>{{ type }}</li>
-    {% else %}
-        {{- (type ~ "\n")|raw -}}
-    {% endif -%}
-
-    {%- if isPrintLong %}
-        {{- pdf_occurence(notice, 'getEmployedFor', 'bloc.autority-result-information.employed-for'|trans, format)|raw -}}
-        {{- pdf_occurence(notice, 'getClassifiedNote', 'bloc.autority-result-information.classification-notes'|trans, format)|raw -}}
-    {% endif -%}
-
-    {%- if format == 'pdf' %}
-        <li>
-            <a href="{{ absolute_url(path('record_indice_cdu', {"permalink": notice.permalink})) }}">Lien de la notice</a>
+{% else %}
+{{- (type)|raw -}}{{ "\n" }}
+{% endif -%}
+{%- if isPrintLong %}
+{{- pdf_occurence(notice, 'getEmployedFor', 'bloc.autority-result-information.employed-for'|trans, format)|raw -}}
+{{- pdf_occurence(notice, 'getClassifiedNote', 'bloc.autority-result-information.classification-notes'|trans, format, ' ')|raw -}}{% endif -%}
+{%- if format == 'pdf' %}
+        <li><a href="{{ absolute_url(path('record_indice_cdu', {"permalink": notice.permalink})) }}">Permalien</a>
         </li>
-    {% else %}
-        {{- notice.permalink ~ "\n" -}}
-    {% endif -%}
+{% else %}Permalien : {{ absolute_url(path('record_indice_cdu', {"permalink": notice.permalink})) }}{{ "\n" }}
+{% endif -%}
 {% endspaceless %}

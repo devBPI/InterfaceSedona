@@ -38,6 +38,7 @@
 	&__select {
 		flex: 0 0 50%;
 		order: 3;
+		position: relative;
 		min-height: 45px;
 		margin-bottom: 0;
 		border-right: $border-default;
@@ -56,6 +57,11 @@
 			-webkit-appearance: none;
 			background-color: $grey-disabled;
 			color: $white;
+			padding-right: rem(20);
+			background-image: url('/images/icones/icone-caret-bas-blanche.svg');
+			background-repeat: no-repeat;
+			background-position: 96% center;
+			background-size: rem(10);
 
 			&:focus {
 				-moz-appearance: none;

@@ -16,6 +16,14 @@ class NoticeAvailable
 
     /**
      * @var string
+     * @JMS\SerializedName("bookbinding")
+
+     * @JMS\Type("string")
+     */
+    private $bookbinding;
+
+    /**
+     * @var string
      * @JMS\Type("string")
      */
     private $category;
@@ -135,6 +143,14 @@ class NoticeAvailable
     public function isAvailable(): bool
     {
         return $this->availability === self::LABEL_AVAILABLE || $this->disponibilite === self::AVAILABLE;
+    }
+
+    /**
+     * @return null|string
+     */
+    public function getBookbinding(): ?string
+    {
+        return $this->bookbinding;
     }
 
     /**

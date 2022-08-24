@@ -1,6 +1,7 @@
 <form id="list_add_form" class="modal-form list-docs" action="{{ path('user_selection_list_add') }}"
       method="post" data-toggle="form-remote">
     <div class="modal-header">
+        <p id="selected-list-container" class="d-none" aria-hidden="true" data-text-begin="" data-text-end=""></p>
         <h1 class="n1 modal-header__title" id="modal-list-add-title">
             {{ 'modal.list-add.title-connected'|trans }}
         </h1>
@@ -12,7 +13,7 @@
 
     {% if error is defined %}
         <div class="modal-body">
-            <span class="invalid-feedback d-block">{{ error|trans }}</span>
+            <p class="invalid-feedback d-block" role="alert">{{ error|trans }}</p>
         </div>
     {% endif %}
 

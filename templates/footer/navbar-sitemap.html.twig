@@ -12,8 +12,7 @@
             <ul class="nav-sitemap__list">
                 {% for title, link in items %}
                     <li class="nav-sitemap__item">
-                        <a href="{{ link }}" title="{{ title }} - {{ 'global.new-windows'|trans }}"
-                           target="_blank">{{ title }}</a>
+                        <a href="{{ link }}" title="{{ title }}">{{ title }}</a>
                     </li>
                 {% endfor %}
             </ul>

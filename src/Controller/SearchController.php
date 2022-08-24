@@ -3,11 +3,13 @@
 
 namespace App\Controller;
 
+use App\Controller\Traits\ObjSearchInstanceTrait;
 use App\Controller\Traits\PrintTrait;
 use App\Entity\SearchHistory;
 use App\Model\Form\ExportNotice;
 use App\Model\Notice;
 use App\Model\Search\Criteria;
+use App\Model\Search\FilterFilter;
 use App\Model\Search\FacetFilter;
 use App\Model\Search\ListNavigation;
 use App\Model\Search\ObjSearch;
@@ -18,6 +20,7 @@ use App\Service\NoticeBuildFileService;
 use App\Service\Provider\SearchProvider;
 use App\Service\SearchService;
 use App\WordsList;
+use Doctrine\ORM\EntityManagerInterface;
 use Knp\Bundle\SnappyBundle\Snappy\Response\PdfResponse;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -31,7 +34,7 @@ use Symfony\Component\Routing\Annotation\Route;
  */
 final class SearchController extends AbstractController
 {
-    use PrintTrait;
+    use PrintTrait, ObjSearchInstanceTrait;
 
     public const GENERAL ='general';
 
@@ -48,14 +51,21 @@ final class SearchController extends AbstractController
      * @var NoticeBuildFileService
      */
     private $buildFileContent;
+    /**
+     * @var EntityManagerInterface
+     */
+    private $entityManager;
+
 
     /**
      * SearchController constructor.
+     * @param EntityManagerInterface $entityManager
      * @param SearchProvider $searchProvider
      * @param SearchService $searchService
      * @param NoticeBuildFileService $service
      */
     public function __construct(
+        EntityManagerInterface $entityManager,
         SearchProvider $searchProvider,
         SearchService $searchService,
         NoticeBuildFileService $service
@@ -63,6 +73,7 @@ final class SearchController extends AbstractController
         $this->searchProvider = $searchProvider;
         $this->searchService = $searchService;
         $this->buildFileContent = $service;
+        $this->entityManager = $entityManager;
     }
 
     /**
@@ -87,6 +98,43 @@ final class SearchController extends AbstractController
 
         return $this->displaySearch(new SearchQuery($criteria), $request);
     }
+    /**
+     * @Route("/{parcours}/resultats/essentiels/{essentiels}", methods={"GET", "POST"}, name="advanced_search_parcours_essentiels")
+     * @Route("/{parcours}/resultats/essentiels/{essentiel1}/{essentiel2}", methods={"GET"}, name="search_parcours_essentiels_with_slash")
+
+     * @param Request $request
+     * @param string $parcours
+     * @param string $essentiels
+     * @param string $essentiel1
+     * @param string $essentiel2
+     * @return Response
+     * @throws \Twig\Error\LoaderError
+     * @throws \Twig\Error\RuntimeError
+     * @throws \Twig\Error\SyntaxError
+     */
+    public function advancedSearchWithEssentielsAction(Request $request, string $parcours=self::GENERAL,string $essentiels='',string $essentiel1='', string $essentiel2=''): Response
+    {
+        $request->request->set('essentiels', $essentiels);
+        if($essentiel1!==''){
+            $request->request->set('essentiels', $essentiel1. '/'.$essentiel2);
+        }
+        $criteria = new Criteria();
+        $criteria->setParcours($parcours);
+
+        if ($request->get('search-type', 'simple') === 'advanced'){
+            $criteria->setAdvancedSearch($request->query->all());
+
+            return $this->displaySearch(
+                new SearchQuery($criteria, new FilterFilter($request->query->all()), new FacetFilter($request->query->all()), SearchQuery::ADVANCED_MODE),
+                $request
+            );
+        }
+            $keyword = $request->get(Criteria::SIMPLE_SEARCH_KEYWORD, '');
+            $type = $request->get(Criteria::SIMPLE_SEARCH_TYPE, WordsList::THEME_DEFAULT);
+            $criteria->setSimpleSearch($type, $keyword);
+
+            return $this->displaySearch(new SearchQuery($criteria), $request);
+    }
 
 
     /**
@@ -108,7 +156,7 @@ final class SearchController extends AbstractController
         $criteria->setParcours($parcours);
 
         return $this->displaySearch(
-            new SearchQuery($criteria, new FacetFilter($request->query->all()), SearchQuery::ADVANCED_MODE),
+            new SearchQuery($criteria, new FilterFilter($request->query->all()), new FacetFilter($request->query->all()), SearchQuery::ADVANCED_MODE),
             $request
         );
     }
@@ -259,6 +307,7 @@ final class SearchController extends AbstractController
         $objSearch = $this->searchService->createObjSearch($search, $request);
         $objSearch->setResults($this->searchProvider->getListBySearch($search));
         $request->query->remove('action');
+        $objSearchBis = new ObjSearch($this->getObjSearchQuery($request));
 
         $request->getSession()->set(NavigationService::SESSION_KEY, serialize(new ListNavigation($objSearch)));
         $request->getSession()->set('searchToken', serialize($objSearch));
@@ -275,9 +324,9 @@ final class SearchController extends AbstractController
                 'toolbar'   => ObjSearch::class,
                 'seeAll'    => $seeAll,
                 'objSearch' => $objSearch,
+                'objSearchBis'=>$objSearchBis,
                 'printRoute' => $this->generateUrl('search_pdf', ['format' => 'pdf']),
             ]
         );
     }
-
 }

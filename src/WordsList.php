@@ -52,7 +52,8 @@ final class WordsList
                 self::SUBJECT_WORD,
                 self::PUBLICATION_DATE_WORD,
                 self::ISBN_WORD,
-                self::INDICE_COTE_WORD
+                self::INDICE_COTE_WORD,
+                self::THEME_WORD
             ],
             self::THEME_CINEMA => [
                 self::GENERAL_WORD,

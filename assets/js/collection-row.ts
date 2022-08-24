@@ -41,6 +41,7 @@ export class CollectionRow {
         this.addEventListenerToRow(newRow);
 
         this.count++;
+        this.setRemoveButtonText();
         this.index++;
         this.hideAdder();
 
@@ -66,6 +67,7 @@ export class CollectionRow {
 
         row.remove();
         this.count--;
+        this.setRemoveButtonText();
 
         this.hideAdder();
 
@@ -90,6 +92,14 @@ export class CollectionRow {
         if (input) {
             input.focus();
         }
+    }
+
+    private setRemoveButtonText() {
+        document.querySelectorAll('button.js-remove-row').forEach(
+            (button: HTMLButtonElement, index: number) => {
+                button.querySelector('span').innerHTML = button.querySelector('span').innerHTML.slice(0, -1)+(index+1);
+            }
+        )
     }
 
     clear() {

@@ -6,28 +6,32 @@
         {{- pdf_occurence (notice, 'getCountries', 'bloc.autority-result-information.country'|trans, format)|raw -}}
         {{- pdf_occurence (notice, 'getLanguages', 'bloc.autority-result-information.language'|trans, format)|raw -}}
         {{- pdf_occurence (notice, 'getMusicalKinds', 'modal.advanced-search.facette.genre_musical'|trans, format)|raw -}}
-        {{- pdf_occurence (notice, 'getPrintDates', 'bloc.autority-result-information.dates'|trans, format)|raw -}}
+
+        {{- pdf_occurence (notice, 'getDates', 'bloc.autority-result-information.dates'|trans, format, ' - ')|raw -}}
+
         {{- pdf_occurence (notice, 'getPrintBirthData', 'bloc.autority-result-information.born-date'|trans, format)|raw -}}
         {{- pdf_occurence (notice, 'getPrintDeathData', 'bloc.autority-result-information.dead-date'|trans, format)|raw -}}
+
         {{- pdf_occurence (notice, 'getPrincipalActivities', 'bloc.autority-result-information.activity'|trans, format)|raw -}}
         {{- pdf_occurence (notice, 'getNotes', 'bloc.autority-result-information.nots'|trans, format)|raw -}}
-        {{- pdf_occurence (notice, 'getOtherNames', 'bloc.autority-result-information.other-names'|trans, format)|raw -}}
+            {{- pdf_occurence (notice, 'getOtherNames', 'bloc.autority-result-information.other-names'|trans, format)|raw -}}
+
         {{- pdf_occurence (notice, 'getAssocietedForm', 'bloc.autority-result-information.linked-names'|trans, format)|raw -}}
         {{- pdf_occurence (notice, 'getIsni', 'bloc.autority-result-information.insi'|trans, format)|raw -}}
         {{- pdf_occurence (notice, 'getOrigins', 'bloc.autority-result-information.origins'|trans, format)|raw -}}
     {% else %}
-        {{- pdf_occurence (notice, 'getOtherNames', 'bloc.autority-result-information.other-names'|trans, format)|raw -}}
-        {{- pdf_occurence (notice, 'getPrintDates', '', format)|raw -}}
-        {{- pdf_occurence (notice, 'getCountries', 'bloc.autority-result-information.country'|trans, format)|raw -}}
+{%   if  notice.type in ['Nom géographique et Concept', 'Nom géographique', 'Concept']%}
+            {{- pdf_occurence (notice, 'getOtherNames', 'bloc.autority-result-information.other-names'|trans, format)|raw -}}{% endif %}
+{% if (notice.type|lower) in ['personne', 'collectivité', 'oeuvre'] %}{{- pdf_occurence (notice, 'getPrintDates', '', format)|raw -}}{% endif %}
+{% if (notice.type|lower) in ['personne', 'collectivité'] %}{{- pdf_occurence (notice, 'getCountries', 'bloc.autority-result-information.country'|trans, format)|raw -}}{% endif %}
         {{- pdf_occurence (notice, 'getLanguages', 'bloc.autority-result-information.language'|trans, format)|raw -}}
         {{- pdf_occurence (notice, 'getPrincipalActivities', 'bloc.autority-result-information.activity'|trans, format)|raw -}}
     {% endif %}
-
     {%- if format == 'pdf' %}
         <li>
-            <a href="{{ absolute_url(path('record_authority', {"permalink": notice.permalink})) }}">Lien de la notice</a>
+            <a href="{{ absolute_url(path('record_authority', {"permalink": notice.permalink})) }}">Permalien</a>
         </li>
     {% else %}
-        {{- notice.permalink -}}
+Permalien : {{- absolute_url(path('record_authority', {"permalink": notice.permalink})) -}}
     {% endif -%}
 {% endspaceless %}

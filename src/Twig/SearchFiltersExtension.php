@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace App\Twig;
 
 
+use App\Model\Search\FilterFilter;
 use App\Model\Search\FacetFilter;
 use App\Service\NavigationService;
 use App\WordsList;
@@ -22,6 +23,10 @@ class SearchFiltersExtension extends AbstractExtension
      * @var Request
      */
     private $masterRequest;
+    /**
+     * @var array
+     */
+    private $filterQueries;
     /**
      * @var array
      */
@@ -54,6 +59,9 @@ class SearchFiltersExtension extends AbstractExtension
             new TwigFunction('max_facet_value', [$this, 'getMaxValueOfFacetQueries']),
             new TwigFunction('route_by_object', [$this, 'getRouteByObject']),
             new TwigFunction('pdf_occurence', [$this, 'getPdfOccurence']),
+            new TwigFunction('cut_filter_from_search', [$this, 'cutfilterFromSearch']),
+            new TwigFunction('is_advanced_search', [$this, 'isAdvancedSaerch']),
+            new TwigFunction('add_parameter_url', [$this, 'addParameterUrl']),
 
         ];
     }
@@ -72,6 +80,7 @@ class SearchFiltersExtension extends AbstractExtension
      */
     public function isSearchWord(string $word): bool
     {
+
         return in_array($word, $this->getSearchWords(), true);
     }
 
@@ -152,12 +161,12 @@ class SearchFiltersExtension extends AbstractExtension
      * @param string $format
      * @return string
      */
-    public function getPdfOccurence($object, string $method, string $label, string $format = 'pdf'): ?string
+    public function getPdfOccurence($object, string $method, string $label, string $format = 'pdf', $glue = ' ; '): ?string
     {
         $payload = "";
         if (method_exists($object, $method) && !empty($object->{$method}())) {
             if (is_array($object->{$method}())) {
-                $payload .= implode(' ; ', $object->{$method}());
+                $payload .= implode($glue,  $object->{$method}());
             } elseif (!empty($object->{$method}()) && ((string) $object->{$method}()) !== '') {
                 $payload .= $object->{$method}();
             }
@@ -167,6 +176,12 @@ class SearchFiltersExtension extends AbstractExtension
                     return sprintf("<li>%s : %s</li>", $label, $payload);
                 } elseif ($format === 'txt') {
                     return sprintf("%s : %s\n", $label, $payload);
+                }
+            }elseif($label ==''){
+                if ($format === 'pdf') {
+                    return sprintf("<li>%s</li>", $payload);
+                } elseif ($format === 'txt') {
+                    return sprintf("%s\n", $payload);
                 }
             }
 
@@ -180,5 +195,74 @@ class SearchFiltersExtension extends AbstractExtension
         return null;
     }
 
-}
 
+    public function cutfilterFromSearch($type, $value){
+        $url = $this->masterRequest->getRequestUri();
+        $payload =    explode('&', urldecode($url));
+        $link = $payload[0];
+
+        unset($payload[0]);
+        try {
+            $t = array_filter($payload, function ($element)use($value, $type){
+                if(strpos($element, 'facets')===false){
+                //    return true;
+                }
+                if ($type === 'date_publishing' && strpos($element, $type)>0){
+                   // return false;
+                }
+                list($ftype, $fvalue) = explode('=', $element);
+
+                return strpos($element, $type) === false || strpos($value, $fvalue)===false;
+            });
+
+        }catch (\Exception $e ){
+            throw new \Exception('an error was occurred when cutting parameters from url search criteria %', $e->getMessage());
+        }
+        if (count($t)===count($payload)){
+            return "";
+        }
+        if(count($t)>0){
+            $url = sprintf('%s&%s', $link, implode('&', $t));
+        }else{
+            $url = $link;
+        }
+        
+        if ($type === 'date_publishing'){
+            $re = '/(facets\[date_publishing\]\[\]\=[0-9]{4}\&)/m';
+            $result = preg_replace($re, '', $url);
+            $re = '/(facets\[date_publishing\]\[\]\=[0-9]{4})/m';
+            $result = preg_replace($re, '', $result);
+
+            return $result;
+        }
+
+        return $url;
+    }
+
+    /**
+     * @param string|null $url
+     * @param $value
+     * @return string|null
+     */
+    public function addParameterUrl(string $url = null, $value):?string
+    {
+        if ($url === null){
+            return $url;
+        }
+       $payload = str_replace(['/recherche-avancee', '/recherche-simple'],'/resultats/essentiels/'.$value, $url);
+
+        if (strpos($url, "recherche-avancee")) {
+            if(!strpos($url, '?')){
+                return $payload.'?search-type=advanced';
+            }else{
+                $urlArray = explode('&',$url);
+                    if(array_key_exists(count($urlArray)-1, $urlArray) && !strpos( $urlArray[count($urlArray)-1], "=")){
+                        return  $payload.'=&search-type=advanced';
+                    }
+                return $payload.'&search-type=advanced';
+            }
+        }
+
+        return $payload;
+    }
+}

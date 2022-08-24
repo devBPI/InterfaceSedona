@@ -22,7 +22,7 @@ trait PersonneTrait
 
     /**
      * @var string
-     * @Asset\Email();
+     * @Asset\Email(message="email.format");
      */
     private $email;
 

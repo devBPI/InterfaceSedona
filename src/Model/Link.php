@@ -107,6 +107,31 @@ class Link
      * @JMS\SerializedName("accessNumLastVolOnline")
      */
     private $accessNumLastVolOnline;
+
+    /**
+     * @var string
+     *
+     * @JMS\Type("string")
+     * @JMS\SerializedName("cote")
+     */
+    private $cote;
+
+    /**
+     * @var string
+     *
+     * @JMS\Type("string")
+     * @JMS\SerializedName("localisation")
+     */
+    private $localisation;
+
+    /**
+     * @var string
+     *
+     * @JMS\Type("string")
+     * @JMS\SerializedName("categorie")
+     */
+    private $categorie;
+
     /**
      * @var string
      *
@@ -217,6 +242,30 @@ class Link
     public function getAccessNumLastVolOnline(): ?string
     {
         return $this->accessNumLastVolOnline;
+    }
+
+    /**
+     * @return null|string
+     */
+    public function getCote(): ?string
+    {
+        return $this->cote;
+    }
+
+    /**
+     * @return null|string
+     */
+    public function getLocalisation(): ?string
+    {
+        return $this->localisation;
+    }
+
+    /**
+     * @return null|string
+     */
+    public function getCategorie(): ?string
+    {
+        return $this->categorie;
     }
 
     /**

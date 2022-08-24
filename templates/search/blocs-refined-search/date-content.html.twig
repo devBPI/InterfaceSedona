@@ -1,9 +1,10 @@
 <div class="modal-body">
     <div class="search-facette">
-        <button type="button" class="search-facette__button btn" data-toggle="collapse" aria-expanded="false"
+        <button type="button" class="search-facette__button btn" data-toggle="collapse"
+                aria-expanded="{% if app.request.attributes.get(constant('App\\Model\\Search\\ObjSearch::PARAM_PARCOURS_NAME')) == constant('App\\WordsList::THEME_AUTOFORMATION') %}true{% else %}false{% endif %}"
                 aria-controls="rfn-search-{{ facet.name }}" data-target="#rfn-search-{{ facet.name }}">{{ facet.label }}
         </button>
-        <div class="collapse search-facette__body" id="rfn-search-{{ facet.name }}" role="group"
+        <div class="collapse search-facette__body {% if app.request.attributes.get(constant('App\\Model\\Search\\ObjSearch::PARAM_PARCOURS_NAME')) == constant('App\\WordsList::THEME_AUTOFORMATION') %}show{% endif %}" id="rfn-search-{{ facet.name }}" role="group"
              aria-label="{{ facet.label }}">
             <div class="search-facette__content">
                 <div class="search-facette__date">

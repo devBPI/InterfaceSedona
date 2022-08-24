@@ -49,6 +49,10 @@ final class ToggleToPathWithParcours extends AbstractExtension
             return $this->routeCollection->generate($pathName, $pathParameters);
         }
 
-        return $this->routeCollection->generate(sprintf($pathName.'_%s', 'parcours'), array_merge($pathParameters, [ObjSearch::PARAM_PARCOURS_NAME=> $parcours]));
+        return $this
+            ->routeCollection
+            ->generate(sprintf($pathName.'_%s', 'parcours'),
+                array_merge($pathParameters, [ObjSearch::PARAM_PARCOURS_NAME=> $parcours]))
+            ;
     }
 }

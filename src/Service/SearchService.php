@@ -62,9 +62,12 @@ final class SearchService
      */
     public function createObjSearch(SearchQuery $search, Request $request): ObjSearch
     {
-        $search->setSort($request->get(FiltersQuery::SORT_LABEL, SearchQuery::SORT_DEFAULT));
-        $search->setRows($request->get(FiltersQuery::ROWS_LABEL, SearchQuery::ROWS_DEFAULT));
-        $search->setPage($request->get(FiltersQuery::PAGE_LABEL, 1));
+        $search
+            ->setSort($request->get(FiltersQuery::SORT_LABEL, SearchQuery::SORT_DEFAULT))
+            ->setRows($request->get(FiltersQuery::ROWS_LABEL, SearchQuery::ROWS_DEFAULT))
+            ->setSeeAll($request->get('see-all', null))
+            ->setPage($request->get(FiltersQuery::PAGE_LABEL, 1))
+        ;
 
         $objSearch = new ObjSearch($search);
         $objSearch->setTitle($this->getTitleFromSearchQuery($search));
@@ -125,6 +128,21 @@ final class SearchService
             SearchQuery::class,
             'json'
         );
+    }
+
+    /**
+     * @param $advancedSearch
+     * @return string|null
+     */
+    public  function humanise($advancedSearch): ?string
+    {
+        $payload = [];
+
+        foreach ($advancedSearch as $key => $value){
+            $payload[] = $this->translator->trans($value['operator']) . ' ' . $value['value'];
+        }
+
+        return implode(' ', $payload);
     }
 
 }

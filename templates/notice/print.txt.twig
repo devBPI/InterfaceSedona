@@ -1,5 +1,9 @@
 {{ 'bloc.print.subtitles.your-reference-bibliographic'|trans }}
 =====================
-{{ notice.printTitle ~ "\n" }}
-{% if isPrintLong %}{{ notice.titleForm|join(' ') }}{% endif %}
+{% for title in notice.titles %}{{ title ~ "\n" }}{% endfor %}
+{% if notice.titleForm %}
+{% for title in notice.titleForm %}{{ title ~ "\n" }}{% endfor %}{% endif %}
+{% if notice.analyticalTitles %}{% for title in notice.analyticalTitles %}
+{{ title ~ "\n" }}{% endfor %}{% endif %}
+{% if isPrintLong %}{{ notice.titleForm|join(' ')~ "\n"  }}{% endif %}
 {% include "notice/blocs-print/print-detail.format.twig" with {'notice': notice, 'format': 'txt'} %}

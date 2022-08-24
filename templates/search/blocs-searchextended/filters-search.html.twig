@@ -3,18 +3,40 @@
 		<p class="search-criteria__label">
 			{{ objSearch.advancedMode ? 'bloc.filters-search.advanced-title'|trans : 'bloc.filters-search.simple-title'|trans }}</p>
 		<ul class="search-criteria__list">
-			{% for criteria in objSearch.advancedCriteria %}
-				{% for key, value in criteria %}
+			{% set criteriaTerms = objSearch.getSearchCriteriaOperator %}
+			{% if objSearchBis.getSearchCriteriaOperator is not empty %}
+				{% set criteriaTerms = objSearchBis.getSearchCriteriaOperator %}
+
+			{% endif %}
+			{% for criteria in objSearch.getAdvancedCriteriaWithOperator(criteriaTerms) %}
+				{#% for criteria in criterias %#}
 					<li class="search-criteria__item">
-						{% if is_search_word(key) %}
-							{{ ('modal.advanced-search.keyword.type.'~key)|trans }} : 
-						{% else %}
-							{{ ('modal.advanced-search.facette.'~key)|trans }} :
+
+						{% if not loop.first and not  is_search_word(criteria.field) %}
+							;
 						{% endif %}
 
-						{{ value }}
+						{% if not is_search_word(criteria.field) and  cut_filter_from_search(criteria.field, criteria.value)!='' %}
+							<a href="{{ cut_filter_from_search(criteria.field, criteria.value) }}">
+								<span class="sr-only">{{ 'bloc.filters-search.remove-criteria'|trans }}</span>
+						{% endif %}
+
+						{% if is_search_word(criteria.field) %}
+							 &nbsp;{{ criteria.operator |trans }}&nbsp;&nbsp;{{ ('modal.advanced-search.keyword.type.'~criteria.field)|trans }} :
+						{% else %}
+							{{ ('modal.advanced-search.facette.'~criteria.field)|trans }} :
+						{% endif %}
+
+						{{ criteria.value }}
+								{% if not is_search_word(criteria.field) and  cut_filter_from_search(criteria.field, criteria.value)!='' %}
+							
+								<span>
+                                    <img src="{{ asset('images/icones/icone-croix-rouge.svg') }}" aria-hidden="true"/>
+                                </span>
+							</a>
+						{% endif %}
 					</li>
-				{% endfor %}
+				{#% endfor %#}
 			{% endfor %}
 		</ul>
 	{% endif %}

@@ -15,10 +15,10 @@ ARTIFACT_ID = $(PROJECT_NAME)-$(MODULE_NAME)
 VERSION = $(subst -dev,-SNAPSHOT,${COMPOSER_PROJECT_VERSION})
 # Output
 PACKAGE_NAME ?= ${ARTIFACT_ID}.${VERSION}.tgz
-DOCKER_TAG ?= registry.sedona.fr/bpi/catalogue/bpi-catalogue/site:latest
+DOCKER_TAG ?= ${CI_REGISTRY_IMAGE}/site:latest
 
 APP_ENV ?= prod
-NOW = $(shell date +"%Y%m%d-%H%M%S")
+NOW = $(shell date +"%d/%m/%Y-%H:%M:%S")
 BUILD_DIR = build
 
 UID ?= $(shell id -u)
@@ -37,9 +37,9 @@ TAR_CAN_EXCLUDE_VCS = $(shell expr `tar --version | grep ^tar | sed 's/^.* //g'`
 # PHP
 PHP_BIN ?= $(shell which php 2> /dev/null || echo 'php')
 # Composer options
-COMPOSER ?= $(PHP_BIN) $(shell which composer 2> /dev/null)
+COMPOSER ?= $(PHP_BIN) -d memory_limit=-1 $(shell which composer 2> /dev/null)
 AUTOLOAD_OPTIONS ?= -o -a
-CINSTALL_OPTIONS ?= --no-interaction --prefer-dist
+CINSTALL_OPTIONS ?= --no-interaction --prefer-dist --no-progress
 
 PHPSTAN_LEVEL ?= 5
 
@@ -98,6 +98,7 @@ endif
 	@printf "App mode: \033[32m${APP_ENV}\033[39m.\n"
 .PHONY: env-%
 
+# génération du fichier sonar a partir du fichier composer
 sonar-project.properties:
 	sed -E \
 		-e 's/sonar.projectKey=[^\n]+/sonar.projectKey=${GROUP_ID}:${ARTIFACT_ID}/g' \
@@ -109,11 +110,13 @@ show-mode:
 	@printf "App mode: \033[32m${APP_ENV}\033[39m.\n"
 .PHONY: show-mode
 
+# clean des caches applicatif
 clean:
 	rm -rf $(CACHE_DIR)/${APP_ENV}/
 	rm -rf $(LOG_DIR)/${APP_ENV}*.log
 .PHONY: clean
 
+# clean des caches applicatif + fichier de generation
 clean-all: clean
 	rm -rf $(BUILD_DIR)
 	rm -rf package_info.json
@@ -122,6 +125,7 @@ clean-all: clean
 $(BUILD_DIR):
 	mkdir $@
 
+# génération du fichier de version
 package_info.json:
 	echo "{\"date_version\":\"${NOW}\",\"tag\":\"${CI_COMMIT_TAG}\",\"project_url\":\"${CI_PROJECT_URL}\", \"sha\":\"${CI_COMMIT_SHA}\"}" | tee package_info.json
 
@@ -267,10 +271,6 @@ security-check:
 	$(CONSOLE) security:check
 .PHONY: security-check
 
-behat-w3c:
-	vendor/bin/behat -f progress features/w3c/
-.PHONY: behat-ce
-
 tests: unit-tests code-analysis security-check
 .PHONY: tests
 
@@ -309,7 +309,7 @@ db-init: db-create db-update
 ##	CI/CD Config Build
 ################################################################################
 
-package: $(BUILD_DIR) package_info.json c-install dotenv-clear
+package: $(BUILD_DIR) package_info.json c-install assets dotenv-clear
 	@printf "Building ${BUILD_DIR}/${PACKAGE_NAME}\n"
 	tar --ignore-failed-read --exclude-from=./.package-ignore -czf ${BUILD_DIR}/${PACKAGE_NAME} .
 .PHONY: package

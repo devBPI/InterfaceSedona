@@ -16,9 +16,9 @@
 						<div class="carousel__slide-image">
 							<img src="{{ subnotice.image is not empty ? path('binary_image', {'content':subnotice.image, 'type': subnotice.type | slugify}) : asset(subnotice.defaultImage) }}" class="img-fluid" alt="" />
 						</div>
-						<p class="n1 carousel__slide-title">{{ subnotice.titles[0] }}</p>
+						<p class="n1 carousel__slide-title">{{ subnotice.titles[0]|carrouselTitle|nl2br }}</p>
 						<p class="n2 carousel__slide-subtitle">
-							{{ subnotice.authors|join }}
+							{{ subnotice.authors|join(', ')|carrouselTitle|nl2br }}
 						</p>
 					</div>
 				{% endfor %}

@@ -1,9 +1,13 @@
+and: ET
+or: OU
+not: SAUF
 Bad credentials.: Votre email et/ou mot de passe ne sont pas valides.
 global:
   new-windows: Nouvelle fenêtre
   form-mandatory-field: champs obligatoires
   modal-close: Fermer cette fenêtre
   modal-cancel: Annuler
+  modal-confirm: Confirmer
   modal-btn-close: Fermer
   list-ordering: ": activer pour trier par ordre ascendant/descendant"
   site-title: "Catalogue Bpi"
@@ -40,6 +44,7 @@ header:
     balises: Balises
     pro: Professionals
     cinemadureel: Cinéma du réel
+    effractions: Effractions
   navbar-user:
     selection: My selection
     history: My history
@@ -69,14 +74,17 @@ footer:
     aide-et-accessibilite: Help and accessibility
     contacts-bpi: Contacts
   links-externe:
+    sr-mensuel: Programme bibliothèque publique d'information, the monthly of the Bpi
     mensuel: The monthly of the Bpi
+    sr-actualite: Lettres d'information, the Bpi news
     actualite: The Bpi news
+    sr-magazine: Balises, the Bpi magazine
     magazine: The Bpi magazine
   partenaires:
     eurekoi: Eurêkoi
     culture: Ministry of culture
     pompidou: Centre Pompidou
-    ircam: Ircam
+    ircam: Ircam Centre Pompidou
     franceculture: France Culture
   socials-medias:
     facebook: Find the Bpi on Facebook
@@ -87,7 +95,13 @@ footer:
     rss: Bpi RSS feed
 
 modal:
-  email-example: (nom@exemple.com)
+  wait-message: Veuillez patienter
+  confirm-message:
+    print: Ils n'apparaîtront pas dans la liste que vous imprimez
+    export: Ils n'apparaîtront pas dans la liste que vous exportez
+  check-list:
+    title: "Attention, un ou plusieurs éléments de votre sélection ne sont plus présents dans le catalogue "
+    email-example: (nom@exemple.com)
   list-create:          #Modal 01  Création d'une liste
     title: Créer une nouvelle liste
     mandatory-field: La saisie du titre de la liste est obligatoire
@@ -96,7 +110,11 @@ modal:
     submit: Valider
     submit-sr-only: la création de la liste
   list-add:             #Modal 02 ajout à ma sélection
+    already-exist: Cette référence est déjà dans votre sélection.
+    message-already-exist: L'élément existe déjà dans la liste
     title-connected: Ajouter...
+    title-ajouter-before-sr-only: Vous avez bien ajoute 
+    title-ajouter-after-sr-only: à Ma sélection.
     title: Vous avez ajouté...
     add-to-profile: '... à Mon compte dans :'
     list: '%name%'
@@ -291,7 +309,7 @@ modal:
 page:
   breadcrumb: Fil d'ariane
   home:
-    page_title: Home
+    page_title: Home - Catalogue
     title: Accueil - Catalogue de la Bpi
     thematic: Découvrir les parcours
   thematic:
@@ -386,6 +404,7 @@ bloc:
   filters-search:         #Bloc 10 Rappel des critères de recherche
     simple-title: 'Recherche simple :'
     advanced-title: 'Recherche avancée :'
+    remove-criteria: Supprimer le filtre
   preview-authority:      #Bloc 11 Aperçu d'une autorité
     first: Sélectionner %name%
     see-more: Voir plus
@@ -573,19 +592,19 @@ bloc:
       search: Résultats de recherche
       selection: Résultats de la sélection
     subtitles:
-      your-references-autority: Vos références d'autorité
+      your-references-autority: Vos références d'autorités
       your-reference-autority: Votre référence d'autorité
       your-references-bibliographic: Vos références bibliographiques
       your-reference-bibliographic: Votre référence bibliographique
 error:
   page_not_available: 'Cette page n’est pas accessible.'
-  page_not_found: 404 - Page introuvable
+  page_not_found: Cette page est inaccessible.
   link-go-back: Pour <a href="%link%">revenir en arrière</a>
   link-home: Pour retourner à la <a href="%link%">page d’accueil du catalogue de la Bpi</a>
   contact-admin: Contacter <a href="mailto:%email%">l’administrateur du catalogue de la Bpi</a>
   title-form: Formulaire de contact
   page_error: Page en erreur
-  page_broken: Oops! Une erreur est survenue
+  page_broken: Cette page est inaccessible.
   page_broken_message: |
     Le site rencontre actuellement un problème technique, merci de renouveller votre visite ultèrieurement.
     Nous allons le réparer dès que possible. Désolé pour tout inconvénient causé.
@@ -622,4 +641,6 @@ breadcrumb:
         legend:
           shortFormat: Contenu de la notice
           formatType: Format de l'export
-    
+
+table:
+  caption: " - activez les en-têtes du tableau pour trier les données"

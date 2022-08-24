@@ -12,7 +12,6 @@ final class ObjSearch
 {
     CONST PARAM_REQUEST_NAME = 'searchToken';
     CONST PARAM_PARCOURS_NAME = 'parcours';
-
     /**
      * @var string
      */
@@ -171,10 +170,18 @@ final class ObjSearch
 
     /**
      * @return array
+    */
+    public function getSearchFacets(): array
+    {
+        return $this->searchQuery->getFacets()->getAttributes();
+    }
+
+    /**
+     * @return array
      */
     public function getSearchFilters(): array
     {
-        return $this->searchQuery->getFacets()->getAttributes();
+        return $this->searchQuery->getFilters()->getAttributes();
     }
 
     /**
@@ -183,6 +190,66 @@ final class ObjSearch
     public function getCriteria(): ?Criteria
     {
         return $this->searchQuery->getCriteria();
+    }
+
+    /**
+     * @return array
+     */
+    public function getSearchCriteriaOperator(){
+        return $this->getCriteria()->getFieldsWithOperator( $this->getCriteria()->getKeywordsTitles(true),$this->getCriteria());
+    }
+
+    /**
+     * @param $criteria
+     * @return mixed
+     */
+    public function getAdvancedCriteriaWithOperator($criteria){
+        if (
+            $this->searchQuery->getCriteria()->getPublicationDateStart() ||
+            $this->searchQuery->getCriteria()->getPublicationDateEnd()
+        ) {
+            $criteria[] =
+                ['value'=> $this->searchQuery->getCriteria()->getPublicationDateStart().' - '.
+                    $this->searchQuery->getCriteria()->getPublicationDateEnd() ,
+                    'field'=>'date_publishing',
+                    'operator'=>''
+                ]
+
+            ;
+        }
+
+        foreach ($this->getSearchFilters() as $name => $values) {
+            if ($name === 'date_publishing' && is_array($values)) {
+                $values = min($values).' - '.max($values);
+            }
+
+            if (is_array($values)) {
+                $values = implode(', ', $values);
+            }
+
+            $criteria[] =  ['value'=> $values,
+                'field'=>$name,
+                'operator'=>''
+            ];
+        }
+
+
+        foreach ($this->getSearchFacets() as $name => $values) {
+            if ($name === 'date_publishing' && is_array($values)) {
+                $values = min($values).' - '.max($values);
+            }
+
+            if (is_array($values)) {
+                $values = implode(', ', $values);
+            }
+
+            $criteria[] = ['value'=> $values,
+                'field'=>$name,
+                'operator'=>''
+            ];
+        }
+
+        return $criteria;
     }
 
     /**
@@ -210,7 +277,19 @@ final class ObjSearch
                 $values = implode(', ', $values);
             }
 
-            $criteria[] = [$name => $values];
+            $criteria[] = [($name) => $values];
+        }
+
+        foreach ($this->getSearchFacets() as $name => $values) {
+            if ($name === 'date_publishing' && is_array($values)) {
+                $values = min($values).' - '.max($values);
+            }
+
+            if (is_array($values)) {
+                $values = implode(', ', $values);
+            }
+
+            $criteria[] = [($name) => $values];
         }
 
         return $criteria;

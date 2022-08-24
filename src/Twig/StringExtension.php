@@ -23,6 +23,9 @@ class StringExtension extends AbstractExtension
             new TwigFilter('snake', [$this, 'toSnakeCase']),
             new TwigFilter('camel', [$this, 'toCamelCase']),
             new TwigFilter('slugify', [$this, 'toSlugify']),
+            new TwigFilter('wordwrap', [$this, 'wordwrap']),
+            new TwigFilter('truncate', [$this, 'truncate']),
+            new TwigFilter('carrouselTitle', [$this, 'carrouselTitle']),
         ];
     }
 
@@ -73,6 +76,43 @@ class StringExtension extends AbstractExtension
     public function toSnakeCase(string $text): string
     {
         return strtolower(ltrim(preg_replace('/([A-Z])/', '_\\1', $text), '_'));
+    }
+
+    /**
+     * @param string $text
+     * @return array
+     */
+    public function wordwrap(string $text,
+                             $width = 25,
+                             string $break = "\n",
+                             bool $cut_long_words = true
+    ): array
+    {
+        return explode($break, wordwrap($text,$width,$break,$cut_long_words));
+    }
+
+    /**
+     * @param string $text
+     * @return string
+     */
+    public function truncate(string $text, int $length = 20, string $ellipsis = '[…]'): string
+    {
+        return mb_strlen($text)>$length ? substr($text,0,$length).$ellipsis : $text;
+    }
+
+    public function carrouselTitle(string $text,$width = 24, string $ellipsis = '[…]') :string
+    {
+        $playlod = $this->wordwrap($text,$width);
+        if (count($playlod)>2) {
+            $nb = $width-strlen($ellipsis);
+            $subPayload = $this->wordwrap($playlod[1],$nb,"\n", false);
+            $subPayload[0] = strlen($subPayload[0]) < $nb ? trim($subPayload[0])." " : trim($subPayload[0]);
+            return $playlod[0]."\n".$subPayload[0].$ellipsis;
+        } elseif (count($playlod) == 2) {
+            return implode("\n",$playlod);
+        } else {
+            return $playlod[0];
+        }
     }
 
     /**

@@ -19,4 +19,13 @@ $(document).ready(function () {
         "info":   false,
         "searching":   false
 	});
+
+    $('table.table-striped').on( 'order.dt', function () {
+        // This will show: "Ordering on column 1 (asc)", for example
+        window.setTimeout(function (){
+            $('table.table-striped [aria-label]').removeAttr('aria-label');
+        },0);
+    } );
+
+    $('table.table-striped [aria-label]').removeAttr('aria-label');
 });

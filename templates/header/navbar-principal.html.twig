@@ -2,20 +2,47 @@
 	<div class="collapse navbar-collapse" id="navbar-principale-content">
 		<ul class="navbar-nav nav">
             {% for label, nav in header_menu() %}
-				<li class="nav-item{% if nav.list is defined %} dropdown-link{% endif %}{% if nav.active is defined %} active{% endif %}">
-                    {% if nav.active is defined %}<span class="sr-only"> - page active</span>{% endif %}
-					<a href="{{ nav.link }}" class="nav-link{% if nav.list is defined %} dropdown-toggle{% endif %}">{{ label }}</a>
-                    {% if nav.list is defined %}
-						<span class="sr-only">{{ nav.sronly }}</span>
+				{# <li class="nav-item{% if nav.list is defined %} dropdown-link dropdown{% endif %}{% if nav.active is defined %} active{% endif %}"> #}
+				<li class="nav-item{% if nav.list is defined %} dropdown{% endif %}{% if nav.active is defined %} active{% endif %}">
+                    {% if nav.active is defined %}
+						<span class="sr-only"> - page active</span>
+					{% endif %}
+					
+					{# <a href="{{ nav.link }}" class="nav-link{% if nav.list is defined %} dropdown-toggle{% endif %}">{{ label }}</a> #}
+                    
+					{% if nav.list is defined %}
+						<a class="nav-link dropdown-toggle" href="{{ nav.link }}" id="{{ nav.list.id }}" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="button">
+							{{ label }}
+						</a>
+
+						{# <span class="sr-only">{{ nav.sronly }}</span>
 						<button class="dropdown-toggle dropdown-toggle--responsive dropdown-toggle--close" data-toggle="dropdown" aria-controls="{{ nav.list.id }}" aria-expanded="false">
-							<span class="sr-only js-label-aria">Ouvrir</span><span class="sr-only"> le sous-menu de la rubrique {{ label }}</span>
-						</button>
+
+						</button> #}
 
 
 						{% include "header/navbar-principal-dropdown.html.twig" with {'list': nav.list} %}
+
+					{% else %}
+
+						<a href="{{ nav.link }}" class="nav-link">{{ label }}</a>
+
                     {% endif %}
 				</li>
             {% endfor %}
 		</ul>
 	</div>
 </nav>
+
+
+      {# <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Dropdown
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="#">Action</a>
+          <a class="dropdown-item" href="#">Another action</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="#">Something else here</a>
+        </div>
+      </li> #}

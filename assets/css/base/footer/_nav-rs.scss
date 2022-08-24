@@ -20,10 +20,15 @@
 
 		@include media-breakpoint-up(lg) {
 			margin: 0 5px;
-		}		
+		}
 
-		img {
-			max-width: 100%;
+		a {
+			fill: $black;
+
+			&:hover,
+			&:focus {
+				fill: currentColor;
+			}
 		}
 	}
 }

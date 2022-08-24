@@ -1,8 +1,8 @@
 {% import "common/macros/detail-macro.html.twig" as notice_macros %}
 
 {{ notice_macros.row_link(notice.otherAuthors, ('bloc.autority-result-information.other-'~( notice.type == constant('MUSIC',notice) ?'musique-author':'authors')), constant('App\\WordsList::AUTHOR_WORD')) }}
-{{ notice_macros.row_link(notice.contributeurs, 'bloc.autority-result-information.contributor'|trans, constant('App\\WordsList::AUTHOR_WORD')) }}
-{{ notice_macros.row_link(notice.editors, 'bloc.autority-result-information.editor'|trans) }}
+{{ notice_macros.value_complement_link(notice.contributeurs, 'bloc.autority-result-information.contributor'|trans, constant('App\\WordsList::AUTHOR_WORD')) }}
+{{ notice_macros.row_link(notice.editors, 'bloc.autority-result-information.editor'|trans, '', 'editor') }}
 
 {{ notice_macros.detail(notice.publishedDates, 'bloc.autority-result-information.date'|trans, ' - ') }}
 {{ notice_macros.detail(notice.otherDates, 'bloc.autority-result-information.edition-date'|trans) }}
@@ -37,13 +37,49 @@
 {% endif %}
 
 {{ notice_macros.row(notice.materialDescriptions, 'modal.advanced-search.facette.materialSupport'|trans) }}
-{{ notice_macros.row_link(notice.collectionSeries, 'bloc.autority-result-information.collections-et-services'|trans) }}
+{{ notice_macros.row_link(notice.collectionSeries, 'bloc.autority-result-information.collections-et-services'|trans, '', 'collection') }}
 {{ notice_macros.row_link(notice.togetherTitle, 'bloc.autority-result-information.title-together'|trans, constant('App\\WordsList::TITLE_WORD')) }}
 {{ notice_macros.row_link(notice.inRelationTitle, 'bloc.autority-result-information.title-inrelation'|trans, constant('App\\WordsList::TITLE_WORD')) }}
 {{ notice_macros.row_link(notice.meeting, 'bloc.autority-result-information.meeting'|trans, constant('App\\WordsList::TITLE_WORD')) }}
 
 {{ notice_macros.detail(notice.otherEdition, 'bloc.autority-result-information.other-edition'|trans) }}
 {{ notice_macros.detail(notice.conservations, 'bloc.autority-result-information.conservation') }}
+
+
+{% set conservationFound = false %}
+{% if notice.links|length>0 %}
+    {% for element in notice.links if not conservationFound %}
+        {#% if element.accessNumFirstIssueOnline is not empty and element.accessNumFirstIssueOnline != 0 %#}
+        {% if (element.accessNumFirstIssueOnline is not empty and element.accessNumFirstIssueOnline != 0)
+           or (element.accessNumFirstVolOnline is not empty and element.accessNumFirstVolOnline != 0)
+           or (element.accessDateFirstIssueOnline is not empty and element.accessDateFirstIssueOnline != 0)
+           or (element.accessNumLastIssueOnline is not empty and element.accessNumLastIssueOnline != 0)
+           or (element.accessNumLastVolOnline is not empty and element.accessNumLastVolOnline != 0)
+           or (element.accessDateLastIssueOnline is not empty and element.accessDateLastIssueOnline != 0) %}
+            {% set conservationFound = true %}
+        {% endif %}
+    {% endfor %}
+{% endif %}
+{% if notice.links|length>0 and conservationFound %}
+    <li class="list-information__item" >
+        <span class="list-information__label">Conservation</span>
+        <ul class="list-information__sub-list list-information__sub-list--bloc">
+            {% for element in notice.links %}
+                <li class="list-information__sub-item">
+                    <p>
+                        {% if element.accessNumFirstIssueOnline is not empty and element.accessNumFirstIssueOnline != 0 %}n.{{ element.accessNumFirstIssueOnline }}{% if (element.accessNumFirstVolOnline is not empty and element.accessNumFirstVolOnline != 0) or (element.accessDateFirstIssueOnline is not empty and element.accessDateFirstIssueOnline != 0) %}, {% endif %}{% endif %}
+                        {% if element.accessNumFirstVolOnline is not empty and element.accessNumFirstVolOnline != 0 %}vol.{{ element.accessNumFirstVolOnline }}{% if element.accessDateFirstIssueOnline is not empty and element.accessDateFirstIssueOnline != 0 %}, {% endif %}{% endif %}
+                        {% if element.accessDateFirstIssueOnline is not empty and element.accessDateFirstIssueOnline != 0 %}{{ element.accessDateFirstIssueOnline }} {% endif %}
+                        {% if element.accessDateFirstIssueOnline is not empty and element.accessDateFirstIssueOnline != 0 or element.accessNumLastIssueOnline is not empty and element.accessNumLastIssueOnline != 0 or element.accessDateLastIssueOnline is not empty and element.accessDateLastIssueOnline != 0 %}- {% endif %}
+                        {% if element.accessNumLastIssueOnline is not empty and element.accessNumLastIssueOnline != 0 %}n.{{ element.accessNumLastIssueOnline }}{% if (element.accessNumLastVolOnline is not empty and element.accessNumLastVolOnline != 0) or (element.accessDateLastIssueOnline is not empty and element.accessDateLastIssueOnline != 0) %}, {% endif %}{% endif %}
+                        {% if element.accessNumLastVolOnline is not empty and element.accessNumLastVolOnline != 0 %}vol.{{ element.accessNumLastVolOnline }}{% if element.accessDateLastIssueOnline is not empty and element.accessDateLastIssueOnline != 0 %}, {% endif %}{% endif %}
+                        {% if element.accessDateLastIssueOnline is not empty and element.accessDateLastIssueOnline != 0 %}{{ element.accessDateLastIssueOnline }} {% endif %}
+                    </p>
+                </li>
+            {% endfor %}
+        </ul>
+    </li>
+{% endif %}
 
 {% if notice.subject|length>0 %}
     <li class="list-information__item" >
@@ -63,7 +99,7 @@
 {{ notice_macros.row_link(notice.locations , 'bloc.autority-result-information.location'|trans, constant('App\\WordsList::SUBJECT_WORD')) }}
 {{ notice_macros.row_link(notice.kinds , 'bloc.autority-result-information.kind'|trans, constant('App\\WordsList::SUBJECT_WORD')) }}
 
-{{ notice_macros.row_link(notice.topics , 'bloc.autority-result-information.topics'|trans) }}
+{{ notice_macros.row_link(notice.topics , 'bloc.autority-result-information.topics'|trans,'', 'theme') }}
 {{ notice_macros.detail(notice.isbns , 'ISBN') }}
 {{ notice_macros.detail(notice.issn , 'ISSN') }}
 {{ notice_macros.detail(notice.commercialNumbers , 'bloc.autority-result-information.comercial-number'|trans) }}

@@ -23,7 +23,7 @@
 						<input type="text" class="form-control {% if error is defined %}is-invalid{% endif %}" id="create-title"
 							name="{{ constant('App\\Controller\\UserSelectionController::INPUT_LIST_TITLE') }}">
 						{% if error is defined %}
-							<span class="invalid-feedback d-block">{{ error|trans }}</span>
+							<p class="invalid-feedback d-block" role="alert">{{ error|trans }}</p>
 						{% endif %}
 					</div>
 				</div>

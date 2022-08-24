@@ -1,17 +1,11 @@
 <div class="historique">
     <table class="table table-striped" aria-readonly="true">
-        <caption class="sr-only">{{ 'bloc.historic-search.title'|trans }}</caption>
+        <caption class="sr-only">{{ 'bloc.historic-search.title'|trans }}{{ "table.caption"|trans }}</caption>
         <thead class="table__thead">
         <tr>
             <th role="presentation" class="nosort"></th>
-            <th scope="col" role="columnheader">
-                {{ 'bloc.historic-search.col.name'|trans }}
-                <span class="caret"></span>
-            </th>
-            <th scope="col" role="columnheader">
-                {{ 'bloc.historic-search.col.date'|trans }}
-                <span class="caret"></span>
-            </th>
+            <th scope="col" role="columnheader">{{ 'bloc.historic-search.col.name'|trans }} <span class="caret"></span></th>
+            <th scope="col" role="columnheader">{{ 'bloc.historic-search.col.date'|trans }} <span class="caret"></span></th>
             <th role="presentation" class="nosort"></th>
         </tr>
         </thead>

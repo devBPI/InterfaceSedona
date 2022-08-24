@@ -26,7 +26,26 @@ class UserSelectionListRepository extends EntityRepository
             ->setParameter('user', $user->getUid())
             ->getResult();
     }
+    /**
+     * @param LdapUser $user
+     * @return UserSelectionList[]
+     */
+    public function findAllOrderedByPermalinks(LdapUser $user, array $permalinks=[]): array
+    {
+        if ($permalinks==[]){
+            return $this->findAllOrderedByPosition($user, $permalinks);
+        }
 
+        return $this->createQueryBuilder('list')
+            ->join('list.documents', 'doc')
+            ->where('list.user_uid = :user')
+            ->andWhere(sprintf("doc.permalink in ('%s')",  implode("','", $permalinks)))
+            ->orderBy('list.position')
+            ->getQuery()
+            ->setParameter('user', $user->getUid())
+            //   ->setParameter('permalinks', implode("','", $permalinks))
+            ->getResult();
+    }
     /**
      * @param LdapUser $user
      * @param array $ids
@@ -74,4 +93,37 @@ class UserSelectionListRepository extends EntityRepository
             ->setParameter('user', $user->getUid())
             ->getSingleScalarResult();
     }
+
+    /**
+     * @param LdapUser $user
+     * @param $permalink
+     * @param UserSelectionList|null $list
+     * @return int
+     * @throws \Doctrine\ORM\NonUniqueResultException
+     */
+    public function getList(LdapUser $user, $permalink, UserSelectionList $list =null):int
+    {
+        $q =  $this->createQueryBuilder('list')
+                ->join('list.documents', 'doc')
+                ->where('list.user_uid = :user')
+                ->andWhere('doc.permalink = :permalink')
+        ;
+
+        if($list instanceof UserSelectionList){
+            $q->andWhere('list.id = :id');
+        }
+        $q->select('count(doc.id)')
+            ->setParameter('user', $user->getUid())
+            ->setParameter('permalink', $permalink)
+        ;
+        if($list instanceof UserSelectionList){
+            $q->setParameter('id', $list->getId());
+        }
+
+        return $q->getQuery()->getSingleScalarResult();
+
+    }
+
 }
+
+

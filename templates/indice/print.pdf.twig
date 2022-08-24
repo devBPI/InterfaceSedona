@@ -3,7 +3,7 @@
 
 {% block body %}
     <div class="print__item">
-        <h2 class="n1">{{ notice.title }}</h2>
+        <h2 class="n1">{{ notice.cote |raw }} - {{ notice.title }}</h2>
 
         <div>
             {{ image(notice, includeImage) }}

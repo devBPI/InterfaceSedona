@@ -4,6 +4,35 @@
 
 .bibliographic-result {
 
+	.decouvrirButton {
+		//float: right;
+		padding: 0;
+		//margin-left: 0.5em;
+		//padding-right: 0.5em;
+		//padding-top: 1px;
+		//padding-bottom: 1px;
+		//margin-right: 100px;
+		margin-left: 1em;
+		text-decoration: none;
+		//color: black;
+		//font-size: 0.9em;
+		//color: #C28100;
+		//border: 2px solid #C28100;
+		//font-weight: bold;
+		&:hover {
+			//background: #C28100;
+			//color: white;
+		}
+		&:hover .under {
+			text-decoration: underline;
+		}
+		& img {
+			transform: scaleX(1);
+			width: 1.33333rem;
+			height: 1.33333rem;
+		}
+	}
+
 	.link {
 		color: $black;
 

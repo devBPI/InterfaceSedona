@@ -13,6 +13,7 @@ use JMS\Serializer\Annotation as JMS;
  */
 class SearchQuery implements SearchResultInterface
 {
+
     const SORT_DEFAULT = 'DEFAULT';
     const SORT = [
         'pertinence' => self::SORT_DEFAULT,
@@ -37,6 +38,12 @@ class SearchQuery implements SearchResultInterface
     use SearchResultTrait;
 
     /**
+     * @var FilterFilter
+     * @JMS\Type("App\Model\Search\FilterFilter")
+     */
+    private $filters;
+
+    /**
      * @var FacetFilter
      * @JMS\Type("App\Model\Search\FacetFilter")
      */
@@ -52,6 +59,11 @@ class SearchQuery implements SearchResultInterface
      * @JMS\Type("string")
      */
     private $sort;
+    /**
+     * @var string
+     * @JMS\Type("string")
+     */
+    private $seeAll;
 
     /**
      * @var int
@@ -68,16 +80,25 @@ class SearchQuery implements SearchResultInterface
     /**
      * SearchQuery constructor.
      * @param Criteria $criteria
+     * @param FilterFilter|null $filters
      * @param FacetFilter|null $facets
      * @param string $mode
      */
-    public function __construct(Criteria $criteria, FacetFilter $facets = null, string $mode = self::SIMPLE_MODE)
+    public function __construct(Criteria $criteria, FilterFilter $filters = null, FacetFilter $facets = null, string $mode = self::SIMPLE_MODE)
     {
         $this->criteria = $criteria;
+        $this->filters = $filters ?? new FilterFilter();
         $this->facets = $facets ?? new FacetFilter();
         $this->mode = $mode;
     }
 
+    /**
+     * @return FilterFilter
+     */
+    public function getFilters(): FilterFilter
+    {
+        return $this->filters;
+    }
     /**
      * @return FacetFilter
      */
@@ -144,6 +165,17 @@ class SearchQuery implements SearchResultInterface
     }
 
     /**
+     * @param FilterFilter $filters
+     * @return SearchQuery
+     */
+    public function setFilters(FilterFilter $filters):SearchQuery
+    {
+        $this->filters = $filters;
+
+        return $this;
+    }
+
+    /**
      * @param FacetFilter $facets
      * @return SearchQuery
      */
@@ -169,5 +201,25 @@ class SearchQuery implements SearchResultInterface
     {
         return $this->mode;
     }
+
+    /**
+     * @return string
+     */
+    public function getSeeAll(): string
+    {
+        return $this->seeAll;
+    }
+
+    /**
+     * @param string|null $seeAll
+     * @return SearchQuery
+     */
+    public function setSeeAll(string $seeAll=null): SearchQuery
+    {
+        $this->seeAll = $seeAll;
+
+        return $this;
+    }
+
 
 }

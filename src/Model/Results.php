@@ -20,6 +20,12 @@ class Results implements SearchResultInterface
      * @var Facets
      * @JMS\Type("App\Model\Facets")
      */
+    private $filters;
+
+    /**
+     * @var Facets
+     * @JMS\Type("App\Model\Facets")
+     */
     private $facets;
 
     /**
@@ -144,9 +150,9 @@ class Results implements SearchResultInterface
     }
 
     /**
-     * @return SuggestionList
+     * @return SuggestionList|null
      */
-    public function getSuggestionList(): SuggestionList
+    public function getSuggestionList(): ?SuggestionList
     {
         return $this->suggestionList;
     }
@@ -159,6 +165,14 @@ class Results implements SearchResultInterface
     {
         $this->criteria = $criteria;
         return $this;
+    }
+
+    /**
+     * @return Facets
+     */
+    public function getFilters(): ?Facets
+    {
+        return $this->filters;
     }
 
     /**

@@ -65,7 +65,6 @@ final class AuthorityController extends AbstractController
             'record_authority_pdf',
             [ 'permalink' => $notice->getPermalink(), 'format' => 'pdf']
         );
-
         try {
             $navigation = $this->navigationService->buildAuthorities($notice);
         } catch (\Exception $e) {

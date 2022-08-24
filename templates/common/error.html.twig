@@ -2,13 +2,18 @@
 
 {% block body %}
     <p>
-        Cette ressource n’est plus disponible. Vous allez être redirigé vers la page d’accueil du catalogue de la Bpi.
+        Cette ressource n’est plus disponible.
     </p>
     <p>
-        <a href="{{ path('home') }}">Pour revenir à la page d'accueil</a>
-    </p>
 
-   Redirection automatique au bout de <a href ="{{ path('home') }}" id="countdown" class="timer"></a>s
+       <!-- <a href="{{ path('home') }}">Pour revenir à la page d'accueil</a> -->
+
+       {{ 'error.link-home'|trans({'%link%': path('home')})|raw }}
+
+    </p>
+	 <p>{{ 'error.contact-admin'|trans({'%email%': contact_email})|raw }}</p>
+
+   <!-- Redirection automatique au bout de <a href ="{{ path('home') }}" id="countdown" class="timer"></a>s -->
 {% endblock %}
 
 {% block javascripts %}

@@ -146,8 +146,8 @@ class Notice extends AbstractImage implements NoticeInterface, RecordInterface
     private $authors;
 
     /**
-     * @var array|Value[]
-     * @JMS\Type("array<App\Model\Value>")
+     * @var array|ValueComplementReference[]
+     * @JMS\Type("array<App\Model\ValueComplementReference>")
      * @JMS\SerializedName("auteurs")
      * @JMS\XmlList("auteur")
      */
@@ -290,16 +290,16 @@ class Notice extends AbstractImage implements NoticeInterface, RecordInterface
      */
     private $topics;
     /**
-     * @var array|Value[]
-     * @JMS\Type("array<App\Model\Value>")
+     * @var array|ValueComplement[]
+     * @JMS\Type("array<App\Model\ValueComplement>")
      * @JMS\SerializedName("contributeurs")
      * @JMS\XmlList("contributeur")
      */
     private $contributeurs;
 
     /**
-     * @var array|Value[]
-     * @JMS\Type("array<App\Model\Value>")
+     * @var array|ValueComplement[]
+     * @JMS\Type("array<App\Model\ValueComplement>")
      * @JMS\SerializedName("contributeursVide")
      * @JMS\XmlList("contributeurVideo")
      */
@@ -444,7 +444,7 @@ class Notice extends AbstractImage implements NoticeInterface, RecordInterface
      */
     private $indices;
     /**
-     * @var array#
+     * @var array
      * @JMS\Type("array<string>")
      * @JMS\SerializedName("contenus")
      * @JMS\XmlList("contenu")
@@ -458,6 +458,14 @@ class Notice extends AbstractImage implements NoticeInterface, RecordInterface
      * @JMS\XmlList("realisateur")
      */
     private $directors;
+
+    /**
+     * @var array|ValueComplementReference[]
+     * @JMS\Type("array<App\Model\ValueComplementReference>")
+     * @JMS\SerializedName("realisateursReferenced")
+     * @JMS\XmlList("realisateurReferenced")
+     */
+    private $directorsReferenced;
 
     /**
      * @var array
@@ -705,7 +713,7 @@ class Notice extends AbstractImage implements NoticeInterface, RecordInterface
 
         if (is_array($this->authorsValue)) {
             foreach ($this->authorsValue as $value){
-                if ($value instanceof Value && $value->getValue()){
+                if ($value instanceof ValueComplementReference && $value->getValue()){
                     $authors[] = $value->getValue();
                 }
             }
@@ -713,6 +721,24 @@ class Notice extends AbstractImage implements NoticeInterface, RecordInterface
 
         if (is_array($this->directors)){
             $authors = array_merge($authors, $this->directors);
+        }
+
+        return array_unique(array_filter($authors));
+    }
+
+    /**
+     * @return array
+     */
+    public function getFrontDiscoveryAuthor(): ?array
+    {
+        $authors = [];
+
+        if (is_array($this->authorsValue)) {
+            $authors = array_merge($authors, $this->authorsValue);
+        }
+
+        if (is_array($this->directorsReferenced)) {
+            $authors = array_merge($authors, $this->directorsReferenced);
         }
 
         return array_unique(array_filter($authors));
@@ -727,7 +753,8 @@ class Notice extends AbstractImage implements NoticeInterface, RecordInterface
             return max($this->dates);
         }
 
-        return implode(self::SEPARATOR, $this->dates);
+        //return implode(self::SEPARATOR, $this->dates);
+		return implode(' - ', $this->dates);
     }
 
     /**
@@ -823,6 +850,22 @@ class Notice extends AbstractImage implements NoticeInterface, RecordInterface
     }
 
     /**
+      * @return ValueComplementReference[]|array
+      */
+     public function getDirectorsReferenced()
+     {
+         return $this->directorsReferenced;
+     }
+
+    /**
+      * @return ValueComplementReference[]|array
+      */
+     public function getDirectorsValue()
+     {
+         return $this->directorsValue;
+     }
+
+    /**
      * @return array
      */
     public function getDates(): array
@@ -844,9 +887,9 @@ class Notice extends AbstractImage implements NoticeInterface, RecordInterface
      */
     public function getContributeurs(): ?array
     {
-        if ($this->getType() === self::VIDEO) {
+        /*if ($this->getType() === self::VIDEO) {
             return null;
-        }
+        }*/
         return $this->contributeurs;
     }
 
@@ -857,7 +900,8 @@ class Notice extends AbstractImage implements NoticeInterface, RecordInterface
     {
             return $this->pictures;
 
-    }    /**
+    }
+    /**
      * @return Picture|mixed|null
      */
     public function getPicture()
@@ -1071,7 +1115,7 @@ class Notice extends AbstractImage implements NoticeInterface, RecordInterface
     }
 
     /**
-     * @return Value[]|array
+     * @return ValueComplementReference[]|array
      */
     public function getAuthorsValue()
     {

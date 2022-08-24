@@ -15,7 +15,9 @@ use App\Service\Provider\NoticeAuthorityProvider;
 use App\Service\Provider\NoticeProvider;
 use App\Utils\PrintNoticeWrapper;
 use Knp\Bundle\SnappyBundle\Snappy\Response\PdfResponse;
+use mysql_xdevapi\Exception;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Twig\Environment;
 
@@ -25,6 +27,7 @@ use Twig\Environment;
  */
 class NoticeBuildFileService
 {
+    const SHORT_PRINT = 'short-print';
     /**
      * @var NoticeProvider
      */
@@ -41,6 +44,10 @@ class NoticeBuildFileService
      * @var \Twig_Environment
      */
     private $templating;
+    /**
+     * @var SessionInterface
+     */
+    private $session;
 
     /**
      * NoticeBuildFileService constructor.
@@ -48,18 +55,21 @@ class NoticeBuildFileService
      * @param NoticeAuthorityProvider $noticeAuthority
      * @param \Knp\Snappy\Pdf $knpSnappy
      * @param Environment $templating
+     * @param SessionInterface $session
      */
     public function __construct(
         NoticeProvider $noticeProvider,
         NoticeAuthorityProvider $noticeAuthority,
          \Knp\Snappy\Pdf $knpSnappy,
-        Environment $templating
+        Environment $templating,
+        SessionInterface $session
         )
     {
         $this->noticeProvider   = $noticeProvider;
         $this->noticeAuthority  = $noticeAuthority;
         $this->knpSnappy        = $knpSnappy;
         $this->templating       = $templating;
+        $this->session = $session;
     }
 
     /**
@@ -73,7 +83,7 @@ class NoticeBuildFileService
     {
         $noticeWrapper  =  null;
         try {
-            $noticeWrapper  = $this->getNoticeWrapper($attachement->getNotices(), $attachement->getAuthorities(), $attachement->getIndices());
+            $noticeWrapper  = $this->getNoticeWrapper($attachement);
 
         } catch (\Exception $e) {
             /**
@@ -87,7 +97,7 @@ class NoticeBuildFileService
                 'toolbar'=> ObjSearch::class,
                 'isPrintLong'   => !$attachement->isShortFormat(),
                 'includeImage'  => $attachement->isImage(),
-                'printNoticeWrapper'=>$noticeWrapper
+                'printNoticeWrapper'=> $noticeWrapper
             ]
         );
     }
@@ -104,7 +114,7 @@ class NoticeBuildFileService
         $permalink = null;
         try {
             $permalink = $attachement->getNotices();
-            $object = $this->noticeProvider->getNotice($permalink);
+            $object = $this->noticeProvider->getNotice($permalink, !$attachement->isShortFormat()?:self::SHORT_PRINT);
         } catch(\Exception $e) {
            throw new NotFoundHttpException(sprintf('the permalink %s not referenced', $permalink));
         }
@@ -129,7 +139,7 @@ class NoticeBuildFileService
         $permalink = null;
         try {
             $permalink = $attachement->getAuthorities();
-            $object             = $this->noticeAuthority->getAuthority($permalink);
+            $object             = $this->noticeAuthority->getAuthority($permalink, !$attachement->isShortFormat()?:self::SHORT_PRINT);
             $relatedDocuments   = $this->noticeAuthority->getSubjectNotice($object->getId());
             $noticeAuthors      = $this->noticeAuthority->getAuthorsNotice($object->getId());
 
@@ -184,6 +194,7 @@ class NoticeBuildFileService
     public function buildFile(ExportNotice $attachement, string $type)
     {
         $content = $this->buildContent($attachement, $type);
+
         $filename = 'vos-references_'.date('Y-m-d_h-i-s');
 
         switch ($attachement->getFormatType()){
@@ -213,6 +224,7 @@ class NoticeBuildFileService
      */
     public function buildContent(ExportNotice $attachement, string $type): string
     {
+
         switch ($type){
             case ObjSearch::class:
                 $content =  $this->buildFileForSearch($attachement);
@@ -260,7 +272,7 @@ class NoticeBuildFileService
     {
         $noticeWrapper =null;
         try {
-            $noticeWrapper = $this->getNoticeWrapper($attachement->getNotices(), $attachement->getAuthorities(), $attachement->getIndices());
+            $noticeWrapper = $this->getNoticeWrapper($attachement);
 
         } catch (\Exception|NoResultException $e) {
         }
@@ -277,30 +289,49 @@ class NoticeBuildFileService
     }
 
     /**
-     * @param string|null $notice
-     * @param string|null $authority
-     * @param string|null $indices
+     * @param ExportNotice $attachment
      * @return PrintNoticeWrapper
      */
-    private function getNoticeWrapper(string $notice=null, string $authority=null, string $indices=null):PrintNoticeWrapper
+    private function getNoticeWrapper(ExportNotice $attachment):PrintNoticeWrapper
     {
-        $permalinkN = \json_decode($notice);
-        $permalinkA = \json_decode($authority);
-        $permalinkI = \json_decode($indices);
+        $permalinkN = \json_decode($attachment->getNotices());
+
+        $permalinkA = \json_decode($attachment->getAuthorities());
+        $permalinkI = \json_decode($attachment->getIndices());
         $i=[];
         $n=[];
         $a=[];
+
+        $listPermalinks = json_decode($this->session->get('ItemsNotAvailable', ['notices'=>[],'autorites'=>[], 'indices'=>[]]), true);
         foreach ($permalinkA as $value){
-            $a[] = $this->noticeAuthority->getAuthority($value);
+            try{
+            if(!in_array($value, $listPermalinks['autorites'])){
+                $a[] = $this->noticeAuthority->getAuthority($value, !$attachment->isShortFormat() ?: self::SHORT_PRINT);
+            }
+            }catch(NoResultException $e){
+                // we ignore autorities when we get 410
+            }
         }
         foreach ($permalinkN as $value){
-            $n[] = $this->noticeProvider->getNotice($value)->getNotice();
+            try {
+                if(!in_array($value, $listPermalinks['notices'])) {
+                    $n[] = $this->noticeProvider->getNotice($value, !$attachment->isShortFormat() ?: self::SHORT_PRINT)->getNotice();
+                }
+            }catch (\Exception $e){
+                // we ignore notices when we get 410
+            }
         }
 
         foreach ($permalinkI as $value){
-            $i[] = $this->noticeAuthority->getIndiceCdu($value);
-        }
+            try{
+                if(!in_array($value, $listPermalinks['indices'])) {
+                    $i[] = $this->noticeAuthority->getIndiceCdu($value);
+                }
+            }catch(NoResultException $exception){
 
+                // we ignore indices when we get 410
+            }
+        }
         return new PrintNoticeWrapper([],  $a, $n, $i);
     }
 }

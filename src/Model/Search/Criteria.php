@@ -294,7 +294,7 @@ class Criteria
         foreach (WordsList::$words[WordsList::ALL] as $field) {
             if (!empty($this->$field)) {
                 if ($withFields) {
-                    $keywords[] = [$field => $this->$field];
+                    $keywords[] = [$field =>  $this->$field];
                 } else {
                     $keywords[] = $this->$field;
                 }
@@ -311,6 +311,123 @@ class Criteria
         return $keywords;
     }
 
+    public function getFieldsWithOperator($fields, Criteria $criteria){
+        $result = [];
+        foreach ($fields  as $index =>  $field){
+            foreach ($field as $key => $value){
+                $result[$index]['value'] =$value;
+                $result[$index]['field'] =$key;
+                $result[$index]['operator'] ='';
+
+                if ($index === 0){
+                    $result[$index]['operator'] = '';
+                    continue;
+                }
+
+                $andCriteria = $criteria->getAndCrteria();
+
+                if($andCriteria instanceof Criteria){
+                    if ($andCriteria->getValueOf($key) == $value){
+                        $result[$index]['operator'] = 'and';
+                        continue;
+                    }
+                    $andand = $andCriteria->getAndCrteria();
+                    if ($andand instanceof Criteria && $andand->getValueOf($key) == $value) {
+                        $result[$index]['operator'] = 'and';
+                        continue;
+                    }
+
+                    $andor= $andCriteria->getOrCrteria();
+                    if ($andor instanceof Criteria && $andor->getValueOf($key) ==   $value)
+                    {
+                        $result[$index]['operator'] = 'or';
+                        continue;
+                    }
+
+                    $andnot=$andCriteria->getNotCrteria();
+                    if ($andnot instanceof Criteria && $andnot->getValueOf($key) ==   $value)
+                    {
+                        $result[$index]['operator'] = 'not';
+                        continue;
+                    }
+                }
+
+                $or = $criteria->getOrCrteria();
+
+                if($or instanceof Criteria){
+                    if($or->getValueOf($key) == $value){
+                        $result[$index]['operator'] = 'or';
+                        continue;
+                    }
+
+                    $orand =$or->getAndCrteria();
+                    if($orand instanceof Criteria  && $orand->getValueOf($key) == $value) {
+                        $result[$index]['operator'] ='and';
+                        continue;
+                    }
+
+                    $oror= $or->getOrCrteria();
+                    if($oror instanceof Criteria && $oror->getValueOf($key) == $value) {
+                        $result[$index]['operator'] = 'or';
+                        continue;
+                    }
+                    $ornot= $or->getNotCrteria();
+                    if ($ornot instanceof Criteria && $ornot->getValueOf($key) ==   $value)
+                    {
+                        $result[$index]['operator'] = 'not';
+                        continue;
+                    }
+                }
+
+
+                $not = $criteria->getNotCrteria();
+
+                if($not instanceof Criteria){
+
+                    if($not->getValueOf($key, $criteria) == $value){
+                        $result[$index]['operator'] = 'not';
+                        continue;
+                    }
+
+                    $notand = $not->getAndCrteria();
+                    if($notand instanceof Criteria  && $notand->getValueOf($key, $criteria) == $value) {
+                        $result[$index]['operator'] ='and';
+                        continue;
+                    }
+
+                    $notor= $not->getOrCrteria();
+                    if($notor instanceof Criteria && $notor->getValueOf($key) == $value) {
+                        $result[$index]['operator'] = 'or';
+                        continue;
+                    }
+
+                    $notnot =$not->getNotCrteria();
+                    if($notnot instanceof Criteria && $notnot->getValueOf($key) == $value){
+                        $result[$index]['operator'] = 'not';
+                        continue;
+                    }
+                }
+
+            }
+        }
+
+
+        return $result;
+    }
+
+    /**
+     * @param $key
+     * @return string|null
+     */
+    private function getValueOf($key, Criteria $criteria=null):?string{
+        if(!empty($this->$key)) {
+            return $this->$key;
+        }
+        elseif($criteria instanceof Criteria){
+            return $criteria->$key;
+        }
+        return null;
+    }
     /**
      * @param TranslatorInterface $translator
      * @param string $operator
@@ -412,5 +529,27 @@ class Criteria
         $this->parcours = $parcours;
 
         return $this;
+    }
+
+    /**
+     * @return Criteria|null
+     */
+    public function getAndCrteria(): ?Criteria
+    {
+        return $this->and?$this->and[0]:null;
+    }
+    /**
+     * @return Criteria|null
+     */
+    public function getOrCrteria(): ?Criteria
+    {
+        return $this->or?$this->or[0]:null;
+    }
+    /**
+     * @return Criteria|null
+     */
+    public function getNotCrteria(): ?Criteria
+    {
+        return $this->notCriteria?$this->notCriteria[0]:null;
     }
 }

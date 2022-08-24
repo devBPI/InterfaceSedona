@@ -10,15 +10,36 @@ export class SelectionList {
     updateDocumentCount(count: number) {
         $('#countSelectionDocument span').html('('+ count +')');
     }
+
+    onClickMyList(id: number) {
+
+        var element = <HTMLInputElement> document.getElementById('select-liste-'+id);
+        var items =  document.getElementsByClassName('js-my_selection_'+id);
+        if (element.checked){
+            for (var i=0; i < items.length; i++) {
+                var  item = <HTMLInputElement> document.getElementById( items[i].id);
+                item.checked = true;
+            }
+        }else{
+            for (var i=0; i < items.length; i++) {
+                var  item = <HTMLInputElement> document.getElementById( items[i].id);
+                item.checked = false;
+            }
+        }
+    }
 }
 
 
 export class SelectionAdder {
     private container: HTMLDivElement;
+    private psronly: HTMLDivElement;
+    private titles: Array<String>;
 
 
     constructor(private element: HTMLInputElement) {
         this.container = this.element.querySelector('#resume-container');
+        this.psronly = this.element.querySelector('#selected-list-container');
+        this.titles = [];
     }
 
     hideContainer() {
@@ -27,13 +48,17 @@ export class SelectionAdder {
 
     displaySelectedResume(objects) {
         this.container.innerHTML = '';
+
         for (let [key, value] of objects) {
             let container = $(value).parents('.js-list-result-item');
             if (container.length > 0) {
                 this.cloneSelectedItemInContainer(container.get(0), key);
             }
         }
+
+        this.psronly.innerHTML = this.psronly.dataset.textBegin+' '+this.titles.join(', ').trim()+' '+this.psronly.dataset.textEnd;
     }
+
     displayCurrentItemResume() {
         fetch(Routing.generate('recorded'))
     }
@@ -46,6 +71,9 @@ export class SelectionAdder {
         }
 
         this.container.append(clone);
+
+        var title = $(clone).find('[data-selection-title]').attr('data-selection-title').trim();
+        this.titles[index] = title;
     }
 
     replaceChildrenNameByIndex(container: HTMLElement, index: string) {

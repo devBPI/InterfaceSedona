@@ -4,6 +4,7 @@
 namespace App\Controller;
 
 use App\Model\Search\Criteria;
+use App\Model\Search\FilterFilter;
 use App\Model\Search\FacetFilter;
 use App\Model\Search\ObjSearch;
 use App\Model\Search\SearchQuery;
@@ -52,7 +53,8 @@ final class AdvancedSearchController extends AbstractController
         } else {
             $criteria = new Criteria();
             $criteria->setAdvancedSearch($request->query->all());
-            $searchQuery = new SearchQuery($criteria, new FacetFilter($request->query->all()), SearchQuery::ADVANCED_MODE);
+            $searchQuery = new SearchQuery($criteria, new FilterFilter($request->query->all()), new FacetFilter($request->query->all()), SearchQuery::ADVANCED_MODE);
+            //$searchQuery = new SearchQuery($criteria, null, new FacetFilter($request->query->all()), SearchQuery::ADVANCED_MODE);
         }
         $searchQuery->getCriteria()->setParcours($request->get(ObjSearch::PARAM_PARCOURS_NAME));
 

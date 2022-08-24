@@ -98,6 +98,7 @@ abstract class AuthenticationService
             $values
         );
 
+        $values =  array_intersect_key($values, array_unique(array_map('serialize', $values)));
         $this->session->set($key, $values);
     }
 }

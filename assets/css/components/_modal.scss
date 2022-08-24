@@ -109,7 +109,7 @@
 		}
 
 		label {
-			@include font-size(15);
+			font-size: $font-base px;
 			margin-left: 2px;
 			width: 100%;
 		}

@@ -46,13 +46,15 @@ export class SearchForm {
                 case "text":
                 case "password":
                 case "textarea":
+                    inputElement.value='';
                     inputElement.setAttribute('value', '');
                     break;
-                case "radio":
                 case "checkbox":
                     // let inputDecorator = new InputDecorator($(inputElement));
                     // inputDecorator.uncheck();
                     // break;
+                    inputElement.checked=false;
+                case "radio":
                 default:
                     break;
             }
@@ -71,9 +73,13 @@ export class SearchForm {
             selectedOptions.forEach((option: HTMLOptionElement) => {
                 option.removeAttribute('selected');
             })
-        }
 
-        $(selectElement).val(null).trigger('change');
+            //selectedOptions[0].setAttribute('selected', 'selected');
+
+            $(selectElement).val(null).trigger('change');
+            if(selectElement.id=="adv-search-choice-0")
+                selectElement.selectedIndex = 0;
+        }
     }
 
     private clearKeywordRows(container: HTMLFormElement) {

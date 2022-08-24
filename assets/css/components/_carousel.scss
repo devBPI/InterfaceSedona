@@ -14,6 +14,17 @@
 		padding-bottom: .1rem;
 	}
 
+	&--primary {
+
+		.slick-dotted.slick-slider {
+			margin-bottom: 60px;
+
+			@include media-breakpoint-up(md) {
+				margin-bottom: 30px;
+			}
+		}
+	}
+
 	// Gestion Carousel Secondary
 	&--secondary {
 		padding-bottom: $spacer;
@@ -98,18 +109,12 @@
 
 		&-title {
 			margin-bottom: 5px;
-			max-height: rem(71);
 			display: block;
-			overflow: hidden;
-			line-height: 1.2;
 		}
 
-		&-subtitle {
+		&-subtitle { 
 			margin-bottom: 0;
-			max-height: rem(45);
 			display: block;
-			overflow: hidden;
-			line-height: 1.2;
 		}
 	}
 

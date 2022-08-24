@@ -1,7 +1,7 @@
 version: '3.5'
 services:
   app:
-    image: registry.sedona.fr/images/php:7-fpm
+    image: registry.sedona.fr/images/php:7.3-fpm
 #    user: '$UID:$UID'
     networks:
       - default
@@ -33,7 +33,7 @@ services:
           - $PROJECT_HOSTNAME
       public: ~
     labels:
-      traefik.enable: true
+      traefik.enable: 1
       traefik.frontend.rule: "Host: $PROJECT_HOSTNAME"
       traefik.frontend.entryPoints: http,https
       traefik.docker.network: "$PUBLIC_NETWORK"
@@ -54,12 +54,12 @@ services:
     depends_on:
       - app
     labels:
-      traefik.enable: false
+      traefik.enable: 0
     networks:
       - default
 
   db:
-    image: registry.sedona.fr/images/postgres:9.6
+    image: postgres:9.6
     ports:
       - "15432:5432"
     environment:

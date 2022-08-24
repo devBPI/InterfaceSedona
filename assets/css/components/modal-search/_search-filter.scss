@@ -1,0 +1,90 @@
+// -------------------------------
+// Modals - Collapse Facettes
+// -------------------------------
+
+.search-filter {
+
+	&__body {
+		padding-top: $spacer;
+	}
+
+	&__button {
+		padding: 0;
+		padding-left: $spacer;
+		position: relative;
+		@include font-size(15);
+		width: 100%;
+		text-align: left;
+
+		&::before {
+			content: "";
+			position: absolute;
+			top: 50%;
+			transform: translateY(-50%);
+			left: 0;
+			vertical-align: 1px;
+			border-top: 4px solid transparent;
+			border-left: 7px solid;
+			border-bottom: 4px solid transparent;
+		}
+
+		&[aria-expanded="true"] {
+
+			&::before {
+				border-top: 7px solid;
+				border-left: 4px solid transparent;
+				border-bottom: 0;
+				border-right: 4px solid transparent;
+			}
+		}
+
+		span {
+			color: $grey-disabled;
+		}
+	}
+
+	&__content {
+		display: flex;
+		flex-wrap: wrap;
+		width: 100%;
+
+		.dropdown-menu {
+			max-height: 260px;
+			overflow: auto;
+		}
+	}
+
+	&__item {
+		padding-top: 5px;
+		padding-bottom: 10px;
+		flex: 0 0 100%;
+		min-width: 100%;
+		display: flex;
+
+		@include media-breakpoint-up(md) {
+			padding-bottom: 5px;
+			flex: 0 0 50%;
+			min-width: 50%;
+		}
+
+		.check {
+			margin-top: 4px;
+		}
+	}
+
+	.hidden-items {
+		flex: 0 0 100%;
+		min-width: 100%;
+		display: flex;
+		flex-wrap: wrap;
+	}
+
+	&__date {
+		display: flex;
+	}
+
+	.select2-selection.select2-selection--multiple {
+		min-width: 250px;
+		border-radius: 0;
+	}
+}

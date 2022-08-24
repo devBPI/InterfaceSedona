@@ -7,6 +7,7 @@ use App\Model\Exception\NoResultException;
 use App\Model\Form\ExportNotice;
 use App\Model\Notice;
 use App\Model\NoticeThemed;
+use App\Model\Search\SearchQuery;
 use App\Service\NavigationService;
 use App\Service\NoticeBuildFileService;
 use Knp\Bundle\SnappyBundle\Snappy\Response\PdfResponse;
@@ -31,6 +32,7 @@ final class NoticeController extends AbstractController
      */
     private $navigationService;
 
+
     /**
      * NoticeController constructor.
      * @param NoticeBuildFileService $buildFileContent
@@ -53,23 +55,31 @@ final class NoticeController extends AbstractController
      */
     public function bibliographicRecordAction(NoticeThemed $notice, LoggerInterface $logger)
     {
+
         $printRoute = $this->generateUrl(
             'record_bibliographic_pdf',
             [ 'permalink' => $notice->getNotice()->getPermalink(), 'format' => 'pdf' ]
         );
-
+        $page = 1;
+        $rows = SearchQuery::ROWS_DEFAULT;
         try {
             $navigation = $this->navigationService->buildNotices($notice->getNotice());
+            $page = (int) ceil($navigation->getCurrentIndex()/$this->navigationService->getSearchRows());
+
         } catch (\Exception $e) {
             $logger->error('Navigation failed for notice '.$notice->getPermalink(). ' : '.$e->getMessage());
             $navigation = null;
         }
 
+        $rows = $this->navigationService->getSearchRows();
         return $this->render('notice/index.html.twig', [
             'object'            => $notice,
             'toolbar'           => Notice::class,
             'navigation'        => $navigation,
-            'printRoute'        => $printRoute
+            'printRoute'        => $printRoute,
+            'page'              => $page,
+            'rows'              => $rows,
+            'seeAll'           => $this->navigationService->getSeeAll(),
         ]);
     }
 

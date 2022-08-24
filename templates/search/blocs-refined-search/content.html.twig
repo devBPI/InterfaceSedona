@@ -1,4 +1,4 @@
-{% from 'search/blocs-advanced-search/macros.html.twig' import display_checkbox_list %}
+{% from 'search/blocs-refined-search/macros.html.twig' import display_checkbox_list %}
 
 {% for facet in objSearch.results.facets.facets if facet.values|length > 0 %}
     {% if facet.name == 'date_publishing' %}
@@ -9,14 +9,23 @@
             'disponibilite' :'',
             'creator' :''
         } %}
-        {% set filterSelected = defaultFilterOpened|merge(objSearch.searchFilters) %}
 
-        {{ display_checkbox_list(
-            'refine',
-            facet.label,
-            facet.name,
-            facet.values,
-            filterSelected
-        ) }}
+        {#% set filterSelected = defaultFilterOpened|merge(objSearch.searchFacets) %#}
+
+        {% if app.request.attributes.get(constant('App\\Model\\Search\\ObjSearch::PARAM_PARCOURS_NAME')) == 'autoformation' %}
+            {% set defaultFilterOpened = {
+                'disponibilite' :'',
+                'audience' :''
+            } %}
+        {% endif %}
+
+        {% set filterSelected = defaultFilterOpened|merge(objSearch.searchFacets) %}
+                {{ display_checkbox_list(
+                    'refine',
+                    facet.label,
+                    facet.name,
+                    facet.values,
+                    filterSelected
+                ) }}
     {% endif %}
 {% endfor %}

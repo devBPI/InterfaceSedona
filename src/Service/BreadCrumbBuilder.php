@@ -4,13 +4,16 @@ declare(strict_types=1);
 namespace App\Service;
 
 use App\Controller\SearchController;
+use App\Controller\Traits\ObjSearchInstanceTrait;
 use App\Entity\SearchHistory;
 use App\Model\Interfaces\RecordInterface;
 use App\Model\NoticeThemed;
 use App\Model\Search\Criteria;
+use App\Model\Search\FilterFilter;
 use App\Model\Search\FacetFilter;
 use App\Model\Search\ObjSearch;
 use App\Model\Search\SearchQuery;
+use App\WordsList;
 use Doctrine\ORM\EntityManager;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -20,6 +23,7 @@ use Symfony\Component\HttpFoundation\Request;
  */
 final class BreadCrumbBuilder
 {
+    use ObjSearchInstanceTrait;
     const RECORD = 'record';
     const SEARCH = 'search';
     const HELP = 'help';
@@ -127,7 +131,6 @@ final class BreadCrumbBuilder
     private function buildForHome(Request $request): bool
     {
         $parcours = $request->get('parcours');
-
         $this->bctService->add(
             'home_thematic',
             sprintf('breadcrumb.home.%s', $parcours),
@@ -174,9 +177,9 @@ final class BreadCrumbBuilder
         $hash = $request->get('searchToken', $request->getSession()->get('searchToken'));
         $parcoursTerms = [];
         $parcours = $request->get('parcours', null);
+        $essential = $request->get('essentiels', null);
 
         if ($hash !==null && strpos($route, 'search') !== false) {
-
             $parcoursTerms = [];
             if ($parcours!==null && $parcours !== 'general') {
                 $parcoursTerms = ['parcours' => $parcours];
@@ -185,18 +188,20 @@ final class BreadCrumbBuilder
                     sprintf('breadcrumb.parcours.%s', $parcours),
                     $parcoursTerms
                 );
+
             }
 
             $parcoursTerms = array_merge([ObjSearch::PARAM_REQUEST_NAME => $hash], $parcoursTerms);
 
-            if ($humanCriteria = $this->humanizeCriteria($request)) {
+            if ($essential || $humanCriteria = $this->humanizeCriteria($request)) {
                 $this->bctService->add(
                     null,
                     'breadcrumb.search-terms',
                     [],
-                    ['%terms%' => $humanCriteria]
+                    ['%terms%' => $essential?:$humanCriteria]
                 );
             } else {
+
                 $this->bctService->add(
                     null,
                     'breadcrumb.search',
@@ -241,51 +246,24 @@ final class BreadCrumbBuilder
     /**
      * @param Request $request
      * @return string
+     * @throws \Exception
      */
     private function humanizeCriteria(Request $request): string
     {
         $objSearch = new ObjSearch($this->getObjSearchQuery($request));
-
-        return implode(', ', $objSearch->getCriteria()->getKeywordsTitles());
-    }
-
-    /**
-     * @param Request $request
-     * @return SearchQuery|null
-     */
-    private function getObjSearchQuery(Request $request): ?SearchQuery
-    {
-        $token = $request->get(ObjSearch::PARAM_REQUEST_NAME);
-        $route = $request->get('_route');
-        $searchQuery = null;
-        $criteria = new Criteria();
-        if ($token && ($object = $request->getSession()->get($token))) {
-            $searchQuery = $this->searchService->getSearchQueryFromToken($token, $request);
-        } elseif ($route === 'saved_search') {
-            $searchHistory = $this->entityManager->getRepository(SearchHistory::class)->find($request->get('id'));
-            if ($searchHistory instanceof SearchHistory) {
-                $searchQuery = $this->searchService->deserializeSearchQuery($searchHistory->getQueryString());
-            }
-        } elseif ($route === 'advanced_search' || $route === 'advanced_search_parcours') {
-            $criteria->setAdvancedSearch($request->query->all());
-
-            $searchQuery = new SearchQuery(
-                $criteria,
-                new FacetFilter($request->query->all()),
-                SearchQuery::ADVANCED_MODE
-            );
-        } else {
-            $keyword = $request->get(Criteria::SIMPLE_SEARCH_KEYWORD, '');
-            $criteria->setSimpleSearch($request->get(Criteria::SIMPLE_SEARCH_TYPE), $keyword);
-
-            $searchQuery = new SearchQuery($criteria);
+        try {
+            $payload = $objSearch
+                ->getCriteria()
+                ->getFieldsWithOperator(
+                    $objSearch->getCriteria()->getKeywordsTitles(true),
+                    $objSearch->getCriteria()
+                );
+        }catch (\Exception $e){
+            throw new \Exception(sprintf("Erreur survenu lors de la construction du fil d'ariane:   %s", $e->getMessage()));
         }
 
-        if ($route === 'refined_search') {
-            $searchQuery->setFacets(new FacetFilter($request->query->all()));
-        }
-
-        return $searchQuery;
+        return  $this->searchService->humanise($payload);
     }
+
 }
 

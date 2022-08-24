@@ -42,7 +42,6 @@ final class Navigation
      * @var NavigationLink|null
      */
     private $nextLink;
-
     /**
      * Navigation constructor.
      * @param string $hash
@@ -103,10 +102,14 @@ final class Navigation
     {
         $rowIndex = ($notices->getPage() - 1) * $notices->getRows();
         $list = [];
-        foreach ($notices->getNoticesList() as $index => $notice) {
-            $totalIndex = $rowIndex + $index + 1;
-            $list[$totalIndex] = new NavigationLink($notice->getPermalink(), $notice->getClassName());
-        }
+	foreach ($notices->getNoticesList() as $index => $notice)
+	{
+		if(null != $notice->getPermalink() && null != $notice->getClassName())
+		{
+			$totalIndex = $rowIndex + $index + 1;
+			$list[$totalIndex] = new NavigationLink($notice->getPermalink(), $notice->getClassName());
+		}
+	}
 
         return $list;
     }
@@ -118,6 +121,8 @@ final class Navigation
     {
         $this->currentIndex = $this->getIndexOfList($permalink);
     }
+
+
 
     /**
      * @param string $permalink

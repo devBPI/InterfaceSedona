@@ -7,6 +7,8 @@ use App\Model\AroundIndex;
 use App\Model\Authority;
 use App\Model\IndiceCdu;
 use App\Model\NoticeMappedAuthority;
+use App\Model\Status;
+use App\Service\NoticeBuildFileService;
 
 /**
  * Class NoticeProvider
@@ -45,17 +47,25 @@ class NoticeAuthorityProvider extends AbstractProvider
      * @param string $query
      * @return Authority
      */
-    public function getAuthority(string $query): Authority
+    public function getAuthority(string $query, $shortType=null): Authority
     {
+        if($shortType!==null && $shortType===NoticeBuildFileService::SHORT_PRINT){
+            return $this->hydrateFromResponse(sprintf('/details/authority-short/%s', $query), [], Authority::class);
+        }
+        
         return $this->hydrateFromResponse(sprintf('/details/authority/%s', $query), [], Authority::class);
     }
 
     /**
      * @param string $query
+     * @param null $shortType
      * @return IndiceCdu
      */
-    public function getIndiceCdu(string $query): IndiceCdu
+    public function getIndiceCdu(string $query, $shortType=null): IndiceCdu
     {
+        if($shortType!==null && $shortType===NoticeBuildFileService::SHORT_PRINT){
+            return $this->hydrateFromResponse(sprintf('/details/indice-cdu-short/%s', $query), [], Authority::class);
+        }
         return $this->hydrateFromResponse(sprintf('/details/indice-cdu/%s', $query), [], IndiceCdu::class);
     }
 
@@ -85,7 +95,22 @@ class NoticeAuthorityProvider extends AbstractProvider
             ],
             AroundIndex::class
         );
-
+    }
+    /**
+     * @param string $query
+     * @return Status
+     */
+    public function checkNotice(string $query): Status
+    {
+        return $this->hydrateFromResponse(sprintf('/CatalogueWebService/check/authority/%s', $query),[], Status::class);
+    }
+    /**
+     * @param string $query
+     * @return Status
+     */
+    public function checkIndice(string $query): Status
+    {
+        return $this->hydrateFromResponse(sprintf('/CatalogueWebService/check/indice-cdu/%s', $query), [], Status::class);
     }
 }
 

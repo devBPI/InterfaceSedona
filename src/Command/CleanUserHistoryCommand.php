@@ -68,11 +68,13 @@ class CleanUserHistoryCommand extends Command
             $this->historyService->deleteHistoriesOlderThanDate($date);
         } catch(\Exception $e){
             $output->writeln(sprintf('the deleted is resulted with an error : %s.', $e->getMessage()));
+            $event = $stw->stop("send");
             $output->writeln("End at ".date("Y-m-d H:i:s").sprintf(' ( %.2F MiB - %d s )', $event->getMemory() / 1024 / 1024, $event->getDuration() /1000 ));
             return 1;
         }
 
         $output->writeln('the histories is deleted.');
+        $event = $stw->stop("send");
         $output->writeln("End at ".date("Y-m-d H:i:s").sprintf(' ( %.2F MiB - %d s )', $event->getMemory() / 1024 / 1024, $event->getDuration() /1000 ));
         return 0;
     }
