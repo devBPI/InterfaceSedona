@@ -463,6 +463,8 @@ bloc:
     return-to-result: Retour aux résultats
     result-previous: Document précédent
     result-next: Document suivant
+    result-author-previous: Autorité précédent
+    result-author-next: Autorité suivant
     result-current: '%current% sur %nb%'
     result-information:
       authors-and-composer: Auteur(s), compositeur(s), interprète(s)
