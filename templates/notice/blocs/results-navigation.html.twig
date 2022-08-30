@@ -40,10 +40,10 @@
 
 						<a href="{{ toggle_to_path_parcours(route_by_object(navigation.previousLink.type), app.request.attributes.get(constant('App\\Model\\Search\\ObjSearch::PARAM_PARCOURS_NAME')), {'permalink':navigation.previousLink.permalink,(constant('App\\Model\\Search\\ObjSearch::PARAM_REQUEST_NAME')):navigation.hash}) }}" class="page-link link link--icone">
 							<img src="{{ asset('images/icones/icone-chevron-gauche.svg') }}" alt="" class="icone-chevron"/>
-							<span>{{ 'bloc.results-navigation.result-previous'|trans }}</span>
+							<span>{{ is_document ? 'bloc.results-navigation.result-previous' |trans : 'bloc.results-navigation.result-author-previous'|trans }}</span>
 						</a>
 					{% else %}
-						<span class="page-link">{{ 'bloc.results-navigation.result-previous'|trans }}</span>
+						<span class="page-link">{{ is_document ? 'bloc.results-navigation.result-previous' |trans : 'bloc.results-navigation.result-author-previous'|trans }}</span>
 					{% endif %}
 				</li>
 				<li class="page-item">
@@ -58,11 +58,11 @@
 						) }}"
 						   class="page-link link link--icone-end"
 						>
-							<span>{{ 'bloc.results-navigation.result-next'|trans }}</span>
+							<span>{{ is_document ? 'bloc.results-navigation.result-next' |trans : 'bloc.results-navigation.result-author-next' |trans }}</span>
 							<img src="{{ asset('images/icones/icone-chevron-gauche.svg') }}" alt="" class="icone-chevron"/>
 						</a>
 					{% else %}
-						<span class="page-link">{{ 'bloc.results-navigation.result-next'|trans }}</span>
+						<span class="page-link">{{is_document ? 'bloc.results-navigation.result-next' |trans : 'bloc.results-navigation.result-author-next' |trans }}</span>
 					{% endif %}
 				</li>
 			</ul>

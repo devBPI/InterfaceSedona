@@ -67,7 +67,7 @@ final class IndiceCduController extends AbstractController
             'indice_pdf',
             [ 'permalink' => $notice->getPermalink(), 'format' => 'pdf' ]
         );
-
+        $is_document = str_contains($printRoute, 'document');
         try {
             $navigation = $this->navigationService->buildAuthorities($notice);
         } catch (\Exception $e) {
@@ -76,6 +76,7 @@ final class IndiceCduController extends AbstractController
         }
 
         return $this->render('indice/index.html.twig', [
+                'is_document'       => $is_document,
                 'toolbar'         => IndiceCdu::class,
                 'printRoute'      => $printRoute,
                 'subjects'        => $subjects,
