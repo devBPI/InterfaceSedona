@@ -13,6 +13,8 @@ global:
   site-title: "Catalogue Bpi"
   title-print: Catalogue Bpi - Export de notices
   see-more: Voir plus
+  see-more-document-rayon: Autre(s) exemplaire(s)
+  see-more-online-document: Autre(s) accès
   print-title: Vos références
   form:
     email:
