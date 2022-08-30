@@ -39,7 +39,7 @@ class Cdu
     public function getName(): ?string
     {
 	if(!$this->name)
-		return null
+		return null;
         return trim($this->name, '[]');
     }
 }
