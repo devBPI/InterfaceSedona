@@ -28,7 +28,7 @@ class Cdu
     /**
      * @return string
      */
-    public function getCote(): string
+    public function getCote(): ?string
     {
         return $this->cote;
     }
@@ -36,8 +36,10 @@ class Cdu
     /**
      * @return string
      */
-    public function getName(): string
+    public function getName(): ?string
     {
+	if(!$this->name)
+		return null;
         return trim($this->name, '[]');
     }
 }
