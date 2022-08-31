@@ -8,7 +8,8 @@ global:
   modal-close: Fermer cette fenêtre
   modal-cancel: Annuler
   modal-confirm: Confirmer
-
+  see-more-document-rayon: Autre(s) exemplaire(s)
+  see-more-online-document: Autre(s) accès
   modal-btn-close: Fermer
   list-ordering: ": activer pour trier par ordre ascendant/descendant"
   site-title: "Catalogue Bpi"
