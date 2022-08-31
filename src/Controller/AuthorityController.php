@@ -60,12 +60,12 @@ final class AuthorityController extends AbstractController
     public function authorityRecordAction(Authority $notice, LoggerInterface $logger)
     {
         $subject = $this->noticeAuhtority->getSubjectNotice($notice->getId());
+        $origin = 'author';
         $authors = $this->noticeAuhtority->getAuthorsNotice($notice->getId());
         $printRoute = $this->generateUrl(
             'record_authority_pdf',
             [ 'permalink' => $notice->getPermalink(), 'format' => 'pdf']
         );
-        $is_document = str_contains($printRoute, 'document');
         try {
             $navigation = $this->navigationService->buildAuthorities($notice);
         } catch (\Exception $e) {
@@ -74,7 +74,7 @@ final class AuthorityController extends AbstractController
         }
 
         return $this->render('authority/index.html.twig', [
-                'is_document'   => $is_document,
+                'origin'        => $origin,
                 'toolbar'       => Authority::class,
                 'printRoute'    => $printRoute,
                 'subjects'      => $subject,

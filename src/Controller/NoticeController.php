@@ -61,8 +61,8 @@ final class NoticeController extends AbstractController
             [ 'permalink' => $notice->getNotice()->getPermalink(), 'format' => 'pdf' ]
         );
         $page = 1;
-        $is_document = str_contains($printRoute, 'document');
         $rows = SearchQuery::ROWS_DEFAULT;
+        $origin = null;
         try {
             $navigation = $this->navigationService->buildNotices($notice->getNotice());
             $page = (int) ceil($navigation->getCurrentIndex()/$this->navigationService->getSearchRows());
@@ -74,7 +74,7 @@ final class NoticeController extends AbstractController
 
         $rows = $this->navigationService->getSearchRows();
         return $this->render('notice/index.html.twig', [
-            'is_document'       => $is_document,
+            'origin'            => $origin,
             'object'            => $notice,
             'toolbar'           => Notice::class,
             'navigation'        => $navigation,
