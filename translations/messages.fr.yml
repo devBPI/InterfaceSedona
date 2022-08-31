@@ -601,10 +601,12 @@ bloc:
       your-references-bibliographic: Vos références bibliographiques
       your-reference-bibliographic: Votre référence bibliographique
 error:
-  page_not_available: 'Cette page n’est pas accessible.'
-  page_not_found: Cette page est inaccessible.
-  link-go-back: Pour <a href="%link%">revenir en arrière</a>
-  link-home: Pour retourner à la <a href="%link%">page d’accueil du catalogue de la Bpi</a>
+  page_not_available: 'Cette page n’est pas accessible'
+  permalink_not_available: soit le permalien que vous avez saisi ou sur lequel vous avez cliqué n'est pas encore actif, ou est erroné ou supprimé
+  catalog_issue: soit le catalogue rencontre un problème technique temporaire
+  page_not_found: La page ou la référence que vous cherchez est introuvable
+  link-go-back: <a onclick="history.go(-1);"> Retourner à la Page précédente  </a>
+  link-home: Retourner à la <a href="%link%"> Page d'accueil du catalogue </a>
   contact-admin: Contacter <a href="mailto:%email%">l’administrateur du catalogue de la Bpi</a>
   title-form: Formulaire de contact
   page_error: Page en erreur

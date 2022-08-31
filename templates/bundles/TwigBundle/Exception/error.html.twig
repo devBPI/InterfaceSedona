@@ -13,18 +13,18 @@
                 <pre>{{ exception.toarray|json_encode }}</pre>
             </fieldset>
         {% endif %}
-
         <ul class="list-link">
-            {% if app.request.headers.get('referer') %}
-                <!-- <li>
-                    {{ 'error.link-go-back'|trans({'%link%': app.request.headers.get('referer')})|raw }}
-                </li> -->
-            {% endif %}
+            <li> {{ 'error.permalink_not_available' | trans }}</li>
+            <li> {{ 'error.catalog_issue' | trans }}</li>
+        </ul>
+        <ul class="list-link">
+            <li>
+                {{ 'error.link-go-back'|trans |raw }}
+            </li>
             <li>
                 {{ 'error.link-home'|trans({'%link%': path('home')})|raw }}
             </li>
         </ul>
-        {{ 'error.contact-admin'|trans({'%email%': contact_email})|raw }}</p>
     {% endset %}
 
     {% if app.request.isXmlHttpRequest() %}

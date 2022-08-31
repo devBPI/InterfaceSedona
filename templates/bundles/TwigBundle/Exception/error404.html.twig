@@ -5,7 +5,7 @@
 
 {% block body %}
     {% set content %}
-        <p>{{ 'error.page_not_available'|trans }}</p>
+        <p>{{ 'error.page_not_available'|trans }} :</p>
 
         {% if app.environment == 'dev' or IP_SEDONA in app.request.clientIps %}
             {# affichage de la raison de l'erreur pour Sedona #}
@@ -14,18 +14,19 @@
                 <pre>{{ exception.toarray|json_encode }}</pre>
             </fieldset>
         {% endif %}
-
+        <ul class="link-list">
+            <li> {{ 'error.permalink_not_available' | trans }}</li>
+            <li> {{ 'error.catalog_issue' | trans }}</li>
+        </ul>
         <ul class="list-link">
-            {% if app.request.headers.get('referer') %}
                 <li>
-                    {{ 'error.link-go-back'|trans({'%link%': app.request.headers.get('referer')})|raw }}
+                    {{ 'error.link-go-back'|trans |raw }}
                 </li>
-            {% endif %}
             <li>
                 {{ 'error.link-home'|trans({'%link%': path('home')})|raw }}
             </li>
         </ul>
-        <p>{{ 'error.contact-admin'|trans({'%email%': contact_email})|raw }}</p>
+
     {% endset %}
 
     {% if app.request.isXmlHttpRequest() %}
