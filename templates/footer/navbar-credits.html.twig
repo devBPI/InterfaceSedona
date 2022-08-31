@@ -1,14 +1,20 @@
 <ul class="nav-credit__list">
-	{% for link, title in {
-		'//www.bpi.fr/presse-et-partenariats/': 'footer.credit-list.espace-presse'|trans,
-		'//www.bpi.fr/emplois-et-stages/': 'footer.credit-list.emplois-et-stages'|trans,
-		'//www.bpi.fr/marches-publics/': 'footer.credit-list.marches-publics'|trans ,
-		'//www.bpi.fr/mentions-legales': 'footer.credit-list.mentions-legales'|trans,
-		'//www.bpi.fr/aide-et-accessibilite': 'footer.credit-list.aide-et-accessibilite'|trans,
-		'//www.bpi.fr/contactez-nous/': 'footer.credit-list.contacts-bpi'|trans
-	} %}
-		<li class="nav-credit__item">
-			<a href="{{ link }}" title="{{ title }}">{{ title }}</a>
-		</li>
-	{% endfor %}
+	<li class="nav-credit__item">
+		<a href={{ 'footer.credit-list-urls.espace-presse'|trans }} title={{ 'footer.credit-list.espace-presse'|trans }}>{{ 'footer.credit-list.espace-presse'|trans }}</a>
+	</li>
+	<li class="nav-credit__item">
+		<a href={{ 'footer.credit-list-urls.emplois-et-stages'|trans }} title={{ 'footer.credit-list.emplois-et-stages'|trans }}>{{ 'footer.credit-list.emplois-et-stages'|trans }}</a>
+	</li>
+	<li class="nav-credit__item">
+		<a href={{ 'footer.credit-list-urls.marches-publics'|trans }} title={{ 'footer.credit-list.marches-publics'|trans }}>{{ 'footer.credit-list.marches-publics'|trans }}</a>
+	</li>
+	<li class="nav-credit__item">
+		<a href={{ 'footer.credit-list-urls.mentions-legales'|trans }} title={{ 'footer.credit-list.mentions-legales'|trans }}>{{ 'footer.credit-list.mentions-legales'|trans }}</a>
+	</li>
+	<li class="nav-credit__item">
+		<a href={{ 'footer.credit-list-urls.aide-et-accessibilite'|trans }} title={{ 'footer.credit-list.aide-et-accessibilite'|trans }}>{{ 'footer.credit-list.aide-et-accessibilite'|trans }}</a>
+	</li>
+	<li class="nav-credit__item">
+		<a href={{ 'footer.credit-list-urls.contacts-bpi'|trans }} title={{ 'footer.credit-list.contacts-bpi'|trans }}>{{ 'footer.credit-list.contacts-bpi'|trans }}</a>
+	</li>
 </ul>

@@ -75,6 +75,13 @@ footer:
     mentions-legales: Mentions légales
     aide-et-accessibilite: Aide et accessiblité
     contacts-bpi: Contactez-nous
+  credit-list-urls:
+    espace-presse: https://www.bpi.fr/presse-et-partenariats/
+    emplois-et-stages: https://www.bpi.fr/emplois-et-stages/
+    marches-publics: https://www.bpi.fr/marches-publics/
+    mentions-legales: https://www.bpi.fr/mentions-legales
+    aide-et-accessibilite: https://www.bpi.fr/aide-et-accessibilite
+    contacts-bpi: https://www.bpi.fr/contactez-nous/
   links-externe:
     sr-mensuel: Programme bibliothèque publique d'information, le mensuel de la Bpi
     mensuel: Le mensuel de la Bpi
@@ -97,6 +104,7 @@ footer:
     rss: Les fils RSS de la Bpi
 
 modal:
+  email-example: (nom@exemple.com)
   wait-message: Veuillez patienter
   confirm-message:
     print: Ils n'apparaîtront pas dans la liste que vous imprimez
@@ -383,7 +391,7 @@ bloc:
     type-label: Chercher sur
     submit: Valider la recherche
     advanced-title: Recherche avancée
-    advanced-sr-only: Rercherche Avancée - ouverture formulaire
+    advanced-sr-only: Recherche Avancée - ouverture formulaire
   carousel:               #Bloc 01 diaporama nouveautés et/ou articles
     title: Carousel d'actualités
     item_desciption: Actualité %index% sur %nb%, %title% %auteur%
@@ -415,11 +423,13 @@ bloc:
       title-sr-only: Documents en rayon, sélectionner tous les résultats
       in-ligne: 'Documents en rayon :'
       see-more: Voir tout
+      see-all: Voir tous les résultats
       see-more-sr-only: les documents en rayons
     online:
       title-sr-only: Documents en ligne, sélectionner tous les résultats
       in-ligne: 'Documents en ligne :'
       see-more: Voir tout
+      see-all: Voir tous les résultats
       see-more-sr-only: les documents en ligne
   notice-simple:          #Bloc 13 Notices simples en 2 colonnes
     result: Résultat numéro
@@ -529,6 +539,7 @@ bloc:
     manifestation-location: 'Lieu de la manifestation'
     result-de: 'Résultat de'
     origins: 'Origine de la notice'
+    fourth: Quatrième de couverture
     content-table: Tables des matières
     periodicity-date: Date d'édition papier
     alternatif-title: Autre(s) forme(s) de titre
@@ -578,6 +589,7 @@ bloc:
       add-to: Ajoutée le
       comments: Commentaire
     select-ligne: 'Sélectionner toute la ligne : %title%, %auteur%, %document-type%'
+    select-ligne-sans-auteur: 'Sélectionner toute la ligne : %title%, %document-type%'
     link: Accéder à %title%
     comments-see: Voir le commentaire
     comments-add: Ecrire un commentaire
@@ -605,8 +617,8 @@ error:
   permalink_not_available: soit le permalien que vous avez saisi ou sur lequel vous avez cliqué n'est pas encore actif, ou est erroné ou supprimé
   catalog_issue: soit le catalogue rencontre un problème technique temporaire
   page_not_found: La page ou la référence que vous cherchez est introuvable
-  link-go-back: <a onclick="history.go(-1);"> Retourner à la Page précédente  </a>
-  link-home: Retourner à la <a href="%link%"> Page d'accueil du catalogue </a>
+  link-go-back: Retourner à la <a href="javascript:history.back()">page précédente</a>
+  link-home: Retourner à la <a href="%link%">page d’accueil du catalogue de la Bpi</a>
   contact-admin: Contacter <a href="mailto:%email%">l’administrateur du catalogue de la Bpi</a>
   title-form: Formulaire de contact
   page_error: Page en erreur

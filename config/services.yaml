@@ -6,8 +6,7 @@
 parameters:
   locale: 'fr'
   api_dir_name: '/CatalogueWebService/api/'
-  api_base_url: "https://%env(CATALOG_API_HOST)%%api_dir_name%"
-#  api_base_url: "%env(CATALOG_API_PROTOCOL)%://%env(CATALOG_API_HOST)%%api_dir_name%"
+  api_base_url: "%env(CATALOG_API_PROTOCOL)%://%env(CATALOG_API_HOST)%%api_dir_name%"
 
 services:
   # default configuration for services in *this* file
@@ -46,8 +45,16 @@ services:
   App\Service\HistoryService:
     arguments: ['@doctrine.orm.entity_manager']
   App\Service\SelectionListService:
-    arguments: ['@doctrine.orm.entity_manager']
+    arguments:
+      $entityManager : '@doctrine.orm.entity_manager'
+      $logger : '@monolog.logger'
   App\Service\SearchService:
+    arguments:
+      $logger : '@monolog.logger'
+  App\Service\LoggerService:
+    arguments:
+      $logger : '@monolog.logger'
+  App\Service\NoticeBuildFileService:
     arguments:
       $logger : '@monolog.logger'
   App\Service\BreadCrumbBuilder:
@@ -79,8 +86,9 @@ services:
 
   App\Service\MailSenderService:
     arguments:
-      - '%env(MAIL_SENDER)%'
-      - '%env(REPLY_TO_EMAIL)%'
+      $logger : '@monolog.logger'
+      $sender : '%env(MAIL_SENDER)%'
+      $replyTo : '%env(REPLY_TO_EMAIL)%'
 
   App\EventListener\AuthenticationListener:
     tags:

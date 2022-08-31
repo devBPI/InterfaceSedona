@@ -69,12 +69,19 @@ header:
     cinema: Cinéma
 footer:
   credit-list:
-    espace-presse: Press / Partnership
-    emplois-et-stages: Employment & Internships
-    marches-publics: Public procurement contracts
-    mentions-legales: Legal Notices
+    espace-presse: Press and partnerships
+    emplois-et-stages: Jobs and internships
+    marches-publics: Public contract
+    mentions-legales: Legal notice
     aide-et-accessibilite: Help and accessibility
-    contacts-bpi: Contacts
+    contacts-bpi: Contact the Bpi
+  credit-list-urls:
+    espace-presse: https://www.bpi.fr/en/press-and-partnerships/
+    emplois-et-stages: https://www.bpi.fr/en/jobs-and-internships/
+    marches-publics: https://www.bpi.fr/en/public-contract/
+    mentions-legales: https://www.bpi.fr/en/legal-notice/
+    aide-et-accessibilite: https://www.bpi.fr/en/help-and-accessibility/
+    contacts-bpi: https://www.bpi.fr/en/contact-the-bpi/
   links-externe:
     sr-mensuel: Programme bibliothèque publique d'information, the monthly of the Bpi
     mensuel: The monthly of the Bpi
@@ -97,6 +104,7 @@ footer:
     rss: Bpi RSS feed
 
 modal:
+  email-example: (nom@exemple.com)
   wait-message: Veuillez patienter
   confirm-message:
     print: Ils n'apparaîtront pas dans la liste que vous imprimez
@@ -383,7 +391,7 @@ bloc:
     type-label: Chercher sur
     submit: Valider la recherche
     advanced-title: Recherche avancée
-    advanced-sr-only: Rercherche Avancée - ouverture formulaire
+    advanced-sr-only: Recherche Avancée - ouverture formulaire
   carousel:               #Bloc 01 diaporama nouveautés et/ou articles
     title: Carousel d'actualités
     item_desciption: Actualité %index% sur %nb%, %title% %auteur%
@@ -527,6 +535,7 @@ bloc:
     manifestation-location: 'Lieu de la manifestation'
     result-de: 'Résultat de'
     origins: 'Origine de la notice'
+    fourth: Quatrième de couverture
     content-table: Tables des matières
     periodicity-date: Date d'édition papier
     alternatif-title: Autre(s) forme(s) de titre
@@ -576,6 +585,7 @@ bloc:
       add-to: Ajoutée le
       comments: Commentaire
     select-ligne: 'Sélectionner toute la ligne : %title%, %auteur%, %document-type%'
+    select-ligne-sans-auteur: 'Sélectionner toute la ligne : %title%, %document-type%'
     link: Accéder à %title%
     comments-see: Voir le commentaire
     comments-add: Ecrire un commentaire
@@ -601,8 +611,9 @@ bloc:
 error:
   page_not_available: 'Cette page n’est pas accessible.'
   page_not_found: Cette page est inaccessible.
-  link-go-back: <a onclick="history.go(-1);"> Retourner à la Page précédente  </a>
-  link-home: Retourner à la <a href="%link%"> Page d'accueil du catalogue </a>
+# TODO: Check RGAA compatibility
+  link-go-back: Retourner à la <a href="javascript:history.back()">page précédente</a>
+  link-home: Retourner à la <a href="%link%">page d’accueil du catalogue de la Bpi</a>
   contact-admin: Contacter <a href="mailto:%email%">l’administrateur du catalogue de la Bpi</a>
   title-form: Formulaire de contact
   page_error: Page en erreur

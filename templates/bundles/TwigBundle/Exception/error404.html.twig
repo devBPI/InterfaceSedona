@@ -19,9 +19,9 @@
             <li> {{ 'error.catalog_issue' | trans }}</li>
         </ul>
         <ul class="list-link">
-                <li>
-                    {{ 'error.link-go-back'|trans |raw }}
-                </li>
+            <li>
+                {{ 'error.link-go-back'|trans |raw }}
+            </li>
             <li>
                 {{ 'error.link-home'|trans({'%link%': path('home')})|raw }}
             </li>
@@ -41,7 +41,6 @@
                 <p>{{ 'error.page_not_available'| trans }}</p>
                 {{ content }}
             </div>
-           <!-- {{ render(controller('App\\Controller\\ReportingController::reportErrorPageAction',{'renderPage': false})) }} -->
         </div>
     {% else %}	
         <h1 class="n1">  <!-- {{ 'error.page_not_found'|trans }} --></h1>

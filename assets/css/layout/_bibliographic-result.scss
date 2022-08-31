@@ -108,4 +108,59 @@
 			}
 		}	
 	}
+	ul.tableDesMatieres
+	{
+		max-width: 60em;
+		padding: 0;
+		overflow-x: hidden;
+		list-style: none;
+	}
+/*	ul.tableDesMatieres li:before
+	{
+		float: left;
+		width: 0;
+		white-space: nowrap;
+		content:
+		". . . . . . . . . . . . . . . . . . . . "
+		". . . . . . . . . . . . . . . . . . . . "
+		". . . . . . . . . . . . . . . . . . . . "
+		". . . . . . . . . . . . . . . . . . . . "
+		". . . . . . . . . . . . . . . . . . . . "
+		". . . . . . . . . . . . . . . . . . . . ";
+	}
+	ul.tableDesMatieres li span,
+	ul.tableDesMatieres li:after
+	{
+		clear:both;
+	}
+	ul.tableDesMatieres li div
+	{
+		background: white;
+	}
+*/
+/*ul.tableDesMatieres li span:before {
+    content:
+		". . . . . . . . . . . . . . . . . . . . "
+		". . . . . . . . . . . . . . . . . . . . "
+		". . . . . . . . . . . . . . . . . . . . "
+		". . . . . . . . . . . . . . . . . . . . "
+		". . . . . . . . . . . . . . . . . . . . "
+		". . . . . . . . . . . . . . . . . . . . ";
+    display: inline-block;
+    width: 100%;
+    background-color: red;
+    position:absolute;
+    top: 50%;
+    z-index: -1;
+    left:0;
+}*/
+	ul.tableDesMatieres li *
+	{
+		font-size: 1rem !important;
+	}
+	ul.tableDesMatieres li span
+	{
+		float: right;
+		padding-left: 0.33em;
+	}
 }

@@ -1,17 +1,26 @@
 <tr>
     <td>
         <div class="form-check">
+
+		{% set tad = {
+			'%title%': document.title,
+			'%auteur%': document.author,
+			'%document-type%': document.documentType
+		}%}
+		{% if document.author is not null and document.author is defined and document.author is not empty %}
+			{% set sel = 'bloc.list-user.select-ligne' %}
+		{% else %}
+			{% set sel = 'bloc.list-user.select-ligne-sans-auteur' %}
+		{% endif %}
             <input id="js-my_selection_{{ document.id }}" class="table__input js-list-selectable js-{{document.noticeType}} {% if list is defined %}js-my_selection_{{ list.id }}{% endif %}" type="checkbox" value="{{ document.id }}"
-                    name="{{ constant('App\\Controller\\UserSelectionController::INPUT_NAME') }}[{{ constant('App\\Controller\\UserSelectionController::INPUT_DOCUMENT') }}][]"
-                    data-{{ document.noticeType }}="{{ document.permalink }}"
-                    aria-label="{{ 'bloc.list-user.select-ligne'|trans(
-                        {
-                            '%title%': document.title,
-                            '%auteur%': document.author,
-                            '%document-type%': document.documentType
-                        }) }}"
-                   >
-            <label></label>
+                name="{{ constant('App\\Controller\\UserSelectionController::INPUT_NAME') }}[{{ constant('App\\Controller\\UserSelectionController::INPUT_DOCUMENT') }}][]"
+                data-{{ document.noticeType }}="{{ document.permalink }}"
+                aria-label="{{ sel|trans(tad) }}"
+                title="{{ sel|trans(tad) }}"
+            >
+            <label class="textZeroSize" for"js-my_selection_{{ document.id }}">
+		{{ sel|trans(tad) }}
+            </label>
         </div>
     </td>
     <td class="table__body-title">

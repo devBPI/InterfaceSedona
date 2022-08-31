@@ -69,12 +69,19 @@ header:
     cinema: Cinéma
 footer:
   credit-list:
-    espace-presse: Prensa / Cooperación
-    emplois-et-stages: Empleo y prácticas
+    espace-presse: Prensa y colaboraciones
+    emplois-et-stages: Empleos y prácticas
     marches-publics: Licitaciones
-    mentions-legales: Aviso legal
+    mentions-legales: Avisos legales
     aide-et-accessibilite: Ayuda y accesibilidad
-    contacts-bpi: Contactos
+    contacts-bpi: Contáctenos
+  credit-list-urls:
+    espace-presse: https://www.bpi.fr/es/prensa-y-colaboraciones/
+    emplois-et-stages: https://www.bpi.fr/es/empleos-y-practicas/
+    marches-publics: https://www.bpi.fr/marches-publics/
+    mentions-legales: https://www.bpi.fr/es/avisos-legales/
+    aide-et-accessibilite: https://www.bpi.fr/es/ayuda-y-accesibilidad/
+    contacts-bpi: https://www.bpi.fr/es/contactenos/
   links-externe:
     sr-mensuel: Programme bibliothèque publique d'information, la publicación mensual de la Bpi
     mensuel: La publicación mensual de la Bpi
@@ -97,13 +104,14 @@ footer:
     rss: Suscribirse al RSS de la Bpi
 
 modal:
+  email-example: (nom@exemple.com)
   wait-message: Veuillez patienter
   confirm-message:
     print: Ils n'apparaîtront pas dans la liste que vous imprimez
     export: Ils n'apparaîtront pas dans la liste que vous exportez
+    email-example: (nom@exemple.com)
   check-list:
     title: "Attention, un ou plusieurs éléments de votre sélection ne sont plus présents dans le catalogue"
-  email-example: (nom@exemple.com)
   list-create:          #Modal 01  Création d'une liste
     title: Créer une nouvelle liste
     mandatory-field: La saisie du titre de la liste est obligatoire
@@ -383,7 +391,7 @@ bloc:
     type-label: Chercher sur
     submit: Valider la recherche
     advanced-title: Recherche avancée
-    advanced-sr-only: Rercherche Avancée - ouverture formulaire
+    advanced-sr-only: Recherche Avancée - ouverture formulaire
   carousel:               #Bloc 01 diaporama nouveautés et/ou articles
     title: Carousel d'actualités
     item_desciption: Actualité %index% sur %nb%, %title% %auteur%
@@ -527,6 +535,7 @@ bloc:
     manifestation-location: 'Lieu de la manifestation'
     result-de: 'Résultat de'
     origins: 'Origine de la notice'
+    fourth: Quatrième de couverture
     content-table: Tables des matières
     periodicity-date: Date d'édition papier
     alternatif-title: Autre(s) forme(s) de titre
@@ -576,6 +585,7 @@ bloc:
       add-to: Ajoutée le
       comments: Commentaire
     select-ligne: 'Sélectionner toute la ligne : %title%, %auteur%, %document-type%'
+    select-ligne-sans-auteur: 'Sélectionner toute la ligne : %title%, %document-type%'
     link: Accéder à %title%
     comments-see: Voir le commentaire
     comments-add: Ecrire un commentaire
@@ -601,10 +611,10 @@ bloc:
 error:
   page_not_available: 'Cette page n’est pas accessible.'
   page_not_found: Cette page est inaccessible.
-  link-go-back: <a onclick="history.go(-1);"> Retourner à la Page précédente  </a>
-  link-home: Retourner à la <a href="%link%"> Page d'accueil du catalogue </a>
-  contact-admin: Contacter <a href="mailto:%email%">l’administrateur du catalogue de la Bpi</a>
   title-form: Formulaire de contact
+  link-go-back: Retourner à la <a href="javascript:history.back()">page précédente</a>
+  link-home: Retourner à la <a href="%link%">page d’accueil du catalogue de la Bpi</a>
+  contact-admin: Contacter l'administrateur du catalogue de la BPI en remplissant le formulaire ci-dessous :
   page_error: Page en erreur
   page_broken: Cette page est inaccessible.
   page_broken_message: |

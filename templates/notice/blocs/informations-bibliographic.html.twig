@@ -110,7 +110,6 @@
 {{ notice_macros.detail(notice.rights , "Droits", ". ") }}
 
 {{ notice_macros.detail(notice.placesEvents , 'bloc.autority-result-information.manifestation-location') }}
-{{ notice_macros.detail(notice.origins , 'bloc.autority-result-information.origins'|trans ~ ': ', " ; ", " list-information__item--mentions") }}
 
 {% if notice.configurationName is not empty and notice.configurationName != constant('App\\Model\\Notice::CATALOGUE_BPI') and notice.configurationUrl is not empty %}
     <li class="list-information__item list-information__item--mentions">
@@ -124,6 +123,7 @@
 {% endif %}
 
 
+{#
 {% if notice.fourth and (notice.fourth.presentation or notice.fourth.biography or notice.fourth.editorInfo) %}
     <li class="list-information__item">
         <span class="list-information__label">{{ ("Quatrième de couverture")|trans }}</span>
@@ -149,5 +149,9 @@
         </ul>
     </li>
 {% endif %}
+#}
 
-{{ notice_macros.detail(notice.contentsTable , 'bloc.autority-result-information.content-table'|trans) }}
+{#{ notice_macros.raw_detail(("<div id=\"quatrieme\">"~notice.fourth~"</div>") , 'bloc.autority-result-information.fourth'|trans) }#}
+{{ notice_macros.raw_detail(quatrieme , 'bloc.autority-result-information.fourth'|trans) }}
+{{ notice_macros.raw_detail(tableMatieres, 'bloc.autority-result-information.content-table'|trans) }}
+{{ notice_macros.detail(notice.origins, 'bloc.autority-result-information.origins'|trans ~ ': ', " ; ", " list-information__item--mentions") }}

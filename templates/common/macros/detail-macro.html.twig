@@ -18,6 +18,26 @@
     {% endif %}
 {% endmacro %}
 
+{% macro raw_detail(object, label, glue =" ; ", classAppend="") %}
+    {% if object is not empty %}
+        <li class="list-information__item {{ classAppend }}">
+            <span class="list-information__label">{{ label|trans }}</span>
+            <ul class="list-information__sub-list" lang="fr">
+                {% if object is iterable %}
+                    {% for element in object %}
+                        <li class="list-information__sub-item">
+                            {{ element|raw }}
+                            {% if not loop.last %}{{ glue|nl2br }}{% endif %}
+                        </li>
+                    {% endfor %}
+                {% else %}
+                    <li class="list-information__sub-item">{{ object|raw }}</li>
+                {% endif %}
+            </ul>
+        </li>
+    {% endif %}
+{% endmacro %}
+
 {% macro detail_link(object, label, type, glue =", ") %}
     {% if object is not empty %}
         <li class="list-information__item">
@@ -141,7 +161,7 @@
                                 (constant('App\\Model\\Search\\Criteria::SIMPLE_SEARCH_TYPE')): type,
                             } %}
                             <a href="{{ toggle_to_path_parcours('search', app.request.attributes.get(constant('App\\Model\\Search\\ObjSearch::PARAM_PARCOURS_NAME')), pathAttr) }}">
-                                {{ element.value }} {{ element.complement }}
+                                {{ element.value }}. {{ element.complement | capitalize }}
                             </a>
                         </li>
                     {% endfor %}
@@ -213,8 +233,10 @@
                                     {% if element.reference is defined and element.reference is not null and loop.first %}
                                         <a class='decouvrirButton link' href="{{ toggle_to_path_parcours('record_authority',app.request.attributes.get(constant('App\\Model\\Search\\ObjSearch::PARAM_PARCOURS_NAME')),{ 'permalink':element.reference }) }}"><span class="under">Découvrir l'auteur</span><img src="{{ asset('images/icones/icone-resume.svg') }}" alt=""/></a>
                                         {% if not loop.last %}<br />{% endif %}
+                                        {% if not loop.last and not loop.first %}{{ glue|nl2br }} {% endif %}
+                                    {% else %}
+                                        {% if not loop.last %}{{ glue|nl2br }} {% endif %}
                                     {% endif %}
-                                    {% if not loop.last and not loop.first %}{{ glue|nl2br }} {% endif %}
                                 {% endfor %}
                             {% else %}
                                 {% set pathAttr = {

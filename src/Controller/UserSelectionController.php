@@ -7,6 +7,7 @@ use App\Entity\UserSelectionList;
 use App\Entity\UserSelectionDocument;
 use App\Service\Provider\SearchProvider;
 use App\Service\SelectionListService;
+use App\Service\LoggerService;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -14,6 +15,8 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Annotation\Route;
+
+use Monolog\Logger;
 
 /**
  * @route("/selection", name="user_selection")
@@ -34,20 +37,32 @@ final class UserSelectionController extends AbstractController
      */
     private $searchProvider;
 
-    /**
-     * @var SelectionListService
-     */
-    private $selectionService;
+	/**
+	 * @var SelectionListService
+	 */
+  	private $selectionService;
 
-    /**
-     * UserSelectionController constructor.
-     * @param SelectionListService $selectionListService
-     */
-    public function __construct(SelectionListService $selectionListService, SearchProvider $searchProvider)
-    {
-        $this->selectionService = $selectionListService;
-        $this->searchProvider = $searchProvider;
-    }
+	/**
+	 * @var LoggerService
+	 */
+  	private $loggerService;
+
+	/**
+	* @var Logger
+	*/
+	private $logger;
+
+	/**
+	* UserSelectionController constructor.
+	* @param SelectionListService $selectionListService
+	* @param Logger $logger
+	*/
+	public function __construct(SelectionListService $selectionListService, LoggerService $loggerService, SearchProvider $searchProvider)//, Logger $logger)
+	{
+		$this->selectionService = $selectionListService;
+		$this->loggerService = $loggerService;
+		$this->searchProvider = $searchProvider;
+	}
 
     /**
      * @Route("/", methods={"GET","POST"}, name="_index")
@@ -230,12 +245,13 @@ final class UserSelectionController extends AbstractController
 
         $listPermalinkNotice =  array_unique($listPermalinkNotice);
 
+        $request->getSession()->set('ItemsNotAvailable', json_encode($items)); //Important de se trouver avant les returns pour le capter dans src/Service/NoticeBuildFileService.php->getNoticeWrapper
+
         if (count($listPermalinkNotice)===0 || (count($listPermalinkNotice) === 1 && empty($listPermalinkNotice[0])) ){
             return new JsonResponse([
                     $request->get('action', 'export')]
             );
         }
-        $request->getSession()->set('ItemsNotAvailable', \GuzzleHttp\json_encode($items));
         return new JsonResponse([
              $this->renderView('user/modal/check-permalink-list-success.html.twig',
                 $this->selectionService->getSelectionOfobjectByPermalinks($listPermalinkNotice)+

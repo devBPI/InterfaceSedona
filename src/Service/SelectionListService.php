@@ -17,6 +17,8 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 
+use Monolog\Logger;
+
 /**
  * Class SelectionListService
  * @package App\Service
@@ -37,12 +39,22 @@ final class SelectionListService extends AuthenticationService
      * @param TokenStorageInterface $tokenStorage
      * @param SessionInterface $session
      */
+
+
+	/**
+	* @var Logger
+	*/
+	private $logger;
+
+
     public function __construct(
         EntityManager $entityManager,
         TokenStorageInterface $tokenStorage,
-        SessionInterface $session
+        SessionInterface $session,
+	Logger $logger
     ) {
         $this->entityManager = $entityManager;
+	$this->logger = $logger;
 
         parent::__construct($tokenStorage, $session);
     }
@@ -66,6 +78,7 @@ final class SelectionListService extends AuthenticationService
      */
     public function addDocumentsToLists(Request $request)
     {
+	//$this->logger->info('addListAction : \n '.print_r($request, true));
         if (!$this->hasConnectedUser()) {
             $this->addDocumentsInSession($request->get(UserSelectionController::INPUT_DOCUMENT, []));
             return;
