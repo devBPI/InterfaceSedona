@@ -218,22 +218,50 @@ help:
 
 footer:
   La Bpi:
-    Catalogue: /
-    Agenda: https://www.bpi.fr/agenda
-    La bibliothèque: https://www.bpi.fr/la-bibliotheque
-    Informations pratiques: https://www.bpi.fr/informations-pratiques
-    Bpi Numérique: https://www.bpi.fr/bpi-numerique/
+    Catalogue:
+        url: /
+        target: ""
+    Agenda:
+        url: https://www.bpi.fr/agenda
+        target: ""
+    La bibliothèque:
+        url: https://www.bpi.fr/la-bibliotheque
+        target: ""
+    Informations pratiques:
+          url: https://www.bpi.fr/informations-pratiques
+          target: ""
+    Bpi Numérique:
+        url: https://www.bpi.fr/bpi-numerique/
+        target: ""
 
   Balises:
-    Replay: https://replay.bpi.fr/
-    Tous les articles: https://balises.bpi.fr/tous-les-articles/
-    Les Dossiers: https://balises.bpi.fr/dossiers/
-    Qui sommes-nous ?: https://balises.bpi.fr/qui-sommes-nous/
+    Replay:
+      url: https://replay.bpi.fr/
+      target: _blank
+    Tous les articles:
+      url: https://balises.bpi.fr/tous-les-articles/
+      target: _blank
+    Les Dossiers:
+      url: https://balises.bpi.fr/dossiers/
+      target: _blank
+    Qui sommes-nous ?:
+        url: https://balises.bpi.fr/qui-sommes-nous/
+        target: _blank
 
   Professionnels:
-    Collections et services: https://pro.bpi.fr/collections-et-services/
-    Cohésion sociale: https://pro.bpi.fr/cohesion-sociale/
-    Études: https://pro.bpi.fr/etudes/
-    Métier: https://pro.bpi.fr/metier/
-    International: https://pro.bpi.fr/international/
+    Collections et services:
+        url: https://pro.bpi.fr/collections-et-services/
+        target: _blank
+    Cohésion sociale:
+        url: https://pro.bpi.fr/cohesion-sociale/
+        target: _blank
+    Études:
+      url: https://pro.bpi.fr/etudes/
+      target: _blank
+    Métier:
+      url: https://pro.bpi.fr/metier/
+      target: _blank
+    International:
+      url: https://pro.bpi.fr/international/
+      target: _blank
 
