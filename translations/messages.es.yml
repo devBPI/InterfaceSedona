@@ -314,7 +314,13 @@ modal:
     search-delete: Effacer ma recherche
     submit: Affiner
     submit-aria: Affiner ma recherche
-
+  no-response:
+    title: Aucune réponse ne correspond à votre recherche
+    choice: Vous pouvez
+    relaunch: Relancer votre recherche avec <a href="%link%"> l’Aide à la recherche </a>
+    more-choice: Elargir votre recherche en consultant  <a href="https://www.bpi.fr/bpi-numerique/"> BPI numériques </a>
+    form: Utiliser le formulaire
+    eurokoi: Poser une question à un bibliothécaire, en utilisant le service <a target="_blank" href="https://www.eurekoi.org/"> Eurêkoi </a>
 
 page:
   breadcrumb: Fil d'ariane

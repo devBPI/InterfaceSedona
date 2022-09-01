@@ -1,0 +1,22 @@
+<div class="row justify-content-sm-between">
+    <div class="col-12 col-sm-auto">
+        {{ 'modal.no-response.title'|trans }}
+
+        {{ 'modal.no-response.choice' | trans}}  :
+        <ul>
+            <li>
+                {{ 'modal.no-response.relaunch'  | trans({'%link%': path('help_search')})|raw}}
+            </li>
+            <li>
+                {{ 'modal.no-response.more-choice' | trans | raw}}
+            </li>
+            <li>
+                {{ 'modal.no-response.form' | trans | raw}}
+            </li>
+            <li>
+                {{ 'modal.no-response.eurokoi' | trans | raw}}
+            </li>
+        </ul>
+
+    </div>
+</div>

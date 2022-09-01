@@ -35,6 +35,7 @@ help:
             Recherche simple: /fr/aide/recherche#recherche-simple
             Recherche avancée: /fr/aide/recherche#recherche-avancee
             Parcours de recherche: /fr/aide/recherche#parcours-recherche
+            Service questions/réponses: /fr/aide/recherche#questions-reponses
 
   Exploitation des résultats:
     link: #
@@ -84,21 +85,49 @@ help:
 
 footer:
   La BPI:
-    Inicio: https://www.bpi.fr/es/inicio
-    Catálogo: http://catalogue.bpi.fr/es/
-    La biblioteca: https://www.bpi.fr/es/la-biblioteca/
-    Información práctica: https://www.bpi.fr/es/informacion-practica/
-    Bpi Digital: https://www.bpi.fr/es/bpi-digital/
+    Inicio:
+      url: https://www.bpi.fr/es/inicio
+      target: ""
+    Catálogo:
+      url: http://catalogue.bpi.fr/es/
+      target: ""
+    La biblioteca:
+      url: https://www.bpi.fr/es/la-biblioteca/
+      target: ""
+    Información práctica:
+      url: https://www.bpi.fr/es/informacion-practica/
+      target: ""
+    Bpi Digital:
+      url: https://www.bpi.fr/es/bpi-digital/
+      target: ""
 
   Balises:
-    Replay:  https://replay.bpi.fr/
-    Explorar: https://balises.bpi.fr/tous-les-articles//
-    Archivos temáticos: https://balises.bpi.fr/dossiers/
-    Quiénes somos ?: https://balises.bpi.fr/qui-sommes-nous/
+    Replay:
+      url: https://replay.bpi.fr/
+      target: _blank
+    Explorar:
+      url: https://balises.bpi.fr/tous-les-articles//
+      target: _blank
+    Archivos temáticos:
+      url: https://balises.bpi.fr/dossiers/
+      target: _blank
+    Quiénes somos ?:
+      url: https://balises.bpi.fr/qui-sommes-nous/
+      target: _blank
 
   Profesionales:
-    Colecciones y servicios: https://pro.bpi.fr/es/casa/colecciones-y-servicios/
-    Cohesión social: https://pro.bpi.fr/es/cohesion-social/
-    Estudios: https://pro.bpi.fr/es/estudios/
-    Profesión: https://pro.bpi.fr/es/profesion/
-    Internacional: https://pro.bpi.fr/es/casa/internacional/
+    Colecciones y servicios:
+      url: https://pro.bpi.fr/es/casa/colecciones-y-servicios/
+      target: _blank
+    Cohesión social:
+      url: https://pro.bpi.fr/es/cohesion-social/
+      target: _blank
+    Estudios:
+      url: https://pro.bpi.fr/es/estudios/
+      target: _blank
+    Profesión:
+      url: https://pro.bpi.fr/es/profesion/
+      target: _blank
+    Internacional:
+      url: https://pro.bpi.fr/es/casa/internacional/
+      target: _blank

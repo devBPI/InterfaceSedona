@@ -35,6 +35,7 @@ help:
             Recherche simple: /fr/aide/recherche#recherche-simple
             Recherche avancée: /fr/aide/recherche#recherche-avancee
             Parcours de recherche: /fr/aide/recherche#parcours-recherche
+            Service questions/réponses: /fr/aide/recherche#questions-reponses
 
   Exploitation des résultats:
     link: #
@@ -84,22 +85,50 @@ help:
 
 footer:
   La Bpi:
-    Home: https://www.bpi.fr/en/home/
-    Catalog: http://catalogue.bpi.fr/en/
-    The library: https://www.bpi.fr/en/the-library/
-    Practical information: https://www.bpi.fr/en/practical-information/
-    Digital Bpi: https://www.bpi.fr/en/digital-bpi/
+    Home:
+      url: https://www.bpi.fr/en/home/
+      target: ""
+    Catalog:
+      url: http://catalogue.bpi.fr/en/
+      target: ""
+    The library:
+      url: https://www.bpi.fr/en/the-library/
+      target: ""
+    Practical information:
+      url: https://www.bpi.fr/en/practical-information/
+      target: ""
+    Digital Bpi:
+      url: https://www.bpi.fr/en/digital-bpi/
+      target: ""
 
   Balises:
-    Replay: https://replay.bpi.fr/
-    Explore: https://balises.bpi.fr/tous-les-articles/
-    Thematic files: https://balises.bpi.fr/dossiers/
-    Who are we ?: https://balises.bpi.fr/qui-sommes-nous/
+    Replay:
+      url: https://replay.bpi.fr/
+      target: _blank
+    Explore:
+      url: https://balises.bpi.fr/tous-les-articles/
+      target: _blank
+    Thematic files:
+      url: https://balises.bpi.fr/dossiers/
+      target: _blank
+    Who are we ?:
+      url: https://balises.bpi.fr/qui-sommes-nous/
+      target: _blank
 
   Professionals:
-    Collections and services: https://pro.bpi.fr/en/collections-and-services/
-    Social cohesion in public libraries: https://pro.bpi.fr/en/social-cohesion-in-public-libraries/
-    Studies: https://pro.bpi.fr/en/studies/
-    Profession: https://pro.bpi.fr/en/profession/
-    International: https://pro.bpi.fr/en/international/
+    Collections and services:
+      url: https://pro.bpi.fr/en/collections-and-services/
+      target: _blank
+    Social cohesion in public libraries:
+      url: https://pro.bpi.fr/en/social-cohesion-in-public-libraries/
+      target: _blank
+    Studies:
+      url: https://pro.bpi.fr/en/studies/
+      target: _blank
+    Profession:
+      url: https://pro.bpi.fr/en/profession/
+      target: _blank
+    International:
+      url: https://pro.bpi.fr/en/international/
+      target: _blank
 
