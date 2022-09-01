@@ -47,10 +47,10 @@
                     <hr class="border-double hr-double">
                 </div>
                 {% if hasAuthors %}
-                    {% include "authority/blocs/list-related-documents.html.twig" with {'object': authors, 'type': 'auteur' } %}
+                    {% include "authority/blocs/list-related-documents.html.twig" with {'search_type': 'AUTHOR', 'author': notice, 'object': authors, 'type': 'auteur' } %}
                 {% endif %}
                 {% if hasSubjects %}
-                    {% include "authority/blocs/list-related-documents.html.twig" with {'object': subjects, 'type': 'sujets' } %}
+                    {% include "authority/blocs/list-related-documents.html.twig" with {'search_type': 'SUBJECT', 'author': notice, 'object': subjects, 'type': 'sujets' } %}
                 {% endif %}
 			</div>
             {% endif %}
