@@ -7,13 +7,13 @@ monolog:
             excluded_404s:
                 # regex: exclude all 404 errors from the logs
                 - ^/
+            channels: ['!php']
         nested:
             type: rotating_file
             max_files: 30
             path: "%kernel.logs_dir%/%kernel.environment%.log"
             level: debug
-            channels:
-                - "!php"
+            channels: ['!php']
         # uncomment to get logging in your browser
         # you may have to allow bigger header sizes in your Web server configuration
         #firephp:
