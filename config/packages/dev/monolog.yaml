@@ -3,7 +3,7 @@ monolog:
         main:
             type: rotating_file
             max_files: 30
-            path: '%kernel.project_dir%/public/log/dev.log'
+            path: '%kernel.logs_dir%/%env(DEV_LOG)%'
             level: info
             channels: ["!event"]
         # uncomment to get logging in your browser
