@@ -3,8 +3,8 @@ monolog:
         main:
             type: rotating_file
             max_files: 30
-            path: "%kernel.logs_dir%/%kernel.environment%.log"
-            level: debug
+            path: 'log/dev.log'
+            level: info
             channels: ["!event"]
         # uncomment to get logging in your browser
         # you may have to allow bigger header sizes in your Web server configuration

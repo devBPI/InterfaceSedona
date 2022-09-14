@@ -11,11 +11,11 @@ monolog:
             type: rotating_file
             max_files: 30
             path: "%kernel.logs_dir%/%kernel.environment%.log"
-            level: debug
+            level: info
         console:
             type: console
             process_psr_3_messages: false
-            channels: ["!event", "!doctrine"]
+            channels: ["!event", "!doctrine", "!php"]
         deprecation:
             type: rotating_file
             max_files: 30
