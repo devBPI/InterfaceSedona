@@ -3,14 +3,10 @@ declare(strict_types=1);
 
 namespace App\Service;
 
-use App\Model\Exception\ApiException;
 use App\Model\Exception\BPIException;
-use App\Model\Exception\ErrorAccessApiException;
-use App\Model\Exception\NoResultException;
 use App\Service\APIClient\CatalogClient;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\Finder\Finder;
-use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
@@ -51,24 +47,20 @@ final class ImageBuilderService
     }
 
     /**
-     * @param string $content
+     * @param string $url
      * @param string $type
      *
      * @return string
      */
-    public function buildImage(string $content, string $type = 'livre'): string
+    public function buildImage(string $url, string $type = 'livre'): string
     {
-        $localFilePath = $this->imageDir.self::PARENT_FOLDER.DIRECTORY_SEPARATOR.$this->slugify($type).DIRECTORY_SEPARATOR.$content.".jpg";
-
+        $localFilePath = $this->getLocalFilePathFromUrl($url, $type);
         $fs = new Filesystem();
         if (!$fs->exists($localFilePath)) {
             try {
-                $response = $this->catalogClient->get(self::BPI_FOLDER_NAME_ELECTRE.DIRECTORY_SEPARATOR.$content);
-                if ($response->getStatusCode() === 200) {
-                    $content = $response->getBody()->getContents();
-                    if (!empty($content)) {
-                        $fs->dumpFile($localFilePath, $content);
-                    }
+                $content = $this->getContentFromUrl($url);
+                if (!empty($content)) {
+                    $fs->dumpFile($localFilePath, $content);
                 }
             } catch (BPIException|NotFoundHttpException|AccessDeniedException $e) {}
         }
@@ -81,7 +73,7 @@ final class ImageBuilderService
     }
 
     /**
-     * @param string $type
+     * @param string|null $type
      *
      * @return string
      */
@@ -103,6 +95,32 @@ final class ImageBuilderService
         $fs->remove($finder);
 
         return $count;
+    }
+
+    private function getLocalFilePathFromUrl(string $url, string $type): string
+    {
+        $title = $url;
+        if (strpos($url, 'http') === 0) {
+            $urlParts = parse_url($url);
+            $title = trim($urlParts['host'], "/").DIRECTORY_SEPARATOR.trim($urlParts['path'], "/");
+            $title = substr($title, 0, strrpos($title, "."));
+        }
+
+        return $this->imageDir.self::PARENT_FOLDER.DIRECTORY_SEPARATOR.$this->slugify($type).DIRECTORY_SEPARATOR.$title.".jpg";
+    }
+
+    private function getContentFromUrl(string $url): ?string
+    {
+        if (strpos($url, 'http') === 0) {
+            return file_get_contents($url);
+        }
+
+        $response = $this->catalogClient->get(self::BPI_FOLDER_NAME_ELECTRE.DIRECTORY_SEPARATOR.$url);
+        if ($response->getStatusCode() === 200) {
+            return $response->getBody()->getContents();
+        }
+
+        return null;
     }
 }
 
