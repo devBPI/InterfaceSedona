@@ -10,7 +10,7 @@
 {% endblock %}
 
 {% block searchextended %}
-	{% if objSearch.results.notices.totalCount == 0 %}
+	{% if objSearch.results.notices.totalCount == 0 and objSearch.results.noticesOnline.totalCount == 0 and objSearch.results.authors is  empty %}
 		<div class="row justify-content-sm-between">
 			<div class="col-12 col-sm-auto">
 				{% include "search/blocs-results/no-notice-detail.html.twig" %}
@@ -22,7 +22,7 @@
 		<div class="col-12 col-sm-auto">
 			{% include "search/blocs-searchextended/search-corrector.html.twig" with {'suggestionList': objSearch.results.suggestionList} %}
 		</div>
-		
+
 		<div class="col-auto">
 			{% include "search/blocs-searchextended/related-topics.html.twig" with {'linkedSubjects': objSearch.results.linkedSubjects} %}
 		</div>
