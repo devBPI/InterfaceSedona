@@ -624,8 +624,8 @@ error:
   catalog_issue: soit le catalogue rencontre un problème technique temporaire
   page_not_found: La page ou la référence que vous cherchez est introuvable
   link-go-back: Retourner à la <a href="javascript:history.back()">page précédente</a>
-  link-home: Retourner à la <a href="%link%">page d’accueil du catalogue de la Bpi</a>
-  contact-admin: Contacter <a href="mailto:%email%">l’administrateur du catalogue de la Bpi</a>
+  link-home: Retourner à la <a href="%link%" aria-label="Retourner à la page d'accueil du catalogue de la Bpi">page d’accueil du catalogue de la Bpi</a>
+  contact-admin: Contacter <a href="mailto:%email%" aria-label="Contacter l'administrateur du catalogue de la Bpi">l’administrateur du catalogue de la Bpi</a>
   title-form: Formulaire de contact
   page_error: Page en erreur
   page_broken: Cette page est inaccessible.
