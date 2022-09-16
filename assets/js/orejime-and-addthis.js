@@ -147,6 +147,10 @@ var orejimeInstance = Orejime.init({
     ]
 });
 
+// ---------- Ajout d'une class pour Google Tag Manager
+
+document.querySelector(".orejime-Button--decline").classList.add("gtm-decline-button");
+
 // ----------- Add-This ------------------------------------------------------------------------------------------------
 var addthisInit = false,
     originalContent = null;
