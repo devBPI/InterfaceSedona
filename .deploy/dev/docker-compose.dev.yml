@@ -42,7 +42,7 @@ services:
       - .deploy/dev/web/:/usr/local/apache2/conf.d/
 
   encore:
-    image: node:10-alpine
+    image: node:10
     user: "$UID:$UID"
     environment:
       - APP_ENV

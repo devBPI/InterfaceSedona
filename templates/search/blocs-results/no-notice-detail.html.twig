@@ -1,8 +1,8 @@
 <div class="row justify-content-sm-between">
-    <div class="col-12 col-sm-auto">
-        {{ 'modal.no-response.title'|trans }}
+    <div class="col-12">
+        <p class="mt-3">{{ 'modal.no-response.title'|trans }}</p>
 
-        {{ 'modal.no-response.choice' | trans}}  :
+        <p>{{ 'modal.no-response.choice' | trans}}  :</p>
         <ul>
             <li>
                 {{ 'modal.no-response.relaunch'  | trans({'%link%': path('help_search')})|raw}}

@@ -315,12 +315,12 @@ modal:
     submit: Affiner
     submit-aria: Affiner ma recherche
   no-response:
-    title: Aucune réponse ne correspond à votre recherche
+    title: Aucune réponse ne correspond à votre recherche.
     choice: Vous pouvez
-    relaunch: Relancer votre recherche avec <a href="%link%"> l’Aide à la recherche </a>
-    more-choice: Elargir votre recherche en consultant  <a href="https://www.bpi.fr/bpi-numerique/"> BPI numériques </a>
+    relaunch: Relancer votre recherche avec <a href="%link%" aria-label="Relancer votre recherche avec l'Aide à la recherche"> l’Aide à la recherche</a>
+    more-choice: Elargir votre recherche en consultant <a href="https://www.bpi.fr/bpi-numerique/" target="_blank" aria-label="Elargir votre recherche en consultant BPI numériques - Nouvelle fenêtre"> BPI numériques</a>
     form: Utiliser le formulaire
-    eurokoi: Poser une question à un bibliothécaire, en utilisant le service <a target="_blank" href="https://www.eurekoi.org/"> Eurêkoi </a>
+    eurokoi: Poser une question à un bibliothécaire, en utilisant le service <a target="_blank" aria-label="Utilisé le service Eurêkoi - Nouvelle fenêtre" href="https://www.eurekoi.org/"> Eurêkoi </a>
 
 page:
   breadcrumb: Fil d'ariane
@@ -624,8 +624,8 @@ error:
   catalog_issue: soit le catalogue rencontre un problème technique temporaire
   page_not_found: La page ou la référence que vous cherchez est introuvable
   link-go-back: Retourner à la <a href="javascript:history.back()">page précédente</a>
-  link-home: Retourner à la <a href="%link%">page d’accueil du catalogue de la Bpi</a>
-  contact-admin: Contacter <a href="mailto:%email%">l’administrateur du catalogue de la Bpi</a>
+  link-home: Retourner à la <a href="%link%" aria-label="Retourner à la page d'accueil du catalogue de la Bpi">page d’accueil du catalogue de la Bpi</a>
+  contact-admin: Contacter <a href="mailto:%email%" aria-label="Contacter l'administrateur du catalogue de la Bpi">l’administrateur du catalogue de la Bpi</a>
   title-form: Formulaire de contact
   page_error: Page en erreur
   page_broken: Cette page est inaccessible.
