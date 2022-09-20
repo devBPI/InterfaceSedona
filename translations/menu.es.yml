@@ -88,46 +88,60 @@ footer:
     Inicio:
       url: https://www.bpi.fr/es/inicio
       target: ""
+      title: ""
     Catálogo:
       url: http://catalogue.bpi.fr/es/
       target: ""
+      title: ""
     La biblioteca:
       url: https://www.bpi.fr/es/la-biblioteca/
       target: ""
+      title: ""
     Información práctica:
       url: https://www.bpi.fr/es/informacion-practica/
       target: ""
+      title: ""
     Bpi Digital:
       url: https://www.bpi.fr/es/bpi-digital/
       target: ""
+      title: ""
 
   Balises:
     Replay:
       url: https://replay.bpi.fr/
       target: _blank
+      title: Nueva ventana
     Explorar:
       url: https://balises.bpi.fr/tous-les-articles//
       target: _blank
+      title: Nueva ventana
     Archivos temáticos:
       url: https://balises.bpi.fr/dossiers/
       target: _blank
+      title: Nueva ventana
     Quiénes somos ?:
       url: https://balises.bpi.fr/qui-sommes-nous/
       target: _blank
+      title: Nueva ventana
 
   Profesionales:
     Colecciones y servicios:
       url: https://pro.bpi.fr/es/casa/colecciones-y-servicios/
       target: _blank
+      title: Nueva ventana
     Cohesión social:
       url: https://pro.bpi.fr/es/cohesion-social/
       target: _blank
+      title: Nueva ventana
     Estudios:
       url: https://pro.bpi.fr/es/estudios/
       target: _blank
+      title: Nueva ventana
     Profesión:
       url: https://pro.bpi.fr/es/profesion/
       target: _blank
+      title: Nueva ventana
     Internacional:
       url: https://pro.bpi.fr/es/casa/internacional/
       target: _blank
+      title: Nueva ventana
