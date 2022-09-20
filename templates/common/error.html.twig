@@ -1,5 +1,5 @@
 {% extends 'base.html.twig' %}
-
+{% set title =  'error.404'|trans  %}
 {% block body %}
     <p>
         Cette ressource n’est plus disponible.
@@ -16,6 +16,7 @@
    <!-- Redirection automatique au bout de <a href ="{{ path('home') }}" id="countdown" class="timer"></a>s -->
 {% endblock %}
 
+{#
 {% block javascripts %}
     {{ parent() }}
 
@@ -23,3 +24,4 @@
         {{ encore_entry_script_tags('error_404') }}
     {% endif %}
 {% endblock %}
+#}
