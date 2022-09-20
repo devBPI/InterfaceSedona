@@ -632,7 +632,7 @@ error:
   page_broken_message: |
     Le site rencontre actuellement un problème technique, merci de renouveller votre visite ultèrieurement.
     Nous allons le réparer dès que possible. Désolé pour tout inconvénient causé.
-  404: Page indisponible
+  404: page unavailable
 breadcrumb:
   home:
     actualites-revues: News and magazines course
