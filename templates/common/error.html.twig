@@ -2,17 +2,23 @@
 {% set title =  'error.404'|trans  %}
 {% block body %}
     <p>
-        Cette ressource n’est plus disponible.
+        <p>{{ 'error.page_not_available'|trans }} :</p>
     </p>
     <p>
 
-       <!-- <a href="{{ path('home') }}">Pour revenir à la page d'accueil</a> -->
+    <ul class="link-list">
 
-       {{ 'error.link-home'|trans({'%link%': path('home')})|raw }}
-
-    </p>
-	 <p>{{ 'error.contact-admin'|trans({'%email%': contact_email})|raw }}</p>
-
+        <li> {{ 'error.permalink_not_available' | trans }}</li>
+        <li> {{ 'error.catalog_issue' | trans }}</li>
+    </ul>
+    <ul class="list-link">
+        <li>
+            {{ 'error.link-go-back'|trans |raw }}
+        </li>
+        <li>
+            {{ 'error.link-home'|trans({'%link%': path('home')})|raw }}
+        </li>
+    </ul>
    <!-- Redirection automatique au bout de <a href ="{{ path('home') }}" id="countdown" class="timer"></a>s -->
 {% endblock %}
 
