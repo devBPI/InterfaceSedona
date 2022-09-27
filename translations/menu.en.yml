@@ -110,39 +110,39 @@ footer:
     Replay:
       url: https://replay.bpi.fr/
       target: _blank
-      title: New window
+      title:  Replay - New window
     Explore:
       url: https://balises.bpi.fr/tous-les-articles/
       target: _blank
-      title: New window
+      title: Explore - New window
     Thematic files:
       url: https://balises.bpi.fr/dossiers/
       target: _blank
-      title: New window
+      title: Thematic files - New window
     Who are we ?:
       url: https://balises.bpi.fr/qui-sommes-nous/
       target: _blank
-      title: New window
+      title: Who are we ? - New window
 
   Professionals:
     Collections and services:
       url: https://pro.bpi.fr/en/collections-and-services/
       target: _blank
-      title: New window
+      title: Collections and services - New window
     Social cohesion in public libraries:
       url: https://pro.bpi.fr/en/social-cohesion-in-public-libraries/
       target: _blank
-      title: New window
+      title: Social cohesion in public libraries -  New window
     Studies:
       url: https://pro.bpi.fr/en/studies/
       target: _blank
-      title: New window
+      title: Studies - New window
     Profession:
       url: https://pro.bpi.fr/en/profession/
       target: _blank
-      title: New window
+      title: Profession - New window
     International:
       url: https://pro.bpi.fr/en/international/
       target: _blank
-      title: New window
+      title: International - New window
 
