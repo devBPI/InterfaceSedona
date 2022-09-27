@@ -26,6 +26,13 @@ class NoticeMappedAuthority
     private $pagination;
 
     /**
+     * @var integer
+     * @JMS\Type("int")
+     */
+    private $totalResultsNumber;
+
+
+    /**
      * @return Notice[]|array
      */
     public function getMappedNotices()
@@ -40,5 +47,15 @@ class NoticeMappedAuthority
     {
         return $this->pagination;
     }
+
+    /**
+     * @return int
+     * @JMS\XmlList(entry="totalResultsNumber")
+     */
+    public function getTotalResultsNumber(): int
+    {
+        return $this->totalResultsNumber;
+    }
+
 }
 
