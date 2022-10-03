@@ -28,6 +28,7 @@ class NoticeMappedAuthority
     /**
      * @var integer
      * @JMS\Type("int")
+     * @JMS\SerializedName("totalResultsNumber")
      */
     private $totalResultsNumber;
 
@@ -50,9 +51,8 @@ class NoticeMappedAuthority
 
     /**
      * @return int
-     * @JMS\XmlList(entry="totalResultsNumber")
      */
-    public function getTotalResultsNumber(): int
+    public function getTotalResultsNumber(): ?int
     {
         return $this->totalResultsNumber;
     }
