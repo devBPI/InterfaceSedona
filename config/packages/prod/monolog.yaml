@@ -1,5 +1,10 @@
 monolog:
     handlers:
+        deprecation:
+            level: debug
+            type: stream
+            path: '%kernel.logs_dir%/depreciation.log'
+            channel: ['php']
         main:
             type: fingers_crossed
             action_level: error
