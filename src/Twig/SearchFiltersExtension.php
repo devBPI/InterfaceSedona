@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace App\Twig;
 
 
+use App\Entity\ThemeLevel;
 use App\Model\Search\FilterFilter;
 use App\Model\Search\FacetFilter;
 use App\Service\NavigationService;
@@ -68,8 +69,6 @@ class SearchFiltersExtension extends AbstractExtension
             new TwigFunction('cut_filter_from_search', [$this, 'cutfilterFromSearch']),
             new TwigFunction('is_advanced_search', [$this, 'isAdvancedSaerch']),
             new TwigFunction('add_parameter_url', [$this, 'addParameterUrl']),
-            new TwigFunction('add_parameter_2', [$this, 'addParameterUrl2']),
-
         ];
     }
 
@@ -247,8 +246,8 @@ class SearchFiltersExtension extends AbstractExtension
     }
 
     /**
-     * @param string|null $url
-     * @param $value
+     * @param $object
+     * @param string $locale
      * @return string|null
      */
     public function addParameterUrl($object, string $locale):?string
@@ -257,49 +256,18 @@ class SearchFiltersExtension extends AbstractExtension
         if ($url === null){
             return $url;
         }
-       $payload = str_replace(['/recherche-avancee', '/recherche-simple'],'/resultats/essentiels/'.$object->getTitle($locale), $url);
-
-        if (strpos($url, "recherche-avancee")) {
-            if(!strpos($url, '?')){
-                return $payload.'?search-type=advanced';
-            }else{
-                $urlArray = explode('&',$url);
-                    if(array_key_exists(count($urlArray)-1, $urlArray) && !strpos( $urlArray[count($urlArray)-1], "=")){
-                        return  $payload.'=&search-type=advanced';
-                    }
-                return $payload.'&search-type=advanced';
-            }
-        }
-        return $payload;
-    }
-
-    /**
-     * @param string|null $url
-     * @param $value
-     * @return string|null
-     */
-    public function addParameterUrl2($object, string $locale):?string
-    {
-        $url = $object->getUrl($locale);
-        if ($url === null){
-            return $url;
-        }
         $code = $object->getCode();
-        $this->essentialsResourceProvider->getEssentialResource($code);
-        $payload = str_replace(['/recherche-avancee', '/recherche-simple'],'/resultats/essentiels/'.$object->getTitle($locale), $url);
-
-        if (strpos($url, "recherche-avancee")) {
-            if(!strpos($url, '?')){
-                return $payload.'?search-type=advanced';
-            }else{
-                $urlArray = explode('&',$url);
-                if(array_key_exists(count($urlArray)-1, $urlArray) && !strpos( $urlArray[count($urlArray)-1], "=")){
-                    return  $payload.'=&search-type=advanced';
-                }
-                return $payload.'&search-type=advanced';
-            }
+        if (empty($code)) {
+            return '';
         }
-        return $payload;
+        $url = substr($url, 0, strpos($url, '?'));
+        try {
+            $codeEss = $this->essentialsResourceProvider->getEssentialResource($code);
+            return  $url.'?'.$codeEss;
+        }catch (\Exception $exception) {
+
+        }
+        return '';
     }
 
 }

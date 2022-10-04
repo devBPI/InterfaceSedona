@@ -42,6 +42,13 @@ class Facet
      * @JMS\XmlList("value")
      */
     private $values;
+    /**
+     * @var array|string[]
+     * @JMS\Type("array<string>")
+     * @JMS\SerializedName("values")
+     * @JMS\XmlList("value")
+     */
+    private $businessSearchValues;
 
     /**
      * @var array
@@ -124,5 +131,12 @@ class Facet
         }
 
         return max($this->getRawValues());
+    }
+    /**
+     * @return array|string[]
+     */
+    public function getBusinessSearchValues(): array
+    {
+        return $this->businessSearchValues;
     }
 }

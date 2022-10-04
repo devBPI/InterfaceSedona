@@ -14,22 +14,17 @@
 					<ul class="card__list">
 						{% for level in element.levels|sort((a, b) => a.id <=> b.id) %}
 							<li class="card__item">
-								{{ dump(add_parameter_url(level, app.request.locale)) }}
-								{{ dump(add_parameter_2(level, app.request.locale)) }}
-								{#<a href="{{ add_parameter_url(level, app.request.locale)}}">{{ level.title(app.request.locale) }}</a>#}
-
+								<a href="{{ add_parameter_url(level, app.request.locale)}}">{{ level.title(app.request.locale) }}</a>
 							</li>
 						{% endfor %}
 					</ul>
 				{% endif %}
 			</div>
 			{% if element.levels.count == 0 %}
-				{{ dump(add_parameter_url(element, app.request.locale)) }}
-				{{ dump(add_parameter_2(element, app.request.locale)) }}
 
-				{#<a href="{{ add_parameter_url(element, app.request.locale) }}" class="card__link">
+				<a href="{{ add_parameter_url(element, app.request.locale) }}" class="card__link">
 					<span class="sr-only">{{ "bloc.preview-thematic-links.link-sr-only"|trans({'%name%' : element.title(app.request.locale) }) }}</span>
-				</a>#}
+				</a>
 			{% endif %}
 		</div>
 	</div>

@@ -55,12 +55,12 @@ class Theme
      * @var string
      * @ORM\Column(type="string", length=250, nullable=true)
      */
-    private string $code;
+    private ?string $code;
 
     /**
      * @return string
      */
-    public function getCode(): string
+    public function getCode(): ?string
     {
         return $this->code;
     }

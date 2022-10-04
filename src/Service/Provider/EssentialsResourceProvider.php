@@ -3,13 +3,7 @@ declare(strict_types=1);
 
 namespace App\Service\Provider;
 
-use App\Model\AroundIndex;
-use App\Model\Authority;
-use App\Model\EssentialResource;
-use App\Model\IndiceCdu;
-use App\Model\NoticeMappedAuthority;
-use App\Model\Status;
-use App\Service\NoticeBuildFileService;
+use App\Model\BusinessSearchCriterias;
 
 /**
  * Class NoticeProvider
@@ -18,16 +12,15 @@ use App\Service\NoticeBuildFileService;
 class EssentialsResourceProvider extends AbstractProvider
 {
     /**
-     * @param int $id
-     * @return EssentialResource
-     *
+     * @param string $criteria
+     * @return BusinessSearchCriterias
      */
-    public function getEssentialResource(string $criteria): EssentialResource
+    public function getEssentialResource(string $criteria): BusinessSearchCriterias
     {
         return $this->hydrateFromResponse(
             '/essentiels/getcriteria/'.$criteria,
             [],
-            EssentialResource::class
+            BusinessSearchCriterias::class
         );
     }
 }
