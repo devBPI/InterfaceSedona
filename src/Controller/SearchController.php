@@ -17,6 +17,7 @@ use App\Model\Search\SearchQuery;
 use App\Model\SuggestionList;
 use App\Service\NavigationService;
 use App\Service\NoticeBuildFileService;
+use App\Service\Provider\EssentialsResourceProvider;
 use App\Service\Provider\SearchProvider;
 use App\Service\SearchService;
 use App\WordsList;
@@ -56,7 +57,6 @@ final class SearchController extends AbstractController
      */
     private $entityManager;
 
-
     /**
      * SearchController constructor.
      * @param EntityManagerInterface $entityManager
@@ -69,6 +69,7 @@ final class SearchController extends AbstractController
         SearchProvider $searchProvider,
         SearchService $searchService,
         NoticeBuildFileService $service
+
     ) {
         $this->searchProvider = $searchProvider;
         $this->searchService = $searchService;
@@ -114,6 +115,7 @@ final class SearchController extends AbstractController
      */
     public function advancedSearchWithEssentielsAction(Request $request, string $parcours=self::GENERAL,string $essentiels='',string $essentiel1='', string $essentiel2=''): Response
     {
+
         $request->request->set('essentiels', $essentiels);
         if($essentiel1!==''){
             $request->request->set('essentiels', $essentiel1. '/'.$essentiel2);

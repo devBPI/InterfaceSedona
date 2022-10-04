@@ -52,6 +52,27 @@ class Theme
     private $url;
 
     /**
+     * @var string
+     * @ORM\Column(type="string", length=250, nullable=true)
+     */
+    private string $code;
+
+    /**
+     * @return string
+     */
+    public function getCode(): string
+    {
+        return $this->code;
+    }
+
+    /**
+     * @param string $code
+     */
+    public function setCode(string $code): void
+    {
+        $this->code = $code;
+    }
+    /**
      * @return int
      */
     public function getId(): int

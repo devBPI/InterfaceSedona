@@ -9,6 +9,7 @@ class EssentialResource
     /**
      * @var Resource
      * @JMS\Type("App\Model\Resource")
+     * @JMS\SerializedName('criteria')
      */
     private $criteria;
 

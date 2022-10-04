@@ -9,12 +9,14 @@ class Resource
     /**
      * @var string
      * @JMS\Type("string")
+     * @JMS\SerializedName('parcours')
      */
     private $parcours;
 
     /**
      * @var string
      * JMS\Type('string')
+     * @JMS\SerializedName('theme')
      */
     private $theme;
 

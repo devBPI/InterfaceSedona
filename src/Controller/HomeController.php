@@ -4,7 +4,9 @@ declare(strict_types=1);
 namespace App\Controller;
 
 use App\Entity\Thematic;
+use App\Entity\Theme;
 use App\Service\Provider\CarouselProvider;
+use App\Service\Provider\EssentialsResourceProvider;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -24,9 +26,16 @@ final class HomeController extends AbstractController
      * HomeController constructor.
      * @param CarouselProvider $carouselProvider
      */
-    public function __construct(CarouselProvider $carouselProvider)
+
+    /**
+     * @var EssentialsResourceProvider $essentialResourceProvider;
+     */
+    private $essentialResourceProvider;
+
+    public function __construct(CarouselProvider $carouselProvider, EssentialsResourceProvider  $essentialsResourceProvider)
     {
         $this->carouselProvider = $carouselProvider;
+        $this->essentialResourceProvider = $essentialsResourceProvider;
     }
 
     /**
@@ -62,7 +71,7 @@ final class HomeController extends AbstractController
     {
         $carousel = $this->carouselProvider->getListByThematic($parcours);
         $object = $this->getDoctrine()->getRepository(Thematic::class)->findOneBy(['type'=>$parcours]);
-
+        //$this->essentialResourceProvider->getEssentialResource('$criteria');
         return $this->render('home/thematic.html.twig', [
                 'title'     => $parcours,
                 'thematic'  => $object,

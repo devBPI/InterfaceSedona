@@ -23,11 +23,12 @@ class EssentialResourceController extends AbstractController
         $this->essentialResourceProvider = $essentialsResourceProvider;
     }
     /**
-     * @Route("/essentials/{criteria}", methods={"GET","HEAD"}, name="essential_resource")
+     * @Route("/essentials/{criteria}", methods={"GET"}, name="essential_resource")
      * @return Response
      */
     public function essentialResourceAction(string $criteria): Response
     {
+        $criteria = 'AR-PRESSE-MEDIAS-EN-LIGNE';
         $resource = $this->essentialResourceProvider->getEssentialResource($criteria);
         return $this->render('essentials/index.html.twig', [
             'object'            => $resource

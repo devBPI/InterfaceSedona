@@ -25,7 +25,7 @@ class EssentialsResourceProvider extends AbstractProvider
     public function getEssentialResource(string $criteria): EssentialResource
     {
         return $this->hydrateFromResponse(
-            '/essentiels/getCriteria/'.$criteria,
+            '/essentiels/getcriteria/'.$criteria,
             [],
             EssentialResource::class
         );
