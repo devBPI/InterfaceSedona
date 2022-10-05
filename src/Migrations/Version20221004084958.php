@@ -23,6 +23,7 @@ final class Version20221004084958 extends AbstractMigration
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'postgresql', 'Migration can only be executed safely on \'postgresql\'.');
 
         $this->addSql('ALTER TABLE theme ADD code VARCHAR(250) DEFAULT NULL');
+        $this->addSql('ALTER TABLE theme_level ADD code VARCHAR(250) DEFAULT NULL');
     }
 
     public function down(Schema $schema) : void
@@ -30,5 +31,6 @@ final class Version20221004084958 extends AbstractMigration
         // this down() migration is auto-generated, please modify it to your needs
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'postgresql', 'Migration can only be executed safely on \'postgresql\'.');
         $this->addSql('ALTER TABLE theme DROP code');
+        $this->addSql('ALTER TABLE theme_level DROP code');
     }
 }

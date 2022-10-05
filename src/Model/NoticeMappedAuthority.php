@@ -54,7 +54,7 @@ class NoticeMappedAuthority
      */
     public function getTotalResultsNumber(): ?int
     {
-        return $this->totalResultsNumber;
+        return $this->totalResultsNumber ?? count($this->mappedNotices);
     }
 
 }
