@@ -20,8 +20,8 @@ final class Version20221004101737 extends AbstractMigration
     public function up(Schema $schema) : void
     {
         // this up() migration is auto-generated, please modify it to your needs
-        $this->addSql("UPDATE theme_level SET code='AR-PRESSE-ETRANGERE ' WHERE id = 2;");
-        $this->addSql("UPDATE theme_level SET code='AR-REVUES-MEDIAS  ' WHERE id = 3;");
+            $this->addSql("UPDATE theme_level SET code='AR-PRESSE-ETRANGERE' WHERE id = 2;");
+        $this->addSql("UPDATE theme_level SET code='AR-REVUES-MEDIAS' WHERE id = 3;");
 
     }
 
