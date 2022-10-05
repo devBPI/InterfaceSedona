@@ -1,8 +1,9 @@
 monolog:
     handlers:
         deprecation:
-            level: debug
-            type: stream
+            type: rotating_file
+            max_files: 10
+            level: error
             path: '%kernel.logs_dir%/depreciation.log'
             channels: ["php"]
         main:
