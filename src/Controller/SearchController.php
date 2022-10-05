@@ -56,7 +56,6 @@ final class SearchController extends AbstractController
      */
     private $entityManager;
 
-
     /**
      * SearchController constructor.
      * @param EntityManagerInterface $entityManager

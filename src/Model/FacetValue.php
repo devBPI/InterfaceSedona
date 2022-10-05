@@ -15,6 +15,11 @@ class FacetValue
      * @JMS\Type("string")
      */
     private $name;
+    /**
+     * @var string
+     * @JMS\Type("string")
+     */
+    private $value;
 
     /**
      * @var integer
@@ -34,6 +39,13 @@ class FacetValue
     public function getName(): string
     {
         return $this->name;
+    }
+    /**
+     * @return string
+     */
+    public function getValue(): string
+    {
+        return $this->value;
     }
 
     /**

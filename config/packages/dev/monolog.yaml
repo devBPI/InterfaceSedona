@@ -1,11 +1,17 @@
 monolog:
     handlers:
+        deprecation:
+            type: rotating_file
+            max_files: 10
+            level: error
+            path: '%kernel.logs_dir%/depreciation.log'
+            channels: ["php"]
         main:
             type: rotating_file
             max_files: 30
             path: "%kernel.logs_dir%/%kernel.environment%.log"
             level: debug
-            channels: ["!event"]
+            channels: ["!event", "!php"]
         # uncomment to get logging in your browser
         # you may have to allow bigger header sizes in your Web server configuration
         #firephp:

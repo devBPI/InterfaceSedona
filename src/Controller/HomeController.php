@@ -18,7 +18,7 @@ final class HomeController extends AbstractController
     /**
      * @var CarouselProvider
      */
-    private $carouselProvider;
+    private CarouselProvider $carouselProvider;
 
     /**
      * HomeController constructor.

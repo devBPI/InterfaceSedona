@@ -11,10 +11,13 @@
                 {{ 'modal.no-response.more-choice' | trans | raw}}
             </li>
             <li>
-                {{ 'modal.no-response.form' | trans | raw}}
+                {{ 'modal.no-response.form' | trans | raw}}  <button data-target="#modal-suggest" data-toggle="modal" data-reload="true">
+                    <img src="/images/icones/icone-suggestion.svg" alt="" class="icone-livre">
+                    <span>Suggestion d'achat</span>
+                </button>
             </li>
             <li>
-                {{ 'modal.no-response.eurokoi' | trans | raw}}
+                <p>{{ 'modal.no-response.eurokoi' | trans | raw}}</p><img  src="{{ asset('images/logo_eurokoi.jpg') }}">
             </li>
         </ul>
 

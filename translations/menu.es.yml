@@ -110,38 +110,38 @@ footer:
     Replay:
       url: https://replay.bpi.fr/
       target: _blank
-      title: Nueva ventana
+      title:  Replay -  Nueva ventana
     Explorar:
       url: https://balises.bpi.fr/tous-les-articles//
       target: _blank
-      title: Nueva ventana
+      title: Explorar - Nueva ventana
     Archivos temáticos:
       url: https://balises.bpi.fr/dossiers/
       target: _blank
-      title: Nueva ventana
+      title: Archivos temáticos - Nueva ventana
     Quiénes somos ?:
       url: https://balises.bpi.fr/qui-sommes-nous/
       target: _blank
-      title: Nueva ventana
+      title: Quiénes somos ? - Nueva ventana
 
   Profesionales:
     Colecciones y servicios:
       url: https://pro.bpi.fr/es/casa/colecciones-y-servicios/
       target: _blank
-      title: Nueva ventana
+      title: Colecciones y servicios - Nueva ventana
     Cohesión social:
       url: https://pro.bpi.fr/es/cohesion-social/
       target: _blank
-      title: Nueva ventana
+      title: Cohesión social - Nueva ventana
     Estudios:
       url: https://pro.bpi.fr/es/estudios/
       target: _blank
-      title: Nueva ventana
+      title: Estudios - Nueva ventana
     Profesión:
       url: https://pro.bpi.fr/es/profesion/
       target: _blank
-      title: Nueva ventana
+      title: Profesión - Nueva ventana
     Internacional:
       url: https://pro.bpi.fr/es/casa/internacional/
       target: _blank
-      title: Nueva ventana
+      title: Internacional - Nueva ventana

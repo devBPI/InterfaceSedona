@@ -4,9 +4,11 @@ declare(strict_types=1);
 namespace App\Twig;
 
 
+use App\Entity\ThemeLevel;
 use App\Model\Search\FilterFilter;
 use App\Model\Search\FacetFilter;
 use App\Service\NavigationService;
+use App\Service\Provider\EssentialsResourceProvider;
 use App\WordsList;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
@@ -33,16 +35,21 @@ class SearchFiltersExtension extends AbstractExtension
     private $facetQueries;
 
     /**
+     * @var EssentialsResourceProvider $essentialsResourceProvider;
+     */
+    private EssentialsResourceProvider $essentialsResourceProvider;
+    /**
      * SearchFiltersExtension constructor.
      *
      * @param RequestStack $requestStack
      */
-    public function __construct(RequestStack $requestStack)
+    public function __construct(RequestStack $requestStack, EssentialsResourceProvider  $essentialsResourceProvider)
     {
         $this->masterRequest = $requestStack->getMasterRequest();
         if ($requestStack->getMasterRequest() instanceof Request) {
             $this->facetQueries = $requestStack->getMasterRequest()->get(FacetFilter::QUERY_NAME, []);
         }
+        $this->essentialsResourceProvider = $essentialsResourceProvider;
     }
 
     /**
@@ -62,7 +69,6 @@ class SearchFiltersExtension extends AbstractExtension
             new TwigFunction('cut_filter_from_search', [$this, 'cutfilterFromSearch']),
             new TwigFunction('is_advanced_search', [$this, 'isAdvancedSaerch']),
             new TwigFunction('add_parameter_url', [$this, 'addParameterUrl']),
-
         ];
     }
 
@@ -240,29 +246,28 @@ class SearchFiltersExtension extends AbstractExtension
     }
 
     /**
-     * @param string|null $url
-     * @param $value
+     * @param $object
+     * @param string $locale
      * @return string|null
      */
-    public function addParameterUrl(string $url = null, $value):?string
+    public function addParameterUrl($object, string $locale):?string
     {
+        $url = $object->getUrl($locale);
         if ($url === null){
             return $url;
         }
-       $payload = str_replace(['/recherche-avancee', '/recherche-simple'],'/resultats/essentiels/'.$value, $url);
-
-        if (strpos($url, "recherche-avancee")) {
-            if(!strpos($url, '?')){
-                return $payload.'?search-type=advanced';
-            }else{
-                $urlArray = explode('&',$url);
-                    if(array_key_exists(count($urlArray)-1, $urlArray) && !strpos( $urlArray[count($urlArray)-1], "=")){
-                        return  $payload.'=&search-type=advanced';
-                    }
-                return $payload.'&search-type=advanced';
-            }
+        $code = $object->getCode();
+        if (empty($code)) {
+            return '';
         }
+        $url = substr($url, 0, strpos($url, '?'));
+        try {
+            $codeEss = $this->essentialsResourceProvider->getEssentialResource($code);
+            return  $url.'?'.$codeEss;
+        }catch (\Exception $exception) {
 
-        return $payload;
+        }
+        return '';
     }
+
 }
