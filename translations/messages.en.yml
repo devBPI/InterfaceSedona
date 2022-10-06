@@ -3,7 +3,7 @@ and: ET
 or: OU
 not: SAUF
 global:
-  new-windows: Nouvelle fenêtre
+  new-windows: New window
   form-mandatory-field: champs obligatoires
   modal-close: Fermer cette fenêtre
   modal-cancel: Annuler
@@ -90,7 +90,7 @@ footer:
     sr-magazine: Balises, the Bpi magazine
     magazine: The Bpi magazine
   partenaires:
-    eurekoi: Eurekoi, Ask a Librarian - New Window
+    eurekoi: Eurekoi, Ask a Librarian
     culture: Ministry of culture
     pompidou: Centre Pompidou
     ircam: Ircam Centre Pompidou
