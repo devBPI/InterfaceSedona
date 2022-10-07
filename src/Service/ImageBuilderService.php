@@ -99,20 +99,13 @@ final class ImageBuilderService
 
     private function getLocalFilePathFromUrl(string $url, string $type): string
     {
-        $title = $url;
-        if (strpos($url, 'http') === 0) {
-            $urlParts = parse_url($url);
-            $title = trim($urlParts['host'], "/").DIRECTORY_SEPARATOR.trim($urlParts['path'], "/");
-            $title = substr($title, 0, strrpos($title, "."));
-        }
-
-        return $this->imageDir.self::PARENT_FOLDER.DIRECTORY_SEPARATOR.$this->slugify($type).DIRECTORY_SEPARATOR.$title.".jpg";
+        return $this->imageDir.self::PARENT_FOLDER.DIRECTORY_SEPARATOR.$this->slugify($type).DIRECTORY_SEPARATOR.rtrim($url, ".jpg").".jpg";
     }
 
     private function getContentFromUrl(string $url): ?string
     {
         if (strpos($url, 'http') === 0) {
-            return file_get_contents($url);
+            return file_get_contents(urldecode($url));
         }
 
         $response = $this->catalogClient->get(self::BPI_FOLDER_NAME_ELECTRE.DIRECTORY_SEPARATOR.$url);

@@ -21,7 +21,7 @@ trait PathToContentTrait
     private function pathToContent(?string $path): ?string
     {
         if (empty($path) || strpos($path, 'http') === 0) {
-            return $path;
+            return urlencode($path);
         }
 
         return ImageBuilderService::COVER.'/'.basename($path);

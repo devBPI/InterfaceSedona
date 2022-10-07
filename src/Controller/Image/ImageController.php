@@ -35,7 +35,7 @@ class ImageController extends AbstractController
      * @param string $type
      * @return BinaryFileResponse
      */
-    public function binary(string $content, string $type)
+    public function binary(string $content, string $type): BinaryFileResponse
     {
         $filePath = $this->imageService->buildImage($content, $type);
         return new BinaryFileResponse($filePath);
