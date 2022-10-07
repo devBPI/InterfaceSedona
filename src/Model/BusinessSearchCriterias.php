@@ -22,19 +22,17 @@ class BusinessSearchCriterias
      */
     public ?Facets $facets;
 
-    public function getCriteria(): Criteria
-    {
-        return $this->criteria;
-    }
-
     public function __toString(): string
     {
-        $advancedSearch = [];
-        foreach ($this->getCriteria()->getKeywords() as $criteria) {
-            foreach ($criteria as $type => $value) {
-                $advancedSearch[] = ['text' => $value, 'field' => $type];
-            }
+        $operators = $this->criteria->getOperators();
+        $queries = ['advanced_search' => $this->criteria->convertKeywordsToQueries()];
+        if (count($operators) > 0) {
+            $queries = array_merge($queries, ['advanced_search_operator' => array_reduce(array_keys($operators),function($carry,$key) use($operators){
+                $carry[$key+1] = $operators[$key];
+                return $carry;
+            },[])]);
         }
+
         $filters = [];
         foreach ($this->facets->getBusinessSearchFacets() as $facet) {
             $filters[$facet->getName()] = array_map(function ($value) {
@@ -42,7 +40,6 @@ class BusinessSearchCriterias
             }, $facet->getBusinessSearchValues());
         }
 
-        return http_build_query(['advanced_search' => $advancedSearch, 'filters' => $filters]);
+        return http_build_query(array_merge($queries, ['filters' => $filters]));
     }
-
 }

@@ -137,6 +137,7 @@ class Criteria
     /**
      * @var self[]|null
      * @JMS\Type("array<App\Model\Search\Criteria>")
+     * @JMS\Accessor(getter="setNotSubCriteria")
      */
     private $notCriteria;
     /**
@@ -309,6 +310,43 @@ class Criteria
 
         return $keywords;
     }
+    /**
+     * @return array
+     */
+    public function convertKeywordsToQueries(): array
+    {
+        $keywords = [];
+        foreach (WordsList::$words[WordsList::ALL] as $field) {
+            if (!empty($this->$field)) {
+                $keywords[] = ['text' => $this->$field, 'field' => $field];
+            }
+        }
+
+        foreach (WordsList::$operators as $operator) {
+            $subCriteria = $this->getSubCriteriaOfOperator($operator);
+            if ($subCriteria instanceof Criteria) {
+                $keywords = array_merge($keywords, $subCriteria->convertKeywordsToQueries());
+            }
+        }
+
+        return $keywords;
+    }
+    /**
+     * @return array
+     */
+    public function getOperators(): array
+    {
+        $operators = [];
+        foreach (WordsList::$operators as $operator) {
+            $subCriteria = $this->getSubCriteriaOfOperator($operator);
+            if ($subCriteria instanceof Criteria) {
+                $operators[] = $subCriteria->not ? 'notCriteria' : $operator;
+                $operators = array_merge($operators, $subCriteria->getOperators());
+            }
+        }
+
+        return $operators;
+    }
 
     public function getFieldsWithOperator($fields, Criteria $criteria){
         $result = [];
@@ -326,6 +364,10 @@ class Criteria
                 $andCriteria = $criteria->getAndCrteria();
 
                 if($andCriteria instanceof Criteria){
+                    if ($andCriteria->not) {
+                        $result[$index]['operator'] = 'not';
+                        continue;
+                    }
                     if ($andCriteria->getValueOf($key) == $value){
                         $result[$index]['operator'] = 'and';
                         continue;
@@ -460,6 +502,22 @@ class Criteria
 
         return $historyTitle;
     }
+
+    /**
+     * @return Criteria[]
+     */
+    public function setNotSubCriteria(): ?array
+    {
+        if (isset($this->notCriteria[0]) && $this->notCriteria[0] instanceof Criteria) {
+            $criteria = $this->notCriteria[0];
+            $criteria->not = 'true';
+            $this->notCriteria = null;
+            return $this->and = [$criteria];
+        }
+
+        return $this->notCriteria;
+    }
+
 
     /**
      * @return string

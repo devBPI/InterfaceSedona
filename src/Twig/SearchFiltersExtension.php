@@ -260,7 +260,11 @@ class SearchFiltersExtension extends AbstractExtension
         if (empty($code)) {
             return '';
         }
-        $url = substr($url, 0, strpos($url, '?'));
+        $queryPos = strpos($url, '?');
+        if ($queryPos) {
+            $url = substr($url, 0, $queryPos);
+        }
+
         try {
             $codeEss = $this->essentialsResourceProvider->getEssentialResource($code);
             return  $url.'?'.$codeEss;
