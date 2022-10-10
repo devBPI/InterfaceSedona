@@ -1,0 +1,39 @@
+// -------------------------------
+// Résultat de recherche - Pas de résultat
+// -------------------------------
+
+.search-no-response {
+    &__list {
+
+        &-items {
+			display: flex;
+            align-items: center;
+			flex-wrap: wrap;
+        }
+
+        p {
+            margin-bottom: 0;
+        }
+    }
+
+    a {
+        margin-left: rem(3);
+    }
+
+    &__button {
+        margin-left: rem(8);
+        background-color: $black;
+        color: $white;
+        border: 0;
+        padding: rem(8);
+
+        img {
+            height: rem(30);
+        }
+    }
+
+    &__image {
+        margin-left: rem(8);
+        height: rem(35);
+    }
+}
