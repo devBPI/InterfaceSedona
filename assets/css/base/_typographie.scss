@@ -20,7 +20,7 @@
 
 .n3 {
 	text-transform: uppercase;
-	font-size: $font-base px;
+	@include font-size(16);
 	@include line-height(13, 15);
 	color: $blue;
 	font-weight: $font-regular;
@@ -28,7 +28,7 @@
 }
 
 .n4 {
-	font-size: $font-base px;
+	@include font-size(16);
 	@include line-height(13, 15);
 	color: $blue;
 	font-weight: $font-bold;
@@ -36,7 +36,7 @@
 }
 
 .n5 {
-	font-size: $font-base px;
+	@include font-size(16);
 	@include line-height(13, 15);
 	color: $black;
 	font-weight: $font-bold;
@@ -44,7 +44,7 @@
 }
 
 .n6 {
-	font-size: $font-base px;
+	@include font-size(16);
 	@include line-height(13, 15);
 	color: $blue;
 	font-weight: $font-regular;
@@ -52,7 +52,7 @@
 }
 
 .n7 {
-	font-size: $font-base px;
+	@include font-size(16);
 	@include line-height(13, 15);
 	color: $black;
 	font-weight: $font-regular;

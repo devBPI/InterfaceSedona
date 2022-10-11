@@ -1,25 +1,30 @@
-<div class="row justify-content-sm-between">
-    <div class="col-12">
-        <p class="mt-3">{{ 'modal.no-response.title'|trans }}</p>
+<div class="search-no-response">
+    <p class="mt-3 n1">{{ 'modal.no-response.title'|trans }}</p>
 
-        <p>{{ 'modal.no-response.choice' | trans}}  :</p>
-        <ul>
-            <li>
+    <p>{{ 'modal.no-response.choice' | trans}}  :</p>
+    <ul class="search-no-response__list">
+        <li>
+            <div class="search-no-response__list-items">
                 {{ 'modal.no-response.relaunch'  | trans({'%link%': path('help_search')})|raw}}
-            </li>
-            <li>
+            </div>
+        </li>
+        <li>
+            <div class="search-no-response__list-items">
                 {{ 'modal.no-response.more-choice' | trans | raw}}
-            </li>
-            <li>
-                {{ 'modal.no-response.form' | trans | raw}}  <button data-target="#modal-suggest" data-toggle="modal" data-reload="true">
+            </div>
+        </li>
+        <li>
+            <div class="search-no-response__list-items">
+                {{ 'modal.no-response.form' | trans | raw}}  <button data-target="#modal-suggest" data-toggle="modal" data-reload="true" class="search-no-response__button">
                     <img src="/images/icones/icone-suggestion.svg" alt="" class="icone-livre">
-                    <span>Suggestion d'achat</span>
+                    <span class="sr-only">Suggestion d'achat</span>
                 </button>
-            </li>
-            <li>
-                <p>{{ 'modal.no-response.eurokoi' | trans | raw}}</p><img  src="{{ asset('images/logo_eurokoi.jpg') }}">
-            </li>
-        </ul>
-
-    </div>
+            </div>
+        </li>
+        <li>
+            <div class="search-no-response__list-items">
+                <p>{{ 'modal.no-response.eurokoi' | trans | raw}}</p> <img src="{{ asset('images/logo_eurokoi.jpg') }}" alt="Eurèkoi" class="search-no-response__image" />
+            </div>
+        </li>
+    </ul>
 </div>
