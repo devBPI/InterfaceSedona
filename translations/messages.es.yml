@@ -619,7 +619,7 @@ bloc:
       your-references-bibliographic: Vos références bibliographiques
       your-reference-bibliographic: Votre référence bibliographique
 error:
-  page_not_available: 'Cette page n’est pas accessible'
+  page_not_available: 'Cette page est inaccessible.'
   permalink_not_available: soit le permalien que vous avez saisi ou sur lequel vous avez cliqué n'est pas encore actif, ou est erroné ou supprimé
   catalog_issue: soit le catalogue rencontre un problème technique temporaire
   page_not_found: La page ou la référence que vous cherchez est introuvable

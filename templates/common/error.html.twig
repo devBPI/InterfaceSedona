@@ -2,12 +2,13 @@
 {% set title =  'error.404'|trans  %}
 {% block body %}
     <p>
-        <p>{{ 'error.page_not_available'|trans }} :</p>
+        <b>{{ 'error.page_not_available'|trans }}</b>
     </p>
     <p>
+        {{ 'error.page_not_found'|trans }} :
+    </p>
 
     <ul class="link-list">
-
         <li> {{ 'error.permalink_not_available' | trans }}</li>
         <li> {{ 'error.catalog_issue' | trans }}</li>
     </ul>
