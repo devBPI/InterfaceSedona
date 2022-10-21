@@ -316,7 +316,9 @@ class Criteria
     public function convertKeywordsToQueries(): array
     {
         $keywords = [];
-        foreach (WordsList::$words[WordsList::ALL] as $field) {
+        $words = WordsList::$words[WordsList::ALL];
+        $words[] = 'sourceId';
+        foreach ($words as $field) {
             if (!empty($this->$field)) {
                 $keywords[] = ['text' => $this->$field, 'field' => $field];
             }

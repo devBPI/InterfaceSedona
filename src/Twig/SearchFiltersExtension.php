@@ -250,15 +250,15 @@ class SearchFiltersExtension extends AbstractExtension
      * @param string $locale
      * @return string|null
      */
-    public function addParameterUrl($object, string $locale):?string
+    public function addParameterUrl($object, string $locale): ?string
     {
         $url = $object->getUrl($locale);
         if ($url === null){
-            return $url;
+            return null;
         }
         $code = $object->getCode();
         if (empty($code)) {
-            return '';
+            return null;
         }
         $queryPos = strpos($url, '?');
         if ($queryPos) {
@@ -268,10 +268,8 @@ class SearchFiltersExtension extends AbstractExtension
         try {
             $codeEss = $this->essentialsResourceProvider->getEssentialResource($code);
             return  $url.'?'.$codeEss;
-        }catch (\Exception $exception) {
-
-        }
-        return '';
+        } catch (\Exception $exception) { }
+        return null;
     }
 
 }
