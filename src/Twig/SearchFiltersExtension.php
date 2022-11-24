@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace App\Twig;
 
 
+use App\Entity\ParcoursLinkInterface;
 use App\Entity\ThemeLevel;
 use App\Model\Search\FilterFilter;
 use App\Model\Search\FacetFilter;
@@ -12,6 +13,7 @@ use App\Service\Provider\EssentialsResourceProvider;
 use App\WordsList;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
+use Symfony\Component\Routing\RouterInterface;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFunction;
 
@@ -38,18 +40,21 @@ class SearchFiltersExtension extends AbstractExtension
      * @var EssentialsResourceProvider $essentialsResourceProvider;
      */
     private EssentialsResourceProvider $essentialsResourceProvider;
+    private RouterInterface $router;
+
     /**
      * SearchFiltersExtension constructor.
      *
      * @param RequestStack $requestStack
      */
-    public function __construct(RequestStack $requestStack, EssentialsResourceProvider  $essentialsResourceProvider)
+    public function __construct(RequestStack $requestStack, EssentialsResourceProvider  $essentialsResourceProvider, RouterInterface $router)
     {
         $this->masterRequest = $requestStack->getMasterRequest();
         if ($requestStack->getMasterRequest() instanceof Request) {
             $this->facetQueries = $requestStack->getMasterRequest()->get(FacetFilter::QUERY_NAME, []);
         }
         $this->essentialsResourceProvider = $essentialsResourceProvider;
+        $this->router = $router;
     }
 
     /**
@@ -250,22 +255,18 @@ class SearchFiltersExtension extends AbstractExtension
      * @param string $locale
      * @return string|null
      */
-    public function addParameterUrl($object, string $locale): ?string
+    public function addParameterUrl(ParcoursLinkInterface $object, string $locale): ?string
     {
-        $url = $object->getUrl($locale);
-        if ($url === null){
-            return null;
-        }
-        $code = $object->getCode();
-        if (empty($code)) {
-            return null;
-        }
-        $queryPos = strpos($url, '?');
-        if ($queryPos) {
-            $url = substr($url, 0, $queryPos);
-        }
-
         try {
+            $url = $this->router->generate('advanced_search_parcours', ['parcours' => $object->getParcours()]);
+            if ($url === null){
+                return null;
+            }
+            $code = $object->getCode();
+            if (empty($code)) {
+                return null;
+            }
+
             $codeEss = $this->essentialsResourceProvider->getEssentialResource($code);
             return  $url.'?'.$codeEss;
         } catch (\Exception $exception) { }

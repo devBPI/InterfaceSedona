@@ -12,7 +12,7 @@ use Doctrine\ORM\Mapping as ORM;
  *
  * @ORM\Entity()
  */
-class Theme
+class Theme implements ParcoursLinkInterface
 {
     /**
      * @ORM\Id
@@ -46,87 +46,53 @@ class Theme
     private $levels;
 
     /**
-     * @ORM\Column(type="json_array", nullable=false, options={"jsonb": true})
-     * @var array
-     */
-    private $url;
-
-    /**
      * @var string
      * @ORM\Column(type="string", length=250, nullable=true)
      */
-    private ?string $code;
+    private string $code;
 
     /**
      * @return string
      */
-    public function getCode(): ?string
+    public function getCode(): string
     {
         return $this->code;
     }
-
-    /**
-     * @param string $code
-     */
     public function setCode(string $code): void
     {
         $this->code = $code;
     }
-    /**
-     * @return int
-     */
+
     public function getId(): int
     {
         return $this->id;
     }
 
-    /**
-     * @param string $locale
-     * @return string
-     */
     public function getTitle(string $locale='fr'): string
     {
         if (array_key_exists($locale, $this->title)) {
             return $this->title[$locale];
         }
-
         return '';
     }
 
-    /**
-     * @return string
-     */
     public function getImage(): string
     {
         return $this->image;
     }
 
-    /**
-     * @return Thematic|null
-     */
     public function getParent(): ?Thematic
     {
         return $this->Parent;
     }
 
-    /**
-     * @return Collection
-     */
     public function getLevels(): Collection
     {
         return $this->levels;
     }
 
-    /**
-     * @param string $locale
-     * @return string
-     */
-    public function getUrl(string $locale='fr'): string
+    public function getParcours(): string
     {
-        if (array_key_exists($locale, $this->url)) {
-            return $this->url[$locale];
-        }
-
-        return '';
+        return $this->Parent->getType();
     }
 }
