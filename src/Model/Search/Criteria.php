@@ -137,7 +137,7 @@ class Criteria
     /**
      * @var self[]|null
      * @JMS\Type("array<App\Model\Search\Criteria>")
-     * @JMS\Accessor(getter="setNotSubCriteria")
+     * @JMS\Accessor(getter="getNotSubCriteria", setter="setNotSubCriteria")
      */
     private $notCriteria;
     /**
@@ -508,7 +508,7 @@ class Criteria
     /**
      * @return Criteria[]
      */
-    public function setNotSubCriteria(): ?array
+    public function getNotSubCriteria(): ?array
     {
         if (isset($this->notCriteria[0]) && $this->notCriteria[0] instanceof Criteria) {
             $criteria = $this->notCriteria[0];
@@ -518,6 +518,14 @@ class Criteria
         }
 
         return $this->notCriteria;
+    }
+    public function setNotSubCriteria(array $criteria): array
+    {
+        foreach ($criteria as $subCriteria) {
+            $subCriteria->not = true;
+            $this->and[] = $subCriteria;
+        }
+        return $criteria;
     }
 
 
