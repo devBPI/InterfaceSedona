@@ -25,6 +25,11 @@ final class NavigationService
 {
     const SESSION_KEY = 'navigation';
 
+	/**
+ 	 * @var LoggerService
+	 */
+	private $loggerService;
+
     /**
      * @var SearchProvider
      */
@@ -56,16 +61,18 @@ final class NavigationService
      * @param SearchService $searchService
      */
     public function __construct(
-        SessionInterface $session,
-        RequestStack $requestStack,
-        SearchProvider $searchProvider,
-        SearchService $searchService
-    ) {
-        $this->session = $session;
-        $this->searchProvider = $searchProvider;
-        $this->requestStack = $requestStack;
-        $this->searchService = $searchService;
-    }
+		SessionInterface $session,
+		RequestStack $requestStack,
+		SearchProvider $searchProvider,
+		SearchService $searchService,
+		LoggerService $loggerService
+	) {
+		$this->loggerService = $loggerService;
+		$this->session = $session;
+		$this->searchProvider = $searchProvider;
+		$this->requestStack = $requestStack;
+		$this->searchService = $searchService;
+	}
 
     /**
      * @param string|null $value
@@ -96,6 +103,8 @@ final class NavigationService
     {
         $listNavigation = $this->getContainer();
 
+	$this->loggerService->add("info", "NOTICE BUILDING");
+
         $navigation = $notice->isOnLine() ? $listNavigation->getListOnlineNotices() : $listNavigation->getListNotices();
         $navigation->setCurrentIndex($notice->getPermalink());
         try {
@@ -113,6 +122,8 @@ final class NavigationService
                 $navigation->setNextLink();
             }
         }
+
+	$this->loggerService->add("info", "NOTICE BUILT");
 
         return $navigation;
     }
@@ -149,31 +160,40 @@ final class NavigationService
         return $listNavigation;
     }
 
-    /**
-     * @param ListNavigation $listNavigation
-     * @param int $page
-     * @return bool
-     * @throws \Twig\Error\LoaderError
-     * @throws \Twig\Error\RuntimeError
-     * @throws \Twig\Error\SyntaxError
-     */
-    private function addMoreNotices(ListNavigation $listNavigation, int $page): bool
-    {
-        $request = $this->requestStack->getCurrentRequest();
-        $searchToken = $request->get(ObjSearch::PARAM_REQUEST_NAME);
-        if ($searchToken) {
-            $searchQuery = $this->searchService->getSearchQueryFromToken($searchToken, $request);
-            $searchQuery->setPage($searchQuery->getPage() + $page);
-            $links = $this->searchProvider->getListBySearch($searchQuery);
+	/**
+	 * @param ListNavigation $listNavigation
+	 * @param int $page
+	 * @return bool
+	 * @throws \Twig\Error\LoaderError
+	 * @throws \Twig\Error\RuntimeError
+	 * @throws \Twig\Error\SyntaxError
+	 */
+	private function addMoreNotices(ListNavigation $listNavigation, int $page): bool
+	{
+		$request = $this->requestStack->getCurrentRequest();
+		$searchToken = $request->get(ObjSearch::PARAM_REQUEST_NAME);
+		if ($searchToken)
+		{
+			$searchQuery = $this->searchService->getSearchQueryFromToken($searchToken, $request);
+			//$this->loggerService->add("info", "Page added :" . ($searchQuery->getPage() + $page));
+			$searchQuery->setPage($searchQuery->getPage() + $page);
+			$links = $this->searchProvider->getListBySearch($searchQuery);
 
-            $listNavigation->addNotices($links);
-            $this->session->set(NavigationService::SESSION_KEY, serialize($listNavigation));
+			//$this->loggerService->add("info", "$links :" . ($links));
+			$listNavigation->addNotices($links);
 
-            return true;
-        }
+			/*foreach($links->getNotices()->getNoticesList() as $notice)
+			{	
+				$this->loggerService->add("info", "row(" . $notice->getRow() . ") : " . $notice->getPermalink());
+			}*/
 
-        return false;
-    }
+			$this->session->set(NavigationService::SESSION_KEY, serialize($listNavigation));
+
+			return true;
+		}
+
+		return false;
+	}
 
     /**
      * @return int|null
