@@ -3,12 +3,13 @@
 {% endblock %}
 
 {% block body_html %}
+    <h3>{{ 'modal.suggestion.field.reference' | trans }}</h3>
     <p> {{ "modal.suggestion.field.author"       |trans }}   : {{ data.author }}</p>
     <p> {{ 'modal.suggestion.field.title'        |trans }}   : {{ data.title }}</p>
     <p> {{ 'modal.suggestion.field.editor'       |trans }}  : {{ data.editor }}</p>
-    <p> {{ 'modal.suggestion.field.address'      |trans }}  : {{ data.address }}</p>
     <p> {{ 'modal.suggestion.field.document-type'|trans }}  : {{ data.documentType }}</p>
-    <p> {{ 'modal.report.email'                  |trans }}  : {{ data.email }}</p>
+    <h3>{{ 'modal.suggestion.field.coordonate' | trans }}</h3>
+    <p>{{ 'modal.report.email' |trans }}  :<a href="mailto:{{ data.email }}">  {{ data.email }}</a></p>
     <p> {{ 'modal.suggestion.field.last-name'    |trans }}   : {{ data.lastName }}</p>
     <p> {{ 'modal.suggestion.field.first-name'   |trans }}   : {{ data.firstName }}</p>
 {% endblock %}

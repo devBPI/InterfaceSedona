@@ -187,10 +187,13 @@ modal:
   suggestion:     #Modal 08 suggestion d'achats
     title: Suggestion d'achat
     subtitle: Coordonnées
+    edito: "Suggérer l'achat d'un document après avoir vérifié s'il n'était pas dans le catalogue"
     field:
+      coordonate: "Coordonées :"
+      reference: "Réferences :"
       title: Titre
       author: Auteur
-      document-type: Type de document
+      document-type: "Type de document  (choisir dans la liste)"
       editor: Editeur
       last-name: Nom
       first-name: Prénom
