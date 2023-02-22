@@ -1,4 +1,4 @@
-<div role="dialog" aria-modal="true" aria-labelledby="modal-suggest-title" class="modal fade" id="modal-suggest" tabindex="-1" lang="fr">
+<div role="dialog" aria-modal="true" aria-labelledby="modal-suggest-title" data-toggle="suggestion-modal" class="modal fade" data-reload="true" id="modal-suggest" tabindex="-1" lang="fr">
 	<div class="modal-dialog modal-dialog-centered">
 		<div class="modal-content">
 			<div class="modal-header">
@@ -10,7 +10,7 @@
 			<div class="modal-header">
 				<h2 class="n1 modal-header__title" >{{ 'modal.suggestion.edito' |trans }}</h2>
 			</div>
-            {{ render(controller('App\\Controller\\ReportingController::suggestByMailAction')) }}
+			<div class="modal-suggestion-form"> {{ render(controller('App\\Controller\\ReportingController::suggestByMailAction')) }}</div>
 		</div>
 	</div>
 </div>
