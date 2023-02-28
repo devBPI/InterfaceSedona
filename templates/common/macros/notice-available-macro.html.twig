@@ -92,7 +92,7 @@
             </li>
         {% elseif object.url is defined and object.url is not empty %}
             <li class="availability--true availability--online">
-                <a href="{{ object.url }}" class="link link--icone-end link--inline gtm-link-online" target="_blank">
+                <a data-toggle="tooltip" data-placement="top" title="{{ 'bloc.notice-simple.tooltip-access' | trans }}"  href="{{ object.url }}" class="link link--icone-end link--inline gtm-link-online" target="_blank">
                     {{ objTitle }}
                     <img src="{{ asset('images/icones/icone-chevron-gauche.svg') }}" alt="" aria-hidden="true" />
                 </a>
