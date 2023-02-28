@@ -125,11 +125,11 @@ modal:
     text-before-btn: "Afficher votre sélection temporaire :"
     already-exist: Cette référence est déjà dans votre sélection.
     message-already-exist: L'élément existe déjà dans la liste
-    title-connected: "Sélection ajoutée :"
+    title-connected: "Ajouter :"
     title-ajouter-before-sr-only: Vous avez bien ajouté 
     title-ajouter-after-sr-only: à Ma sélection.
-    title: Sélection ajoutée
-    add-to-profile: '... à Mon compte dans :'
+    title: 'Sélection ajoutée:'
+    add-to-profile: dans une liste existante
     list: '%name%'
     new-list: dans une nouvelle liste
     field-title: Titre
