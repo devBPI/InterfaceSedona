@@ -10,6 +10,9 @@
 			{% if rows is defined %}
 			{% set currentRows = rows %}
 			{% endif %}
+			{% if sort is defined %}
+				{% set currentSort = sort %}
+			{% endif %}
 			{% if seeAll is defined %}
 			{% set currentSeeAll = seeAll %}
 			{% endif %}
@@ -21,7 +24,8 @@
 					(constant('App\\Model\\Search\\ObjSearch::PARAM_REQUEST_NAME')): navigation.hash,
 					'page': currentPage,
 					'rows': currentRows,
-					'see-all': currentSeeAll
+					'see-all': currentSeeAll,
+					'sort': currentSort,
 
 				})~'#'~notice.permalink
 			}}" class="link link--icone mb-3 mb-md-0" lang="fr">
