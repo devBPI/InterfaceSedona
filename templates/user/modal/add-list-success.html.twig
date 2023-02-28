@@ -13,9 +13,13 @@
         <p>{{ 'modal.list-add.message-success'|trans }}</p>
 
         {% if not is_granted('IS_AUTHENTICATED_FULLY') %}
-            <p>{{ "modal.list-add.text-before-btn" | trans }}</p>
-            <a href="{{ path('user_selection_index') }}" class="btn btn-primary">
-                {{ 'modal.list-add.btn-selection'|trans }}</a>
+            <div class="row">
+                <p>{{ "modal.list-add.text-before-btn" | trans }}</p>
+                {# ajouter un margin left #}
+                <a href="{{ path('user_selection_index') }}" class="btn btn-primary">
+                    {{ 'modal.list-add.btn-selection'|trans }}</a>
+            </div>
+
         {% endif %}
     </div>
 
