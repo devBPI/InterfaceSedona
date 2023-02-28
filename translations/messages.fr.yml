@@ -133,7 +133,6 @@ modal:
     list: '%name%'
     new-list: dans une nouvelle liste
     field-title: Titre
-    add-to-tempory: ""
     btn-return: Retourner à la liste des résultats
     btn-selection: Aller dans ma sélection
     btn-login: Pour enregistrer votre sélection, connectez-vous à votre compte
