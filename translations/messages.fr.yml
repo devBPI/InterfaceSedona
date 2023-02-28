@@ -192,6 +192,7 @@ modal:
     subtitle: Coordonnées
     edito: "Suggérer l'achat d'un document après avoir vérifié s'il n'était pas dans le catalogue"
     field:
+      subject: Suggestion d’achat
       coordonate: "Coordonées :"
       reference: "Réferences :"
       title: Titre
@@ -208,6 +209,7 @@ modal:
     title: Signaler une erreur sur le catalogue
     subtitle: Coordonnées
     field:
+      subject: Signaler une erreur
       object: Objet
       message: Message
       last-name: Nom
