@@ -122,24 +122,25 @@ modal:
     submit: Valider
     submit-sr-only: la création de la liste
   list-add:             #Modal 02 ajout à ma sélection
+    text-before-btn: "Afficher votre sélection temporaire :"
     already-exist: Cette référence est déjà dans votre sélection.
     message-already-exist: L'élément existe déjà dans la liste
-    title-connected: Ajouter...
+    title-connected: "Sélection ajoutée :"
     title-ajouter-before-sr-only: Vous avez bien ajouté 
     title-ajouter-after-sr-only: à Ma sélection.
     title: Sélection ajoutée
     add-to-profile: '... à Mon compte dans :'
     list: '%name%'
-    new-list: Nouvelle liste
+    new-list: dans une nouvelle liste
     field-title: Titre
-    add-to-tempory: ... à Ma sélection.
+    add-to-tempory: ""
     btn-return: Retourner à la liste des résultats
     btn-selection: Aller dans ma sélection
-    btn-login: Pour la conserver, connectez-vous à Mon compte.
+    btn-login: Pour enregistrer votre sélection, connectez-vous à votre compte
     btn-login2: Me connecter
     submit: Valider
     submit-sr-only: la création de la liste
-    message-success: ... à Ma sélection
+    message-success: ""
     message-error:
       no-list: Aucune liste n'a été sélectionnée. Veuillez en sélectionner une ou en créer une nouvelle.
   list-edit:          #Modal 03 edition d'une liste
@@ -443,6 +444,7 @@ bloc:
       see-all: Voir tous les résultats
       see-more-sr-only: les documents en ligne
   notice-simple:          #Bloc 13 Notices simples en 2 colonnes
+    tooltip-access: Accéder au document - Nouvelle page
     result: Résultat numéro
     select: sélectionner
     access: Accès
@@ -496,6 +498,7 @@ bloc:
       conservation: Conservation
       rights: Droits
   autority-result-information: #Bloc 16 Notice bibliographique + Bloc 18 Informations de la notice d'autorité
+    tooltip: Accéder à la source - Nouvelle page
     musique-author: 'Auteur(s), compositeur(s), interprète(s)'
     other-musique-author: 'Autre(s) auteur(s), compositeur(s), interprète(s)'
     autor-dicover: Découvrir l'auteur
