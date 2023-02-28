@@ -104,6 +104,8 @@ footer:
     rss: Les fils RSS de la Bpi
 
 modal:
+  body:
+    report-error: Le signalement a été envoyé avec succès.
   email-example: (nom@exemple.com)
   wait-message: Veuillez patienter
   confirm-message:
@@ -125,7 +127,7 @@ modal:
     title-connected: Ajouter...
     title-ajouter-before-sr-only: Vous avez bien ajouté 
     title-ajouter-after-sr-only: à Ma sélection.
-    title: Vous avez ajouté...
+    title: Sélection ajoutée
     add-to-profile: '... à Mon compte dans :'
     list: '%name%'
     new-list: Nouvelle liste
