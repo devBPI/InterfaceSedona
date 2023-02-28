@@ -13,6 +13,7 @@
         <p>{{ 'modal.list-add.message-success'|trans }}</p>
 
         {% if not is_granted('IS_AUTHENTICATED_FULLY') %}
+            <p>{{ "modal.list-add.text-before-btn" | trans }}</p>
             <a href="{{ path('user_selection_index') }}" class="btn btn-primary">
                 {{ 'modal.list-add.btn-selection'|trans }}</a>
         {% endif %}
@@ -20,6 +21,7 @@
 
     <div class="modal-footer">
         {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+            <p>{{ "modal.list-add.text-before-btn" | trans }}</p>
             <a href="{{ path('user_selection_index') }}" class="btn btn-lg btn-primary">
                 {{ 'modal.list-add.btn-selection'|trans }}</a>
         {% else %}
