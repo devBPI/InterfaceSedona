@@ -9,7 +9,6 @@
         "ext-ctype": "*",
         "ext-iconv": "*",
         "ext-json": "*",
-        "ext-ldap": "*",
         "ext-xsl": "*",
         "ext-simplexml": "*",
         "ext-dom": "*",
