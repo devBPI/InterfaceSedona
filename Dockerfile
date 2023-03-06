@@ -21,7 +21,7 @@ COPY --from=builder /var/www/html /var/www/html
 
 RUN set -xe ;\
     apt update && apt install -y --no-install-recommends xvfb wkhtmltopdf ;\
-    apt-get install php7.3-ldap ;\
+    apt-get install php-ldap ;\
     rm -rf /var/lib/apt/lists/* ; \
     chown -R www-data /var/www/html ;\
     chmod a+w /var/www/html/var ;\
