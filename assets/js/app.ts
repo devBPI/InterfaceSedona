@@ -14,7 +14,7 @@ require('jquery');
 require('bootstrap');
 require('./data-toggle.js');
 require('./orejime-and-addthis.js');
-
+require('./suggest-by-mail.js')
 import './polyfill-ie';
 
 const routes = require('../../assets/js/fos_js_routes.json');
