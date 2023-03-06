@@ -54,12 +54,13 @@ final class ReportingController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             /** @var ReportError $reportData */
             $reportData = $form->getData();
-            if ($this->mailSenderService->sendMail(
+            if ($this->mailSenderService->sendEmail(
                 'common/modal/content_error.email.twig',
                 ['data' => $reportData],
                 null,
                 null,
-                    $reportData->getEmail()
+                $reportData->getEmail(),
+		null
             )) {
                 return $this->render('common/modal/report-error-success.html.twig');
             } else {
@@ -92,10 +93,15 @@ final class ReportingController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $reportError = $form->getData();
+            echo($reportError->getEmail());
 
-            if ($this->mailSenderService->sendMail(
+            if ($this->mailSenderService->sendEmail(
                 'common/modal/content.email.twig',
-                ['data' => $reportError]
+                ['data' => $reportError],
+                null,
+                null,
+                $reportError->getEmail(),
+		null
             )) {
                 return $this->render('common/error-success.html.twig');
             }
@@ -131,12 +137,13 @@ final class ReportingController extends AbstractController
             /** @var ShareByMail $object */
             $object = $form->getData();
 
-            if ($this->mailSenderService->sendMail(
+            if ($this->mailSenderService->sendEmail(
                 'common/modal/content.email.twig',
                 ['data' => $object],
-                $object->getReciever(),
                 null,
-                $object->getSender()
+                $object->getReciever(),
+                $object->getSender(),
+                null
             )) {
                 return $this->render('common/modal/share-success.html.twig');
             } else {
@@ -171,12 +178,13 @@ final class ReportingController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()){
             /** @var SuggestByMail $object */
             $object = $form->getData();
-            if ($this->mailSenderService->sendMail(
+            if ($this->mailSenderService->sendEmail(
                 'common/modal/suggestion-content.email.twig',
                 ['data' => $object],
-                $this->mailSenderService->getSenderForSuggestion(),
                 null,
-                $object->getEmail()
+                $this->mailSenderService->getSenderForSuggestion(),
+                $object->getEmail(),
+                null
             )) {
                 return $this->render('common/modal/share-success.html.twig');
             } else {

@@ -1,15 +1,16 @@
 {% macro availibility(object, notice ) %}
 
     {% if is_same_instance(object, "App\\Model\\NoticeAvailable")%}
-
-        {% if constant('App\\Model\\NoticeAvailable::AVAILABLE') in [object.availability, object.labelDisponibility] %}
+        {#% if constant('App\\Model\\NoticeAvailable::AVAILABLE') in [object.availability, object.labelDisponibility] %#}
+        {% if constant('App\\Model\\NoticeAvailable::AVAILABLE') in [object.availability] %}
             <li class="availability--true availability--rayon">
                 <p class="font-weight-bold">
                     <span class="availability__status">
                         {{ 'bloc.notice-simple.document-available'|trans }}
 
-                        {% if object.availability is not empty and object.availability != 'bloc.notice-simple.document-available'|trans %}
-                            {{ ' - '~object.availability }}
+                        {#% if object.labelDisponibility is not empty and object.labelDisponibility != 'bloc.notice-simple.document-available'|trans %#}
+                        {% if object.labelDisponibility is not empty and object.labelDisponibility != object.availability %}
+                            {{ ' - '~object.labelDisponibility }}
                         {% endif %}
                     </span>
                     {% if object.cote %} - {{ object.cote }}{% endif %}
@@ -23,13 +24,17 @@
             <li class="availability--false availability--rayon">
                 <p class="availability__status">
                     {{ 'bloc.notice-simple.document-unavailable'|trans }}
-                    <span class="availability__status-detail"> : {{ object.availability }}</span></p>
-                    <a href="{{ path('notice_availablity_request', {"sourceId": notice.sourceId, 'configurationId':notice.configurationId}) }}"
+                    {#% if object.labelDisponibility is not empty and object.labelDisponibility != 'bloc.notice-simple.document-unavailable'|trans %#}
+                    {% if object.labelDisponibility is not empty and object.labelDisponibility != object.availability %}
+                        <span class="availability__status-detail"> : {{ object.labelDisponibility }}</span></p>
+                    {% endif %}
+                    {#<p> sourceId : {{ notice.sourceId }} - configurationId : {{ notice.configurationId }}</p>#}
+                    {#<a href="{{ path('notice_availablity_request', {"sourceId": notice.sourceId, 'configurationId':notice.configurationId}) }}"
                        class="btn list-result__content-button"
                        data-target="#modal-notified" data-toggle="modal" role="button"
                        title="{{ 'bloc.notice-simple.availability-label'|trans }}">
                         <img src="{{ asset('images/icones/icone-enveloppe.svg') }}" alt="" class="icone-enveloppe"/>
-                    </a>
+                    </a>#}
                 </p>
                 <p>{% if object.bookbinding %}{{ object.bookbinding }} {% endif %}</p>
             </li>
@@ -77,11 +82,11 @@
                     <img src="{{ asset('images/icones/icone-chevron-gauche.svg') }}" alt="" aria-hidden="true" />
                 </a>
                 {% if notice.type is defined and (notice.type == 'Formation' or notice.type == 'Débat et enregistrement' or notice.type == 'Livre audio' or notice.type == 'Musique') %}
-                    <p>
+                    {# CTLG-501 <p> #}
                         {% if object.cote is defined and object.cote is not empty %}
-                            {{ object.cote}}
+                            - {{ object.cote}}
                         {% endif %}
-                    </p>
+                    {# CTLG-501 </p> #}
                     <p>
                         {% if object.localisation is defined and object.localisation is not empty and object.categorie is defined and object.categorie is not empty %}
                             {{ object.localisation }} - {{object.categorie}}
@@ -96,11 +101,11 @@
                     <img src="{{ asset('images/icones/icone-chevron-gauche.svg') }}" alt="" aria-hidden="true" />
                 </a>
                 {% if notice.type is defined and (notice.type == 'Formation' or notice.type == 'Débat et enregistrement' or notice.type == 'Livre audio' or notice.type == 'Musique') %}
-                    <p>
+                    {# CTLG-501 <p> #}
                         {% if object.cote is defined and object.cote is not empty %}
-                            {{ object.cote}}
+                            - {{ object.cote}}
                         {% endif %}
-                    </p>
+                    {# CTLG-501 </p> #}
                     <p>
                         {% if object.localisation is defined and object.localisation is not empty and object.categorie is defined and object.categorie is not empty %}
                             {{ object.localisation }} - {{object.categorie}}

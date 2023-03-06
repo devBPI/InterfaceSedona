@@ -6,7 +6,7 @@
             <label for="search-input" id="search-label" class="sr-only">{{ ('bloc.search-zone.input-'~app.request.attributes.get('parcours', constant('App\\Controller\\SearchController::GENERAL') )~'-placeholder')|trans}}
                 <span class="sr-only">{{ 'bloc.search-zone.autocompletion-notice-sr-only'|trans }}</span></label>
             {% set field_name = constant('App\\Model\\Search\\Criteria::SIMPLE_SEARCH_KEYWORD') %}
-            <input name="{{ field_name }}" autocomplete="off" type="text" id="search-input"
+            <input name="{{ field_name }}" autocomplete="off" type="text" id="search-input" title="Rechercher"
                    data-url="{{ toggle_to_path_parcours('search_autocompletion',app.request.attributes.get(constant('App\\Model\\Search\\ObjSearch::PARAM_PARCOURS_NAME'))) }}"
                    data-toggle="autocomplete" data-target="#autocompletion-list" data-type="#search-words" data-mode="link"
                    placeholder="{{ ('bloc.search-zone.input-'~app.request.attributes.get('parcours', constant('App\\Controller\\SearchController::GENERAL') )~'-placeholder')|trans}}"
@@ -18,7 +18,7 @@
         <div class="form-group search-banner__select">
             <label for="search-words" class="sr-only">{{ 'bloc.search-zone.type-label'|trans }}</label>
             {% set select_name = constant('App\\Model\\Search\\Criteria::SIMPLE_SEARCH_TYPE') %}
-            <select name="{{ select_name }}" class="form-control" id="search-words" lang="fr">{% spaceless %}
+            <select name="{{ select_name }}" class="form-control" id="search-words" title="Chercher sur" lang="fr">{% spaceless %}
                 {% for word in search_words() %}
                     <option value="{{ word }}" {% if objSearch is defined and objSearch.simpleSearchType == word %} selected="selected"{% endif %}>
                         {{ ('modal.advanced-search.keyword.type.'~word)|trans }}
@@ -26,11 +26,11 @@
                 {% endfor %}
             {% endspaceless %}</select>
         </div>
-        <button type="submit" class="search-banner__submit" name="action">
+        <button type="submit" class="search-banner__submit" name="action" title="Valider la recherche">
             <img src="{{ asset('images/icones/icone-loupe.svg') }}" alt="" class="icone-loupe"/>
             <span class="sr-only">{{ 'bloc.search-zone.submit'|trans }}</span>
         </button>
-        <button type="button" data-target="#modal-search-advanced"
+        <button type="button" data-target="#modal-search-advanced" title="{{ 'bloc.search-zone.advanced-sr-only'|trans }}"
                 aria-label="{{ 'bloc.search-zone.advanced-sr-only'|trans }}" data-toggle="modal"
                 class="search-banner__modal" lang="fr">{{ 'bloc.search-zone.advanced-title'|trans }}
         </button>

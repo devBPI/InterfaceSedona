@@ -26,6 +26,14 @@ class NoticeMappedAuthority
     private $pagination;
 
     /**
+     * @var integer
+     * @JMS\Type("int")
+     * @JMS\SerializedName("totalResultsNumber")
+     */
+    private $totalResultsNumber;
+
+
+    /**
      * @return Notice[]|array
      */
     public function getMappedNotices()
@@ -40,5 +48,14 @@ class NoticeMappedAuthority
     {
         return $this->pagination;
     }
+
+    /**
+     * @return int
+     */
+    public function getTotalResultsNumber(): ?int
+    {
+        return $this->totalResultsNumber ?? count($this->mappedNotices);
+    }
+
 }
 

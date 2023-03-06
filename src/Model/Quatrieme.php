@@ -11,17 +11,26 @@ namespace App\Model;
 
 use JMS\Serializer\Annotation as JMS;
 
+
 /**
  * Class Quatrieme
  * @package App\Model
  */
 class Quatrieme
 {
-    /**
+    //private $serializer = JMS\Serializer\SerializerBuilder::create()->build();
+
+    /*
      * @var array
      * @JMS\Type("array<string>")
      * @JMS\SerializedName("presentation")
      * @JMS\XmlList("p")
+     */
+    /**
+     * @var array
+     * @JMS\Type("array")
+     * @JMS\SerializedName("presentation")
+     * @JMS\XmlKeyValuePairs
      */
     private $presentation;
 
@@ -44,7 +53,8 @@ class Quatrieme
      */
     public function getPresentation(): ?string
     {
-        return $this->presentation?$this->presentation[0]:null;
+        //return $this->presentation?implode("<br />", $this->presentation):null;
+        return $this->presentation?implode(", ", $this->presentation):null;
     }
 
     /**

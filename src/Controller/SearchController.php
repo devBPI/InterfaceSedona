@@ -56,7 +56,6 @@ final class SearchController extends AbstractController
      */
     private $entityManager;
 
-
     /**
      * SearchController constructor.
      * @param EntityManagerInterface $entityManager
@@ -307,7 +306,6 @@ final class SearchController extends AbstractController
         $objSearch = $this->searchService->createObjSearch($search, $request);
         $objSearch->setResults($this->searchProvider->getListBySearch($search));
         $request->query->remove('action');
-        $objSearchBis = new ObjSearch($this->getObjSearchQuery($request));
 
         $request->getSession()->set(NavigationService::SESSION_KEY, serialize(new ListNavigation($objSearch)));
         $request->getSession()->set('searchToken', serialize($objSearch));
@@ -324,7 +322,6 @@ final class SearchController extends AbstractController
                 'toolbar'   => ObjSearch::class,
                 'seeAll'    => $seeAll,
                 'objSearch' => $objSearch,
-                'objSearchBis'=>$objSearchBis,
                 'printRoute' => $this->generateUrl('search_pdf', ['format' => 'pdf']),
             ]
         );

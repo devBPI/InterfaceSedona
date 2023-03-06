@@ -12,7 +12,7 @@
 		padding: 0;
 		padding-left: $spacer;
 		position: relative;
-		font-size: $font-base px;
+		@include font-size(16);
 		width: 100%;
 		text-align: left;
 

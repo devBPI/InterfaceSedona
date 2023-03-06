@@ -1,0 +1,47 @@
+.voirPlusMoins
+{
+	line-height: 1.5em;
+	&.plie
+	{
+		max-height: 4.5em;
+		//overflow: hidden;
+
+		//--lh: 1.4rem;
+		//line-height: var(--lh);
+
+		//--max-lines: 3;
+		//max-height: calc(var(--lh) * var(--max-lines));
+		overflow: hidden;
+
+		/*&::before
+		{
+			content: "[...]";
+			//position: absolute;
+			position: relative;
+			//bottom: 0;
+			top: 3em;
+			//right: 0;
+			float: right;
+			margin-left: 0.5em;
+		}*/
+
+		&::after
+		{
+			//content: "...";
+			//position: absolute;
+			//bottom: 0;
+			//right: 0;
+			//display: contents;
+
+			content: "[...]";
+			position: sticky;
+			bottom: 0;
+			display: block;
+			background: white;
+		}
+	}
+	p
+	{
+		margin: 0;
+	}
+}

@@ -67,7 +67,7 @@ final class IndiceCduController extends AbstractController
             'indice_pdf',
             [ 'permalink' => $notice->getPermalink(), 'format' => 'pdf' ]
         );
-
+        $origin = 'author';
         try {
             $navigation = $this->navigationService->buildAuthorities($notice);
         } catch (\Exception $e) {
@@ -76,6 +76,7 @@ final class IndiceCduController extends AbstractController
         }
 
         return $this->render('indice/index.html.twig', [
+                'origin'          => $origin,
                 'toolbar'         => IndiceCdu::class,
                 'printRoute'      => $printRoute,
                 'subjects'        => $subjects,

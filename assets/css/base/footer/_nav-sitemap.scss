@@ -10,14 +10,20 @@
 	}
 
 	&__button {
+		width: 100%;
 		background-color: $white;
 		border: 0;
 		padding: 0;
 		top: 0;
-		font-size: $font-base px;
+		@include font-size(16);
 		font-weight: $font-bold;
 		color: $grey-disabled;
 		margin-right: 10px;
+		text-align: left;
+
+		@media screen and (min-width: 64em) {
+			width: auto;
+		}
 
 		&:hover,
 		&:focus {
@@ -34,10 +40,14 @@
 	}
 
 	&__content {
-		position: absolute;
-		overflow: visible;
+		position: static;
 		transition: none;
-		top: 2.6rem;
+
+		@media screen and (min-width: 64em) {
+			position: absolute;
+			overflow: visible;
+			top: 2rem;
+		}
 
 		&.show {
 			height: 100% !important;

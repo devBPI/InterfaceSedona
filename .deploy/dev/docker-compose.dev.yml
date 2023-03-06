@@ -1,7 +1,7 @@
 version: '3.5'
 services:
   app:
-    image: registry.sedona.fr/images/php:7.3-fpm
+    image: registry.sedona.fr/images/php:7.4-fpm
 #    user: '$UID:$UID'
     networks:
       - default
@@ -42,7 +42,7 @@ services:
       - .deploy/dev/web/:/usr/local/apache2/conf.d/
 
   encore:
-    image: node:10-alpine
+    image: node:10
     user: "$UID:$UID"
     environment:
       - APP_ENV

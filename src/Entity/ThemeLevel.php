@@ -10,7 +10,7 @@ use Doctrine\ORM\Mapping as ORM;
  *
  * @ORM\Entity()
  */
-class ThemeLevel
+class ThemeLevel implements ParcoursLinkInterface
 {
     /**
      * @ORM\Id
@@ -26,56 +26,46 @@ class ThemeLevel
     private $title;
 
     /**
-     * @ORM\Column(type="json_array", nullable=false, options={"jsonb": true})
-     * @var array
-     */
-    private $url;
-
-    /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Theme", inversedBy="levels", cascade={"all"})
      * @var Theme
      */
     private $Parent;
 
     /**
-     * @return int
+     * @var string
+     * @ORM\Column(type="string", length=250, nullable=true)
      */
+    private string $code = "";
+
+    public function getCode(): string
+    {
+        return $this->code;
+    }
+    public function setCode(string $code): void
+    {
+        $this->code = $code;
+    }
+
     public function getId(): int
     {
         return $this->id;
     }
 
-    /**
-     * @param string $locale
-     * @return string
-     */
     public function getTitle(string $locale='fr'): string
     {
         if (array_key_exists($locale, $this->title)) {
             return $this->title[$locale];
         }
-
         return '';
     }
 
-    /**
-     * @param string $locale
-     * @return string
-     */
-    public function getUrl(string $locale='fr'): string
-    {
-        if (array_key_exists($locale, $this->url)) {
-            return $this->url[$locale];
-        }
-
-        return '';
-    }
-
-    /**
-     * @return Theme
-     */
     public function getParent(): Theme
     {
         return $this->Parent;
+    }
+
+    public function getParcours(): string
+    {
+        return $this->Parent->getParcours();
     }
 }

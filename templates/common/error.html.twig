@@ -1,21 +1,29 @@
 {% extends 'base.html.twig' %}
-
+{% set title =  'error.404'|trans  %}
 {% block body %}
     <p>
-        Cette ressource n’est plus disponible.
+        <b>{{ 'error.page_not_available'|trans }}</b>
     </p>
     <p>
-
-       <!-- <a href="{{ path('home') }}">Pour revenir à la page d'accueil</a> -->
-
-       {{ 'error.link-home'|trans({'%link%': path('home')})|raw }}
-
+        {{ 'error.page_not_found'|trans }} :
     </p>
-	 <p>{{ 'error.contact-admin'|trans({'%email%': contact_email})|raw }}</p>
 
+    <ul class="link-list">
+        <li> {{ 'error.permalink_not_available' | trans }}</li>
+        <li> {{ 'error.catalog_issue' | trans }}</li>
+    </ul>
+    <ul class="list-link">
+        <li>
+            {{ 'error.link-go-back'|trans |raw }}
+        </li>
+        <li>
+            {{ 'error.link-home'|trans({'%link%': path('home')})|raw }}
+        </li>
+    </ul>
    <!-- Redirection automatique au bout de <a href ="{{ path('home') }}" id="countdown" class="timer"></a>s -->
 {% endblock %}
 
+{#
 {% block javascripts %}
     {{ parent() }}
 
@@ -23,3 +31,4 @@
         {{ encore_entry_script_tags('error_404') }}
     {% endif %}
 {% endblock %}
+#}

@@ -81,4 +81,5 @@ liste des dépendances nécessaires au bon fonctionnement de l'appli :
 * yarn encore production
 * make package
 
+* composer dump-autoload
 * composer install && yarn install && yarn encore production && make package

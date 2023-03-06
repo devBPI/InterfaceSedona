@@ -1,176 +1,147 @@
 header:
   Inicio:
-    link: https://www.bpi.fr/Inicio-bpi
+    link: https://www.bpi.fr/es/inicio
 
   Catálogo:
-    link: http://catalogue.bpi.fr/
+    link: http://catalogue.bpi.fr/es/
     active: true
 
   Agenda:
-    link: https://www.bpi.fr/es/sites/SiteInstitutionnel/home/agenda.html
+    link: https://agenda.bpi.fr/
 
   La Biblioteca:
-    link: https://www.bpi.fr/la-biblioteca
+    link: https://www.bpi.fr/es/la-biblioteca/
     sronly: Accéder à la bibliothèque
-    list:
-      id: ul-bibliotheque
-      items:
-        -
-          name: Misiones y organización
-          link: https://www.bpi.fr/la-biblioteca/misiones-y-organizacion
-          children:
-            Organigramme: https://www.bpi.fr/la-biblioteca/misiones-y-organizacion/organigrama
-            La bibliothèque en rénovation: https://www.bpi.fr/la-biblioteca/misiones-y-organizacion/projectos
-            Chartes: https://www.bpi.fr/la-biblioteca/misiones-y-organizacion/cartas
-            Rapports d'activité: https://www.bpi.fr/la-biblioteca/misiones-y-organizacion/informes-de-actividad
 
-        -
-          name: Colecciones
-          link: https://www.bpi.fr/la-biblioteca/colecciones
-          children:
-            Colecciones impresas: https://www.bpi.fr/la-biblioteca/colecciones/colecciones-impresas
-            Revues spécialisées: https://www.bpi.fr/es/sites/SiteInstitutionnel/home/la-bibliotheque/collections/revues-specialisees.html
-            Presse et actualité: https://www.bpi.fr/es/sites/SiteInstitutionnel/home/la-bibliotheque/collections/presse-et-actualite.html
-            Recursos electrónicos: https://www.bpi.fr/la-biblioteca/colecciones/recursos-electronicos
-            Autoformación: https://www.bpi.fr/la-biblioteca/colecciones/autoformacion
-            Colecciones audiovisuales: https://www.bpi.fr/la-biblioteca/colecciones/colecciones-audiovisuales
-            Música y documentos sonores: https://www.bpi.fr/la-biblioteca/colecciones/musica-y-documentos-sonores
-            Nueva generación: https://www.bpi.fr/la-biblioteca/colecciones/nueva-generacion
-            Cartes et plans: https://www.bpi.fr/es/sites/SiteInstitutionnel/home/la-bibliotheque/collections/cartes-et-plans.html
-        -
-          name: Ofertas culturales y mediaciones
-          link: https://www.bpi.fr/la-biblioteca/ofertas-culturales-y-mediaciones
-          children:
-            Eventos culturales: https://www.bpi.fr/la-biblioteca/ofertas-culturales-y-mediaciones/eventos-culturales
-            Mediaciones: https://www.bpi.fr/la-biblioteca/ofertas-culturales-y-mediaciones/mediaciones
-            Ofertas a distancia: https://www.bpi.fr/la-biblioteca/ofertas-a-distancia
-        -
-          name: Publicaciones y soportes de comunicación
-          link: https://www.bpi.fr/la-biblioteca/publicaciones-y-soportes-de-comunicacion
-          children:
-            Programme de la Bpi: https://www.bpi.fr/es/sites/SiteInstitutionnel/home/la-bibliotheque/publications-et-supports-de-comm/programme-de-la-bpi.html
-            Boletines de información: https://www.bpi.fr/la-biblioteca/publicaciones-y-soportes-de-comunicacion/boletines-de-informacion
-            Magazine Balises: https://www.bpi.fr/es/sites/SiteInstitutionnel/home/la-bibliotheque/publications-et-supports-de-comm/magazine-balises.html
-            Soportes de comunicación: https://www.bpi.fr/la-biblioteca/publicaciones-y-soportes-de-comunicacion/soportes-de-comunicacion
-            Ediciones de la biblioteca: https://www.bpi.fr/la-biblioteca/publicaciones-y-soportes-de-comunicacion/ediciones-de-la-biblioteca
-            Web TV Web radio: http://webtv.bpi.fr/
-        -
-          name: Los públicos de la Bpi
-          link: https://www.bpi.fr/la-biblioteca/los-publicos-de-la-bpi
-          children:
-            Sociología de públicos: https://www.bpi.fr/la-biblioteca/los-publicos-de-la-bpi/sociologia-de-publicos
-            Encuestas en el terreno de la Bpi: https://www.bpi.fr/la-biblioteca/los-publicos-de-la-bpi/encuestas-en-el-terreno-de-la-bpi
-        -
-          name: La Bpi en cifras
-          link: https://www.bpi.fr/la-biblioteca/la-bpi-en-cifras
-        -
-          name: Historia de la Bpi
-          link: https://www.bpi.fr/la-biblioteca/historia-de-la-bpi
-
-  Informaciones prácticas:
-    link: https://www.bpi.fr/informaciones-practicas
+  Información práctica:
+    link: https://www.bpi.fr/es/informacion-practica/
     sronly: Accéder aux informations pratiques
-    list:
-      id: ul-infos
-      items:
-      -
-        name: Venir a la Bpi
-        link: https://www.bpi.fr/es/sites/SiteInstitutionnel/home/informations-pratiques/venir-a-la-bpi.html
-        children:
-          Horarios: https://www.bpi.fr/es/sites/SiteInstitutionnel/home/informations-pratiques/venir-a-la-bpi/horaires.html
-          Cámara web: https://www.bpi.fr/es/sites/SiteInstitutionnel/home/informations-pratiques/venir-a-la-bpi/webcam.html
-          Acceso: https://www.bpi.fr/es/sites/SiteInstitutionnel/home/informations-pratiques/venir-a-la-bpi/acces.html
-          Bpi instrucciones: https://www.bpi.fr/es/sites/SiteInstitutionnel/home/informations-pratiques/venir-a-la-bpi/bpi-mode-demploi.html
-          Contactos: https://www.bpi.fr/es/sites/SiteInstitutionnel/home/informations-pratiques/venir-a-la-bpi/contacts.html
-      -
-        name: Los espacios
-        link: https://www.bpi.fr/informaciones-practicas/los-espacios
-        children:
-          Plan del nivel 1: https://www.bpi.fr/informaciones-practicas/los-espacios/nivel-1
-          Plan del nivel 2: https://www.bpi.fr/informaciones-practicas/los-espacios/nivel-2
-          Plan del nivel 3: https://www.bpi.fr/informaciones-practicas/los-espacios/nivel-3
-      -
-        name: Los servicios
-        link: https://www.bpi.fr/informaciones-practicas/los-servicios
-        children:
-          Renseignements et orientation: https://www.bpi.fr/es/sites/SiteInstitutionnel/home/informations-pratiques/les-services/renseignements-et-orientation.html
-          Internet y el wifi: https://www.bpi.fr/informaciones-practicas/los-servicios/internet-y-el-wifi
-          El otro internet: https://www.bpi.fr/informaciones-practicas/los-servicios/el-otro-internet
-          Los otros servicios: https://www.bpi.fr/informaciones-practicas/los-servicios/los-otros-servicios
-      -
-        name: Las ofertas por tipo de público
-        link: https://www.bpi.fr/informaciones-practicas/las-ofertas-por-tipo-de-publico
-        children:
-          Alumno de enseñanza secundaria o estudiante: https://www.bpi.fr/es/sites/SiteInstitutionnel/home/informations-pratiques/les-offres-par-type-de-public/%c3%89tudiant-ou-lyceen.html
-          Profesor: https://www.bpi.fr/informaciones-practicas/las-ofertas-por-tipo-de-publico/profesor
-          Familia: https://www.bpi.fr/informaciones-practicas/las-ofertas-por-tipo-de-publico/familia
-          Participante del campo social: https://www.bpi.fr/informaciones-practicas/las-ofertas-por-tipo-de-publico/participante-del-campo-social
-          Nuevo en París: https://www.bpi.fr/informaciones-practicas/las-ofertas-por-tipo-de-publico/nuevo-en-paris
-          En búsqueda de empleo: https://www.bpi.fr/informaciones-practicas/las-ofertas-por-tipo-de-publico/en-busqueda-de-empleo
-      -
-        name: Minusvalía y accesibilidad
-        link: https://www.bpi.fr/informaciones-practicas/minusvalia-y-accesibilidad
-        children:
-          Acceso: https://www.bpi.fr/informaciones-practicas/minusvalia-y-accesibilidad/acceso
-          Las cabinas: https://www.bpi.fr/informaciones-practicas/minusvalia-y-accesibilidad/las-cabinas
-          Los otros servicios a disposición de los minusválidos: https://www.bpi.fr/informaciones-practicas/minusvalia-y-accesibilidad/los-otros-servicios
-      -
-        name: Empleos y prácticas
-        link: https://www.bpi.fr/informaciones-practicas/empleos-y-practicas
-        children:
-          Empleos fijos: https://www.bpi.fr/informaciones-practicas/empleos-y-practicas/empleos-fijos
-          Empleos temporales: https://www.bpi.fr/informaciones-practicas/empleos-y-practicas/empleos-temporales
-          Prácticas: https://www.bpi.fr/informaciones-practicas/empleos-y-practicas/practicas
-      -
-        name: Mercados públicos
-        link: https://www.bpi.fr/informaciones-practicas/mercados-publicos
-        children:
-          Consultas: https://www.bpi.fr/informaciones-practicas/mercados-publicos/consultas
-          Candidaturas: https://www.bpi.fr/informaciones-practicas/mercados-publicos/candidaturas
-          Adjudicaciones: https://www.bpi.fr/informaciones-practicas/mercados-publicos/adjudicaciones
-      -
-        name: Preguntas más frecuentes
-        link: https://www.bpi.fr/es/sites/SiteInstitutionnel/home/informations-pratiques/foire-aux-questions.html
 
-  Espacio prensa:
-    link: https://www.bpi.fr/es/sites/SiteInstitutionnel/home/presse--partenariats.html
-    sronly: Accéder à la presse et aux partenariats
+  Bpi Digital:
+    link: https://www.bpi.fr/es/bpi-digital/
+    sronly: Bpi Digital
+
+help:
+  La recherche:
+    link: #
+    sronly: Accéder à l'aide sur la recherche
     list:
-      id: ul-presse
+      id: ul-recherche
       items:
         -
-          name: Communiqués et dossiers de presse
-          link: https://www.bpi.fr/es/sites/SiteInstitutionnel/home/presse--partenariats/communiques-et-dossiers-de-press.html
+          name: La recherche
+          link: /fr/aide/recherche
           children:
-            Archives des communiqués: https://www.bpi.fr/es/sites/SiteInstitutionnel/home/presse--partenariats/communiques-et-dossiers-de-press/archives-des-communiques.html
+            Recherche simple: /fr/aide/recherche#recherche-simple
+            Recherche avancée: /fr/aide/recherche#recherche-avancee
+            Parcours de recherche: /fr/aide/recherche#parcours-recherche
+            Service questions/réponses: /fr/aide/recherche#questions-reponses
+
+  Exploitation des résultats:
+    link: #
+    sronly: Accéder à l'aide sur l'exploitation des résultats
+    list:
+      id: ul-recherche
+      items:
         -
-          name: Tournages et prises de vues
-          link: https://www.bpi.fr/es/sites/SiteInstitutionnel/home/presse--partenariats/tournages-et-prises-de-vues.html
-        -
-          name: Logos
-          link: https://www.bpi.fr/es/sites/SiteInstitutionnel/home/presse--partenariats/logos.html
-        -
-          name: Visuels
-          link: https://www.bpi.fr/es/sites/SiteInstitutionnel/home/presse--partenariats/visuels2.html
+          name: Exploitation des résultats
+          link: /fr/aide/exploitationresultats
           children:
-            Espaces de la bibliothèque: https://www.bpi.fr/es/sites/SiteInstitutionnel/home/presse--partenariats/visuels2/espaces-de-la-bibliotheque.html
+            Liste de résultats: /fr/aide/exploitationresultats#liste-resultats
+            Affiner sa recherche: /fr/aide/exploitationresultats#affiner
+            Notice détaillée: /fr/aide/exploitationresultats#notice-detaillee
+            Notice d'autorité: /fr/aide/exploitationresultats#notice-autorite
+            Relancer la recherche dans d'autre catalogues: /fr/aide/exploitationresultats#relance-recherche
+
+  Services:
+    link: #
+    sronly: Accéder à l'aide sur les services
+    list:
+      id: ul-recherche
+      items:
         -
-          name: Partenariats
-          link: https://www.bpi.fr/es/sites/SiteInstitutionnel/home/presse--partenariats/partenariats.html
+          name: Services
+          link: /fr/aide/services
+          children:
+            Alerte de mise en rayon: /fr/aide/services#alerte-mise-en-rayo
+            Impression et export: /fr/aide/services#impression-export
+            Suggestion d'achat: /fr/aide/services#suggestion-achat
+            Historique de recherche: /fr/aide/services#historique
+            Ma sélection: /fr/aide/services#selection
+            Signaler une erreur: /fr/aide/services#signaler-erreur
+
+  Mon compte:
+    link: #
+    sronly: Accéder à l'aide sur son compte
+    list:
+      id: ul-recherche
+      items:
+        -
+          name: Mon compte
+          link: /fr/aide/compte
+          children:
+            Mes listes: /fr/aide/compte#listes
+            Mon historique: /fr/aide/compte#mon-historique
 
 footer:
   La BPI:
-    Catálogo: http://catalogue.bpi.fr
-    Agenda: https://www.bpi.fr/es/sites/SiteInstitutionnel/home/agenda.html
-    La Biblioteca: https://www.bpi.fr/la-biblioteca
-    Informaciones prácticas: https://www.bpi.fr/informaciones-practicas
-    Espacio prensa: https://www.bpi.fr/es/sites/SiteInstitutionnel/home/presse--partenariats.html
+    Inicio:
+      url: https://www.bpi.fr/es/inicio
+      target: ""
+      title: ""
+    Catálogo:
+      url: http://catalogue.bpi.fr/es/
+      target: ""
+      title: ""
+    La biblioteca:
+      url: https://www.bpi.fr/es/la-biblioteca/
+      target: ""
+      title: ""
+    Información práctica:
+      url: https://www.bpi.fr/es/informacion-practica/
+      target: ""
+      title: ""
+    Bpi Digital:
+      url: https://www.bpi.fr/es/bpi-digital/
+      target: ""
+      title: ""
 
   Balises:
+    Replay:
+      url: https://replay.bpi.fr/
+      target: _blank
+      title:  Replay -  Nueva ventana
+    Explorar:
+      url: https://balises.bpi.fr/tous-les-articles//
+      target: _blank
+      title: Explorar - Nueva ventana
+    Archivos temáticos:
+      url: https://balises.bpi.fr/dossiers/
+      target: _blank
+      title: Archivos temáticos - Nueva ventana
+    Quiénes somos ?:
+      url: https://balises.bpi.fr/qui-sommes-nous/
+      target: _blank
+      title: Quiénes somos ? - Nueva ventana
 
   Profesionales:
-    Colecciones y servicios: https://www.bpi.fr/es/sites/Professionnels/home/collections-et-services.html
-    Cohesión social: https://www.bpi.fr/es/sites/Professionnels/home/cohesion-sociale.html
-    Estudios: https://www.bpi.fr/es/sites/Professionnels/home/etudes-1.html
-    Profesión: https://www.bpi.fr/es/sites/Professionnels/home/metier.html
-    Internacional: https://www.bpi.fr/es/sites/Professionnels/home/international-1.html
+    Colecciones y servicios:
+      url: https://pro.bpi.fr/es/casa/colecciones-y-servicios/
+      target: _blank
+      title: Colecciones y servicios - Nueva ventana
+    Cohesión social:
+      url: https://pro.bpi.fr/es/cohesion-social/
+      target: _blank
+      title: Cohesión social - Nueva ventana
+    Estudios:
+      url: https://pro.bpi.fr/es/estudios/
+      target: _blank
+      title: Estudios - Nueva ventana
+    Profesión:
+      url: https://pro.bpi.fr/es/profesion/
+      target: _blank
+      title: Profesión - Nueva ventana
+    Internacional:
+      url: https://pro.bpi.fr/es/casa/internacional/
+      target: _blank
+      title: Internacional - Nueva ventana

@@ -95,14 +95,14 @@ class SearchQuery implements SearchResultInterface
     /**
      * @return FilterFilter
      */
-    public function getFilters(): FilterFilter
+    public function getFilters(): ?FilterFilter
     {
         return $this->filters;
     }
     /**
      * @return FacetFilter
      */
-    public function getFacets(): FacetFilter
+    public function getFacets(): ?FacetFilter
     {
         return $this->facets;
     }

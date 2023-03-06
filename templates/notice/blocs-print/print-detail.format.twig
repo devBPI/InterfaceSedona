@@ -10,17 +10,21 @@
     <li><a href="{{ absolute_url(path('record_bibliographic', {"permalink": notice.permalink})) }}">Permalien</a></li>
 {% else %}{% if format!='pdf' %}{{"\n"}}{% endif %}Permalien : {{ absolute_url(path('record_bibliographic', {"permalink": notice.permalink})) ~ "\n"  }}
 {% endif %}
-{% for copy in notice.copies %}{% if copy.isAvailable() %}
-{% if format == 'pdf' %}{{ lineBreak |raw }}<li>{% endif %}
-{% if  copy.getAvailability  %}{{ copy.getAvailability }}{% if  copy.getCote or copy.getSupport  %}, {% endif %}{% endif %}
-{% if  copy.getCote  %}{{ copy.getCote |raw }}{% if copy.getSupport %}, {% endif %}{% endif %}
-{% if  copy.getSupport  %}{{ copy.getSupport |raw}}{% endif %}
-{% if format == 'pdf' %}</li>{% else  %}{{ "\n" }}{% endif %}
-{% if isPrintLong %}{{- pdf_occurence(copy, 'getNotes', "bloc.autority-result-information.nots"|trans, format)|raw -}}{% endif %}
-{{- pdf_occurence(copy, 'getPrintLocation','', format)|raw -}}
-{% else %}{% if format == 'pdf' %}{{ lineBreak |raw }}{% else %}{{ "\n" }}{% endif %}
-{{- "\n" ~ 'bloc.notice-simple.document-unavailable'|trans -}}{% endif %}{% endfor %}
+{% for copy in notice.copies %}
+	{% if copy.isAvailable() %}
+		{% if format == 'pdf' %}{{ lineBreak |raw }}<li>{% endif %}
+		{% if copy.getAvailability  %}{{- "\n" ~ 'bloc.notice-simple.document-available'|trans -}}{#{ copy.getAvailability }#}{% if isPrintLong and copy.labelDisponibility is not empty and copy.labelDisponibility != copy.getAvailability %}{{ ' - '~copy.labelDisponibility }}{% endif %}{% if copy.getCote or copy.getSupport  %}, {% endif %}{% endif %}
+		{% if copy.getCote  %}{{ copy.getCote |raw }}{% if copy.getSupport %}, {% endif %}{% endif %}
+		{% if copy.getSupport  %}{{ copy.getSupport |raw}}{% endif %}
+		{% if format == 'pdf' %}</li>{% else  %}{{ "\n" }}{% endif %}
+		{% if isPrintLong %}{{- pdf_occurence(copy, 'getNotes', "bloc.autority-result-information.nots"|trans, format)|raw -}}{% endif %}
+		{{- pdf_occurence(copy, 'getPrintLocation','', format)|raw -}}
+	{% else %}
+		{% if format == 'pdf' %}{{ lineBreak |raw }}{% else %}{{ "\n" }}{% endif %}
+		{{- "\n" ~ 'bloc.notice-simple.document-unavailable'|trans -}}{% if isPrintLong and copy.getAvailability and copy.labelDisponibility is not empty and copy.labelDisponibility != copy.getAvailability %}{{ ' - '~copy.labelDisponibility }}{% endif %}
+	{% endif %}
+{% endfor %}
 {% for link in notice.links | sort((a, b) => a.title <=> b.title) %}
-{% if format == 'pdf' %}{{ macros.availibility_access_to_bpi(link, notice, format) }}{% else %}{{  macros.availibility_access_to_bpi_txt(link, notice)}}{% endif %}
+	{% if format == 'pdf' %}{{ macros.availibility_access_to_bpi(link, notice, format) }}{% else %}{{  macros.availibility_access_to_bpi_txt(link, notice)}}{% endif %}
 {% endfor %}
 {% endspaceless %}

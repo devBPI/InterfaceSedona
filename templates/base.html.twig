@@ -5,7 +5,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta http-equiv="Content-Language" content="{{ app.request.locale }}" />
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-		<title>{% spaceless %}{% block title %}Titre{% endblock %}{% endspaceless %} | {{ 'global.site-title'|trans }}</title>
+		<title>{% spaceless %}{% block title %}{{ title|default('Titre') }}{% endblock %}{% endspaceless %} | {{ 'global.site-title'|trans }}</title>
 		<meta property="og:title" content="{{ 'global.site-title'|trans }} - {{ block('title')|trim }}" />
 		<meta property="og:site_name" content="{{ 'global.site-title'|trans }}">
 		{% block share -%}
@@ -120,7 +120,7 @@
 							</div>
 						</div>
 
-						<div class="col-12 col-md-6">
+						<div class="col-12 col-md-auto">
 							<div class="nav-links-externe">
 								<ul class="nav-links-externe__list">
 									<li class="nav-links-externe__item">
