@@ -1,6 +1,6 @@
 {
     "name": "bpi/catalogue-site",
-    "version": "1.3.0",
+    "version": "1.3.0-dev",
     "description": "Site Web Catalogue de la BPI",
     "type": "project",
     "license": "proprietary",
