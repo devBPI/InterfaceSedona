@@ -12,10 +12,10 @@ Processus de livraison
       => ```git remote add github git@github.com:devBPI/InterfaceSedona.git```
     - ```git push github```
     - ```git push github [tag]```
-2. Créer un ticket redmine pour demander à la SI de BPI de livrer : 
-   - aller sur redmine : https://redmine.sedona.fr/projects/retours-elements-techniques-sedona/issues
+2. Créer un ticket pour demander à la SI de BPI de livrer : 
+   - aller sur l'outil de ticketing : https://git.sedona.fr/redmine/bpi/interface-catalogue/-/issues
    - créer un nouveau ticket
-     - tracker => Tâche
+     - Label => Demande de livraison
      - assigné => Artur Covanov
      - message =>
 ```
@@ -27,7 +27,6 @@ Pouvez-vous s'il vous plaît effectuer la livraison en préprod/prod ?
 
 Je vous remercie.
 ```
-       - valider le ticket
 
 
 [Retour au README.md](../README.md)
