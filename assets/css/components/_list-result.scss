@@ -7,6 +7,9 @@
 	height: 100%;
 
 	&--authority {
+		padding-top: $spacer;
+		border-top: $border-default;
+		border-bottom: 0;
 
 		.list-result__content-item {
 			border-bottom: 0;
@@ -304,7 +307,6 @@
 	}
 
 	&__collapse {
-		padding-bottom: $spacer;
 
 		&-button {
 			padding: 0;

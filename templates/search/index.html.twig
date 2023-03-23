@@ -53,10 +53,6 @@
 			</div>
 		</div>
 	{% else %}
-		<div class="list-result list-result--authority" role="list">
-			{% include "search/blocs-results/list-authorities.html.twig" %}
-		</div>
-
 		<div class="row justify-content-sm-between">
 			{% include "search/blocs-results/search-header.html.twig" %}
 		</div>
@@ -74,6 +70,10 @@
 				{% include "search/blocs-results/search-footer.html.twig" with {'criteria':objSearch.results.criteria, 'pagesTotal': objSearch.results.pageTotal, 'page': objSearch.results.page} %}
 			</div>
 		{% endblock %}
+
+		<div class="list-result list-result--authority" role="list">
+			{% include "search/blocs-results/list-authorities.html.twig" %}
+		</div>
 	{% endif %}
 
 	{% include "search/modal/notified-form.html.twig" %}
