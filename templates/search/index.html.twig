@@ -59,6 +59,9 @@
 
 		{% block result %}
 			<div class="row">
+				{% include "search/blocs-results/search-footer.html.twig" with {'criteria':objSearch.results.criteria, 'pagesTotal': objSearch.results.pageTotal, 'page': objSearch.results.page} %}
+			</div>
+			<div class="row">
 				<div class="col-12 col-md-6 pr-md-0">
 					{% include 'search/blocs-results/docs-container.html.twig' with { 'type': constant('App\\Model\\Notice::SEE_ONSHELF'), 'notices': objSearch.results.notices} %}
 				</div>
