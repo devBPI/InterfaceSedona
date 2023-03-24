@@ -7,8 +7,8 @@
 	height: 100%;
 
 	&--authority {
-		padding-top: $spacer;
-		border-bottom: 0;
+		padding: $spacer 0;
+		border-bottom: $border-default;
 
 		.list-result__content-item {
 			border-bottom: 0;

@@ -343,6 +343,7 @@ page:
       simple: Résultats recherche simple
       advanced: Résultats recherche avancée
       page: page %current% sur %total%
+      back-to-top: Haut de page
   login:
     title: Authentification
     login: Courriel *

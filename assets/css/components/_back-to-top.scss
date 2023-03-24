@@ -1,0 +1,35 @@
+// -------------------------------
+// Back to Top link
+// -------------------------------
+
+.back-to-top {
+    padding: $spacer 0;
+    text-align: right;
+
+    &__link {
+        position: relative;
+        padding-right: rem(15);
+    
+        &:hover,
+        &:focus {
+            
+            svg {
+                fill: $red;
+            }
+        }
+
+        svg {
+            width: rem(10);
+            position: absolute;
+            right: 0;
+            top: 50%;
+            transform: translateY(-70%);
+            fill: $blue;
+    
+            &:hover,
+            &:focus {
+                fill: $red;
+            }
+        }
+    }
+}
