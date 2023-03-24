@@ -100,4 +100,15 @@
 			}
 		}
 	}
+
+	.page-item:first-child {
+
+		.page-link {
+
+			&--nolink {
+				border-left: 0;
+				border-right: 0;
+			}
+		}
+	}
 }

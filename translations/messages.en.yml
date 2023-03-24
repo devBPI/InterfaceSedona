@@ -125,18 +125,18 @@ modal:
     title-connected: Ajouter...
     title-ajouter-before-sr-only: Vous avez bien ajouté
     title-ajouter-after-sr-only: à Ma sélection.
-    title: Vous avez ajouté...
-    add-to-profile: '... à Mon compte dans :'
+    title: "Sélection ajoutée :"
+    add-to-profile: dans une liste existante
     list: '%name%'
-    new-list: Nouvelle liste
+    new-list: dans une nouvelle liste
     field-title: Titre
     btn-return: Retourner à la liste des résultats
     btn-selection: Aller dans ma sélection
-    btn-login: Pour la conserver, connectez-vous à Mon compte.
+    btn-login: Pour enregistrer votre sélection, connectez-vous à votre compte.
     btn-login2: Me connecter
     submit: Valider
     submit-sr-only: la création de la liste
-    message-success: ''
+    message-success: ""
     message-error:
       no-list: Aucune liste n'a été sélectionnée. Veuillez en sélectionner une ou en créer une nouvelle.
   list-edit:          #Modal 03 edition d'une liste

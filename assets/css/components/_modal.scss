@@ -112,6 +112,10 @@
 			@include font-size(16);
 			margin-left: 2px;
 			width: 100%;
+
+			&.form-check-label--hide {
+				color: transparent;
+			}
 		}
 
 		.form-group {
@@ -162,6 +166,9 @@
 		&__quote {
 			min-width: 100%;
 			flex: 0 0 100%;
+			margin-top: 0;
+			margin-left: 0;
+			margin-right: 0;
 		}
 	}
 
