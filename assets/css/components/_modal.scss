@@ -102,10 +102,10 @@
 	&-form {
 
 		&__indication {
-			margin-bottom: $spacer;
-			display: block;
+			margin-top: $spacer;
 			font-style: italic;
-			font-size: .8rem;
+			font-size: rem(12);
+			text-align: right;
 		}
 
 		label {

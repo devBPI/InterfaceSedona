@@ -10,7 +10,6 @@
     <div class="modal-body">
 		<div class="row justify-content-center">
 			<div class="col-12 col-md-10">
-                <p class="modal-form__indication"><span>*</span> {{ 'global.form-mandatory-field'|trans }}</p>
                 <div class="form-group row">
                     <label for="comments-text" class="col-12 col-sm-4">{{ 'modal.comments-edit.field-content'|trans }}
                         <span>*</span></label>
@@ -19,6 +18,7 @@
                                 name="{{ constant('App\\Controller\\UserSelectionController::INPUT_DOC_COMMENT') }}">{{ document.comment }}</textarea>
                     </div>
                 </div>
+                <p class="modal-form__indication"><span>*</span> {{ 'global.form-mandatory-field'|trans }}</p>
             </div>
         </div>
     </div>
