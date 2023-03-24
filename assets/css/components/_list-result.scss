@@ -308,12 +308,10 @@
 	&__collapse {
 
 		&-button {
-			padding: 0;
 			color: $blue;
 	
 			&:hover {
 				color: $red;
-				text-decoration: underline;
 			}
 		}
 

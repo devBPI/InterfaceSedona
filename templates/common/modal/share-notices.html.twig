@@ -1,9 +1,9 @@
 <form class="modal-form gtm-form-export" method="post" novalidate="novalidate" action="{{ action_route }}" data-toggle="form-remote">
 
 	<div class="modal-body">
-		<p class="modal-form__indication"><span>*</span> {{ 'global.form-mandatory-field'|trans }}</p>
 		<div class="row justify-content-center">
 			<div class="col-12 col-md-10">
+				<p class="modal-form__indication"><span>*</span> {{ 'global.form-mandatory-field'|trans }}</p>
 				{{ form_row(form.reciever) }}
 				{{ form_row(form.message) }}
 				{{ form_row(form.shortFormat) }}
