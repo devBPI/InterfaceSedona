@@ -317,7 +317,7 @@ modal:
     title: Aucune réponse ne correspond à votre recherche.
     choice: Vous pouvez
     relaunch: Relancer votre recherche avec <a href="%link%" aria-label="Relancer votre recherche avec l'Aide à la recherche"> l’Aide à la recherche</a>
-    more-choice: Elargir votre recherche en consultant <a href="https://www.bpi.fr/bpi-numerique/" target="_blank" aria-label="Elargir votre recherche en consultant BPI numériques - Nouvelle fenêtre"> BPI numériques</a>
+    more-choice: Elargir votre recherche en consultant <a href="https://www.bpi.fr/bpi-numerique/" target="_blank" aria-label="Elargir votre recherche en consultant BPI numériques - Nouvelle fenêtre"> BPI numérique</a>
     form: Utiliser le formulaire <a href="javascript:void(0);" data-target="#modal-suggest" data-toggle="modal" aria-label="Suggestion d'achat">Suggestion d'achat</a>
     eurokoi: Poser une question à un bibliothécaire, en utilisant le service <a target="_blank" aria-label="Utilisé le service Eurêkoi - Nouvelle fenêtre" href="https://www.eurekoi.org/"> Eurêkoi </a>
 
