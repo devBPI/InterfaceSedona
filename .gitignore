@@ -54,3 +54,5 @@ yarn-error.log
 
 /auth.txt
 /bpi.ovpn
+/auth.conf
+/bpi-ovpn.txt
