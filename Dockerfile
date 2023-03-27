@@ -16,7 +16,7 @@ RUN set -ex ; \
 FROM registry.sedona.fr/images/php:7.4-fpm-httpd
 LABEL maintainer="<php@sedona.fr> Sedona Solutions - PHP"
 
-ADD .deploy/dev/web/php-fpm.conf /usr/local/apache2/conf.d/php-fpm.conf
+ADD .deploy/dev/web/httpd.conf /usr/local/apache2/conf.d/httpd.conf
 ADD .deploy/dev/app/run.sh /docker-entrypoint-init.d/run.sh
 COPY --from=builder /var/www/html /var/www/html
 
