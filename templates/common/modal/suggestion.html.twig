@@ -7,8 +7,8 @@
 					<img src="{{ asset('images/icones/icone-croix-blanc.svg') }}" alt="{{ 'global.modal-close'|trans }}" />
 				</button>
 			</div>
-			<div class="modal-header" id="hidden_header">
-				<h2 class="n1 modal-header__title">{{ 'modal.suggestion.edito' |trans }}</h2>
+			<div class="modal-body" id="hidden_header">
+				<h2 class="n2 modal-header__title">{{ 'modal.suggestion.edito' |trans }}</h2>
 			</div>
 			<div class="modal-suggestion-form"> {{ render(controller('App\\Controller\\ReportingController::suggestByMailAction')) }}</div>
 		</div>

@@ -100,6 +100,19 @@
 			}
 		}
 	}
+
+	&-see-more {
+		border: 1px solid;
+		padding: rem(6) rem(10) rem(4);
+		color: $blue;
+		line-height: 1;
+
+		&:hover,
+		&:focus {
+			border-color: $red;
+			color: $red;
+		}
+	}
 }
 
 .link {

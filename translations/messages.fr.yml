@@ -128,14 +128,14 @@ modal:
     title-connected: "Ajouter :"
     title-ajouter-before-sr-only: Vous avez bien ajouté 
     title-ajouter-after-sr-only: à Ma sélection.
-    title: 'Sélection ajoutée:'
+    title: "Sélection ajoutée :"
     add-to-profile: dans une liste existante
     list: '%name%'
     new-list: dans une nouvelle liste
     field-title: Titre
     btn-return: Retourner à la liste des résultats
     btn-selection: Aller dans ma sélection
-    btn-login: Pour enregistrer votre sélection, connectez-vous à votre compte
+    btn-login: Pour enregistrer votre sélection, connectez-vous à votre compte.
     btn-login2: Me connecter
     submit: Valider
     submit-sr-only: la création de la liste
@@ -351,6 +351,7 @@ page:
       simple: Résultats recherche simple
       advanced: Résultats recherche avancée
       page: page %current% sur %total%
+      back-to-top: Haut de page
   login:
     title: Authentification
     login: Courriel *
@@ -429,6 +430,7 @@ bloc:
     advanced-title: 'Recherche avancée :'
     remove-criteria: Supprimer le filtre
   preview-authority:      #Bloc 11 Aperçu d'une autorité
+    title: 'Suggestions de recherche :'
     first: Sélectionner %name%
     see-more: Voir plus
   header-docs:            #Bloc 12 En-tête des résultats

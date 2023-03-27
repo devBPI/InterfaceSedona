@@ -1,3 +1,6 @@
+
+<h2 class="n2">{{ 'bloc.preview-authority.title'|trans }}</h2>
+
 {% include "search/blocs-results/preview-authority.html.twig" with {'author': objSearch.results.mainAuthor, 'level': 1, 'index':1 } %}
 
 {% if objSearch.results.otherAuthors |length>=1%}
