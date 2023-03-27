@@ -8,7 +8,12 @@ include:
 
 stages:
   - quality
+  - test
+  - check-release
   - compileJS
+  - build
+  - publish
+
 cache:
   key: "$CI_PIPELINE_ID-$CI_COMMIT_REF_NAME"
   untracked: false
@@ -16,19 +21,33 @@ cache:
     - build/
     - public/build/
     - gl-code-quality-report.json
+    - vendor/
+
+variables:
+  PHP_IMAGE: "registry.sedona.fr/images/php:7.4"
+  POSTGRES_DB: "catalogue"
+  POSTGRES_USER: "root"
+  POSTGRES_PASSWORD: "Welcome09"
 
 quality:sonar:
-  stage: quality
-  image: "${SONAR_SCANNER_DOCKER_IMAGE}:${SONAR_SCANNER_DOCKER_IMAGE_VERSION}"
+  extends: .quality:sonar
+
+test:php:
+  extends: .test:php
   script:
     - cd $WORKSPACE_DIR
-    - make -B sonar-project.properties
-    - sonar-scanner -Dsonar.login=${SONAR_TOKEN}
+    - make install-php-ext install-wait-for-it
+    - wait-for-it db:5432 -s -t 30 -- echo "Postgres ready"
+    - make tests
 
+check-release:
+  extends: .check-release
 
 compileJS:
   stage: compileJS
   image: node:10-alpine
+  rules:
+  - if: $CI_COMMIT_TAG
   cache:
     key: "$CI_PIPELINE_ID-$CI_COMMIT_REF_SLUG"
     untracked: true
@@ -41,3 +60,15 @@ compileJS:
   script:
     - npm install
     - yarn encore production
+
+build:image:
+  extends: .build:image
+  needs: ["compileJS"]
+  rules:
+  - if: $CI_COMMIT_TAG
+
+publish:image:
+  extends: .publish:image
+  needs: ["compileJS", "build:image"]
+  rules:
+  - if: $CI_COMMIT_TAG
