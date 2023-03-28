@@ -454,6 +454,7 @@ bloc:
     resume-label: Afficher le résumé
     resume-title: 'Résumé'
     availability-label: Document indisponible, être prévenu(e) de son retour en rayon - ouverture formulaire
+    document-available-selection: En sélection
   search-header-footer:   #Bloc 14 Tri et pages
     header:
       nb-result-aria: dropdown-number-items

@@ -138,6 +138,20 @@ class NoticeAvailable
     private $note;
 
     /**
+     * @var string $valosite
+     * @JMS\Type("string")
+     */
+    private $valosite;
+
+    /**
+     * @return string
+     */
+    public function getValosite(): ?string
+    {
+        return $this->valosite;
+    }
+
+    /**
      * @return bool
      */
     public function isAvailable(): bool
