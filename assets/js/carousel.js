@@ -131,7 +131,7 @@ $('.js-list-information ul.list-information__sub-list').each( function() {
             .addClass('d-none');
         $children
             .last()
-            .after('<li class="list-information__sub-item list-information__sub-item--btn"><button type="button" class="btn btn-small-link js-btn js-btn--more">Voir plus<span class="sr-only"> les résultats</span></button></li>');
+            .after('<li class="list-information__sub-item list-information__sub-item--btn"><button type="button" class="btn btn-see-more js-btn js-btn--more">Voir plus<span class="sr-only"> les résultats</span></button></li>');
     }
 });
 

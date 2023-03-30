@@ -102,16 +102,20 @@
 	&-form {
 
 		&__indication {
-			margin-bottom: $spacer;
-			display: block;
+			margin-top: $spacer;
 			font-style: italic;
-			font-size: .8rem;
+			font-size: rem(12);
+			text-align: right;
 		}
 
 		label {
 			@include font-size(16);
 			margin-left: 2px;
 			width: 100%;
+
+			&.form-check-label--hide {
+				color: transparent;
+			}
 		}
 
 		.form-group {
@@ -162,6 +166,9 @@
 		&__quote {
 			min-width: 100%;
 			flex: 0 0 100%;
+			margin-top: 0;
+			margin-left: 0;
+			margin-right: 0;
 		}
 	}
 

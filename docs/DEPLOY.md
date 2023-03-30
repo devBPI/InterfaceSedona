@@ -1,29 +1,37 @@
 Processus de livraison
 =============
 
+# Pre requis
+
+1. Disposer d'un compte [Github](https://github.com/)
+3. [Enregister sa clé ssh sur GitHub](https://github.com/settings/ssh/new) pour pull/push sur ce dépôt
+2. Avoir accès au compte de la BPI : https://github.com/devBPI
+   demander un accès au dépôt si accès refusé
+
+
 #  En Pré-production & Production
 
 1. Synchroniser la branche à livrer sur github : https://github.com/devBPI/InterfaceSedona
-    - créer un compte github
-    - demander un accès au dépôt si accès refusé
-    - installer sa clé ssh pour pull/push sur ce dépôt
-    - ajouter le remote dans la config de git 
+    - figer la version sur composer.json, un tag sera automatiquement crée par la step "check-release" de la pipline
+    - ajouter le remote dans la config de git
       => ```git remote add github git@github.com:devBPI/InterfaceSedona.git```
     - ```git push github```
-2. Créer un ticket redmine pour demander à la SI de BPI de livrer : 
-   - Aller sur redmine : https://redmine.sedona.fr/projects/retours-elements-techniques-sedona/issues
-   - créer un nouveau ticket et l'assigner à Arthur Covanov
-   - Mettre le contenu : 
-```
-Bonjour,
+    - ```git push github [tag]```
+2. Créer un ticket pour demander à la SI de BPI de livrer :
+    - aller sur l'outil de ticketing : https://git.sedona.fr/redmine/bpi/interface-catalogue/-/issues
+    - créer un nouveau ticket
+        - Label => Demande de livraison
+        - assigné => Artur Covanov
+        - message =>
 
-Voici le contenu de la livraison à effectuer sur la préprod/prod : [redmine_roadmap_link]
-La branche concernée est [git_branch_name]. Un tag [git_tag_name] fige cette version.
-Pouvez-vous s'il vous plaît effectuer la livraison en préprod/prod ?
+                  Bonjour,
+                  
+                  Voici le contenu de la livraison à effectuer sur la préprod/prod : [redmine_roadmap_link]
+                  La branche concernée est [git_branch_name]. Un tag [git_tag_name] fige cette version.
+                  Pouvez-vous s'il vous plaît effectuer la livraison en préprod/prod ?
+                  
+                  Je vous remercie.
 
-Je vous remercie.
-```
-    - valider le ticket
 
 
 [Retour au README.md](../README.md)

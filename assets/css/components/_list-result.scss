@@ -7,6 +7,8 @@
 	height: 100%;
 
 	&--authority {
+		padding: $spacer 0;
+		border-bottom: $border-default;
 
 		.list-result__content-item {
 			border-bottom: 0;
@@ -304,15 +306,12 @@
 	}
 
 	&__collapse {
-		padding-bottom: $spacer;
 
 		&-button {
-			padding: 0;
 			color: $blue;
 	
 			&:hover {
 				color: $red;
-				text-decoration: underline;
 			}
 		}
 

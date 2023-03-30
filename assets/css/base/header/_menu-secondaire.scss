@@ -23,7 +23,7 @@
 
 		&__button {
 			position: relative;
-			@include font-size(12);
+			font-size: rem(12);
 			margin-left: -1px;
 			margin-right: -1px;
 
@@ -58,7 +58,7 @@
 
 			&-item {
 				color: $black;
-				@include font-size(12);
+				font-size: rem(12);
 
 				& + .menu-secondaire__list-item {
 					margin-top: rem(10);

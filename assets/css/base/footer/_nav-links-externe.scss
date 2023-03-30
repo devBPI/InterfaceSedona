@@ -14,13 +14,13 @@
 		display: flex;
 		flex-wrap: nowrap;
 		padding: 0;
-		margin: 0;
-		gap: 10px;
+		margin: 0 -5px;
 	}
 
 	&__item {
 		min-width: calc(100% / 3);
 		flex: 0 0 calc(100% / 3);
+		padding: 0 5px;
 
 		a {
 			display: flex;

@@ -12,9 +12,8 @@
         <div class="list-result border-0 list-result--modal" id="resume-container"></div>
 
         {% if not is_granted('IS_AUTHENTICATED_FULLY') %}
-            <div class="row">
-                <p>{{ "modal.list-add.text-before-btn" | trans }}</p>
-                {# TODO ajouter un margin left #}
+            <div class="d-flex align-items-center flex-wrap">
+                <p class="mt-3 mr-3">{{ "modal.list-add.text-before-btn" | trans }}</p>
                 <a href="{{ path('user_selection_index') }}" class="btn btn-primary">
                     {{ 'modal.list-add.btn-selection'|trans }}</a>
             </div>

@@ -1,7 +1,13 @@
 {% import "common/macros/notice-available-macro.html.twig" as macros %}
 {% import "common/macros/detail-macro.html.twig" as notice_macros %}
 
-<div class="col-12 col-md">
+
+<div class="col-auto">
+    <div class="bibliographic-result__type">
+        <img src="{{ asset('images/types/type-' ~ notice.slugifiedType ~ '.svg') }}" alt="{{ notice.type }}" title="{{ notice.type }}" />
+    </div>
+</div>
+<div class="col">
     {% for title in notice.titles %}
         <h1 class="n1 bibliographic-result__title" lang="fr">{{ title }}</h1>
     {% endfor %}
@@ -10,12 +16,6 @@
             <h1 class="n1 bibliographic-result__title" lang="fr"><i>{{ title }}</i></h1>
         {% endfor %}
     {% endif %}
-</div>
-
-<div class="col-12 col-md-2">
-    <div class="bibliographic-result__type">
-        <img src="{{ asset('images/types/type-' ~ notice.slugifiedType ~ '.svg') }}" alt="{{ notice.type }}" title="{{ notice.type }}" />
-    </div>
 </div>
 <div class="col-12">
     <div class="row align-items-md-center justify-content-between">

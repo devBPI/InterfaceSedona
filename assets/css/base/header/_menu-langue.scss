@@ -19,7 +19,7 @@
 
 		&__button {
 			position: relative;
-			@include font-size(12);
+			font-size: rem(12);
 
 			&:after {
 				content: "";
@@ -63,7 +63,7 @@
 
 			&-item {
 				color: $black;
-				@include font-size(12);
+				font-size: rem(12);
 				margin-bottom: 0;
 
 				& + .menu-langue__list-item {
@@ -81,7 +81,7 @@
 				}
 
 				@include media-breakpoint-up(lg) {
-					padding: 0 rem(10);
+					padding: 0 rem(15);
 				}
 
 				abbr {
@@ -95,7 +95,7 @@
 				}
 
 				&.active {
-					color: $grey-disabled;
+					color: $red;
 					position: relative;
 
 					&:hover {
@@ -111,7 +111,7 @@
 						bottom: 0;
 						margin-right: $spacer;
 						margin-bottom: -5px;
-						border-bottom: 10px solid $grey-disabled;
+						border-bottom: 10px solid $red;
 						border-left: 10px solid transparent;
 
 						@include media-breakpoint-up(lg) {

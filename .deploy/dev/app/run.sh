@@ -1,22 +1,14 @@
-#!/bin/sh
+#!/bin/bash
 
-#make assets
-#dpkg --configure -a
+make install-wait-for-it
+make install-wkhtmltopdf
+make install-php-ext
 
-if ! [ -x "$(command -v wkhtmltopdf)" ]; then
-  echo 'Install wkhtmltopdf and xvfb'
-  apt-get update
-  apt-get install -y xvfb wget
-  apt-get install -y openssl libssl-dev libxrender-dev libx11-dev libxext-dev libfontconfig1-dev libfreetype6-dev fontconfig
-  wget https://github.com/wkhtmltopdf/wkhtmltopdf/releases/download/0.12.4/wkhtmltox-0.12.4_linux-generic-amd64.tar.xz -O /tmp/wkhtmltox-0.12.4_linux-generic-amd64.tar.xz
-  tar xvf /tmp/wkhtmltox*.tar.xz -C /tmp
-  mv /tmp/wkhtmltox/bin/wkhtmlto* /usr/bin/
-  ln -nfs /usr/bin/wkhtmltopdf /usr/local/bin/wkhtmltopdf
+echo "\033[30;48;5;82m > Wait to Postgres ready -------------------------------------------------------- \033[0m"; \
+wait-for-it $POSTGRES_HOST:$POSTGRES_PORT -s -t 500 -- echo "        >  Postgres is ready"
+
+echo "\033[30;48;5;82m > Install project -------------------------------------------------------- \033[0m"; \
+if ! make install; then
+    echo "\033[30;48;5;196m make returned an error                                    \033[0m"; \
 fi
-
-apt-get install libldap2-dev -y
-rm -rf /var/lib/apt/lists/*
-docker-php-ext-configure ldap --with-libdir=lib/x86_64-linux-gnu/
-docker-php-ext-install ldap
-apt update && apt-get install -y libxslt-dev
-docker-php-ext-install xsl
+echo "\033[30;48;5;82m > Install project done -------------------------------------------------------- \033[0m"; \
