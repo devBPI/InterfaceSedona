@@ -192,7 +192,7 @@ modal:
     edito: "Suggérer l'achat d'un document après avoir vérifié s'il n'était pas dans le catalogue"
     field:
       subject: Suggestion d’achat
-      coordonate: "Coordonées :"
+      coordonate: "Coordonnées :"
       reference: "Réferences :"
       title: Titre
       author: Auteur
