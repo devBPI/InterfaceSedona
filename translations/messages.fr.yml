@@ -448,6 +448,7 @@ bloc:
       see-more-sr-only: les documents en ligne
   notice-simple:          #Bloc 13 Notices simples en 2 colonnes
     tooltip-access: Accéder au document - Nouvelle page
+    tooltip-access-source: Accéder à la source - Nouvelle page
     result: Résultat numéro
     select: sélectionner
     access: Accès
