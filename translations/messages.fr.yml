@@ -430,7 +430,7 @@ bloc:
     advanced-title: 'Recherche avancée :'
     remove-criteria: Supprimer le filtre
   preview-authority:      #Bloc 11 Aperçu d'une autorité
-    title: 'Suggestions de recherche :'
+    title: 'Explorer les sujets liés :'
     first: Sélectionner %name%
     see-more: Voir plus
   header-docs:            #Bloc 12 En-tête des résultats
