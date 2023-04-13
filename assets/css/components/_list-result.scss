@@ -3,11 +3,13 @@
 // -------------------------------
 
 .list-result {
+	border-top: $border-thin;
 	border-bottom: $border-thin;
 	height: 100%;
 
 	&--authority {
 		padding: $spacer 0;
+		border-top: $border-default;
 		border-bottom: $border-default;
 
 		.list-result__content-item {
