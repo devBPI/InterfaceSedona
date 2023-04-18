@@ -172,11 +172,7 @@ class NoticeAvailable
      */
     public function getCategory(): ?string
     {
-        if ($this->categorie && $this->categorie !== null){
-            return $this->categorie;
-        }
-
-        return $this->category;
+        return $this->categorie ?? $this->category;
     }
 
     /**
@@ -192,11 +188,7 @@ class NoticeAvailable
      */
     public function getAvailability(): ?string
     {
-        if ($this->disponibilite && $this->disponibilite !== null){
-            return  $this->disponibilite;
-        }
-
-        return $this->labelAvailibility;
+        return $this->disponibilite ?? $this->availability;
     }
 
     /**
@@ -204,11 +196,7 @@ class NoticeAvailable
      */
     public function getLocation(): ?string
     {
-        if ($this->localisation && $this->localisation !== null){
-            return $this->localisation;
-        }
-
-        return $this->location;
+        return $this->localisation ?? $this->location;
     }
 
     /**
@@ -216,11 +204,7 @@ class NoticeAvailable
      */
     public function getLabelDisponibility(): ?string
     {
-       if ($this->labelDisponibility && $this->labelDisponibility !== null){
-           return $this->labelDisponibility;
-       }
-
-       return $this->labelAvailibility;
+       return $this->labelDisponibility ?? $this->labelAvailibility;
     }
 
     /**

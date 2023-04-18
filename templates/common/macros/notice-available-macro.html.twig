@@ -1,30 +1,32 @@
 {% macro availibility(object, notice ) %}
 
     {% if is_same_instance(object, "App\\Model\\NoticeAvailable")%}
-
         {% if constant('App\\Model\\NoticeAvailable::AVAILABLE') in [object.availability, object.labelDisponibility] %}
             <li class="availability--true availability--rayon">
                 <p class="font-weight-bold">
                     <span class="availability__status">
                         {{ 'bloc.notice-simple.document-available'|trans }}
-                        {% if object.labelDisponibility is not empty %}
-                            {{ ' - '~object.labelDisponibility }}
-                        {% endif %}
                         {% if object.availability is not empty and object.availability != 'bloc.notice-simple.document-available'|trans %}
                             {{ ' - '~object.availability }}
                         {% endif %}
+                        {% if object.valosite is empty and object.labelDisponibility is not empty and object.labelDisponibility != object.availability %}
+                            {{ ' - '~object.labelDisponibility }}
+                        {% endif %}
                     </span>
-                    {% if  object.valosite is empty %}
+                    {% if object.valosite is empty %}
                         {% if object.cote %} - {{ object.cote }}{% endif %}
-                        {% if object.support %}- {{ object.support }}{% endif %}
                     {% else %}
                         {{ "- " ~ 'bloc.notice-simple.document-available-selection' | trans}}
                     {% endif %}
+                    {% if object.support %}- {{ object.support }}{% endif %}
                 </p>
                 {% if object.notes %}<p>{{ object.notes|join(' ') }}</p>{% endif %}
                 <p>{% if object.bookbinding %}{{ object.bookbinding }} {% endif %}</p>
-                <p>{% if object.location %}{{ object.location }} {% endif %}{% if object.category %}- {{ object.category }} {% endif %}</p>
-                <p>{% if object.valosite %}{{ object.valosite }} {% endif %}</p>
+                {% if object.valosite is empty %}
+                    <p>{% if object.location %}{{ object.location }} {% endif %}{% if object.category %}- {{ object.category }} {% endif %}</p>
+                {% else %}
+                    <p>{% if object.valosite %}{{ object.valosite }} {% endif %}</p>
+                {% endif %}
             </li>
         {% else %}
             <li class="availability--false availability--rayon">
