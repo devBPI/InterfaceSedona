@@ -3,6 +3,7 @@
 	<div class="modal-body">
 		<div class="row justify-content-center">
 			<div class="col-12 col-md-10">
+				<p class="modal-form__indication"><span>*</span> {{ 'global.form-mandatory-field'|trans }}</p>
 				{{ form_row(form.reciever) }}
 				{{ form_row(form.message) }}
 				{{ form_row(form.shortFormat) }}
@@ -11,7 +12,6 @@
 				{{ form_row(form.notices) }}
 				{{ form_row(form.authorities) }}
 				{{ form_row(form.indices) }}
-				<p class="modal-form__indication"><span>*</span> {{ 'global.form-mandatory-field'|trans }}</p>
 			</div>
 		</div>
 
