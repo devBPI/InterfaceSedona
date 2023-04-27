@@ -2,7 +2,7 @@
     {% for i, list in lists %}
         <div class="table-group">
             <div class="table-group__header">
-                <div class="form-check">
+                <div class="form-check form-check--position">
                     <label for="select-liste-{{ list.id }}"
                         class="sr-only">{{ 'bloc.list-user.list-select'|trans({'%name%': list.title}) }}</label>
                     <input type="checkbox" id="select-liste-{{ list.id }}" class="table-group__input js-my_list  js-list-selectable"
