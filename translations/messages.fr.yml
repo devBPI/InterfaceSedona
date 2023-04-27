@@ -5,6 +5,7 @@ not: SAUF
 global:
   new-windows: Nouvelle fenêtre
   form-mandatory-field: champs obligatoires
+  form-mandatory-field-sing: champ obligatoire
   modal-close: Fermer cette fenêtre
   modal-cancel: Annuler
   modal-confirm: Confirmer

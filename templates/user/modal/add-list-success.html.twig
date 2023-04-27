@@ -13,7 +13,7 @@
 
         {% if not is_granted('IS_AUTHENTICATED_FULLY') %}
             <div class="d-flex align-items-center flex-wrap">
-                <p class="mt-3 mr-3">{{ "modal.list-add.text-before-btn" | trans }}</p>
+                <p class="mt-3 mr-3 font-weight-bold">{{ "modal.list-add.text-before-btn" | trans }}</p>
                 <a href="{{ path('user_selection_index') }}" class="btn btn-primary">
                     {{ 'modal.list-add.btn-selection'|trans }}</a>
             </div>
@@ -27,7 +27,7 @@
             <a href="{{ path('user_selection_index') }}" class="btn btn-lg btn-primary">
                 {{ 'modal.list-add.btn-selection'|trans }}</a>
         {% else %}
-            <p class="modal-footer__quote">{{ 'modal.list-add.btn-login'|trans }}</p>
+            <p class="modal-footer__quote font-weight-bold">{{ 'modal.list-add.btn-login'|trans }}</p>
 
             <a href="{{ path('user_login') }}" class="btn btn-lg btn-primary">
                 {{ 'modal.list-add.btn-login2'|trans }}</a>
