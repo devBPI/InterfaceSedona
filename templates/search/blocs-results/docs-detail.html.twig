@@ -81,7 +81,7 @@
                     <p lang="fr">{{ notice.formats }}</p>
                 {% endif %}
                 {% if notice.configurationName is not empty and notice.configurationName != constant('App\\Model\\Notice::CATALOGUE_BPI') and notice.configurationUrl is not empty %}
-                    <p  data-toggle="tooltip" data-placement="top" title="{{ 'bloc.notice-simple.tooltip-access-source' | trans }}" lang="fr">{{ 'bloc.autority-result-information.result-de'|trans }} <a href="{{ notice.configurationUrl }}" aria-label="Acceder à {{ notice.configurationName }}" target="_blank">{{ notice.configurationName }}</a></p>
+                    <p lang="fr">{{ 'bloc.autority-result-information.result-de'|trans }} <a href="{{ notice.configurationUrl }}" title="Acceder à {{ notice.configurationName }} - {{ 'global.new-windows'|trans }}" target="_blank">{{ notice.configurationName }}</a></p>
                 {% endif %}
 
                 

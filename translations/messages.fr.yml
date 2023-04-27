@@ -447,8 +447,8 @@ bloc:
       see-all: Voir tous les résultats
       see-more-sr-only: les documents en ligne
   notice-simple:          #Bloc 13 Notices simples en 2 colonnes
-    tooltip-access: Accéder au document - Nouvelle page
-    tooltip-access-source: Accéder à la source - Nouvelle page
+    tooltip-access: Accéder au document - Nouvelle fenêtre
+    tooltip-access-source: Accéder à la source - Nouvelle fenêtre
     result: Résultat numéro
     select: sélectionner
     access: Accès
@@ -503,7 +503,7 @@ bloc:
       conservation: Conservation
       rights: Droits
   autority-result-information: #Bloc 16 Notice bibliographique + Bloc 18 Informations de la notice d'autorité
-    tooltip: Accéder à la source - Nouvelle page
+    tooltip: Accéder à la source - Nouvelle fenêtre
     musique-author: 'Auteur(s), compositeur(s), interprète(s)'
     other-musique-author: 'Autre(s) auteur(s), compositeur(s), interprète(s)'
     autor-dicover: Découvrir l'auteur
