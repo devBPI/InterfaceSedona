@@ -24,6 +24,23 @@
 		}
 	}
 
+	&--position {
+		input {
+	
+			& + label,
+			& + .form-check--label {
+	
+				&::before {
+					left: 0px!important;
+				}
+	
+				&::after {
+					left: 4px!important;
+				}
+			}
+		}
+	}
+
 	&.form-check-inline {
 		display: inline-flex;
 		width: auto;

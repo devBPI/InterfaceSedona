@@ -7,11 +7,11 @@
 	<div id="html-content" class="modal-body">
 		<div class="row justify-content-center">
 			<div class="col-12 col-md-10">
+				<p class="modal-form__indication"><span>*</span> {{ 'global.form-mandatory-field'|trans }}</p>
 				{{ form_row(form.title,{ 'label': 'modal.suggestion.field.title'|trans }) }}
 				{{ form_row(form.author,{ 'label': 'modal.suggestion.field.author'|trans }) }}
                 {{ form_row(form.editor, { 'label': 'modal.suggestion.field.editor'|trans }) }}
 				{{ form_row(form.documentType,{ 'label': 'modal.suggestion.field.document-type'|trans }) }}
-				<p class="modal-form__indication"><span>*</span> {{ 'global.form-mandatory-field'|trans }}</p>
 			</div>
 		</div>
 	</div>
