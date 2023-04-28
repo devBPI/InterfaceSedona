@@ -9,9 +9,6 @@
                         {% if object.availability is not empty and object.availability != 'bloc.notice-simple.document-available'|trans %}
                             {{ ' - '~object.availability }}
                         {% endif %}
-                        {% if object.valosite is empty and object.labelDisponibility is not empty or object.labelDisponibility != object.availability %}
-                            {{ ' - '~object.labelDisponibility }}
-                        {% endif %}
                     </span>
                     {% if object.valosite is empty %}
                         {% if object.cote %} - {{ object.cote }}{% endif %}
