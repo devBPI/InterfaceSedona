@@ -9,7 +9,11 @@
                         {% if object.availability is not empty and object.availability != 'bloc.notice-simple.document-available'|trans %}
                             {{ ' - '~object.availability }}
                         {% endif %}
+                        {% if object.valosite is empty and object.labelDisponibility is not empty and object.labelDisponibility != object.availability and 'recherche-simple' not in app.request.uri  %}
+                            {{ ' - '~object.labelDisponibility }}
+                        {% endif %}
                     </span>
+
                     {% if object.valosite is empty %}
                         {% if object.cote %} - {{ object.cote }}{% endif %}
                     {% else %}
