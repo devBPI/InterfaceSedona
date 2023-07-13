@@ -146,13 +146,13 @@ final class NoticeController extends AbstractController
      * @throws \Twig\Error\RuntimeError
      * @throws \Twig\Error\SyntaxError
      */
-    public function bibliographicRecordPDFAction(Request $request, $format='pdf')
+    public function bibliographicRecordPDFAction(Request $request)
     {
         try {
             $sendWithAttachement = (new ExportNotice())
                 ->setNotices($request->get('permalink'))
                 ->setImage($request->get('print-image', null) === 'print-image')
-                ->setFormatType($format)
+                ->setFormatType($request->get('format-type', "pdf"))
                 ->setShortFormat($request->get('print-type', 'print-long') !== 'print-long')
             ;
         } catch(NoResultException $e) {

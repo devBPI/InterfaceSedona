@@ -9,6 +9,7 @@ use App\Form\SuggestByMailType;
 use App\Model\Form\ReportError;
 use App\Model\Form\ShareByMail;
 use App\Model\Form\SuggestByMail;
+use App\Model\Notice;
 use App\Service\MailSenderService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\FormError;
@@ -39,21 +40,22 @@ final class ReportingController extends AbstractController
     }
 
     /**
-     * @Route("/signaler-une-erreur-sur-le-catalogue", name="common-report-error")
+     * @Route("/signaler-une-erreur-sur-le-catalogue/", name="common-report-error")
      * @param Request $request
      * @return \Symfony\Component\HttpFoundation\Response
      * @throws \Throwable
      * @throws \Twig\Error\LoaderError
      * @throws \Twig\Error\SyntaxError
      */
-    public function reportErrorAction(Request $request): Response
+    public function reportErrorAction(Request $request, string $permalink = null): Response
     {
         $form = $this->createForm(ReportErrorType::class, new ReportError());
         $form->handleRequest($request);
-
+        $request->getUri();
         if ($form->isSubmitted() && $form->isValid()) {
             /** @var ReportError $reportData */
             $reportData = $form->getData();
+
             if ($this->mailSenderService->sendEmail(
                 'common/modal/content_error.email.twig',
                 ['data' => $reportData],
@@ -74,6 +76,7 @@ final class ReportingController extends AbstractController
             'common/modal/report-error-content.html.twig',
             [
                 'form' => $form->createView(),
+                'permalink' => $permalink
             ]
         );
     }

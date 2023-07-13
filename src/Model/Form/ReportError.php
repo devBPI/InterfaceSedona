@@ -22,4 +22,26 @@ final class ReportError implements MessageInfoInterface, PersonneInterface
      */
     private $message;
 
+    /**
+     * @var string
+     */
+    private $permalink;
+
+    /**
+     * @return string
+     */
+    public function getPermalink(): ?string
+    {
+        return $this->permalink;
+    }
+
+    /**
+     * @param string $permalink
+     */
+    public function setPermalink(?string $permalink): void
+    {
+        $this->permalink = $permalink;
+    }
+
+
 }

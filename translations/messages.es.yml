@@ -169,7 +169,7 @@ modal:
       abstract: Notices abrégées
       long: Notices complètes
       img: Exporter les images
-    submit: Imprimer
+    submit: Exporter
   share:            #Modal 07 fin
     title: Partager
     subtitle-1: Permalien
@@ -378,10 +378,11 @@ bloc:
     add_to: Ajouter à
     my_selection: Ma sélection
     the_selection: la sélection
-    export: Exporter
+    export: Exporter Imprimer
     print: Imprimer
-    share: Partager
+    send: Envoyer
     help: Aide
+    eurokoi: Eurokoi
     help_search:
     suggest: Suggestion d'achat
     report-error: Signaler une erreur
@@ -461,6 +462,7 @@ bloc:
       nb-result-aria: dropdown-number-items
       nb-result-title: Sélectionner le nombre de résultat par colonne
       nb-result-by-col: '%nb% résultats par colonne'
+      order-mutual: '%value%'
       order: Choix du tri des documents
       order-aria: dropdown-tri-result
       order-choice: Trier par

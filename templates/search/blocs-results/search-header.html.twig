@@ -2,7 +2,11 @@
 	<div class="dropdown mt-3" lang="fr">
 		<span class="sr-only" aria-label="{{ ('bloc.search-header-footer.header.order-aria')|trans }}">{{ ('bloc.search-header-footer.header.order')|trans }}</span>
 		<button class="dropdown-toggle" type="button" id="{{ ('bloc.search-header-footer.header.order-aria')|trans }}" data-toggle="dropdown" aria-haspopup="listbox" aria-expanded="false">
-			{{ 'bloc.search-header-footer.header.order-choice'|trans }}
+			{% for index, value in constant('App\\Model\\Search\\SearchQuery::SORT') %}
+				{% if value == currentSort %}
+					{{ ('bloc.search-header-footer.header.order-'~ index)|trans }}
+				{% endif %}
+			{% endfor %}
 		</button>
 		<div class="dropdown-menu" aria-labelledby="{{ ('bloc.search-header-footer.header.order-aria')|trans }}" role="listbox" tabindex="-1">
             {% for index, value in constant('App\\Model\\Search\\SearchQuery::SORT') %}

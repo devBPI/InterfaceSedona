@@ -152,6 +152,14 @@ class NoticeAvailable
     }
 
     /**
+     * @return string
+     */
+    public function getCategorie(): string
+    {
+        return $this->categorie;
+    }
+
+    /**
      * @return bool
      */
     public function isAvailable(): bool

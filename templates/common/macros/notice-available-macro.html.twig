@@ -1,5 +1,4 @@
 {% macro availibility(object, notice ) %}
-
     {% if is_same_instance(object, "App\\Model\\NoticeAvailable")%}
         {% if constant('App\\Model\\NoticeAvailable::AVAILABLE') in [object.availability, object.labelDisponibility] %}
             <li class="availability--true availability--rayon">

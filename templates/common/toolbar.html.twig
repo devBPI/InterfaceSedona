@@ -3,6 +3,12 @@
 
 <div class="toolbar" lang="fr">
 	<ul class="toolbar__list">
+		<li class="toolbar__item">
+			<a href="{{ path('help_search') }}" title="{{ 'bloc.toolbar.help'|trans }} - {{ 'global.new-windows'|trans }}" target="_blank">
+				<img src="{{ asset('images/icones/icone-aide.svg') }}" alt="" class="icone-interrogation" />
+				<span>{{ 'bloc.toolbar.help'|trans }}</span>
+			</a>
+		</li>
 		{% set content %}
 			<img src="{{ asset('images/icones/icone-coeur.svg') }}" alt="" class="icone-coeur" />
 			<span><span class="sr-only">{{ 'bloc.toolbar.add_to'|trans }} </span>{{ 'bloc.toolbar.my_selection'|trans }}</span>
@@ -11,13 +17,8 @@
 
 		{% if app.request.attributes.get('_route') !='user_selection_index' %}
 			{% set content %}
-				<img src="{{ asset('images/icones/icone-fichier.svg') }}" alt="" class="icone-fichier" />
-				<span>{{ 'bloc.toolbar.export'|trans }}</span>
-			{% endset %}
-			{{ action_attributes('export', content, toolbar, 'js-print-action') }}
-			{% set content %}
 				<img src="{{ asset('images/icones/icone-imprimante.svg') }}" alt="" class="icone-imprimante"/>
-				<span>{{ 'bloc.toolbar.print'|trans }}</span>
+				<span>{{ 'bloc.toolbar.export'|trans }}</span>
 			{% endset %}
 			{{ action_attributes('print', content, toolbar, 'js-print-action') }}
 		{% else %}
@@ -27,26 +28,13 @@
 			{% endset %}
 			{{ action_attributes('selection-export', content, toolbar, 'js-selection-print-action',  'export') }}
 
-			{% set content %}
-				<img src="{{ asset('images/icones/icone-imprimante.svg') }}" alt="" class="icone-imprimante"/>
-				<span>{{ 'bloc.toolbar.print'|trans }}</span>
-			{% endset %}
-			{{ action_attributes('selection-export', content, toolbar, 'js-selection-print-action', 'print') }}
 		{% endif %}
 		<li class="toolbar__item">
 			<button data-target="#modal-share" data-toggle="modal">
-				<img src="{{ asset('images/icones/icone-partage.svg') }}" alt="" class="icone-partage" />
-				<span>{{ 'bloc.toolbar.share'|trans }}</span>
+				<img src="{{ asset('images/icones/Envoyer_ON_T.jpg') }}" alt="" class="icone-partage" />
+				<span>{{ 'bloc.toolbar.send'|trans }}</span>
 			</button>
 		</li>
-
-		<li class="toolbar__item">
-			<a href="{{ path('help_search') }}" title="{{ 'bloc.toolbar.help'|trans }} - {{ 'global.new-windows'|trans }}" target="_blank">
-				<img src="{{ asset('images/icones/icone-aide.svg') }}" alt="" class="icone-interrogation" />
-				<span>{{ 'bloc.toolbar.help'|trans }}</span>
-			</a>
-		</li>
-
 		<li class="toolbar__item">
 			<button data-target="#modal-suggest" data-toggle="modal" data-reload="true">
 				<img src="{{ asset('images/icones/icone-suggestion.svg') }}" alt="" class="icone-livre" />
@@ -60,7 +48,10 @@
 			</button>
 		</li>
 		<li class="toolbar__item">
-
+			<a href="{{ path('help_search') }}" title="{{ 'bloc.toolbar.eurokoi-tooltip' | trans }}" target="_blank">
+				<img src="{{ asset('images/icones/logo_icone_eurekoi_RVB_FB__1_.jpg') }}" alt="" class="icone-eurokoi" />
+				<span>{{ 'bloc.toolbar.eurokoi'|trans }}</span>
+			</a>
 		</li>
 	</ul>
 </div>

@@ -370,5 +370,19 @@ class NoticeBuildFileService
         $this->logger->info("###i ".implode("|", $i));*/
         return new PrintNoticeWrapper([],  $a, $n, $i);
     }
+
+    public function print(\Symfony\Component\HttpFoundation\Request $request)
+    {
+        $sendAttachement = (new ExportNotice())
+            ->setAuthorities($request->get('authorities', ''))
+            ->setNotices($request->get('notices', ''))
+            ->setIndices($request->get('indices', ''))
+            ->setImage($request->get('print-image', null) === 'print-image')
+            ->setFormatType($request->get('format-type'))
+            ->setShortFormat($request->get('print-type', 'print-long') !== 'print-long')
+        ;
+
+        return  $this->buildFile($sendAttachement, ObjSearch::class);
+    }
 }
 

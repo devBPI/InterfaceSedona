@@ -25,6 +25,7 @@ class Notice extends AbstractImage implements NoticeInterface, RecordInterface
     const CATALOGUE_BPI = 'Catalogue Bpi';
     const NOTICE_CONTENU_TYPE = [self::MUSIC, 'Site et base'];
     const NOTICE_CONTENT_REVUE_TYPE = ['Revue, journal', 'Article', 'Revue numérique'];
+    const NOTICE_EASY_TO_READ = "Facile à lire";
     const MUSIC = 'Musique';
     const VIDEO = 'Vidéo';
 

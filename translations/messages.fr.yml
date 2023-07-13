@@ -167,12 +167,16 @@ modal:
       img: Exporter les images
     submit: Envoyer
   print:            #Modal 06 imprimer
-    title: Paramétrer l'impression
+    title: Exporter / Imprimer
     field:
+      choose: Choisir
+      file-format: Format du fichier
+      text-format: Mettre au format texte
+      pdf-format: Mettre au format PDF
       abstract: Notices abrégées
       long: Notices complètes
       img: Exporter les images
-    submit: Imprimer
+    submit: Exporter
   share:            #Modal 07 fin
     title: Partager
     subtitle-1: Permalien
@@ -206,9 +210,17 @@ modal:
     submit: Valider
     submit-sr-only: l'envoi de la suggestion
   report:      #Modal 09 signaler une erreur
-    title: Signaler une erreur sur le catalogue
+    title: Signaler une erreur dans la notice
+    sub-title: Le formulaire ci-dessous concerne uniquement les erreurs dans cette notice du catalogue de la Bpi.
+    sub-title-2: "Pour tout autre demande sur le catalogue: %link_start% contactez-nous%link_end%"
+    infobulle: "Contactez-nous - Nouvelle fenêtre"
+    new-window: "Contactez-nous - Nouvelle fenêtre"
+    contact-us-link: https://www.bpi.fr/contactez-nous/
+    lien: contactez-nous
+    permalink: lien permanent de la notice %lien%
     subtitle: Coordonnées
     field:
+      permalink: "Permalien de la notice concernée:"
       subject: Signaler une erreur
       object: Objet
       message: Message
@@ -386,9 +398,11 @@ bloc:
     add_to: Ajouter à
     my_selection: Ma sélection
     the_selection: la sélection
-    export: Exporter
+    export: Exporter Imprimer
     print: Imprimer
-    share: Partager
+    send: Envoyer
+    eurokoi: Eurokoi
+    eurokoi-tooltip: Eurêkoi, service de réponses à distance - Nouvelle fenêtre
     help: Aide
     help_search:
     suggest: Suggestion d'achat
@@ -472,6 +486,7 @@ bloc:
       nb-result-title: Sélectionner le nombre de résultat par colonne
       nb-result-by-col: '%nb% résultats par colonne'
       order: Choix du tri des documents
+      order-mutual: '%value%'
       order-aria: dropdown-tri-result
       order-choice: Trier par
       order-pertinence: Pertinence

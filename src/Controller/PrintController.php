@@ -43,7 +43,7 @@ final class PrintController extends AbstractController
      * @throws \Twig\Error\RuntimeError
      * @throws \Twig\Error\SyntaxError
      */
-    public function printSelection(Request $request, string $format='pdf')
+    public function printSelection(Request $request)
     {
         $sendAttachement = new ExportNotice();
 
@@ -52,7 +52,7 @@ final class PrintController extends AbstractController
             ->setAuthorities($request->get('authorities'))
             ->setIndices($request->get('indices'))
             ->setImage($request->get('print-image', null) === 'print-image')
-            ->setFormatType($format)
+            ->setFormatType($request->get("format-type", "pdf"))
             ->setShortFormat($request->get('print-type', 'print-long') !== 'print-long')
         ;
 

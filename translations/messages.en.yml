@@ -169,7 +169,7 @@ modal:
       abstract: Notices abrégées
       long: Notices complètes
       img: Exporter les images
-    submit: Imprimer
+    submit: Exporter
   share:            #Modal 07 fin
     title: Partager
     subtitle-1: Permalien
@@ -378,10 +378,12 @@ bloc:
     add_to: Ajouter à
     my_selection: Ma sélection
     the_selection: la sélection
-    export: Exporter
+    export: Exporter Imprimer
     print: Imprimer
-    share: Partager
+    send: Envoyer
     help: Aide
+    eurokoi: Eurokoi
+    eurokoi-tooltip: Eurêkoi, service de réponses à distance - Nouvelle fenêtre
     help_search:
     suggest: Suggestion d'achat
     report-error: Signaler une erreur

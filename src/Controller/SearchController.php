@@ -247,18 +247,9 @@ final class SearchController extends AbstractController
      * @throws \Twig\Error\RuntimeError
      * @throws \Twig\Error\SyntaxError
      */
-    public function printAction(Request $request,string $format='pdf')
+    public function printAction(Request $request)
     {
-        $sendAttachement = (new ExportNotice())
-            ->setAuthorities($request->get('authorities', ''))
-            ->setNotices($request->get('notices', ''))
-            ->setIndices($request->get('indices', ''))
-            ->setImage($request->get('print-image', null) === 'print-image')
-            ->setFormatType($format)
-            ->setShortFormat($request->get('print-type', 'print-long') !== 'print-long')
-      ;
-
-        return  $this->buildFileContent->buildFile($sendAttachement, ObjSearch::class);
+        return $this->buildFileContent->print($request);
     }
 
     /**
@@ -306,7 +297,7 @@ final class SearchController extends AbstractController
         $objSearch = $this->searchService->createObjSearch($search, $request);
         $objSearch->setResults($this->searchProvider->getListBySearch($search));
         $request->query->remove('action');
-
+        $currentSort = $request->get('sort');
         $request->getSession()->set(NavigationService::SESSION_KEY, serialize(new ListNavigation($objSearch)));
         $request->getSession()->set('searchToken', serialize($objSearch));
 
@@ -323,6 +314,7 @@ final class SearchController extends AbstractController
                 'seeAll'    => $seeAll,
                 'objSearch' => $objSearch,
                 'printRoute' => $this->generateUrl('search_pdf', ['format' => 'pdf']),
+                'currentSort' => $currentSort
             ]
         );
     }

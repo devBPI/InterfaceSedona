@@ -4,7 +4,9 @@
 
 {% block body_html %}
     Bonjour,
-
+    <p>
+        {{ "modal.report.field.permalink"|trans }}   : <a href="{{ data.permalink | raw }}">{{ data.permalink}}</a>
+    </p>
     <p>
         {{ "modal.report.field.message"|trans }}   :{{ data.message}}
     </p>

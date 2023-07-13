@@ -30,6 +30,11 @@ final class ReportErrorType extends AbstractType
                 'label'     => 'modal.report.field.object',
                 'attr'      => ['autocomplete'=> 'off' ]
             ])
+            ->add('permalink', TextType::class,[
+                'required'  => true,
+                'label'     => 'modal.report.field.permalink',
+                'attr'      => ['autocomplete'=> 'off' ]
+            ])
             ->add('message', TextareaType::class,[
                 'required'  => true,
                 'label'     => 'modal.report.field.message',

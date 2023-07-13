@@ -1,17 +1,72 @@
 <div role="dialog" aria-modal="true" data-backdrop="static" aria-labelledby="modal-export-title" class="modal fade" id="modal-export" tabindex="-1" lang="fr">
 	<div class="modal-dialog modal-dialog-centered">
 		<div class="modal-content">
-			<div class="modal-header">
-				<h1 class="n1 modal-header__title" id="modal-export-title">{{ 'modal.export.title'|trans }}</h1>
-				<button class="close" type="button" data-dismiss="modal">
-					<img src="{{ asset('images/icones/icone-croix-blanc.svg') }}" alt="{{ 'global.modal-close'|trans }}" />
-				</button>
-			</div>
-			{% if toolbar in ['App\\Model\\Search\\ObjSearch', 'App\\Entity\\UserSelectionDocument'] %}
-				{{ render(controller('App\\Controller\\ExportController::sendNoticesOnAttachementAction', {'type': toolbar } )) }}
-			{% elseif notice is defined %}
-                {{ render(controller('App\\Controller\\ExportController::sendNoticeWithAttachementAction', {'type': toolbar, 'permalink': notice.permalink } )) }}
-			{% endif %}
+			<form class="modal-form gtm-form-print" method="get" action="{{ printRoute }}">
+				<div class="modal-header">
+					<h1 class="n1 modal-header__title" id="modal-print-title">{{ 'modal.print.title'|trans }}</h1>
+					<button class="close" type="button" data-dismiss="modal">
+						<img src="{{ asset('images/icones/icone-croix-blanc.svg') }}" alt="{{ 'global.modal-close'|trans }}" />
+					</button>
+				</div>
+				<div class="modal-body">
+					<div class="form-group">
+						<div class="row justify-content-center">
+							<div class="col-6 col-md-6">
+								<p>{{ "modal.print.field.choose" | trans }}</p>
+							</div>
+							<div class="col-6 col-md-6">
+								<div class="form-check">
+									<input class="form-check-input" type="radio" id="print-abstract" value="print-abstract" name="print-type" checked>
+									<label class="form-check-label" for="print-abstract">{{ 'modal.print.field.abstract'|trans }}</label>
+								</div>
+
+								<div class="form-check">
+									<input class="form-check-input" type="radio" id="print-long" value="print-long" name="print-type">
+									<label class="form-check-label" for="print-long">{{ 'modal.print.field.long'|trans }}</label>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="form-group">
+						<div class="row justify-content-center">
+							<div class="col-6 col-md-6">
+								<p>{{ "modal.print.field.file-format" | trans }}</p>
+							</div>
+							<div class="col-6 col-md-6">
+								<div class="form-check">
+									<input class="form-check-input" type="radio" id="text-type" value="txt" name="format-type" checked>
+									<label class="form-check-label" for="text-type">{{ 'modal.print.field.text-format'|trans }}</label>
+								</div>
+
+								<div class="form-check">
+									<input class="form-check-input" type="radio" id="pdf-type" value="pdf" name="format-type">
+									<label class="form-check-label" for="pdf-type">{{ 'modal.print.field.pdf-format'|trans }}</label>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="form-group">
+						<div class="row justify-content-center">
+							<div class="col-12 col-md-10">
+								<div class="form-check">
+									<input class="form-check-input" type="checkbox" id="print-image" value="print-image" name="print-image">
+									<label class="form-check-label" for="print-image">{{ 'modal.print.field.img'|trans }}</label>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<input class="js-print-notices" 	type="hidden" name="notices" 	value="">
+				<input class="js-print-authorities" type="hidden" name="authorities" value="">
+				<input class="js-print-indices" type="hidden" name="indices" value="">
+				<div class="modal-footer">
+					<button type="button" data-dismiss="modal" class="btn btn-lg btn-secondary">{{ 'global.modal-cancel'|trans }}</button>
+					<button type="submit" class="btn btn-lg btn-primary">{{ 'modal.print.s%M§/jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjubmit'|trans }}</button>
+				</div>
+
+			</form>
 		</div>
 	</div>
 </div>

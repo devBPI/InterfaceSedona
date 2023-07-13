@@ -36,7 +36,6 @@
 	<div class="d-none">
 		{% include 'search/blocs-results/docs-detail.html.twig' with {'notice': notice, 'type': 'Notice', 'index': 0, 'mode': 'detail'} %}
 	</div>
-
 	<div class="bibliographic-result">
 		<div class="row justify-content-between">
 			{% include "notice/blocs/results-navigation.html.twig" with { 'origin': origin|default(null),'routeTarget': toggle_to_path_parcours('record_bibliographic',app.request.attributes.get(constant('App\\Model\\Search\\ObjSearch::PARAM_PARCOURS_NAME')), {"permalink":notice.permalink}) } %}

@@ -17,6 +17,15 @@
         {% endfor %}
     {% endif %}
 </div>
+<div class="col">
+    {% for available in notice.copies | sort((a, b) => a.cote <=> b.cote) %}
+        {% if constant('App\\Model\\Notice::NOTICE_EASY_TO_READ') == available.category %}
+            <img src="{{ asset('images/icones/easy_to_read.jpg') }}">
+        {% endif %}
+    {% endfor %}
+
+
+</div>
 <div class="col-12">
     <div class="row align-items-md-center justify-content-between">
         <div class="col-12">
