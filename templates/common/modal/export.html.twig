@@ -1,7 +1,7 @@
 <div role="dialog" aria-modal="true" data-backdrop="static" aria-labelledby="modal-export-title" class="modal fade" id="modal-export" tabindex="-1" lang="fr">
 	<div class="modal-dialog modal-dialog-centered">
 		<div class="modal-content">
-			<form class="modal-form gtm-form-print" method="get" action="{{ printRoute }}">
+			<form class="modal-form gtm-form-print" method="get" action="{{ printRoute ?? null }}">
 				<div class="modal-header">
 					<h1 class="n1 modal-header__title" id="modal-print-title">{{ 'modal.print.title'|trans }}</h1>
 					<button class="close" type="button" data-dismiss="modal">
