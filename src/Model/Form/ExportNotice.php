@@ -54,9 +54,32 @@ final class ExportNotice
     private $object;
 
     /**
+     * @var string
+     */
+    private $sender;
+
+
+    /**
      * @return string
      */
-    public function getObject(): string
+    public function getSender(): ?string
+    {
+        return $this->sender;
+    }
+
+    /**
+     * @param string $sender
+     */
+    public function setSender(string $sender): void
+    {
+        $this->sender = $sender;
+    }
+
+
+    /**
+     * @return string
+     */
+    public function getObject(): ?string
     {
         return $this->object;
     }

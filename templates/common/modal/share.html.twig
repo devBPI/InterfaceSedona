@@ -16,15 +16,6 @@
 				<div class="addthis_inline_share_toolbox"></div>
 			</div>
 
-			<div class="modal-body">
-				<h2 class="n1">{{ 'modal.share.subtitle-1'|trans }}</h2>
-				<div class="d-flex">
-					<label for="url-page" class="sr-only">{{ 'modal.share.url-page'|trans }}</label>
-					<input type="text" class="js-url-to-copy form-control" id="url-page" value="{{ currentPermalink }}">
-					<button type="button" class="js-copy_to_clipboard btn btn-primary">{{ 'modal.share.btn-cpoy'|trans }}<span class="sr-only"> {{ 'modal.share.btn-cpoy-sr-only'|trans }}</span></button>
-				</div>
-			</div>
-
             {{ render(controller('App\\Controller\\ReportingController::shareByMailAction', {'link': currentPermalink ?? absolute_url(app.request.uri)})) }}
 		</div>
 	</div>

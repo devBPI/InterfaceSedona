@@ -2,15 +2,19 @@
 
 namespace App\Controller;
 
+use App\Entity\UserSelectionDocument;
+use App\Form\ExportNoticeType;
 use App\Form\ReportErrorPageType;
 use App\Form\ReportErrorType;
 use App\Form\ShareByMailType;
 use App\Form\SuggestByMailType;
+use App\Model\Form\ExportNotice;
 use App\Model\Form\ReportError;
 use App\Model\Form\ShareByMail;
 use App\Model\Form\SuggestByMail;
 use App\Model\Notice;
 use App\Service\MailSenderService;
+use App\Service\NoticeBuildFileService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\FormError;
 use Symfony\Component\HttpFoundation\Request;
@@ -28,15 +32,20 @@ final class ReportingController extends AbstractController
      * @var MailSenderService
      */
     private $mailSenderService;
-
+    /**
+     * @var NoticeBuildFileService
+     *
+     */
+    private $noticeBuildFileService;
     /**
      * ReportingController constructor.
      * @param MailSenderService $mailSenderService
      */
-    public function __construct( MailSenderService $mailSenderService)
+    public function __construct( MailSenderService $mailSenderService, NoticeBuildFileService  $noticeBuildFileService)
     {
 
         $this->mailSenderService = $mailSenderService;
+        $this->noticeBuildFileService = $noticeBuildFileService;
     }
 
     /**
@@ -121,7 +130,7 @@ final class ReportingController extends AbstractController
     }
 
     /**
-     * @Route("/share-by-mail", name="share_by_mail")
+     * @Route("/share-by-mail/", name="share_by_mail")
      * @param Request $request
      * @return Response
      * @throws \Throwable
@@ -130,19 +139,20 @@ final class ReportingController extends AbstractController
      */
     public function shareByMailAction(Request $request): Response
     {
-        $form = $this->createForm(ShareByMailType::class, new ShareByMail());
+        $form = $this->createForm(ExportNoticeType::class, new ExportNotice());
         $form->handleRequest($request);
         $link = $request->get('link');
         if ($form->getData() instanceof  ShareByMail && ($dataLink =  $form->getData()->getLink())!==null) {
             $link = $dataLink;
         }
         if ($form->isSubmitted() && $form->isValid()){
-            /** @var ShareByMail $object */
+            /** @var ExportNotice $object */
             $object = $form->getData();
-
+            $content = $this->noticeBuildFileService->buildFile($object, UserSelectionDocument::class);
+            dump($object);
             if ($this->mailSenderService->sendEmail(
                 'common/modal/content.email.twig',
-                ['data' => $object],
+                ['data' => $object, 'content' => $content],
                 null,
                 $object->getReciever(),
                 $object->getSender(),

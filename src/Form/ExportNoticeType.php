@@ -11,6 +11,7 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -67,6 +68,17 @@ final class ExportNoticeType extends AbstractType
                 'attr'      => ['autocomplete' => "off"],
                 'label_attr'=> ['compl' => 'modal.email-example']
             ])
+             ->add('sender', EmailType::class, [
+                 'required'  => true,
+                 'label'     => 'modal.share.field.sender',
+                 'attr'      => ['autocomplete' => "off"],
+                 'label_attr'=> ['compl' => 'modal.email-example']
+             ])
+             ->add('object', TextType::class,[
+                 'required'  => false,
+                 'label'     => 'modal.export.field.object',
+                 'attr'      => ['autocomplete'=> 'off' ]
+             ])
              ->add('message', TextareaType::class,[
                 'required'  => false,
                 'label'     => 'modal.export.field.comments',
