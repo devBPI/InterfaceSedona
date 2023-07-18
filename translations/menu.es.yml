@@ -63,12 +63,13 @@ help:
           name: Services
           link: /fr/aide/services
           children:
-            Alerte de mise en rayon: /fr/aide/services#alerte-mise-en-rayo
-            Impression et export: /fr/aide/services#impression-export
-            Suggestion d'achat: /fr/aide/services#suggestion-achat
             Historique de recherche: /fr/aide/services#historique
             Ma sélection: /fr/aide/services#selection
+            Exporter, imprimer et envoyer: /fr/aide/services#exporter-imprimer-envoyer
+            Suggestion d'achat: /fr/aide/services#suggestion-achat
             Signaler une erreur: /fr/aide/services#signaler-erreur
+            Eurêkoi, service questions/réponses: /fr/aide/services#eurekoi-qr
+            # Alerte de mise en rayon: /fr/aide/services#alerte-mise-en-rayon
 
   Mon compte:
     link: #

@@ -9,10 +9,7 @@
 	<h1 class="n1" lang="fr">Services</h1>
 	<div lang="fr">
 		<p class="text-justify">Les services détaillés ci-dessous sont, sauf indication contraire, accessibles sur toutes les pages via la barre verticale affichée en permanence à droite de l’écran.</p>
-		<div class="row justify-content-center">
-			<div class="col-12 col-md-2">
-				<img src="{{ asset('/images/aide/09barre-utilitaires-verticale.png') }}" alt="Barre utilitaires verticale" class="mb-5 img-fluid d-block mx-auto" /> 
-		</div>
+		<img src="{{ asset('/images/aide/09barre-utilitaires-verticale.png') }}" alt="Barre utilitaires verticale" class="mb-5 img-fluid d-block mx-auto" />
 		<div class="row justify-content-center">
 			<div class="col-12 col-md-6">
 				<img src="{{ asset('/images/aide/10barre-utilitaires-horizontale.png') }}" alt="Barre utilitaires horizontale" class="mb-5 img-fluid d-block mx-auto" />
@@ -21,46 +18,13 @@
 				<p class="text-justify">Lors de l’affichage sur tablette ou mobile, cette barre est positionnée horizontalement en haut des résultats ou des notices.</p>
 			</div>
 		</div>
-		<p class="text-justify">Selon la page où vous vous trouvez, un service peut être inactif, la vignette correspondante est alors en grisé dans la barre.</p>
+		<p class="text-justify">Selon la page où vous vous trouvez, un service peut être inactif, la vignette correspondante est alors en grisé dans la barre. Pour le rendre actif, il suffit de sélectionner une ou plusieurs notices.</p>
 		<br>
-		<div id="alerte-mise-en-rayon">
-			<h2 class="n2">Alerte de mise en rayon</h2>
-			<img src="{{ asset('/images/aide/11alerte-mise-en-rayon.png') }}" alt="Alerte mise en rayon" class="mb-3 img-fluid d-block mx-auto" /> 
-			<p class="text-justify">Ce service n’est présent que sur les notices de documents indisponibles à la bibliothèque (en commande, envoi chez le relieur, ...)</p>
-			<p class="text-justify">L’alerte permet d’être informé(e) de leur disponibilité à la Bpi. Cliquez sur l’icône enveloppe à côté du libellé “Indisponible”. Indiquez votre adresse électronique et cliquez sur “Envoyer”. Vous recevrez un message lorsque le document sera disponible. Attention : ceci ne correspond pas à une réservation du document.</p>
-			<br>
-		</div>
-		<div id="impression-export">
-			<h2 class="n2">Impression et export</h2>
-				<h3 class="n5">Icône Imprimer</h3>
-				<img src="{{ asset('/images/aide/12imprimer.png') }}" alt="Imprimer" class="mb-3 img-fluid" /> 
-				<p class="text-justify">Cochez la(les) notice(s) au préalable puis cliquez sur l’icône et choisissez le format d’impression (notice brève ou complète).</p>
-				<br>
-				<h3 class="n5">Icône Exporter</h3>
-				<img src="{{ asset('/images/aide/13exporter.png') }}" alt="Exporter" class="mb-3 img-fluid" /> 
-				<p class="text-justify">Cette icône permet l’envoi par messagerie électronique de la(des) notice(s) sélectionnée(s). Cochez la(les) notice(s) au préalable puis cliquez sur l’icône.</p> 
-				<p class="text-justify">Les notices sont envoyées dans un fichier joint. Vous choisissez de recevoir un fichier en format texte ou en format PDF.</p>
-				<p class="text-justify">En option, vous pouvez également choisir d’envoyer les vignettes d’illustration (uniquement pour un fichier en format PDF).</p>
-				<br>
-				<h3 class="n5">Icône Partager</h3>
-				<img src="{{ asset('/images/aide/14partager.png') }}" alt="Partager" class="mb-3 img-fluid" /> 
-				<ul>
-					<li>Pour partager la page sur les réseaux sociaux</li>
-					<li>Pour exploiter le permalien du document consulté</li>
-					<li>Pour envoyer la page à un ami</li>
-				</ul>
-				<br>
-		</div>
-		<div id="suggestion-achat">
-			<h2 class="n2">Suggestion d'achat</h2>
-			<img src="{{ asset('/images/aide/15suggestion-achat.png') }}" alt="Suggestion d'achat" class="mb-3 img-fluid" /> 
-			<p class="text-justify">Cette icône permet de demander l’acquisition d’un document par la Bpi. Seul le titre du document suggéré à l’achat est obligatoire pour remplir le formulaire et en permettre l’envoi. Les autres données sont facultatives.</p>
-			<br>
-		</div>
 		<div id="historique">
 			<h2 class="n2">Historique de recherche</h2>
 			<img src="{{ asset('/images/aide/16historique-recherche.png') }}" alt="Historique de recherche" class="mb-3 img-fluid" /> 
-			<p class="text-justify">Chaque recherche documentaire effectuée est archivée temporairement. Vous pouvez accéder aux termes de vos requêtes passées en cliquant sur l’icône Historique située tout en haut à droite de l’écran. En cliquant sur la loupe (en bout de ligne), la recherche est relancée. La durée de conservation de l’historique sans vous connecter à votre compte est limitée à une vingtaine de minutes.</p>
+			<p class="text-justify">Chaque recherche documentaire effectuée est archivée temporairement. Vous pouvez accéder aux termes de vos requêtes passées en cliquant sur l’icône Historique située tout en haut à droite de l’écran. En cliquant sur la loupe (en bout de ligne), la recherche est relancée.</p>
+			<p class="text-justify">La durée de conservation de l’historique sans vous connecter à votre compte est limitée à une vingtaine de minutes.</p>
 			<br>
 		</div>
 		<div id="selection">
@@ -73,12 +37,51 @@
 			<p class="text-justify">Si vous utilisez la sélection sans être connecté à votre compte, la sélection aura une durée limitée à une vingtaine de minutes.</p>
 			<br>
 		</div>
+		<div id="exporter-imprimer-envoyer">
+			<h2 class="n2">Exporter, imprimer et envoyer</h2>
+				<h3 class="n5">Icône Exporter Imprimer</h3>
+				<img src="{{ asset('/images/aide/13exporter.png') }}" alt="Exporter" class="mb-3 img-fluid" /> 
+				<p class="text-justify">Cette icône vous permet de créer un document que vous pourrez enregistrer ou imprimer. </p> 
+				<p class="text-justify">Cochez-la(les) notice(s) au préalable puis cliquez sur l’icône et choisissez vos options :</p>
+				<ul>
+					<li>notices abrégées ou complètes ;</li>
+					<li>le format du fichier que vous souhaitez exporter : format texte ou PDF.</li>
+				</ul>
+				<p class="text-justify">En option, vous pouvez également choisir d'exporter les vignettes d’illustration en cochant la case exporter les images (uniquement pour un fichier en format PDF).</p>
+				<br>
+				<h3 class="n5">Icône Envoyer</h3>
+				<img src="{{ asset('/images/aide/14partager.png') }}" alt="Partager" class="mb-3 img-fluid" /> 
+				<p class="text-justify">Cette icône permet d’envoyer par mail une ou des notices à vous-mêmes ou à une personne de votre choix.</p>
+				<p class="text-justify">Cochez-la (les) notice (s) au préalable puis cliquez sur l’icône et remplissez le formulaire. Choisissez de recevoir les références en format abrégé ou complet.</p>
+				<p class="text-justify">Les références sont envoyées dans le corps du mail.</p>
+				<br>
+		</div>
+		<div id="suggestion-achat">
+			<h2 class="n2">Suggestion d'achat</h2>
+			<img src="{{ asset('/images/aide/15suggestion-achat.png') }}" alt="Suggestion d'achat" class="mb-3 img-fluid" /> 
+			<p class="text-justify">Cette icône permet de demander l’acquisition d’un document par la Bpi. Avant de remplir ce formulaire, merci de faire une recherche dans le catalogue pour vérifier si le document n’est pas dans nos collections. Seul le titre du document suggéré à l’achat est obligatoire pour remplir le formulaire et en permettre l’envoi. Les autres données sont facultatives.</p>
+			<br>
+		</div>
 		<div id="signaler-erreur">
 			<h2 class="n2">Signaler une erreur</h2>
 			<img src="{{ asset('/images/aide/19signaler-erreur.png') }}" alt="Signaler une erreur" class="mb-3 img-fluid" /> 
-			<p class="text-justify">Pour signaler une erreur sur une référence du catalogue.</p>
+			<p class="text-justify">Pour accéder à ce service (ou "pour activer ce bouton"), ouvrez la notice bibliographique en cliquant sur le titre ou sur l'image".</p>
 			<br>
 		</div>
+		<div id="eurekoi-qr">
+			<h2 class="n2">Services questions/réponses</h2>
+			<p class="text-justify">Vous n’avez pas trouvé ce que vous cherchiez ? Demandez à <a href="https://www.eurekoi.org/" href="https://www.eurekoi.org/" title="{{ 'footer.partenaires.eurekoi'|trans }} - {{ 'global.new-windows'|trans }}" target="_blank">Eurêkoi</a>, service de questions/réponses en ligne !</p>
+			<p>Vous aurez une réponse fiable et gratuite, sous 72 h, par mail.</p>
+			<img width="50%" src="{{ asset('/images/aide/eurokoi-help.png') }}"  class="mb-5 img-fluid d-block mx-auto" />
+			<br>
+		</div>
+		{# <div id="alerte-mise-en-rayon">
+			<h2 class="n2">Alerte de mise en rayon</h2>
+			<img src="{{ asset('/images/aide/11alerte-mise-en-rayon.png') }}" alt="Alerte mise en rayon" class="mb-3 img-fluid d-block mx-auto" /> 
+			<p class="text-justify">Ce service n’est présent que sur les notices de documents indisponibles à la bibliothèque (en commande, envoi chez le relieur, ...)</p>
+			<p class="text-justify">L’alerte permet d’être informé(e) de leur disponibilité à la Bpi. Cliquez sur l’icône enveloppe à côté du libellé “Indisponible”. Indiquez votre adresse électronique et cliquez sur “Envoyer”. Vous recevrez un message lorsque le document sera disponible. Attention : ceci ne correspond pas à une réservation du document.</p>
+			<br>
+		</div> #}
 	</div>
 
 {% endblock %}
