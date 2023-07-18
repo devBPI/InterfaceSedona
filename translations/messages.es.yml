@@ -320,7 +320,7 @@ modal:
     relaunch: Relancer votre recherche avec <a href="%link%" aria-label="Relancer votre recherche avec l'Aide à la recherche"> l’Aide à la recherche</a>
     more-choice: Elargir votre recherche en consultant <a href="https://www.bpi.fr/bpi-numerique/" target="_blank" aria-label="Elargir votre recherche en consultant BPI numériques - Nouvelle fenêtre"> BPI numériques</a>
     form: Utiliser le formulaire <a href="javascript:void(0);" data-target="#modal-suggest" data-toggle="modal" aria-label="Suggestion d'achat">Suggestion d'achat</a>
-    eurokoi: Poser une question à un bibliothécaire, en utilisant le service <a target="_blank" aria-label="Utilisé le service Eurêkoi - Nouvelle fenêtre" href="https://www.eurekoi.org/"> Eurêkoi </a>
+    eurekoi: Poser une question à un bibliothécaire, en utilisant le service <a target="_blank" aria-label="Utilisé le service Eurêkoi - Nouvelle fenêtre" href="https://www.eurekoi.org/"> Eurêkoi </a>
 
 page:
   breadcrumb: Fil d'ariane
@@ -382,7 +382,7 @@ bloc:
     print: Imprimer
     send: Envoyer
     help: Aide
-    eurokoi: Eurokoi
+    eurekoi: Eurêkoi
     help_search:
     suggest: Suggestion d'achat
     report-error: Signaler une erreur
@@ -496,6 +496,7 @@ bloc:
       conservation: Conservation
       rights: Droits
   autority-result-information: #Bloc 16 Notice bibliographique + Bloc 18 Informations de la notice d'autorité
+    fal: Facile à lire
     musique-author: 'Auteur(s), compositeur(s), interprète(s)'
     other-musique-author: 'Autre(s) auteur(s), compositeur(s), interprète(s)'
     autor-dicover: Découvrir l'auteur

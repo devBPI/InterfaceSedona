@@ -1,61 +1,65 @@
 {% import "common/macros/notice-available-macro.html.twig" as macros %}
 {% import "common/macros/detail-macro.html.twig" as notice_macros %}
 
-
-<div class="col-auto">
-    <div class="bibliographic-result__type">
-        <img src="{{ asset('images/types/type-' ~ notice.slugifiedType ~ '.svg') }}" alt="{{ notice.type }}" title="{{ notice.type }}" />
-    </div>
 </div>
-<div class="col">
-    {% for title in notice.titles %}
-        <h1 class="n1 bibliographic-result__title" lang="fr">{{ title }}</h1>
-    {% endfor %}
-    {% if notice.titleForm %}
-        {% for title in notice.titleForm %}
-            <h1 class="n1 bibliographic-result__title" lang="fr"><i>{{ title }}</i></h1>
-        {% endfor %}
-    {% endif %}
-</div>
-<div class="col">
-    {% for available in notice.copies | sort((a, b) => a.cote <=> b.cote) %}
-        {% if constant('App\\Model\\Notice::NOTICE_EASY_TO_READ') == available.category %}
-            <img src="{{ asset('images/icones/easy_to_read.jpg') }}">
-        {% endif %}
-    {% endfor %}
+<div class="row">
+    <div class="col">
+        <div class="row">
+            <div class="col-auto pr-0">
+                <div class="bibliographic-result__type">
+                    <img src="{{ asset('images/types/type-' ~ notice.slugifiedType ~ '.svg') }}" alt="{{ notice.type }}" title="{{ notice.type }}" />
+                </div>
+            </div>
+            <div class="col">
+                {% for title in notice.titles %}
+                    <h1 class="n1 bibliographic-result__title" lang="fr">{{ title }}</h1>
+                {% endfor %}
+                {% if notice.titleForm %}
+                    {% for title in notice.titleForm %}
+                        <h1 class="n1 bibliographic-result__title" lang="fr"><i>{{ title }}</i></h1>
+                    {% endfor %}
+                {% endif %}
+            </div>
+            <div class="col-12">
+                <div class="row align-items-md-center justify-content-between">
+                    <div class="col-12">
+                        {{ notice_macros.list_link(notice.translatedBy, 'bloc.autority-result-information.translated'|trans, constant('App\\WordsList::TITLE_WORD')) }}
+                        {% if notice.type in constant('App\\Model\\Notice::NOTICE_CONTENT_REVUE_TYPE') and  notice.frontAnalyticalTitle is not empty %}
+                            <p lang="fr" class="bibliographic-result__author">
+                                <i>{{ 'bloc.autority-result-information.in'|trans }}</i>
+                                {{ notice.frontAnalyticalTitle }}
+                            </p>
+                        {% endif %}
 
+                        {% if notice.titleInformation is not empty %}
+                            <p lang="fr" class="bibliographic-result__author">
+                                <i>{{ 'bloc.autority-result-information.in'|trans }}</i>
+                                {{ notice.exportTitle }}
+                            </p>
+                        {% endif %}
 
-</div>
-<div class="col-12">
-    <div class="row align-items-md-center justify-content-between">
-        <div class="col-12">
-            {{ notice_macros.list_link(notice.translatedBy, 'bloc.autority-result-information.translated'|trans, constant('App\\WordsList::TITLE_WORD')) }}
-            {% if notice.type in constant('App\\Model\\Notice::NOTICE_CONTENT_REVUE_TYPE') and  notice.frontAnalyticalTitle is not empty %}
-                <p lang="fr" class="bibliographic-result__author">
-                    <i>{{ 'bloc.autority-result-information.in'|trans }}</i>
-                    {{ notice.frontAnalyticalTitle }}
-                </p>
-            {% endif %}
-
-            {% if notice.titleInformation is not empty %}
-                <p lang="fr" class="bibliographic-result__author">
-                    <i>{{ 'bloc.autority-result-information.in'|trans }}</i>
-                    {{ notice.exportTitle }}
-                </p>
-            {% endif %}
-
-            {% set label = 'bloc.autority-result-information.authors'|trans %}
-            {% if notice.type == constant('App\\Model\\Notice::MUSIC') %}
-                {% set label = 'bloc.autority-result-information.musique-author'|trans %}
-            {% endif %}
-            {% if notice.type == constant('App\\Model\\Notice::VIDEO')%}
-                {% set label = 'bloc.autority-result-information.directors'|trans %}
-            {% endif %}
-            {{ notice_macros.list_link_front_discover_authors(notice.frontDiscoveryAuthor, label, constant('App\\WordsList::AUTHOR_WORD'), " ; ") }}
+                        {% set label = 'bloc.autority-result-information.authors'|trans %}
+                        {% if notice.type == constant('App\\Model\\Notice::MUSIC') %}
+                            {% set label = 'bloc.autority-result-information.musique-author'|trans %}
+                        {% endif %}
+                        {% if notice.type == constant('App\\Model\\Notice::VIDEO')%}
+                            {% set label = 'bloc.autority-result-information.directors'|trans %}
+                        {% endif %}
+                        {{ notice_macros.list_link_front_discover_authors(notice.frontDiscoveryAuthor, label, constant('App\\WordsList::AUTHOR_WORD'), " ; ") }}
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
+    {% for available in notice.copies | sort((a, b) => a.cote <=> b.cote) %}
+        <div class="col-12 col-md-3 col-lg-auto text-center">
+            {% if constant('App\\Model\\Notice::NOTICE_EASY_TO_READ') == available.category %}
+                <img src="{{ asset('images/icones/icone-easy_to_read.jpg') }}" class="img-fluid bibliographic-result__easy-to-read pt-3 pt-md-0" alt="{{ 'bloc.autority-result-information.fal'|trans }}" />
+            {% endif %}
+        </div>
+    {% endfor %}
 </div>
-
+<div class="row">
 {% if notice.contents and notice.type == constant('App\\Model\\Notice::MUSIC')  %}
     <div class="col-12">
         <div lang="fr">
