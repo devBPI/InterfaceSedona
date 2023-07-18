@@ -25,11 +25,6 @@ final class ReportErrorType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('object', TextType::class,[
-                'required'  => true,
-                'label'     => 'modal.report.field.object',
-                'attr'      => ['autocomplete'=> 'off' ]
-            ])
             ->add('permalink', TextType::class,[
                 'required'  => true,
                 'label'     => 'modal.report.field.permalink',
