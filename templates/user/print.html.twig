@@ -1,0 +1,13 @@
+{{ 'global.print-title'|trans }}
+{% if printNoticeWrapper and printNoticeWrapper.noticeOnShelves|length + printNoticeWrapper.noticeOnLine|length > 0 %}
+
+    {{ 'bloc.print.subtitles.your-references-bibliographic'|trans }}
+
+    =====================
+    {% for element in printNoticeWrapper.noticeOnShelves %}
+        {{- "\n\n"~loop.index }}) {{ element.printTitle ~ "\n" -}}
+        {% for title in element.titles %}{% if loop.index>1 %}{{ title ~ "\n" }}{% endif %}{% endfor %}
+        {% if element.analyticalTitles %}{% for title in element.analyticalTitles %}{{ title ~ "\n" }}{% endfor %}{% endif %}
+        {% include "notice/blocs-print/print-detail.format.twig" with {'notice': element, 'format': 'html'} %}
+    {% endfor %}
+{% endif %}

@@ -148,8 +148,7 @@ final class ReportingController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()){
             /** @var ExportNotice $object */
             $object = $form->getData();
-            $content = $this->noticeBuildFileService->buildFile($object, UserSelectionDocument::class);
-            dump($object);
+            $content = $this->noticeBuildFileService->buildFile($object, 'HTML');
             if ($this->mailSenderService->sendEmail(
                 'common/modal/content.email.twig',
                 ['data' => $object, 'content' => $content],

@@ -249,6 +249,9 @@ class NoticeBuildFileService
             case UserSelectionDocument::class:
                 $content = $this->buildFileForUserSelectionList($attachement);
                 break;
+            case "HTML":
+                $content = $this->buildFileForForHtml($attachement);
+                break;
             default:
                 throw new \InvalidArgumentException(sprintf('The type "%s" is not referenced on the app', $type));
                 break;
@@ -295,7 +298,32 @@ class NoticeBuildFileService
             ]
         );
     }
+    /**
+     * @param ExportNotice $attachement
+     * @return string
+     * @throws \Twig\Error\LoaderError
+     * @throws \Twig\Error\RuntimeError
+     * @throws \Twig\Error\SyntaxError
+     */
+    private function buildFileForForHtml(ExportNotice $attachement)
+    {
+        $noticeWrapper =null;
+        try {
+            $noticeWrapper = $this->getNoticeWrapper($attachement);
 
+        } catch (\Exception|NoResultException $e) {
+        }
+
+        return  $this->templating->render(
+            "user/print.html.twig",
+            [
+                'toolbar'           => ObjSearch::class,
+                'isPrintLong'       => !$attachement->isShortFormat(),
+                'includeImage'      => $attachement->isImage(),
+                'printNoticeWrapper'=> $noticeWrapper
+            ]
+        );
+    }
     /**
      * @param ExportNotice $attachment
      * @return PrintNoticeWrapper

@@ -41,12 +41,11 @@
 				<span>{{ 'bloc.toolbar.suggest'|trans }}</span>
 			</button>
 		</li>
-		<li class="toolbar__item">
-			<button data-target="#modal-report" data-toggle="modal" data-reload="true">
-				<img src="{{ asset('images/icones/icone-error.svg') }}" alt="" class="icone-enveloppe" />
-				<span>{{ 'bloc.toolbar.report-error'|trans }}</span>
-			</button>
-		</li>
+		{% set content %}
+			<img src="{{ asset('images/icones/icone-error.svg') }}" alt="" class="icone-enveloppe" />
+			<span>{{ 'bloc.toolbar.report-error'|trans }}</span>
+		{% endset %}
+		{{ action_attributes('report', content, toolbar, 'js-selection-report-action',  'report') }}
 		<li class="toolbar__item">
 			<a href="{{ path('help_search') }}" title="{{ 'bloc.toolbar.eurokoi-tooltip' | trans }}" target="_blank">
 				<img src="{{ asset('images/icones/logo_icone_eurekoi_RVB_FB__1_.jpg') }}" alt="" class="icone-eurokoi" />
