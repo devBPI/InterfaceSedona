@@ -200,6 +200,8 @@ modal:
     submit-sr-only: l'envoi de la suggestion
   report:      #Modal 09 signaler une erreur
     title: Signaler une erreur sur le catalogue
+    sub-title: Le formulaire ci-dessous concerne uniquement les erreurs dans cette notice du catalogue de la Bpi.
+    sub-title-2: "Pour tout autre demande sur le catalogue : %link_start% contactez-nous%link_end%"
     subtitle: Coordonnées
     field:
       object: Objet

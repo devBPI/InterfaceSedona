@@ -206,21 +206,21 @@ modal:
       last-name: Nom
       first-name: Prénom
       email: Courriel
-      address: ' Coordonnées'
+      address: 'Coordonnées'
     submit: Valider
     submit-sr-only: l'envoi de la suggestion
   report:      #Modal 09 signaler une erreur
     title: Signaler une erreur dans la notice
     sub-title: Le formulaire ci-dessous concerne uniquement les erreurs dans cette notice du catalogue de la Bpi.
-    sub-title-2: "Pour tout autre demande sur le catalogue: %link_start% contactez-nous%link_end%"
-    infobulle: "Contactez-nous - Nouvelle fenêtre"
+    sub-title-2: "Pour tout autre demande sur le catalogue : %link_start% contactez-nous%link_end%"
     new-window: "Contactez-nous - Nouvelle fenêtre"
     contact-us-link: https://www.bpi.fr/contactez-nous/
     lien: contactez-nous
-    permalink: lien permanent de la notice %lien%
+    permalink-label: "Lien permanent de la notice :"
+    permalink-link: "%lien%"
     subtitle: Coordonnées
     field:
-      permalink: "Permalien de la notice concernée:"
+      permalink: "Permalien de la notice concernée :"
       subject: Signaler une erreur
       object: Objet
       message: Message
