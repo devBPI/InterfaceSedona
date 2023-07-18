@@ -4,11 +4,7 @@
 
 {% block body_html %}
     Bonjour,
-    {% if  data.link is defined%}
-        <p>
-            Je vous invite à découvrir <a href="{{ data.link }}" >{{ data.link }}</a>
-        </p>
-    {% endif %}
+
     <p>
         {{ content.content }}
     </p>
