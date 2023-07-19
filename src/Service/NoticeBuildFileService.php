@@ -406,7 +406,7 @@ class NoticeBuildFileService
             ->setNotices($request->get('notices', ''))
             ->setIndices($request->get('indices', ''))
             ->setImage($request->get('print-image', null) === 'print-image')
-            ->setFormatType($request->get('format-type'))
+            ->setFormatType($request->get('format-type') ?? 'pdf')
             ->setShortFormat($request->get('print-type', 'print-long') !== 'print-long')
         ;
 
