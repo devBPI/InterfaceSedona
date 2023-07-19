@@ -78,6 +78,7 @@ final class IndiceCduController extends AbstractController
         return $this->render('indice/index.html.twig', [
                 'origin'          => $origin,
                 'toolbar'         => IndiceCdu::class,
+                'isNotice'          => false,
                 'printRoute'      => $printRoute,
                 'subjects'        => $subjects,
                 'notice'          => $notice,

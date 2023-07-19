@@ -128,6 +128,7 @@ final class NoticeController extends AbstractController
 			'quatrieme'         => $quatrieme,
 			'tableMatieres'     => $tableMatieres,
 			'toolbar'           => Notice::class,
+            'isNotice'          => true,
 			'navigation'        => $navigation,
 			'printRoute'        => $printRoute,
 			'page'              => $page,

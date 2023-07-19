@@ -75,6 +75,7 @@ final class AuthorityController extends AbstractController
 
         return $this->render('authority/index.html.twig', [
                 'origin'        => $origin,
+                'isNotice'          => false,
                 'toolbar'       => Authority::class,
                 'printRoute'    => $printRoute,
                 'subjects'      => $subject,

@@ -1,5 +1,10 @@
-{% macro action_attributes(actionType, content, toolbar, buttonClass, url='') %}
-    {% set active = toolbar is defined and toolbar is not empty %}
+{% macro action_attributes(actionType, content, toolbar, buttonClass, url='', isNotice=false) %}
+    {% set active = toolbar is defined and toolbar is not empty and isNotice == false  %}
+    {% if isNotice==false and toolbar == 'App\\Model\\Notice' %}
+        {% set active = false %}
+    {% elseif isNotice == true%}
+        {% set active = true %}
+    {% endif %}
     {% set isDetail = active and toolbar in ['App\\Model\\Notice', 'App\\Model\\Authority', 'App\\Model\\IndiceCdu'] %}
     {% set targetClass = null %}
     {% if toolbar == 'App\\Model\\Search\\ObjSearch' %}
@@ -8,7 +13,8 @@
         {% set targetClass = 'js-list-selectable' %}
     {% endif %}
 
-    <li class="toolbar__item {% if not active %}toolbar__item--disabled{% endif %}">
+
+    <li class="toolbar__item {% if not active  %}toolbar__item--disabled{% endif %}">
         {% if active %}
             <button data-reload="true"
                 {%- if isDetail %}

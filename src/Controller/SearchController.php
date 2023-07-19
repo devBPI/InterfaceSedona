@@ -311,6 +311,7 @@ final class SearchController extends AbstractController
             $template,
             [
                 'toolbar'   => ObjSearch::class,
+                'isNotice' => false,
                 'seeAll'    => $seeAll,
                 'objSearch' => $objSearch,
                 'printRoute' => $this->generateUrl('search_pdf', ['format' => 'pdf']),
