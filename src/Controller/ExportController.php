@@ -56,7 +56,6 @@ final class ExportController extends AbstractController
 	{
 		$form = $this->createForm(ExportNoticeType::class, new ExportNotice());
 		$form->handleRequest($request);
-        dump($type);
 		if ($form->isSubmitted() && $form->isValid())
 		{
 			/** @var ExportNotice $object */
