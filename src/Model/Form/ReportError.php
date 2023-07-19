@@ -13,7 +13,6 @@ final class ReportError implements MessageInfoInterface, PersonneInterface
     use MessageInfoTrait, PersonneTrait;
     /**
      * @var string
-     * @Asset\NotBlank(message="object.empty");
      */
     private $object;
     /**
