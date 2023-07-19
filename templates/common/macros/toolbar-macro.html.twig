@@ -1,9 +1,7 @@
 {% macro action_attributes(actionType, content, toolbar, buttonClass, url='', ifOnlyIsNotice=false) %}
-    {% set active = toolbar is defined and toolbar is not empty and ifOnlyIsNotice == false  %}
-    {% if ifOnlyIsNotice==false and toolbar == 'App\\Model\\Notice' %}
+    {% set active = toolbar is defined and toolbar is not empty %}
+    {% if ifOnlyIsNotice==true and toolbar != 'App\\Model\\Notice' %}
         {% set active = false %}
-    {% elseif ifOnlyIsNotice == true%}
-        {% set active = true %}
     {% endif %}
     {% set isDetail = active and toolbar in ['App\\Model\\Notice', 'App\\Model\\Authority', 'App\\Model\\IndiceCdu'] %}
     {% set targetClass = null %}
@@ -12,7 +10,6 @@
     {% elseif toolbar == 'App\\Entity\\UserSelectionDocument' %}
         {% set targetClass = 'js-list-selectable' %}
     {% endif %}
-
 
     <li class="toolbar__item {% if not active  %}toolbar__item--disabled{% endif %}">
         {% if active %}

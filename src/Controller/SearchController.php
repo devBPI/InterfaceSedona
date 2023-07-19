@@ -238,7 +238,7 @@ final class SearchController extends AbstractController
     }
 
     /**
-     * @Route("/print/recherche.{format}", methods={"GET","HEAD"}, name="search_pdf", requirements={"format" = "html|pdf|txt"}, defaults={"format" = "pdf"})
+     * @Route("/print/recherche.{format}", methods={"POST","GET","HEAD"}, name="search_pdf", requirements={"format" = "html|pdf|txt"}, defaults={"format" = "pdf"})
      *
      * @param Request $request
      * @param string $format

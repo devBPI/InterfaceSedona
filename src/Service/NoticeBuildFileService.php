@@ -410,7 +410,7 @@ class NoticeBuildFileService
             ->setShortFormat($request->get('print-type', 'print-long') !== 'print-long')
         ;
 
-        return  $this->buildFile($sendAttachement, ObjSearch::class);
+        return   $this->buildFile($sendAttachement, ObjSearch::class) ;
     }
 }
 

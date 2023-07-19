@@ -1,9 +1,17 @@
 <div role="dialog" aria-modal="true" data-backdrop="static" aria-labelledby="modal-print-title" class="modal fade" id="modal-print" tabindex="-1" lang="fr">
 	<div class="modal-dialog modal-dialog-centered">
 		<div class="modal-content">
-			<form class="modal-form gtm-form-print" method="get" action="{{ printRoute }}">
+			<form class="gtm-form-print" method="post" action="{{ printRoute }}">
 				<div class="modal-header">
-					<h1 class="n1 modal-header__title" id="modal-print-title">{{ 'modal.print.title'|trans }}</h1>
+					<div class="row">
+						<div class="col-md-12">
+							<h1 class="n1 modal-header__title" id="modal-print-title">{{ 'modal.print.title'|trans }}</h1>
+							<p class="font-italic"><span>*</span>{{ 'global.form-mandatory-field' | trans }}</p>
+						</div>
+						<div class="col-md-12">
+							<p class="" id="modal-print-subtitle">{{ 'modal.print.subtitle'|trans }}</p>
+						</div>
+					</div>
 					<button class="close" type="button" data-dismiss="modal">
 						<img src="{{ asset('images/icones/icone-croix-blanc.svg') }}" alt="{{ 'global.modal-close'|trans }}" />
 					</button>

@@ -48,7 +48,8 @@ final class HomeController extends AbstractController
 
         return $this->render('home/default.html.twig',[
                 'carousel'  => $carousel,
-                'thematic'  => $thematic
+                'thematic'  => $thematic,
+                'isNotice' => false,
             ]);
     }
 
