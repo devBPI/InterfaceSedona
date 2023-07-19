@@ -1,8 +1,8 @@
-{% macro action_attributes(actionType, content, toolbar, buttonClass, url='', isNotice=false) %}
-    {% set active = toolbar is defined and toolbar is not empty and isNotice == false  %}
-    {% if isNotice==false and toolbar == 'App\\Model\\Notice' %}
+{% macro action_attributes(actionType, content, toolbar, buttonClass, url='', ifOnlyIsNotice=false) %}
+    {% set active = toolbar is defined and toolbar is not empty and ifOnlyIsNotice == false  %}
+    {% if ifOnlyIsNotice==false and toolbar == 'App\\Model\\Notice' %}
         {% set active = false %}
-    {% elseif isNotice == true%}
+    {% elseif ifOnlyIsNotice == true%}
         {% set active = true %}
     {% endif %}
     {% set isDetail = active and toolbar in ['App\\Model\\Notice', 'App\\Model\\Authority', 'App\\Model\\IndiceCdu'] %}
