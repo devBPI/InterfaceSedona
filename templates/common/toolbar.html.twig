@@ -45,7 +45,7 @@
 			<img src="{{ asset('images/icones/icone-error.svg') }}" alt="" class="icone-enveloppe" />
 			<span>{{ 'bloc.toolbar.report-error'|trans }}</span>
 		{% endset %}
-		{{ action_attributes('report', content, toolbar, 'js-selection-report-action',  'report') }}
+		{{ action_attributes('report', content, toolbar) }}
 		<li class="toolbar__item">
 			<a href="https://www.eurekoi.org/" title="{{ 'footer.partenaires.eurekoi'|trans }} - {{ 'global.new-windows'|trans }}" target="_blank">
 				<img src="{{ asset('images/logos/logo_eurekoi.jpg') }}" alt="Eurêkoi" class="icone-eurekoi" />
