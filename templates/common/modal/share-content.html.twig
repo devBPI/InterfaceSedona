@@ -1,4 +1,3 @@
-{{ dump(current_permalink()) }}
 <form class="modal-form att-share-btn" method="post" novalidate="novalidate" action="{{ path('share_by_mail', {'link': currentPermalink ?? absolute_url(app.request.uri)}) }}" data-toggle="form-remote">
 	{% if form.vars.errors|length > 0 %}
 		<div class="modal-body">
@@ -17,8 +16,7 @@
 				<div class="form-group row">
 					{{ form_label(form.object) }}
 					<div class="col-12 col-sm-8">
-						{{ form.object.vars.data|trans }}
-						{{ form_widget(form.object) }}
+						{{ 'modal.share.object' | trans }}
 					</div>
 				</div>
 				{{ form_row(form.message) }}
@@ -26,6 +24,9 @@
 			<div class="d-none">
 				{{ form_row(form.formatType) }}
 				{{ form_row(form.image) }}
+			</div>
+			<div class="d-none">
+				{{ form_row(form.object) }}
 			</div>
 		</div>
 

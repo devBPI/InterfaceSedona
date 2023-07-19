@@ -158,6 +158,7 @@ modal:
     title: Paramétrer l'export
     subject: Catalogue BPI – Export de notices
     field:
+      object: Objet
       recipient: Destinataire(s)
       comments: Message
       abstract: Notices abrégées
@@ -178,13 +179,15 @@ modal:
       img: Exporter les images
     submit: Exporter
   share:            #Modal 07 fin
+    object: Référence du catalague de la Bpi
     title: Partager
     subtitle-1: Permalien
     url-page: URL de la page
     btn-cpoy: Copier
     btn-cpoy-sr-only: l'url
-    subtitle-2: Envoyer cette page à un ami
+    subtitle-2: Envoyer votre ou vos références sélectionnées
     field:
+      sender: Destinataire
       text: Message
       title: Objet
       title_value: Références du catalogue de la Bpi
