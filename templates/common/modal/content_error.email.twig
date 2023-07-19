@@ -17,7 +17,7 @@
         {{ "modal.report.field.last-name"|trans }}: {{ data.lastName}}
     </p>
     <p>
-        {{ "modal.report.email"|trans }}    : {{ data.email}}
+        {{ "modal.report.email"|trans }}    : <a href="mailto:{{ data.email }}">{{ data.email}}</a>
     </p>
 {% endblock %}
 
