@@ -169,6 +169,7 @@ modal:
     submit: Envoyer
   print:            #Modal 06 imprimer
     title: Exporter / Imprimer
+    subtitle: "Ce formulaire vous permet de créer un document que vous pourrez enregistrer ou imprimer."
     field:
       choose: Choisir
       file-format: Format du fichier
