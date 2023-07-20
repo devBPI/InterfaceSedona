@@ -376,18 +376,17 @@ page:
       presentation: 'Presentation :'
 
 bloc:
-  toolbar:                #Bloc A Barre utilitaires
-    add_to: Ajouter à
+  toolbar:                 #Bloc A Barre utilitaires
+    help: Aide
     my_selection: Ma sélection
     the_selection: la sélection
     export: Exporter Imprimer
-    print: Imprimer
     send: Envoyer
-    help: Aide
-    eurekoi: Eurêkoi
-    help_search:
+    send-sr: votre ou vos références sélectionnées
     suggest: Suggestion d'achat
     report-error: Signaler une erreur
+    eurekoi: Eurêkoi
+    add_to: Ajouter à
   search-zone:            #Bloc B  Zone de recherche simple
     autocompletion-notice: Utiliser les flèches haut et bas du clavier pour vous déplacer dans la liste de suggestions
     autocompletion-notice-sr-only: Tapez les premières lettres pour faire apparaître des suggestions et utilisez la tabulation pour naviguer dans la liste de suggestions. Appuyez sur Entrée pour accéder à la page correspondant à votre sélection
