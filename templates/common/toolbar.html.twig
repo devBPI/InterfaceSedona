@@ -18,13 +18,13 @@
 		{% if app.request.attributes.get('_route') !='user_selection_index' %}
 			{% set content %}
 				<img src="{{ asset('images/icones/icone-imprimante.svg') }}" alt="" class="icone-imprimante"/>
-				<span>{{ 'bloc.toolbar.export'|trans }}</span>
+				<span>{{ 'bloc.toolbar.export'|trans }}<span class="sr-only"> ou </span>{{ 'bloc.toolbar.print'|trans }}</span>
 			{% endset %}
 			{{ action_attributes('print', content, toolbar, 'js-print-action') }}
 		{% else %}
 			{% set content %}
 				<img src="{{ asset('images/icones/icone-fichier.svg') }}" alt="" class="icone-fichier" />
-				<span>{{ 'bloc.toolbar.export'|trans }}</span>
+				<span>{{ 'bloc.toolbar.export'|trans }}<span class="sr-only"> ou </span>{{ 'bloc.toolbar.print'|trans }}</span>
 			{% endset %}
 			{{ action_attributes('selection-export', content, toolbar, 'js-selection-print-action',  'export') }}
 
