@@ -661,6 +661,8 @@ bloc:
       your-reference-autority: Votre référence d'autorité
       your-references-bibliographic: Vos références bibliographiques
       your-reference-bibliographic: Votre référence bibliographique
+      send-by-robot: Ce message est envoyé par un robot. Merci de ne pas répondre!
+      catalogue: Vos référence du catalogue Bpi
 error:
   page_not_available: 'Cette page est inaccessible.'
   permalink_not_available: soit le permalien que vous avez saisi ou sur lequel vous avez cliqué n'est pas encore actif, ou est erroné ou supprimé

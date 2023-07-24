@@ -1,8 +1,8 @@
-{{ 'bloc.print.subtitles.your-references-bibliographic' | trans }}
+{{ 'bloc.print.subtitles.catalogue' | trans }}
 {{ 'bloc.print.subtitles.send-by-robot' | trans }}
 <hr>
 {% for element in printNoticeWrapper.noticeOnShelves %}
-    <a>{{ element.title }}</a>
+    <a href="{{ path('home') }}/{{ element.permalink }}">{{ element.title }}</a>
     <ul>
         <li>
            {{ 'bloc.print.type-document' | trans({'%type%': element.type})}}
