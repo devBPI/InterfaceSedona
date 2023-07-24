@@ -271,6 +271,22 @@ class NoticeAvailable
         return $this->notes;
     }
 
+    /**
+     * @return string
+     */
+    public function getLocalisation(): string
+    {
+        return $this->localisation;
+    }
+
+    /**
+     * @return string
+     */
+    public function getDisponibilite(): string
+    {
+        return $this->disponibilite;
+    }
+
     public function getPrintLocation(): ?string
     {
         $location = $this->getLocation();

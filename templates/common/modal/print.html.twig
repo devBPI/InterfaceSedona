@@ -23,15 +23,16 @@
 								<p>{{ "modal.print.field.choose" | trans }}</p>
 							</div>
 							<div class="col-6 col-md-6">
-								<div class="form-check">
+								<fieldset class="form-group">
+									<legend class="sr-only">{{'modal.print.field.abstract' | trans}}</legend>
 									<input class="form-check-input" type="radio" id="print-abstract" value="print-abstract" name="print-type" checked>
 									<label class="form-check-label" for="print-abstract">{{ 'modal.print.field.abstract'|trans }}</label>
-								</div>
-
-								<div class="form-check">
+								</fieldset>
+								<fieldset class="form-group">
+									<legend class="sr-only">{{'modal.print.field.long' | trans}}</legend>
 									<input class="form-check-input" type="radio" id="print-long" value="print-long" name="print-type">
 									<label class="form-check-label" for="print-long">{{ 'modal.print.field.long'|trans }}</label>
-								</div>
+								</fieldset>
 							</div>
 						</div>
 					</div>
@@ -42,15 +43,16 @@
 								<p>{{ "modal.print.field.file-format" | trans }}</p>
 							</div>
 							<div class="col-6 col-md-6">
-								<div class="form-check">
+								<fieldset class="form-group">
+									<legend class="sr-only">{{'modal.print.field.text-format' | trans}}</legend>
 									<input class="form-check-input" type="radio" id="text-type" value="txt" name="format-type" checked>
 									<label class="form-check-label" for="text-type">{{ 'modal.print.field.text-format'|trans }}</label>
-								</div>
-
-								<div class="form-check">
+								</fieldset>
+								<fieldset class="form-group">
+									<legend class="sr-only">{{'modal.print.field.pdf-format' | trans}}</legend>
 									<input class="form-check-input" type="radio" id="pdf-type" value="pdf" name="format-type">
 									<label class="form-check-label" for="pdf-type">{{ 'modal.print.field.pdf-format'|trans }}</label>
-								</div>
+								</fieldset>
 							</div>
 						</div>
 					</div>
