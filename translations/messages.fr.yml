@@ -646,7 +646,7 @@ bloc:
   print:
     type-document: 'Type de document: %type%'
     author: "auteur : %author%"
-    editor: "Editeur: %editor"
+    editor: "Editeur: %editor%"
     year: "Année: %year%"
     language: "Langue: %language%"
     isbn: "isbn: %isbn%"
