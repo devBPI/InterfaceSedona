@@ -2,7 +2,7 @@
 {{ 'bloc.print.subtitles.send-by-robot' | trans }}
 <hr>
 {% for element in printNoticeWrapper.noticeOnShelves %}
-    <a href="{{ link}}">{{ element.title }}</a>
+    <a>{{ element.title }}</a>
     <ul>
         <li>
            {{ 'bloc.print.type-document' | trans({'%type%': element.type})}}
