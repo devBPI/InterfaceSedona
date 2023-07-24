@@ -403,7 +403,8 @@ bloc:
     help: Aide
     my_selection: Ma sélection
     the_selection: la sélection
-    export: Exporter Imprimer
+    export: Exporter
+    print: Imprimer
     send: Envoyer
     send-sr: votre ou vos références sélectionnées
     suggest: Suggestion d'achat
