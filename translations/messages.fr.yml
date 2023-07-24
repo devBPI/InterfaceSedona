@@ -171,6 +171,7 @@ modal:
     title: Exporter / Imprimer
     subtitle: "Ce formulaire vous permet de créer un document que vous pourrez enregistrer ou imprimer."
     field:
+      choose-sr: Choisir le format de la notice
       choose: Choisir
       file-format: Format du fichier
       text-format: Mettre au format texte
@@ -642,6 +643,15 @@ bloc:
     select-ligne: 'Sélectionner la ligne : %title%'
     reload: Relancer la recherche %title%'
   print:
+    type-document: 'Type de document: %type%'
+    author: "auteur : %author%"
+    editor: "Editeur: %editor"
+    year: "Année: %year%"
+    language: "Langue: %language%"
+    isbn: "isbn: %isbn%"
+    indice: "indice: %indice%"
+    exemplaire: "Exemplaire(s):"
+    disponibility: "%dispo% - %cote% %localisation%"
     titles:
       search: Résultats de recherche
       selection: Résultats de la sélection
