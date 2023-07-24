@@ -57,11 +57,31 @@ final class ExportNotice
      * @var string
      */
     private $sender;
-
+    /**
+     * @var string link
+     */
+    private $link;
 
     /**
      * @return string
      */
+    public function getLink(): string
+    {
+        return $this->link;
+    }
+
+    /**
+     * @param string $link
+     */
+    public function setLink(string $link): void
+    {
+        $this->link = $link;
+    }
+    /**
+     * @return string
+     */
+
+
     public function getSender(): ?string
     {
         return $this->sender;

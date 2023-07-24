@@ -320,7 +320,8 @@ class NoticeBuildFileService
                 'toolbar'           => ObjSearch::class,
                 'isPrintLong'       => !$attachement->isShortFormat(),
                 'includeImage'      => $attachement->isImage(),
-                'printNoticeWrapper'=> $noticeWrapper
+                'printNoticeWrapper'=> $noticeWrapper,
+                'link'              => $attachement->getLink()
             ]
         );
     }

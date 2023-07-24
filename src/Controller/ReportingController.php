@@ -60,7 +60,6 @@ final class ReportingController extends AbstractController
     {
         $form = $this->createForm(ReportErrorType::class, new ReportError());
         $form->handleRequest($request);
-        $request->getUri();
         if ($form->isSubmitted() && $form->isValid()) {
             /** @var ReportError $reportData */
             $reportData = $form->getData();
@@ -139,6 +138,7 @@ final class ReportingController extends AbstractController
      */
     public function shareByMailAction(Request $request): Response
     {
+        $host = $request->getHost();
         $form = $this->createForm(ExportNoticeType::class, new ExportNotice());
         $form->handleRequest($request);
         $link = $request->get('link');
@@ -148,6 +148,7 @@ final class ReportingController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()){
             /** @var ExportNotice $object */
             $object = $form->getData();
+            $object->setLink($host);
             $content = $this->noticeBuildFileService->buildFile($object, 'HTML');
             if ($this->mailSenderService->sendEmail(
                 'common/modal/content.email.twig',
