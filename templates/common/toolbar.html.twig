@@ -56,9 +56,9 @@
 </div>
 
 {% include "user/modal/list_add.html.twig" %}
-{% if toolbar is defined %}
+{# {% if toolbar is defined %}
 	{% include "common/modal/export.html.twig" with {'toolbar': toolbar }%}
-{% endif %}
+{% endif %} #}
 
 {% if printRoute is defined %}{% include "common/modal/print.html.twig" %}{% endif %}
 
