@@ -1,1 +1,12 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24.67 18.13"><defs><style>.cls-1{fill:#fff;}</style></defs><g id="Calque_2" data-name="Calque 2"><g id="Calque_1-2" data-name="Calque 1"><path class="cls-1" d="M23.3,0H1.37A1.37,1.37,0,0,0,0,1.37v15.4a1.36,1.36,0,0,0,1.37,1.36H23.3a1.36,1.36,0,0,0,1.37-1.36V1.37A1.37,1.37,0,0,0,23.3,0ZM2.55.91H22.09a1.69,1.69,0,0,1,1.13.44L12.33,10.69,1.41,1.35A1.62,1.62,0,0,1,2.55.91ZM.91,15.9V2.33L8.79,9.2Zm21.18,1.32H2.55a1.67,1.67,0,0,1-1.14-.45L9.5,9.85l2.83,2.48,2.82-2.48,8.07,6.92A1.55,1.55,0,0,1,22.09,17.22Zm1.65-1.32L15.86,9.2l7.88-6.85Z"/></g></g></svg>
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 26.0.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Calque_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 150 150" style="enable-background:new 0 0 150 150;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:#FFFFFF;}
+</style>
+<path class="st0" d="M0,37.5c0-10.4,8.4-18.8,18.8-18.8l0,0h112.5c10.4,0,18.8,8.4,18.8,18.8v75c0,10.4-8.4,18.8-18.8,18.8H18.8
+	C8.4,131.2,0,122.9,0,112.5V37.5z M18.8,28.1c-5.2,0-9.4,4.2-9.4,9.4c0,0,0,0,0,0v1.9L75,78.8l65.7-39.3v-1.9c0-5.2-4.2-9.4-9.4-9.4
+	L18.8,28.1z M140.7,50.5L96.5,77l44.2,27.1V50.5z M140.4,114.9L87.4,82.4L75,89.9l-12.4-7.5L9.7,114.9c1.1,4.1,4.8,7,9.1,7h112.5
+	C135.5,121.9,139.2,119,140.4,114.9L140.4,114.9z M9.4,104.1L53.5,77L9.4,50.5V104.1z"/>
+</svg>

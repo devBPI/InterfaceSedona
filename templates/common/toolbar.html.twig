@@ -17,7 +17,7 @@
 
 		{% if app.request.attributes.get('_route') !='user_selection_index' %}
 			{% set content %}
-				<img src="{{ asset('images/icones/icone-imprimante.svg') }}" alt="" class="icone-imprimante"/>
+				<img src="{{ asset('images/icones/icone-export-impression.svg') }}" alt="" class="icone-export-impression"/>
 				<span>{{ 'bloc.toolbar.export'|trans }}<span class="sr-only"> ou </span>{{ 'bloc.toolbar.print'|trans }}</span>
 			{% endset %}
 			{{ action_attributes('print', content, toolbar, 'js-print-action') }}
@@ -48,7 +48,7 @@
 		{{ action_attributes('report', content, toolbar, '', '', true) }}
 		<li class="toolbar__item">
 			<a href="https://www.eurekoi.org/" title="{{ 'footer.partenaires.eurekoi'|trans }} - {{ 'global.new-windows'|trans }}" target="_blank">
-				<img src="{{ asset('images/logos/logo_eurekoi.jpg') }}" alt="Eurêkoi" class="icone-eurekoi" />
+				<img src="{{ asset('images/logos/logo-eurekoi.svg') }}" alt="Eurêkoi" class="icone-eurekoi" />
 				<span>{{ 'bloc.toolbar.eurekoi'|trans }}</span>
 			</a>
 		</li>
