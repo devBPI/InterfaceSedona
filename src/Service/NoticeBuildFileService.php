@@ -199,9 +199,9 @@ class NoticeBuildFileService
      * @throws \Twig\Error\RuntimeError
      * @throws \Twig\Error\SyntaxError
      */
-    public function buildFile(ExportNotice $attachement, string $type)
+    public function buildFile(ExportNotice $attachement, string $type, string $link = null)
     {
-        $content = $this->buildContent($attachement, $type);
+        $content = $this->buildContent($attachement, $type, $link);
 
         $filename = 'vos-references_'.date('Y-m-d_h-i-s');
 
@@ -320,8 +320,7 @@ class NoticeBuildFileService
                 'toolbar'           => ObjSearch::class,
                 'isPrintLong'       => !$attachement->isShortFormat(),
                 'includeImage'      => $attachement->isImage(),
-                'printNoticeWrapper'=> $noticeWrapper,
-                'link'              => $attachement->getLink()
+                'printNoticeWrapper'=> $noticeWrapper
             ]
         );
     }

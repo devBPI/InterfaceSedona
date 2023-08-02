@@ -557,6 +557,29 @@ class Notice extends AbstractImage implements NoticeInterface, RecordInterface
     private $links;
 
     /**
+     * @®ar string
+     */
+
+    private $link;
+
+    /**
+     * @return mixed
+     */
+    public function getLink()
+    {
+        return $this->link;
+    }
+
+    /**
+     * @param mixed $link
+     */
+    public function setLink($link): void
+    {
+        $this->link = $link;
+    }
+
+
+    /**
      * @return Link[]|array
      */
     public function getLinks()

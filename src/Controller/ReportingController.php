@@ -141,14 +141,10 @@ final class ReportingController extends AbstractController
         $host = $request->getHost();
         $form = $this->createForm(ExportNoticeType::class, new ExportNotice());
         $form->handleRequest($request);
-        $link = $request->get('link');
-        if ($form->getData() instanceof  ShareByMail && ($dataLink =  $form->getData()->getLink())!==null) {
-            $link = $dataLink;
-        }
+
         if ($form->isSubmitted() && $form->isValid()){
             /** @var ExportNotice $object */
             $object = $form->getData();
-            $object->setLink($host);
             $content = $this->noticeBuildFileService->buildFile($object, 'HTML');
             if ($this->mailSenderService->sendEmail(
                 'common/modal/content.email.twig',
@@ -170,7 +166,6 @@ final class ReportingController extends AbstractController
             'common/modal/share-content.html.twig',
             [
                 'form' => $form->createView(),
-                'link' => $link
             ]
         );
     }
