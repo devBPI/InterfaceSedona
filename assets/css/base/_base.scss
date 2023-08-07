@@ -113,3 +113,8 @@ select {
 		max-width: 85%;
 	}
 }
+
+.text-ellipsis {
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
