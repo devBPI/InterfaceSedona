@@ -21,6 +21,9 @@ header:
     link: https://www.bpi.fr/en/digital-bpi/
     sronly: Bpi Digital
 
+  Replay:
+     link: https://replay.bpi.fr/
+
 help:
   La recherche:
     link: #
