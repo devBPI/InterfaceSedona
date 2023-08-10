@@ -69,7 +69,7 @@ final class ExportNoticeType extends AbstractType
                 'label_attr'=> ['compl' => 'modal.email-example']
             ])
              ->add('sender', EmailType::class, [
-                 'required'  => true,
+                 'required' => false,
                  'label'     => 'modal.share.field.expeditor',
                  'attr'      => ['autocomplete' => "off"],
                  'label_attr'=> ['compl' => 'modal.email-example']
