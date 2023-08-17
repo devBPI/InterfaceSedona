@@ -169,44 +169,4 @@ final class ReportingController extends AbstractController
             ]
         );
     }
-
-    /**
-     * @Route("/suggest-by-mail", name="suggest_by_mail")
-     * @param Request $request
-     * @return Response
-     * @throws \Throwable
-     * @throws \Twig\Error\LoaderError
-     * @throws \Twig\Error\SyntaxError
-     */
-    public function suggestByMailAction(Request $request): Response
-    {
-        $form = $this->createForm(SuggestByMailType::class, new SuggestByMail());
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()){
-            /** @var SuggestByMail $object */
-            $object = $form->getData();
-            if ($this->mailSenderService->sendEmail(
-                'common/modal/suggestion-content.email.twig',
-                ['data' => $object],
-                null,
-                $this->mailSenderService->getSenderForSuggestion(),
-                $object->getEmail(),
-                null
-            )) {
-                return $this->render('common/modal/share-success.html.twig');
-            } else {
-                $form->addError(
-                    new FormError("Une erreur est survenue lors de l'envoie de l'e-mail \n veuillez reessayer plus tard SVP.")
-                );
-            }
-        }
-
-        return $this->render(
-            'common/modal/suggestion-content.html.twig',
-            [
-                'form' => $form->createView(),
-            ]
-        );
-    }
 }

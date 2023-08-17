@@ -336,10 +336,14 @@ class NoticeBuildFileService
         $this->logger->info("###n ".($attachment->getNotices()));
         $this->logger->info("###i ".($attachment->getIndices()));
         $this->logger->info("#####################1.5");*/
-        $permalinkN = \json_decode($attachment->getNotices());
+        if($attachment) {
+            $permalinkN = \json_decode($attachment->getNotices());
 
-        $permalinkA = \json_decode($attachment->getAuthorities());
-        $permalinkI = \json_decode($attachment->getIndices());
+            $permalinkA = \json_decode($attachment->getAuthorities());
+            if($attachment->getIndices()) {
+                $permalinkI = \json_decode($attachment->getIndices());
+            }
+        }
         $i=[];
         $n=[];
         $a=[];

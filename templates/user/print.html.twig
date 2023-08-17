@@ -1,52 +1,54 @@
 {{ 'bloc.print.subtitles.catalogue' | trans }}
 {{ 'bloc.print.subtitles.send-by-robot' | trans }}
 <hr>
-{% for element in printNoticeWrapper.noticeOnShelves %}
-    <a href="{{ absolute_url('/fr/document/'~ element.permalink) }}">{{ element.title }}</a>
-    <ul>
-        <li>
-           {{ 'bloc.print.type-document' | trans({'%type%': element.type})}}
-        </li>
-        {% for author in element.authorsValue %}
-            <li>
-                {{ 'bloc.print.author' | trans({'%author%': author}) }}
-            </li>
-        {% endfor %}
-        {% for editor in element.editors %}
-            <li>
-                {{ 'bloc.print.editor' | trans({'%editor%': editor}) }}
-            </li>
-        {% endfor %}
-        {% for date in element.publishedDates %}
-            <li>
-                {{ 'bloc.print.year' | trans({'%year%': date }) }}
-            </li>
-        {% endfor %}
-        {% for language in element.languages %}
-            <li>
-                {{ 'bloc.print.language' | trans({'%language%': language}) }}
-            </li>
-        {% endfor %}
-        {% for isbn in element.isbns %}
-            <li>
-                {{ 'bloc.print.isbn' | trans({'%isbn%': isbn}) }}
-            </li>
-        {% endfor %}
-        {% for copie in element.copies %}
-            <li>
-                {{ 'bloc.print.indice' | trans({'%indice%': copie.cote}) }}
-            </li>
-        {% endfor %}
-        <p>{{ 'bloc.print.exemplaire' | trans }}</p>
+{% if printNoticeWrapper %}
+    {% for element in printNoticeWrapper.noticeOnShelves %}
+        <a href="{{ absolute_url('/fr/document/'~ element.permalink) }}">{{ element.title }}</a>
         <ul>
-            {% for copie in element.copies %}
             <li>
-                {{ 'bloc.print.disponibility' | trans({'%dispo%': copie.disponibilite, '%cote%': copie.cote, '%localisation%': copie.localisation}) }}
+               {{ 'bloc.print.type-document' | trans({'%type%': element.type})}}
             </li>
+            {% for author in element.authorsValue %}
                 <li>
-                    {{ copie.labelDisponibility }}
+                    {{ 'bloc.print.author' | trans({'%author%': author}) }}
                 </li>
             {% endfor %}
+            {% for editor in element.editors %}
+                <li>
+                    {{ 'bloc.print.editor' | trans({'%editor%': editor}) }}
+                </li>
+            {% endfor %}
+            {% for date in element.publishedDates %}
+                <li>
+                    {{ 'bloc.print.year' | trans({'%year%': date }) }}
+                </li>
+            {% endfor %}
+            {% for language in element.languages %}
+                <li>
+                    {{ 'bloc.print.language' | trans({'%language%': language}) }}
+                </li>
+            {% endfor %}
+            {% for isbn in element.isbns %}
+                <li>
+                    {{ 'bloc.print.isbn' | trans({'%isbn%': isbn}) }}
+                </li>
+            {% endfor %}
+            {% for copie in element.copies %}
+                <li>
+                    {{ 'bloc.print.indice' | trans({'%indice%': copie.cote}) }}
+                </li>
+            {% endfor %}
+            <p>{{ 'bloc.print.exemplaire' | trans }}</p>
+            <ul>
+                {% for copie in element.copies %}
+                <li>
+                    {{ 'bloc.print.disponibility' | trans({'%dispo%': copie.disponibilite, '%cote%': copie.cote, '%localisation%': copie.localisation}) }}
+                </li>
+                    <li>
+                        {{ copie.labelDisponibility }}
+                    </li>
+                {% endfor %}
+            </ul>
         </ul>
-    </ul>
-{% endfor %}
+    {% endfor %}
+{% endif %}
