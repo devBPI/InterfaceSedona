@@ -5,7 +5,6 @@ export class Printer {
 
     private initListener() {
         document.addEventListener('click', (event: MouseEvent) => {
-            console.log(event.target);
             let target = event.target;
             if(target instanceof HTMLElement && (target.classList.contains('js-export-form') ||  target.classList.contains('js-print-action') ||  target.classList.contains('js-print-selection-action') ||  target.classList.contains('js-selection-print-action') )) {
                 this.onClick();
