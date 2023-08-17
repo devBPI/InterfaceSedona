@@ -1,5 +1,4 @@
 <p>{{ 'bloc.print.subtitles.catalogue' | trans }}</p>
-{% if printNoticeWrapper %}
 {% for element in printNoticeWrapper.noticeOnShelves %}
     <p>{{ 'bloc.print.titles.permalien' | trans }} <a href="{{ absolute_url('/fr/document/'~ element.permalink) }}">{{ element.title }}</a></p>
 
@@ -48,6 +47,5 @@
         {% endfor %}
     </ul>
 {% endfor %}
-{% endif %}
 <br/><br/><br/>
 <p>{{ 'bloc.print.subtitles.send-by-robot' | trans }}</p>

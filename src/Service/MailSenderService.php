@@ -3,6 +3,8 @@
 namespace App\Service;
 
 use Monolog\Logger;
+use Symfony\Component\Translation\Translator;
+use Symfony\Component\Translation\TranslatorInterface;
 use Twig\Environment;
 
 class MailSenderService
@@ -26,6 +28,10 @@ class MailSenderService
 	 * @var \Swift_Mailer
 	 */
 	private $mailer;
+    /**
+     * @var \Symfony\Component\Translation\Translator
+	 */
+	private $translator;
 	/**
 	 * @var string
 	 */
@@ -43,13 +49,14 @@ class MailSenderService
 	 * @param Environment $twig
 	 * @param \Swift_Mailer $mailer
 	 */
-	public function __construct(Logger $logger, string $sender, string $replyTo, Environment $twig, \Swift_Mailer $mailer)//, Logger $logger)
+	public function __construct(Logger $logger, string $sender, string $replyTo, Environment $twig, \Swift_Mailer $mailer, TranslatorInterface $translator)//, Logger $logger)
 	{
 		$this->logger = $logger;
 		$this->mailer = $mailer;
 		$this->twig = $twig;
 		$this->sender = $sender;
 		$this->replyTo = $replyTo;
+        $this->translator = $translator;
 	}
 
 	/**
@@ -96,7 +103,7 @@ class MailSenderService
 		$this->logger->info("#####################");/**/
 
 		$message = (new \Swift_Message($subject))
-			->setSubject($subject)
+			->setSubject($this->translator->trans('modal.share.object'))
 			->setFrom($from)
 			->setTo($to)
 			->setReplyTo($replyTo);//$replyTo);

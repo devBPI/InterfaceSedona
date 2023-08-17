@@ -138,10 +138,8 @@ final class ReportingController extends AbstractController
      */
     public function shareByMailAction(Request $request): Response
     {
-        $host = $request->getHost();
         $form = $this->createForm(ExportNoticeType::class, new ExportNotice());
         $form->handleRequest($request);
-
         if ($form->isSubmitted() && $form->isValid()){
             /** @var ExportNotice $object */
             $object = $form->getData();

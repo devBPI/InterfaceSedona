@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Model\Notice;
 use App\Service\NoticeBuildFileService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use App\Form\ExportNoticeType;

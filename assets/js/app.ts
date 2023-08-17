@@ -37,10 +37,8 @@ import {DatePeriod} from './date-input-search';
 new DatePeriod(document.querySelectorAll('[name="adv-search-date"]'));
 
 import {Printer, CopyToClipboard} from './printer';
-let printers = document.querySelectorAll('.js-print-action, .js-export-form, .js-print-selection-action, .js-selection-print-action');
-printers.forEach((linkElement: HTMLLinkElement) => {
-    new Printer(linkElement);
-});
+
+new Printer();
 
 let copiers = document.querySelectorAll('.js-copy_to_clipboard');
 

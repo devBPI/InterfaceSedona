@@ -1,10 +1,18 @@
 export class Printer {
-    constructor(private element: HTMLLinkElement) {
+    constructor() {
         this.initListener();
     }
 
     private initListener() {
-        this.element.addEventListener('click', () => this.onClick());
+        document.addEventListener('click', (event: MouseEvent) => {
+            console.log(event.target);
+            let target = event.target;
+            if(target instanceof HTMLElement && (target.classList.contains('js-export-form') ||  target.classList.contains('js-print-action') ||  target.classList.contains('js-print-selection-action') ||  target.classList.contains('js-selection-print-action') )) {
+                this.onClick();
+            }
+
+
+        })
     }
 
     private onClick(): void {
