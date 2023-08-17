@@ -644,24 +644,25 @@ bloc:
     select-ligne: 'Sélectionner la ligne : %title%'
     reload: Relancer la recherche %title%'
   print:
-    type-document: 'Type de document: %type%'
-    author: "auteur : %author%"
-    editor: "Editeur: %editor%"
-    year: "Année: %year%"
-    language: "Langue: %language%"
-    isbn: "isbn: %isbn%"
-    indice: "indice: %indice%"
-    exemplaire: "Exemplaire(s):"
+    type-document: 'Type de document : %type%'
+    author: "Auteur : %author%"
+    editor: "Editeur : %editor%"
+    year: "Année : %year%"
+    language: "Langue : %language%"
+    isbn: "ISBN : %isbn%"
+    indice: "Indice : %indice%"
+    exemplaire: "Exemplaire(s) :"
     disponibility: "%dispo% - %cote% %localisation%"
     titles:
       search: Résultats de recherche
       selection: Résultats de la sélection
+      permalien: "Permalien :"
     subtitles:
       your-references-autority: Vos références d'autorités
       your-reference-autority: Votre référence d'autorité
       your-references-bibliographic: Vos références bibliographiques
       your-reference-bibliographic: Votre référence bibliographique
-      send-by-robot: Ce message est envoyé par un robot. Merci de ne pas répondre!
+      send-by-robot: Ce message est envoyé par un robot. Merci de ne pas répondre !
       catalogue: Vos référence du catalogue Bpi
 error:
   page_not_available: 'Cette page est inaccessible.'
