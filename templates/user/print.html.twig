@@ -15,6 +15,11 @@
             {{ 'bloc.print.year' | trans({'%year%' : date }) }}
         </p>
     {% endfor %}
+    {% for editor in element.editors %}
+        <p>
+            {{ 'bloc.print.editor' | trans({'%editor%' : editor}) }}
+        </p>
+    {% endfor %}
     {% for language in element.languages %}
         <p>
             {{ 'bloc.print.language' | trans({'%language%' : language}) }}
@@ -26,11 +31,7 @@
                 {{ 'bloc.print.alternativeTitle' | trans({'%title%' : title}) }}
             </p>
         {% endfor %}
-        {% for editor in element.editors %}
-            <p>
-                {{ 'bloc.print.editor' | trans({'%editor%' : editor}) }}
-            </p>
-        {% endfor %}
+
         {% for resume in element.resume %}
         <p>
             {{ 'bloc.print.resume' | trans({'%resume%' : resume}) }}
