@@ -10,11 +10,6 @@
             {{ 'bloc.print.author' | trans({'%author%' : author}) }}
         </p>
     {% endfor %}
-    {% for editor in element.editors %}
-        <p>
-            {{ 'bloc.print.editor' | trans({'%editor%' : editor}) }}
-        </p>
-    {% endfor %}
     {% for date in element.publishedDates %}
         <p>
             {{ 'bloc.print.year' | trans({'%year%' : date }) }}
@@ -25,11 +20,42 @@
             {{ 'bloc.print.language' | trans({'%language%' : language}) }}
         </p>
     {% endfor %}
-    {% for isbn in element.isbns %}
+    {% if isPrintLong %}
+        {% for editor in element.editors %}
+            <p>
+                {{ 'bloc.print.editor' | trans({'%editor%' : editor}) }}
+            </p>
+        {% endfor %}
+        {% for resume in element.resume %}
         <p>
-            {{ 'bloc.print.isbn' | trans({'%isbn%' : isbn}) }}
+            {{ 'bloc.print.resume' | trans({'%resume%' : resume}) }}
         </p>
-    {% endfor %}
+        {% endfor %}
+        {% for note in element.notes %}
+            <p>
+                {{ 'bloc.print.note' | trans({'%note%' : note}) }}
+            </p>
+        {% endfor %}
+        {% for description in element.materialDescriptions %}
+            <p>
+                {{ 'bloc.print.materialDescription' | trans({'%note%' : description}) }}
+            </p>
+        {% endfor %}
+        {% for serie in element.collectionSeries %}
+            <p>
+                {{ 'bloc.print.serie' | trans({'%note%' : serie}) }}
+            </p>
+        {% endfor %}
+    {% endif %}
+
+
+    {% if isPrintLong %}
+        {% for isbn in element.isbns %}
+            <p>
+                {{ 'bloc.print.isbn' | trans({'%isbn%' : isbn}) }}
+            </p>
+        {% endfor %}
+    {% endif %}
     {% for copie in element.copies %}
         <p>
             {{ 'bloc.print.indice' | trans({'%indice%' : copie.cote}) }}

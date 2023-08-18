@@ -644,6 +644,10 @@ bloc:
     select-ligne: 'Sélectionner la ligne : %title%'
     reload: Relancer la recherche %title%'
   print:
+    resume: 'Resumé : %resume%'
+    note: 'Note : %note%'
+    materialDescription: 'Description materiel : %note%'
+    serie: 'Série / Collection : %note%'
     type-document: 'Type de document : %type%'
     author: "Auteur : %author%"
     editor: "Editeur : %editor%"
