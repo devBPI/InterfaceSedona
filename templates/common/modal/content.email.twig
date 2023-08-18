@@ -5,7 +5,7 @@
 {% block body_html %}
     Bonjour,
 
-    <p>{{ data.message }}</p>
+    <p>{{ data.message|nl2br }}</p>
     <p>
         {{ content.content|raw }}
     </p>

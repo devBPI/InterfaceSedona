@@ -5,11 +5,6 @@
 {% else %}
    {% include 'notice/blocs-print/print-resume-detail.format.twig' %}{% endif %}
 {% set lineBreak = '' %}
-{% if format == 'pdf' %}
-    {% set lineBreak = '<br/>' %}
-    <li><a href="{{ absolute_url(path('record_bibliographic', {"permalink": notice.permalink})) }}">Permalien</a></li>
-{% else %}{% if format!='pdf' %}{{"\n"}}{% endif %}Permalien : {{ absolute_url(path('record_bibliographic', {"permalink": notice.permalink})) ~ "\n"  }}
-{% endif %}
 {% for copy in notice.copies %}{% if copy.isAvailable() %}
 {% if format == 'pdf' %}{{ lineBreak |raw }}<li>{% endif %}
 {% if  copy.getAvailability  %}{{ copy.getAvailability }}{% if  copy.getCote or copy.getSupport  %}, {% endif %}{% endif %}

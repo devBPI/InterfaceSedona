@@ -315,7 +315,7 @@ class NoticeBuildFileService
         }
 
         return  $this->templating->render(
-            "user/print.html.twig",
+            "user/print.pdf.twig",
             [
                 'toolbar'           => ObjSearch::class,
                 'isPrintLong'       => !$attachement->isShortFormat(),

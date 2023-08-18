@@ -16,7 +16,7 @@
         {% for element in listObjects %}
             <div class="print__item">
                 {% set elementLoop = loop %}
-                <h2 class="n1">{{ (elementLoop.index + startIndex) ~ ') ' ~ element.printTitle }}</h2>
+                <a href="{{ absolute_url(path('record_authority', {"permalink": element.permalink})) }}"><h2 class="n1">{{ (elementLoop.index + startIndex) ~ ') ' ~ element.printTitle }}</h2></a>
               {% if element.titles is defined  %}
                 {% for title in element.titles %}
                     {% if loop.index > 1 %}

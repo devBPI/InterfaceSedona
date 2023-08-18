@@ -27,11 +27,7 @@
         {{- pdf_occurence (notice, 'getLanguages', 'bloc.autority-result-information.language'|trans, format)|raw -}}
         {{- pdf_occurence (notice, 'getPrincipalActivities', 'bloc.autority-result-information.activity'|trans, format)|raw -}}
     {% endif %}
-    {%- if format == 'pdf' %}
-        <li>
-            <a href="{{ absolute_url(path('record_authority', {"permalink": notice.permalink})) }}">Permalien</a>
-        </li>
-    {% else %}
-Permalien : {{- absolute_url(path('record_authority', {"permalink": notice.permalink})) -}}
+
+
     {% endif -%}
 {% endspaceless %}
