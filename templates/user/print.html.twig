@@ -21,6 +21,11 @@
         </p>
     {% endfor %}
     {% if isPrintLong %}
+        {% for title in element.alternatifTitle %}
+            <p>
+                {{ 'bloc.print.alternativeTitle' | trans({'%title%' : title}) }}
+            </p>
+        {% endfor %}
         {% for editor in element.editors %}
             <p>
                 {{ 'bloc.print.editor' | trans({'%editor%' : editor}) }}

@@ -651,6 +651,7 @@ bloc:
     type-document: 'Type de document : %type%'
     author: "Auteur : %author%"
     editor: "Editeur : %editor%"
+    alternativeTitle: "Autre(s) forme(s) de titre : %title%"
     year: "Année : %year%"
     language: "Langue : %language%"
     isbn: "ISBN : %isbn%"
