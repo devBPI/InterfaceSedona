@@ -657,7 +657,7 @@ bloc:
     isbn: "ISBN : %isbn%"
     indice: "Indice : %indice%"
     exemplaire: "Exemplaire(s) :"
-    disponibility: "%dispo% - %cote% %localisation%"
+    disponibility: "%dispo% - %cote% "
     titles:
       search: Résultats de recherche
       selection: Résultats de la sélection

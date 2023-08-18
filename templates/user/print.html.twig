@@ -71,10 +71,10 @@
     <ul>
         {% for copie in element.copies %}
         <li>
-            {{ 'bloc.print.disponibility' | trans({'%dispo%': copie.disponibilite, '%cote%': copie.cote, '%localisation%': copie.localisation}) }}
+            {{ 'bloc.print.disponibility' | trans({'%dispo%': copie.disponibilite, '%cote%': copie.cote }) }}
         </li>
         <li>
-            {{ copie.labelDisponibility }}
+            {{ copie.localisation}} - {{ copie.categorie }}
         </li>
         {% endfor %}
     </ul>
