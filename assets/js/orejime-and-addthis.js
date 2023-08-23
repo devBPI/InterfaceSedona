@@ -156,7 +156,7 @@ if (declineButton) {
 // ----------- Add-This ------------------------------------------------------------------------------------------------
 var addthisInit = false,
     originalContent = null;
-$('#modal-share')
+$('#modal-send-by-mail')
     .on('shown.bs.modal', function(e) {
         if (addthisInit === false && orejimeInstance.internals.manager.getConsent('add-this')) {
             addthisInit = true;

@@ -86,7 +86,6 @@ services:
 
   App\Service\MailSenderService:
     arguments:
-      $logger : '@monolog.logger'
       $sender : '%env(MAIL_SENDER)%'
       $replyTo : '%env(REPLY_TO_EMAIL)%'
 

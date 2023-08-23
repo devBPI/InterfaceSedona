@@ -3,33 +3,32 @@ declare(strict_types=1);
 
 namespace App\Model\Form;
 
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Class ExportNotice
  * @package App\Model\Form
  */
-final class ExportNotice
+class ExportNotice
 {
-    /**
-     * @var string
-     * @Assert\NotBlank(message="email.empty");
-     * @Assert\Email(message="email.format");
-     */
-    private $reciever;
-    /**
-     * @var string
-     */
-    private $message;
+    CONST PRINT_LONG = 'print-long';
+    CONST FORMAT_PDF = 'pdf';
+    CONST FORMAT_HTML = 'html';
+    CONST FORMAT_EMAIL = 'eml';
+    CONST FORMAT_TEXT = 'txt';
+
     /**
      * @var bool
      */
     private $shortFormat = false;
+
     /**
      * @var string
      * @Assert\NotBlank(message="formattype.empty");
      */
-    private $formatType;
+    private $formatType = self::FORMAT_PDF;
+
     /**
      * @var bool
      */
@@ -39,6 +38,7 @@ final class ExportNotice
      * @var string
      */
     private $notices;
+
     /**
      * @var string
      */
@@ -48,188 +48,90 @@ final class ExportNotice
      */
     private $authorities;
 
-    /**
-     * @var string
-     */
-    private $object;
-
-    /**
-     * @var string
-     */
-    private $sender;
-    /**
-     * @var string link
-     */
-    private $link;
-
-    /**
-     * @return string
-     */
-    public function getLink(): string
-    {
-        return $this->link;
-    }
-
-    /**
-     * @param string $link
-     */
-    public function setLink(string $link): void
-    {
-        $this->link = $link;
-    }
-    /**
-     * @return string
-     */
-
-
-    public function getSender(): ?string
-    {
-        return $this->sender;
-    }
-
-    /**
-     * @param string $sender
-     */
-    public function setSender(string $sender): void
-    {
-        $this->sender = $sender;
-    }
-
-
-    /**
-     * @return string
-     */
-    public function getObject(): ?string
-    {
-        return $this->object;
-    }
-
-    /**
-     * @return string
-     */
     public function getNotices(): string
     {
         return (string) $this->notices;
     }
 
-    /**
-     * @param string|null $notices
-     * @return ExportNotice
-     */
-    public function setNotices(string $notices=null): ExportNotice
+    public function hasNotices(): bool
+    {
+        return !empty($this->notices);
+    }
+
+    public function getNoticesArray(): array
+    {
+        if (!$this->hasAuthorities()) {
+            return [];
+        }
+        return \json_decode($this->notices);
+    }
+
+    public function setNotices(string $notices=null): self
     {
         $this->notices = $notices;
         return $this;
     }
 
-    /**
-     * @return string
-     */
     public function getAuthorities(): string
     {
         return (string) $this->authorities;
     }
 
-    /**
-     * @param string|null $authorities
-     * @return ExportNotice
-     */
-    public function setAuthorities(string $authorities=null): ExportNotice
+    public function hasAuthorities(): bool
+    {
+        return !empty($this->authorities);
+    }
+
+    public function getAuthoritiesArray(): array
+    {
+        if (!$this->hasAuthorities()) {
+            return [];
+        }
+        return \json_decode($this->authorities);
+    }
+
+    public function setAuthorities(string $authorities=null): self
     {
         $this->authorities = $authorities;
         return $this;
     }
 
-
-    /**
-     * @return null|string
-     */
-    public function getReciever(): ?string
-    {
-        return $this->reciever;
-    }
-
-    /**
-     * @param string $reciever
-     * @return ExportNotice
-     */
-    public function setReciever(string $reciever): ExportNotice
-    {
-        $this->reciever = $reciever;
-        return $this;
-    }
-
-    /**
-     * @return null|string
-     */
-    public function getMessage(): ?string
-    {
-        return $this->message;
-    }
-
-    /**
-     * @param string $message
-     * @return ExportNotice
-     */
-    public function setMessage(string $message): ExportNotice
-    {
-        $this->message = $message;
-        return $this;
-    }
-
-
-
-    /**
-     * @return null|string
-     */
     public function getFormatType(): ?string
     {
         return $this->formatType;
     }
-    /**
-     * @return null|string
-     */
+
     public function getTemplateType(): ?string
     {
-        if ($this->formatType === 'html') {
-            return 'pdf';
+        if ($this->formatType === self::FORMAT_HTML || $this->isFormatEmail()) {
+            return self::FORMAT_PDF;
         }
 
         return $this->formatType;
     }
 
-    /**
-     * @param string $formatType
-     * @return ExportNotice
-     */
-    public function setFormatType(string $formatType): ExportNotice
+    public function isFormatEmail() :bool
+    {
+        return $this->formatType === self::FORMAT_EMAIL;
+    }
+
+    public function setFormatType(string $formatType): self
     {
         $this->formatType = $formatType;
         return $this;
     }
 
-    /**
-     * @return bool
-     */
     public function isImage(): bool
     {
         return $this->image;
     }
 
-    /**
-     * @param bool $image
-     * @return ExportNotice
-     */
-    public function setImage(bool $image): ExportNotice
+    public function setImage(bool $image): self
     {
         $this->image = $image;
         return $this;
     }
 
-    /**
-     * @param string $object
-     * @return ExportNotice
-     */
     public function setObject(string $object):ExportNotice
     {
         $this->object = $object;
@@ -237,42 +139,50 @@ final class ExportNotice
         return $this;
     }
 
-    /**
-     * @return bool
-     */
     public function isShortFormat(): bool
     {
         return $this->shortFormat;
     }
 
-    /**
-     * @param bool $shortFormat
-     * @return $this
-     */
-    public function setShortFormat(bool $shortFormat): ExportNotice
+
+    public function setShortFormat(bool $shortFormat): self
     {
         $this->shortFormat = $shortFormat;
 
         return $this;
     }
 
-    /**
-     * @return string
-     */
     public function getIndices(): ?string
     {
         return $this->indices;
     }
 
-    /**
-     * @param string|null $indices
-     * @return ExportNotice
-     */
-    public function setIndices(string $indices=null): ExportNotice
+    public function hasIndices(): bool
+    {
+        return !empty($this->indices);
+    }
+
+    public function getIndicesArray(): array
+    {
+        if (!$this->hasIndices()) {
+            return [];
+        }
+        return \json_decode($this->indices);
+    }
+
+    public function setIndices(string $indices=null): self
     {
         $this->indices = $indices;
 
         return $this;
+    }
+
+    static function createFromRequest(Request $request) :self
+    {
+        return (new ExportNotice())
+            ->setShortFormat($request->get('print-type', self::PRINT_LONG) !== self::PRINT_LONG)
+            ->setImage($request->get('print-image', null) === 'print-image')
+            ->setFormatType($request->get('format-type',self::FORMAT_PDF));
     }
 }
 

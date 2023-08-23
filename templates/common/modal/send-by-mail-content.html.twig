@@ -1,5 +1,5 @@
 
-<form class="modal-form att-share-btn" method="post" novalidate="novalidate" action="{{ path('share_by_mail') }}" data-toggle="form-remote">
+<form class="modal-form att-share-btn" method="post" novalidate="novalidate" action="{{ path('send_by_mail') }}" data-toggle="form-remote">
 	{% if form.vars.errors|length > 0 %}
 		<div class="modal-body">
 			{{ form_errors(form) }}
@@ -13,22 +13,14 @@
 				{{ form_row(form.reciever) }}
 				{{ form_row(form.sender) }}
 				<div class="form-group row">
-					{{ form_label(form.object) }}
-					<div class="col-12 col-sm-8">
-						{{ 'modal.share.object' | trans }}
-					</div>
+					<label class="col-form-label col-12 col-sm-4">{{ 'modal.share.field.title' | trans }}</label>
+					<div class="col-12 col-sm-8">{{ 'modal.share.object' | trans }}</div>
 				</div>
 				{{ form_row(form.message) }}
-			</div>
-			<div class="d-none">
-				{{ form_row(form.formatType) }}
+				{{ form_row(form.shortFormat) }}
 				{{ form_row(form.image) }}
 			</div>
-			<div class="d-none">
-				{{ form_row(form.object) }}
-			</div>
 		</div>
-		{{ form_row(form.shortFormat) }}
 
 		{{ form_rest(form) }}
 	</div>

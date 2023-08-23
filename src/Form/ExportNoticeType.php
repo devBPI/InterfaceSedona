@@ -19,15 +19,23 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
  * Class ExportNoticeType
  * @package App\Form
  */
-final class ExportNoticeType extends AbstractType
+class ExportNoticeType extends AbstractType
 {
-    /**
-     * @param FormBuilderInterface $builder
-     * @param array $options
-     */
+
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
          $builder
+             ->add('formatType', ChoiceType::class, [
+                'required' => true,
+                'label'    => false,
+                'expanded' => true,
+                'data'     => ExportNotice::FORMAT_TEXT,
+                'choices'  => [
+                    'modal.export.field.txt' => ExportNotice::FORMAT_TEXT,
+                    'modal.export.field.pdf' => ExportNotice::FORMAT_PDF
+                ],
+                 'attr'      => ['autocomplete'=> 'off' ]
+             ])
              ->add('shortFormat', ChoiceType::class, [
                  'required' => true,
                  'label'    => false,
@@ -62,44 +70,9 @@ final class ExportNoticeType extends AbstractType
                      'class' => 'js-print-indices'
                  ]
              ])
-             ->add('reciever', EmailType::class, [
-                'required'  => true,
-                'label'     => 'modal.share.field.recipient',
-                'attr'      => ['autocomplete' => "off"],
-                'label_attr'=> ['compl' => 'modal.email-example']
-            ])
-             ->add('sender', EmailType::class, [
-                 'required' => false,
-                 'label'     => 'modal.share.field.expeditor',
-                 'attr'      => ['autocomplete' => "off"],
-                 'label_attr'=> ['compl' => 'modal.email-example']
-             ])
-             ->add('object', TextType::class,[
-                 'required'  => false,
-                 'label'     => 'modal.export.field.object',
-                 'attr'      => ['autocomplete'=> 'off' ]
-             ])
-             ->add('message', TextareaType::class,[
-                'required'  => false,
-                'label'     => 'modal.export.field.comments',
-                 'attr'      => ['autocomplete'=> 'off' ]
-            ])
-             ->add('formatType', ChoiceType::class, [
-                'required' => true,
-                'label'    => false,
-                'expanded' => true,
-                'data'     => 'txt',
-                'choices'  => [
-                    'modal.export.field.txt' => 'txt',
-                    'modal.export.field.pdf' => 'pdf'
-                ],
-                 'attr'      => ['autocomplete'=> 'off' ]
-             ]);
+         ;
     }
 
-    /**
-     * @param OptionsResolver $resolver
-     */
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([

@@ -4,7 +4,6 @@
 namespace App\Controller;
 
 use App\Controller\Traits\ObjSearchInstanceTrait;
-use App\Controller\Traits\PrintTrait;
 use App\Entity\SearchHistory;
 use App\Model\Form\ExportNotice;
 use App\Model\Notice;
@@ -34,7 +33,7 @@ use Symfony\Component\Routing\Annotation\Route;
  */
 final class SearchController extends AbstractController
 {
-    use PrintTrait, ObjSearchInstanceTrait;
+    use ObjSearchInstanceTrait;
 
     public const GENERAL ='general';
 
@@ -239,17 +238,17 @@ final class SearchController extends AbstractController
 
     /**
      * @Route("/print/recherche.{format}", methods={"POST","GET","HEAD"}, name="search_pdf", requirements={"format" = "html|pdf|txt"}, defaults={"format" = "pdf"})
-     *
-     * @param Request $request
-     * @param string $format
-     * @return PdfResponse|Response
-     * @throws \Twig\Error\LoaderError
-     * @throws \Twig\Error\RuntimeError
-     * @throws \Twig\Error\SyntaxError
      */
-    public function printAction(Request $request)
+    public function printAction(Request $request) :Response
     {
-        return $this->buildFileContent->print($request);
+
+        $sendAttachement = ExportNotice::createFromRequest($request)
+            ->setAuthorities($request->get('authorities', ''))
+            ->setNotices($request->get('notices', ''))
+            ->setIndices($request->get('indices', ''))
+        ;
+
+        return  $this->buildFileContent->buildFile($sendAttachement, ObjSearch::class) ;
     }
 
     /**
@@ -297,26 +296,24 @@ final class SearchController extends AbstractController
         $objSearch = $this->searchService->createObjSearch($search, $request);
         $objSearch->setResults($this->searchProvider->getListBySearch($search));
         $request->query->remove('action');
-        $currentSort = $request->get('sort');
+
         $request->getSession()->set(NavigationService::SESSION_KEY, serialize(new ListNavigation($objSearch)));
         $request->getSession()->set('searchToken', serialize($objSearch));
 
         $seeAll = $request->get('see-all', Notice::ALL);
+        $currentSort = $request->get('sort');
         $template = 'search/index.html.twig';
         if (in_array($seeAll, [Notice::SEE_ONLINE, Notice::SEE_ONSHELF] )){
             $template = 'search/index-all.html.twig';
         }
 
-        return $this->render(
-            $template,
-            [
-                'toolbar'   => ObjSearch::class,
-                'isNotice' => false,
-                'seeAll'    => $seeAll,
-                'objSearch' => $objSearch,
-                'printRoute' => $this->generateUrl('search_pdf', ['format' => 'pdf']),
+        return $this->render($template, [
+                'toolbar'     => ObjSearch::class,
+                'isNotice'    => false,
+                'seeAll'      => $seeAll,
+                'objSearch'   => $objSearch,
+                'printRoute'  => $this->generateUrl('search_pdf', ['format' => 'pdf']),
                 'currentSort' => $currentSort
-            ]
-        );
+            ]);
     }
 }

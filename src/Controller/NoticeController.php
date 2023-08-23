@@ -140,26 +140,17 @@ final class NoticeController extends AbstractController
 
     /**
      * @Route("/print/document.{format}/{permalink}", methods={"GET","HEAD"}, name="record_bibliographic_pdf", requirements={"permalink"=".+", "format"="html|pdf|txt"}, defaults={"format" = "pdf"})
-     * @param Request $request
-     * @param string $format
-     * @return PdfResponse|Response
-     * @throws \Twig\Error\LoaderError
-     * @throws \Twig\Error\RuntimeError
-     * @throws \Twig\Error\SyntaxError
      */
-    public function bibliographicRecordPDFAction(Request $request)
+    public function printAction(Request $request) :Response
     {
         try {
-            $sendWithAttachement = (new ExportNotice())
+            $sendAttachement = ExportNotice::createFromRequest($request)
                 ->setNotices($request->get('permalink'))
-                ->setImage($request->get('print-image', null) === 'print-image')
-                ->setFormatType($request->get('format-type', "pdf"))
-                ->setShortFormat($request->get('print-type', 'print-long') !== 'print-long')
             ;
         } catch(NoResultException $e) {
             return $this->render('common/error.html.twig');
         }
 
-        return $this->buildFileContent->buildFile($sendWithAttachement,Notice::class);
+        return $this->buildFileContent->buildFile($sendAttachement,Notice::class);
     }
 }

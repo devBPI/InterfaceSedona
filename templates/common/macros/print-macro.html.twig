@@ -10,35 +10,6 @@
     {% endif %}
 {% endmacro %}
 
-{% macro list_objects(listObjects, includeImage, detailTemplate, isPrintLong, startIndex = 0) %}
-    {% from 'common/macros/print-macro.html.twig' import image %}
-    {% if listObjects is defined and listObjects is iterable %}
-        {% for element in listObjects %}
-            <div class="print__item">
-                {% set elementLoop = loop %}
-                <a href="{{ absolute_url(path('record_authority', {"permalink": element.permalink})) }}"><h2 class="n1">{{ (elementLoop.index + startIndex) ~ ') ' ~ element.printTitle }}</h2></a>
-              {% if element.titles is defined  %}
-                {% for title in element.titles %}
-                    {% if loop.index > 1 %}
-                    <h2 class="n1"> {{ title }}</h2>
-                    {% endif %}
-                {% endfor %}
-                {% endif %}
-                {% if element.titleForm is defined and element.titleForm  %}
-                    {% for title in element.titleForm %}
-                        <h2 class="n1">{{ title }}</h2>
-                    {% endfor %}
-                {% endif %}
-                <div>
-                    {{ image(element, includeImage) }}
-                    <ul class="print__list">
-                        {% include detailTemplate with {'notice': element, 'format':'pdf'} %}
-                    </ul>
-                </div>
-            </div>
-        {% endfor %}
-    {% endif %}
-{% endmacro %}
 
 {% macro list_subitems(listItems, includeImage) %}
     {% if listItems is defined and listItems is iterable %}

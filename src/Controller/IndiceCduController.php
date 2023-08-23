@@ -78,7 +78,7 @@ final class IndiceCduController extends AbstractController
         return $this->render('indice/index.html.twig', [
                 'origin'          => $origin,
                 'toolbar'         => IndiceCdu::class,
-                'isNotice'          => false,
+                'isNotice'        => false,
                 'printRoute'      => $printRoute,
                 'subjects'        => $subjects,
                 'notice'          => $notice,
@@ -112,23 +112,13 @@ final class IndiceCduController extends AbstractController
 
     /**
      * @Route("/print/indice.{format}/{permalink}", methods={"GET"}, name="indice_pdf", requirements={"permalink"=".+", "format" = "html|pdf|txt"}, defaults={"format" = "pdf"})
-     * @param Request $request
-     * @param string $format
-     * @return mixed|string
-     * @throws \Twig\Error\LoaderError
-     * @throws \Twig\Error\RuntimeError
-     * @throws \Twig\Error\SyntaxError
      */
-    public function authorityRecordPDFAction(Request $request, $format='pdf')
+    public function printAction(Request $request, $format= ExportNotice::FORMAT_PDF) :Response
     {
         try {
-            $sendAttachement = new ExportNotice();
-
-            $sendAttachement
-                ->setIndices($request->get('permalink'))
-                ->setImage($request->get('print-image', null) === 'print-image')
+            $sendAttachement = ExportNotice::createFromRequest($request)
                 ->setFormatType($format)
-                ->setShortFormat($request->get('print-type', 'print-long') !== 'print-long')
+                ->setIndices($request->get('permalink'))
             ;
         } catch(NoResultException $e) {
             return $this->render('common/error.html.twig');

@@ -14,7 +14,7 @@
 
         {{- pdf_occurence (notice, 'getPrincipalActivities', 'bloc.autority-result-information.activity'|trans, format)|raw -}}
         {{- pdf_occurence (notice, 'getNotes', 'bloc.autority-result-information.nots'|trans, format)|raw -}}
-            {{- pdf_occurence (notice, 'getOtherNames', 'bloc.autority-result-information.other-names'|trans, format)|raw -}}
+        {{- pdf_occurence (notice, 'getOtherNames', 'bloc.autority-result-information.other-names'|trans, format)|raw -}}
 
         {{- pdf_occurence (notice, 'getAssocietedForm', 'bloc.autority-result-information.linked-names'|trans, format)|raw -}}
         {{- pdf_occurence (notice, 'getIsni', 'bloc.autority-result-information.insi'|trans, format)|raw -}}
@@ -27,7 +27,7 @@
         {{- pdf_occurence (notice, 'getLanguages', 'bloc.autority-result-information.language'|trans, format)|raw -}}
         {{- pdf_occurence (notice, 'getPrincipalActivities', 'bloc.autority-result-information.activity'|trans, format)|raw -}}
     {% endif %}
-
-
+    {%- if format == constant('App\\Model\\Form\\ExportNotice::FORMAT_TEXT')  %}
+Permalien : {{- absolute_url(path('record_authority', {"permalink": notice.permalink})) -}}
     {% endif -%}
 {% endspaceless %}

@@ -75,7 +75,7 @@ final class AuthorityController extends AbstractController
 
         return $this->render('authority/index.html.twig', [
                 'origin'        => $origin,
-                'isNotice'          => false,
+                'isNotice'      => false,
                 'toolbar'       => Authority::class,
                 'printRoute'    => $printRoute,
                 'subjects'      => $subject,
@@ -88,24 +88,13 @@ final class AuthorityController extends AbstractController
 
     /**
      * @Route("/print/autorite.{format}/{permalink}", name="record_authority_pdf", requirements={"permalink"=".+", "format" = "html|pdf|txt"}, defaults={"format" = "pdf"})
-
-     * @param Request $request
-     * @param string $format
-     * @return mixed|string
-     * @throws \Twig\Error\LoaderError
-     * @throws \Twig\Error\RuntimeError
-     * @throws \Twig\Error\SyntaxError
      */
-    public function authorityRecordPDFAction(Request $request, $format='pdf')
+    public function printAction(Request $request, $format= ExportNotice::FORMAT_PDF) :Response
     {
         try {
-            $sendAttachement = new ExportNotice();
-
-            $sendAttachement
-                ->setAuthorities($request->get('permalink'))
-                ->setImage($request->get('print-image', null) === 'print-image')
+            $sendAttachement = ExportNotice::createFromRequest($request)
                 ->setFormatType($format)
-                ->setShortFormat($request->get('print-type', 'print-long') !== 'print-long')
+                ->setAuthorities($request->get('permalink'))
             ;
         } catch(NoResultException $e) {
             return $this->render('common/error.html.twig');

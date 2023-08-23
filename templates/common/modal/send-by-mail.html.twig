@@ -1,6 +1,6 @@
 {% set currentPermalink = current_permalink() %}
 
-<div role="dialog" data-backdrop="static" aria-modal="true" aria-labelledby="modal-share-title" class="modal fade" id="modal-share" tabindex="-1" lang="fr">
+<div role="dialog" data-backdrop="static" aria-modal="true" aria-labelledby="modal-send-by-mail-title" class="modal fade" id="modal-send-by-mail" tabindex="-1" lang="fr">
 	<div class="modal-dialog modal-dialog-centered">
 
 		<div class="modal-content">
@@ -10,13 +10,13 @@
 					<img src="{{ asset('images/icones/icone-croix-blanc.svg') }}" alt="{{ 'global.modal-close'|trans }}" />
 				</button>
 			</div>
-			
+
 			{# <div class="modal-body">
 				<!-- Go to www.addthis.com/dashboard to customize your tools -->
 				<div class="addthis_inline_share_toolbox"></div>
 			</div> #}
 
-            {{ render(controller('App\\Controller\\ReportingController::shareByMailAction', {'link': currentPermalink ?? absolute_url(app.request.uri)})) }}
+            {{ render(controller('App\\Controller\\ReportingController::sendByMailAction', {'link': currentPermalink ?? absolute_url(app.request.uri)})) }}
 		</div>
 	</div>
 </div>

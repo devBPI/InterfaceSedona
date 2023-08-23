@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="{{ app.request.locale }}">
+	<head>
+		<meta charset="UTF-8">
+		<title>{{ 'global.title-print'|trans }}</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="stylesheet" href="{{ absolute_url(asset('build/print-css.css')) }}">
+	</head>
+	<body>		
+		<header class="print-header header">
+			<div class="container" style="text-align: right;">
+				<img src="{{ absolute_url(asset('images/bpi-logo.png')) }}" alt="{{ 'header.logo_alt'|trans }}" />
+			</div>
+		</header>
+		<main class="print">
+			{% if attachement.message %}
+			<div class="container">
+				<p>{{ attachement.message|nl2br }}</p>
+			</div>
+			{% endif %}
+			<div class="container">
+				<p>{{ 'bloc.print.subtitles.catalogue' | trans }}</p>
+				<p>{{ 'bloc.print.subtitles.send-by-robot' | trans }}</p>
+				<hr/>
+				{% block body %}{% endblock %}
+			</div>
+		</main>
+	</body>
+</html>

@@ -1,6 +1,6 @@
 {% spaceless %}
 {% set type = 'bloc.autority-result-information.authority-type'|trans ~ ' : ' ~ 'bloc.autority-result-information.type.indice'|trans %}
-{%- if format == 'pdf' %}
+{%- if format == constant('App\\Model\\Form\\ExportNotice::FORMAT_PDF') %}
         <li>{{ type }}</li>
 {% else %}
 {{- (type)|raw -}}{{ "\n" }}

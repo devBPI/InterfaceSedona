@@ -14,76 +14,57 @@ namespace App\Utils;
 use App\Model\Authority;
 use App\Model\IndiceCdu;
 use App\Model\Notice;
-use App\Service\Provider\NoticeAuthorityProvider;
-use App\Service\Provider\NoticeProvider;
+use App\Model\NoticeThemed;
 
 class PrintNoticeWrapper
 {
-    /**
-     * @var array
-     */
-    private $noticeOnline=[];
-    /**
-     * @var array
-     */
-    private $noticeAuthority=[];
-    /**
-     * @var array
-     */
-    private $noticeOnShelves=[];
-    /**
-     * @var array
-     */
-    private $noticeIndice=[];
+    private array $noticeOnline=[];
 
-    /**
-     * PrintNoticeWrapper constructor.
-     * @param array $noticeOnline
-     * @param array $noticeAuthority
-     * @param array $noticeOnShelves
-     * @param array $noticeIndice
-     */
-    public function __construct(array $noticeOnline, array $noticeAuthority, array $noticeOnShelves=[], array $noticeIndice=[])
-    {
-        $this->noticeOnline = $noticeOnline;
-        $this->noticeAuthority = $noticeAuthority;
-        $this->noticeOnShelves = $noticeOnShelves;
-        $this->noticeIndice = $noticeIndice;
-    }
+    private array $noticeAuthority=[];
 
-    /**
-     * @return array
-     */
+    private array $noticeOnShelves=[];
+
+    private array $noticeIndice=[];
+
+
     public function getNoticeOnline(): array
     {
         return $this->noticeOnline;
     }
 
-    /**
-     * @return array
-     */
     public function getNoticeAuthority(): array
     {
         return $this->noticeAuthority;
     }
 
-    /**
-     * @return array
-     */
+    public function addNoticeAuthority(Authority $notice) :self
+    {
+        $this->noticeAuthority[] = $notice;
+        return $this;
+    }
+
     public function getNoticeOnShelves(): array
     {
         return $this->noticeOnShelves;
     }
 
-    /**
-     * @return array
-     */
+    public function addNoticeOnShelves(Notice $notice = null) :self
+    {
+        if ($notice instanceof Notice) {
+            $this->noticeOnShelves[] = $notice;
+        }
+        return $this;
+    }
+
     public function getNoticeIndice(): array
     {
         return $this->noticeIndice;
     }
 
-
-
+    public function addNoticeIndice(IndiceCdu $notice) :self
+    {
+        $this->noticeIndice[] = $notice;
+        return $this;
+    }
 
 }

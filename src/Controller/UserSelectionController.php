@@ -5,6 +5,8 @@ namespace App\Controller;
 
 use App\Entity\UserSelectionList;
 use App\Entity\UserSelectionDocument;
+use App\Model\Form\ExportNotice;
+use App\Service\NoticeBuildFileService;
 use App\Service\Provider\SearchProvider;
 use App\Service\SelectionListService;
 use App\Service\LoggerService;
@@ -15,8 +17,6 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Annotation\Route;
-
-use Monolog\Logger;
 
 /**
  * @route("/selection", name="user_selection")
@@ -42,34 +42,24 @@ final class UserSelectionController extends AbstractController
 	 */
   	private $selectionService;
 
-	/**
-	 * @var LoggerService
-	 */
-  	private $loggerService;
 
-	/**
-	* @var Logger
-	*/
-	private $logger;
+    /**
+     * @var NoticeBuildFileService
+     */
+    private $buildFileContent;
 
-	/**
-	* UserSelectionController constructor.
-	* @param SelectionListService $selectionListService
-	* @param Logger $logger
-	*/
-	public function __construct(SelectionListService $selectionListService, LoggerService $loggerService, SearchProvider $searchProvider)//, Logger $logger)
-	{
+	public function __construct(
+        SelectionListService $selectionListService,
+        SearchProvider $searchProvider,
+        NoticeBuildFileService $buildFileContent
+    ){
 		$this->selectionService = $selectionListService;
-		$this->loggerService = $loggerService;
 		$this->searchProvider = $searchProvider;
+        $this->buildFileContent = $buildFileContent;
 	}
 
     /**
      * @Route("/", methods={"GET","POST"}, name="_index")
-     * @param Request $request
-     * @return \Symfony\Component\HttpFoundation\Response
-     * @throws \Doctrine\ORM\ORMException
-     * @throws \Doctrine\ORM\OptimisticLockException
      */
     public function selectionAction(Request $request): Response
     {
@@ -82,8 +72,8 @@ final class UserSelectionController extends AbstractController
         return $this->render( 'user/selection.html.twig',
             $this->selectionService->getSelectionObjects() +[
                 'printRoute'=> $this->generateUrl('selection_print', ['format' => 'pdf']),
-                'toolbar'=> UserSelectionDocument::class,
-                'isNotice' => false,
+                'toolbar'   => UserSelectionDocument::class,
+                'isNotice'  => false,
             ]
         );
     }
@@ -92,10 +82,6 @@ final class UserSelectionController extends AbstractController
     /**
      * @Security("has_role('ROLE_USER')")
      * @Route("/list/creation", methods={"POST"}, name="_list_create")
-     * @param Request $request
-     * @return \Symfony\Component\HttpFoundation\Response
-     * @throws \Doctrine\ORM\ORMException
-     * @throws \Doctrine\ORM\OptimisticLockException
      */
     public function createListAction(Request $request): Response
     {
@@ -111,9 +97,7 @@ final class UserSelectionController extends AbstractController
                 ]);
             }
 
-            $param = [
-                'error' => 'modal.list-create.mandatory-field'
-            ];
+            $param = [ 'error' => 'modal.list-create.mandatory-field'];
         }
 
         return $this->render('user/modal/creation-list-content.html.twig', $param);
@@ -121,8 +105,6 @@ final class UserSelectionController extends AbstractController
 
     /**
      * @Route("/list/ajout-documents", methods={"GET","POST"}, name="_list_add")
-     * @param Request $request
-     * @return Response
      */
     public function addListAction(Request $request): Response
     {
@@ -156,9 +138,7 @@ final class UserSelectionController extends AbstractController
             }
         }
 
-        $params += [
-            'lists' => $this->selectionService->getListsOfCurrentUser()
-        ];
+        $params += ['lists' => $this->selectionService->getListsOfCurrentUser()];
 
         return $this->render('user/modal/add-list-content.html.twig', $params);
     }
@@ -166,11 +146,6 @@ final class UserSelectionController extends AbstractController
     /**
      * @Security("has_role('ROLE_USER')")
      * @Route("/list/{list}/modification", methods={"GET","POST"}, name="_list_edit")
-     * @param UserSelectionList $list
-     * @param Request $request
-     * @return Response
-     * @throws \Doctrine\ORM\ORMException
-     * @throws \Doctrine\ORM\OptimisticLockException
      */
     public function editListAction(UserSelectionList $list, Request $request): Response
     {
@@ -186,9 +161,7 @@ final class UserSelectionController extends AbstractController
                 ]);
             }
 
-            $param += [
-                'error' => 'modal.list-create.mandatory-field',
-            ];
+            $param += ['error' => 'modal.list-create.mandatory-field'];
         }
 
         return $this->render('user/modal/edition-list-content.html.twig', $param);
@@ -197,11 +170,6 @@ final class UserSelectionController extends AbstractController
     /**
      * @Security("has_role('ROLE_USER')")
      * @Route("/list/document/{document}/modification/commentaire", methods={"GET","POST"}, name="_list_document_comment_edit")
-     * @param UserSelectionDocument $document
-     * @param Request $request
-     * @return Response
-     * @throws \Doctrine\ORM\ORMException
-     * @throws \Doctrine\ORM\OptimisticLockException
      */
     public function editDocumentCommentAction(UserSelectionDocument $document, Request $request): Response
     {
@@ -220,10 +188,6 @@ final class UserSelectionController extends AbstractController
 
     /**
      * @Route("/list/check", methods={"GET","POST"}, name="_check_list_document")
-     * @param Request $request
-     * @return JsonResponse
-     * @throws \Doctrine\ORM\ORMException
-     * @throws \Doctrine\ORM\OptimisticLockException
      */
     public function checkListsPermalinks(Request $request): JsonResponse
     {
@@ -260,11 +224,24 @@ final class UserSelectionController extends AbstractController
             )]
         );
     }
+
+
+
     /**
-     * @param $payload
-     * @return string
+     * @Route("/print/selection.{format}", methods={"GET","HEAD"}, name="selection_print", requirements={"format" = "html|pdf|txt"}, defaults={"format" = "pdf"})
      */
-    private function prepareXmlRequest($payload )
+    public function printAction(Request $request) :Response
+    {
+        $sendAttachement = ExportNotice::createFromRequest($request)
+            ->setNotices($request->get('notices'))
+            ->setAuthorities($request->get('authorities'))
+            ->setIndices($request->get('indices'))
+        ;
+
+        return $this->buildFileContent->buildFile($sendAttachement, UserSelectionDocument::class);
+    }
+
+    private function prepareXmlRequest($payload ) :string
     {
         $payload    = json_decode($payload, true);
         $list = [];

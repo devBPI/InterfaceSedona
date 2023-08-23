@@ -15,7 +15,6 @@ use App\Service\Provider\NoticeAuthorityProvider;
 use App\Service\Provider\NoticeProvider;
 use App\Utils\PrintNoticeWrapper;
 use Knp\Bundle\SnappyBundle\Snappy\Response\PdfResponse;
-use mysql_xdevapi\Exception;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
@@ -29,6 +28,7 @@ use Monolog\Logger;
  */
 class NoticeBuildFileService
 {
+
     const SHORT_PRINT = 'short-print';
     /**
      * @var NoticeProvider
@@ -55,14 +55,6 @@ class NoticeBuildFileService
      */
     private $logger;
 
-    /**
-     * NoticeBuildFileService constructor.
-     * @param NoticeProvider $noticeProvider
-     * @param NoticeAuthorityProvider $noticeAuthority
-     * @param \Knp\Snappy\Pdf $knpSnappy
-     * @param Environment $templating
-     * @param SessionInterface $session
-     */
     public function __construct(
         NoticeProvider $noticeProvider,
         NoticeAuthorityProvider $noticeAuthority,
@@ -80,156 +72,30 @@ class NoticeBuildFileService
         $this->logger = $logger;
     }
 
-    /**
-     * @param ExportNotice $attachement
-     * @return string
-     * @throws \Twig\Error\LoaderError
-     * @throws \Twig\Error\RuntimeError
-     * @throws \Twig\Error\SyntaxError
-     */
-    private function buildFileForSearch(ExportNotice $attachement)
+
+    public function buildFile(ExportNotice $attachement, string $type) :Response
     {
-        $noticeWrapper  =  null;
-        try {
-            $noticeWrapper  = $this->getNoticeWrapper($attachement);
-
-        } catch (\Exception $e) {
-            /**
-             * lunch an custom exception
-             */
-        }
-
-        return  $this->templating->render(
-            "search/index.".$attachement->getTemplateType().".twig",
-            [
-                'toolbar'=> ObjSearch::class,
-                'isPrintLong'   => !$attachement->isShortFormat(),
-                'includeImage'  => $attachement->isImage(),
-                'printNoticeWrapper'=> $noticeWrapper
-            ]
-        );
-    }
-
-    /**
-     * @param ExportNotice $attachement
-     * @return string
-     * @throws \Twig\Error\LoaderError
-     * @throws \Twig\Error\RuntimeError
-     * @throws \Twig\Error\SyntaxError
-     */
-    private function buildFileForNotice(ExportNotice $attachement): string
-    {
-        $permalink = null;
-        try {
-            $permalink = $attachement->getNotices();
-            $object = $this->noticeProvider->getNotice($permalink, !$attachement->isShortFormat()?:self::SHORT_PRINT);
-        } catch(\Exception $e) {
-           throw new NotFoundHttpException(sprintf('the permalink %s not referenced', $permalink));
-        }
-
-        return  $this->templating->render("notice/print.".$attachement->getTemplateType() .".twig", [
-            'toolbar'           => Notice::class,
-            'isPrintLong'       => !$attachement->isShortFormat(),
-            'includeImage'      => $attachement->isImage(),
-            'notice'            => $object->getNotice()
-        ]);
-    }
-
-    /**
-     * @param ExportNotice $attachement
-     * @return string
-     * @throws \Twig\Error\LoaderError
-     * @throws \Twig\Error\RuntimeError
-     * @throws \Twig\Error\SyntaxError
-     */
-    private function buildFileForAuthority(ExportNotice $attachement)
-    {
-        $permalink = null;
-        try {
-            $permalink = $attachement->getAuthorities();
-            $object             = $this->noticeAuthority->getAuthority($permalink, !$attachement->isShortFormat()?:self::SHORT_PRINT);
-            $relatedDocuments   = $this->noticeAuthority->getSubjectNotice($object->getId());
-            $noticeAuthors      = $this->noticeAuthority->getAuthorsNotice($object->getId());
-
-        } catch(\Exception $e) {
-            throw new NotFoundHttpException(sprintf('the permalink %s not referenced', $permalink));
-        }
-
-        return  $this->templating->render("authority/print.".$attachement->getTemplateType() .".twig", [
-            'toolbar'           => Authority::class,
-            'isPrintLong'       => !$attachement->isShortFormat(),
-            'includeImage'      => $attachement->isImage(),
-            'notice'            => $object,
-            'relatedDocuments'  => $relatedDocuments,
-            'noticeAuthors'     => $noticeAuthors,
-        ]);
-    }
-    /**
-     * @param ExportNotice $attachement
-     * @return string
-     * @throws \Twig\Error\LoaderError
-     * @throws \Twig\Error\RuntimeError
-     * @throws \Twig\Error\SyntaxError
-     */
-    private function buildFileForIndice(ExportNotice $attachement)
-    {
-        $permalink = null;
-        try {
-            $permalink          = $attachement->getIndices();
-            $object             = $this->noticeAuthority->getIndiceCdu($permalink);
-            $relatedDocuments   = $this->noticeAuthority->getSubjectIndice($object->getId());
-        } catch(NoResultException|\Exception $e) {
-            throw new NotFoundHttpException(sprintf('the permalink %s not referenced', $permalink));
-        }
-
-        return  $this->templating->render("indice/print.".$attachement->getTemplateType() .".twig", [
-            'toolbar'           => Authority::class,
-            'isPrintLong'       => !$attachement->isShortFormat(),
-            'includeImage'      => $attachement->isImage(),
-            'notice'            => $object,
-            'relatedDocuments'  => $relatedDocuments
-        ]);
-    }
-
-    /**
-     * @param ExportNotice $attachement
-     * @param string $type
-     * @return mixed|string
-     * @throws \Twig\Error\LoaderError
-     * @throws \Twig\Error\RuntimeError
-     * @throws \Twig\Error\SyntaxError
-     */
-    public function buildFile(ExportNotice $attachement, string $type, string $link = null)
-    {
-        $content = $this->buildContent($attachement, $type, $link);
+        $content = $this->buildContent($attachement, $type);
 
         $filename = 'vos-references_'.date('Y-m-d_h-i-s');
 
         switch ($attachement->getFormatType()){
-            case 'txt':
+            case ExportNotice::FORMAT_TEXT:
                 return new Response(
-                $content, 200, [
-                    'Content-Type' => 'application/force-download; charset=utf-8',
-                    'Content-Disposition' => 'attachment; filename="'.$filename.'.txt"',
-                ]
-            );
-            case 'html':
-                return new Response($content);
-            case 'pdf':
+                    $content, 200, [
+                        'Content-Type' => 'application/force-download; charset=utf-8',
+                        'Content-Disposition' => 'attachment; filename="'.$filename.'.txt"',
+                    ]
+                );
+            case ExportNotice::FORMAT_PDF:
                 return new PdfResponse($content,$filename.".pdf");
+            case ExportNotice::FORMAT_HTML:
+            case ExportNotice::FORMAT_EMAIL:
             default:
-                return $content;
+                return new Response($content);
         }
     }
 
-    /**
-     * @param ExportNotice $attachement
-     * @param string $type
-     * @return string
-     * @throws \Twig\Error\LoaderError
-     * @throws \Twig\Error\RuntimeError
-     * @throws \Twig\Error\SyntaxError
-     */
     public function buildContent(ExportNotice $attachement, string $type): string
     {
 
@@ -249,15 +115,12 @@ class NoticeBuildFileService
             case UserSelectionDocument::class:
                 $content = $this->buildFileForUserSelectionList($attachement);
                 break;
-            case "HTML":
-                $content = $this->buildFileForForHtml($attachement);
-                break;
             default:
                 throw new \InvalidArgumentException(sprintf('The type "%s" is not referenced on the app', $type));
                 break;
         }
 
-        if ($attachement->getFormatType() === 'pdf'){
+        if ($attachement->getFormatType() === ExportNotice::FORMAT_PDF){
             return  $this->knpSnappy->getOutputFromHtml($content,[
                 'orientation'       => 'Portrait',
                 'page-size'         => 'A4',
@@ -271,151 +134,152 @@ class NoticeBuildFileService
         return $content;
     }
 
+    private function buildFileForSearch(ExportNotice $attachement) :string
+    {
+        $noticeWrapper  =  null;
+        try {
+            $noticeWrapper  = $this->getNoticeWrapper($attachement);
+        } catch (\Exception $e) {}
 
-    /**
-     * @param ExportNotice $attachement
-     * @return string
-     * @throws \Twig\Error\LoaderError
-     * @throws \Twig\Error\RuntimeError
-     * @throws \Twig\Error\SyntaxError
-     */
-    private function buildFileForUserSelectionList(ExportNotice $attachement)
+        $twig = $attachement->getTemplateType() == ExportNotice::FORMAT_TEXT ? "search/print.txt.twig" : "search/print.pdf.twig";
+        return  $this->templating->render($twig, [
+            'toolbar'               => ObjSearch::class,
+            'attachement'           => $attachement,
+            'isPrintLong'           => !$attachement->isShortFormat(),
+            'includeImage'          => $attachement->isImage(),
+            'printNoticeWrapper'    => $noticeWrapper
+        ]);
+    }
+
+    private function buildFileForNotice(ExportNotice $attachement): string
+    {
+        $permalink = null;
+        try {
+            $permalink  = $attachement->getNotices();
+            $object     = $this->noticeProvider->getNotice($permalink, !$attachement->isShortFormat()?:self::SHORT_PRINT);
+        } catch(\Exception $e) {
+           throw new NotFoundHttpException(sprintf('the permalink %s not referenced', $permalink));
+        }
+
+        $twig = $attachement->getTemplateType() == ExportNotice::FORMAT_TEXT ? "notice/print.txt.twig" : "notice/print.pdf.twig";
+        return  $this->templating->render($twig, [
+            'toolbar'           => Notice::class,
+            'attachement'       => $attachement,
+            'isPrintLong'       => !$attachement->isShortFormat(),
+            'includeImage'      => $attachement->isImage(),
+            'notice'            => $object->getNotice()
+        ]);
+    }
+
+    private function buildFileForAuthority(ExportNotice $attachement) :string
+    {
+        $permalink = null;
+        try {
+            $permalink          = $attachement->getAuthorities();
+            $object             = $this->noticeAuthority->getAuthority($permalink, !$attachement->isShortFormat()?:self::SHORT_PRINT);
+            $relatedDocuments   = $this->noticeAuthority->getSubjectNotice($object->getId());
+            $noticeAuthors      = $this->noticeAuthority->getAuthorsNotice($object->getId());
+
+        } catch(\Exception $e) {
+            throw new NotFoundHttpException(sprintf('the permalink %s not referenced', $permalink));
+        }
+
+        return  $this->templating->render("authority/print.".$attachement->getTemplateType() .".twig", [
+            'toolbar'           => Authority::class,
+            'attachement'       => $attachement,
+            'isPrintLong'       => !$attachement->isShortFormat(),
+            'includeImage'      => $attachement->isImage(),
+            'notice'            => $object,
+            'relatedDocuments'  => $relatedDocuments,
+            'noticeAuthors'     => $noticeAuthors,
+        ]);
+    }
+
+    private function buildFileForIndice(ExportNotice $attachement) :string
+    {
+        $permalink = null;
+        try {
+            $permalink          = $attachement->getIndices();
+            $object             = $this->noticeAuthority->getIndiceCdu($permalink);
+            $relatedDocuments   = $this->noticeAuthority->getSubjectIndice($object->getId());
+        } catch(NoResultException|\Exception $e) {
+            throw new NotFoundHttpException(sprintf('the permalink %s not referenced', $permalink));
+        }
+        $twig = $attachement->getTemplateType() == ExportNotice::FORMAT_TEXT ? "indice/print.txt.twig" : "indice/print.pdf.twig";
+        return  $this->templating->render($twig, [
+            'toolbar'           => Authority::class,
+            'attachement'       => $attachement,
+            'isPrintLong'       => !$attachement->isShortFormat(),
+            'includeImage'      => $attachement->isImage(),
+            'notice'            => $object,
+            'relatedDocuments'  => $relatedDocuments
+        ]);
+    }
+
+    private function buildFileForUserSelectionList(ExportNotice $attachement)  :string
     {
         $noticeWrapper =null;
         try {
             $noticeWrapper = $this->getNoticeWrapper($attachement);
+        } catch (\Exception|NoResultException $e) {}
 
-        } catch (\Exception|NoResultException $e) {
-        }
-
-        return  $this->templating->render(
-            "user/print.".$attachement->getTemplateType().".twig",
-            [
-                'toolbar'           => ObjSearch::class,
-                'isPrintLong'       => !$attachement->isShortFormat(),
-                'includeImage'      => $attachement->isImage(),
-                'printNoticeWrapper'=> $noticeWrapper
-            ]
-        );
+        $twig = $attachement->getTemplateType() == ExportNotice::FORMAT_TEXT ? "user/print.txt.twig" : "user/print.pdf.twig";
+        return  $this->templating->render($twig, [
+            'toolbar'           => ObjSearch::class,
+            'attachement'       => $attachement,
+            'isPrintLong'       => !$attachement->isShortFormat(),
+            'includeImage'      => $attachement->isImage(),
+            'printNoticeWrapper'=> $noticeWrapper
+        ]);
     }
-    /**
-     * @param ExportNotice $attachement
-     * @return string
-     * @throws \Twig\Error\LoaderError
-     * @throws \Twig\Error\RuntimeError
-     * @throws \Twig\Error\SyntaxError
-     */
-    private function buildFileForForHtml(ExportNotice $attachement)
-    {
-        $noticeWrapper =null;
-        try {
-            $noticeWrapper = $this->getNoticeWrapper($attachement);
 
-        } catch (\Exception|NoResultException $e) {
-        }
-
-        return  $this->templating->render(
-            "user/print.pdf.twig",
-            [
-                'toolbar'           => ObjSearch::class,
-                'isPrintLong'       => !$attachement->isShortFormat(),
-                'includeImage'      => $attachement->isImage(),
-                'printNoticeWrapper'=> $noticeWrapper,
-                'object' => $attachement
-            ]
-        );
-    }
-    /**
-     * @param ExportNotice $attachment
-     * @return PrintNoticeWrapper
-     */
     private function getNoticeWrapper(ExportNotice $attachment):PrintNoticeWrapper
     {
+        $payload = new PrintNoticeWrapper();
+        $shortType = !$attachment->isShortFormat() ?: self::SHORT_PRINT;
+        $listUnavailablePermalinks = ['notices'=> [],'autorites'=> [], 'indices'=> []];
 
-        /*$this->logger->info("#####################1");
-        $this->logger->info("###a ".($attachment->getAuthorities()));
-        $this->logger->info("###n ".($attachment->getNotices()));
-        $this->logger->info("###i ".($attachment->getIndices()));
-        $this->logger->info("#####################1.5");*/
-        if($attachment) {
-            $permalinkN = \json_decode($attachment->getNotices());
-
-            $permalinkA = \json_decode($attachment->getAuthorities());
-            if($attachment->getIndices()) {
-                $permalinkI = \json_decode($attachment->getIndices());
-            }
+        if($this->session->has('ItemsNotAvailable')) {
+		    $listUnavailablePermalinks += json_decode($this->session->get('ItemsNotAvailable'), true);
         }
-        $i=[];
-        $n=[];
-        $a=[];
 
-        /*$this->logger->info("###a ".implode("|", $permalinkA));
-        $this->logger->info("###n ".implode("|", $permalinkN));
-        $this->logger->info("###i ".implode("|", $permalinkI));*/
-        //$listPermalinks = \json_decode($this->session->get('ItemsNotAvailable', ['notices'=>[],'autorites'=>[], 'indices'=>[]]), true);
-        /*$this->logger->info("#####################2");
-        $listPermalinks = $this->session->get('ItemsNotAvailable', ['notices'=>[],'autorites'=>[], 'indices'=>[]]);
-        $this->logger->info("###~ ". $listPermalinks);
-        $this->logger->info("#####################2.5");*/
-	$listUnavailablePermalinks = null;
-	if($this->session->has('ItemsNotAvailable'))
-		$listUnavailablePermalinks = json_decode($this->session->get('ItemsNotAvailable', ['notices'=>[],'autorites'=>[], 'indices'=>[]]), true);
-        /*$this->logger->info("#####################2.6");
-        //$this->logger->info("###! ".implode("|", $listPermalinks));
-        $this->logger->info("#####################3");*/
-        foreach ($permalinkA as $value){
-            try{
-            if(null==$listUnavailablePermalinks || !in_array($value, $listUnavailablePermalinks['autorites'])){
-                $a[] = $this->noticeAuthority->getAuthority($value, !$attachment->isShortFormat() ?: self::SHORT_PRINT);
-                //array_push($a, $this->noticeAuthority->getAuthority($value, !$attachment->isShortFormat() ?: self::SHORT_PRINT));
-            }
-            }catch(NoResultException $e){
-                // we ignore autorities when we get 410
-            }
-        }
-        //$this->logger->info("#####################4");
-        foreach ($permalinkN as $value){
-            try {
-                if(null==$listUnavailablePermalinks || !in_array($value, $listUnavailablePermalinks['notices'])) {
-                    $n[] = $this->noticeProvider->getNotice($value, !$attachment->isShortFormat() ?: self::SHORT_PRINT)->getNotice();
-                    //array_push($n, $this->noticeProvider->getNotice($value, !$attachment->isShortFormat() ?: self::SHORT_PRINT)->getNotice());
+        if($attachment->hasAuthorities()) {
+            foreach ($attachment->getAuthoritiesArray() as $value) {
+                try {
+                    if (!in_array($value, $listUnavailablePermalinks['autorites'])) {
+                        $payload->addNoticeAuthority($this->noticeAuthority->getAuthority($value, $shortType));
+                    }
+                } catch (NoResultException $e) {
+                    // we ignore autorities when we get 410
                 }
-            }catch (\Exception $e){
-                // we ignore notices when we get 410
             }
         }
-        //$this->logger->info("#####################5");
-        foreach ($permalinkI as $value){
-            try{
-                if(null==$listUnavailablePermalinks || !in_array($value, $listUnavailablePermalinks['indices'])) {
-                    //$i[] = $this->noticeAuthority->getIndiceCdu($value);
-                    $i[] = $this->noticeAuthority->getIndiceCdu($value);
-                    //array_push($i, $this->noticeAuthority->getIndiceCdu($value));
+
+        if($attachment->hasNotices()) {
+            foreach ($attachment->getNoticesArray() as $value) {
+                try {
+                    if (!in_array($value, $listUnavailablePermalinks['notices'])) {
+                        $payload->addNoticeOnShelves($this->noticeProvider->getNotice($value, $shortType)->getNotice());
+                    }
+                } catch (\Exception $e) {
+                    // we ignore notices when we get 410
                 }
-            }catch(NoResultException $exception){
-
-                // we ignore indices when we get 410
             }
         }
-        /*$this->logger->info("#####################6");
-        $this->logger->info("###a ".implode("|", $a));
-        $this->logger->info("###n ".implode("|", $n));
-        $this->logger->info("###i ".implode("|", $i));*/
-        return new PrintNoticeWrapper([],  $a, $n, $i);
-    }
 
-    public function print(\Symfony\Component\HttpFoundation\Request $request)
-    {
-        $sendAttachement = (new ExportNotice())
-            ->setAuthorities($request->get('authorities', ''))
-            ->setNotices($request->get('notices', ''))
-            ->setIndices($request->get('indices', ''))
-            ->setImage($request->get('print-image', null) === 'print-image')
-            ->setFormatType($request->get('format-type') ?? 'pdf')
-            ->setShortFormat($request->get('print-type', 'print-long') !== 'print-long')
+        if($attachment->hasIndices()) {
+            foreach ($attachment->getIndicesArray() as $value){
+                try{
+                    if(!in_array($value, $listUnavailablePermalinks['indices'])) {
+                        $payload->addNoticeIndice($this->noticeAuthority->getIndiceCdu($value));
+                    }
+                } catch(NoResultException $exception){
+                    // we ignore indices when we get 410
+                }
+            }
+        }
         ;
-
-        return   $this->buildFile($sendAttachement, ObjSearch::class) ;
+        return $payload;
     }
 }
 
