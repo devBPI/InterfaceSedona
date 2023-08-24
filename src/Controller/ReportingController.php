@@ -85,7 +85,7 @@ final class ReportingController extends AbstractController
             if ($this->mailSenderService->sendEmail(
                 'common/modal/send-by-mail-content.email.twig',
                 ['data' => $object, 'content' => $content],
-                $object->getReciever(),
+                [$object->getReciever()],
                 $object->getSender()
             )) {
                 return $this->render('common/modal/send-by-mail-success.html.twig');

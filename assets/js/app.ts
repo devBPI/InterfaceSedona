@@ -37,11 +37,9 @@ import {DatePeriod} from './date-input-search';
 new DatePeriod(document.querySelectorAll('[name="adv-search-date"]'));
 
 import {Printer, CopyToClipboard} from './printer';
-
 new Printer();
 
 let copiers = document.querySelectorAll('.js-copy_to_clipboard');
-
 copiers.forEach((linkElement: HTMLLinkElement) => {
     new CopyToClipboard(linkElement);
 });
@@ -51,48 +49,6 @@ Routing.setRoutingData(routes);
 $('[data-toggle="tooltip"]').tooltip({
     trigger: 'hover focus',
     template: '<div class="tooltip" role="tooltip"><div class="tooltip-inner"></div></div>'
-});
-
-document.querySelectorAll('.js-selection-print-action').forEach((button:HTMLButtonElement)=>{
-
-    button.addEventListener('click', (event)=>{
-        const url = button.dataset.url;
-//        let id = button.dataset.href;
-        const target        = document.querySelector(button.dataset.href);
-        const waitMessage =  document.querySelector('.js-wait-message') as HTMLInputElement;
-        target.innerHTML = waitMessage.innerHTML;
-        const notices       = document.querySelector('.js-print-notices') as HTMLInputElement;
-        const authorities   = document.querySelector('.js-print-authorities') as HTMLInputElement;
-        const indices       = document.querySelector('.js-print-indices') as HTMLInputElement;
-
-        console.log(notices.value);
-        fetch(url, {
-            method: 'post',
-            body:  JSON.stringify({'autorities': authorities.value, 'notices': notices.value, 'indices': indices.value } ) ,
-          //  headers: {"Content-Type": "application/json; charset=utf-8"}
-        })
-            .then(httpResponse => {
-                return httpResponse.json();
-            }
-            )
-            .then(response => {
-                console.log(response[0]=='export');
-                if (response[0]=='export'){
-                    $('#modal-selection-export').modal('hide');
-                    $('#modal-export').modal('show');
-                }else if(response[0]=='print'){
-                    $('#modal-selection-export').modal('hide');
-                    $('#modal-print').modal('show');
-                }else{
-                    target.innerHTML = response;
-                }
-
-            })
-            .catch(error => {
-
-                console.error(error);
-            })
-    })
 });
 
 $(document)
@@ -185,12 +141,6 @@ $(document)
                 $('.modal.show .modal-footer *:last-child').focus();
             }
         })
-    }).on('click', '#print-selection', function (){
-        $('#modal-selection-export').modal('hide');
-        $('#modal-print').modal('show');
-    }).on('click', '#export-selection', function (){
-        $('#modal-selection-export').modal('hide');
-        $('#modal-export').modal('show');
     })
 ;
 if ($(window).width() > 992) {

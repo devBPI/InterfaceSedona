@@ -1,5 +1,5 @@
 {% from 'common/macros/toolbar-macro.html.twig' import action_attributes %}
-{% if toolbar is not defined %}{% set toolbar = null %}{% endif %}
+{% set toolbar = toolbar is not defined ? null : toolbar %}
 
 <div class="toolbar" lang="fr">
 	<ul class="toolbar__list">
@@ -15,37 +15,44 @@
 		{% endset %}
 		{{ action_attributes('list-add', content, (toolbar == 'App\\Entity\\UserSelectionDocument' ? null : toolbar)) }}
 
-		{% if app.request.attributes.get('_route') !='user_selection_index' %}
-			{% set content %}
-				<img src="{{ asset('images/icones/icone-export-impression.svg') }}" alt="" class="icone-export-impression"/>
-				<span>{{ 'bloc.toolbar.export'|trans }}<span class="sr-only"> ou </span>{{ 'bloc.toolbar.print'|trans }}</span>
-			{% endset %}
-			{{ action_attributes('print', content, toolbar, 'js-print-action') }}
-		{% else %}
+		{% if app.request.attributes.get('_route') == 'user_selection_index' %}
 			{% set content %}
 				<img src="{{ asset('images/icones/icone-fichier.svg') }}" alt="" class="icone-fichier" />
 				<span>{{ 'bloc.toolbar.export'|trans }}<span class="sr-only"> ou </span>{{ 'bloc.toolbar.print'|trans }}</span>
 			{% endset %}
-			{{ action_attributes('selection-export', content, toolbar, 'js-selection-print-action',  'export') }}
+			{{ action_attributes('selection-export', content, toolbar,  'print') }}
 
-		{% endif %}
-		<li class="toolbar__item">
-			<button data-target="#modal-send-by-mail" data-toggle="modal">
+			{% set content %}
 				<img src="{{ asset('images/icones/icone-envoyer.svg') }}" alt="" class="icone-partage" />
 				<span>{{ 'bloc.toolbar.send'|trans }}<span class="sr-only"> {{ 'bloc.toolbar.send-sr'|trans }}</span></span>
-			</button>
-		</li>
-		<li class="toolbar__item">
-			<button data-target="#modal-suggest" data-toggle="modal" data-reload="true">
-				<img src="{{ asset('images/icones/icone-suggestion.svg') }}" alt="" class="icone-livre" />
-				<span>{{ 'bloc.toolbar.suggest'|trans }}</span>
-			</button>
-		</li>
+			{% endset %}
+			{{ action_attributes('selection-export', content, toolbar, 'send-by-mail') }}
+		{% else %}
+			{% set content %}
+				<img src="{{ asset('images/icones/icone-export-impression.svg') }}" alt="" class="icone-export-impression"/>
+				<span>{{ 'bloc.toolbar.export'|trans }}<span class="sr-only"> ou </span>{{ 'bloc.toolbar.print'|trans }}</span>
+			{% endset %}
+			{{ action_attributes('print', content, toolbar) }}
+
+			{% set content %}
+				<img src="{{ asset('images/icones/icone-envoyer.svg') }}" alt="" class="icone-partage" />
+				<span>{{ 'bloc.toolbar.send'|trans }}<span class="sr-only"> {{ 'bloc.toolbar.send-sr'|trans }}</span></span>
+			{% endset %}
+			{{ action_attributes('send-by-mail', content, toolbar) }}
+		{% endif %}
+
+		{% set content %}
+			<img src="{{ asset('images/icones/icone-suggestion.svg') }}" alt="" class="icone-livre" />
+			<span>{{ 'bloc.toolbar.suggest'|trans }}</span>
+		{% endset %}
+		{{ action_attributes('suggest', content) }}
+
 		{% set content %}
 			<img src="{{ asset('images/icones/icone-error.svg') }}" alt="" class="icone-enveloppe" />
 			<span>{{ 'bloc.toolbar.report-error'|trans }}</span>
 		{% endset %}
-		{{ action_attributes('report', content, toolbar, '', '', true) }}
+		{{ action_attributes('report', content, (toolbar == 'App\\Entity\\Notice' ? toolbar : null)) }}
+
 		<li class="toolbar__item">
 			<a href="https://www.eurekoi.org/" title="{{ 'footer.partenaires.eurekoi'|trans }} - {{ 'global.new-windows'|trans }}" target="_blank">
 				<img src="{{ asset('images/logos/logo-eurekoi.svg') }}" alt="Eurêkoi" class="icone-eurekoi" />
@@ -57,36 +64,13 @@
 
 {% include "user/modal/list_add.html.twig" %}
 
-{% if printRoute is defined %}{% include "common/modal/print.html.twig" %}{% endif %}
+{% if app.request.attributes.get('_route') =='user_selection_index'  %}{% include "user/modal/check-permalink-list-content.html.twig" %}{% endif %}
 
-{% if app.request.attributes.get('_route') =='user_selection_index'  %}
-	<div role="dialog" aria-modal="true" aria-labelledby="modal-export-slection-title" class="modal fade" id="modal-selection-export" tabindex="-1" lang="fr">
-		<div class="modal-dialog modal-dialog-centered">
-			<div class="modal-content">
-				<div class="modal-header ">
-				</div>
-				<div class="modal-footer">
-				</div>
-			</div>
-		</div>
-	</div>
-	{% if printRoute is defined %}
-		<div id="print-selection-checklist" >
-		</div>
-	{% endif %}
-{% endif %}
+{% if printRoute is defined %}{% include "common/modal/print.html.twig" %}{% endif %}
 
 {% include "common/modal/send-by-mail.html.twig" %}
 
 {% include "common/modal/suggestion.html.twig" %}
 
 {% include "common/modal/report-error.html.twig" %}
-<div class="js-wait-message" style="display: none">
-	<div class="modal-dialog modal-dialog-centered">
-		<div class="modal-content">
-			<div class="modal-header">
-					<h1 class="n1 modal-header__title">{{ ('modal.wait-message')|trans }}</h1>
-			</div>
-		</div>
-	</div>
-</div>
+

@@ -71,7 +71,7 @@ final class UserSelectionController extends AbstractController
 
         return $this->render( 'user/selection.html.twig',
             $this->selectionService->getSelectionObjects() +[
-                'printRoute'=> $this->generateUrl('selection_print', ['format' => 'pdf']),
+                'printRoute'=> $this->generateUrl('user_selection_print', ['format' => ExportNotice::FORMAT_PDF]),
                 'toolbar'   => UserSelectionDocument::class,
                 'isNotice'  => false,
             ]
@@ -132,9 +132,7 @@ final class UserSelectionController extends AbstractController
 
                 return $this->render('user/modal/add-list-success.html.twig');
             } catch (\Exception $e) {
-                $params = [
-                    'error' => $e->getMessage(),
-                ];
+                $params = ['error' => $e->getMessage()];
             }
         }
 
@@ -187,48 +185,37 @@ final class UserSelectionController extends AbstractController
 
 
     /**
-     * @Route("/list/check", methods={"GET","POST"}, name="_check_list_document")
+     * @Route("/list/check/{action}", methods={"GET","POST"}, name="_check_list_document")
      */
-    public function checkListsPermalinks(Request $request): JsonResponse
+    public function checkListsPermalinks(Request $request, string $action): Response
     {
         $contents = json_decode($request->getContent(), true);
-        $items = [];
-        $listPermalinkNotice = [];
-        if($xml = $this->prepareXmlRequest($contents['notices'])){
-            $listPermalinkNotice = $this->selectionService->getPermalinks($this->searchProvider->CheckValidNoticePermalink($xml));
-            $items['notices'] = $listPermalinkNotice;
-        }
+        $items = ['notices'=>[],'autorites'=> [], 'indices' => []];
 
+        if($xml = $this->prepareXmlRequest($contents['notices'])){
+            $items['notices'] = $this->selectionService->getPermalinks($this->searchProvider->CheckValidNoticePermalink($xml));
+        }
         if($xml =  $this->prepareXmlRequest($contents['autorities'])){
             $items['autorites'] = $this->selectionService->getPermalinks($this->searchProvider->CheckValidAuthorityPermalink($xml));
-            $listPermalinkNotice = array_merge($listPermalinkNotice,$items['autorites']) ;
         }
         if( $xml = $this->prepareXmlRequest($contents['indices'])){
             $items['indices'] = $this->selectionService->getPermalinks($this->searchProvider->CheckValidIndicePermalink($xml));
-            $listPermalinkNotice =  array_merge($listPermalinkNotice, $items['indices']);
         }
-
-        $listPermalinkNotice =  array_unique($listPermalinkNotice);
+        $listPermalinkNotice =  array_unique($items['notices']+$items['autorites']+$items['indices']);
 
         $request->getSession()->set('ItemsNotAvailable', json_encode($items)); //Important de se trouver avant les returns pour le capter dans src/Service/NoticeBuildFileService.php->getNoticeWrapper
 
         if (count($listPermalinkNotice)===0 || (count($listPermalinkNotice) === 1 && empty($listPermalinkNotice[0])) ){
-            return new JsonResponse([
-                    $request->get('action', 'export')]
-            );
+            return new Response ("", Response::HTTP_NO_CONTENT);
         }
-        return new JsonResponse([
-             $this->renderView('user/modal/check-permalink-list-success.html.twig',
-                $this->selectionService->getSelectionOfobjectByPermalinks($listPermalinkNotice)+
-                ['action'=>$request->get('action', 'export')]
-            )]
+
+        return $this->render('user/modal/check-permalink-list-success.html.twig',
+            $this->selectionService->getSelectionOfobjectByPermalinks($listPermalinkNotice)+['action'=> $action]
         );
     }
 
-
-
     /**
-     * @Route("/print/selection.{format}", methods={"GET","HEAD"}, name="selection_print", requirements={"format" = "html|pdf|txt"}, defaults={"format" = "pdf"})
+     * @Route("/print/selection.{format}", methods={"GET","HEAD"}, name="_print", requirements={"format" = "html|pdf|txt"}, defaults={"format" = "pdf"})
      */
     public function printAction(Request $request) :Response
     {
@@ -241,17 +228,21 @@ final class UserSelectionController extends AbstractController
         return $this->buildFileContent->buildFile($sendAttachement, UserSelectionDocument::class);
     }
 
+    /**
+     * @param null|array $payload
+     * @return string
+     */
     private function prepareXmlRequest($payload ) :string
     {
-        $payload    = json_decode($payload, true);
-        $list = [];
-        $list[]='<list>';
+        if (empty($payload) || !is_array($payload)) {
+            return "";
+        }
 
+        $list = [];
         foreach ($payload as  $item){
             $list[]=sprintf('<string>%s</string>', $item);
         }
-        $list[] = '</list>';
 
-        return implode(' ', $list);
+        return '<list>'.implode(' ', $list).'</list>';
     }
 }

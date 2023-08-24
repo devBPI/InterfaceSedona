@@ -1,0 +1,14 @@
+<div role="dialog" aria-modal="true" aria-labelledby="modal-export-slection-title" class="modal fade" id="modal-selection-export" tabindex="-1" lang="fr">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="n1 modal-header__title">{{ ('modal.wait-message')|trans }}</h1>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% if printRoute is defined %}
+    <div id="print-selection-checklist" >
+    </div>
+{% endif %}

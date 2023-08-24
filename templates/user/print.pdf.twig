@@ -1,5 +1,0 @@
-{% extends attachement.formatType == constant('App\\Model\\Form\\ExportNotice::FORMAT_EMAIL') ? 'base.email.twig'  : 'base.pdf.twig' %}
-
-{% block body %}
-    {% include "search/blocs-print/multiple-notice.pdf.twig" %}
-{% endblock %}

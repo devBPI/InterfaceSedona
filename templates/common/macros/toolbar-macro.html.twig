@@ -1,9 +1,5 @@
-{% macro action_attributes(actionType, content, toolbar, buttonClass, url='', ifOnlyIsNotice=false) %}
+{% macro action_attributes(modalName, content, toolbar = 'true', url='') %}
     {% set active = toolbar is defined and toolbar is not empty %}
-    {% if ifOnlyIsNotice==true and toolbar != 'App\\Model\\Notice' %}
-        {% set active = false %}
-    {% endif %}
-    {% set isDetail = active and toolbar in ['App\\Model\\Notice', 'App\\Model\\Authority', 'App\\Model\\IndiceCdu'] %}
     {% set targetClass = null %}
     {% if toolbar == 'App\\Model\\Search\\ObjSearch' %}
         {% set targetClass = 'js-add-to-selection' %}
@@ -13,16 +9,15 @@
 
     <li class="toolbar__item {% if not active  %}toolbar__item--disabled{% endif %}">
         {% if active %}
-            <button data-reload="true"
-                {%- if isDetail %}
-                    data-toggle="modal" data-target="#modal-{{ actionType }}"
-                {% elseif targetClass is not empty %}
-                    data-toggle="disable-if-no-found-modal" data-href="#modal-{{ actionType }}"
+            <button
+                {%- if targetClass is not empty %}
+                    data-toggle="disable-if-no-found-modal" data-href="#modal-{{ modalName }}"
                     data-spy='.{{ targetClass }},[data-toggle="check-all"]'
                     data-target='.{{ targetClass }}:checked'
-                    {% if buttonClass is defined %}class="{{ buttonClass }}"{% endif %}
+                {% else %}
+                    data-toggle="modal" data-target="#modal-{{ modalName }}"
                 {% endif -%}
-                    {% if url !='' %}data-url="{{ path('user_selection_check_list_document', {'action':url}) }}"{% endif %}
+                    {% if url %} data-url="{{ path('user_selection_check_list_document', {'action':url}) }}" data-action="{{ url }}"{% endif %}
             >{{ content }}</button>
         {% else %}
             <p>{{ content }}</p>

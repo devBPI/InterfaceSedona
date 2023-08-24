@@ -30,10 +30,12 @@
 	{% endif %}
 	{{- pdf_occurence(notice, 'getNotes', "bloc.autority-result-information.nots"|trans, format)|raw -}}
 	{%- if notice.type != constant('App\\Model\\Notice::MUSIC') %}{{- pdf_occurence(notice, 'getResume', "bloc.notice-simple.resume-title"|trans, format)|raw -}}{% endif -%}
-	{%- set languages = notice.languages -%}
-	{%- if languages|length > 0 %}
-		{{- pdf_occurence(notice, 'getLanguages', "bloc.autority-result-information.language"|trans, format)|raw -}}
-		{{- pdf_occurence(notice, 'getOriginalLanguages', "bloc.autority-result-information.language"|trans, format)|raw -}}
+	{%- if notice.languages|length > 0 %}
+		{%- set languages = [notice.languages|join(' ; ')] -%}
+		{%- if notice.originalLanguages is defined and notice.originalLanguages -%}
+			{%- set languages = notice.languages|merge([', <b>'~'modal.advanced-search.langage.title-translated'|trans~' : </b>'])|merge([notice.originalLanguages|join(' ; ')]) -%}
+		{% endif -%}
+		{{- pdf_occurence_data(languages, "bloc.autority-result-information.language"|trans, format, ' ')|raw -}}
 	{% endif -%}
 	{{- pdf_occurence(notice, 'getMaterialDescriptions', "modal.advanced-search.facette.materialSupport"|trans, format)|raw -}}
 	{{- pdf_occurence(notice, 'getCollectionSeries', "bloc.results-navigation.result-information.collection-series"|trans, format)|raw -}}
