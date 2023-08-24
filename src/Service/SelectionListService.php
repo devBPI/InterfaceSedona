@@ -393,8 +393,12 @@ final class SelectionListService extends AuthenticationService
         return ['documents' => $this->getDocumentsFromSession()];
     }
 
-
-    public function getSelectionOfobjectByPermalinks(array $permalinks = []){
+    /**
+     * @param array $permalinks
+     * @return \App\Entity\UserSelectionDocument[][]|\App\Entity\UserSelectionList[][]|array[]
+     */
+    public function getSelectionOfobjectByPermalinks(array $permalinks = []) :array
+    {
         if ($permalinks === []){
             return $this->getSelectionObjects();
         }
@@ -405,6 +409,7 @@ final class SelectionListService extends AuthenticationService
 
         return ['documents' => $this->getDocumentsFromSessionByPermalink($permalinks)];
     }
+
     /**
      * @return array|UserSelectionDocument[]
      */

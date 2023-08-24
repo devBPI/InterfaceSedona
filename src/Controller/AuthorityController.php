@@ -64,7 +64,7 @@ final class AuthorityController extends AbstractController
         $authors = $this->noticeAuhtority->getAuthorsNotice($notice->getId());
         $printRoute = $this->generateUrl(
             'record_authority_pdf',
-            [ 'permalink' => $notice->getPermalink(), 'format' => 'pdf']
+            [ 'permalink' => $notice->getPermalink(), 'format' => ExportNotice::FORMAT_PDF]
         );
         try {
             $navigation = $this->navigationService->buildAuthorities($notice);
@@ -89,7 +89,7 @@ final class AuthorityController extends AbstractController
     /**
      * @Route("/print/autorite.{format}/{permalink}", name="record_authority_pdf", requirements={"permalink"=".+", "format" = "html|pdf|txt"}, defaults={"format" = "pdf"})
      */
-    public function printAction(Request $request, $format= ExportNotice::FORMAT_PDF) :Response
+    public function printAction(Request $request, string $format= ExportNotice::FORMAT_PDF) :Response
     {
         try {
             $sendAttachement = ExportNotice::createFromRequest($request)

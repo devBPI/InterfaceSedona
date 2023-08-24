@@ -63,7 +63,7 @@
         "behat/symfony2-extension": "^2.1",
         "phpstan/phpstan": "^1.10",
         "phpstan/phpstan-doctrine": "^1.3",
-        "phpstan/phpstan-symfony": "^1.2",
+        "phpstan/phpstan-symfony": "^1.3",
         "phpunit/phpunit": "^9.6",
         "symfony/stopwatch": "3.4.*",
         "symfony/var-dumper": "3.4.*",
@@ -99,6 +99,18 @@
         "post-update-cmd": [
             "@auto-scripts",
             "SlowProg\\CopyFile\\ScriptHandler::copy"
+        ],
+        "test:unit": [
+            "@putenv XDEBUG_MODE=coverage",
+            "bin/phpunit"
+        ],
+        "quality": [
+            "@putenv XDEBUG_MODE=off",
+            "bin/phpstan"
+        ],
+        "test:acceptance": [
+            "@putenv XDEBUG_MODE=off",
+            "bin/behat"
         ]
     },
     "conflict": {

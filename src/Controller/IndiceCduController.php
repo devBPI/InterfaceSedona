@@ -65,7 +65,7 @@ final class IndiceCduController extends AbstractController
         $subjects = $this->noticeAuhtority->getSubjectIndice($notice->getId());
         $printRoute = $this->generateUrl(
             'indice_pdf',
-            [ 'permalink' => $notice->getPermalink(), 'format' => 'pdf' ]
+            [ 'permalink' => $notice->getPermalink(), 'format' => ExportNotice::FORMAT_PDF ]
         );
         $origin = 'author';
         try {
@@ -113,7 +113,7 @@ final class IndiceCduController extends AbstractController
     /**
      * @Route("/print/indice.{format}/{permalink}", methods={"GET"}, name="indice_pdf", requirements={"permalink"=".+", "format" = "html|pdf|txt"}, defaults={"format" = "pdf"})
      */
-    public function printAction(Request $request, $format= ExportNotice::FORMAT_PDF) :Response
+    public function printAction(Request $request, string $format= ExportNotice::FORMAT_PDF) :Response
     {
         try {
             $sendAttachement = ExportNotice::createFromRequest($request)

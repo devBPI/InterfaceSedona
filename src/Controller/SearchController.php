@@ -96,6 +96,7 @@ final class SearchController extends AbstractController
 
         return $this->displaySearch(new SearchQuery($criteria), $request);
     }
+
     /**
      * @Route("/{parcours}/resultats/essentiels/{essentiels}", methods={"GET", "POST"}, name="advanced_search_parcours_essentiels")
      * @Route("/{parcours}/resultats/essentiels/{essentiel1}/{essentiel2}", methods={"GET"}, name="search_parcours_essentiels_with_slash")

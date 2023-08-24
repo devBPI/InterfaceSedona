@@ -38,10 +38,20 @@ class MailSenderService
 		$this->replyTo = $replyTo;
 	}
 
+    /**
+     * @param string $templateName
+     * @param array<mixed> $context
+     * @param array<string>|null $to
+     * @param string|null $replyTo
+     * @return int
+     * @throws \Throwable
+     * @throws \Twig\Error\LoaderError
+     * @throws \Twig\Error\SyntaxError
+     */
 	public function sendEmail(
 		string  $templateName,
 		array   $context,
-		        $to = null,
+        array   $to = null,
 		string  $replyTo = null
 	) :int
 	{
@@ -71,10 +81,10 @@ class MailSenderService
 		return $this->mailer->send($message);
 	}
 
-	/**
-	 * @return array
-	 */
-	public function getSenderForSuggestion()
+    /**
+     * @return array<string>
+     */
+	public function getSenderForSuggestion() :array
 	{
 		return [self::PURCHASE_SUGGESTION_EMAIL, $this->replyTo];
 	}

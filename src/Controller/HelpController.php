@@ -5,6 +5,7 @@ namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 final class HelpController extends AbstractController
@@ -13,7 +14,7 @@ final class HelpController extends AbstractController
 	/**
 	* @Route("/aide/recherche", methods={"GET","HEAD"}, name="help_search")
 	*/
-	public function searchAction(Request $request)
+	public function searchAction() :?Response
 	{
 		return $this->render('help/search.html.twig', []);
 	}
@@ -21,7 +22,7 @@ final class HelpController extends AbstractController
 	/**
 	* @Route("/aide/exploitationresultats", methods={"GET","HEAD"}, name="help_result")
 	*/
-	public function resultAction(Request $request)
+	public function resultAction() :?Response
 	{
 		return $this->render('help/result.html.twig', []);
 	}
@@ -29,7 +30,7 @@ final class HelpController extends AbstractController
 	/**
 	* @Route("/aide/services", methods={"GET","HEAD"}, name="help_service")
 	*/
-	public function serviceAction(Request $request)
+	public function serviceAction() :?Response
 	{
 		return $this->render('help/service.html.twig', []);
 	}
@@ -37,7 +38,7 @@ final class HelpController extends AbstractController
 	/**
 	* @Route("/aide/compte", methods={"GET","HEAD"}, name="help_account")
 	*/
-	public function accountAction(Request $request)
+	public function accountAction() :?Response
 	{
 		return $this->render('help/account.html.twig', []);
 	}
