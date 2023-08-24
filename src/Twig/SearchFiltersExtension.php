@@ -196,7 +196,7 @@ class SearchFiltersExtension extends AbstractExtension
                 if ($format === ExportNotice::FORMAT_TEXT) {
                     return sprintf("%s : %s\n", $label, $payload);
                 } else {
-                    return sprintf("<li><span>%s :</span> %s</li>", $label, $payload);
+                    return sprintf("<li><b>%s :</b> %s</li>", $label, $payload);
                 }
             }elseif($label ==''){
                 if ($format === ExportNotice::FORMAT_TEXT) {

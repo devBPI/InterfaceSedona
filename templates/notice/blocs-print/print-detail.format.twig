@@ -6,7 +6,7 @@
       {% if attachement is defined and attachement.isFormatEmail() %}
          {%- set rayon = [] -%}
          {%- if copy.availability is defined and copy.availability %}{% set rayon = rayon|merge([copy.availability]) %}{% endif -%}
-         {%- if copy.cote is defined and copy.cote %}{% set rayon = rayon|merge(['<span>'~copy.cote~'</span>']) %}{% endif -%}
+         {%- if copy.cote is defined and copy.cote %}{% set rayon = rayon|merge(['<b>'~copy.cote~'</b>']) %}{% endif -%}
          {%- if copy.support is defined and copy.support %}{% set rayon = rayon|merge([copy.support]) %}{% endif -%}
          {%- if isPrintLong and copy.notes is defined and copy.notes %}{% set rayon = rayon|merge(["bloc.autority-result-information.nots"|trans])|merge(copy.notes) %}{% endif -%}
          {%- if copy.printLocation is defined and copy.printLocation %}{% set rayon = rayon|merge(copy.printLocation) %}{% endif -%}
@@ -22,7 +22,7 @@
 {% endspaceless %}{% endset %}
 {%- if available and attachement is defined and attachement.isFormatEmail() -%}
    <li>
-      <div>{{ 'bloc.print.exemplaire'|trans }}</div>
+      <div><br/><b>{{ 'bloc.print.exemplaire'|trans }}</b></div>
       <ul>{{ available|raw }}</ul>
    </li>
 {%- elseif available -%}
