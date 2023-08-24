@@ -31,20 +31,26 @@ Les données sont dans [Bitwarden](https://pass.cicd.sedona.fr/#/vault?collectio
 2. Crée un fichier "auth.txt" en copie depuis Bitwarden sur
    - la 1re ligne le login
    - sur la 2e, ligne le mdp
-3. Lancer la connexion :  `sudo openvpn --config client.ovpn  –secret auth.txt`
+3. Lancer la connexion :  
+```shell 
+$ cd ..
+$ sudo openvpn --config client.ovpn  –secret auth.txt
+```
 
 **Attention** penser à lancer le VPN avant de lancer l'instance docker (app) car le LDAP utilise le VPN pour accéder au serveur de BPI.    
 Sinon la connexion échouera.
 
 ##  3) Télécharger le projet en local 
 et lancer les commandes suivantes dans le dossier d'installation
+```shell
+$ git config --global core.autocrlf input
+$ git clone git@git.sedona.fr:bpi/catalogue/bpi-catalogue.git
+$ cd bpi-catalogue
 ```
-    $ git config --global core.autocrlf input
-    $ git clone git@git.sedona.fr:bpi/catalogue/bpi-catalogue.git
-
-    $ cd bpi-catalogue
-    $ cp .env.dist .env
-    $ docker-compose up
+```shell
+$ cd ..
+$ cp .env.dist .env
+$ docker-compose up
 ```
 
 ![](portainer.png)

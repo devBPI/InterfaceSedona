@@ -1,11 +1,10 @@
 Liste des environements
 =============
 
- Environement | Hebergement | URL Client | URL Sedona | IP | Déploiement
----|---|---|---|---|---
- Recette | Sedona |  | https://bpi-catalogue.dev.sedona.fr + http://bpi-catalogue.dev.sedona.fr:8025 (pour les mails) |  212.129.23.220 | Via [AWX](https://awx.cicd.sedona.fr)
- preprod | BPI  | | https://catalogue-pp.bpi.fr/fr/ |  | Email au client
- Prod | BPI | http://catalogue.bpi.fr | | Email au client
+ Environement | Hebergement | URL | IP | Déploiement
+---|---|---|--|---
+ preprod | BPI  | https://catalogue-pp.bpi.fr/fr/ | | [Voir procédure](/.docs/DEPLOY.md)
+ Prod | BPI | http://catalogue.bpi.fr | | [Voir procédure](/.docs/DEPLOY.md)
 
 Les accés aux sites sont dans [Teampass](https://teampass.sedona.fr)
 
