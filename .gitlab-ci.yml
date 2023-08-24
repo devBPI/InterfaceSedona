@@ -35,8 +35,6 @@ quality:sonar:
 test:php:
   extends: .test:php
   script:
-    - cd $WORKSPACE_DIR
-    - make install-php-ext install-wait-for-it
     - wait-for-it db:5432 -s -t 30 -- echo "Postgres ready"
     - make tests
 
@@ -62,13 +60,13 @@ compileJS:
     - yarn encore production
 
 build:image:
-  extends: .build:image
+  extends: .build:image-db-only
   needs: ["compileJS"]
   rules:
   - if: $CI_COMMIT_TAG
 
 publish:image:
-  extends: .publish:image
+  extends: .publish:image-db-only
   needs: ["compileJS", "build:image"]
   rules:
   - if: $CI_COMMIT_TAG

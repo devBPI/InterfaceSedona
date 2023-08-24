@@ -23,8 +23,10 @@ services:
     image: registry.sedona.fr/images/php:7.4-fpm
 #    user: '$UID:$UID'
     networks:
-      - default
-      - public
+      default:
+        aliases:
+          - $PROJECT_HOSTNAME
+      public: ~
     environment:
       - COMPOSER_HOME=$COMPOSER_CONTAINER_HOME
       - PROJECT_HOSTNAME
