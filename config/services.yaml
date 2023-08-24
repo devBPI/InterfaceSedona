@@ -19,6 +19,7 @@ services:
 
     bind:
       $root_dir: '%kernel.root_dir%'
+      $env:  '%kernel.environment%'
 
   # makes classes in src/ available to be used as services
   # this creates a service per class whose id is the fully-qualified class name
@@ -52,9 +53,6 @@ services:
     arguments:
       $logger : '@monolog.logger'
   App\Service\LoggerService:
-    arguments:
-      $logger : '@monolog.logger'
-  App\Service\NoticeBuildFileService:
     arguments:
       $logger : '@monolog.logger'
   App\Service\BreadCrumbBuilder:

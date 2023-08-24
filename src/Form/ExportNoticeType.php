@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace App\Form;
 
 
+use App\Kernel;
 use App\Model\Form\ExportNotice;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
@@ -21,6 +22,15 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
  */
 class ExportNoticeType extends AbstractType
 {
+    /**
+     * @var string
+     */
+    protected  $env;
+
+    public function __construct(string $env)
+    {
+        $this->env = $env;
+    }
 
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
@@ -52,25 +62,30 @@ class ExportNoticeType extends AbstractType
                  'label'    => 'modal.export.field.img',
                  'attr'      => ['autocomplete' => "off"]
              ])
-             ->add('notices', HiddenType::class,[
+             ->add('notices', $this->getTypeOfHidden(),[
                  'required' => false,
                  'attr'     => [
                      'class' => 'js-print-notices'
                  ]
              ])
-             ->add('authorities', HiddenType::class,[
+             ->add('authorities', $this->getTypeOfHidden() ,[
                  'required' => false,
                  'attr'     => [
                      'class' => 'js-print-authorities'
                  ]
              ])
-             ->add('indices', HiddenType::class,[
+             ->add('indices', $this->getTypeOfHidden(),[
                  'required' => false,
                  'attr'     => [
                      'class' => 'js-print-indices'
                  ]
              ])
          ;
+    }
+
+    protected function getTypeOfHidden() :string
+    {
+        return $this->env == 'test' ? TextType::class : HiddenType::class;
     }
 
     public function configureOptions(OptionsResolver $resolver)

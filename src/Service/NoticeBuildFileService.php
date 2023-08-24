@@ -43,25 +43,20 @@ class NoticeBuildFileService
      */
     private $knpSnappy;
     /**
-     * @var \Twig_Environment
+     * @var Environment
      */
     private $templating;
     /**
      * @var SessionInterface
      */
     private $session;
-    /**
-     * @var Logger
-     */
-    private $logger;
 
     public function __construct(
         NoticeProvider $noticeProvider,
         NoticeAuthorityProvider $noticeAuthority,
         \Knp\Snappy\Pdf $knpSnappy,
         Environment $templating,
-        SessionInterface $session,
-        Logger $logger
+        SessionInterface $session
         )
     {
         $this->noticeProvider   = $noticeProvider;
@@ -69,7 +64,6 @@ class NoticeBuildFileService
         $this->knpSnappy        = $knpSnappy;
         $this->templating       = $templating;
         $this->session = $session;
-        $this->logger = $logger;
     }
 
 
@@ -81,14 +75,20 @@ class NoticeBuildFileService
 
         switch ($attachement->getFormatType()){
             case ExportNotice::FORMAT_TEXT:
-                return new Response(
-                    $content, 200, [
+                $headers = [];
+                if ($attachement->isForceDownload()) {
+                    $headers =  [
                         'Content-Type' => 'application/force-download; charset=utf-8',
                         'Content-Disposition' => 'attachment; filename="'.$filename.'.txt"',
-                    ]
-                );
+                    ];
+                }
+                return new Response($content, 200, $headers );
             case ExportNotice::FORMAT_PDF:
-                return new PdfResponse($content,$filename.".pdf");
+                if ($attachement->isForceDownload()) {
+                    return new PdfResponse($content, $filename . ".pdf");
+                } else {
+                    return new Response($content);
+                }
             case ExportNotice::FORMAT_HTML:
             case ExportNotice::FORMAT_EMAIL:
             default:
@@ -100,6 +100,7 @@ class NoticeBuildFileService
     {
 
         switch ($type){
+            case UserSelectionDocument::class:
             case ObjSearch::class:
                 $content =  $this->buildFileForSearch($attachement);
                 break;
@@ -112,12 +113,8 @@ class NoticeBuildFileService
             case IndiceCdu::class:
                 $content =  $this->buildFileForIndice($attachement);
                 break;
-            case UserSelectionDocument::class:
-                $content = $this->buildFileForUserSelectionList($attachement);
-                break;
             default:
                 throw new \InvalidArgumentException(sprintf('The type "%s" is not referenced on the app', $type));
-                break;
         }
 
         if ($attachement->getFormatType() === ExportNotice::FORMAT_PDF){
@@ -184,7 +181,8 @@ class NoticeBuildFileService
             throw new NotFoundHttpException(sprintf('the permalink %s not referenced', $permalink));
         }
 
-        return  $this->templating->render("authority/print.".$attachement->getTemplateType() .".twig", [
+        $twig = $attachement->getTemplateType() == ExportNotice::FORMAT_TEXT ? "authority/print.txt.twig" : "authority/print.pdf.twig";
+        return  $this->templating->render($twig, [
             'toolbar'           => Authority::class,
             'attachement'       => $attachement,
             'isPrintLong'       => !$attachement->isShortFormat(),
@@ -213,23 +211,6 @@ class NoticeBuildFileService
             'includeImage'      => $attachement->isImage(),
             'notice'            => $object,
             'relatedDocuments'  => $relatedDocuments
-        ]);
-    }
-
-    private function buildFileForUserSelectionList(ExportNotice $attachement)  :string
-    {
-        $noticeWrapper =null;
-        try {
-            $noticeWrapper = $this->getNoticeWrapper($attachement);
-        } catch (\Exception|NoResultException $e) {}
-
-        $twig = $attachement->getTemplateType() == ExportNotice::FORMAT_TEXT ? "user/print.txt.twig" : "user/print.pdf.twig";
-        return  $this->templating->render($twig, [
-            'toolbar'           => ObjSearch::class,
-            'attachement'       => $attachement,
-            'isPrintLong'       => !$attachement->isShortFormat(),
-            'includeImage'      => $attachement->isImage(),
-            'printNoticeWrapper'=> $noticeWrapper
         ]);
     }
 

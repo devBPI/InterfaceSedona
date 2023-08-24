@@ -24,7 +24,7 @@ final class SendByMailType extends ExportNoticeType
     {
         parent::buildForm($builder, $options);
         $builder
-            ->add('formatType', HiddenType::class, [
+            ->add('formatType', $this->getTypeOfHidden(), [
                 'data'     => ExportNotice::FORMAT_EMAIL,
             ])
             ->add('sender', EmailType::class, [

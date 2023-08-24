@@ -48,6 +48,11 @@ class ExportNotice
      */
     private $authorities;
 
+    /**
+     * @var bool
+     */
+    private $forceDownload = true;
+
     public function getNotices(): string
     {
         return (string) $this->notices;
@@ -132,13 +137,6 @@ class ExportNotice
         return $this;
     }
 
-    public function setObject(string $object):ExportNotice
-    {
-        $this->object = $object;
-
-        return $this;
-    }
-
     public function isShortFormat(): bool
     {
         return $this->shortFormat;
@@ -177,12 +175,25 @@ class ExportNotice
         return $this;
     }
 
+    public function isForceDownload(): bool
+    {
+        return $this->forceDownload;
+    }
+
+    public function setForceDownload(bool $forceDownload): self
+    {
+        $this->forceDownload = $forceDownload;
+        return $this;
+    }
+
+
     static function createFromRequest(Request $request) :self
     {
         return (new ExportNotice())
             ->setShortFormat($request->get('print-type', self::PRINT_LONG) !== self::PRINT_LONG)
             ->setImage($request->get('print-image', null) === 'print-image')
-            ->setFormatType($request->get('format-type',self::FORMAT_PDF));
+            ->setFormatType($request->get('format-type',self::FORMAT_PDF))
+            ->setForceDownload($request->get('force-download', "on") !== "off");
     }
 }
 
