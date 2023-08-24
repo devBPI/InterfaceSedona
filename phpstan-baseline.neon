@@ -16,17 +16,7 @@ parameters:
 			path: src/Command/CleanerPicturesFileCommand.php
 
 		-
-			message: "#^Method App\\\\Entity\\\\NoticeAvailabilityRequest\\:\\:setRequester\\(\\) has no return type specified\\.$#"
-			count: 1
-			path: src/Entity/NoticeAvailabilityRequest.php
-
-		-
 			message: "#^Property App\\\\Entity\\\\NoticeAvailabilityRequest\\:\\:\\$comment is unused\\.$#"
-			count: 1
-			path: src/Entity/NoticeAvailabilityRequest.php
-
-		-
-			message: "#^Property App\\\\Entity\\\\NoticeAvailabilityRequest\\:\\:\\$id has no type specified\\.$#"
 			count: 1
 			path: src/Entity/NoticeAvailabilityRequest.php
 
@@ -61,11 +51,6 @@ parameters:
 			path: src/Entity/NoticeAvailabilityRequest.php
 
 		-
-			message: "#^Property App\\\\Entity\\\\SearchEngine\\:\\:\\$id has no type specified\\.$#"
-			count: 1
-			path: src/Entity/SearchEngine.php
-
-		-
 			message: "#^Property App\\\\Entity\\\\SearchEngine\\:\\:\\$id is unused\\.$#"
 			count: 1
 			path: src/Entity/SearchEngine.php
@@ -86,22 +71,12 @@ parameters:
 			path: src/Entity/SearchEngine.php
 
 		-
-			message: "#^Property App\\\\Entity\\\\SearchHistory\\:\\:\\$id has no type specified\\.$#"
-			count: 1
-			path: src/Entity/SearchHistory.php
-
-		-
 			message: "#^Offset string does not exist on string\\.$#"
 			count: 2
 			path: src/Entity/Thematic.php
 
 		-
 			message: "#^Property App\\\\Entity\\\\Thematic\\:\\:\\$description is never written, only read\\.$#"
-			count: 1
-			path: src/Entity/Thematic.php
-
-		-
-			message: "#^Property App\\\\Entity\\\\Thematic\\:\\:\\$id has no type specified\\.$#"
 			count: 1
 			path: src/Entity/Thematic.php
 
@@ -121,11 +96,6 @@ parameters:
 			path: src/Entity/Thematic.php
 
 		-
-			message: "#^Property App\\\\Entity\\\\Thematic\\:\\:\\$themes with generic class Doctrine\\\\Common\\\\Collections\\\\ArrayCollection does not specify its types\\: TKey, T$#"
-			count: 1
-			path: src/Entity/Thematic.php
-
-		-
 			message: "#^Property App\\\\Entity\\\\Thematic\\:\\:\\$title is never written, only read\\.$#"
 			count: 1
 			path: src/Entity/Thematic.php
@@ -136,27 +106,12 @@ parameters:
 			path: src/Entity/Thematic.php
 
 		-
-			message: "#^Property App\\\\Entity\\\\Thematic\\:\\:\\$words has no type specified\\.$#"
-			count: 1
-			path: src/Entity/Thematic.php
-
-		-
 			message: "#^Property App\\\\Entity\\\\Thematic\\:\\:\\$words is never written, only read\\.$#"
 			count: 1
 			path: src/Entity/Thematic.php
 
 		-
-			message: "#^Method App\\\\Entity\\\\Theme\\:\\:getLevels\\(\\) return type with generic interface Doctrine\\\\Common\\\\Collections\\\\Collection does not specify its types\\: TKey, T$#"
-			count: 1
-			path: src/Entity/Theme.php
-
-		-
 			message: "#^Property App\\\\Entity\\\\Theme\\:\\:\\$Parent is never written, only read\\.$#"
-			count: 1
-			path: src/Entity/Theme.php
-
-		-
-			message: "#^Property App\\\\Entity\\\\Theme\\:\\:\\$id has no type specified\\.$#"
 			count: 1
 			path: src/Entity/Theme.php
 
@@ -176,27 +131,12 @@ parameters:
 			path: src/Entity/Theme.php
 
 		-
-			message: "#^Property App\\\\Entity\\\\Theme\\:\\:\\$levels with generic class Doctrine\\\\Common\\\\Collections\\\\ArrayCollection does not specify its types\\: TKey, T$#"
-			count: 1
-			path: src/Entity/Theme.php
-
-		-
 			message: "#^Property App\\\\Entity\\\\Theme\\:\\:\\$title is never written, only read\\.$#"
 			count: 1
 			path: src/Entity/Theme.php
 
 		-
-			message: "#^Property App\\\\Entity\\\\Theme\\:\\:\\$title type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Entity/Theme.php
-
-		-
 			message: "#^Property App\\\\Entity\\\\ThemeLevel\\:\\:\\$Parent is never written, only read\\.$#"
-			count: 1
-			path: src/Entity/ThemeLevel.php
-
-		-
-			message: "#^Property App\\\\Entity\\\\ThemeLevel\\:\\:\\$id has no type specified\\.$#"
 			count: 1
 			path: src/Entity/ThemeLevel.php
 
@@ -211,16 +151,6 @@ parameters:
 			path: src/Entity/ThemeLevel.php
 
 		-
-			message: "#^Property App\\\\Entity\\\\ThemeLevel\\:\\:\\$title type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Entity/ThemeLevel.php
-
-		-
-			message: "#^Property App\\\\Entity\\\\UserHistory\\:\\:\\$id has no type specified\\.$#"
-			count: 1
-			path: src/Entity/UserHistory.php
-
-		-
 			message: "#^Property App\\\\Entity\\\\UserHistory\\:\\:\\$id is never written, only read\\.$#"
 			count: 1
 			path: src/Entity/UserHistory.php
@@ -231,22 +161,7 @@ parameters:
 			path: src/Entity/UserHistory.php
 
 		-
-			message: "#^Method App\\\\Entity\\\\UserSelectionDocument\\:\\:__construct\\(\\) has parameter \\$data with no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Entity/UserSelectionDocument.php
-
-		-
-			message: "#^Property App\\\\Entity\\\\UserSelectionDocument\\:\\:\\$List has no type specified\\.$#"
-			count: 1
-			path: src/Entity/UserSelectionDocument.php
-
-		-
 			message: "#^Property App\\\\Entity\\\\UserSelectionDocument\\:\\:\\$List is never read, only written\\.$#"
-			count: 1
-			path: src/Entity/UserSelectionDocument.php
-
-		-
-			message: "#^Property App\\\\Entity\\\\UserSelectionDocument\\:\\:\\$id has no type specified\\.$#"
 			count: 1
 			path: src/Entity/UserSelectionDocument.php
 
@@ -254,21 +169,6 @@ parameters:
 			message: "#^Property App\\\\Entity\\\\UserSelectionDocument\\:\\:\\$id is never written, only read\\.$#"
 			count: 1
 			path: src/Entity/UserSelectionDocument.php
-
-		-
-			message: "#^Method App\\\\Entity\\\\UserSelectionList\\:\\:getDocuments\\(\\) return type with generic class Doctrine\\\\Common\\\\Collections\\\\ArrayCollection does not specify its types\\: TKey, T$#"
-			count: 1
-			path: src/Entity/UserSelectionList.php
-
-		-
-			message: "#^Property App\\\\Entity\\\\UserSelectionList\\:\\:\\$documents with generic class Doctrine\\\\Common\\\\Collections\\\\ArrayCollection does not specify its types\\: TKey, T$#"
-			count: 1
-			path: src/Entity/UserSelectionList.php
-
-		-
-			message: "#^Property App\\\\Entity\\\\UserSelectionList\\:\\:\\$id has no type specified\\.$#"
-			count: 1
-			path: src/Entity/UserSelectionList.php
 
 		-
 			message: "#^Property App\\\\Entity\\\\UserSelectionList\\:\\:\\$id is never written, only read\\.$#"
@@ -281,11 +181,6 @@ parameters:
 			path: src/Entity/UserSelectionList.php
 
 		-
-			message: "#^Property App\\\\Entity\\\\Word\\:\\:\\$id has no type specified\\.$#"
-			count: 1
-			path: src/Entity/Word.php
-
-		-
 			message: "#^Property App\\\\Entity\\\\Word\\:\\:\\$id is unused\\.$#"
 			count: 1
 			path: src/Entity/Word.php
@@ -296,104 +191,9 @@ parameters:
 			path: src/Entity/Word.php
 
 		-
-			message: "#^Method App\\\\EventListener\\\\AuthenticationListener\\:\\:onSecurityInteractiveLogin\\(\\) has no return type specified\\.$#"
-			count: 1
-			path: src/EventListener/AuthenticationListener.php
-
-		-
 			message: "#^Property App\\\\EventListener\\\\AuthenticationListener\\:\\:\\$entityManager \\(Doctrine\\\\ORM\\\\EntityManager\\) does not accept Doctrine\\\\ORM\\\\EntityManagerInterface\\.$#"
 			count: 1
 			path: src/EventListener/AuthenticationListener.php
-
-		-
-			message: "#^Method App\\\\EventListener\\\\ExceptionListener\\:\\:onKernelException\\(\\) has no return type specified\\.$#"
-			count: 1
-			path: src/EventListener/ExceptionListener.php
-
-		-
-			message: "#^Property App\\\\EventListener\\\\ExceptionListener\\:\\:\\$router has no type specified\\.$#"
-			count: 1
-			path: src/EventListener/ExceptionListener.php
-
-		-
-			message: "#^Method App\\\\Exception\\\\DirectoryNotFoundException\\:\\:__construct\\(\\) has parameter \\$path with no type specified\\.$#"
-			count: 1
-			path: src/Exception/DirectoryNotFoundException.php
-
-		-
-			message: "#^Method App\\\\Form\\\\AvailabilityNotificationType\\:\\:buildForm\\(\\) has no return type specified\\.$#"
-			count: 1
-			path: src/Form/AvailabilityNotificationType.php
-
-		-
-			message: "#^Method App\\\\Form\\\\AvailabilityNotificationType\\:\\:buildForm\\(\\) has parameter \\$options with no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Form/AvailabilityNotificationType.php
-
-		-
-			message: "#^Method App\\\\Form\\\\AvailabilityNotificationType\\:\\:configureOptions\\(\\) has no return type specified\\.$#"
-			count: 1
-			path: src/Form/AvailabilityNotificationType.php
-
-		-
-			message: "#^Method App\\\\Form\\\\ExportNoticeType\\:\\:buildForm\\(\\) has no return type specified\\.$#"
-			count: 1
-			path: src/Form/ExportNoticeType.php
-
-		-
-			message: "#^Method App\\\\Form\\\\ExportNoticeType\\:\\:configureOptions\\(\\) has no return type specified\\.$#"
-			count: 1
-			path: src/Form/ExportNoticeType.php
-
-		-
-			message: "#^Method App\\\\Form\\\\ReportErrorType\\:\\:buildForm\\(\\) has no return type specified\\.$#"
-			count: 1
-			path: src/Form/ReportErrorType.php
-
-		-
-			message: "#^Method App\\\\Form\\\\ReportErrorType\\:\\:buildForm\\(\\) has parameter \\$options with no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Form/ReportErrorType.php
-
-		-
-			message: "#^Method App\\\\Form\\\\ReportErrorType\\:\\:configureOptions\\(\\) has no return type specified\\.$#"
-			count: 1
-			path: src/Form/ReportErrorType.php
-
-		-
-			message: "#^Method App\\\\Form\\\\SendByMailType\\:\\:buildForm\\(\\) has no return type specified\\.$#"
-			count: 1
-			path: src/Form/SendByMailType.php
-
-		-
-			message: "#^Method App\\\\Form\\\\SendByMailType\\:\\:configureOptions\\(\\) has no return type specified\\.$#"
-			count: 1
-			path: src/Form/SendByMailType.php
-
-		-
-			message: "#^Method App\\\\Form\\\\SuggestByMailType\\:\\:buildForm\\(\\) has no return type specified\\.$#"
-			count: 1
-			path: src/Form/SuggestByMailType.php
-
-		-
-			message: "#^Method App\\\\Form\\\\SuggestByMailType\\:\\:buildForm\\(\\) has parameter \\$options with no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Form/SuggestByMailType.php
-
-		-
-			message: "#^Method App\\\\Form\\\\SuggestByMailType\\:\\:configureOptions\\(\\) has no return type specified\\.$#"
-			count: 1
-			path: src/Form/SuggestByMailType.php
-
-		-
-			message: "#^Method App\\\\Kernel\\:\\:configureContainer\\(\\) has no return type specified\\.$#"
-			count: 1
-			path: src/Kernel.php
-
-		-
-			message: "#^Method App\\\\Kernel\\:\\:configureRoutes\\(\\) has no return type specified\\.$#"
-			count: 1
-			path: src/Kernel.php
 
 		-
 			message: "#^Property App\\\\Model\\\\AbstractListNotices\\:\\:\\$numPages is never written, only read\\.$#"
@@ -416,121 +216,6 @@ parameters:
 			path: src/Model/AbstractListNotices.php
 
 		-
-			message: "#^Method App\\\\Model\\\\AdvancedSearchCriteria\\:\\:getAudience\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Model/AdvancedSearchCriteria.php
-
-		-
-			message: "#^Method App\\\\Model\\\\AdvancedSearchCriteria\\:\\:getConfigurationName\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Model/AdvancedSearchCriteria.php
-
-		-
-			message: "#^Method App\\\\Model\\\\AdvancedSearchCriteria\\:\\:getContenu\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Model/AdvancedSearchCriteria.php
-
-		-
-			message: "#^Method App\\\\Model\\\\AdvancedSearchCriteria\\:\\:getFacets\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Model/AdvancedSearchCriteria.php
-
-		-
-			message: "#^Method App\\\\Model\\\\AdvancedSearchCriteria\\:\\:getGenreFilm\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Model/AdvancedSearchCriteria.php
-
-		-
-			message: "#^Method App\\\\Model\\\\AdvancedSearchCriteria\\:\\:getGenreLitteraire\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Model/AdvancedSearchCriteria.php
-
-		-
-			message: "#^Method App\\\\Model\\\\AdvancedSearchCriteria\\:\\:getGenreMusical\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Model/AdvancedSearchCriteria.php
-
-		-
-			message: "#^Method App\\\\Model\\\\AdvancedSearchCriteria\\:\\:getLanguage\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Model/AdvancedSearchCriteria.php
-
-		-
-			message: "#^Method App\\\\Model\\\\AdvancedSearchCriteria\\:\\:getMaterialSupport\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Model/AdvancedSearchCriteria.php
-
-		-
-			message: "#^Method App\\\\Model\\\\AdvancedSearchCriteria\\:\\:getMediation\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Model/AdvancedSearchCriteria.php
-
-		-
-			message: "#^Method App\\\\Model\\\\AdvancedSearchCriteria\\:\\:getSecteur\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Model/AdvancedSearchCriteria.php
-
-		-
-			message: "#^Method App\\\\Model\\\\AdvancedSearchCriteria\\:\\:getType\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Model/AdvancedSearchCriteria.php
-
-		-
-			message: "#^Property App\\\\Model\\\\AdvancedSearchCriteria\\:\\:\\$audience type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Model/AdvancedSearchCriteria.php
-
-		-
-			message: "#^Property App\\\\Model\\\\AdvancedSearchCriteria\\:\\:\\$configuration_name type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Model/AdvancedSearchCriteria.php
-
-		-
-			message: "#^Property App\\\\Model\\\\AdvancedSearchCriteria\\:\\:\\$contenu type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Model/AdvancedSearchCriteria.php
-
-		-
-			message: "#^Property App\\\\Model\\\\AdvancedSearchCriteria\\:\\:\\$genre_film type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Model/AdvancedSearchCriteria.php
-
-		-
-			message: "#^Property App\\\\Model\\\\AdvancedSearchCriteria\\:\\:\\$genre_litteraire type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Model/AdvancedSearchCriteria.php
-
-		-
-			message: "#^Property App\\\\Model\\\\AdvancedSearchCriteria\\:\\:\\$genre_musical type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Model/AdvancedSearchCriteria.php
-
-		-
-			message: "#^Property App\\\\Model\\\\AdvancedSearchCriteria\\:\\:\\$language type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Model/AdvancedSearchCriteria.php
-
-		-
-			message: "#^Property App\\\\Model\\\\AdvancedSearchCriteria\\:\\:\\$material_support type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Model/AdvancedSearchCriteria.php
-
-		-
-			message: "#^Property App\\\\Model\\\\AdvancedSearchCriteria\\:\\:\\$mediation type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Model/AdvancedSearchCriteria.php
-
-		-
-			message: "#^Property App\\\\Model\\\\AdvancedSearchCriteria\\:\\:\\$secteur type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Model/AdvancedSearchCriteria.php
-
-		-
-			message: "#^Property App\\\\Model\\\\AdvancedSearchCriteria\\:\\:\\$type type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Model/AdvancedSearchCriteria.php
-
-		-
 			message: "#^Property App\\\\Model\\\\AroundIndex\\:\\:\\$indexes is never written, only read\\.$#"
 			count: 1
 			path: src/Model/AroundIndex.php
@@ -546,66 +231,6 @@ parameters:
 			path: src/Model/AroundIndex.php
 
 		-
-			message: "#^Method App\\\\Model\\\\Authority\\:\\:getAssociatedValueComplementForm\\(\\) has no return type specified\\.$#"
-			count: 1
-			path: src/Model/Authority.php
-
-		-
-			message: "#^Method App\\\\Model\\\\Authority\\:\\:getAssocietedForm\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Model/Authority.php
-
-		-
-			message: "#^Method App\\\\Model\\\\Authority\\:\\:getCountries\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Model/Authority.php
-
-		-
-			message: "#^Method App\\\\Model\\\\Authority\\:\\:getDates\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Model/Authority.php
-
-		-
-			message: "#^Method App\\\\Model\\\\Authority\\:\\:getFormParalella\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Model/Authority.php
-
-		-
-			message: "#^Method App\\\\Model\\\\Authority\\:\\:getLanguages\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Model/Authority.php
-
-		-
-			message: "#^Method App\\\\Model\\\\Authority\\:\\:getMusicalKinds\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Model/Authority.php
-
-		-
-			message: "#^Method App\\\\Model\\\\Authority\\:\\:getNotes\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Model/Authority.php
-
-		-
-			message: "#^Method App\\\\Model\\\\Authority\\:\\:getOrigins\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Model/Authority.php
-
-		-
-			message: "#^Method App\\\\Model\\\\Authority\\:\\:getOtherNames\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Model/Authority.php
-
-		-
-			message: "#^Method App\\\\Model\\\\Authority\\:\\:getPrincipalActivities\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Model/Authority.php
-
-		-
-			message: "#^Method App\\\\Model\\\\Authority\\:\\:getResumes\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Model/Authority.php
-
-		-
 			message: "#^Property App\\\\Model\\\\Authority\\:\\:\\$associatedValueComplementForm is never written, only read\\.$#"
 			count: 1
 			path: src/Model/Authority.php
@@ -616,22 +241,7 @@ parameters:
 			path: src/Model/Authority.php
 
 		-
-			message: "#^Property App\\\\Model\\\\Authority\\:\\:\\$associetedForm type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Model/Authority.php
-
-		-
-			message: "#^Property App\\\\Model\\\\Authority\\:\\:\\$countries type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Model/Authority.php
-
-		-
 			message: "#^Property App\\\\Model\\\\Authority\\:\\:\\$dates is never written, only read\\.$#"
-			count: 1
-			path: src/Model/Authority.php
-
-		-
-			message: "#^Property App\\\\Model\\\\Authority\\:\\:\\$dates type has no value type specified in iterable type array\\.$#"
 			count: 1
 			path: src/Model/Authority.php
 
@@ -651,11 +261,6 @@ parameters:
 			path: src/Model/Authority.php
 
 		-
-			message: "#^Property App\\\\Model\\\\Authority\\:\\:\\$formParalella type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Model/Authority.php
-
-		-
 			message: "#^Property App\\\\Model\\\\Authority\\:\\:\\$id is never written, only read\\.$#"
 			count: 1
 			path: src/Model/Authority.php
@@ -666,17 +271,7 @@ parameters:
 			path: src/Model/Authority.php
 
 		-
-			message: "#^Property App\\\\Model\\\\Authority\\:\\:\\$languages type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Model/Authority.php
-
-		-
 			message: "#^Property App\\\\Model\\\\Authority\\:\\:\\$musicalKinds is never written, only read\\.$#"
-			count: 1
-			path: src/Model/Authority.php
-
-		-
-			message: "#^Property App\\\\Model\\\\Authority\\:\\:\\$musicalKinds type has no value type specified in iterable type array\\.$#"
 			count: 1
 			path: src/Model/Authority.php
 
@@ -691,11 +286,6 @@ parameters:
 			path: src/Model/Authority.php
 
 		-
-			message: "#^Property App\\\\Model\\\\Authority\\:\\:\\$notes type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Model/Authority.php
-
-		-
 			message: "#^Property App\\\\Model\\\\Authority\\:\\:\\$originalUrl is never written, only read\\.$#"
 			count: 1
 			path: src/Model/Authority.php
@@ -706,32 +296,7 @@ parameters:
 			path: src/Model/Authority.php
 
 		-
-			message: "#^Property App\\\\Model\\\\Authority\\:\\:\\$origins type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Model/Authority.php
-
-		-
-			message: "#^Property App\\\\Model\\\\Authority\\:\\:\\$otherNames type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Model/Authority.php
-
-		-
-			message: "#^Property App\\\\Model\\\\Authority\\:\\:\\$principalActivities type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Model/Authority.php
-
-		-
 			message: "#^Property App\\\\Model\\\\Authority\\:\\:\\$resumes is never written, only read\\.$#"
-			count: 1
-			path: src/Model/Authority.php
-
-		-
-			message: "#^Property App\\\\Model\\\\Authority\\:\\:\\$resumes type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Model/Authority.php
-
-		-
-			message: "#^Property App\\\\Model\\\\Authority\\:\\:\\$separator has no type specified\\.$#"
 			count: 1
 			path: src/Model/Authority.php
 
@@ -786,11 +351,6 @@ parameters:
 			path: src/Model/ErrorApiResponse.php
 
 		-
-			message: "#^Method App\\\\Model\\\\Facet\\:\\:getRawValues\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Model/Facet.php
-
-		-
 			message: "#^Property App\\\\Model\\\\Facet\\:\\:\\$businessSearchValues is never written, only read\\.$#"
 			count: 1
 			path: src/Model/Facet.php
@@ -812,11 +372,6 @@ parameters:
 
 		-
 			message: "#^Property App\\\\Model\\\\Facet\\:\\:\\$name is never written, only read\\.$#"
-			count: 1
-			path: src/Model/Facet.php
-
-		-
-			message: "#^Property App\\\\Model\\\\Facet\\:\\:\\$raw_values type has no value type specified in iterable type array\\.$#"
 			count: 1
 			path: src/Model/Facet.php
 
@@ -846,61 +401,6 @@ parameters:
 			path: src/Model/FacetValue.php
 
 		-
-			message: "#^Method App\\\\Model\\\\Form\\\\ExportNotice\\:\\:getAuthoritiesArray\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Model/Form/ExportNotice.php
-
-		-
-			message: "#^Method App\\\\Model\\\\Form\\\\ExportNotice\\:\\:getIndicesArray\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Model/Form/ExportNotice.php
-
-		-
-			message: "#^Method App\\\\Model\\\\Form\\\\ExportNotice\\:\\:getNoticesArray\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Model/Form/ExportNotice.php
-
-		-
-			message: "#^Method App\\\\Model\\\\IndiceCdu\\:\\:getClassifiedNote\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Model/IndiceCdu.php
-
-		-
-			message: "#^Method App\\\\Model\\\\IndiceCdu\\:\\:getCountries\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Model/IndiceCdu.php
-
-		-
-			message: "#^Method App\\\\Model\\\\IndiceCdu\\:\\:getEmployedfor\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Model/IndiceCdu.php
-
-		-
-			message: "#^Method App\\\\Model\\\\IndiceCdu\\:\\:getLanguages\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Model/IndiceCdu.php
-
-		-
-			message: "#^Method App\\\\Model\\\\IndiceCdu\\:\\:getOrigins\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Model/IndiceCdu.php
-
-		-
-			message: "#^Method App\\\\Model\\\\IndiceCdu\\:\\:getOtherNames\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Model/IndiceCdu.php
-
-		-
-			message: "#^Method App\\\\Model\\\\IndiceCdu\\:\\:getPrincipalActivities\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Model/IndiceCdu.php
-
-		-
-			message: "#^Property App\\\\Model\\\\IndiceCdu\\:\\:\\$aroundIndex has no type specified\\.$#"
-			count: 1
-			path: src/Model/IndiceCdu.php
-
-		-
 			message: "#^Property App\\\\Model\\\\IndiceCdu\\:\\:\\$aroundIndex is never written, only read\\.$#"
 			count: 1
 			path: src/Model/IndiceCdu.php
@@ -911,22 +411,7 @@ parameters:
 			path: src/Model/IndiceCdu.php
 
 		-
-			message: "#^Property App\\\\Model\\\\IndiceCdu\\:\\:\\$classifiedNote type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Model/IndiceCdu.php
-
-		-
-			message: "#^Property App\\\\Model\\\\IndiceCdu\\:\\:\\$countries type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Model/IndiceCdu.php
-
-		-
 			message: "#^Property App\\\\Model\\\\IndiceCdu\\:\\:\\$employedfor is never written, only read\\.$#"
-			count: 1
-			path: src/Model/IndiceCdu.php
-
-		-
-			message: "#^Property App\\\\Model\\\\IndiceCdu\\:\\:\\$employedfor type has no value type specified in iterable type array\\.$#"
 			count: 1
 			path: src/Model/IndiceCdu.php
 
@@ -936,59 +421,9 @@ parameters:
 			path: src/Model/IndiceCdu.php
 
 		-
-			message: "#^Property App\\\\Model\\\\IndiceCdu\\:\\:\\$languages type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Model/IndiceCdu.php
-
-		-
-			message: "#^Property App\\\\Model\\\\IndiceCdu\\:\\:\\$origins type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Model/IndiceCdu.php
-
-		-
-			message: "#^Property App\\\\Model\\\\IndiceCdu\\:\\:\\$otherNames type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Model/IndiceCdu.php
-
-		-
 			message: "#^Property App\\\\Model\\\\IndiceCdu\\:\\:\\$permalink is never written, only read\\.$#"
 			count: 1
 			path: src/Model/IndiceCdu.php
-
-		-
-			message: "#^Property App\\\\Model\\\\IndiceCdu\\:\\:\\$principalActivities type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Model/IndiceCdu.php
-
-		-
-			message: "#^Method App\\\\Model\\\\LdapUser\\:\\:__construct\\(\\) has parameter \\$data with no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Model/LdapUser.php
-
-		-
-			message: "#^Method App\\\\Model\\\\LdapUser\\:\\:__construct\\(\\) has parameter \\$roles with no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Model/LdapUser.php
-
-		-
-			message: "#^Method App\\\\Model\\\\LdapUser\\:\\:eraseCredentials\\(\\) has no return type specified\\.$#"
-			count: 1
-			path: src/Model/LdapUser.php
-
-		-
-			message: "#^Method App\\\\Model\\\\LdapUser\\:\\:setEntryAttributes\\(\\) has parameter \\$data with no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Model/LdapUser.php
-
-		-
-			message: "#^Property App\\\\Model\\\\LdapUser\\:\\:\\$email has no type specified\\.$#"
-			count: 1
-			path: src/Model/LdapUser.php
-
-		-
-			message: "#^Property App\\\\Model\\\\LdapUser\\:\\:\\$enabled has no type specified\\.$#"
-			count: 1
-			path: src/Model/LdapUser.php
 
 		-
 			message: "#^Property App\\\\Model\\\\LdapUser\\:\\:\\$enabled is never read, only written\\.$#"
@@ -996,37 +431,7 @@ parameters:
 			path: src/Model/LdapUser.php
 
 		-
-			message: "#^Property App\\\\Model\\\\LdapUser\\:\\:\\$firstname has no type specified\\.$#"
-			count: 1
-			path: src/Model/LdapUser.php
-
-		-
-			message: "#^Property App\\\\Model\\\\LdapUser\\:\\:\\$lastname has no type specified\\.$#"
-			count: 1
-			path: src/Model/LdapUser.php
-
-		-
-			message: "#^Property App\\\\Model\\\\LdapUser\\:\\:\\$mandatory_fields has no type specified\\.$#"
-			count: 1
-			path: src/Model/LdapUser.php
-
-		-
-			message: "#^Property App\\\\Model\\\\LdapUser\\:\\:\\$password has no type specified\\.$#"
-			count: 1
-			path: src/Model/LdapUser.php
-
-		-
 			message: "#^Property App\\\\Model\\\\LdapUser\\:\\:\\$password is never written, only read\\.$#"
-			count: 1
-			path: src/Model/LdapUser.php
-
-		-
-			message: "#^Property App\\\\Model\\\\LdapUser\\:\\:\\$roles has no type specified\\.$#"
-			count: 1
-			path: src/Model/LdapUser.php
-
-		-
-			message: "#^Property App\\\\Model\\\\LdapUser\\:\\:\\$username has no type specified\\.$#"
 			count: 1
 			path: src/Model/LdapUser.php
 
@@ -1121,252 +526,7 @@ parameters:
 			path: src/Model/Notice.php
 
 		-
-			message: "#^Method App\\\\Model\\\\Notice\\:\\:getAlternatifTitle\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Model/Notice.php
-
-		-
-			message: "#^Method App\\\\Model\\\\Notice\\:\\:getAnalyticalTitles\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Model/Notice.php
-
-		-
-			message: "#^Method App\\\\Model\\\\Notice\\:\\:getAuthors\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Model/Notice.php
-
-		-
-			message: "#^Method App\\\\Model\\\\Notice\\:\\:getCollectionSeries\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Model/Notice.php
-
-		-
-			message: "#^Method App\\\\Model\\\\Notice\\:\\:getCommercialNumbers\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Model/Notice.php
-
-		-
-			message: "#^Method App\\\\Model\\\\Notice\\:\\:getConservation\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Model/Notice.php
-
-		-
-			message: "#^Method App\\\\Model\\\\Notice\\:\\:getConservations\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Model/Notice.php
-
-		-
-			message: "#^Method App\\\\Model\\\\Notice\\:\\:getContents\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Model/Notice.php
-
-		-
-			message: "#^Method App\\\\Model\\\\Notice\\:\\:getContributeurs\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Model/Notice.php
-
-		-
-			message: "#^Method App\\\\Model\\\\Notice\\:\\:getDates\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Model/Notice.php
-
-		-
-			message: "#^Method App\\\\Model\\\\Notice\\:\\:getDirectors\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Model/Notice.php
-
-		-
-			message: "#^Method App\\\\Model\\\\Notice\\:\\:getEditors\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Model/Notice.php
-
-		-
-			message: "#^Method App\\\\Model\\\\Notice\\:\\:getEras\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Model/Notice.php
-
-		-
-			message: "#^Method App\\\\Model\\\\Notice\\:\\:getFirstPage\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Model/Notice.php
-
-		-
-			message: "#^Method App\\\\Model\\\\Notice\\:\\:getFrontAuthor\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Model/Notice.php
-
-		-
-			message: "#^Method App\\\\Model\\\\Notice\\:\\:getFrontDiscoveryAuthor\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Model/Notice.php
-
-		-
-			message: "#^Method App\\\\Model\\\\Notice\\:\\:getInRelationTitle\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Model/Notice.php
-
-		-
-			message: "#^Method App\\\\Model\\\\Notice\\:\\:getIndices\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Model/Notice.php
-
-		-
-			message: "#^Method App\\\\Model\\\\Notice\\:\\:getIsbns\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Model/Notice.php
-
-		-
-			message: "#^Method App\\\\Model\\\\Notice\\:\\:getIssn\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Model/Notice.php
-
-		-
-			message: "#^Method App\\\\Model\\\\Notice\\:\\:getIssues\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Model/Notice.php
-
-		-
-			message: "#^Method App\\\\Model\\\\Notice\\:\\:getKinds\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Model/Notice.php
-
-		-
-			message: "#^Method App\\\\Model\\\\Notice\\:\\:getLanguages\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Model/Notice.php
-
-		-
-			message: "#^Method App\\\\Model\\\\Notice\\:\\:getLastPage\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Model/Notice.php
-
-		-
-			message: "#^Method App\\\\Model\\\\Notice\\:\\:getLocations\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Model/Notice.php
-
-		-
-			message: "#^Method App\\\\Model\\\\Notice\\:\\:getMaterialDescriptions\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Model/Notice.php
-
-		-
-			message: "#^Method App\\\\Model\\\\Notice\\:\\:getMeeting\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Model/Notice.php
-
-		-
-			message: "#^Method App\\\\Model\\\\Notice\\:\\:getNotes\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Model/Notice.php
-
-		-
-			message: "#^Method App\\\\Model\\\\Notice\\:\\:getOriginalLanguages\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Model/Notice.php
-
-		-
-			message: "#^Method App\\\\Model\\\\Notice\\:\\:getOrigins\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Model/Notice.php
-
-		-
-			message: "#^Method App\\\\Model\\\\Notice\\:\\:getOtherAuthors\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Model/Notice.php
-
-		-
-			message: "#^Method App\\\\Model\\\\Notice\\:\\:getOtherDates\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Model/Notice.php
-
-		-
-			message: "#^Method App\\\\Model\\\\Notice\\:\\:getOtherEdition\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Model/Notice.php
-
-		-
-			message: "#^Method App\\\\Model\\\\Notice\\:\\:getPeriodicity\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Model/Notice.php
-
-		-
-			message: "#^Method App\\\\Model\\\\Notice\\:\\:getPlacesEvents\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Model/Notice.php
-
-		-
-			message: "#^Method App\\\\Model\\\\Notice\\:\\:getPublics\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Model/Notice.php
-
-		-
-			message: "#^Method App\\\\Model\\\\Notice\\:\\:getPublishedDates\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Model/Notice.php
-
-		-
-			message: "#^Method App\\\\Model\\\\Notice\\:\\:getResume\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Model/Notice.php
-
-		-
-			message: "#^Method App\\\\Model\\\\Notice\\:\\:getRights\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Model/Notice.php
-
-		-
-			message: "#^Method App\\\\Model\\\\Notice\\:\\:getSlugifiedType\\(\\) has no return type specified\\.$#"
-			count: 1
-			path: src/Model/Notice.php
-
-		-
-			message: "#^Method App\\\\Model\\\\Notice\\:\\:getSubject\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Model/Notice.php
-
-		-
-			message: "#^Method App\\\\Model\\\\Notice\\:\\:getTitleForm\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Model/Notice.php
-
-		-
-			message: "#^Method App\\\\Model\\\\Notice\\:\\:getTitleInformation\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Model/Notice.php
-
-		-
-			message: "#^Method App\\\\Model\\\\Notice\\:\\:getTitles\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Model/Notice.php
-
-		-
-			message: "#^Method App\\\\Model\\\\Notice\\:\\:getTogetherTitle\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Model/Notice.php
-
-		-
-			message: "#^Method App\\\\Model\\\\Notice\\:\\:getTopics\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Model/Notice.php
-
-		-
-			message: "#^Method App\\\\Model\\\\Notice\\:\\:getTranslatedBy\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Model/Notice.php
-
-		-
-			message: "#^Method App\\\\Model\\\\Notice\\:\\:getUniformTitle\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Model/Notice.php
-
-		-
 			message: "#^Method App\\\\Model\\\\Notice\\:\\:getVideoContributeurs\\(\\) should return array\\<App\\\\Model\\\\Value\\> but returns array\\<App\\\\Model\\\\ValueComplement\\>\\.$#"
-			count: 1
-			path: src/Model/Notice.php
-
-		-
-			message: "#^Method App\\\\Model\\\\Notice\\:\\:getVolumes\\(\\) return type has no value type specified in iterable type array\\.$#"
 			count: 1
 			path: src/Model/Notice.php
 
@@ -1376,17 +536,7 @@ parameters:
 			path: src/Model/Notice.php
 
 		-
-			message: "#^Property App\\\\Model\\\\Notice\\:\\:\\$alternatifTitle type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Model/Notice.php
-
-		-
 			message: "#^Property App\\\\Model\\\\Notice\\:\\:\\$analyticalTitles is never written, only read\\.$#"
-			count: 1
-			path: src/Model/Notice.php
-
-		-
-			message: "#^Property App\\\\Model\\\\Notice\\:\\:\\$analyticalTitles type has no value type specified in iterable type array\\.$#"
 			count: 1
 			path: src/Model/Notice.php
 
@@ -1396,17 +546,7 @@ parameters:
 			path: src/Model/Notice.php
 
 		-
-			message: "#^Property App\\\\Model\\\\Notice\\:\\:\\$analyticalTitlesInDetail type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Model/Notice.php
-
-		-
 			message: "#^Property App\\\\Model\\\\Notice\\:\\:\\$authors is never written, only read\\.$#"
-			count: 1
-			path: src/Model/Notice.php
-
-		-
-			message: "#^Property App\\\\Model\\\\Notice\\:\\:\\$authors type has no value type specified in iterable type array\\.$#"
 			count: 1
 			path: src/Model/Notice.php
 
@@ -1431,11 +571,6 @@ parameters:
 			path: src/Model/Notice.php
 
 		-
-			message: "#^Property App\\\\Model\\\\Notice\\:\\:\\$commercialNumbers type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Model/Notice.php
-
-		-
 			message: "#^Property App\\\\Model\\\\Notice\\:\\:\\$configurationId is never written, only read\\.$#"
 			count: 1
 			path: src/Model/Notice.php
@@ -1456,17 +591,7 @@ parameters:
 			path: src/Model/Notice.php
 
 		-
-			message: "#^Property App\\\\Model\\\\Notice\\:\\:\\$conservation type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Model/Notice.php
-
-		-
 			message: "#^Property App\\\\Model\\\\Notice\\:\\:\\$conservations is never written, only read\\.$#"
-			count: 1
-			path: src/Model/Notice.php
-
-		-
-			message: "#^Property App\\\\Model\\\\Notice\\:\\:\\$conservations type has no value type specified in iterable type array\\.$#"
 			count: 1
 			path: src/Model/Notice.php
 
@@ -1476,17 +601,7 @@ parameters:
 			path: src/Model/Notice.php
 
 		-
-			message: "#^Property App\\\\Model\\\\Notice\\:\\:\\$conservationsLiens type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Model/Notice.php
-
-		-
 			message: "#^Property App\\\\Model\\\\Notice\\:\\:\\$contents is never written, only read\\.$#"
-			count: 1
-			path: src/Model/Notice.php
-
-		-
-			message: "#^Property App\\\\Model\\\\Notice\\:\\:\\$contents type has no value type specified in iterable type array\\.$#"
 			count: 1
 			path: src/Model/Notice.php
 
@@ -1511,17 +626,7 @@ parameters:
 			path: src/Model/Notice.php
 
 		-
-			message: "#^Property App\\\\Model\\\\Notice\\:\\:\\$dates type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Model/Notice.php
-
-		-
 			message: "#^Property App\\\\Model\\\\Notice\\:\\:\\$directors is never written, only read\\.$#"
-			count: 1
-			path: src/Model/Notice.php
-
-		-
-			message: "#^Property App\\\\Model\\\\Notice\\:\\:\\$directors type has no value type specified in iterable type array\\.$#"
 			count: 1
 			path: src/Model/Notice.php
 
@@ -1536,17 +641,7 @@ parameters:
 			path: src/Model/Notice.php
 
 		-
-			message: "#^Property App\\\\Model\\\\Notice\\:\\:\\$editors type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Model/Notice.php
-
-		-
 			message: "#^Property App\\\\Model\\\\Notice\\:\\:\\$eras is never written, only read\\.$#"
-			count: 1
-			path: src/Model/Notice.php
-
-		-
-			message: "#^Property App\\\\Model\\\\Notice\\:\\:\\$eras type has no value type specified in iterable type array\\.$#"
 			count: 1
 			path: src/Model/Notice.php
 
@@ -1556,18 +651,8 @@ parameters:
 			path: src/Model/Notice.php
 
 		-
-			message: "#^Property App\\\\Model\\\\Notice\\:\\:\\$firstPage type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Model/Notice.php
-
-		-
 			message: "#^Property App\\\\Model\\\\Notice\\:\\:\\$formats is never written, only read\\.$#"
 			count: 1
-			path: src/Model/Notice.php
-
-		-
-			message: "#^Property App\\\\Model\\\\Notice\\:\\:\\$formats type has no value type specified in iterable type array\\.$#"
-			count: 2
 			path: src/Model/Notice.php
 
 		-
@@ -1582,11 +667,6 @@ parameters:
 
 		-
 			message: "#^Property App\\\\Model\\\\Notice\\:\\:\\$inRelationTitle is never written, only read\\.$#"
-			count: 1
-			path: src/Model/Notice.php
-
-		-
-			message: "#^Property App\\\\Model\\\\Notice\\:\\:\\$inRelationTitle type has no value type specified in iterable type array\\.$#"
 			count: 1
 			path: src/Model/Notice.php
 
@@ -1606,11 +686,6 @@ parameters:
 			path: src/Model/Notice.php
 
 		-
-			message: "#^Property App\\\\Model\\\\Notice\\:\\:\\$isbns type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Model/Notice.php
-
-		-
 			message: "#^Property App\\\\Model\\\\Notice\\:\\:\\$isni is never written, only read\\.$#"
 			count: 1
 			path: src/Model/Notice.php
@@ -1621,17 +696,7 @@ parameters:
 			path: src/Model/Notice.php
 
 		-
-			message: "#^Property App\\\\Model\\\\Notice\\:\\:\\$issn type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Model/Notice.php
-
-		-
 			message: "#^Property App\\\\Model\\\\Notice\\:\\:\\$issues is never written, only read\\.$#"
-			count: 1
-			path: src/Model/Notice.php
-
-		-
-			message: "#^Property App\\\\Model\\\\Notice\\:\\:\\$issues type has no value type specified in iterable type array\\.$#"
 			count: 1
 			path: src/Model/Notice.php
 
@@ -1641,32 +706,12 @@ parameters:
 			path: src/Model/Notice.php
 
 		-
-			message: "#^Property App\\\\Model\\\\Notice\\:\\:\\$kinds type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Model/Notice.php
-
-		-
 			message: "#^Property App\\\\Model\\\\Notice\\:\\:\\$languages is never written, only read\\.$#"
 			count: 1
 			path: src/Model/Notice.php
 
 		-
-			message: "#^Property App\\\\Model\\\\Notice\\:\\:\\$languages type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Model/Notice.php
-
-		-
 			message: "#^Property App\\\\Model\\\\Notice\\:\\:\\$lastPage is never written, only read\\.$#"
-			count: 1
-			path: src/Model/Notice.php
-
-		-
-			message: "#^Property App\\\\Model\\\\Notice\\:\\:\\$lastPage type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Model/Notice.php
-
-		-
-			message: "#^Property App\\\\Model\\\\Notice\\:\\:\\$link has no type specified\\.$#"
 			count: 1
 			path: src/Model/Notice.php
 
@@ -1681,17 +726,7 @@ parameters:
 			path: src/Model/Notice.php
 
 		-
-			message: "#^Property App\\\\Model\\\\Notice\\:\\:\\$locations type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Model/Notice.php
-
-		-
 			message: "#^Property App\\\\Model\\\\Notice\\:\\:\\$materialDescriptions is never written, only read\\.$#"
-			count: 1
-			path: src/Model/Notice.php
-
-		-
-			message: "#^Property App\\\\Model\\\\Notice\\:\\:\\$materialDescriptions type has no value type specified in iterable type array\\.$#"
 			count: 1
 			path: src/Model/Notice.php
 
@@ -1706,22 +741,12 @@ parameters:
 			path: src/Model/Notice.php
 
 		-
-			message: "#^Property App\\\\Model\\\\Notice\\:\\:\\$meeting type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Model/Notice.php
-
-		-
 			message: "#^Property App\\\\Model\\\\Notice\\:\\:\\$nomPubliqueConfiguration is never written, only read\\.$#"
 			count: 1
 			path: src/Model/Notice.php
 
 		-
 			message: "#^Property App\\\\Model\\\\Notice\\:\\:\\$notes is never written, only read\\.$#"
-			count: 1
-			path: src/Model/Notice.php
-
-		-
-			message: "#^Property App\\\\Model\\\\Notice\\:\\:\\$notes type has no value type specified in iterable type array\\.$#"
 			count: 1
 			path: src/Model/Notice.php
 
@@ -1736,22 +761,7 @@ parameters:
 			path: src/Model/Notice.php
 
 		-
-			message: "#^Property App\\\\Model\\\\Notice\\:\\:\\$originalLanguages type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Model/Notice.php
-
-		-
-			message: "#^Property App\\\\Model\\\\Notice\\:\\:\\$origins type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Model/Notice.php
-
-		-
 			message: "#^Property App\\\\Model\\\\Notice\\:\\:\\$otherAuthors is never written, only read\\.$#"
-			count: 1
-			path: src/Model/Notice.php
-
-		-
-			message: "#^Property App\\\\Model\\\\Notice\\:\\:\\$otherAuthors type has no value type specified in iterable type array\\.$#"
 			count: 1
 			path: src/Model/Notice.php
 
@@ -1761,27 +771,12 @@ parameters:
 			path: src/Model/Notice.php
 
 		-
-			message: "#^Property App\\\\Model\\\\Notice\\:\\:\\$otherDates type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Model/Notice.php
-
-		-
 			message: "#^Property App\\\\Model\\\\Notice\\:\\:\\$otherEdition is never written, only read\\.$#"
 			count: 1
 			path: src/Model/Notice.php
 
 		-
-			message: "#^Property App\\\\Model\\\\Notice\\:\\:\\$otherEdition type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Model/Notice.php
-
-		-
 			message: "#^Property App\\\\Model\\\\Notice\\:\\:\\$periodicity is never written, only read\\.$#"
-			count: 1
-			path: src/Model/Notice.php
-
-		-
-			message: "#^Property App\\\\Model\\\\Notice\\:\\:\\$periodicity type has no value type specified in iterable type array\\.$#"
 			count: 1
 			path: src/Model/Notice.php
 
@@ -1796,32 +791,12 @@ parameters:
 			path: src/Model/Notice.php
 
 		-
-			message: "#^Property App\\\\Model\\\\Notice\\:\\:\\$placesEvents type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Model/Notice.php
-
-		-
 			message: "#^Property App\\\\Model\\\\Notice\\:\\:\\$publics is never written, only read\\.$#"
 			count: 1
 			path: src/Model/Notice.php
 
 		-
-			message: "#^Property App\\\\Model\\\\Notice\\:\\:\\$publics type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Model/Notice.php
-
-		-
 			message: "#^Property App\\\\Model\\\\Notice\\:\\:\\$publishedDates is never written, only read\\.$#"
-			count: 1
-			path: src/Model/Notice.php
-
-		-
-			message: "#^Property App\\\\Model\\\\Notice\\:\\:\\$publishedDates type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Model/Notice.php
-
-		-
-			message: "#^Property App\\\\Model\\\\Notice\\:\\:\\$publisher has no type specified\\.$#"
 			count: 1
 			path: src/Model/Notice.php
 
@@ -1832,11 +807,6 @@ parameters:
 
 		-
 			message: "#^Property App\\\\Model\\\\Notice\\:\\:\\$resume is never written, only read\\.$#"
-			count: 1
-			path: src/Model/Notice.php
-
-		-
-			message: "#^Property App\\\\Model\\\\Notice\\:\\:\\$resume type has no value type specified in iterable type array\\.$#"
 			count: 1
 			path: src/Model/Notice.php
 
@@ -1856,17 +826,7 @@ parameters:
 			path: src/Model/Notice.php
 
 		-
-			message: "#^Property App\\\\Model\\\\Notice\\:\\:\\$subject type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Model/Notice.php
-
-		-
 			message: "#^Property App\\\\Model\\\\Notice\\:\\:\\$titleForm is never written, only read\\.$#"
-			count: 1
-			path: src/Model/Notice.php
-
-		-
-			message: "#^Property App\\\\Model\\\\Notice\\:\\:\\$titleForm type has no value type specified in iterable type array\\.$#"
 			count: 1
 			path: src/Model/Notice.php
 
@@ -1876,17 +836,7 @@ parameters:
 			path: src/Model/Notice.php
 
 		-
-			message: "#^Property App\\\\Model\\\\Notice\\:\\:\\$titleInformation type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Model/Notice.php
-
-		-
 			message: "#^Property App\\\\Model\\\\Notice\\:\\:\\$titles is never written, only read\\.$#"
-			count: 1
-			path: src/Model/Notice.php
-
-		-
-			message: "#^Property App\\\\Model\\\\Notice\\:\\:\\$titles type has no value type specified in iterable type array\\.$#"
 			count: 1
 			path: src/Model/Notice.php
 
@@ -1896,27 +846,12 @@ parameters:
 			path: src/Model/Notice.php
 
 		-
-			message: "#^Property App\\\\Model\\\\Notice\\:\\:\\$togetherTitle type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Model/Notice.php
-
-		-
 			message: "#^Property App\\\\Model\\\\Notice\\:\\:\\$topics is never written, only read\\.$#"
 			count: 1
 			path: src/Model/Notice.php
 
 		-
-			message: "#^Property App\\\\Model\\\\Notice\\:\\:\\$topics type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Model/Notice.php
-
-		-
 			message: "#^Property App\\\\Model\\\\Notice\\:\\:\\$translatedBy is never written, only read\\.$#"
-			count: 1
-			path: src/Model/Notice.php
-
-		-
-			message: "#^Property App\\\\Model\\\\Notice\\:\\:\\$translatedBy type has no value type specified in iterable type array\\.$#"
 			count: 1
 			path: src/Model/Notice.php
 
@@ -1936,11 +871,6 @@ parameters:
 			path: src/Model/Notice.php
 
 		-
-			message: "#^Property App\\\\Model\\\\Notice\\:\\:\\$uniformTitle type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Model/Notice.php
-
-		-
 			message: "#^Property App\\\\Model\\\\Notice\\:\\:\\$urlPubliqueConfiguration is never written, only read\\.$#"
 			count: 1
 			path: src/Model/Notice.php
@@ -1954,36 +884,6 @@ parameters:
 			message: "#^Property App\\\\Model\\\\Notice\\:\\:\\$volumes is never written, only read\\.$#"
 			count: 1
 			path: src/Model/Notice.php
-
-		-
-			message: "#^Property App\\\\Model\\\\Notice\\:\\:\\$volumes type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Model/Notice.php
-
-		-
-			message: "#^Method App\\\\Model\\\\NoticeAvailable\\:\\:getNotes\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Model/NoticeAvailable.php
-
-		-
-			message: "#^Method App\\\\Model\\\\NoticeAvailable\\:\\:getPrintLocation\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Model/NoticeAvailable.php
-
-		-
-			message: "#^Method App\\\\Model\\\\NoticeAvailable\\:\\:getRayonnage\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Model/NoticeAvailable.php
-
-		-
-			message: "#^Method App\\\\Model\\\\NoticeAvailable\\:\\:getReciviedNumber\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Model/NoticeAvailable.php
-
-		-
-			message: "#^Method App\\\\Model\\\\NoticeAvailable\\:\\:getValuesReciviedNumber\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Model/NoticeAvailable.php
 
 		-
 			message: "#^Property App\\\\Model\\\\NoticeAvailable\\:\\:\\$availability is never written, only read\\.$#"
@@ -2096,27 +996,12 @@ parameters:
 			path: src/Model/NoticeAvailable.php
 
 		-
-			message: "#^Property App\\\\Model\\\\NoticeAvailable\\:\\:\\$notes type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Model/NoticeAvailable.php
-
-		-
 			message: "#^Property App\\\\Model\\\\NoticeAvailable\\:\\:\\$reciviedNumber is never written, only read\\.$#"
 			count: 1
 			path: src/Model/NoticeAvailable.php
 
 		-
-			message: "#^Property App\\\\Model\\\\NoticeAvailable\\:\\:\\$reciviedNumber type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Model/NoticeAvailable.php
-
-		-
 			message: "#^Property App\\\\Model\\\\NoticeAvailable\\:\\:\\$support is never written, only read\\.$#"
-			count: 1
-			path: src/Model/NoticeAvailable.php
-
-		-
-			message: "#^Property App\\\\Model\\\\NoticeAvailable\\:\\:\\$support type has no value type specified in iterable type array\\.$#"
 			count: 1
 			path: src/Model/NoticeAvailable.php
 
@@ -2176,11 +1061,6 @@ parameters:
 			path: src/Model/NoticeThemed.php
 
 		-
-			message: "#^Property App\\\\Model\\\\NoticeThemed\\:\\:\\$results type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Model/NoticeThemed.php
-
-		-
 			message: "#^Property App\\\\Model\\\\Pagination\\:\\:\\$page is never written, only read\\.$#"
 			count: 1
 			path: src/Model/Pagination.php
@@ -2191,47 +1071,12 @@ parameters:
 			path: src/Model/Pagination.php
 
 		-
-			message: "#^Method App\\\\Model\\\\PermalinkStatus\\:\\:setPermalink\\(\\) should return string but returns \\$this\\(App\\\\Model\\\\PermalinkStatus\\)\\.$#"
-			count: 1
-			path: src/Model/PermalinkStatus.php
-
-		-
-			message: "#^Method App\\\\Model\\\\PermalinkStatus\\:\\:setStatus\\(\\) should return string but returns \\$this\\(App\\\\Model\\\\PermalinkStatus\\)\\.$#"
-			count: 1
-			path: src/Model/PermalinkStatus.php
-
-		-
-			message: "#^PHPDoc tag @return with type \\$this\\(App\\\\Model\\\\PermalinkStatus\\) is incompatible with native type string\\.$#"
-			count: 1
-			path: src/Model/PermalinkStatus.php
-
-		-
-			message: "#^PHPDoc tag @return with type App\\\\Model\\\\PermalinkStatus is incompatible with native type string\\.$#"
-			count: 1
-			path: src/Model/PermalinkStatus.php
-
-		-
-			message: "#^PHPDoc tag @return with type mixed is not subtype of native type string\\.$#"
-			count: 1
-			path: src/Model/PermalinkStatus.php
-
-		-
 			message: "#^Method App\\\\Model\\\\Picture\\:\\:pathToContent\\(\\) never returns null so it can be removed from the return type\\.$#"
 			count: 1
 			path: src/Model/Picture.php
 
 		-
-			message: "#^Property App\\\\Model\\\\Picture\\:\\:\\$description has no type specified\\.$#"
-			count: 1
-			path: src/Model/Picture.php
-
-		-
 			message: "#^Property App\\\\Model\\\\Picture\\:\\:\\$description is never written, only read\\.$#"
-			count: 1
-			path: src/Model/Picture.php
-
-		-
-			message: "#^Property App\\\\Model\\\\Picture\\:\\:\\$url has no type specified\\.$#"
 			count: 1
 			path: src/Model/Picture.php
 
@@ -2256,11 +1101,6 @@ parameters:
 			path: src/Model/Quatrieme.php
 
 		-
-			message: "#^Property App\\\\Model\\\\Quatrieme\\:\\:\\$presentation type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Model/Quatrieme.php
-
-		-
 			message: "#^Expression on left side of \\?\\? is not nullable\\.$#"
 			count: 1
 			path: src/Model/RankedAuthority.php
@@ -2279,11 +1119,6 @@ parameters:
 			message: "#^Property App\\\\Model\\\\RankedAuthority\\:\\:\\$rank is never written, only read\\.$#"
 			count: 1
 			path: src/Model/RankedAuthority.php
-
-		-
-			message: "#^Method App\\\\Model\\\\Results\\:\\:getOtherAuthors\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Model/Results.php
 
 		-
 			message: "#^Property App\\\\Model\\\\Results\\:\\:\\$facets is never written, only read\\.$#"
@@ -2326,17 +1161,7 @@ parameters:
 			path: src/Model/Results.php
 
 		-
-			message: "#^Method App\\\\Model\\\\Right\\:\\:__toArray\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Model/Right.php
-
-		-
 			message: "#^Property App\\\\Model\\\\Right\\:\\:\\$copyRight is never written, only read\\.$#"
-			count: 1
-			path: src/Model/Right.php
-
-		-
-			message: "#^Property App\\\\Model\\\\Right\\:\\:\\$copyRight type has no value type specified in iterable type array\\.$#"
 			count: 1
 			path: src/Model/Right.php
 
@@ -2346,44 +1171,9 @@ parameters:
 			path: src/Model/Right.php
 
 		-
-			message: "#^Property App\\\\Model\\\\Right\\:\\:\\$licence type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Model/Right.php
-
-		-
 			message: "#^Property App\\\\Model\\\\Right\\:\\:\\$rights is never written, only read\\.$#"
 			count: 1
 			path: src/Model/Right.php
-
-		-
-			message: "#^Property App\\\\Model\\\\Right\\:\\:\\$rights type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Model/Right.php
-
-		-
-			message: "#^Method App\\\\Model\\\\Search\\\\AuthorityList\\:\\:__construct\\(\\) has parameter \\$list with no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Model/Search/AuthorityList.php
-
-		-
-			message: "#^Method App\\\\Model\\\\Search\\\\AuthorityList\\:\\:getNoticesList\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Model/Search/AuthorityList.php
-
-		-
-			message: "#^Property App\\\\Model\\\\Search\\\\AuthorityList\\:\\:\\$list has no type specified\\.$#"
-			count: 1
-			path: src/Model/Search/AuthorityList.php
-
-		-
-			message: "#^Method App\\\\Model\\\\Search\\\\Criteria\\:\\:convertKeywordsToQueries\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Model/Search/Criteria.php
-
-		-
-			message: "#^Method App\\\\Model\\\\Search\\\\Criteria\\:\\:formatString\\(\\) has parameter \\$value with no type specified\\.$#"
-			count: 1
-			path: src/Model/Search/Criteria.php
 
 		-
 			message: "#^Method App\\\\Model\\\\Search\\\\Criteria\\:\\:formatString\\(\\) never returns null so it can be removed from the return type\\.$#"
@@ -2391,242 +1181,12 @@ parameters:
 			path: src/Model/Search/Criteria.php
 
 		-
-			message: "#^Method App\\\\Model\\\\Search\\\\Criteria\\:\\:getFieldsWithOperator\\(\\) has no return type specified\\.$#"
-			count: 1
-			path: src/Model/Search/Criteria.php
-
-		-
-			message: "#^Method App\\\\Model\\\\Search\\\\Criteria\\:\\:getFieldsWithOperator\\(\\) has parameter \\$fields with no type specified\\.$#"
-			count: 1
-			path: src/Model/Search/Criteria.php
-
-		-
-			message: "#^Method App\\\\Model\\\\Search\\\\Criteria\\:\\:getKeywords\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Model/Search/Criteria.php
-
-		-
-			message: "#^Method App\\\\Model\\\\Search\\\\Criteria\\:\\:getKeywordsTitles\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Model/Search/Criteria.php
-
-		-
-			message: "#^Method App\\\\Model\\\\Search\\\\Criteria\\:\\:getMyHistoryTitle\\(\\) has parameter \\$withParcours with no type specified\\.$#"
-			count: 1
-			path: src/Model/Search/Criteria.php
-
-		-
-			message: "#^Method App\\\\Model\\\\Search\\\\Criteria\\:\\:getOperators\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Model/Search/Criteria.php
-
-		-
-			message: "#^Method App\\\\Model\\\\Search\\\\Criteria\\:\\:getValueOf\\(\\) has parameter \\$key with no type specified\\.$#"
-			count: 1
-			path: src/Model/Search/Criteria.php
-
-		-
-			message: "#^Method App\\\\Model\\\\Search\\\\Criteria\\:\\:setAdvancedSearch\\(\\) has no return type specified\\.$#"
-			count: 1
-			path: src/Model/Search/Criteria.php
-
-		-
-			message: "#^Method App\\\\Model\\\\Search\\\\Criteria\\:\\:setAdvancedSearch\\(\\) has parameter \\$request with no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Model/Search/Criteria.php
-
-		-
-			message: "#^Method App\\\\Model\\\\Search\\\\Criteria\\:\\:setFieldByKeywordRow\\(\\) has parameter \\$keywordRow with no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Model/Search/Criteria.php
-
-		-
-			message: "#^Method App\\\\Model\\\\Search\\\\Criteria\\:\\:setKeywords\\(\\) has parameter \\$keywordsArray with no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Model/Search/Criteria.php
-
-		-
-			message: "#^Method App\\\\Model\\\\Search\\\\Criteria\\:\\:setKeywords\\(\\) has parameter \\$operators with no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Model/Search/Criteria.php
-
-		-
-			message: "#^Method App\\\\Model\\\\Search\\\\Criteria\\:\\:setNotSubCriteria\\(\\) has parameter \\$criteria with no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Model/Search/Criteria.php
-
-		-
-			message: "#^Method App\\\\Model\\\\Search\\\\Criteria\\:\\:setNotSubCriteria\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Model/Search/Criteria.php
-
-		-
-			message: "#^Method App\\\\Model\\\\Search\\\\Criteria\\:\\:setSimpleSearch\\(\\) has no return type specified\\.$#"
-			count: 1
-			path: src/Model/Search/Criteria.php
-
-		-
-			message: "#^Method App\\\\Model\\\\Search\\\\FacetFilter\\:\\:__construct\\(\\) has parameter \\$request with no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Model/Search/FacetFilter.php
-
-		-
-			message: "#^Method App\\\\Model\\\\Search\\\\FacetFilter\\:\\:getAttributes\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Model/Search/FacetFilter.php
-
-		-
-			message: "#^Method App\\\\Model\\\\Search\\\\FacetFilter\\:\\:set\\(\\) has no return type specified\\.$#"
-			count: 1
-			path: src/Model/Search/FacetFilter.php
-
-		-
-			message: "#^Method App\\\\Model\\\\Search\\\\FacetFilter\\:\\:set\\(\\) has parameter \\$values with no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Model/Search/FacetFilter.php
-
-		-
-			message: "#^Property App\\\\Model\\\\Search\\\\FacetFilter\\:\\:\\$attributes type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Model/Search/FacetFilter.php
-
-		-
-			message: "#^Method App\\\\Model\\\\Search\\\\FilterFilter\\:\\:__construct\\(\\) has parameter \\$request with no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Model/Search/FilterFilter.php
-
-		-
-			message: "#^Method App\\\\Model\\\\Search\\\\FilterFilter\\:\\:getAttributes\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Model/Search/FilterFilter.php
-
-		-
-			message: "#^Method App\\\\Model\\\\Search\\\\FilterFilter\\:\\:set\\(\\) has no return type specified\\.$#"
-			count: 1
-			path: src/Model/Search/FilterFilter.php
-
-		-
-			message: "#^Method App\\\\Model\\\\Search\\\\FilterFilter\\:\\:set\\(\\) has parameter \\$values with no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Model/Search/FilterFilter.php
-
-		-
-			message: "#^Property App\\\\Model\\\\Search\\\\FilterFilter\\:\\:\\$attributes type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Model/Search/FilterFilter.php
-
-		-
-			message: "#^Method App\\\\Model\\\\Search\\\\FiltersQuery\\:\\:getParams\\(\\) return type with generic class Doctrine\\\\Common\\\\Collections\\\\ArrayCollection does not specify its types\\: TKey, T$#"
-			count: 1
-			path: src/Model/Search/FiltersQuery.php
-
-		-
-			message: "#^Property App\\\\Model\\\\Search\\\\FiltersQuery\\:\\:\\$params with generic class Doctrine\\\\Common\\\\Collections\\\\ArrayCollection does not specify its types\\: TKey, T$#"
-			count: 1
-			path: src/Model/Search/FiltersQuery.php
-
-		-
-			message: "#^Method App\\\\Model\\\\Search\\\\Navigation\\:\\:getPermalinkList\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Model/Search/Navigation.php
-
-		-
-			message: "#^Method App\\\\Model\\\\Search\\\\Navigation\\:\\:setNextLink\\(\\) has no return type specified\\.$#"
-			count: 1
-			path: src/Model/Search/Navigation.php
-
-		-
-			message: "#^Method App\\\\Model\\\\Search\\\\Navigation\\:\\:setPreviousLink\\(\\) has no return type specified\\.$#"
-			count: 1
-			path: src/Model/Search/Navigation.php
-
-		-
-			message: "#^Property App\\\\Model\\\\Search\\\\Navigation\\:\\:\\$list type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Model/Search/Navigation.php
-
-		-
-			message: "#^Method App\\\\Model\\\\Search\\\\ObjSearch\\:\\:getAdvancedCriteria\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Model/Search/ObjSearch.php
-
-		-
-			message: "#^Method App\\\\Model\\\\Search\\\\ObjSearch\\:\\:getAdvancedCriteriaWithOperator\\(\\) has parameter \\$criteria with no type specified\\.$#"
-			count: 1
-			path: src/Model/Search/ObjSearch.php
-
-		-
-			message: "#^Method App\\\\Model\\\\Search\\\\ObjSearch\\:\\:getKeywords\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Model/Search/ObjSearch.php
-
-		-
-			message: "#^Method App\\\\Model\\\\Search\\\\ObjSearch\\:\\:getSearchCriteriaOperator\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Model/Search/ObjSearch.php
-
-		-
-			message: "#^Method App\\\\Model\\\\Search\\\\ObjSearch\\:\\:getSearchFacets\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Model/Search/ObjSearch.php
-
-		-
-			message: "#^Method App\\\\Model\\\\Search\\\\ObjSearch\\:\\:getSearchFilters\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Model/Search/ObjSearch.php
-
-		-
-			message: "#^Method App\\\\Model\\\\Search\\\\ObjSearch\\:\\:setContext\\(\\) has no return type specified\\.$#"
-			count: 1
-			path: src/Model/Search/ObjSearch.php
-
-		-
 			message: "#^PHPDoc tag @return with type array\\|null is not subtype of native type string\\|null\\.$#"
 			count: 2
 			path: src/Model/Search/ObjSearch.php
 
 		-
-			message: "#^Property App\\\\Model\\\\Search\\\\ObjSearch\\:\\:\\$context type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Model/Search/ObjSearch.php
-
-		-
-			message: "#^Property App\\\\Model\\\\Search\\\\ObjSearch\\:\\:\\$keywords type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Model/Search/ObjSearch.php
-
-		-
-			message: "#^Method App\\\\Model\\\\Search\\\\SearchQuery\\:\\:setCriteria\\(\\) has no return type specified\\.$#"
-			count: 1
-			path: src/Model/Search/SearchQuery.php
-
-		-
-			message: "#^Property App\\\\Model\\\\Status\\:\\:\\$status has no type specified\\.$#"
-			count: 1
-			path: src/Model/Status.php
-
-		-
-			message: "#^Property App\\\\Model\\\\Subject\\:\\:\\$formats has no type specified\\.$#"
-			count: 1
-			path: src/Model/Subject.php
-
-		-
-			message: "#^Property App\\\\Model\\\\Subject\\:\\:\\$publisher has no type specified\\.$#"
-			count: 1
-			path: src/Model/Subject.php
-
-		-
-			message: "#^Method App\\\\Model\\\\SuggestionList\\:\\:getSuggestions\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Model/SuggestionList.php
-
-		-
 			message: "#^Property App\\\\Model\\\\SuggestionList\\:\\:\\$originalWord is never written, only read\\.$#"
-			count: 1
-			path: src/Model/SuggestionList.php
-
-		-
-			message: "#^Property App\\\\Model\\\\SuggestionList\\:\\:\\$suggestions type has no value type specified in iterable type array\\.$#"
 			count: 1
 			path: src/Model/SuggestionList.php
 
@@ -2651,46 +1211,6 @@ parameters:
 			path: src/Model/ValueComplement.php
 
 		-
-			message: "#^Method App\\\\Model\\\\ValueComplementReference\\:\\:setComplement\\(\\) has no return type specified\\.$#"
-			count: 1
-			path: src/Model/ValueComplementReference.php
-
-		-
-			message: "#^Method App\\\\Model\\\\ValueComplementReference\\:\\:setComplement\\(\\) has parameter \\$complement with no type specified\\.$#"
-			count: 1
-			path: src/Model/ValueComplementReference.php
-
-		-
-			message: "#^Method App\\\\Model\\\\ValueComplementReference\\:\\:setReference\\(\\) has no return type specified\\.$#"
-			count: 1
-			path: src/Model/ValueComplementReference.php
-
-		-
-			message: "#^Method App\\\\Model\\\\ValueComplementReference\\:\\:setReference\\(\\) has parameter \\$reference with no type specified\\.$#"
-			count: 1
-			path: src/Model/ValueComplementReference.php
-
-		-
-			message: "#^Method App\\\\Model\\\\ValueComplementReference\\:\\:setValue\\(\\) has no return type specified\\.$#"
-			count: 1
-			path: src/Model/ValueComplementReference.php
-
-		-
-			message: "#^Method App\\\\Model\\\\ValueComplementReference\\:\\:setValue\\(\\) has parameter \\$value with no type specified\\.$#"
-			count: 1
-			path: src/Model/ValueComplementReference.php
-
-		-
-			message: "#^Method App\\\\Provider\\\\BpiLdapUserProvider\\:\\:__construct\\(\\) has parameter \\$defaultRoles with no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Provider/BpiLdapUserProvider.php
-
-		-
-			message: "#^Method App\\\\Provider\\\\BpiLdapUserProvider\\:\\:__construct\\(\\) has parameter \\$fields with no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Provider/BpiLdapUserProvider.php
-
-		-
 			message: "#^PHPDoc tag @param for parameter \\$entry with type Symfony\\\\Component\\\\Ldap\\\\Entry\\|null is not subtype of native type Symfony\\\\Component\\\\Ldap\\\\Entry\\.$#"
 			count: 1
 			path: src/Provider/BpiLdapUserProvider.php
@@ -2701,59 +1221,9 @@ parameters:
 			path: src/Provider/BpiLdapUserProvider.php
 
 		-
-			message: "#^Property App\\\\Provider\\\\BpiLdapUserProvider\\:\\:\\$baseDn has no type specified\\.$#"
-			count: 1
-			path: src/Provider/BpiLdapUserProvider.php
-
-		-
-			message: "#^Property App\\\\Provider\\\\BpiLdapUserProvider\\:\\:\\$defaultRoles has no type specified\\.$#"
-			count: 1
-			path: src/Provider/BpiLdapUserProvider.php
-
-		-
-			message: "#^Property App\\\\Provider\\\\BpiLdapUserProvider\\:\\:\\$defaultSearch has no type specified\\.$#"
-			count: 1
-			path: src/Provider/BpiLdapUserProvider.php
-
-		-
-			message: "#^Property App\\\\Provider\\\\BpiLdapUserProvider\\:\\:\\$fields type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Provider/BpiLdapUserProvider.php
-
-		-
 			message: "#^Property App\\\\Provider\\\\BpiLdapUserProvider\\:\\:\\$ldap \\(Symfony\\\\Component\\\\Ldap\\\\Ldap\\) does not accept Symfony\\\\Component\\\\Ldap\\\\LdapInterface\\.$#"
 			count: 1
 			path: src/Provider/BpiLdapUserProvider.php
-
-		-
-			message: "#^Property App\\\\Provider\\\\BpiLdapUserProvider\\:\\:\\$searchDn has no type specified\\.$#"
-			count: 1
-			path: src/Provider/BpiLdapUserProvider.php
-
-		-
-			message: "#^Property App\\\\Provider\\\\BpiLdapUserProvider\\:\\:\\$searchPassword has no type specified\\.$#"
-			count: 1
-			path: src/Provider/BpiLdapUserProvider.php
-
-		-
-			message: "#^Property App\\\\Provider\\\\BpiLdapUserProvider\\:\\:\\$uidKey has no type specified\\.$#"
-			count: 1
-			path: src/Provider/BpiLdapUserProvider.php
-
-		-
-			message: "#^Method App\\\\Repository\\\\UserSelectionDocumentRepository\\:\\:getByPermalinks\\(\\) has parameter \\$listId with no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Repository/UserSelectionDocumentRepository.php
-
-		-
-			message: "#^Method App\\\\Repository\\\\UserSelectionDocumentRepository\\:\\:getByPermalinks\\(\\) has parameter \\$permalinks with no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Repository/UserSelectionDocumentRepository.php
-
-		-
-			message: "#^Method App\\\\Repository\\\\UserSelectionDocumentRepository\\:\\:getByPermalinks\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Repository/UserSelectionDocumentRepository.php
 
 		-
 			message: "#^PHPDoc tag @return with type array\\|null is not subtype of native type array\\.$#"
@@ -2761,22 +1231,7 @@ parameters:
 			path: src/Repository/UserSelectionDocumentRepository.php
 
 		-
-			message: "#^Method App\\\\Repository\\\\UserSelectionListRepository\\:\\:findAllOrderedByPermalinks\\(\\) has parameter \\$permalinks with no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Repository/UserSelectionListRepository.php
-
-		-
 			message: "#^Method App\\\\Repository\\\\UserSelectionListRepository\\:\\:findAllOrderedByPosition\\(\\) invoked with 2 parameters, 1 required\\.$#"
-			count: 1
-			path: src/Repository/UserSelectionListRepository.php
-
-		-
-			message: "#^Method App\\\\Repository\\\\UserSelectionListRepository\\:\\:findByIds\\(\\) has parameter \\$ids with no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Repository/UserSelectionListRepository.php
-
-		-
-			message: "#^Method App\\\\Repository\\\\UserSelectionListRepository\\:\\:getList\\(\\) has parameter \\$permalink with no type specified\\.$#"
 			count: 1
 			path: src/Repository/UserSelectionListRepository.php
 
@@ -2796,27 +1251,7 @@ parameters:
 			path: src/Request/ParamConverter/BpiConverter.php
 
 		-
-			message: "#^Method App\\\\Service\\\\APIClient\\\\CatalogClient\\:\\:formatException\\(\\) has no return type specified\\.$#"
-			count: 1
-			path: src/Service/APIClient/CatalogClient.php
-
-		-
-			message: "#^Method App\\\\Service\\\\APIClient\\\\CatalogClient\\:\\:get\\(\\) has parameter \\$query with no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Service/APIClient/CatalogClient.php
-
-		-
 			message: "#^Method App\\\\Service\\\\APIClient\\\\CatalogClient\\:\\:get\\(\\) should return Psr\\\\Http\\\\Message\\\\ResponseInterface but return statement is missing\\.$#"
-			count: 1
-			path: src/Service/APIClient/CatalogClient.php
-
-		-
-			message: "#^Method App\\\\Service\\\\APIClient\\\\CatalogClient\\:\\:getHeaders\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Service/APIClient/CatalogClient.php
-
-		-
-			message: "#^Method App\\\\Service\\\\APIClient\\\\CatalogClient\\:\\:manageResponseCode\\(\\) has no return type specified\\.$#"
 			count: 1
 			path: src/Service/APIClient/CatalogClient.php
 
@@ -2824,16 +1259,6 @@ parameters:
 			message: "#^Property App\\\\Service\\\\APIClient\\\\CatalogClient\\:\\:\\$client \\(GuzzleHttp\\\\Client\\) does not accept GuzzleHttp\\\\ClientInterface\\.$#"
 			count: 1
 			path: src/Service/APIClient/CatalogClient.php
-
-		-
-			message: "#^Method App\\\\Service\\\\AuthenticationService\\:\\:appendSession\\(\\) has parameter \\$values with no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Service/AuthenticationService.php
-
-		-
-			message: "#^Method App\\\\Service\\\\AuthenticationService\\:\\:getSession\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Service/AuthenticationService.php
 
 		-
 			message: "#^Method App\\\\Service\\\\AuthenticationService\\:\\:getUser\\(\\) should return App\\\\Model\\\\LdapUser but returns string\\|Stringable\\|Symfony\\\\Component\\\\Security\\\\Core\\\\User\\\\UserInterface\\.$#"
@@ -2861,97 +1286,12 @@ parameters:
 			path: src/Service/BreadCrumbStack.php
 
 		-
-			message: "#^Property App\\\\Service\\\\BreadCrumbStack\\:\\:\\$link has no type specified\\.$#"
-			count: 1
-			path: src/Service/BreadCrumbStack.php
-
-		-
-			message: "#^Class App\\\\Service\\\\BreadCrumbTrailService implements generic interface Iterator but does not specify its types\\: TKey, TValue$#"
-			count: 1
-			path: src/Service/BreadCrumbTrailService.php
-
-		-
-			message: "#^Method App\\\\Service\\\\BreadCrumbTrailService\\:\\:add\\(\\) has parameter \\$labelParam with no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Service/BreadCrumbTrailService.php
-
-		-
-			message: "#^Method App\\\\Service\\\\BreadCrumbTrailService\\:\\:add\\(\\) has parameter \\$routeParam with no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Service/BreadCrumbTrailService.php
-
-		-
-			message: "#^Method App\\\\Service\\\\BreadCrumbTrailService\\:\\:initialize\\(\\) has no return type specified\\.$#"
-			count: 1
-			path: src/Service/BreadCrumbTrailService.php
-
-		-
-			message: "#^Method App\\\\Service\\\\BreadCrumbTrailService\\:\\:reset\\(\\) has no return type specified\\.$#"
-			count: 1
-			path: src/Service/BreadCrumbTrailService.php
-
-		-
-			message: "#^Method App\\\\Service\\\\HistoryService\\:\\:applyAction\\(\\) has parameter \\$listObj with no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Service/HistoryService.php
-
-		-
-			message: "#^Method App\\\\Service\\\\HistoryService\\:\\:deleteHistories\\(\\) has parameter \\$list with no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Service/HistoryService.php
-
-		-
-			message: "#^Method App\\\\Service\\\\HistoryService\\:\\:deleteHistoriesFromSession\\(\\) has parameter \\$keys with no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Service/HistoryService.php
-
-		-
 			message: "#^Method App\\\\Service\\\\HistoryService\\:\\:getHistory\\(\\) should return array\\<App\\\\Entity\\\\UserHistory\\> but returns array\\<App\\\\Entity\\\\SearchHistory\\>\\.$#"
 			count: 1
 			path: src/Service/HistoryService.php
 
 		-
-			message: "#^Method App\\\\Service\\\\HistoryService\\:\\:saveCurrentSearchInSession\\(\\) has no return type specified\\.$#"
-			count: 1
-			path: src/Service/HistoryService.php
-
-		-
-			message: "#^Property App\\\\Service\\\\HistoryService\\:\\:\\$translator has no type specified\\.$#"
-			count: 1
-			path: src/Service/HistoryService.php
-
-		-
-			message: "#^Method App\\\\Service\\\\LoggerService\\:\\:add\\(\\) has no return type specified\\.$#"
-			count: 1
-			path: src/Service/LoggerService.php
-
-		-
-			message: "#^Method App\\\\Service\\\\LoggerService\\:\\:add\\(\\) has parameter \\$level with no type specified\\.$#"
-			count: 1
-			path: src/Service/LoggerService.php
-
-		-
-			message: "#^Method App\\\\Service\\\\LoggerService\\:\\:add\\(\\) has parameter \\$message with no type specified\\.$#"
-			count: 1
-			path: src/Service/LoggerService.php
-
-		-
-			message: "#^Method App\\\\Service\\\\NavigationService\\:\\:getSearchToken\\(\\) has no return type specified\\.$#"
-			count: 1
-			path: src/Service/NavigationService.php
-
-		-
-			message: "#^Method App\\\\Service\\\\Provider\\\\AbstractProvider\\:\\:arrayFromResponse\\(\\) has parameter \\$queries with no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Service/Provider/AbstractProvider.php
-
-		-
 			message: "#^Method App\\\\Service\\\\Provider\\\\AbstractProvider\\:\\:arrayFromResponse\\(\\) should return GuzzleHttp\\\\Psr7\\\\Response but returns Psr\\\\Http\\\\Message\\\\ResponseInterface\\.$#"
-			count: 1
-			path: src/Service/Provider/AbstractProvider.php
-
-		-
-			message: "#^Method App\\\\Service\\\\Provider\\\\AbstractProvider\\:\\:hydrateFromResponse\\(\\) has parameter \\$queries with no value type specified in iterable type array\\.$#"
 			count: 1
 			path: src/Service/Provider/AbstractProvider.php
 
@@ -2964,11 +1304,6 @@ parameters:
 			message: "#^PHPDoc tag @var has invalid value \\(\\$carousel Carousel\\)\\: Unexpected token \"\\$carousel\", expected type at offset 9$#"
 			count: 1
 			path: src/Service/Provider/CarouselProvider.php
-
-		-
-			message: "#^Method App\\\\Service\\\\Provider\\\\NoticeAuthorityProvider\\:\\:getAuthority\\(\\) has parameter \\$shortType with no type specified\\.$#"
-			count: 1
-			path: src/Service/Provider/NoticeAuthorityProvider.php
 
 		-
 			message: "#^Result of && is always false\\.$#"
@@ -2986,42 +1321,7 @@ parameters:
 			path: src/Service/Provider/NoticeAuthorityProvider.php
 
 		-
-			message: "#^Method App\\\\Service\\\\Provider\\\\NoticeProvider\\:\\:getNotice\\(\\) has parameter \\$shortType with no type specified\\.$#"
-			count: 1
-			path: src/Service/Provider/NoticeProvider.php
-
-		-
 			message: "#^Expression on left side of \\?\\? is not nullable\\.$#"
-			count: 1
-			path: src/Service/Provider/SearchProvider.php
-
-		-
-			message: "#^Method App\\\\Service\\\\Provider\\\\SearchProvider\\:\\:CheckValidAuthorityPermalink\\(\\) has no return type specified\\.$#"
-			count: 1
-			path: src/Service/Provider/SearchProvider.php
-
-		-
-			message: "#^Method App\\\\Service\\\\Provider\\\\SearchProvider\\:\\:CheckValidAuthorityPermalink\\(\\) has parameter \\$lists with no type specified\\.$#"
-			count: 1
-			path: src/Service/Provider/SearchProvider.php
-
-		-
-			message: "#^Method App\\\\Service\\\\Provider\\\\SearchProvider\\:\\:CheckValidIndicePermalink\\(\\) has no return type specified\\.$#"
-			count: 1
-			path: src/Service/Provider/SearchProvider.php
-
-		-
-			message: "#^Method App\\\\Service\\\\Provider\\\\SearchProvider\\:\\:CheckValidIndicePermalink\\(\\) has parameter \\$lists with no type specified\\.$#"
-			count: 1
-			path: src/Service/Provider/SearchProvider.php
-
-		-
-			message: "#^Method App\\\\Service\\\\Provider\\\\SearchProvider\\:\\:CheckValidNoticePermalink\\(\\) has no return type specified\\.$#"
-			count: 1
-			path: src/Service/Provider/SearchProvider.php
-
-		-
-			message: "#^Method App\\\\Service\\\\Provider\\\\SearchProvider\\:\\:CheckValidNoticePermalink\\(\\) has parameter \\$lists with no type specified\\.$#"
 			count: 1
 			path: src/Service/Provider/SearchProvider.php
 
@@ -3029,11 +1329,6 @@ parameters:
 			message: "#^Variable \\$searchResult in PHPDoc tag @var does not exist\\.$#"
 			count: 1
 			path: src/Service/Provider/SearchProvider.php
-
-		-
-			message: "#^Method App\\\\Service\\\\SearchService\\:\\:humanise\\(\\) has parameter \\$advancedSearch with no type specified\\.$#"
-			count: 1
-			path: src/Service/SearchService.php
 
 		-
 			message: "#^Property App\\\\Service\\\\SearchService\\:\\:\\$translator \\(Symfony\\\\Component\\\\Translation\\\\Translator\\) does not accept Symfony\\\\Component\\\\Translation\\\\TranslatorInterface\\.$#"
@@ -3056,144 +1351,9 @@ parameters:
 			path: src/Service/SelectionListService.php
 
 		-
-			message: "#^Method App\\\\Service\\\\SelectionListService\\:\\:addDocumentsInSession\\(\\) has no return type specified\\.$#"
-			count: 1
-			path: src/Service/SelectionListService.php
-
-		-
-			message: "#^Method App\\\\Service\\\\SelectionListService\\:\\:addDocumentsInSession\\(\\) has parameter \\$documents with no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Service/SelectionListService.php
-
-		-
-			message: "#^Method App\\\\Service\\\\SelectionListService\\:\\:addDocumentsToLists\\(\\) has no return type specified\\.$#"
-			count: 1
-			path: src/Service/SelectionListService.php
-
-		-
-			message: "#^Method App\\\\Service\\\\SelectionListService\\:\\:applyAction\\(\\) has parameter \\$listObj with no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Service/SelectionListService.php
-
-		-
-			message: "#^Method App\\\\Service\\\\SelectionListService\\:\\:createDocumentsFromRequest\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Service/SelectionListService.php
-
-		-
-			message: "#^Method App\\\\Service\\\\SelectionListService\\:\\:deleteDocumentsFromSession\\(\\) has parameter \\$docIds with no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Service/SelectionListService.php
-
-		-
-			message: "#^Method App\\\\Service\\\\SelectionListService\\:\\:deleteListsAndDocuments\\(\\) has parameter \\$listObj with no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Service/SelectionListService.php
-
-		-
-			message: "#^Method App\\\\Service\\\\SelectionListService\\:\\:getDocumentsFromSessionByPermalink\\(\\) has parameter \\$permalinks with no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Service/SelectionListService.php
-
-		-
-			message: "#^Method App\\\\Service\\\\SelectionListService\\:\\:getDocumentsOfCurrentUserByPermalinks\\(\\) has no return type specified\\.$#"
-			count: 1
-			path: src/Service/SelectionListService.php
-
-		-
-			message: "#^Method App\\\\Service\\\\SelectionListService\\:\\:getDocumentsOfCurrentUserByPermalinks\\(\\) has parameter \\$permalinks with no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Service/SelectionListService.php
-
-		-
-			message: "#^Method App\\\\Service\\\\SelectionListService\\:\\:getListByPermalinks\\(\\) has parameter \\$permalinks with no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Service/SelectionListService.php
-
-		-
-			message: "#^Method App\\\\Service\\\\SelectionListService\\:\\:getListByPermalinks\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Service/SelectionListService.php
-
-		-
-			message: "#^Method App\\\\Service\\\\SelectionListService\\:\\:getListsFromRequest\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Service/SelectionListService.php
-
-		-
-			message: "#^Method App\\\\Service\\\\SelectionListService\\:\\:getListsOfCurrentUserByPermalinks\\(\\) has parameter \\$permalinks with no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Service/SelectionListService.php
-
-		-
-			message: "#^Method App\\\\Service\\\\SelectionListService\\:\\:getPermalinks\\(\\) has no return type specified\\.$#"
-			count: 1
-			path: src/Service/SelectionListService.php
-
-		-
-			message: "#^Method App\\\\Service\\\\SelectionListService\\:\\:getSelectionObjects\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Service/SelectionListService.php
-
-		-
-			message: "#^Method App\\\\Service\\\\SelectionListService\\:\\:getSelectionOfobjectByPermalinks\\(\\) has no return type specified\\.$#"
-			count: 1
-			path: src/Service/SelectionListService.php
-
-		-
-			message: "#^Method App\\\\Service\\\\SelectionListService\\:\\:getSelectionOfobjectByPermalinks\\(\\) has parameter \\$permalinks with no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Service/SelectionListService.php
-
-		-
-			message: "#^Method App\\\\Service\\\\SelectionListService\\:\\:isSelected\\(\\) has parameter \\$listIds with no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Service/SelectionListService.php
-
-		-
-			message: "#^Method App\\\\Service\\\\SelectionListService\\:\\:isSelected\\(\\) has parameter \\$permalink with no type specified\\.$#"
-			count: 1
-			path: src/Service/SelectionListService.php
-
-		-
-			message: "#^Method App\\\\Service\\\\SelectionListService\\:\\:updateDocument\\(\\) has no return type specified\\.$#"
-			count: 1
-			path: src/Service/SelectionListService.php
-
-		-
-			message: "#^Method App\\\\Service\\\\SelectionListService\\:\\:updateList\\(\\) has no return type specified\\.$#"
-			count: 1
-			path: src/Service/SelectionListService.php
-
-		-
 			message: "#^Property App\\\\Service\\\\SelectionListService\\:\\:\\$logger is never read, only written\\.$#"
 			count: 1
 			path: src/Service/SelectionListService.php
-
-		-
-			message: "#^Method App\\\\Twig\\\\BreadCrumbExtension\\:\\:breadcrumb\\(\\) has no return type specified\\.$#"
-			count: 1
-			path: src/Twig/BreadCrumbExtension.php
-
-		-
-			message: "#^Method App\\\\Twig\\\\MenuCreator\\:\\:getFooterMenu\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Twig/MenuCreator.php
-
-		-
-			message: "#^Method App\\\\Twig\\\\MenuCreator\\:\\:getHeaderMenu\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Twig/MenuCreator.php
-
-		-
-			message: "#^Method App\\\\Twig\\\\MenuCreator\\:\\:getHelpMenu\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Twig/MenuCreator.php
-
-		-
-			message: "#^Property App\\\\Twig\\\\MenuCreator\\:\\:\\$menus type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Twig/MenuCreator.php
 
 		-
 			message: "#^Unreachable statement \\- code above always terminates\\.$#"
@@ -3201,52 +1361,7 @@ parameters:
 			path: src/Twig/MenuCreator.php
 
 		-
-			message: "#^Method App\\\\Twig\\\\SearchFiltersExtension\\:\\:cutfilterFromSearch\\(\\) has no return type specified\\.$#"
-			count: 1
-			path: src/Twig/SearchFiltersExtension.php
-
-		-
-			message: "#^Method App\\\\Twig\\\\SearchFiltersExtension\\:\\:cutfilterFromSearch\\(\\) has parameter \\$type with no type specified\\.$#"
-			count: 1
-			path: src/Twig/SearchFiltersExtension.php
-
-		-
-			message: "#^Method App\\\\Twig\\\\SearchFiltersExtension\\:\\:cutfilterFromSearch\\(\\) has parameter \\$value with no type specified\\.$#"
-			count: 1
-			path: src/Twig/SearchFiltersExtension.php
-
-		-
-			message: "#^Method App\\\\Twig\\\\SearchFiltersExtension\\:\\:getPdfOccurence\\(\\) has parameter \\$glue with no type specified\\.$#"
-			count: 1
-			path: src/Twig/SearchFiltersExtension.php
-
-		-
-			message: "#^Method App\\\\Twig\\\\SearchFiltersExtension\\:\\:getPdfOccurenceData\\(\\) has parameter \\$data with no type specified\\.$#"
-			count: 1
-			path: src/Twig/SearchFiltersExtension.php
-
-		-
-			message: "#^Method App\\\\Twig\\\\SearchFiltersExtension\\:\\:getPdfOccurenceData\\(\\) has parameter \\$glue with no type specified\\.$#"
-			count: 1
-			path: src/Twig/SearchFiltersExtension.php
-
-		-
-			message: "#^Method App\\\\Twig\\\\SearchFiltersExtension\\:\\:getSearchOperators\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Twig/SearchFiltersExtension.php
-
-		-
-			message: "#^Method App\\\\Twig\\\\SearchFiltersExtension\\:\\:getSearchWords\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Twig/SearchFiltersExtension.php
-
-		-
 			message: "#^Parameter \\#2 \\$code of class Exception constructor expects int, string given\\.$#"
-			count: 1
-			path: src/Twig/SearchFiltersExtension.php
-
-		-
-			message: "#^Property App\\\\Twig\\\\SearchFiltersExtension\\:\\:\\$facetQueries type has no value type specified in iterable type array\\.$#"
 			count: 1
 			path: src/Twig/SearchFiltersExtension.php
 
@@ -3256,89 +1371,9 @@ parameters:
 			path: src/Twig/SearchFiltersExtension.php
 
 		-
-			message: "#^Property App\\\\Twig\\\\SearchFiltersExtension\\:\\:\\$filterQueries type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Twig/SearchFiltersExtension.php
-
-		-
 			message: "#^Strict comparison using \\=\\=\\= between string and null will always evaluate to false\\.$#"
 			count: 1
 			path: src/Twig/SearchFiltersExtension.php
-
-		-
-			message: "#^Method App\\\\Twig\\\\StringExtension\\:\\:carrouselTitle\\(\\) has parameter \\$width with no type specified\\.$#"
-			count: 1
-			path: src/Twig/StringExtension.php
-
-		-
-			message: "#^Method App\\\\Twig\\\\StringExtension\\:\\:wordwrap\\(\\) has parameter \\$width with no type specified\\.$#"
-			count: 1
-			path: src/Twig/StringExtension.php
-
-		-
-			message: "#^Method App\\\\Twig\\\\StringExtension\\:\\:wordwrap\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Twig/StringExtension.php
-
-		-
-			message: "#^Method App\\\\Twig\\\\ToggleToPathWithParcours\\:\\:togglePathPacours\\(\\) has parameter \\$pathParameters with no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Twig/ToggleToPathWithParcours.php
-
-		-
-			message: "#^Method App\\\\Utils\\\\PrintNoticeWrapper\\:\\:getNoticeAuthority\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Utils/PrintNoticeWrapper.php
-
-		-
-			message: "#^Method App\\\\Utils\\\\PrintNoticeWrapper\\:\\:getNoticeIndice\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Utils/PrintNoticeWrapper.php
-
-		-
-			message: "#^Method App\\\\Utils\\\\PrintNoticeWrapper\\:\\:getNoticeOnShelves\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Utils/PrintNoticeWrapper.php
-
-		-
-			message: "#^Method App\\\\Utils\\\\PrintNoticeWrapper\\:\\:getNoticeOnline\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Utils/PrintNoticeWrapper.php
-
-		-
-			message: "#^Property App\\\\Utils\\\\PrintNoticeWrapper\\:\\:\\$noticeAuthority type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Utils/PrintNoticeWrapper.php
-
-		-
-			message: "#^Property App\\\\Utils\\\\PrintNoticeWrapper\\:\\:\\$noticeIndice type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Utils/PrintNoticeWrapper.php
-
-		-
-			message: "#^Property App\\\\Utils\\\\PrintNoticeWrapper\\:\\:\\$noticeOnShelves type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Utils/PrintNoticeWrapper.php
-
-		-
-			message: "#^Property App\\\\Utils\\\\PrintNoticeWrapper\\:\\:\\$noticeOnline type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Utils/PrintNoticeWrapper.php
-
-		-
-			message: "#^Method App\\\\WordsList\\:\\:getWords\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/WordsList.php
-
-		-
-			message: "#^Property App\\\\WordsList\\:\\:\\$operators has no type specified\\.$#"
-			count: 1
-			path: src/WordsList.php
-
-		-
-			message: "#^Property App\\\\WordsList\\:\\:\\$words has no type specified\\.$#"
-			count: 1
-			path: src/WordsList.php
 
 		-
 			message: "#^Call to an undefined method Symfony\\\\Component\\\\Dotenv\\\\Dotenv\\:\\:bootEnv\\(\\)\\.$#"

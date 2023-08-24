@@ -201,7 +201,7 @@ final class UserSelectionController extends AbstractController
         if( $xml = $this->prepareXmlRequest($contents['indices'])){
             $items['indices'] = $this->selectionService->getPermalinks($this->searchProvider->CheckValidIndicePermalink($xml));
         }
-        $listPermalinkNotice =  array_unique($items['notices']+$items['autorites']+$items['indices']);
+        $listPermalinkNotice =  array_unique(array_values(array_merge($items['notices'],$items['autorites'],$items['indices'])));
 
         $request->getSession()->set('ItemsNotAvailable', json_encode($items)); //Important de se trouver avant les returns pour le capter dans src/Service/NoticeBuildFileService.php->getNoticeWrapper
 
@@ -229,10 +229,10 @@ final class UserSelectionController extends AbstractController
     }
 
     /**
-     * @param null|array $payload
+     * @param array<string>|null $payload
      * @return string
      */
-    private function prepareXmlRequest($payload ) :string
+    private function prepareXmlRequest(?array $payload ) :string
     {
         if (empty($payload) || !is_array($payload)) {
             return "";

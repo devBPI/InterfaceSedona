@@ -394,8 +394,9 @@ final class SelectionListService extends AuthenticationService
     }
 
     /**
-     * @param array $permalinks
-     * @return \App\Entity\UserSelectionDocument[][]|\App\Entity\UserSelectionList[][]|array[]
+     * @param array<string> $permalinks
+     * @return \App\Entity\UserSelectionDocument[][]|\App\Entity\UserSelectionList[][]|array<string>|array<mixed>
+     * @throws \Doctrine\ORM\NoResultException
      */
     public function getSelectionOfobjectByPermalinks(array $permalinks = []) :array
     {
@@ -415,7 +416,6 @@ final class SelectionListService extends AuthenticationService
      */
     public function getDocumentsFromSession(): array
     {
-
         return array_map(
             function ($document) {
                 return new UserSelectionDocument($document);
@@ -423,7 +423,9 @@ final class SelectionListService extends AuthenticationService
             $this->getSession(self::SESSION_SELECTION_ID)
         );
     }
+
     /**
+     * @param array<string> $permalinks
      * @return array|UserSelectionDocument[]
      */
     public function getDocumentsFromSessionByPermalink(array $permalinks = []): array
@@ -500,41 +502,31 @@ final class SelectionListService extends AuthenticationService
     }
 
     /**
-     * @param array $permalinks
-     * @return \App\Entity\UserSelectionDocument[][]|\App\Entity\UserSelectionList[][]|array[]
+     * @param PermalinksStatus $checkValidNoticePermalink
+     * @return array<string>
      */
-    public function getListByPermalinks(array $permalinks)
-    {
-        /**
-         * @return array
-         */
-
-            if ($this->hasConnectedUser()) {
-                return ['lists' => $this->getListsOfCurrentUser()];
-            }
-
-            return ['documents' => $this->getDocumentsFromSession()];
-    }
-
-    public function getPermalinks( PermalinksStatus $checkValidNoticePermalink)
+    public function getPermalinks(PermalinksStatus $checkValidNoticePermalink) :array
     {
         return array_unique(array_map(
             function (PermalinkStatus $document){
                 if (strtolower($document->getStatus())!=='found'){
                     return $document->getPermalink();
-                }},
+                }
+            },
             $checkValidNoticePermalink->getPermalinkStatus()
         ));
     }
 
-    private function getDocumentsOfCurrentUserByPermalinks(array $permalinks)
+    /**
+     * @param array<string> $permalinks
+     * @return array<mixed>
+     * @throws \Doctrine\ORM\NoResultException
+     */
+    private function getDocumentsOfCurrentUserByPermalinks(array $permalinks) :array
     {
-        if ($this->hasConnectedUser()) {
-            /** @var UserSelectionDocumentRepository $userSelectionRepo */
-            $userSelectionRepo = $this->entityManager->getRepository(UserSelectionDocument::class);
-
-            return $userSelectionRepo
-                ->getByPermalinks($this->getUser(), $permalinks);
+        $repo = $this->entityManager->getRepository(UserSelectionDocument::class);
+        if ($this->hasConnectedUser() && $repo instanceof UserSelectionDocumentRepository) {
+            return $repo->getByPermalinks($this->getUser(), $permalinks);
         }
 
         return [];

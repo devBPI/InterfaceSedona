@@ -281,7 +281,7 @@ fixtures:
 .PHONY: fixtures
 
 
-tests: clean install fixtures code-analysis
+tests: clean install fixtures code-analysis functional-tests
 .PHONY: tests
 
 ################################################################################
