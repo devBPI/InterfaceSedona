@@ -46,7 +46,8 @@ export class SelectionAdder {
         $(this.container.parentNode).hide();
     }
 
-    displaySelectedResume(objects) {
+    displaySelectedResume(objects) :void
+    {
         this.container.innerHTML = '';
 
         for (let [key, value] of objects) {
@@ -55,8 +56,9 @@ export class SelectionAdder {
                 this.cloneSelectedItemInContainer(container.get(0), key);
             }
         }
-
-        this.psronly.innerHTML = this.psronly.dataset.textBegin+' '+this.titles.join(', ').trim()+' '+this.psronly.dataset.textEnd;
+        if (this.psronly instanceof HTMLDivElement) {
+            this.psronly.innerHTML = this.psronly.dataset.textBegin + ' ' + this.titles.join(', ').trim() + ' ' + this.psronly.dataset.textEnd;
+        }
     }
 
     displayCurrentItemResume() {
