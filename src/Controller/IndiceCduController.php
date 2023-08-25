@@ -116,8 +116,7 @@ final class IndiceCduController extends AbstractController
     public function printAction(Request $request, string $format= ExportNotice::FORMAT_PDF) :Response
     {
         try {
-            $sendAttachement = ExportNotice::createFromRequest($request)
-                ->setFormatType($format)
+            $sendAttachement = ExportNotice::createFromRequest($request, $format)
                 ->setIndices($request->get('permalink'))
             ;
         } catch(NoResultException $e) {

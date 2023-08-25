@@ -68,7 +68,7 @@ class ExportNotice
         if (!$this->hasAuthorities()) {
             return [];
         }
-        return \json_decode($this->notices);
+        return array_unique(\json_decode($this->notices, false));
     }
 
     public function setNotices(string $notices=null): self
@@ -92,7 +92,7 @@ class ExportNotice
         if (!$this->hasAuthorities()) {
             return [];
         }
-        return \json_decode($this->authorities);
+        return array_unique(\json_decode($this->authorities, false));
     }
 
     public function setAuthorities(string $authorities=null): self
@@ -165,7 +165,7 @@ class ExportNotice
         if (!$this->hasIndices()) {
             return [];
         }
-        return \json_decode($this->indices);
+        return array_unique(\json_decode($this->indices, false));
     }
 
     public function setIndices(string $indices=null): self
@@ -187,12 +187,12 @@ class ExportNotice
     }
 
 
-    static function createFromRequest(Request $request) :self
+    static function createFromRequest(Request $request, string $format = self::FORMAT_PDF) :self
     {
         return (new ExportNotice())
             ->setShortFormat($request->get('print-type', self::PRINT_LONG) !== self::PRINT_LONG)
             ->setImage($request->get('print-image', null) === 'print-image')
-            ->setFormatType($request->get('format-type',self::FORMAT_PDF))
+            ->setFormatType($request->get('format-type',$format))
             ->setForceDownload($request->get('force-download', "on") !== "off");
     }
 }

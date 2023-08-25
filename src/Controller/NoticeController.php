@@ -113,8 +113,7 @@ final class NoticeController extends AbstractController
     public function printAction(Request $request, string $format= ExportNotice::FORMAT_PDF) :Response
     {
         try {
-            $sendAttachement = ExportNotice::createFromRequest($request)
-                ->setFormatType($format)
+            $sendAttachement = ExportNotice::createFromRequest($request, $format)
                 ->setNotices($request->get('permalink'))
             ;
         } catch(NoResultException $e) {
