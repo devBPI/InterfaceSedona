@@ -6,6 +6,18 @@ Feature:
     When I am on "/fr/recherche-simple?mot=daft+punk"
     Then the response status code should be 200
 
+    And I should see a "button#modal-list-add-button[data-toggle=disable-if-no-found-modal][disabled=disabled][data-spy]" element
+    And I should not see a "p#modal-list-add-button" element
+
+    And I should see a "button#modal-print-button[data-toggle=disable-if-no-found-modal][disabled=disabled][data-spy]" element
+    And I should not see a "p#modal-print-button" element
+
+    And I should see a "button#modal-send-by-mail-button[data-toggle=disable-if-no-found-modal][disabled=disabled][data-spy]" element
+    And I should not see a "p#modal-send-by-mail-button" element
+
+    And I should not see a "button#modal-report-button" element
+    And I should see a "p#modal-report-button" element
+
   Scenario: Je peux voir  la page résultat de recherche avancer
     When I am on "/fr/recherche-avancee?advanced_search%5B0%5D%5Btext%5D=daft+punk"
     Then the response status code should be 200

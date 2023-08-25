@@ -4,13 +4,13 @@
 		<meta charset="UTF-8">
 		<title>{{ 'global.title-print'|trans }}</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<link rel="stylesheet" href="{{ absolute_url(asset('build/print-css.css')) }}">
+		{% if app.environment != 'test' %}<link rel="stylesheet" href="{{ absolute_url(asset('build/print-css.css')) }}">{% endif %}
 	</head>
 	<body>		
 		<header class="print-header header">
 			<div class="container">
 				<div class="print-header__logo header__logo">
-					<img src="{{ absolute_url(asset('images/bpi-logo.png')) }}" alt="{{ 'header.logo_alt'|trans }}" />
+					{% if app.environment != 'test' %}<img src="{{ absolute_url(asset('images/bpi-logo.png')) }}" alt="{{ 'header.logo_alt'|trans }}" />{% endif %}
 				</div>
 				<p class="n0 print-header__title">{{ 'bloc.print.subtitles.catalogue' | trans }}</p>
 				<p>{{ 'bloc.print.subtitles.send-by-robot' | trans }}</p>

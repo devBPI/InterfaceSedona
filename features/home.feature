@@ -12,6 +12,18 @@ Feature:
     And I should see "Accueil - Catalogue de la Bpi"
     And I should see "Découvrir les parcours"
 
+    And I should not see a "button#modal-list-add-button" element
+    And I should see a "p#modal-list-add-button" element
+
+    And I should not see a "button#modal-print-button" element
+    And I should see a "p#modal-print-button" element
+
+    And I should not see a "button#modal-send-by-mail-button" element
+    And I should see a "p#modal-send-by-mail-button" element
+
+    And I should not see a "button#modal-report-button" element
+    And I should see a "p#modal-report-button" element
+
 
   Scenario: Je peux voir  la page d'accueil thématique Autoformation
     When I am on "/fr/autoformation"

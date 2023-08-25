@@ -5,6 +5,18 @@ Feature:
     When I am on "/fr/document/ark:/34201/nptfl0000824798"
     Then the response status code should be 200
 
+    And I should see a "button#modal-list-add-button[data-toggle=modal]:not([disabled=disabled])" element
+    And I should not see a "p#modal-list-add-button" element
+
+    And I should see a "button#modal-print-button[data-toggle=modal]:not([disabled=disabled][data-spy])" element
+    And I should not see a "p#modal-print-button" element
+
+    And I should see a "button#modal-send-by-mail-button[data-toggle=modal]:not([disabled=disabled][data-spy])" element
+    And I should not see a "p#modal-send-by-mail-button" element
+
+    And I should see a "button#modal-report-button[data-toggle=modal]" element
+    And I should not see a "p#modal-report-button" element
+
   Scenario:  Je peux imprimer une notice abrégées au format TEXTE
     When I am on "/fr/print/document.txt/ark:/34201/nptfl0000824798?force-download=off"
     Then the response status code should be 200

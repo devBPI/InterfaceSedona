@@ -9,18 +9,18 @@
 
     <li class="toolbar__item {% if not active  %}toolbar__item--disabled{% endif %}">
         {% if active %}
-            <button
+            <button id="modal-{{ url|default(modalName) }}-button"
                 {%- if targetClass is not empty %}
                     data-toggle="disable-if-no-found-modal" data-href="#modal-{{ modalName }}"
                     data-spy='.{{ targetClass }},[data-toggle="check-all"]'
-                    data-target='.{{ targetClass }}:checked'
+                    data-target='.{{ targetClass }}:checked' disabled="disabled"
                 {% else %}
                     data-toggle="modal" data-target="#modal-{{ modalName }}"
                 {% endif -%}
                     {% if url %} data-url="{{ path('user_selection_check_list_document', {'action':url}) }}" data-action="{{ url }}"{% endif %}
             >{{ content }}</button>
         {% else %}
-            <p>{{ content }}</p>
+            <p id="modal-{{ url|default(modalName) }}-button">{{ content }}</p>
         {% endif %}
     </li>
 

@@ -51,7 +51,7 @@
 			<img src="{{ asset('images/icones/icone-error.svg') }}" alt="" class="icone-enveloppe" />
 			<span>{{ 'bloc.toolbar.report-error'|trans }}</span>
 		{% endset %}
-		{{ action_attributes('report', content, (toolbar == 'App\\Entity\\Notice' ? toolbar : null)) }}
+		{{ action_attributes('report', content, (toolbar == 'App\\Model\\Notice' ? toolbar : null)) }}
 
 		<li class="toolbar__item">
 			<a href="https://www.eurekoi.org/" title="{{ 'footer.partenaires.eurekoi'|trans }} - {{ 'global.new-windows'|trans }}" target="_blank">
