@@ -1,4 +1,4 @@
-<form data-toggle="form-remote" action="{{ path('user_selection_list_edit', {'list': list.id}) }}" method="post" class="modal-form">
+<form data-toggle="form-remote" action="{{ path('user_selection_list_edit', {'list': list.id}) }}" method="post" class="modal-form" data-toggle-refresh="on">
 	<div class="modal-header">
 		<h1 class="n1 modal-header__title" id="modal-list-edit-title">{{ 'modal.list-edit.title'|trans({'%name%': list.title}) }}</h1>
 		<button class="close" type="button" data-dismiss="modal">

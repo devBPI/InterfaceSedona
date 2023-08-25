@@ -1,3 +1,6 @@
+// =====================================
+// ATTENTION, Fait doublon avec un ecouteur sur ".btn-see-more" du fichier search.js
+// =====================================
 document.voirPlusMoins = function(button) {
 	if("Voir plus" == button.innerText) {
 		button.innerText = "Voir moins";

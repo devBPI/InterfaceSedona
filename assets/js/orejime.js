@@ -55,9 +55,6 @@ var orejimeInstance = Orejime.init({
             "google-tag-manager": {
                 description: "Ces cookies servent à mesurer et analyser l’audience de notre site (volume de fréquentation, pages vues, temps moyen par visite, etc.) ; et ce afin d’en améliorer la performance. En acceptant ces cookies, vous contribuez à l’amélioration de notre site.",
             },
-            "add-this": {
-                description: "AddThis peut utiliser des cookies pour mémoriser vos informations de connexion, collecter des statistiques en vue d’optimiser la fonctionnalité du site et créer des documents marketing adaptés à vos centres d’intérêt.",
-            },
             "always-on": {
                 description: "Ces cookies sont nécessaires pour assurer le fonctionnement optimal du site et ne peuvent être paramétrés.<br/>" +
                     "Ils nous permettent de vous offrir les principales fonctionnalités du site, de vous conseiller en ligne ou encore de sécuriser notre site contre les fraudes éventuelles.",
@@ -118,27 +115,6 @@ var orejimeInstance = Orejime.init({
             purposes: ["analytics"]
         },
         {
-            name: "add-this",
-            title: "AddThis",
-            cookies: [
-                "__atuvc",
-                "__atuvs",
-                "bku",
-                "na_id",
-                "na_id",
-                "uid",
-                "uvc",
-                "na_tc",
-                "notice_gdpr_prefs",
-                "km_lv",
-                "loc",
-                "mus",
-                "notice_preferences",
-                "ouid"
-            ],
-            purposes: ["social"]
-        },
-        {
             name: "always-on",
             title: "Cookie de fonctionnement",
             purposes: [],
@@ -152,32 +128,3 @@ const declineButton = document.querySelector(".orejime-Button--decline");
 if (declineButton) {
     declineButton.classList.add("gtm-decline-button");
 }
-
-// ----------- Add-This ------------------------------------------------------------------------------------------------
-var addthisInit = false,
-    originalContent = null;
-$('#modal-send-by-mail')
-    .on('shown.bs.modal', function(e) {
-        if (addthisInit === false && orejimeInstance.internals.manager.getConsent('add-this')) {
-            addthisInit = true;
-            var addthis = require('addthis-snippet');
-            // Config, voir > https://www.addthis.com/academy/the-addthis_config-variable/
-            addthis({
-                pubid: 'ra-5d8e40891e23b4a0',
-                // data_ga_property: googleToken,
-                // data_ga_social: true
-            });
-        }
-        if (originalContent === null) {
-            var $modal = $(this);
-            originalContent = $modal.find(".modal-form").html();
-        }
-    })
-    .on('hidden.bs.modal', function(e) {
-        var $modal = $(this);
-        $modal
-            .removeData('bs.modal')
-            .find('.modal-form')
-            .html(originalContent);
-    })
-;

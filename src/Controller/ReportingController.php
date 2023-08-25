@@ -41,11 +41,12 @@ final class ReportingController extends AbstractController
     }
 
     /**
-     * @Route("/signaler-une-erreur-sur-le-catalogue/", name="common-report-error")
+     * @Route("/signaler-une-erreur-sur-le-catalogue", name="common-report-error")
      */
-    public function reportErrorAction(Request $request, string $permalink = null): Response
+    public function reportErrorAction(Request $request): Response
     {
-        $form = $this->createForm(ReportErrorType::class, new ReportError());
+        $permalink = $request->get('permalink');
+        $form = $this->createForm(ReportErrorType::class, new ReportError($permalink));
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -57,7 +58,7 @@ final class ReportingController extends AbstractController
                 null,
                 $reportData->getEmail()
             )) {
-                return $this->render('common/modal/report-error-success.html.twig');
+                return $this->render('common/modal/report-error-success.html.twig',['permalink' => $permalink]);
             } else {
                 $form->addError(
                     new FormError("Une erreur est survenue lors de l'envoie de l'e-mail \n veuillez reessayer plus tard SVP.")

@@ -188,18 +188,6 @@ import Autocomplete from './autocomplete';
 
             return false;
         })
-        .on('click', '[data-toggle="tabajax"]', function(e) {
-            var $this = $(this),
-                loadurl = $this.attr('href'),
-                targ = $this.attr('data-target');
-
-            $.get(loadurl, function(data) {
-                $(targ).html(data);
-            });
-
-            $this.tab('show');
-            return false;
-        })
         .on('ifChanged click', '[data-toggle="check-all"]', function () {
             let $this = $(this),
                 $form = $this.parents('form'),

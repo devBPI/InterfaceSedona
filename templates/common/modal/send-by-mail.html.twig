@@ -11,11 +11,6 @@
 				</button>
 			</div>
 
-			{# <div class="modal-body">
-				<!-- Go to www.addthis.com/dashboard to customize your tools -->
-				<div class="addthis_inline_share_toolbox"></div>
-			</div> #}
-
             {{ render(controller('App\\Controller\\ReportingController::sendByMailAction', {'link': currentPermalink ?? absolute_url(app.request.uri)})) }}
 		</div>
 	</div>

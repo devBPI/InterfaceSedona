@@ -10,7 +10,7 @@ if (paginationField) {
 }
 
 $(document)
-// Bouton "Voir plus" / "Voir moins" -----------------------------------------------------------------------------------
+    // Bouton "Voir plus" / "Voir moins" -----------------------------------------------------------------------------------
     .on('click', '.btn-see-more', function() {
         var $this = $(this);
         if ( $this.hasClass('btn-see-more--more') ) {

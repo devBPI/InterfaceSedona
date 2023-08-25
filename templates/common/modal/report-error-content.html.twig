@@ -1,4 +1,4 @@
-<form class="modal-form" method="post" novalidate="novalidate" action="{{ path('common-report-error') }}" data-toggle="form-remote">
+<form class="modal-form" method="post" novalidate="novalidate" action="{{ path('common-report-error',{'permalink': permalink}) }}" data-toggle="form-remote"  data-toggle-refresh="on">
 	<div class="modal-header">
 		<div class="row">
 			<div class="col-12">
@@ -19,21 +19,15 @@
 
 	<div class="modal-body">
 		<p>{{ 'modal.report.sub-title'|trans }}</p>
-		<p>{{ 'modal.report.sub-title-2' | trans({
-						'%link_start%' : '<a target="_blank" title="' ~ 'modal.report.new-window' | trans | raw ~ '" href="' ~ 'modal.report.contact-us-link' | trans | raw ~ '">',
-						'%link_end%' : '</a>'
-					}) | raw }}</p>
+		<p>{{ 'modal.report.sub-title-2'|trans|raw }}</p>
 		<div class="row justify-content-center">
 			<div class="col-12 col-md-10">
 				<p class="modal-form__indication"><span>*</span> {{ 'global.form-mandatory-field'|trans }}</p>
 			</div>
 			<div class="col-12">
-				<p class="text-ellipsis">{{ 'modal.report.permalink-label'| trans }} <a href="{{ 'modal.report.permalink-link'| trans({"%lien%": permalink}) }}" title="{{ 'modal.report.permalink-label'|trans }} {{ 'modal.report.permalink-link'| trans({"%lien%": permalink}) }}">{{ 'modal.report.permalink-link'| trans({"%lien%": permalink}) }}</a></p>
+				<p class="text-ellipsis">{{ 'modal.report.permalink-label'| trans }} <a href="{{ permalink }}" title="{{ 'modal.report.permalink-label'|trans~permalink }}">{{ permalink }}</a></p>
 			</div>
 			<div class="col-12 col-md-10">
-				<div class="d-none">
-					{{ form_widget(form.permalink, {'value' : permalink}) }}
-				</div>
 				{{ form_row(form.message) }}
 			</div>
 		</div>

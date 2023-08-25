@@ -13,29 +13,35 @@ require('../css/app.scss');
 require('jquery');
 require('bootstrap');
 require('./data-toggle.js');
-require('./orejime-and-addthis.js');
-require('./suggest-by-mail.js')
+require('./orejime.js');
+require('./data-toggle-refresh.js')
 import './polyfill-ie';
 
+
+// =================================
 const routes = require('../../assets/js/fos_js_routes.json');
-
 import Routing from '../../assets/js/jsrouting.min.js';
+Routing.setRoutingData(routes);
 
+// =================================
 import {SearchForm, CopyKeyword} from './search-form';
 document.querySelectorAll('form').forEach((form: HTMLFormElement) => {
     new SearchForm(form);
 });
 let copyKeyword = new CopyKeyword();
 
+// =================================
 import SelectList from './select-list';
 let select2Element = document.querySelector('#adv-search-langage') as HTMLSelectElement;
 if (select2Element) {
     new SelectList(select2Element);
 }
 
+// =================================
 import {DatePeriod} from './date-input-search';
 new DatePeriod(document.querySelectorAll('[name="adv-search-date"]'));
 
+// =================================
 import {Printer, CopyToClipboard} from './printer';
 new Printer();
 
@@ -44,8 +50,8 @@ copiers.forEach((linkElement: HTMLLinkElement) => {
     new CopyToClipboard(linkElement);
 });
 
-Routing.setRoutingData(routes);
 
+// =================================
 $('[data-toggle="tooltip"]').tooltip({
     trigger: 'hover focus',
     template: '<div class="tooltip" role="tooltip"><div class="tooltip-inner"></div></div>'
