@@ -78,6 +78,11 @@ class Results implements SearchResultInterface
      * @JMS\Type("int")
      */
     private $rows;
+    /**
+     * @var string
+     * @JMS\Type("string")
+     */
+    private $sort;
 
     /**
      * @return int
@@ -183,12 +188,20 @@ class Results implements SearchResultInterface
         return $this->facets;
     }
 
-    /**
-     * @return int
-     */
     public function getRows(): int
     {
         return $this->rows;
+    }
+
+    public function setSort(string $sort): self
+    {
+        $this->sort = $sort;
+        return $this;
+    }
+
+    public function getSort(): string
+    {
+        return $this->sort;
     }
 
 }

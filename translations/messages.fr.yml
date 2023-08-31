@@ -217,12 +217,8 @@ modal:
   report:      #Modal 09 signaler une erreur
     title: Signaler une erreur dans la notice
     sub-title: Le formulaire ci-dessous concerne uniquement les erreurs dans cette notice du catalogue de la Bpi.
-    sub-title-2: "Pour tout autre demande sur le catalogue : %link_start% contactez-nous%link_end%"
-    new-window: "Contactez-nous - Nouvelle fenêtre"
-    contact-us-link: https://www.bpi.fr/contactez-nous/
-    lien: contactez-nous
-    permalink-label: "Lien permanent de la notice :"
-    permalink-link: "%lien%"
+    sub-title-2: 'Pour tout autre demande sur le catalogue : <a target="_blank" title="Contactez-nous - Nouvelle fenêtre" href="https://www.bpi.fr/contactez-nous/" >contactez-nous</a>'
+    permalink-label: "Lien permanent de la notice : "
     subtitle: Coordonnées
     field:
       permalink: "Permalien de la notice concernée :"
@@ -493,13 +489,14 @@ bloc:
       order-mutual: '%value%'
       order-aria: dropdown-tri-result
       order-choice: Trier par
-      order-pertinence: Pertinence
-      order-title-asc: Titre A-Z
-      order-title-desc: Titre Z-A
-      order-author-asc: Auteur A-Z
-      order-author-desc: Auteur Z-A
-      order-most-recent: Les plus récents
-      order-least-recent: Les moins récents
+      order-labels:
+        DEFAULT: Pertinence
+        TITRE_A_Z: Titre A-Z
+        TITRE_Z_A: Titre Z-A
+        AUTEUR_A_Z: Auteur A-Z
+        AUTEUR_Z_A: Auteur Z-A
+        YOUNGER: Les plus récents
+        OLDER: Les moins récents
     footer:
       aria-label: Pagination
       page-first: Première page
