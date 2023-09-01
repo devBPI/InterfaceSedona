@@ -35,13 +35,11 @@ IN_DOCKER = $(shell expr `cat /proc/1/sched | head -n 1 | grep -cE 'init|systemd
 TAR_CAN_EXCLUDE_VCS = $(shell expr `tar --version | grep ^tar | sed 's/^.* //g'` \>= 1.28)
 
 # PHP
-PHP_BIN ?= $(shell which php 2> /dev/null || echo 'php')
+PHP_BIN ?= $(shell which php7.4 2> /dev/null || which php 2> /dev/null || echo 'php')
 # Composer options
-COMPOSER ?= $(PHP_BIN) -d memory_limit=-1 $(shell which composer 2> /dev/null)
+COMPOSER ?= $(PHP_BIN) -d memory_limit=-1 $(shell test -f composer.phar && echo "composer.phar" || which composer 2> /dev/null)
 AUTOLOAD_OPTIONS ?= -o -a
 CINSTALL_OPTIONS ?= --no-interaction --prefer-dist --no-progress
-
-PHPSTAN_LEVEL ?= 1
 
 # Symfony options
 SF_VERSION := $(shell expr `grep '"symfony/symfony"' composer.json | cut -d':' -f2 | grep -oe "[[:digit:]].[[:digit:]]" | cut -d. -f1`)
@@ -264,17 +262,17 @@ cc: autoload cache-clear cache-warmup
 
 functional-tests:
 	@printf "=== functional tests ============================= \n"
-	#APP_ENV=test bin/behat
+	$(COMPOSER) test:acceptance
 .PHONY: unit-tests
 
 unit-tests:
 	@printf "=== unit tests ============================= \n"
-	#./bin/phpunit tests
+	$(COMPOSER) test:unit
 .PHONY: unit-tests
 
 code-analysis:
 	@printf "=== code analysis ============================= \n"
-	#bin/phpstan analyze --level $(PHPSTAN_LEVEL) src
+	$(COMPOSER) quality
 .PHONY: code-analysis
 
 fixtures:
@@ -282,12 +280,8 @@ fixtures:
 	#php bin/console doctrine:fixtures:load --append
 .PHONY: fixtures
 
-security-check:
-	@printf "=== security check ============================= \n"
-	@printf "deprecated TODO: replace by local check \n"
-.PHONY: security-check
 
-tests: clean install fixtures functional-tests unit-tests code-analysis security-check
+tests: clean install fixtures code-analysis functional-tests
 .PHONY: tests
 
 ################################################################################
@@ -343,16 +337,6 @@ endif
 ##	Project & Dependency install command
 ################################################################################
 
-install-wait-for-it:
-	@if ! [ -x "$(command -v wait-for-it)" ]; then \
-	  echo "\033[30;48;5;82m > Install wait-for-it ----------------------------------------------------------------------- \033[0m"; \
-	  apt-get update; \
-	  apt-get install -y wait-for-it; \
-	else \
-	  echo "\033[30;48;5;82m > Wait-for-it allredy install --------------------------------------------------------------- \033[0m"; \
-	fi
-.PHONY: install-wait-for-it
-
 install-wkhtmltopdf:
 	@if ! [ -x "$(command -v wkhtmltopdf)" ]; then \
 	  echo "\033[30;48;5;82m >  Install wkhtmltopdf and xvfbt ------------------------------------------------------------ \033[0m"; \
@@ -367,16 +351,3 @@ install-wkhtmltopdf:
 	  echo "\033[30;48;5;82m > wkhtmltopdf allredy install --------------------------------------------------------------- \033[0m"; \
 	fi
 .PHONY: install-wkhtmltopdf
-
-
-install-php-ext:
-	echo "\033[30;48;5;82m >  Install php ldap & xsl extansion ------------------------------------------------------------ \033[0m"
-	apt-get update
-	apt-get install libldap2-dev -y
-	rm -rf /var/lib/apt/lists/*
-	docker-php-ext-configure ldap --with-libdir=lib/x86_64-linux-gnu/
-	docker-php-ext-install ldap
-	apt update && apt-get install -y libxslt-dev
-	docker-php-ext-install xsl
-	echo "\033[30;48;5;82m > Install php ldap & xsl extansion done---------------------------------------------------------- \033[0m"
-.PHONY: install-php-ext

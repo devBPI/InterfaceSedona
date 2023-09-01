@@ -20,15 +20,4 @@
             {{ 'error.link-home'|trans({'%link%': path('home')})|raw }}
         </li>
     </ul>
-   <!-- Redirection automatique au bout de <a href ="{{ path('home') }}" id="countdown" class="timer"></a>s -->
 {% endblock %}
-
-{#
-{% block javascripts %}
-    {{ parent() }}
-
-    {% if app.environment != 'test' %}
-        {{ encore_entry_script_tags('error_404') }}
-    {% endif %}
-{% endblock %}
-#}

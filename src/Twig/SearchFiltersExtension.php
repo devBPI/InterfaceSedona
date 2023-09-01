@@ -6,6 +6,7 @@ namespace App\Twig;
 
 use App\Entity\ParcoursLinkInterface;
 use App\Entity\ThemeLevel;
+use App\Model\Form\ExportNotice;
 use App\Model\Search\FilterFilter;
 use App\Model\Search\FacetFilter;
 use App\Service\NavigationService;
@@ -71,6 +72,7 @@ class SearchFiltersExtension extends AbstractExtension
             new TwigFunction('max_facet_value', [$this, 'getMaxValueOfFacetQueries']),
             new TwigFunction('route_by_object', [$this, 'getRouteByObject']),
             new TwigFunction('pdf_occurence', [$this, 'getPdfOccurence']),
+            new TwigFunction('pdf_occurence_data', [$this, 'getPdfOccurenceData']),
             new TwigFunction('cut_filter_from_search', [$this, 'cutfilterFromSearch']),
             new TwigFunction('is_advanced_search', [$this, 'isAdvancedSaerch']),
             new TwigFunction('add_parameter_url', [$this, 'addParameterUrl']),
@@ -172,31 +174,39 @@ class SearchFiltersExtension extends AbstractExtension
      * @param string $format
      * @return string
      */
-    public function getPdfOccurence($object, string $method, string $label, string $format = 'pdf', $glue = ' ; '): ?string
+    public function getPdfOccurence($object, string $method, string $label, string $format = ExportNotice::FORMAT_PDF, $glue = ' ; '): ?string
     {
-        $payload = "";
-        if (method_exists($object, $method) && !empty($object->{$method}())) {
-            if (is_array($object->{$method}())) {
-                $payload .= implode($glue,  $object->{$method}());
-            } elseif (!empty($object->{$method}()) && ((string) $object->{$method}()) !== '') {
-                $payload .= $object->{$method}();
+        if (!method_exists($object, $method)) {
+            return null;
+        }
+        return $this->getPdfOccurenceData($object->{$method}(),$label, $format, $glue);
+    }
+
+    public function getPdfOccurenceData($data, string $label, string $format = ExportNotice::FORMAT_PDF, $glue = ' ; '): ?string
+    {
+        if (!empty($data)) {
+            $payload = "";
+            if (is_array($data)) {
+                $payload .= implode($glue,  array_filter($data));
+            } elseif ((string) $data !== '') {
+                $payload .= $data;
             }
 
             if (!empty($label)) {
-                if ($format === 'pdf') {
-                    return sprintf("<li>%s : %s</li>", $label, $payload);
-                } elseif ($format === 'txt') {
+                if ($format === ExportNotice::FORMAT_TEXT) {
                     return sprintf("%s : %s\n", $label, $payload);
+                } else {
+                    return sprintf("<li><b>%s :</b> %s</li>", $label, $payload);
                 }
             }elseif($label ==''){
-                if ($format === 'pdf') {
-                    return sprintf("<li>%s</li>", $payload);
-                } elseif ($format === 'txt') {
+                if ($format === ExportNotice::FORMAT_TEXT) {
                     return sprintf("%s\n", $payload);
+                } else {
+                    return sprintf("<li>%s</li>", $payload);
                 }
             }
 
-            if ($format === 'txt') {
+            if ($format === ExportNotice::FORMAT_TEXT) {
                 $payload .= "\n";
             }
 

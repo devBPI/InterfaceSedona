@@ -1,0 +1,1331 @@
+parameters:
+	ignoreErrors:
+		-
+			message: "#^Call to function method_exists\\(\\) with Symfony\\\\Component\\\\Dotenv\\\\Dotenv and 'loadEnv' will always evaluate to false\\.$#"
+			count: 1
+			path: config/bootstrap.php
+
+		-
+			message: "#^Class Symfony\\\\Component\\\\Dotenv\\\\Dotenv does not have a constructor and must be instantiated without any parameters\\.$#"
+			count: 1
+			path: config/bootstrap.php
+
+		-
+			message: "#^Property App\\\\Command\\\\CleanerPicturesFileCommand\\:\\:\\$logger is unused\\.$#"
+			count: 1
+			path: src/Command/CleanerPicturesFileCommand.php
+
+		-
+			message: "#^Offset string does not exist on string\\.$#"
+			count: 2
+			path: src/Entity/Thematic.php
+
+		-
+			message: "#^Property App\\\\Entity\\\\Thematic\\:\\:\\$description is never written, only read\\.$#"
+			count: 1
+			path: src/Entity/Thematic.php
+
+		-
+			message: "#^Property App\\\\Entity\\\\Thematic\\:\\:\\$id is never written, only read\\.$#"
+			count: 1
+			path: src/Entity/Thematic.php
+
+		-
+			message: "#^Property App\\\\Entity\\\\Thematic\\:\\:\\$image is never written, only read\\.$#"
+			count: 1
+			path: src/Entity/Thematic.php
+
+		-
+			message: "#^Property App\\\\Entity\\\\Thematic\\:\\:\\$themes is never written, only read\\.$#"
+			count: 1
+			path: src/Entity/Thematic.php
+
+		-
+			message: "#^Property App\\\\Entity\\\\Thematic\\:\\:\\$title is never written, only read\\.$#"
+			count: 1
+			path: src/Entity/Thematic.php
+
+		-
+			message: "#^Property App\\\\Entity\\\\Thematic\\:\\:\\$type is never written, only read\\.$#"
+			count: 1
+			path: src/Entity/Thematic.php
+
+		-
+			message: "#^Property App\\\\Entity\\\\Thematic\\:\\:\\$words is never written, only read\\.$#"
+			count: 1
+			path: src/Entity/Thematic.php
+
+		-
+			message: "#^Property App\\\\Entity\\\\Theme\\:\\:\\$Parent is never written, only read\\.$#"
+			count: 1
+			path: src/Entity/Theme.php
+
+		-
+			message: "#^Property App\\\\Entity\\\\Theme\\:\\:\\$id is never written, only read\\.$#"
+			count: 1
+			path: src/Entity/Theme.php
+
+		-
+			message: "#^Property App\\\\Entity\\\\Theme\\:\\:\\$image is never written, only read\\.$#"
+			count: 1
+			path: src/Entity/Theme.php
+
+		-
+			message: "#^Property App\\\\Entity\\\\Theme\\:\\:\\$levels is never written, only read\\.$#"
+			count: 1
+			path: src/Entity/Theme.php
+
+		-
+			message: "#^Property App\\\\Entity\\\\Theme\\:\\:\\$title is never written, only read\\.$#"
+			count: 1
+			path: src/Entity/Theme.php
+
+		-
+			message: "#^Property App\\\\Entity\\\\ThemeLevel\\:\\:\\$Parent is never written, only read\\.$#"
+			count: 1
+			path: src/Entity/ThemeLevel.php
+
+		-
+			message: "#^Property App\\\\Entity\\\\ThemeLevel\\:\\:\\$id is never written, only read\\.$#"
+			count: 1
+			path: src/Entity/ThemeLevel.php
+
+		-
+			message: "#^Property App\\\\Entity\\\\ThemeLevel\\:\\:\\$title is never written, only read\\.$#"
+			count: 1
+			path: src/Entity/ThemeLevel.php
+
+		-
+			message: "#^Property App\\\\Entity\\\\UserHistory\\:\\:\\$id is never written, only read\\.$#"
+			count: 1
+			path: src/Entity/UserHistory.php
+
+		-
+			message: "#^Unreachable statement \\- code above always terminates\\.$#"
+			count: 3
+			path: src/Entity/UserHistory.php
+
+		-
+			message: "#^Property App\\\\Entity\\\\UserSelectionDocument\\:\\:\\$List is never read, only written\\.$#"
+			count: 1
+			path: src/Entity/UserSelectionDocument.php
+
+		-
+			message: "#^Property App\\\\Entity\\\\UserSelectionDocument\\:\\:\\$id is never written, only read\\.$#"
+			count: 1
+			path: src/Entity/UserSelectionDocument.php
+
+		-
+			message: "#^Property App\\\\Entity\\\\UserSelectionList\\:\\:\\$id is never written, only read\\.$#"
+			count: 1
+			path: src/Entity/UserSelectionList.php
+
+		-
+			message: "#^Property App\\\\Entity\\\\UserSelectionList\\:\\:\\$user_uid is never read, only written\\.$#"
+			count: 1
+			path: src/Entity/UserSelectionList.php
+
+		-
+			message: "#^Property App\\\\Entity\\\\Word\\:\\:\\$id is unused\\.$#"
+			count: 1
+			path: src/Entity/Word.php
+
+		-
+			message: "#^Property App\\\\Entity\\\\Word\\:\\:\\$title is unused\\.$#"
+			count: 1
+			path: src/Entity/Word.php
+
+		-
+			message: "#^Property App\\\\EventListener\\\\AuthenticationListener\\:\\:\\$entityManager \\(Doctrine\\\\ORM\\\\EntityManager\\) does not accept Doctrine\\\\ORM\\\\EntityManagerInterface\\.$#"
+			count: 1
+			path: src/EventListener/AuthenticationListener.php
+
+		-
+			message: "#^Property App\\\\Model\\\\AbstractListNotices\\:\\:\\$numPages is never written, only read\\.$#"
+			count: 1
+			path: src/Model/AbstractListNotices.php
+
+		-
+			message: "#^Property App\\\\Model\\\\AbstractListNotices\\:\\:\\$page is never written, only read\\.$#"
+			count: 1
+			path: src/Model/AbstractListNotices.php
+
+		-
+			message: "#^Property App\\\\Model\\\\AbstractListNotices\\:\\:\\$rows is never written, only read\\.$#"
+			count: 1
+			path: src/Model/AbstractListNotices.php
+
+		-
+			message: "#^Property App\\\\Model\\\\AbstractListNotices\\:\\:\\$totalCount is never written, only read\\.$#"
+			count: 1
+			path: src/Model/AbstractListNotices.php
+
+		-
+			message: "#^Property App\\\\Model\\\\AroundIndex\\:\\:\\$indexes is never written, only read\\.$#"
+			count: 1
+			path: src/Model/AroundIndex.php
+
+		-
+			message: "#^Property App\\\\Model\\\\AroundIndex\\:\\:\\$next is never written, only read\\.$#"
+			count: 1
+			path: src/Model/AroundIndex.php
+
+		-
+			message: "#^Property App\\\\Model\\\\AroundIndex\\:\\:\\$previous is never written, only read\\.$#"
+			count: 1
+			path: src/Model/AroundIndex.php
+
+		-
+			message: "#^Property App\\\\Model\\\\Authority\\:\\:\\$associatedValueComplementForm is never written, only read\\.$#"
+			count: 1
+			path: src/Model/Authority.php
+
+		-
+			message: "#^Property App\\\\Model\\\\Authority\\:\\:\\$associetedForm is never written, only read\\.$#"
+			count: 1
+			path: src/Model/Authority.php
+
+		-
+			message: "#^Property App\\\\Model\\\\Authority\\:\\:\\$dates is never written, only read\\.$#"
+			count: 1
+			path: src/Model/Authority.php
+
+		-
+			message: "#^Property App\\\\Model\\\\Authority\\:\\:\\$deathDate is never written, only read\\.$#"
+			count: 1
+			path: src/Model/Authority.php
+
+		-
+			message: "#^Property App\\\\Model\\\\Authority\\:\\:\\$deathLocation is never written, only read\\.$#"
+			count: 1
+			path: src/Model/Authority.php
+
+		-
+			message: "#^Property App\\\\Model\\\\Authority\\:\\:\\$formParalella is never written, only read\\.$#"
+			count: 1
+			path: src/Model/Authority.php
+
+		-
+			message: "#^Property App\\\\Model\\\\Authority\\:\\:\\$id is never written, only read\\.$#"
+			count: 1
+			path: src/Model/Authority.php
+
+		-
+			message: "#^Property App\\\\Model\\\\Authority\\:\\:\\$isni is never written, only read\\.$#"
+			count: 1
+			path: src/Model/Authority.php
+
+		-
+			message: "#^Property App\\\\Model\\\\Authority\\:\\:\\$musicalKinds is never written, only read\\.$#"
+			count: 1
+			path: src/Model/Authority.php
+
+		-
+			message: "#^Property App\\\\Model\\\\Authority\\:\\:\\$name is never written, only read\\.$#"
+			count: 1
+			path: src/Model/Authority.php
+
+		-
+			message: "#^Property App\\\\Model\\\\Authority\\:\\:\\$notes is never written, only read\\.$#"
+			count: 1
+			path: src/Model/Authority.php
+
+		-
+			message: "#^Property App\\\\Model\\\\Authority\\:\\:\\$originalUrl is never written, only read\\.$#"
+			count: 1
+			path: src/Model/Authority.php
+
+		-
+			message: "#^Property App\\\\Model\\\\Authority\\:\\:\\$origins is never written, only read\\.$#"
+			count: 1
+			path: src/Model/Authority.php
+
+		-
+			message: "#^Property App\\\\Model\\\\Authority\\:\\:\\$resumes is never written, only read\\.$#"
+			count: 1
+			path: src/Model/Authority.php
+
+		-
+			message: "#^Property App\\\\Model\\\\BusinessSearchCriterias\\:\\:\\$criteria is never written, only read\\.$#"
+			count: 1
+			path: src/Model/BusinessSearchCriterias.php
+
+		-
+			message: "#^Method App\\\\Model\\\\CarouselItem\\:\\:pathToContent\\(\\) never returns null so it can be removed from the return type\\.$#"
+			count: 1
+			path: src/Model/CarouselItem.php
+
+		-
+			message: "#^Property App\\\\Model\\\\CarouselItem\\:\\:\\$creator is never written, only read\\.$#"
+			count: 1
+			path: src/Model/CarouselItem.php
+
+		-
+			message: "#^Property App\\\\Model\\\\CarouselItem\\:\\:\\$description is never written, only read\\.$#"
+			count: 1
+			path: src/Model/CarouselItem.php
+
+		-
+			message: "#^Property App\\\\Model\\\\CarouselItem\\:\\:\\$permalink is never written, only read\\.$#"
+			count: 1
+			path: src/Model/CarouselItem.php
+
+		-
+			message: "#^Property App\\\\Model\\\\CarouselItem\\:\\:\\$title is never written, only read\\.$#"
+			count: 1
+			path: src/Model/CarouselItem.php
+
+		-
+			message: "#^Property App\\\\Model\\\\CarouselItem\\:\\:\\$type is never written, only read\\.$#"
+			count: 1
+			path: src/Model/CarouselItem.php
+
+		-
+			message: "#^Property App\\\\Model\\\\Cdu\\:\\:\\$cote is never written, only read\\.$#"
+			count: 1
+			path: src/Model/Cdu.php
+
+		-
+			message: "#^Property App\\\\Model\\\\Cdu\\:\\:\\$name is never written, only read\\.$#"
+			count: 1
+			path: src/Model/Cdu.php
+
+		-
+			message: "#^PHPDoc tag @param for parameter \\$data with type mixed is not subtype of native type stdClass\\.$#"
+			count: 1
+			path: src/Model/ErrorApiResponse.php
+
+		-
+			message: "#^Property App\\\\Model\\\\Facet\\:\\:\\$businessSearchValues is never written, only read\\.$#"
+			count: 1
+			path: src/Model/Facet.php
+
+		-
+			message: "#^Property App\\\\Model\\\\Facet\\:\\:\\$countOffline is never written, only read\\.$#"
+			count: 1
+			path: src/Model/Facet.php
+
+		-
+			message: "#^Property App\\\\Model\\\\Facet\\:\\:\\$countOnline is never written, only read\\.$#"
+			count: 1
+			path: src/Model/Facet.php
+
+		-
+			message: "#^Property App\\\\Model\\\\Facet\\:\\:\\$label is never written, only read\\.$#"
+			count: 1
+			path: src/Model/Facet.php
+
+		-
+			message: "#^Property App\\\\Model\\\\Facet\\:\\:\\$name is never written, only read\\.$#"
+			count: 1
+			path: src/Model/Facet.php
+
+		-
+			message: "#^Property App\\\\Model\\\\Facet\\:\\:\\$values is never written, only read\\.$#"
+			count: 1
+			path: src/Model/Facet.php
+
+		-
+			message: "#^Property App\\\\Model\\\\FacetValue\\:\\:\\$countOffline is never written, only read\\.$#"
+			count: 1
+			path: src/Model/FacetValue.php
+
+		-
+			message: "#^Property App\\\\Model\\\\FacetValue\\:\\:\\$countOnline is never written, only read\\.$#"
+			count: 1
+			path: src/Model/FacetValue.php
+
+		-
+			message: "#^Property App\\\\Model\\\\FacetValue\\:\\:\\$name is never written, only read\\.$#"
+			count: 1
+			path: src/Model/FacetValue.php
+
+		-
+			message: "#^Property App\\\\Model\\\\FacetValue\\:\\:\\$value is never written, only read\\.$#"
+			count: 1
+			path: src/Model/FacetValue.php
+
+		-
+			message: "#^Property App\\\\Model\\\\IndiceCdu\\:\\:\\$aroundIndex is never written, only read\\.$#"
+			count: 1
+			path: src/Model/IndiceCdu.php
+
+		-
+			message: "#^Property App\\\\Model\\\\IndiceCdu\\:\\:\\$classifiedNote is never written, only read\\.$#"
+			count: 1
+			path: src/Model/IndiceCdu.php
+
+		-
+			message: "#^Property App\\\\Model\\\\IndiceCdu\\:\\:\\$employedfor is never written, only read\\.$#"
+			count: 1
+			path: src/Model/IndiceCdu.php
+
+		-
+			message: "#^Property App\\\\Model\\\\IndiceCdu\\:\\:\\$id is never written, only read\\.$#"
+			count: 1
+			path: src/Model/IndiceCdu.php
+
+		-
+			message: "#^Property App\\\\Model\\\\IndiceCdu\\:\\:\\$permalink is never written, only read\\.$#"
+			count: 1
+			path: src/Model/IndiceCdu.php
+
+		-
+			message: "#^Property App\\\\Model\\\\LdapUser\\:\\:\\$enabled is never read, only written\\.$#"
+			count: 1
+			path: src/Model/LdapUser.php
+
+		-
+			message: "#^Property App\\\\Model\\\\LdapUser\\:\\:\\$password is never written, only read\\.$#"
+			count: 1
+			path: src/Model/LdapUser.php
+
+		-
+			message: "#^Property App\\\\Model\\\\Link\\:\\:\\$accessDateFirstIssueOnline is never written, only read\\.$#"
+			count: 1
+			path: src/Model/Link.php
+
+		-
+			message: "#^Property App\\\\Model\\\\Link\\:\\:\\$accessDateLastIssueOnline is never written, only read\\.$#"
+			count: 1
+			path: src/Model/Link.php
+
+		-
+			message: "#^Property App\\\\Model\\\\Link\\:\\:\\$accessNumFirstIssueOnline is never written, only read\\.$#"
+			count: 1
+			path: src/Model/Link.php
+
+		-
+			message: "#^Property App\\\\Model\\\\Link\\:\\:\\$accessNumFirstVolOnline is never written, only read\\.$#"
+			count: 1
+			path: src/Model/Link.php
+
+		-
+			message: "#^Property App\\\\Model\\\\Link\\:\\:\\$accessNumLastIssueOnline is never written, only read\\.$#"
+			count: 1
+			path: src/Model/Link.php
+
+		-
+			message: "#^Property App\\\\Model\\\\Link\\:\\:\\$accessNumLastVolOnline is never written, only read\\.$#"
+			count: 1
+			path: src/Model/Link.php
+
+		-
+			message: "#^Property App\\\\Model\\\\Link\\:\\:\\$availability is never written, only read\\.$#"
+			count: 1
+			path: src/Model/Link.php
+
+		-
+			message: "#^Property App\\\\Model\\\\Link\\:\\:\\$categorie is never written, only read\\.$#"
+			count: 1
+			path: src/Model/Link.php
+
+		-
+			message: "#^Property App\\\\Model\\\\Link\\:\\:\\$cote is never written, only read\\.$#"
+			count: 1
+			path: src/Model/Link.php
+
+		-
+			message: "#^Property App\\\\Model\\\\Link\\:\\:\\$localisation is never written, only read\\.$#"
+			count: 1
+			path: src/Model/Link.php
+
+		-
+			message: "#^Property App\\\\Model\\\\Link\\:\\:\\$media is never written, only read\\.$#"
+			count: 1
+			path: src/Model/Link.php
+
+		-
+			message: "#^Property App\\\\Model\\\\Link\\:\\:\\$objectType is never written, only read\\.$#"
+			count: 1
+			path: src/Model/Link.php
+
+		-
+			message: "#^Property App\\\\Model\\\\Link\\:\\:\\$right is never written, only read\\.$#"
+			count: 1
+			path: src/Model/Link.php
+
+		-
+			message: "#^Property App\\\\Model\\\\Link\\:\\:\\$title is never written, only read\\.$#"
+			count: 1
+			path: src/Model/Link.php
+
+		-
+			message: "#^Property App\\\\Model\\\\Link\\:\\:\\$titre is never written, only read\\.$#"
+			count: 1
+			path: src/Model/Link.php
+
+		-
+			message: "#^Property App\\\\Model\\\\Link\\:\\:\\$url is never written, only read\\.$#"
+			count: 1
+			path: src/Model/Link.php
+
+		-
+			message: "#^Property App\\\\Model\\\\Link\\:\\:\\$usedProfil is never written, only read\\.$#"
+			count: 1
+			path: src/Model/Link.php
+
+		-
+			message: "#^Access to an undefined property App\\\\Model\\\\Notice\\:\\:\\$directorsValue\\.$#"
+			count: 1
+			path: src/Model/Notice.php
+
+		-
+			message: "#^Method App\\\\Model\\\\Notice\\:\\:getVideoContributeurs\\(\\) should return array\\<App\\\\Model\\\\Value\\> but returns array\\<App\\\\Model\\\\ValueComplement\\>\\.$#"
+			count: 1
+			path: src/Model/Notice.php
+
+		-
+			message: "#^Property App\\\\Model\\\\Notice\\:\\:\\$alternatifTitle is never written, only read\\.$#"
+			count: 1
+			path: src/Model/Notice.php
+
+		-
+			message: "#^Property App\\\\Model\\\\Notice\\:\\:\\$analyticalTitles is never written, only read\\.$#"
+			count: 1
+			path: src/Model/Notice.php
+
+		-
+			message: "#^Property App\\\\Model\\\\Notice\\:\\:\\$analyticalTitlesInDetail is never written, only read\\.$#"
+			count: 1
+			path: src/Model/Notice.php
+
+		-
+			message: "#^Property App\\\\Model\\\\Notice\\:\\:\\$authors is never written, only read\\.$#"
+			count: 1
+			path: src/Model/Notice.php
+
+		-
+			message: "#^Property App\\\\Model\\\\Notice\\:\\:\\$authorsValue is never written, only read\\.$#"
+			count: 1
+			path: src/Model/Notice.php
+
+		-
+			message: "#^Property App\\\\Model\\\\Notice\\:\\:\\$category is never written, only read\\.$#"
+			count: 1
+			path: src/Model/Notice.php
+
+		-
+			message: "#^Property App\\\\Model\\\\Notice\\:\\:\\$collectionSeries is never written, only read\\.$#"
+			count: 1
+			path: src/Model/Notice.php
+
+		-
+			message: "#^Property App\\\\Model\\\\Notice\\:\\:\\$commercialNumbers is never written, only read\\.$#"
+			count: 1
+			path: src/Model/Notice.php
+
+		-
+			message: "#^Property App\\\\Model\\\\Notice\\:\\:\\$configurationId is never written, only read\\.$#"
+			count: 1
+			path: src/Model/Notice.php
+
+		-
+			message: "#^Property App\\\\Model\\\\Notice\\:\\:\\$configurationName is never written, only read\\.$#"
+			count: 1
+			path: src/Model/Notice.php
+
+		-
+			message: "#^Property App\\\\Model\\\\Notice\\:\\:\\$configurationPublicUrl is never written, only read\\.$#"
+			count: 1
+			path: src/Model/Notice.php
+
+		-
+			message: "#^Property App\\\\Model\\\\Notice\\:\\:\\$conservation is never written, only read\\.$#"
+			count: 1
+			path: src/Model/Notice.php
+
+		-
+			message: "#^Property App\\\\Model\\\\Notice\\:\\:\\$conservations is never written, only read\\.$#"
+			count: 1
+			path: src/Model/Notice.php
+
+		-
+			message: "#^Property App\\\\Model\\\\Notice\\:\\:\\$conservationsLiens is unused\\.$#"
+			count: 1
+			path: src/Model/Notice.php
+
+		-
+			message: "#^Property App\\\\Model\\\\Notice\\:\\:\\$contents is never written, only read\\.$#"
+			count: 1
+			path: src/Model/Notice.php
+
+		-
+			message: "#^Property App\\\\Model\\\\Notice\\:\\:\\$contentsTable is never written, only read\\.$#"
+			count: 1
+			path: src/Model/Notice.php
+
+		-
+			message: "#^Property App\\\\Model\\\\Notice\\:\\:\\$contributeurs is never written, only read\\.$#"
+			count: 1
+			path: src/Model/Notice.php
+
+		-
+			message: "#^Property App\\\\Model\\\\Notice\\:\\:\\$copies is never written, only read\\.$#"
+			count: 1
+			path: src/Model/Notice.php
+
+		-
+			message: "#^Property App\\\\Model\\\\Notice\\:\\:\\$dates is never written, only read\\.$#"
+			count: 1
+			path: src/Model/Notice.php
+
+		-
+			message: "#^Property App\\\\Model\\\\Notice\\:\\:\\$directors is never written, only read\\.$#"
+			count: 1
+			path: src/Model/Notice.php
+
+		-
+			message: "#^Property App\\\\Model\\\\Notice\\:\\:\\$directorsReferenced is never written, only read\\.$#"
+			count: 1
+			path: src/Model/Notice.php
+
+		-
+			message: "#^Property App\\\\Model\\\\Notice\\:\\:\\$editors is never written, only read\\.$#"
+			count: 1
+			path: src/Model/Notice.php
+
+		-
+			message: "#^Property App\\\\Model\\\\Notice\\:\\:\\$eras is never written, only read\\.$#"
+			count: 1
+			path: src/Model/Notice.php
+
+		-
+			message: "#^Property App\\\\Model\\\\Notice\\:\\:\\$firstPage is never written, only read\\.$#"
+			count: 1
+			path: src/Model/Notice.php
+
+		-
+			message: "#^Property App\\\\Model\\\\Notice\\:\\:\\$formats is never written, only read\\.$#"
+			count: 1
+			path: src/Model/Notice.php
+
+		-
+			message: "#^Property App\\\\Model\\\\Notice\\:\\:\\$fourth is never written, only read\\.$#"
+			count: 1
+			path: src/Model/Notice.php
+
+		-
+			message: "#^Property App\\\\Model\\\\Notice\\:\\:\\$id is never written, only read\\.$#"
+			count: 1
+			path: src/Model/Notice.php
+
+		-
+			message: "#^Property App\\\\Model\\\\Notice\\:\\:\\$inRelationTitle is never written, only read\\.$#"
+			count: 1
+			path: src/Model/Notice.php
+
+		-
+			message: "#^Property App\\\\Model\\\\Notice\\:\\:\\$indices is never written, only read\\.$#"
+			count: 1
+			path: src/Model/Notice.php
+
+		-
+			message: "#^Property App\\\\Model\\\\Notice\\:\\:\\$isbn is never written, only read\\.$#"
+			count: 1
+			path: src/Model/Notice.php
+
+		-
+			message: "#^Property App\\\\Model\\\\Notice\\:\\:\\$isbns is never written, only read\\.$#"
+			count: 1
+			path: src/Model/Notice.php
+
+		-
+			message: "#^Property App\\\\Model\\\\Notice\\:\\:\\$isni is never written, only read\\.$#"
+			count: 1
+			path: src/Model/Notice.php
+
+		-
+			message: "#^Property App\\\\Model\\\\Notice\\:\\:\\$issn is never written, only read\\.$#"
+			count: 1
+			path: src/Model/Notice.php
+
+		-
+			message: "#^Property App\\\\Model\\\\Notice\\:\\:\\$issues is never written, only read\\.$#"
+			count: 1
+			path: src/Model/Notice.php
+
+		-
+			message: "#^Property App\\\\Model\\\\Notice\\:\\:\\$kinds is never written, only read\\.$#"
+			count: 1
+			path: src/Model/Notice.php
+
+		-
+			message: "#^Property App\\\\Model\\\\Notice\\:\\:\\$languages is never written, only read\\.$#"
+			count: 1
+			path: src/Model/Notice.php
+
+		-
+			message: "#^Property App\\\\Model\\\\Notice\\:\\:\\$lastPage is never written, only read\\.$#"
+			count: 1
+			path: src/Model/Notice.php
+
+		-
+			message: "#^Property App\\\\Model\\\\Notice\\:\\:\\$links is never written, only read\\.$#"
+			count: 1
+			path: src/Model/Notice.php
+
+		-
+			message: "#^Property App\\\\Model\\\\Notice\\:\\:\\$locations is never written, only read\\.$#"
+			count: 1
+			path: src/Model/Notice.php
+
+		-
+			message: "#^Property App\\\\Model\\\\Notice\\:\\:\\$materialDescriptions is never written, only read\\.$#"
+			count: 1
+			path: src/Model/Notice.php
+
+		-
+			message: "#^Property App\\\\Model\\\\Notice\\:\\:\\$maxPublishedDate is never written, only read\\.$#"
+			count: 1
+			path: src/Model/Notice.php
+
+		-
+			message: "#^Property App\\\\Model\\\\Notice\\:\\:\\$meeting is never written, only read\\.$#"
+			count: 1
+			path: src/Model/Notice.php
+
+		-
+			message: "#^Property App\\\\Model\\\\Notice\\:\\:\\$nomPubliqueConfiguration is never written, only read\\.$#"
+			count: 1
+			path: src/Model/Notice.php
+
+		-
+			message: "#^Property App\\\\Model\\\\Notice\\:\\:\\$notes is never written, only read\\.$#"
+			count: 1
+			path: src/Model/Notice.php
+
+		-
+			message: "#^Property App\\\\Model\\\\Notice\\:\\:\\$onLine is never written, only read\\.$#"
+			count: 1
+			path: src/Model/Notice.php
+
+		-
+			message: "#^Property App\\\\Model\\\\Notice\\:\\:\\$originalLanguages is never written, only read\\.$#"
+			count: 1
+			path: src/Model/Notice.php
+
+		-
+			message: "#^Property App\\\\Model\\\\Notice\\:\\:\\$otherAuthors is never written, only read\\.$#"
+			count: 1
+			path: src/Model/Notice.php
+
+		-
+			message: "#^Property App\\\\Model\\\\Notice\\:\\:\\$otherDates is never written, only read\\.$#"
+			count: 1
+			path: src/Model/Notice.php
+
+		-
+			message: "#^Property App\\\\Model\\\\Notice\\:\\:\\$otherEdition is never written, only read\\.$#"
+			count: 1
+			path: src/Model/Notice.php
+
+		-
+			message: "#^Property App\\\\Model\\\\Notice\\:\\:\\$periodicity is never written, only read\\.$#"
+			count: 1
+			path: src/Model/Notice.php
+
+		-
+			message: "#^Property App\\\\Model\\\\Notice\\:\\:\\$pictures is never written, only read\\.$#"
+			count: 1
+			path: src/Model/Notice.php
+
+		-
+			message: "#^Property App\\\\Model\\\\Notice\\:\\:\\$placesEvents is never written, only read\\.$#"
+			count: 1
+			path: src/Model/Notice.php
+
+		-
+			message: "#^Property App\\\\Model\\\\Notice\\:\\:\\$publics is never written, only read\\.$#"
+			count: 1
+			path: src/Model/Notice.php
+
+		-
+			message: "#^Property App\\\\Model\\\\Notice\\:\\:\\$publishedDates is never written, only read\\.$#"
+			count: 1
+			path: src/Model/Notice.php
+
+		-
+			message: "#^Property App\\\\Model\\\\Notice\\:\\:\\$resultatDe is never written, only read\\.$#"
+			count: 1
+			path: src/Model/Notice.php
+
+		-
+			message: "#^Property App\\\\Model\\\\Notice\\:\\:\\$resume is never written, only read\\.$#"
+			count: 1
+			path: src/Model/Notice.php
+
+		-
+			message: "#^Property App\\\\Model\\\\Notice\\:\\:\\$rights is never written, only read\\.$#"
+			count: 1
+			path: src/Model/Notice.php
+
+		-
+			message: "#^Property App\\\\Model\\\\Notice\\:\\:\\$row is never written, only read\\.$#"
+			count: 1
+			path: src/Model/Notice.php
+
+		-
+			message: "#^Property App\\\\Model\\\\Notice\\:\\:\\$subject is never written, only read\\.$#"
+			count: 1
+			path: src/Model/Notice.php
+
+		-
+			message: "#^Property App\\\\Model\\\\Notice\\:\\:\\$titleForm is never written, only read\\.$#"
+			count: 1
+			path: src/Model/Notice.php
+
+		-
+			message: "#^Property App\\\\Model\\\\Notice\\:\\:\\$titleInformation is never written, only read\\.$#"
+			count: 1
+			path: src/Model/Notice.php
+
+		-
+			message: "#^Property App\\\\Model\\\\Notice\\:\\:\\$titles is never written, only read\\.$#"
+			count: 1
+			path: src/Model/Notice.php
+
+		-
+			message: "#^Property App\\\\Model\\\\Notice\\:\\:\\$togetherTitle is never written, only read\\.$#"
+			count: 1
+			path: src/Model/Notice.php
+
+		-
+			message: "#^Property App\\\\Model\\\\Notice\\:\\:\\$topics is never written, only read\\.$#"
+			count: 1
+			path: src/Model/Notice.php
+
+		-
+			message: "#^Property App\\\\Model\\\\Notice\\:\\:\\$translatedBy is never written, only read\\.$#"
+			count: 1
+			path: src/Model/Notice.php
+
+		-
+			message: "#^Property App\\\\Model\\\\Notice\\:\\:\\$type \\(string\\) on left side of \\?\\? is not nullable\\.$#"
+			count: 1
+			path: src/Model/Notice.php
+
+		-
+			message: "#^Property App\\\\Model\\\\Notice\\:\\:\\$type is never written, only read\\.$#"
+			count: 1
+			path: src/Model/Notice.php
+
+		-
+			message: "#^Property App\\\\Model\\\\Notice\\:\\:\\$uniformTitle is never written, only read\\.$#"
+			count: 1
+			path: src/Model/Notice.php
+
+		-
+			message: "#^Property App\\\\Model\\\\Notice\\:\\:\\$urlPubliqueConfiguration is never written, only read\\.$#"
+			count: 1
+			path: src/Model/Notice.php
+
+		-
+			message: "#^Property App\\\\Model\\\\Notice\\:\\:\\$videoContributeurs is never written, only read\\.$#"
+			count: 1
+			path: src/Model/Notice.php
+
+		-
+			message: "#^Property App\\\\Model\\\\Notice\\:\\:\\$volumes is never written, only read\\.$#"
+			count: 1
+			path: src/Model/Notice.php
+
+		-
+			message: "#^Property App\\\\Model\\\\NoticeAvailable\\:\\:\\$availability is never written, only read\\.$#"
+			count: 1
+			path: src/Model/NoticeAvailable.php
+
+		-
+			message: "#^Property App\\\\Model\\\\NoticeAvailable\\:\\:\\$bookbinding is never written, only read\\.$#"
+			count: 1
+			path: src/Model/NoticeAvailable.php
+
+		-
+			message: "#^Property App\\\\Model\\\\NoticeAvailable\\:\\:\\$callNum is never written, only read\\.$#"
+			count: 1
+			path: src/Model/NoticeAvailable.php
+
+		-
+			message: "#^Property App\\\\Model\\\\NoticeAvailable\\:\\:\\$categorie \\(string\\) on left side of \\?\\? is not nullable\\.$#"
+			count: 1
+			path: src/Model/NoticeAvailable.php
+
+		-
+			message: "#^Property App\\\\Model\\\\NoticeAvailable\\:\\:\\$categorie is never written, only read\\.$#"
+			count: 1
+			path: src/Model/NoticeAvailable.php
+
+		-
+			message: "#^Property App\\\\Model\\\\NoticeAvailable\\:\\:\\$category is never written, only read\\.$#"
+			count: 1
+			path: src/Model/NoticeAvailable.php
+
+		-
+			message: "#^Property App\\\\Model\\\\NoticeAvailable\\:\\:\\$cote \\(string\\) on left side of \\?\\? is not nullable\\.$#"
+			count: 1
+			path: src/Model/NoticeAvailable.php
+
+		-
+			message: "#^Property App\\\\Model\\\\NoticeAvailable\\:\\:\\$cote is never written, only read\\.$#"
+			count: 1
+			path: src/Model/NoticeAvailable.php
+
+		-
+			message: "#^Property App\\\\Model\\\\NoticeAvailable\\:\\:\\$disponibilite \\(string\\) on left side of \\?\\? is not nullable\\.$#"
+			count: 1
+			path: src/Model/NoticeAvailable.php
+
+		-
+			message: "#^Property App\\\\Model\\\\NoticeAvailable\\:\\:\\$disponibilite is never written, only read\\.$#"
+			count: 1
+			path: src/Model/NoticeAvailable.php
+
+		-
+			message: "#^Property App\\\\Model\\\\NoticeAvailable\\:\\:\\$labelAvailibility is never written, only read\\.$#"
+			count: 1
+			path: src/Model/NoticeAvailable.php
+
+		-
+			message: "#^Property App\\\\Model\\\\NoticeAvailable\\:\\:\\$labelDisponibility \\(string\\) on left side of \\?\\? is not nullable\\.$#"
+			count: 1
+			path: src/Model/NoticeAvailable.php
+
+		-
+			message: "#^Property App\\\\Model\\\\NoticeAvailable\\:\\:\\$labelDisponibility is never written, only read\\.$#"
+			count: 1
+			path: src/Model/NoticeAvailable.php
+
+		-
+			message: "#^Property App\\\\Model\\\\NoticeAvailable\\:\\:\\$lastNumber \\(string\\) on left side of \\?\\? is not nullable\\.$#"
+			count: 1
+			path: src/Model/NoticeAvailable.php
+
+		-
+			message: "#^Property App\\\\Model\\\\NoticeAvailable\\:\\:\\$lastNumber is never written, only read\\.$#"
+			count: 1
+			path: src/Model/NoticeAvailable.php
+
+		-
+			message: "#^Property App\\\\Model\\\\NoticeAvailable\\:\\:\\$lastReceived is never written, only read\\.$#"
+			count: 1
+			path: src/Model/NoticeAvailable.php
+
+		-
+			message: "#^Property App\\\\Model\\\\NoticeAvailable\\:\\:\\$localisation \\(string\\) on left side of \\?\\? is not nullable\\.$#"
+			count: 1
+			path: src/Model/NoticeAvailable.php
+
+		-
+			message: "#^Property App\\\\Model\\\\NoticeAvailable\\:\\:\\$localisation is never written, only read\\.$#"
+			count: 1
+			path: src/Model/NoticeAvailable.php
+
+		-
+			message: "#^Property App\\\\Model\\\\NoticeAvailable\\:\\:\\$location is never written, only read\\.$#"
+			count: 1
+			path: src/Model/NoticeAvailable.php
+
+		-
+			message: "#^Property App\\\\Model\\\\NoticeAvailable\\:\\:\\$materialSupport is never written, only read\\.$#"
+			count: 1
+			path: src/Model/NoticeAvailable.php
+
+		-
+			message: "#^Property App\\\\Model\\\\NoticeAvailable\\:\\:\\$note is never written, only read\\.$#"
+			count: 1
+			path: src/Model/NoticeAvailable.php
+
+		-
+			message: "#^Property App\\\\Model\\\\NoticeAvailable\\:\\:\\$notes is never written, only read\\.$#"
+			count: 1
+			path: src/Model/NoticeAvailable.php
+
+		-
+			message: "#^Property App\\\\Model\\\\NoticeAvailable\\:\\:\\$reciviedNumber is never written, only read\\.$#"
+			count: 1
+			path: src/Model/NoticeAvailable.php
+
+		-
+			message: "#^Property App\\\\Model\\\\NoticeAvailable\\:\\:\\$support is never written, only read\\.$#"
+			count: 1
+			path: src/Model/NoticeAvailable.php
+
+		-
+			message: "#^Property App\\\\Model\\\\NoticeAvailable\\:\\:\\$valosite is never written, only read\\.$#"
+			count: 1
+			path: src/Model/NoticeAvailable.php
+
+		-
+			message: "#^Property App\\\\Model\\\\NoticeMappedAuthority\\:\\:\\$mappedNotices is never written, only read\\.$#"
+			count: 1
+			path: src/Model/NoticeMappedAuthority.php
+
+		-
+			message: "#^Property App\\\\Model\\\\NoticeMappedAuthority\\:\\:\\$pagination is never written, only read\\.$#"
+			count: 1
+			path: src/Model/NoticeMappedAuthority.php
+
+		-
+			message: "#^Property App\\\\Model\\\\NoticeMappedAuthority\\:\\:\\$totalResultsNumber \\(int\\) on left side of \\?\\? is not nullable\\.$#"
+			count: 1
+			path: src/Model/NoticeMappedAuthority.php
+
+		-
+			message: "#^Property App\\\\Model\\\\NoticeMappedAuthority\\:\\:\\$totalResultsNumber is never written, only read\\.$#"
+			count: 1
+			path: src/Model/NoticeMappedAuthority.php
+
+		-
+			message: "#^Else branch is unreachable because ternary operator condition is always true\\.$#"
+			count: 1
+			path: src/Model/NoticeThemed.php
+
+		-
+			message: "#^Property App\\\\Model\\\\NoticeThemed\\:\\:\\$notice is never written, only read\\.$#"
+			count: 1
+			path: src/Model/NoticeThemed.php
+
+		-
+			message: "#^Property App\\\\Model\\\\NoticeThemed\\:\\:\\$noticesSameTheme is never written, only read\\.$#"
+			count: 1
+			path: src/Model/NoticeThemed.php
+
+		-
+			message: "#^Property App\\\\Model\\\\NoticeThemed\\:\\:\\$onlineNotices is never written, only read\\.$#"
+			count: 1
+			path: src/Model/NoticeThemed.php
+
+		-
+			message: "#^Property App\\\\Model\\\\NoticeThemed\\:\\:\\$onlineNoticesSameTheme is never written, only read\\.$#"
+			count: 1
+			path: src/Model/NoticeThemed.php
+
+		-
+			message: "#^Property App\\\\Model\\\\NoticeThemed\\:\\:\\$results is never written, only read\\.$#"
+			count: 1
+			path: src/Model/NoticeThemed.php
+
+		-
+			message: "#^Property App\\\\Model\\\\Pagination\\:\\:\\$page is never written, only read\\.$#"
+			count: 1
+			path: src/Model/Pagination.php
+
+		-
+			message: "#^Property App\\\\Model\\\\Pagination\\:\\:\\$rows is never written, only read\\.$#"
+			count: 1
+			path: src/Model/Pagination.php
+
+		-
+			message: "#^Method App\\\\Model\\\\Picture\\:\\:pathToContent\\(\\) never returns null so it can be removed from the return type\\.$#"
+			count: 1
+			path: src/Model/Picture.php
+
+		-
+			message: "#^Property App\\\\Model\\\\Picture\\:\\:\\$description is never written, only read\\.$#"
+			count: 1
+			path: src/Model/Picture.php
+
+		-
+			message: "#^Property App\\\\Model\\\\Picture\\:\\:\\$url is never written, only read\\.$#"
+			count: 1
+			path: src/Model/Picture.php
+
+		-
+			message: "#^Property App\\\\Model\\\\Quatrieme\\:\\:\\$biography is never written, only read\\.$#"
+			count: 1
+			path: src/Model/Quatrieme.php
+
+		-
+			message: "#^Property App\\\\Model\\\\Quatrieme\\:\\:\\$editorInfo is never written, only read\\.$#"
+			count: 1
+			path: src/Model/Quatrieme.php
+
+		-
+			message: "#^Property App\\\\Model\\\\Quatrieme\\:\\:\\$presentation is never written, only read\\.$#"
+			count: 1
+			path: src/Model/Quatrieme.php
+
+		-
+			message: "#^Expression on left side of \\?\\? is not nullable\\.$#"
+			count: 1
+			path: src/Model/RankedAuthority.php
+
+		-
+			message: "#^Property App\\\\Model\\\\RankedAuthority\\:\\:\\$authority is never written, only read\\.$#"
+			count: 1
+			path: src/Model/RankedAuthority.php
+
+		-
+			message: "#^Property App\\\\Model\\\\RankedAuthority\\:\\:\\$indiceCdu is never written, only read\\.$#"
+			count: 1
+			path: src/Model/RankedAuthority.php
+
+		-
+			message: "#^Property App\\\\Model\\\\RankedAuthority\\:\\:\\$rank is never written, only read\\.$#"
+			count: 1
+			path: src/Model/RankedAuthority.php
+
+		-
+			message: "#^Property App\\\\Model\\\\Results\\:\\:\\$facets is never written, only read\\.$#"
+			count: 1
+			path: src/Model/Results.php
+
+		-
+			message: "#^Property App\\\\Model\\\\Results\\:\\:\\$filters is never written, only read\\.$#"
+			count: 1
+			path: src/Model/Results.php
+
+		-
+			message: "#^Property App\\\\Model\\\\Results\\:\\:\\$notices is never written, only read\\.$#"
+			count: 1
+			path: src/Model/Results.php
+
+		-
+			message: "#^Property App\\\\Model\\\\Results\\:\\:\\$noticesOnline is never written, only read\\.$#"
+			count: 1
+			path: src/Model/Results.php
+
+		-
+			message: "#^Property App\\\\Model\\\\Results\\:\\:\\$page is never written, only read\\.$#"
+			count: 1
+			path: src/Model/Results.php
+
+		-
+			message: "#^Property App\\\\Model\\\\Results\\:\\:\\$pageTotal is never written, only read\\.$#"
+			count: 1
+			path: src/Model/Results.php
+
+		-
+			message: "#^Property App\\\\Model\\\\Results\\:\\:\\$rows is never written, only read\\.$#"
+			count: 1
+			path: src/Model/Results.php
+
+		-
+			message: "#^Property App\\\\Model\\\\Results\\:\\:\\$suggestionList is never written, only read\\.$#"
+			count: 1
+			path: src/Model/Results.php
+
+		-
+			message: "#^Property App\\\\Model\\\\Right\\:\\:\\$copyRight is never written, only read\\.$#"
+			count: 1
+			path: src/Model/Right.php
+
+		-
+			message: "#^Property App\\\\Model\\\\Right\\:\\:\\$licence is never written, only read\\.$#"
+			count: 1
+			path: src/Model/Right.php
+
+		-
+			message: "#^Property App\\\\Model\\\\Right\\:\\:\\$rights is never written, only read\\.$#"
+			count: 1
+			path: src/Model/Right.php
+
+		-
+			message: "#^Method App\\\\Model\\\\Search\\\\Criteria\\:\\:formatString\\(\\) never returns null so it can be removed from the return type\\.$#"
+			count: 1
+			path: src/Model/Search/Criteria.php
+
+		-
+			message: "#^PHPDoc tag @return with type array\\|null is not subtype of native type string\\|null\\.$#"
+			count: 2
+			path: src/Model/Search/ObjSearch.php
+
+		-
+			message: "#^Property App\\\\Model\\\\SuggestionList\\:\\:\\$originalWord is never written, only read\\.$#"
+			count: 1
+			path: src/Model/SuggestionList.php
+
+		-
+			message: "#^Property App\\\\Model\\\\Value\\:\\:\\$complement is never written, only read\\.$#"
+			count: 1
+			path: src/Model/Value.php
+
+		-
+			message: "#^Property App\\\\Model\\\\Value\\:\\:\\$value is never written, only read\\.$#"
+			count: 1
+			path: src/Model/Value.php
+
+		-
+			message: "#^Property App\\\\Model\\\\ValueComplement\\:\\:\\$complement is never written, only read\\.$#"
+			count: 1
+			path: src/Model/ValueComplement.php
+
+		-
+			message: "#^Property App\\\\Model\\\\ValueComplement\\:\\:\\$value is never written, only read\\.$#"
+			count: 1
+			path: src/Model/ValueComplement.php
+
+		-
+			message: "#^PHPDoc tag @param for parameter \\$entry with type Symfony\\\\Component\\\\Ldap\\\\Entry\\|null is not subtype of native type Symfony\\\\Component\\\\Ldap\\\\Entry\\.$#"
+			count: 1
+			path: src/Provider/BpiLdapUserProvider.php
+
+		-
+			message: "#^PHPDoc tag @return with type Symfony\\\\Component\\\\Security\\\\Core\\\\User\\\\UserInterface is not subtype of native type App\\\\Model\\\\LdapUser\\.$#"
+			count: 1
+			path: src/Provider/BpiLdapUserProvider.php
+
+		-
+			message: "#^Property App\\\\Provider\\\\BpiLdapUserProvider\\:\\:\\$ldap \\(Symfony\\\\Component\\\\Ldap\\\\Ldap\\) does not accept Symfony\\\\Component\\\\Ldap\\\\LdapInterface\\.$#"
+			count: 1
+			path: src/Provider/BpiLdapUserProvider.php
+
+		-
+			message: "#^PHPDoc tag @return with type array\\|null is not subtype of native type array\\.$#"
+			count: 1
+			path: src/Repository/UserSelectionDocumentRepository.php
+
+		-
+			message: "#^Method App\\\\Repository\\\\UserSelectionListRepository\\:\\:findAllOrderedByPosition\\(\\) invoked with 2 parameters, 1 required\\.$#"
+			count: 1
+			path: src/Repository/UserSelectionListRepository.php
+
+		-
+			message: "#^PHPDoc tag @return with type mixed is not subtype of native type int\\.$#"
+			count: 2
+			path: src/Repository/UserSelectionListRepository.php
+
+		-
+			message: "#^Parameter \\#3 \\$type of method Doctrine\\\\ORM\\\\AbstractQuery\\:\\:setParameter\\(\\) expects string\\|null, int given\\.$#"
+			count: 1
+			path: src/Repository/UserSelectionListRepository.php
+
+		-
+			message: "#^Method App\\\\Request\\\\ParamConverter\\\\BpiConverter\\:\\:apply\\(\\) should return bool\\|string but return statement is missing\\.$#"
+			count: 1
+			path: src/Request/ParamConverter/BpiConverter.php
+
+		-
+			message: "#^Method App\\\\Service\\\\APIClient\\\\CatalogClient\\:\\:get\\(\\) should return Psr\\\\Http\\\\Message\\\\ResponseInterface but return statement is missing\\.$#"
+			count: 1
+			path: src/Service/APIClient/CatalogClient.php
+
+		-
+			message: "#^Property App\\\\Service\\\\APIClient\\\\CatalogClient\\:\\:\\$client \\(GuzzleHttp\\\\Client\\) does not accept GuzzleHttp\\\\ClientInterface\\.$#"
+			count: 1
+			path: src/Service/APIClient/CatalogClient.php
+
+		-
+			message: "#^Method App\\\\Service\\\\AuthenticationService\\:\\:getUser\\(\\) should return App\\\\Model\\\\LdapUser but returns string\\|Stringable\\|Symfony\\\\Component\\\\Security\\\\Core\\\\User\\\\UserInterface\\.$#"
+			count: 1
+			path: src/Service/AuthenticationService.php
+
+		-
+			message: "#^PHPDoc tag @return with type object is not subtype of native type App\\\\Model\\\\LdapUser\\.$#"
+			count: 1
+			path: src/Service/AuthenticationService.php
+
+		-
+			message: "#^Call to an undefined method App\\\\Model\\\\Interfaces\\\\RecordInterface\\:\\:getPermalink\\(\\)\\.$#"
+			count: 1
+			path: src/Service/BreadCrumbBuilder.php
+
+		-
+			message: "#^Call to an undefined method App\\\\Model\\\\Interfaces\\\\RecordInterface\\:\\:getTitle\\(\\)\\.$#"
+			count: 1
+			path: src/Service/BreadCrumbBuilder.php
+
+		-
+			message: "#^PHPDoc tag @var has invalid value \\(\\)\\: Unexpected token \"\\\\n     \", expected type at offset 15$#"
+			count: 1
+			path: src/Service/BreadCrumbStack.php
+
+		-
+			message: "#^Method App\\\\Service\\\\HistoryService\\:\\:getHistory\\(\\) should return array\\<App\\\\Entity\\\\UserHistory\\> but returns array\\<App\\\\Entity\\\\SearchHistory\\>\\.$#"
+			count: 1
+			path: src/Service/HistoryService.php
+
+		-
+			message: "#^Method App\\\\Service\\\\Provider\\\\AbstractProvider\\:\\:arrayFromResponse\\(\\) should return GuzzleHttp\\\\Psr7\\\\Response but returns Psr\\\\Http\\\\Message\\\\ResponseInterface\\.$#"
+			count: 1
+			path: src/Service/Provider/AbstractProvider.php
+
+		-
+			message: "#^Property App\\\\Service\\\\Provider\\\\AbstractProvider\\:\\:\\$serializer \\(JMS\\\\Serializer\\\\Serializer\\) does not accept JMS\\\\Serializer\\\\SerializerInterface\\.$#"
+			count: 1
+			path: src/Service/Provider/AbstractProvider.php
+
+		-
+			message: "#^PHPDoc tag @var has invalid value \\(\\$carousel Carousel\\)\\: Unexpected token \"\\$carousel\", expected type at offset 9$#"
+			count: 1
+			path: src/Service/Provider/CarouselProvider.php
+
+		-
+			message: "#^Result of && is always false\\.$#"
+			count: 1
+			path: src/Service/Provider/NoticeAuthorityProvider.php
+
+		-
+			message: "#^Strict comparison using \\!\\=\\= between null and null will always evaluate to false\\.$#"
+			count: 1
+			path: src/Service/Provider/NoticeAuthorityProvider.php
+
+		-
+			message: "#^Strict comparison using \\=\\=\\= between \\*NEVER\\* and 'short\\-print' will always evaluate to false\\.$#"
+			count: 1
+			path: src/Service/Provider/NoticeAuthorityProvider.php
+
+		-
+			message: "#^Expression on left side of \\?\\? is not nullable\\.$#"
+			count: 1
+			path: src/Service/Provider/SearchProvider.php
+
+		-
+			message: "#^Variable \\$searchResult in PHPDoc tag @var does not exist\\.$#"
+			count: 1
+			path: src/Service/Provider/SearchProvider.php
+
+		-
+			message: "#^Property App\\\\Service\\\\SearchService\\:\\:\\$translator \\(Symfony\\\\Component\\\\Translation\\\\Translator\\) does not accept Symfony\\\\Component\\\\Translation\\\\TranslatorInterface\\.$#"
+			count: 1
+			path: src/Service/SearchService.php
+
+		-
+			message: "#^Variable \\$search in PHPDoc tag @var does not exist\\.$#"
+			count: 1
+			path: src/Service/SearchService.php
+
+		-
+			message: "#^Call to an undefined method Doctrine\\\\Persistence\\\\ObjectRepository\\:\\:getList\\(\\)\\.$#"
+			count: 2
+			path: src/Service/SelectionListService.php
+
+		-
+			message: "#^Expression on left side of \\?\\? is not nullable\\.$#"
+			count: 1
+			path: src/Service/SelectionListService.php
+
+		-
+			message: "#^Property App\\\\Service\\\\SelectionListService\\:\\:\\$logger is never read, only written\\.$#"
+			count: 1
+			path: src/Service/SelectionListService.php
+
+		-
+			message: "#^Unreachable statement \\- code above always terminates\\.$#"
+			count: 3
+			path: src/Twig/MenuCreator.php
+
+		-
+			message: "#^Parameter \\#2 \\$code of class Exception constructor expects int, string given\\.$#"
+			count: 1
+			path: src/Twig/SearchFiltersExtension.php
+
+		-
+			message: "#^Property App\\\\Twig\\\\SearchFiltersExtension\\:\\:\\$filterQueries is unused\\.$#"
+			count: 1
+			path: src/Twig/SearchFiltersExtension.php
+
+		-
+			message: "#^Strict comparison using \\=\\=\\= between string and null will always evaluate to false\\.$#"
+			count: 1
+			path: src/Twig/SearchFiltersExtension.php
+
+		-
+			message: "#^Call to an undefined method Symfony\\\\Component\\\\Dotenv\\\\Dotenv\\:\\:bootEnv\\(\\)\\.$#"
+			count: 1
+			path: tests/bootstrap.php
+
+		-
+			message: "#^Call to function method_exists\\(\\) with 'Symfony\\\\\\\\Component\\\\\\\\Dotenv\\\\\\\\Dotenv' and 'bootEnv' will always evaluate to false\\.$#"
+			count: 1
+			path: tests/bootstrap.php

@@ -18,7 +18,7 @@ use Symfony\Component\HttpKernel\KernelInterface;
  */
 class FeatureContext extends MinkContext implements Context
 {
-    use W3CValidationContext, \App\Service\TraitSlugify;
+    use \App\Service\TraitSlugify;
 
     /**
      * @var KernelInterface
@@ -73,7 +73,7 @@ class FeatureContext extends MinkContext implements Context
 
         if (TestResult::FAILED === $scope->getTestResult()->getResultCode()) {
 
-            $screenshotPath = $this->container->getParameter('kernel.project_dir')."/build/behat";
+            $screenshotPath = $this->container->getParameter('kernel.project_dir')."/var/behat";
 
             $driver = $this->getSession()->getDriver();
 

@@ -4,7 +4,7 @@
 		{{- pdf_occurence(notice, 'getExportTitle', 'bloc.autority-result-information.in'|trans, format)|raw -}}
 	{%- endif -%}
 
-{% if( notice.type in constant('App\\Model\\Notice::NOTICE_CONTENT_REVUE_TYPE')  and  notice.frontAnalyticalTitle is not empty) %}
+	{% if( notice.type in constant('App\\Model\\Notice::NOTICE_CONTENT_REVUE_TYPE')  and  notice.frontAnalyticalTitle is not empty) %}
 		{{- pdf_occurence(notice, 'getFrontAnalyticalTitle', 'bloc.autority-result-information.in'|trans, format)|raw -}}
 	{%- endif -%}
 
@@ -29,10 +29,13 @@
 		{{- pdf_occurence(notice, 'getContents', "modal.advanced-search.facette.contenu"|trans, format)|raw -}}
 	{% endif %}
 	{{- pdf_occurence(notice, 'getNotes', "bloc.autority-result-information.nots"|trans, format)|raw -}}
-	{%- if notice.type != constant('App\\Model\\Notice::MUSIC') %}{{- pdf_occurence(notice, 'getResume', "bloc.notice-simple.resume-title"|trans, format)|raw -}}{% endif -%}{% set languages = notice.languages %}{%- if languages|length > 0 %}{%- if format == 'pdf' -%}<li>{%- endif -%}
-{{ 'bloc.autority-result-information.language'|trans }} : {{- ' '~languages|join(' ; ') -}} {% if notice.originalLanguages %}{{ ', '~'modal.advanced-search.langage.title-translated'|trans }} : {{ notice.originalLanguages|join(', ') }}
-	{% endif %}
-{% if format == 'txt' %}{{- "\n" -}}{% endif %}{%- if format =='pdf' -%}</li>{%- endif -%}
+	{%- if notice.type != constant('App\\Model\\Notice::MUSIC') %}{{- pdf_occurence(notice, 'getResume', "bloc.notice-simple.resume-title"|trans, format)|raw -}}{% endif -%}
+	{%- if notice.languages|length > 0 %}
+		{%- set languages = [notice.languages|join(' ; ')] -%}
+		{%- if notice.originalLanguages is defined and notice.originalLanguages -%}
+			{%- set languages = notice.languages|merge([', <b>'~'modal.advanced-search.langage.title-translated'|trans~' : </b>'])|merge([notice.originalLanguages|join(' ; ')]) -%}
+		{% endif -%}
+		{{- pdf_occurence_data(languages, "bloc.autority-result-information.language"|trans, format, ' ')|raw -}}
 	{% endif -%}
 	{{- pdf_occurence(notice, 'getMaterialDescriptions', "modal.advanced-search.facette.materialSupport"|trans, format)|raw -}}
 	{{- pdf_occurence(notice, 'getCollectionSeries', "bloc.results-navigation.result-information.collection-series"|trans, format)|raw -}}

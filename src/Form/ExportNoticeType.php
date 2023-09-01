@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace App\Form;
 
 
+use App\Kernel;
 use App\Model\Form\ExportNotice;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
@@ -19,15 +20,32 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
  * Class ExportNoticeType
  * @package App\Form
  */
-final class ExportNoticeType extends AbstractType
+class ExportNoticeType extends AbstractType
 {
     /**
-     * @param FormBuilderInterface $builder
-     * @param array $options
+     * @var string
      */
+    protected  $env;
+
+    public function __construct(string $env)
+    {
+        $this->env = $env;
+    }
+
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
          $builder
+             ->add('formatType', ChoiceType::class, [
+                'required' => true,
+                'label'    => false,
+                'expanded' => true,
+                'data'     => ExportNotice::FORMAT_TEXT,
+                'choices'  => [
+                    'modal.export.field.txt' => ExportNotice::FORMAT_TEXT,
+                    'modal.export.field.pdf' => ExportNotice::FORMAT_PDF
+                ],
+                 'attr'      => ['autocomplete'=> 'off' ]
+             ])
              ->add('shortFormat', ChoiceType::class, [
                  'required' => true,
                  'label'    => false,
@@ -44,62 +62,32 @@ final class ExportNoticeType extends AbstractType
                  'label'    => 'modal.export.field.img',
                  'attr'      => ['autocomplete' => "off"]
              ])
-             ->add('notices', HiddenType::class,[
+             ->add('notices', $this->getTypeOfHidden(),[
                  'required' => false,
                  'attr'     => [
                      'class' => 'js-print-notices'
                  ]
              ])
-             ->add('authorities', HiddenType::class,[
+             ->add('authorities', $this->getTypeOfHidden() ,[
                  'required' => false,
                  'attr'     => [
                      'class' => 'js-print-authorities'
                  ]
              ])
-             ->add('indices', HiddenType::class,[
+             ->add('indices', $this->getTypeOfHidden(),[
                  'required' => false,
                  'attr'     => [
                      'class' => 'js-print-indices'
                  ]
              ])
-             ->add('reciever', EmailType::class, [
-                'required'  => true,
-                'label'     => 'modal.share.field.recipient',
-                'attr'      => ['autocomplete' => "off"],
-                'label_attr'=> ['compl' => 'modal.email-example']
-            ])
-             ->add('sender', EmailType::class, [
-                 'required'  => true,
-                 'label'     => 'modal.share.field.expeditor',
-                 'attr'      => ['autocomplete' => "off"],
-                 'label_attr'=> ['compl' => 'modal.email-example']
-             ])
-             ->add('object', TextType::class,[
-                 'required'  => false,
-                 'label'     => 'modal.export.field.object',
-                 'attr'      => ['autocomplete'=> 'off' ]
-             ])
-             ->add('message', TextareaType::class,[
-                'required'  => false,
-                'label'     => 'modal.export.field.comments',
-                 'attr'      => ['autocomplete'=> 'off' ]
-            ])
-             ->add('formatType', ChoiceType::class, [
-                'required' => true,
-                'label'    => false,
-                'expanded' => true,
-                'data'     => 'txt',
-                'choices'  => [
-                    'modal.export.field.txt' => 'txt',
-                    'modal.export.field.pdf' => 'pdf'
-                ],
-                 'attr'      => ['autocomplete'=> 'off' ]
-             ]);
+         ;
     }
 
-    /**
-     * @param OptionsResolver $resolver
-     */
+    protected function getTypeOfHidden() :string
+    {
+        return $this->env == 'test' ? TextType::class : HiddenType::class;
+    }
+
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([

@@ -65,7 +65,7 @@ final class IndiceCduController extends AbstractController
         $subjects = $this->noticeAuhtority->getSubjectIndice($notice->getId());
         $printRoute = $this->generateUrl(
             'indice_pdf',
-            [ 'permalink' => $notice->getPermalink(), 'format' => 'pdf' ]
+            [ 'permalink' => $notice->getPermalink(), 'format' => ExportNotice::FORMAT_PDF ]
         );
         $origin = 'author';
         try {
@@ -78,7 +78,7 @@ final class IndiceCduController extends AbstractController
         return $this->render('indice/index.html.twig', [
                 'origin'          => $origin,
                 'toolbar'         => IndiceCdu::class,
-                'isNotice'          => false,
+                'isNotice'        => false,
                 'printRoute'      => $printRoute,
                 'subjects'        => $subjects,
                 'notice'          => $notice,
@@ -112,23 +112,12 @@ final class IndiceCduController extends AbstractController
 
     /**
      * @Route("/print/indice.{format}/{permalink}", methods={"GET"}, name="indice_pdf", requirements={"permalink"=".+", "format" = "html|pdf|txt"}, defaults={"format" = "pdf"})
-     * @param Request $request
-     * @param string $format
-     * @return mixed|string
-     * @throws \Twig\Error\LoaderError
-     * @throws \Twig\Error\RuntimeError
-     * @throws \Twig\Error\SyntaxError
      */
-    public function authorityRecordPDFAction(Request $request, $format='pdf')
+    public function printAction(Request $request, string $format= ExportNotice::FORMAT_PDF) :Response
     {
         try {
-            $sendAttachement = new ExportNotice();
-
-            $sendAttachement
+            $sendAttachement = ExportNotice::createFromRequest($request, $format)
                 ->setIndices($request->get('permalink'))
-                ->setImage($request->get('print-image', null) === 'print-image')
-                ->setFormatType($format)
-                ->setShortFormat($request->get('print-type', 'print-long') !== 'print-long')
             ;
         } catch(NoResultException $e) {
             return $this->render('common/error.html.twig');

@@ -64,7 +64,7 @@ final class AuthorityController extends AbstractController
         $authors = $this->noticeAuhtority->getAuthorsNotice($notice->getId());
         $printRoute = $this->generateUrl(
             'record_authority_pdf',
-            [ 'permalink' => $notice->getPermalink(), 'format' => 'pdf']
+            [ 'permalink' => $notice->getPermalink(), 'format' => ExportNotice::FORMAT_PDF]
         );
         try {
             $navigation = $this->navigationService->buildAuthorities($notice);
@@ -75,7 +75,7 @@ final class AuthorityController extends AbstractController
 
         return $this->render('authority/index.html.twig', [
                 'origin'        => $origin,
-                'isNotice'          => false,
+                'isNotice'      => false,
                 'toolbar'       => Authority::class,
                 'printRoute'    => $printRoute,
                 'subjects'      => $subject,
@@ -88,24 +88,12 @@ final class AuthorityController extends AbstractController
 
     /**
      * @Route("/print/autorite.{format}/{permalink}", name="record_authority_pdf", requirements={"permalink"=".+", "format" = "html|pdf|txt"}, defaults={"format" = "pdf"})
-
-     * @param Request $request
-     * @param string $format
-     * @return mixed|string
-     * @throws \Twig\Error\LoaderError
-     * @throws \Twig\Error\RuntimeError
-     * @throws \Twig\Error\SyntaxError
      */
-    public function authorityRecordPDFAction(Request $request, $format='pdf')
+    public function printAction(Request $request, string $format= ExportNotice::FORMAT_PDF) :Response
     {
         try {
-            $sendAttachement = new ExportNotice();
-
-            $sendAttachement
+            $sendAttachement = ExportNotice::createFromRequest($request, $format)
                 ->setAuthorities($request->get('permalink'))
-                ->setImage($request->get('print-image', null) === 'print-image')
-                ->setFormatType($format)
-                ->setShortFormat($request->get('print-type', 'print-long') !== 'print-long')
             ;
         } catch(NoResultException $e) {
             return $this->render('common/error.html.twig');

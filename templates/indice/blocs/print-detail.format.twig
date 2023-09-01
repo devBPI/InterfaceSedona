@@ -1,6 +1,6 @@
 {% spaceless %}
 {% set type = 'bloc.autority-result-information.authority-type'|trans ~ ' : ' ~ 'bloc.autority-result-information.type.indice'|trans %}
-{%- if format == 'pdf' %}
+{%- if format == constant('App\\Model\\Form\\ExportNotice::FORMAT_PDF') %}
         <li>{{ type }}</li>
 {% else %}
 {{- (type)|raw -}}{{ "\n" }}
@@ -8,9 +8,5 @@
 {%- if isPrintLong %}
 {{- pdf_occurence(notice, 'getEmployedFor', 'bloc.autority-result-information.employed-for'|trans, format)|raw -}}
 {{- pdf_occurence(notice, 'getClassifiedNote', 'bloc.autority-result-information.classification-notes'|trans, format, ' ')|raw -}}{% endif -%}
-{%- if format == 'pdf' %}
-        <li><a href="{{ absolute_url(path('record_indice_cdu', {"permalink": notice.permalink})) }}">Permalien</a>
-        </li>
-{% else %}Permalien : {{ absolute_url(path('record_indice_cdu', {"permalink": notice.permalink})) }}{{ "\n" }}
-{% endif -%}
+
 {% endspaceless %}

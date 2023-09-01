@@ -467,13 +467,14 @@ bloc:
       order: Choix du tri des documents
       order-aria: dropdown-tri-result
       order-choice: Trier par
-      order-pertinence: Pertinence
-      order-title-asc: Titre A-Z
-      order-title-desc: Titre Z-A
-      order-author-asc: Auteur A-Z
-      order-author-desc: Auteur Z-A
-      order-most-recent: Les plus récents
-      order-least-recent: Les moins récents
+      order-labels:
+        DEFAULT: Pertinence
+        TITRE_A_Z: Titre A-Z
+        TITRE_Z_A: Titre Z-A
+        AUTEUR_A_Z: Auteur A-Z
+        AUTEUR_Z_A: Auteur Z-A
+        YOUNGER: Les plus récents
+        OLDER: Les moins récents
     footer:
       aria-label: Pagination
       page-first: Première page
@@ -497,7 +498,7 @@ bloc:
       conservation: Conservation
       rights: Droits
   autority-result-information: #Bloc 16 Notice bibliographique + Bloc 18 Informations de la notice d'autorité
-    fal: Facile à lire
+    fal: Sélection facile à lire
     musique-author: 'Auteur(s), compositeur(s), interprète(s)'
     other-musique-author: 'Autre(s) auteur(s), compositeur(s), interprète(s)'
     autor-dicover: Découvrir l'auteur

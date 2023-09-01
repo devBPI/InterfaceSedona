@@ -19,6 +19,7 @@ services:
 
     bind:
       $root_dir: '%kernel.root_dir%'
+      $env:  '%kernel.environment%'
 
   # makes classes in src/ available to be used as services
   # this creates a service per class whose id is the fully-qualified class name
@@ -54,9 +55,6 @@ services:
   App\Service\LoggerService:
     arguments:
       $logger : '@monolog.logger'
-  App\Service\NoticeBuildFileService:
-    arguments:
-      $logger : '@monolog.logger'
   App\Service\BreadCrumbBuilder:
     arguments: ['@doctrine.orm.entity_manager']
   App\Twig\MenuCreator:
@@ -86,7 +84,6 @@ services:
 
   App\Service\MailSenderService:
     arguments:
-      $logger : '@monolog.logger'
       $sender : '%env(MAIL_SENDER)%'
       $replyTo : '%env(REPLY_TO_EMAIL)%'
 

@@ -23,37 +23,23 @@ class PermalinkStatus
      */
     private $permalink;
 
-    /**
-     * @return string
-     */
     public function getStatus(): string
     {
         return $this->status;
     }
 
-    /**
-     * @param string $status
-     * @return $this
-     */
-    public function setStatus(string $status): string
+    public function setStatus(string $status): self
     {
         $this->status = $status;
         return $this;
     }
 
-    /**
-     * @return mixed
-     */
     public function getPermalink(): string
     {
         return $this->permalink;
     }
 
-    /**
-     * @param string $permalink
-     * @return PermalinkStatus
-     */
-    public function setPermalink($permalink): string
+    public function setPermalink(string $permalink): self
     {
         $this->permalink = $permalink;
         return $this;

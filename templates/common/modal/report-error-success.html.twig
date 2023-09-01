@@ -1,4 +1,4 @@
-<div class="modal-form" action="{{ path('common-report-error') }}">
+<div data-toggle-refresh="{{ path('common-report-error',{'permalink': permalink}) }}">
 	<div class="modal-header">
 		<h1 class="n1 modal-header__title" id="modal-report-title">{{ 'modal.report.title'|trans }}</h1>
 		<button class="close" type="button" data-dismiss="modal">
@@ -7,7 +7,7 @@
 	</div>
 
 	<div class="modal-body">
-		{{ 'modal.body.report-error' | trans }}
+		{{ 'modal.body.report-error'|trans }}
 	</div>
 
 	<div class="modal-footer">

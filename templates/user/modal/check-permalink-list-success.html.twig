@@ -37,15 +37,7 @@
         </div>
         <div class="modal-footer">
             <button type="button" data-dismiss="modal" class="btn btn-lg btn-secondary">{{ 'global.modal-cancel'|trans }}</button>
-            {% if action =='export' %}
-                <button id="export-selection"   data-reload="true" class="btn btn-lg  btn-primary js-print-action"  data-href="#modal-export">
-                    <span>{{ 'global.modal-confirm'|trans }}</span>
-                </button>
-                {% else %}
-                    <button id="print-selection" data-reload="true" data-href="#modal-print" class=" btn btn-lg  btn-primary js-print-action">
-                        <span>{{ 'global.modal-confirm'|trans }}</span>
-                    </button>
-            {% endif %}
+            <button type="submit"  class="btn btn-lg  btn-primary"><span>{{ 'global.modal-confirm'|trans }}</span></button>
         </div>
     </div>
 </div>

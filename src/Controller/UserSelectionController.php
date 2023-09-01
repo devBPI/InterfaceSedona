@@ -5,6 +5,8 @@ namespace App\Controller;
 
 use App\Entity\UserSelectionList;
 use App\Entity\UserSelectionDocument;
+use App\Model\Form\ExportNotice;
+use App\Service\NoticeBuildFileService;
 use App\Service\Provider\SearchProvider;
 use App\Service\SelectionListService;
 use App\Service\LoggerService;
@@ -15,8 +17,6 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Annotation\Route;
-
-use Monolog\Logger;
 
 /**
  * @route("/selection", name="user_selection")
@@ -42,34 +42,24 @@ final class UserSelectionController extends AbstractController
 	 */
   	private $selectionService;
 
-	/**
-	 * @var LoggerService
-	 */
-  	private $loggerService;
 
-	/**
-	* @var Logger
-	*/
-	private $logger;
+    /**
+     * @var NoticeBuildFileService
+     */
+    private $buildFileContent;
 
-	/**
-	* UserSelectionController constructor.
-	* @param SelectionListService $selectionListService
-	* @param Logger $logger
-	*/
-	public function __construct(SelectionListService $selectionListService, LoggerService $loggerService, SearchProvider $searchProvider)//, Logger $logger)
-	{
+	public function __construct(
+        SelectionListService $selectionListService,
+        SearchProvider $searchProvider,
+        NoticeBuildFileService $buildFileContent
+    ){
 		$this->selectionService = $selectionListService;
-		$this->loggerService = $loggerService;
 		$this->searchProvider = $searchProvider;
+        $this->buildFileContent = $buildFileContent;
 	}
 
     /**
      * @Route("/", methods={"GET","POST"}, name="_index")
-     * @param Request $request
-     * @return \Symfony\Component\HttpFoundation\Response
-     * @throws \Doctrine\ORM\ORMException
-     * @throws \Doctrine\ORM\OptimisticLockException
      */
     public function selectionAction(Request $request): Response
     {
@@ -81,9 +71,9 @@ final class UserSelectionController extends AbstractController
 
         return $this->render( 'user/selection.html.twig',
             $this->selectionService->getSelectionObjects() +[
-                'printRoute'=> $this->generateUrl('selection_print', ['format' => 'pdf']),
-                'toolbar'=> UserSelectionDocument::class,
-                'isNotice' => false,
+                'printRoute'=> $this->generateUrl('user_selection_print', ['format' => ExportNotice::FORMAT_PDF]),
+                'toolbar'   => UserSelectionDocument::class,
+                'isNotice'  => false,
             ]
         );
     }
@@ -92,10 +82,6 @@ final class UserSelectionController extends AbstractController
     /**
      * @Security("has_role('ROLE_USER')")
      * @Route("/list/creation", methods={"POST"}, name="_list_create")
-     * @param Request $request
-     * @return \Symfony\Component\HttpFoundation\Response
-     * @throws \Doctrine\ORM\ORMException
-     * @throws \Doctrine\ORM\OptimisticLockException
      */
     public function createListAction(Request $request): Response
     {
@@ -111,9 +97,7 @@ final class UserSelectionController extends AbstractController
                 ]);
             }
 
-            $param = [
-                'error' => 'modal.list-create.mandatory-field'
-            ];
+            $param = [ 'error' => 'modal.list-create.mandatory-field'];
         }
 
         return $this->render('user/modal/creation-list-content.html.twig', $param);
@@ -121,8 +105,6 @@ final class UserSelectionController extends AbstractController
 
     /**
      * @Route("/list/ajout-documents", methods={"GET","POST"}, name="_list_add")
-     * @param Request $request
-     * @return Response
      */
     public function addListAction(Request $request): Response
     {
@@ -150,15 +132,11 @@ final class UserSelectionController extends AbstractController
 
                 return $this->render('user/modal/add-list-success.html.twig');
             } catch (\Exception $e) {
-                $params = [
-                    'error' => $e->getMessage(),
-                ];
+                $params = ['error' => $e->getMessage()];
             }
         }
 
-        $params += [
-            'lists' => $this->selectionService->getListsOfCurrentUser()
-        ];
+        $params += ['lists' => $this->selectionService->getListsOfCurrentUser()];
 
         return $this->render('user/modal/add-list-content.html.twig', $params);
     }
@@ -166,11 +144,6 @@ final class UserSelectionController extends AbstractController
     /**
      * @Security("has_role('ROLE_USER')")
      * @Route("/list/{list}/modification", methods={"GET","POST"}, name="_list_edit")
-     * @param UserSelectionList $list
-     * @param Request $request
-     * @return Response
-     * @throws \Doctrine\ORM\ORMException
-     * @throws \Doctrine\ORM\OptimisticLockException
      */
     public function editListAction(UserSelectionList $list, Request $request): Response
     {
@@ -186,9 +159,7 @@ final class UserSelectionController extends AbstractController
                 ]);
             }
 
-            $param += [
-                'error' => 'modal.list-create.mandatory-field',
-            ];
+            $param += ['error' => 'modal.list-create.mandatory-field'];
         }
 
         return $this->render('user/modal/edition-list-content.html.twig', $param);
@@ -197,11 +168,6 @@ final class UserSelectionController extends AbstractController
     /**
      * @Security("has_role('ROLE_USER')")
      * @Route("/list/document/{document}/modification/commentaire", methods={"GET","POST"}, name="_list_document_comment_edit")
-     * @param UserSelectionDocument $document
-     * @param Request $request
-     * @return Response
-     * @throws \Doctrine\ORM\ORMException
-     * @throws \Doctrine\ORM\OptimisticLockException
      */
     public function editDocumentCommentAction(UserSelectionDocument $document, Request $request): Response
     {
@@ -219,62 +185,64 @@ final class UserSelectionController extends AbstractController
 
 
     /**
-     * @Route("/list/check", methods={"GET","POST"}, name="_check_list_document")
-     * @param Request $request
-     * @return JsonResponse
-     * @throws \Doctrine\ORM\ORMException
-     * @throws \Doctrine\ORM\OptimisticLockException
+     * @Route("/list/check/{action}", methods={"GET","POST"}, name="_check_list_document")
      */
-    public function checkListsPermalinks(Request $request): JsonResponse
+    public function checkListsPermalinks(Request $request, string $action): Response
     {
         $contents = json_decode($request->getContent(), true);
-        $items = [];
-        $listPermalinkNotice = [];
-        if($xml = $this->prepareXmlRequest($contents['notices'])){
-            $listPermalinkNotice = $this->selectionService->getPermalinks($this->searchProvider->CheckValidNoticePermalink($xml));
-            $items['notices'] = $listPermalinkNotice;
-        }
+        $items = ['notices'=>[],'autorites'=> [], 'indices' => []];
 
+        if($xml = $this->prepareXmlRequest($contents['notices'])){
+            $items['notices'] = $this->selectionService->getPermalinks($this->searchProvider->CheckValidNoticePermalink($xml));
+        }
         if($xml =  $this->prepareXmlRequest($contents['autorities'])){
             $items['autorites'] = $this->selectionService->getPermalinks($this->searchProvider->CheckValidAuthorityPermalink($xml));
-            $listPermalinkNotice = array_merge($listPermalinkNotice,$items['autorites']) ;
         }
         if( $xml = $this->prepareXmlRequest($contents['indices'])){
             $items['indices'] = $this->selectionService->getPermalinks($this->searchProvider->CheckValidIndicePermalink($xml));
-            $listPermalinkNotice =  array_merge($listPermalinkNotice, $items['indices']);
         }
-
-        $listPermalinkNotice =  array_unique($listPermalinkNotice);
+        $listPermalinkNotice =  array_unique(array_values(array_merge($items['notices'],$items['autorites'],$items['indices'])));
 
         $request->getSession()->set('ItemsNotAvailable', json_encode($items)); //Important de se trouver avant les returns pour le capter dans src/Service/NoticeBuildFileService.php->getNoticeWrapper
 
         if (count($listPermalinkNotice)===0 || (count($listPermalinkNotice) === 1 && empty($listPermalinkNotice[0])) ){
-            return new JsonResponse([
-                    $request->get('action', 'export')]
-            );
+            return new Response ("", Response::HTTP_NO_CONTENT);
         }
-        return new JsonResponse([
-             $this->renderView('user/modal/check-permalink-list-success.html.twig',
-                $this->selectionService->getSelectionOfobjectByPermalinks($listPermalinkNotice)+
-                ['action'=>$request->get('action', 'export')]
-            )]
+
+        return $this->render('user/modal/check-permalink-list-success.html.twig',
+            $this->selectionService->getSelectionOfobjectByPermalinks($listPermalinkNotice)+['action'=> $action]
         );
     }
+
     /**
-     * @param $payload
+     * @Route("/print/selection.{format}", methods={"GET","HEAD"}, name="_print", requirements={"format" = "html|pdf|txt"}, defaults={"format" = "pdf"})
+     */
+    public function printAction(Request $request) :Response
+    {
+        $sendAttachement = ExportNotice::createFromRequest($request)
+            ->setNotices($request->get('notices'))
+            ->setAuthorities($request->get('authorities'))
+            ->setIndices($request->get('indices'))
+        ;
+
+        return $this->buildFileContent->buildFile($sendAttachement, UserSelectionDocument::class);
+    }
+
+    /**
+     * @param array<string>|null $payload
      * @return string
      */
-    private function prepareXmlRequest($payload )
+    private function prepareXmlRequest(?array $payload ) :string
     {
-        $payload    = json_decode($payload, true);
-        $list = [];
-        $list[]='<list>';
+        if (empty($payload) || !is_array($payload)) {
+            return "";
+        }
 
+        $list = [];
         foreach ($payload as  $item){
             $list[]=sprintf('<string>%s</string>', $item);
         }
-        $list[] = '</list>';
 
-        return implode(' ', $list);
+        return '<list>'.implode(' ', $list).'</list>';
     }
 }

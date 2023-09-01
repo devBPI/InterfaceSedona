@@ -287,13 +287,31 @@ class NoticeAvailable
         return $this->disponibilite;
     }
 
-    public function getPrintLocation(): ?string
+    public function getPrintLocation(): array
     {
-        $location = $this->getLocation();
+        $payload = [];
+        if (!empty($this->getLocation())) {
+            $payload[] = $this->getLocation();
+        }
         if (!empty($this->getCategory())) {
-            $location .= ' - '.$this->getCategory();
+            $payload[] = $this->getCategory();
         }
 
-        return $location;
+        return $payload;
+    }
+
+    public function getRayonnage() : array
+    {
+        $payload = [];
+        if (!empty($this->getAvailability())) {
+            $payload[] = $this->getAvailability();
+        }
+        if (!empty($this->getCote())) {
+            $payload[] = $this->getCote();
+        }
+        if (!empty($this->getSupport())) {
+            $payload[] = $this->getSupport();
+        }
+        return $payload;
     }
 }

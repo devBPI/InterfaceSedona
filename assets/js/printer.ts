@@ -1,40 +1,95 @@
 export class Printer {
-    constructor(private element: HTMLLinkElement) {
+    private readonly idModalPrint :string = '#modal-print';
+    private readonly idModalSendByMail :string = '#modal-send-by-mail';
+    private readonly idModalCheck :string = '#modal-selection-export';
+
+    constructor() {
         this.initListener();
+        this.copyNoticesIdOnHiddenFiled();
     }
 
-    private initListener() {
-        this.element.addEventListener('click', () => this.onClick());
+    private initListener() :void
+    {
+        $(this.idModalPrint).on('shown.bs.modal',  (event) => {
+            this.copyNoticesIdOnHiddenFiled();
+        });
+
+        $(this.idModalSendByMail).on('shown.bs.modal',  (event) => {
+            this.copyNoticesIdOnHiddenFiled();
+        });
+
+        $(this.idModalCheck).on('shown.bs.modal',  (event) => {
+            this.checkBeforeOpenModal(event.target, event.relatedTarget);
+        });
     }
 
-    private onClick(): void {
-        let permalinkAuthority = $('.js-authority:checked');
-        let permalinkNotice = $('.js-notice:checked');
-        let permalinkIndice = $('.js-indicecdu:checked');
-        let notice = [];
-        let authority = [];
+    private copyNoticesIdOnHiddenFiled(): void
+    {
+        let value = JSON.stringify(this.getNoticesIdSelected('notice'));
+        document.querySelectorAll('.js-print-notices').forEach((input :HTMLInputElement) => { input.value = value; });
+
+        value = JSON.stringify(this.getNoticesIdSelected('authority'));
+        document.querySelectorAll('.js-print-authorities').forEach((input :HTMLInputElement) => { input.value = value; });
+
+        value = JSON.stringify(this.getNoticesIdSelected('indicecdu'));
+        document.querySelectorAll('.js-print-indices').forEach((input :HTMLInputElement) => { input.value = value; });
+    }
+
+    private getNoticesIdSelected(type :string) :any[]
+    {
         let indice= [];
-        permalinkNotice.each(function () {
-            if ($(this).data('notice')){
-                notice.push($(this).data('notice'));
+        document.querySelectorAll('.js-'+type+':checked').forEach((input:HTMLInputElement)=>{
+            if (type in input.dataset){
+                indice.push(input.dataset[type]);
             }
         });
-        permalinkAuthority.each(function () {
-            if ($(this).data('authority')){
-                authority.push($(this).data('authority'));
-            }
-        });
+        return indice;
+    }
 
-        permalinkIndice.each(function () {
-            if ($(this).data('indicecdu')){
-                indice.push($(this).data('indicecdu'));
-            }
-        });
+    // Check si des elements de ne la liste ne sont plus dabs le catalogue
+    private checkBeforeOpenModal(modal: HTMLElement, button:HTMLElement) :void
+    {
+        let originalContent = modal.innerHTML;
 
+        fetch( button.dataset.url, {
+            method: 'post',
+            body:  JSON.stringify({
+                'autorities': this.getNoticesIdSelected('authority'),
+                'notices': this.getNoticesIdSelected('notice'),
+                'indices': this.getNoticesIdSelected('indicecdu')
+            })
+        })
+            .then(httpResponse => {
+                    if (httpResponse.status == 204) {
+                        this.openModalAfterCheck(button);
+                        return;
+                    }
+                    httpResponse.text().then(html => {
+                        modal.innerHTML = html;
+                        modal.querySelector('button[type=submit]').addEventListener('click',(event)=>{
+                            event.stopPropagation();
+                            event.preventDefault();
+                            this.openModalAfterCheck(button);
+                            modal.innerHTML = originalContent;
 
-        $('.js-print-notices').val(JSON.stringify(notice));
-        $('.js-print-authorities').val(JSON.stringify(authority));
-        $('.js-print-indices').val(JSON.stringify(indice));
+                        });
+                    });
+                }
+            )
+            .catch(error => {
+                console.error(error);
+            })
+    }
+
+    private openModalAfterCheck( button:HTMLElement) :void
+    {
+        $(this.idModalCheck).modal('hide');
+        console.log(button,button.dataset.action );
+        if(button.dataset.action == 'print'){
+            $(this.idModalPrint).modal('show');
+        } else {
+            $(this.idModalSendByMail).modal('show');
+        }
     }
 }
 

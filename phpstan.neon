@@ -1,14 +1,17 @@
 includes:
-    - vendor/phpstan/phpstan-doctrine/extension.neon
-    - vendor/phpstan/phpstan-doctrine/rules.neon
+    - phpstan-baseline.neon
+    #- vendor/phpstan/phpstan-doctrine/extension.neon
+    #- vendor/phpstan/phpstan-doctrine/rules.neon
     - vendor/phpstan/phpstan-symfony/extension.neon
     - vendor/phpstan/phpstan-symfony/rules.neon
 
 parameters:
     symfony:
         containerXmlPath: var/cache/dev/srcDevDebugProjectContainer.xml
-        # or with Symfony 5+
-        #containerXmlPath: var/cache/dev/App_KernelDevDebugContainer.xml
-    # If you're using PHP config files for Symfony 5.3+, you also need this for auto-loading of `Symfony\Config`:
-    #scanDirectories:
-    #    - var/cache/dev/Symfony/Config
+    level: 5
+    paths:
+        - bin/
+        - config/
+        - public/
+        - src/
+        - tests/

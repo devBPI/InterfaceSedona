@@ -1,0 +1,27 @@
+{% block subject %}
+    {{ 'modal.report.field.subject' | trans }}
+{% endblock %}
+
+{% block body_html %}
+    Bonjour,
+    <p>
+        {{ "modal.report.field.permalink"|trans }}   : <a href="{{ data.permalink | raw }}">{{ data.permalink}}</a>
+    </p>
+    <p>
+        {{ "modal.report.field.message"|trans }}   :{{ data.message}}
+    </p>
+    <p>
+        {{ "modal.report.field.last-name"|trans }}: {{ data.lastName}}
+    </p>
+    <p>
+        {{ "modal.report.field.first-name"|trans }}:{{ data.firstName}}
+    </p>
+    <p>
+        {{ "modal.report.email"|trans }}    : <a href="mailto:{{ data.email }}">{{ data.email}}</a>
+    </p>
+{% endblock %}
+
+{% block body_text %}
+    {{ data.message }}
+{% endblock %}
+

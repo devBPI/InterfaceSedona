@@ -2,15 +2,13 @@
 	<div class="dropdown mt-3" lang="fr">
 		<span class="sr-only" aria-label="{{ ('bloc.search-header-footer.header.order-aria')|trans }}">{{ ('bloc.search-header-footer.header.order')|trans }}</span>
 		<button class="dropdown-toggle" type="button" id="{{ ('bloc.search-header-footer.header.order-aria')|trans }}" data-toggle="dropdown" aria-haspopup="listbox" aria-expanded="false">
-			{% for index, value in constant('App\\Model\\Search\\SearchQuery::SORT') %}
-				{% if value == currentSort %}
-					{{ ('bloc.search-header-footer.header.order-'~ index)|trans }}
-				{% endif %}
-			{% endfor %}
+			{{('bloc.search-header-footer.header.order-labels.'~ objSearch.results.sort)|trans }}
 		</button>
 		<div class="dropdown-menu" aria-labelledby="{{ ('bloc.search-header-footer.header.order-aria')|trans }}" role="listbox" tabindex="-1">
-            {% for index, value in constant('App\\Model\\Search\\SearchQuery::SORT') %}
-                <a href="{{ add_sorting_to_uri(value) }}"  class="dropdown-item" role="option">{{ ('bloc.search-header-footer.header.order-'~ index)|trans }}</a>
+            {% for sort in constant('App\\Model\\Search\\SearchQuery::SORT') if objSearch.results.sort != sort %}
+                <a href="{{ add_sorting_to_uri(sort) }}"  class="dropdown-item" role="option">
+					{{ 'bloc.search-header-footer.header.order-choice'|trans }} {{ ('bloc.search-header-footer.header.order-labels.'~ sort)|trans }}
+				</a>
             {% endfor %}
 		</div>
 	</div>

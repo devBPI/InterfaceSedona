@@ -1,4 +1,3 @@
-{# templates/bundles/TwigBundle/Exception/error404.html.twig #}
 {% extends app.request.isXmlHttpRequest() ? "empty.html.twig" : "base.html.twig" %}
 
 {% block title %}{{ 'error.page_not_found'|trans }}{% endblock %}

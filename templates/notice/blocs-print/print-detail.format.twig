@@ -1,26 +1,34 @@
 {% import "common/macros/print-macro.html.twig" as macros %}
 {% spaceless %}
-{% if isPrintLong %}
-   {% include 'notice/blocs-print/print-long-detail.format.twig' %}
-{% else %}
-   {% include 'notice/blocs-print/print-resume-detail.format.twig' %}{% endif %}
-{% set lineBreak = '' %}
-{% if format == 'pdf' %}
-    {% set lineBreak = '<br/>' %}
-    <li><a href="{{ absolute_url(path('record_bibliographic', {"permalink": notice.permalink})) }}">Permalien</a></li>
-{% else %}{% if format!='pdf' %}{{"\n"}}{% endif %}Permalien : {{ absolute_url(path('record_bibliographic', {"permalink": notice.permalink})) ~ "\n"  }}
-{% endif %}
-{% for copy in notice.copies %}{% if copy.isAvailable() %}
-{% if format == 'pdf' %}{{ lineBreak |raw }}<li>{% endif %}
-{% if  copy.getAvailability  %}{{ copy.getAvailability }}{% if  copy.getCote or copy.getSupport  %}, {% endif %}{% endif %}
-{% if  copy.getCote  %}{{ copy.getCote |raw }}{% if copy.getSupport %}, {% endif %}{% endif %}
-{% if  copy.getSupport  %}{{ copy.getSupport |raw}}{% endif %}
-{% if format == 'pdf' %}</li>{% else  %}{{ "\n" }}{% endif %}
-{% if isPrintLong %}{{- pdf_occurence(copy, 'getNotes', "bloc.autority-result-information.nots"|trans, format)|raw -}}{% endif %}
-{{- pdf_occurence(copy, 'getPrintLocation','', format)|raw -}}
-{% else %}{% if format == 'pdf' %}{{ lineBreak |raw }}{% else %}{{ "\n" }}{% endif %}
-{{- "\n" ~ 'bloc.notice-simple.document-unavailable'|trans -}}{% endif %}{% endfor %}
+{% include isPrintLong ? 'notice/blocs-print/print-long-detail.format.twig' : 'notice/blocs-print/print-resume-detail.format.twig' %}
+{% set available %}{% spaceless %}
+   {% for copy in notice.copies %}{%- if copy.isAvailable() -%}
+      {% if attachement is defined and attachement.isFormatEmail() %}
+         {%- set rayon = [] -%}
+         {%- if copy.availability is defined and copy.availability %}{% set rayon = rayon|merge([copy.availability]) %}{% endif -%}
+         {%- if copy.cote is defined and copy.cote %}{% set rayon = rayon|merge(['<b>'~copy.cote~'</b>']) %}{% endif -%}
+         {%- if copy.support is defined and copy.support %}{% set rayon = rayon|merge([copy.support]) %}{% endif -%}
+         {%- if isPrintLong and copy.notes is defined and copy.notes %}{% set rayon = rayon|merge(["bloc.autority-result-information.nots"|trans])|merge(copy.notes) %}{% endif -%}
+         {%- if copy.printLocation is defined and copy.printLocation %}{% set rayon = rayon|merge(copy.printLocation) %}{% endif -%}
+         {{- pdf_occurence_data(rayon,'', format, ' - ')|raw -}}
+      {% else %}
+         {{- pdf_occurence(copy,'getRayonnage', '', format, ', ')|raw -}}
+         {% if isPrintLong %}{{- pdf_occurence(copy, 'getNotes', "bloc.autority-result-information.nots"|trans, format)|raw -}}{% endif %}
+         {{- pdf_occurence(copy, 'getPrintLocation','', format, '- ')|raw -}}
+      {% endif %}
+   {%- else -%}
+      {{- pdf_occurence_data('bloc.notice-simple.document-unavailable'|trans , '', format)|raw -}}
+   {%- endif -%}{% endfor %}
+{% endspaceless %}{% endset %}
+{%- if available and attachement is defined and attachement.isFormatEmail() -%}
+   <li>
+      <div><br/><b>{{ 'bloc.print.exemplaire'|trans }}</b></div>
+      <ul>{{ available|raw }}</ul>
+   </li>
+{%- elseif available -%}
+  {{ available|raw }}
+{%- endif -%}
 {% for link in notice.links | sort((a, b) => a.title <=> b.title) %}
-{% if format == 'pdf' %}{{ macros.availibility_access_to_bpi(link, notice, format) }}{% else %}{{  macros.availibility_access_to_bpi_txt(link, notice)}}{% endif %}
+   {% if format == 'pdf' %}{{ macros.availibility_access_to_bpi(link, notice, format) }}{% else %}{{  macros.availibility_access_to_bpi_txt(link, notice)}}{% endif %}
 {% endfor %}
 {% endspaceless %}

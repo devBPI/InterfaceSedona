@@ -73,7 +73,7 @@ Dockerfile
 README.md
 docker-compose.yml
 sonar-project.properties
-docs
+.docs
 tests
 
 ### Project Files

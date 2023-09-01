@@ -26,20 +26,20 @@ final class ReportError implements MessageInfoInterface, PersonneInterface
      */
     private $permalink;
 
-    /**
-     * @return string
-     */
+    public function __construct(?string $permalink)
+    {
+        $this->permalink = $permalink;
+    }
+
     public function getPermalink(): ?string
     {
         return $this->permalink;
     }
 
-    /**
-     * @param string $permalink
-     */
-    public function setPermalink(?string $permalink): void
+    public function setPermalink(?string $permalink): self
     {
         $this->permalink = $permalink;
+        return $this;
     }
 
 

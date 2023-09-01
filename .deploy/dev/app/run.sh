@@ -1,8 +1,6 @@
 #!/bin/bash
 
-make install-wait-for-it
 make install-wkhtmltopdf
-make install-php-ext
 
 echo "\033[30;48;5;82m > Wait to Postgres ready -------------------------------------------------------- \033[0m"; \
 wait-for-it $POSTGRES_HOST:$POSTGRES_PORT -s -t 500 -- echo "        >  Postgres is ready"

@@ -51,7 +51,7 @@ class SearchProvider extends AbstractProvider
             'filters' => $this->templating->render('search/facet-filters.xml.twig', ['attributes' => $search->getFilters()->getAttributes(), 'translateNames'=>true]),
             'facets' => $this->templating->render('search/facet-filters.xml.twig', ['attributes' => $search->getFacets()->getAttributes(), 'translateNames'=>true]),
             'page' => $search->getPage(),
-            'sort' => $search->getSort()??'DEFAULT',
+            'sort' => $search->getSort()??SearchQuery::SORT_DEFAULT,
             'rows' => $search->getRows()
         ]);
 

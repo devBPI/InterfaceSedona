@@ -21,11 +21,10 @@ class UserSelectionDocumentRepository extends EntityRepository
     /**
      * @param LdapUser $user
      * @param array $permalinks
-     * @param array $listId
      * @return array|null
      * @throws \Doctrine\ORM\NoResultException
      */
-    public function getByPermalinks(LdapUser $user, array $permalinks=[], array $listId=[]): array
+    public function getByPermalinks(LdapUser $user, array $permalinks=[]): array
     {
             $sql = <<<PGSQL
 SELECT

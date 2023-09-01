@@ -84,7 +84,6 @@ import Autocomplete from './autocomplete';
                     var op = {'show': true};
 
                     var $modal = $($this.data('href')),
-                        reload = $this.attr('data-reload') !== undefined,
                         overrideContent = $this.attr('data-content');
 
                     if ($this.is('a[href]')) {
@@ -166,7 +165,6 @@ import Autocomplete from './autocomplete';
         .on('click', '[data-toggle=modal]', function(e) {
             var $this = $(this),
                 $modal = $($this.data('target')),
-                reload = $this.attr('data-reload') !== undefined,
                 overrideContent = $this.attr('data-content');
 
             if ($this.is('a, :submit') ) {
@@ -190,38 +188,27 @@ import Autocomplete from './autocomplete';
 
             return false;
         })
-        .on('click', '[data-toggle="tabajax"]', function(e) {
-            var $this = $(this),
-                loadurl = $this.attr('href'),
-                targ = $this.attr('data-target');
-
-            $.get(loadurl, function(data) {
-                $(targ).html(data);
-            });
-
-            $this.tab('show');
-            return false;
-        })
         .on('ifChanged click', '[data-toggle="check-all"]', function () {
             let $this = $(this),
-                $form = $(this).parents('form'),
+                $form = $this.parents('form'),
                 selector = $form.find(':checkbox')
             ;
-            if ($(this).data('target') !== undefined) {
-                selector = $(this).data('target');
+            if ($this.data('target') !== undefined) {
+                selector = $this.data('target');
             }
+            var $selector = $(selector);
 
-            $(selector).attr('checked', $(this).is(':checked'));
-            $(selector).on('ifChanged click', function () {
-                if ($(this).is(':checked') == false) {
+            $selector.attr('checked', $this.is(':checked'));
+            $selector.on('ifChanged click', function () {
+                if ($this.is(':checked') == false) {
                     $this.removeAttr('checked');
                     $this.parents('div.check').removeClass('checked');
                 }
             });
-            if ($(this).is(':checked')) {
-                $(selector).parents('div.check').addClass('checked');
+            if ($this.is(':checked')) {
+                $selector.parents('div.check').addClass('checked');
             } else {
-                $(selector).parents('div.check').removeClass('checked');
+                $selector.parents('div.check').removeClass('checked');
             }
         })
         .ready(function () {
