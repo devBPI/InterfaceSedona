@@ -9,7 +9,7 @@ use Symfony\Component\Validator\Constraints as Asset;
  * Class SendByMail
  * @package App\Model\Form
  */
-class SendByMail extends ExportNotice
+class SendByMail extends ExportNotice  implements ExportInterface
 {
 
     /**
@@ -61,5 +61,10 @@ class SendByMail extends ExportNotice
     public function getReciever(): ?string
     {
         return $this->reciever;
+    }
+
+    public function getMaxExportNotice() :int
+    {
+        return 50;
     }
 }
