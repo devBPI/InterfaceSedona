@@ -12,15 +12,19 @@ interface ExportInterface
 
     public function getFormatType(): ?string;
 
-    public function getIndices(): ?string;
-
     public function hasNotices(): bool;
 
+    public function getNotices(): string;
+
     public function getNoticesArray(): array;
+
+    public function getAuthorities(): string;
 
     public function hasAuthorities(): bool;
 
     public function getAuthoritiesArray(): array;
+
+    public function getIndices(): ?string;
 
     public function hasIndices(): bool;
 
