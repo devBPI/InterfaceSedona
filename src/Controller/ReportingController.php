@@ -131,4 +131,12 @@ final class ReportingController extends AbstractController
                 'form' => $form->createView(),
             ]);
     }
+
+    /**
+     * @Route("/print-export-reset", name="print_export_reset")
+     */
+    public function printExportResetAction(Request $request): Response
+    {
+        return $this->render('common/modal/print-export-content.html.twig' );
+    }
 }

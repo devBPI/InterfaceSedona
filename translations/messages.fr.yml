@@ -110,7 +110,7 @@ modal:
   email-example: (nom@exemple.com)
   wait-message: Veuillez patienter
   confirm-message:
-    print: Ils n'apparaîtront pas dans la liste que vous imprimez/exportez
+    print: Ils n'apparaîtront pas dans la liste que vous exportez/imprimez
     send-by-mail: Ils n'apparaîtront pas dans la liste que vous envoyez par email
   check-list:
     title: "Attention, un ou plusieurs éléments de votre sélection ne sont plus présents dans le catalogue"

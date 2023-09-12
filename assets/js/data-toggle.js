@@ -63,6 +63,16 @@ import Autocomplete from './autocomplete';
                             object.$cible.removeAttr('disabled');
                         }
                     },
+                    "disable-and-uncheck-if-no-found": function () {
+                        if (object.find()) {
+                            object.$cible.get(0).checked = false;
+                            object.$cible
+                                .attr('disabled', 'disabled')
+                                .trigger('change');
+                        } else {
+                            object.$cible.removeAttr('disabled');
+                        }
+                    },
                     "enable-if-no-found": function () {
                         if (object.find()) {
                             object.$cible.filter(':disabled').removeAttr('disabled');
