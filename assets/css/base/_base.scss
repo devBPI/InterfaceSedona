@@ -85,7 +85,7 @@ select {
 }
 
 .invalid-feedback {
-	@include font-size(13);
+	font-size: rem(13);
 }
 
 .disabled {

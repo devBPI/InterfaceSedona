@@ -1,4 +1,4 @@
-<div class="modal-form">
+<div class="modal-form" id="sucess-message" action="{{ path('suggest_by_mail') }}">
 	<div class="modal-body">
 		Votre message a été envoyé avec succès.
 	</div>
@@ -8,3 +8,7 @@
 			{{ 'global.modal-btn-close'|trans }}</button>
 	</div>
 </div>
+
+<script>
+	document.querySelector('#hidden_header').style.display = "none";
+</script>

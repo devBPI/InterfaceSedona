@@ -54,3 +54,10 @@ yarn-error.log
 
 /auth.txt
 /bpi.ovpn
+/auth.conf
+/bpi-ovpn.txt
+
+###> phpunit/phpunit ###
+/phpunit.xml
+.phpunit.result.cache
+###< phpunit/phpunit ###

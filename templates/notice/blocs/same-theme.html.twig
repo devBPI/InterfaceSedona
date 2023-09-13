@@ -8,7 +8,7 @@
 			<div class="slick-carousel js-carousel-secondary" role="region" aria-roledescription="carrousel">
 				{% for subnotice in children %}
 					<div class="carousel__slide">
-						<a href="{{ path('record_bibliographic', {'permalink': subnotice.permalink}) }}" class="carousel__slide-link">
+						<a href="{{ path('record_bibliographic', {'permalink': subnotice.permalink}) }}" class="carousel__slide-link gtm-carousel-theme">
 							<span class="sr-only">
 								{{ subnotice.titles[0] }}
 							</span>

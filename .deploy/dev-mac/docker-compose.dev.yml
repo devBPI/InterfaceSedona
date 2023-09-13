@@ -1,0 +1,15 @@
+version: '3.5'
+
+services:
+
+  app:
+    volumes:
+      - app-vendor:/var/www/html/vendor/
+      - app-cache:/var/www/html/var/cache/
+      - ./:/var/www/html/
+      - "$COMPOSER_LOCAL_HOME:$COMPOSER_CONTAINER_HOME"
+      - ./.deploy/dev/app:/docker-entrypoint-init.d
+
+volumes:
+  app-vendor:
+  app-cache:

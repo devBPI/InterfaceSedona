@@ -18,6 +18,9 @@
 	}
 
 	&--icone {
+		margin: 0;
+		padding: $spacer 0;
+		border-bottom: $border-default;
 
 		.link {
 			padding: 0 rem(5);
@@ -62,7 +65,10 @@
 			}
 
 			&__input {
-				max-width: rem(90);
+				max-width: rem(70);
+				text-align: center;
+				line-height: 1;
+				padding-top: rem(4);
 			}
 
 		}	
@@ -91,6 +97,17 @@
 					text-decoration: underline;
 					color: $red;
 				}
+			}
+		}
+	}
+
+	.page-item:first-child {
+
+		.page-link {
+
+			&--nolink {
+				border-left: 0;
+				border-right: 0;
 			}
 		}
 	}

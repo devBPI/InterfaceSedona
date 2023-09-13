@@ -35,7 +35,7 @@
 
 			a {
 				color: $black;
-				@include font-size(12);
+				font-size: rem(12);
 
 				&:hover,
 				&:focus {

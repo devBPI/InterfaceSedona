@@ -155,6 +155,9 @@ header:
 #          name: FAQ Bpi Numérique
 #          link: https://www.bpi.fr/faq-bpi-numerique/
 
+  Replay:
+     link: https://replay.bpi.fr/
+
 help:
   La recherche:
     link: #

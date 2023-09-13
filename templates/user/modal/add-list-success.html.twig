@@ -9,17 +9,21 @@
 
     <div class="modal-body">
         <div class="list-result border-0 list-result--modal" id="resume-container"></div>
-
-        <p>{{ 'modal.list-add.message-success'|trans }}</p>
+        <div class="list-result border-0 list-result--modal" id="resume-container"></div>
 
         {% if not is_granted('IS_AUTHENTICATED_FULLY') %}
-            <a href="{{ path('user_selection_index') }}" class="btn btn-primary">
-                {{ 'modal.list-add.btn-selection'|trans }}</a>
+            <div class="d-flex align-items-center flex-wrap">
+                <p class="mt-3 mr-3">{{ "modal.list-add.text-before-btn" | trans }}</p>
+                <a href="{{ path('user_selection_index') }}" class="btn btn-primary">
+                    {{ 'modal.list-add.btn-selection'|trans }}</a>
+            </div>
+
         {% endif %}
     </div>
 
     <div class="modal-footer">
         {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+            <p>{{ "modal.list-add.text-before-btn" | trans }}</p>
             <a href="{{ path('user_selection_index') }}" class="btn btn-lg btn-primary">
                 {{ 'modal.list-add.btn-selection'|trans }}</a>
         {% else %}

@@ -44,7 +44,7 @@ Exigences sur l'accessibilité (niveau 3)
 liste des dépendances nécessaires au bon fonctionnement de l'appli :
 
 * Git 1.7.2.3 ou supérieure (http://www.git-scm.com/downloads)
-* PHP 7.2.* qui est la dernière version stable depuis Février 2017
+* PHP 7.4 
 * Postgre 9.6
 * Apache 2.4
 

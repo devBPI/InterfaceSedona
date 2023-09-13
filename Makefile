@@ -12,7 +12,7 @@ MODULE_NAME = $(lastword $(subst -, ,$(lastword $(subst /, ,$(COMPOSER_PROJECT_N
 # GAV
 GROUP_ID = fr.$(CLIENT_NAME).$(PROJECT_NAME)
 ARTIFACT_ID = $(PROJECT_NAME)-$(MODULE_NAME)
-VERSION = $(subst -dev,-SNAPSHOT,${COMPOSER_PROJECT_VERSION})
+VERSION = $(subst -RC,-rc.,$(subst -dev,-SNAPSHOT,${COMPOSER_PROJECT_VERSION}))
 # Output
 PACKAGE_NAME ?= ${ARTIFACT_ID}.${VERSION}.tgz
 DOCKER_TAG ?= ${CI_REGISTRY_IMAGE}/site:latest
@@ -41,7 +41,7 @@ COMPOSER ?= $(PHP_BIN) -d memory_limit=-1 $(shell which composer 2> /dev/null)
 AUTOLOAD_OPTIONS ?= -o -a
 CINSTALL_OPTIONS ?= --no-interaction --prefer-dist --no-progress
 
-PHPSTAN_LEVEL ?= 5
+PHPSTAN_LEVEL ?= 1
 
 # Symfony options
 SF_VERSION := $(shell expr `grep '"symfony/symfony"' composer.json | cut -d':' -f2 | grep -oe "[[:digit:]].[[:digit:]]" | cut -d. -f1`)
@@ -62,12 +62,13 @@ LOG_DIR = $(VAR_DIR)/logs
 default: c-install show-vars package
 .PHONY: default
 
-install: c-install cc db-init assets
+install: .env c-install cc db-init assets
 .PHONY: install
 
 show-vars:
 	@printf "PHP BINARY: \033[32m${PHP_BIN}\033[39m\n"
 	@printf "COMPOSER PROJECT: \033[32m${COMPOSER_PROJECT_NAME}\033[39m\n"
+	@printf "COMPOSER DESCRIPTION: \033[32m${COMPOSER_PROJECT_DESCRIPTION}\033[39m\n"
 	@printf "CLIENT: \033[32m${CLIENT_NAME}\033[39m\n"
 	@printf "PROJECT: \033[32m${PROJECT_NAME}\033[39m\n"
 	@printf "MODULE: \033[32m${MODULE_NAME}\033[39m\n"
@@ -98,7 +99,7 @@ endif
 	@printf "App mode: \033[32m${APP_ENV}\033[39m.\n"
 .PHONY: env-%
 
-# génération du fichier sonar a partir du fichier composer
+# génération du fichier sonar a partir du fichier composer
 sonar-project.properties:
 	sed -E \
 		-e 's/sonar.projectKey=[^\n]+/sonar.projectKey=${GROUP_ID}:${ARTIFACT_ID}/g' \
@@ -143,7 +144,7 @@ dev-dotenv: dotenv-make
 
 dotenv-clear:
 	@printf "Clear dotenv files \n"
-	rm -rf .deploy .env
+	rm -rf .env
 	touch .env
 	chmod 600 .env
 .PHONY: dotenv-clear
@@ -180,7 +181,6 @@ else
 	@$(error Missing docker-compose)
 endif
 .PHONY: stack-shell
-
 
 stack-%: get-uid
 ifdef FIG
@@ -224,6 +224,9 @@ endif
 cache-clear:
 ifdef CONSOLE
 	$(CONSOLE) --env=${APP_ENV} cache:clear --no-warmup
+#	$(CONSOLE) --env=${APP_ENV} doctrine:cache:clear-metadata
+#	$(CONSOLE) --env=${APP_ENV} doctrine:cache:clear-query
+#	$(CONSOLE) --env=${APP_ENV} doctrine:cache:clear-result
 else
 	rm -rf $(CACHE_DIR)/${APP_ENV}/*
 endif
@@ -259,19 +262,32 @@ cc: autoload cache-clear cache-warmup
 ##	Tests
 ################################################################################
 
+functional-tests:
+	@printf "=== functional tests ============================= \n"
+	#APP_ENV=test bin/behat
+.PHONY: unit-tests
+
 unit-tests:
-	vendor/bin/phpunit
+	@printf "=== unit tests ============================= \n"
+	#./bin/phpunit tests
 .PHONY: unit-tests
 
 code-analysis:
-	vendor/bin/phpstan analyze --level $(PHPSTAN_LEVEL) src
+	@printf "=== code analysis ============================= \n"
+	#bin/phpstan analyze --level $(PHPSTAN_LEVEL) src
 .PHONY: code-analysis
 
+fixtures:
+	@printf "=== Load fixtures ============================= \n"
+	#php bin/console doctrine:fixtures:load --append
+.PHONY: fixtures
+
 security-check:
-	$(CONSOLE) security:check
+	@printf "=== security check ============================= \n"
+	@printf "deprecated TODO: replace by local check \n"
 .PHONY: security-check
 
-tests: unit-tests code-analysis security-check
+tests: clean install fixtures functional-tests unit-tests code-analysis security-check
 .PHONY: tests
 
 ################################################################################
@@ -282,7 +298,7 @@ db-create:
 .PHONY: db-create
 
 db-update:
-	$(CONSOLE) --env=$(APP_ENV) doctrine:migrations:migrate --no-interaction --allow-no-migration
+	$(CONSOLE) --env=$(APP_ENV) doctrine:migrations:migrate --no-interaction --allow-no-migration -v
 .PHONY: db-update
 
 db-populate:
@@ -311,7 +327,7 @@ db-init: db-create db-update
 
 package: $(BUILD_DIR) package_info.json c-install assets dotenv-clear
 	@printf "Building ${BUILD_DIR}/${PACKAGE_NAME}\n"
-	tar --ignore-failed-read --exclude-from=./.package-ignore -czf ${BUILD_DIR}/${PACKAGE_NAME} .
+	tar --ignore-failed-read --exclude-from=./.deploy/.package-ignore -czf ${BUILD_DIR}/${PACKAGE_NAME} .
 .PHONY: package
 
 image: package_info.json
@@ -321,3 +337,46 @@ else
 	@$(error Missing docker)
 endif
 .PHONY: image
+
+
+################################################################################
+##	Project & Dependency install command
+################################################################################
+
+install-wait-for-it:
+	@if ! [ -x "$(command -v wait-for-it)" ]; then \
+	  echo "\033[30;48;5;82m > Install wait-for-it ----------------------------------------------------------------------- \033[0m"; \
+	  apt-get update; \
+	  apt-get install -y wait-for-it; \
+	else \
+	  echo "\033[30;48;5;82m > Wait-for-it allredy install --------------------------------------------------------------- \033[0m"; \
+	fi
+.PHONY: install-wait-for-it
+
+install-wkhtmltopdf:
+	@if ! [ -x "$(command -v wkhtmltopdf)" ]; then \
+	  echo "\033[30;48;5;82m >  Install wkhtmltopdf and xvfbt ------------------------------------------------------------ \033[0m"; \
+	  apt-get update; \
+	  apt-get install -y xvfb wget openssl libxrender-dev libx11-dev libxext-dev libfontconfig1-dev libfreetype6-dev fontconfig; \
+	  wget https://github.com/wkhtmltopdf/wkhtmltopdf/releases/download/0.12.4/wkhtmltox-0.12.4_linux-generic-amd64.tar.xz -O /tmp/wkhtmltox-0.12.4_linux-generic-amd64.tar.xz; \
+	  tar xvf /tmp/wkhtmltox*.tar.xz -C /tmp; \
+	  mv /tmp/wkhtmltox/bin/wkhtmlto* /usr/bin/; \
+	  ln -nfs /usr/bin/wkhtmltopdf /usr/local/bin/wkhtmltopdf; \
+	  echo "\033[30;48;5;82m > Install wkhtmltopdf and xvfbt done -------------------------------------------------------- \033[0m"; \
+	else \
+	  echo "\033[30;48;5;82m > wkhtmltopdf allredy install --------------------------------------------------------------- \033[0m"; \
+	fi
+.PHONY: install-wkhtmltopdf
+
+
+install-php-ext:
+	echo "\033[30;48;5;82m >  Install php ldap & xsl extansion ------------------------------------------------------------ \033[0m"
+	apt-get update
+	apt-get install libldap2-dev -y
+	rm -rf /var/lib/apt/lists/*
+	docker-php-ext-configure ldap --with-libdir=lib/x86_64-linux-gnu/
+	docker-php-ext-install ldap
+	apt update && apt-get install -y libxslt-dev
+	docker-php-ext-install xsl
+	echo "\033[30;48;5;82m > Install php ldap & xsl extansion done---------------------------------------------------------- \033[0m"
+.PHONY: install-php-ext

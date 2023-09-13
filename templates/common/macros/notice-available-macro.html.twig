@@ -7,18 +7,24 @@
                 <p class="font-weight-bold">
                     <span class="availability__status">
                         {{ 'bloc.notice-simple.document-available'|trans }}
-
-                        {#% if object.labelDisponibility is not empty and object.labelDisponibility != 'bloc.notice-simple.document-available'|trans %#}
-                        {% if object.labelDisponibility is not empty and object.labelDisponibility != object.availability %}
+                        {% if object.labelDisponibility is not empty %}
                             {{ ' - '~object.labelDisponibility }}
                         {% endif %}
+                        {% if object.availability is not empty and object.availability != 'bloc.notice-simple.document-available'|trans %}
+                            {{ ' - '~object.availability }}
+                        {% endif %}
                     </span>
-                    {% if object.cote %} - {{ object.cote }}{% endif %}
-                    {% if object.support %}- {{ object.support }}{% endif %}
+                    {% if  object.valosite is empty %}
+                        {% if object.cote %} - {{ object.cote }}{% endif %}
+                        {% if object.support %}- {{ object.support }}{% endif %}
+                    {% else %}
+                        {{ "- " ~ 'bloc.notice-simple.document-available-selection' | trans}}
+                    {% endif %}
                 </p>
                 {% if object.notes %}<p>{{ object.notes|join(' ') }}</p>{% endif %}
                 <p>{% if object.bookbinding %}{{ object.bookbinding }} {% endif %}</p>
                 <p>{% if object.location %}{{ object.location }} {% endif %}{% if object.category %}- {{ object.category }} {% endif %}</p>
+                <p>{% if object.valosite %}{{ object.valosite }} {% endif %}</p>
             </li>
         {% else %}
             <li class="availability--false availability--rayon">
@@ -96,7 +102,7 @@
             </li>
         {% elseif object.url is defined and object.url is not empty %}
             <li class="availability--true availability--online">
-                <a href="{{ object.url }}" class="link link--icone-end link--inline gtm-link-online" target="_blank">
+                <a data-toggle="tooltip" data-placement="top" title="{{ 'bloc.notice-simple.tooltip-access' | trans }}"  href="{{ object.url }}" class="link link--icone-end link--inline gtm-link-online" target="_blank">
                     {{ objTitle }}
                     <img src="{{ asset('images/icones/icone-chevron-gauche.svg') }}" alt="" aria-hidden="true" />
                 </a>

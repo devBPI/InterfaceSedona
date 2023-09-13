@@ -228,5 +228,15 @@ final class NavigationService
         $request = $this->requestStack->getCurrentRequest();
        return $request->get(ObjSearch::PARAM_REQUEST_NAME, null);
     }
+    public function getSort(): ?string
+    {
+        $searchToken = $this->getSearchToken();
+        if (!$searchToken ||  !$this->session->has($searchToken)) {
+            return null;
+        }
 
+        $query = json_decode($this->session->get($searchToken), true);
+
+        return array_key_exists('sort', $query)?$query['sort']:null;
+    }
 }
