@@ -23,14 +23,17 @@ Processus de livraison
         - Label => Demande de livraison
         - assigné => Artur Covanov
         - message =>
-
-                  Bonjour,
-                  
-                  Voici le contenu de la livraison à effectuer sur la préprod/prod : [redmine_roadmap_link]
-                  La branche concernée est [git_branch_name]. Un tag [git_tag_name] fige cette version.
-                  Pouvez-vous s'il vous plaît effectuer la livraison en préprod/prod ?
-                  
-                  Je vous remercie.
+          ```markdown
+                  Bonjour,     
+                       
+                  Voici le contenu de la livraison à effectuer sur la (préprod/prod) : [redmine_roadmap_link]     
+                  La branche concernée est [git_branch_name]. Un tag [git_tag_name] fige cette version.     
+                  Pouvez-vous s'il vous plaît effectuer la livraison en (préprod/prod) ?     
+                       
+                  Je vous remercie.     
+          ```
+   - Une fois le lot valider,    
+     [créer une nouvelle PR](https://github.com/devBPI/InterfaceSedona/pulls) de la branche actuelle vers master et assigner celle-ci a Artur Covanov
 
 
 

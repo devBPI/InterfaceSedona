@@ -10,7 +10,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * Class ExportNotice
  * @package App\Model\Form
  */
-class ExportNotice
+class ExportNotice implements ExportInterface
 {
     CONST PRINT_LONG = 'print-long';
     CONST FORMAT_PDF = 'pdf';
