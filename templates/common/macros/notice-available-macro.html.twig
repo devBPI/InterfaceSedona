@@ -1,8 +1,8 @@
 {% macro availibility(object, notice ) %}
 
     {% if is_same_instance(object, "App\\Model\\NoticeAvailable")%}
-
-        {% if constant('App\\Model\\NoticeAvailable::AVAILABLE') in [object.availability, object.labelDisponibility] %}
+        {#% if constant('App\\Model\\NoticeAvailable::AVAILABLE') in [object.availability, object.labelDisponibility] %#}
+        {% if constant('App\\Model\\NoticeAvailable::AVAILABLE') in [object.availability] %}
             <li class="availability--true availability--rayon">
                 <p class="font-weight-bold">
                     <span class="availability__status">
@@ -30,7 +30,10 @@
             <li class="availability--false availability--rayon">
                 <p class="availability__status">
                     {{ 'bloc.notice-simple.document-unavailable'|trans }}
-                    <span class="availability__status-detail"> : {{ object.availability }}</span></p>
+                    {#% if object.labelDisponibility is not empty and object.labelDisponibility != 'bloc.notice-simple.document-unavailable'|trans %#}
+                    {% if object.labelDisponibility is not empty and object.labelDisponibility != object.availability %}
+                        <span class="availability__status-detail"> : {{ object.labelDisponibility }}</span></p>
+                    {% endif %}
                     {#<p> sourceId : {{ notice.sourceId }} - configurationId : {{ notice.configurationId }}</p>#}
                     {#<a href="{{ path('notice_availablity_request', {"sourceId": notice.sourceId, 'configurationId':notice.configurationId}) }}"
                        class="btn list-result__content-button"

@@ -15,10 +15,14 @@
         </li>
         <li>
             <div class="search-no-response__list-items">
-                {{ 'modal.no-response.form' | trans | raw}}  <button data-target="#modal-suggest" data-toggle="modal" data-reload="true" class="search-no-response__button">
+                {{ 'modal.no-response.form' | trans | raw}}
+		{# CTLG-626 - Image de suggestion d'achats non-cliquable }#
+                {#<button data-target="#modal-suggest" data-toggle="modal" data-reload="true" class="search-no-response__button">#}
+                <span class="search-no-response__button">
                     <img src="/images/icones/icone-suggestion.svg" alt="" class="icone-livre">
                     <span class="sr-only">Suggestion d'achat</span>
-                </button>
+                </span>
+                {#</button>#}
             </div>
         </li>
         <li>

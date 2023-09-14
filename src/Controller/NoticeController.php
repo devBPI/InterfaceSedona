@@ -11,6 +11,7 @@ use App\Model\Form\ExportNotice;
 use App\Model\Notice;
 use App\Model\NoticeThemed;
 use App\Model\Search\SearchQuery;
+use App\Service\LoggerService;
 use App\Service\NavigationService;
 use App\Service\NoticeBuildFileService;
 use Knp\Bundle\SnappyBundle\Snappy\Response\PdfResponse;
@@ -27,6 +28,11 @@ use \Exception;
  */
 final class NoticeController extends AbstractController
 {
+	/**
+	 * @var LoggerService
+	 */
+  	private $loggerService;
+
     /**
      * @var NoticeBuildFileService
      */
@@ -37,18 +43,21 @@ final class NoticeController extends AbstractController
     private $navigationService;
 
 
-    /**
-     * NoticeController constructor.
-     * @param NoticeBuildFileService $buildFileContent
-     * @param NavigationService $navigationService
-     */
-    public function __construct(
-        NoticeBuildFileService $buildFileContent,
-        NavigationService $navigationService
-    ) {
-        $this->buildFileContent = $buildFileContent;
-        $this->navigationService = $navigationService;
-    }
+	/**
+	 * NoticeController constructor.
+	 * @param NoticeBuildFileService $buildFileContent
+	 * @param NavigationService $navigationService
+	 * @param Logger $logger
+	 */
+	public function __construct(
+		LoggerService $loggerService,
+		NoticeBuildFileService $buildFileContent,
+		NavigationService $navigationService
+	) {
+		$this->loggerService = $loggerService;
+		$this->buildFileContent = $buildFileContent;
+		$this->navigationService = $navigationService;
+	}
 
 	private function xsltTransform(string $baseXml, string $xslUrl)
 	{
@@ -114,6 +123,13 @@ final class NoticeController extends AbstractController
 		{
 			$navigation = $this->navigationService->buildNotices($notice->getNotice());
 			$page = (int) ceil($navigation->getCurrentIndex()/$this->navigationService->getSearchRows());
+
+		$this->loggerService->add("info", "Total : " . $navigation->getTotal());
+		if(null != $navigation->getNextLink())
+			$this->loggerService->add("info", "NextLink : " . $navigation->getNextLink()->getTitle());
+		if(null != $navigation->getPreviousLink())
+			$this->loggerService->add("info", "PrevLink : " . $navigation->getPreviousLink()->getTitle());
+
 		}
 		catch (\Exception $e)
 		{

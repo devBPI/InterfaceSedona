@@ -39,7 +39,6 @@
 		<nav aria-label="pagination" lang="fr" role="navigation">
 			<ul class="pagination pagination--header justify-content-center justify-content-md-end">
 				<li class="page-item">
-
 					{% if navigation.previousLink is defined and navigation.previousLink is not empty  %}
 
 						<a href="{{ toggle_to_path_parcours(route_by_object(navigation.previousLink.type), app.request.attributes.get(constant('App\\Model\\Search\\ObjSearch::PARAM_PARCOURS_NAME')), {'permalink':navigation.previousLink.permalink,(constant('App\\Model\\Search\\ObjSearch::PARAM_REQUEST_NAME')):navigation.hash}) }}" class="page-link link link--icone">

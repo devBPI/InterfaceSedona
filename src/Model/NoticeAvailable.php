@@ -196,7 +196,7 @@ class NoticeAvailable
             return  $this->disponibilite;
         }
 
-        return $this->labelAvailibility;
+        return $this->availability;
     }
 
     /**
@@ -211,17 +211,19 @@ class NoticeAvailable
         return $this->location;
     }
 
-    /**
-     * @return null|string
-     */
-    public function getLabelDisponibility(): ?string
-    {
-       if ($this->labelDisponibility && $this->labelDisponibility !== null){
-           return $this->labelDisponibility;
-       }
+	/**
+	 * @return null|string
+	 */
+	public function getLabelDisponibility(): ?string
+	{
+ 		if ($this->labelDisponibility && $this->labelDisponibility !== null)
+		{
+			return $this->labelDisponibility;
+		}
 
-       return $this->labelAvailibility;
-    }
+		//return $this->labelAvailibility;
+		return null;
+	}
 
     /**
      * @return string
