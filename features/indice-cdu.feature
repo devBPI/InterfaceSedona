@@ -19,12 +19,12 @@ Feature:
     And I should see a "p#modal-report-button" element
 
   Scenario:  Je peux imprimer une notice abrégées au format TEXTE
-    When I am on "/fr/print/indice.txt/ark:/34201/iptfl0000650110?force-download=off"
+    When I am on "/fr/print/indice.txt/ark:/34201/iptfl0000650110?debug=on"
     Then the response status code should be 200
     And I should see "Indice de classement"
 
   Scenario:  Je peux imprimer une notice complètes au format TEXTE
-    When I am on "/fr/print/indice.txt/ark:/34201/iptfl0000650110?print-type=print-long&force-download=off"
+    When I am on "/fr/print/indice.txt/ark:/34201/iptfl0000650110?print-type=print-long&debug=on"
     Then the response status code should be 200
     And I should see "Indice de classement"
 
@@ -48,7 +48,7 @@ Feature:
   Scenario: Je peux envoyer par mail la notice
     When I am on "/fr/send-by-mail"
     Then the response status code should be 200
-    And I should see "Référence du catalague de la Bpi"
+    And I should see "Références du catalogue de la Bpi"
 
 
     When I fill in the following:

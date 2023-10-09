@@ -589,6 +589,8 @@ bloc:
     directors: Réalisateur(s)
     conservation: Conservation
     collections-et-services: Collections
+    type-document: 'Type de document'
+    published-dates: Année
   list-related-documents:  #Bloc 19 Liste de documents + Bloc 17 Documents liés
     link-title: Actualité %current% sur %nb%, %name%
     see-more: Voir tout

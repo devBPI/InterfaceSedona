@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace App\Model\Form;
 
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Validator\Constraints as Asset;
 
 /**
@@ -63,8 +64,12 @@ class SendByMail extends ExportNotice  implements ExportInterface
         return $this->reciever;
     }
 
-    public function getMaxExportNotice() :int
+
+    static function createFromRequest(Request $request, string $format = self::FORMAT_PDF) :self
     {
-        return 50;
+        return (new self())
+            ->setDebug($request->get('debug', "off") == "on");
     }
+
+
 }

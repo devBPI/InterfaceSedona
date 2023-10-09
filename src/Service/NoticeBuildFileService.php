@@ -78,7 +78,7 @@ class NoticeBuildFileService
         switch ($attachement->getFormatType()){
             case ExportNotice::FORMAT_TEXT:
                 $headers = [];
-                if ($attachement->isForceDownload()) {
+                if (!$attachement->isDebug()) {
                     $headers =  [
                         'Content-Type' => 'application/force-download; charset=utf-8',
                         'Content-Disposition' => 'attachment; filename="'.$filename.'.txt"',
@@ -86,10 +86,10 @@ class NoticeBuildFileService
                 }
                 return new Response($content, 200, $headers );
             case ExportNotice::FORMAT_PDF:
-                if ($attachement->isForceDownload()) {
-                    return new PdfResponse($content, $filename . ".pdf");
-                } else {
+                if ($attachement->isDebug()) {
                     return new Response($content);
+                } else {
+                    return new PdfResponse($content, $filename . ".pdf");
                 }
             case ExportNotice::FORMAT_HTML:
             case ExportNotice::FORMAT_EMAIL:
@@ -119,7 +119,7 @@ class NoticeBuildFileService
                 throw new \InvalidArgumentException(sprintf('The type "%s" is not referenced on the app', $type));
         }
 
-        if ($attachement->getFormatType() === ExportNotice::FORMAT_PDF){
+        if ($attachement->getFormatType() === ExportNotice::FORMAT_PDF && !$attachement->isDebug()){
             return  $this->knpSnappy->getOutputFromHtml($content,[
                 'orientation'       => 'Portrait',
                 'page-size'         => 'A4',

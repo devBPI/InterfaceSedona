@@ -32,7 +32,7 @@ Feature:
   Scenario: Je peux envoyer par mail la notice
     When I am on "/fr/send-by-mail"
     Then the response status code should be 200
-    And I should see "Référence du catalague de la Bpi"
+    And I should see "Références du catalogue de la Bpi"
 
 
     When I fill in the following:

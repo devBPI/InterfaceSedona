@@ -719,6 +719,12 @@ class Notice extends AbstractImage implements NoticeInterface, RecordInterface
         return $this->type ?? 'livre';
     }
 
+    public function getTypeClear(): string
+    {
+        return str_replace(['[',']'], '', $this->type)  ?? 'livre';
+    }
+
+
     /**
      * @return string|null
      */

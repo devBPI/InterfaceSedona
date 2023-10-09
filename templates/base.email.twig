@@ -9,11 +9,11 @@
 	<body>		
 		<header class="print-header header">
 			<div class="container">
-				<div class="print-header__logo header__logo">
+				<a class="print-header__logo header__logo" href="{{absolute_url(path('home'))  }}" target="_blank">
 					{% if app.environment != 'test' %}<img src="{{ absolute_url(asset('images/bpi-logo.png')) }}" alt="{{ 'header.logo_alt'|trans }}" />{% endif %}
-				</div>
+				</a>
 				<p class="n0 print-header__title">{{ 'bloc.print.subtitles.catalogue' | trans }}</p>
-				<p>{{ 'bloc.print.subtitles.send-by-robot' | trans }}</p>
+				<p><i>{{ 'bloc.print.subtitles.send-by-robot' | trans }}</i></p>
 				<hr/>
 			</div>
 		</header>

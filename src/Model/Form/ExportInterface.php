@@ -32,4 +32,6 @@ interface ExportInterface
 
     public function getTemplateType(): ?string;
 
+    public function isDebug(): bool;
+
 }

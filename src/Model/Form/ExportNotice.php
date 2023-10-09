@@ -51,7 +51,7 @@ class ExportNotice implements ExportInterface
     /**
      * @var bool
      */
-    private $forceDownload = true;
+    private $debug = false;
 
     public function getNotices(): string
     {
@@ -120,6 +120,11 @@ class ExportNotice implements ExportInterface
         return $this->formatType === self::FORMAT_EMAIL;
     }
 
+    public function isFormatPDF() :bool
+    {
+        return $this->formatType === self::FORMAT_PDF;
+    }
+
     public function setFormatType(string $formatType): self
     {
         $this->formatType = $formatType;
@@ -140,6 +145,11 @@ class ExportNotice implements ExportInterface
     public function isShortFormat(): bool
     {
         return $this->shortFormat;
+    }
+
+    public function isLongFormat(): bool
+    {
+        return !$this->shortFormat;
     }
 
 
@@ -175,25 +185,25 @@ class ExportNotice implements ExportInterface
         return $this;
     }
 
-    public function isForceDownload(): bool
+    public function isDebug(): bool
     {
-        return $this->forceDownload;
+        return $this->debug;
     }
 
-    public function setForceDownload(bool $forceDownload): self
+    public function setDebug(bool $debug): self
     {
-        $this->forceDownload = $forceDownload;
+        $this->debug = $debug;
         return $this;
     }
 
 
     static function createFromRequest(Request $request, string $format = self::FORMAT_PDF) :self
     {
-        return (new ExportNotice())
+        return (new self())
             ->setShortFormat($request->get('print-type', self::PRINT_LONG) !== self::PRINT_LONG)
             ->setImage($request->get('print-image', null) === 'print-image')
             ->setFormatType($request->get('format-type',$format))
-            ->setForceDownload($request->get('force-download', "on") !== "off");
+            ->setDebug($request->get('debug', "off") == "on");
     }
 }
 

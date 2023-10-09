@@ -1,7 +1,7 @@
 {% spaceless %}
     {{- pdf_occurence (notice, 'getType', "bloc.autority-result-information.authority-type"|trans, format)|raw -}}
 
-    {% if isPrintLong %}
+    {% if attachement.isLongFormat() %}
         {{- pdf_occurence (notice, 'getFormParalella', '', format)|raw -}}
         {{- pdf_occurence (notice, 'getCountries', 'bloc.autority-result-information.country'|trans, format)|raw -}}
         {{- pdf_occurence (notice, 'getLanguages', 'bloc.autority-result-information.language'|trans, format)|raw -}}

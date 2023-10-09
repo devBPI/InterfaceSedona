@@ -77,12 +77,15 @@ final class ReportingController extends AbstractController
      */
     public function sendByMailAction(Request $request): Response
     {
-        $form = $this->createForm( SendByMailType::class, new SendByMail());
+        $form = $this->createForm( SendByMailType::class, SendByMail::createFromRequest($request) );
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()){
             /** @var SendByMail $object */
             $object = $form->getData();
             $content = $this->noticeBuildFileService->buildContent($object, UserSelectionDocument::class);
+            if ($object->isDebug()) {
+                return new Response($content);
+            }
             if ($this->mailSenderService->sendEmail(
                 'common/modal/send-by-mail-content.email.twig',
                 ['data' => $object, 'content' => $content],
