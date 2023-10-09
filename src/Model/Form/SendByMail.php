@@ -64,12 +64,10 @@ class SendByMail extends ExportNotice  implements ExportInterface
         return $this->reciever;
     }
 
-
-    static function createFromRequest(Request $request, string $format = self::FORMAT_PDF) :self
+    static function createFromRequest(Request $request, string $format = self::FORMAT_PDF) :ExportInterface
     {
-        return (new self())
+        return (new SendByMail())
             ->setDebug($request->get('debug', "off") == "on");
     }
-
 
 }

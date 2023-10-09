@@ -69,7 +69,7 @@ class NoticeBuildFileService
     }
 
 
-    public function buildFile(ExportNotice $attachement, string $type) :Response
+    public function buildFile(ExportInterface $attachement, string $type) :Response
     {
         $content = $this->buildContent($attachement, $type);
 

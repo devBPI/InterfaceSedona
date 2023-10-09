@@ -197,7 +197,7 @@ class ExportNotice implements ExportInterface
     }
 
 
-    static function createFromRequest(Request $request, string $format = self::FORMAT_PDF) :self
+    static function createFromRequest(Request $request, string $format = self::FORMAT_PDF) :ExportInterface
     {
         return (new self())
             ->setShortFormat($request->get('print-type', self::PRINT_LONG) !== self::PRINT_LONG)
