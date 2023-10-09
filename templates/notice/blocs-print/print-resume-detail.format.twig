@@ -9,6 +9,6 @@
 	{{- pdf_occurence(notice, 'getDirectors', 'bloc.autority-result-information.by'|trans, format)|raw -}}
 	{{- pdf_occurence(notice, 'getEditors', 'modal.advanced-search.keyword.type.editors'|trans, format)|raw -}}
 	{{- pdf_occurence(notice, 'getPublishedDates', 'bloc.autority-result-information.published-dates'|trans, format, ' - ')|raw -}}
-	{%- if not attachement.isFormatEmail() -%}{{- pdf_occurence(notice, 'getMaterialDescriptions', ''|trans, format)|raw -}}{%- endif -%}
-	{%- if not attachement.isFormatEmail() -%}{{- pdf_occurence(notice, 'getConfigurationName', 'bloc.notice-simple.result-of-bdd'|trans, format)|raw -}}{%- endif -%}
+	{{- pdf_occurence(notice, 'getMaterialDescriptions', ''|trans, format)|raw -}}
+	{{- pdf_occurence(notice, 'getConfigurationName', 'bloc.notice-simple.result-of-bdd'|trans, format)|raw -}}
 {% endspaceless %}
