@@ -219,9 +219,6 @@ class NoticeBuildFileService
     private function getNoticeWrapper(ExportInterface $attachment):PrintNoticeWrapper
     {
         $payload = new PrintNoticeWrapper();
-        if ($attachment instanceof SendByMail) {
-            $payload->setNbMaxNotice(50);
-        }
 
         $shortType = $attachment->isShortFormat() ? self::SHORT_PRINT : ExportNotice::PRINT_LONG;
         $listUnavailablePermalinks = ['notices'=> [],'autorites'=> [], 'indices'=> []];

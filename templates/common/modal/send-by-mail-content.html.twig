@@ -7,6 +7,10 @@
 	{% endif %}
 
 	<div class="modal-body">
+		<p id="modal-print-subtitle">
+			{{ 'modal.share.limit'|trans({'%nb%': constant('App\\Utils\\PrintNoticeWrapper::MAX_NOTICE') }) }}
+		</p>
+
 		<div class="row justify-content-center">
 			<div class="col-12 col-md-10">
 				<p class="modal-form__indication"><span>*</span> {{ 'global.form-mandatory-field'|trans }}</p>
@@ -21,7 +25,6 @@
 				{{ form_row(form.image) }}
 			</div>
 		</div>
-
 		{{ form_rest(form) }}
 	</div>
 	<div class="modal-footer">

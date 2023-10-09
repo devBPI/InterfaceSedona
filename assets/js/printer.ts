@@ -3,6 +3,10 @@ export class Printer {
     private readonly idModalSendByMail :string = '#modal-send-by-mail';
     private readonly idModalCheck :string = '#modal-selection-export';
 
+    private readonly idModalSubmit :string = '#print-export-submit';
+    private readonly classContent :string = '.export-content';
+    private readonly classWaitting :string = '.export-waitting';
+
     constructor() {
         this.initListener();
         this.copyNoticesIdOnHiddenFiled();
@@ -20,6 +24,12 @@ export class Printer {
 
         $(this.idModalCheck).on('shown.bs.modal',  (event) => {
             this.checkBeforeOpenModal(event.target, event.relatedTarget);
+        });
+
+        $(document).on('click', this.idModalSubmit , () => {
+            console.log('test submit');
+            $(this.classContent).hide();
+            $(this.classWaitting).show();
         });
     }
 
@@ -89,24 +99,6 @@ export class Printer {
             $(this.idModalPrint).modal('show');
         } else {
             $(this.idModalSendByMail).modal('show');
-        }
-    }
-}
-
-export class CopyToClipboard {
-    constructor(private element: HTMLLinkElement) {
-        this.initListener();
-    }
-
-    private initListener() {
-        this.element.addEventListener('click', () => this.onClick());
-    }
-
-    private onClick(): void {
-        let field = document.querySelector('.js-url-to-copy') as HTMLInputElement;
-        if (field && field.value !== '') {
-            field.select();
-            document.execCommand("copy");
         }
     }
 }

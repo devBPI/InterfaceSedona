@@ -170,6 +170,7 @@ modal:
   print:            #Modal 06 imprimer
     title: Exporter / Imprimer
     subtitle: "Ce formulaire vous permet de créer un document que vous pourrez enregistrer ou imprimer."
+    limit: Cet export est limité à %nb% références.
     field:
       choose-sr: Choisir le format de la notice
       choose: Choisir
@@ -181,7 +182,7 @@ modal:
       img: Exporter les images
     submit: Exporter
   share:            #Modal 07 fin
-    object: Référence du catalague de la Bpi
+    object: Références du catalogue de la Bpi
     title: Partager
     subtitle-1: Permalien
     url-page: URL de la page
@@ -196,6 +197,7 @@ modal:
       recipient: Destinataire
       expeditor: Expéditeur
     submit: Envoyer
+    limit: L'envoi est limité à %nb% références.
   suggestion:     #Modal 08 suggestion d'achats
     title: Suggestion d'achat
     subtitle: Coordonnées
