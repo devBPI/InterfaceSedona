@@ -24,9 +24,9 @@
                         <h2 class="n1">{{ title }}</h2>
                     {% endfor %}
                 {% endif %}
-                <div>
+                <div style="display: flex; padding-bottom: .5cm;align-items: flex-start;">
                     {{ image(element, attachement.image) }}
-                    <ul class="print__list">
+                    <ul class="print__list" style="list-style: none;margin-top: 0;margin-left: .5cm;padding-left: 0;">
                         {% include detailTemplate with {'notice': element, 'format':'pdf'} %}
                     </ul>
                 </div>
