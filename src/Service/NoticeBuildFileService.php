@@ -7,7 +7,9 @@ namespace App\Service;
 use App\Entity\UserSelectionDocument;
 use App\Model\Authority;
 use App\Model\Exception\NoResultException;
+use App\Model\Form\ExportInterface;
 use App\Model\Form\ExportNotice;
+use App\Model\Form\SendByMail;
 use App\Model\IndiceCdu;
 use App\Model\Notice;
 use App\Model\Search\ObjSearch;
@@ -67,7 +69,7 @@ class NoticeBuildFileService
     }
 
 
-    public function buildFile(ExportNotice $attachement, string $type) :Response
+    public function buildFile(ExportInterface $attachement, string $type) :Response
     {
         $content = $this->buildContent($attachement, $type);
 
@@ -76,7 +78,7 @@ class NoticeBuildFileService
         switch ($attachement->getFormatType()){
             case ExportNotice::FORMAT_TEXT:
                 $headers = [];
-                if ($attachement->isForceDownload()) {
+                if (!$attachement->isDebug()) {
                     $headers =  [
                         'Content-Type' => 'application/force-download; charset=utf-8',
                         'Content-Disposition' => 'attachment; filename="'.$filename.'.txt"',
@@ -84,10 +86,10 @@ class NoticeBuildFileService
                 }
                 return new Response($content, 200, $headers );
             case ExportNotice::FORMAT_PDF:
-                if ($attachement->isForceDownload()) {
-                    return new PdfResponse($content, $filename . ".pdf");
-                } else {
+                if ($attachement->isDebug()) {
                     return new Response($content);
+                } else {
+                    return new PdfResponse($content, $filename . ".pdf");
                 }
             case ExportNotice::FORMAT_HTML:
             case ExportNotice::FORMAT_EMAIL:
@@ -96,7 +98,7 @@ class NoticeBuildFileService
         }
     }
 
-    public function buildContent(ExportNotice $attachement, string $type): string
+    public function buildContent(ExportInterface $attachement, string $type): string
     {
 
         switch ($type){
@@ -117,7 +119,7 @@ class NoticeBuildFileService
                 throw new \InvalidArgumentException(sprintf('The type "%s" is not referenced on the app', $type));
         }
 
-        if ($attachement->getFormatType() === ExportNotice::FORMAT_PDF){
+        if ($attachement->getFormatType() === ExportNotice::FORMAT_PDF && !$attachement->isDebug()){
             return  $this->knpSnappy->getOutputFromHtml($content,[
                 'orientation'       => 'Portrait',
                 'page-size'         => 'A4',
@@ -131,7 +133,7 @@ class NoticeBuildFileService
         return $content;
     }
 
-    private function buildFileForSearch(ExportNotice $attachement) :string
+    private function buildFileForSearch(ExportInterface $attachement) :string
     {
         $noticeWrapper  =  null;
         try {
@@ -148,12 +150,12 @@ class NoticeBuildFileService
         ]);
     }
 
-    private function buildFileForNotice(ExportNotice $attachement): string
+    private function buildFileForNotice(ExportInterface $attachement): string
     {
         $permalink = null;
         try {
             $permalink  = $attachement->getNotices();
-            $object     = $this->noticeProvider->getNotice($permalink, !$attachement->isShortFormat()?:self::SHORT_PRINT);
+            $object     = $this->noticeProvider->getNotice($permalink, ($attachement->isShortFormat() ? self::SHORT_PRINT : ExportNotice::PRINT_LONG));
         } catch(\Exception $e) {
            throw new NotFoundHttpException(sprintf('the permalink %s not referenced', $permalink));
         }
@@ -168,7 +170,7 @@ class NoticeBuildFileService
         ]);
     }
 
-    private function buildFileForAuthority(ExportNotice $attachement) :string
+    private function buildFileForAuthority(ExportInterface $attachement) :string
     {
         $permalink = null;
         try {
@@ -193,7 +195,7 @@ class NoticeBuildFileService
         ]);
     }
 
-    private function buildFileForIndice(ExportNotice $attachement) :string
+    private function buildFileForIndice(ExportInterface $attachement) :string
     {
         $permalink = null;
         try {
@@ -214,26 +216,15 @@ class NoticeBuildFileService
         ]);
     }
 
-    private function getNoticeWrapper(ExportNotice $attachment):PrintNoticeWrapper
+    private function getNoticeWrapper(ExportInterface $attachment):PrintNoticeWrapper
     {
         $payload = new PrintNoticeWrapper();
-        $shortType = !$attachment->isShortFormat() ?: self::SHORT_PRINT;
+
+        $shortType = $attachment->isShortFormat() ? self::SHORT_PRINT : ExportNotice::PRINT_LONG;
         $listUnavailablePermalinks = ['notices'=> [],'autorites'=> [], 'indices'=> []];
 
         if($this->session->has('ItemsNotAvailable')) {
 		    $listUnavailablePermalinks += json_decode($this->session->get('ItemsNotAvailable'), true);
-        }
-
-        if($attachment->hasAuthorities()) {
-            foreach ($attachment->getAuthoritiesArray() as $value) {
-                try {
-                    if (!in_array($value, $listUnavailablePermalinks['autorites'])) {
-                        $payload->addNoticeAuthority($this->noticeAuthority->getAuthority($value, $shortType));
-                    }
-                } catch (NoResultException $e) {
-                    // we ignore autorities when we get 410
-                }
-            }
         }
 
         if($attachment->hasNotices()) {
@@ -244,6 +235,18 @@ class NoticeBuildFileService
                     }
                 } catch (\Exception $e) {
                     // we ignore notices when we get 410
+                }
+            }
+        }
+
+        if($attachment->hasAuthorities()) {
+            foreach ($attachment->getAuthoritiesArray() as $value) {
+                try {
+                    if (!in_array($value, $listUnavailablePermalinks['autorites'])) {
+                        $payload->addNoticeAuthority($this->noticeAuthority->getAuthority($value, $shortType));
+                    }
+                } catch (NoResultException $e) {
+                    // we ignore autorities when we get 410
                 }
             }
         }
@@ -259,7 +262,7 @@ class NoticeBuildFileService
                 }
             }
         }
-        ;
+
         return $payload;
     }
 }

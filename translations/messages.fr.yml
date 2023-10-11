@@ -110,7 +110,7 @@ modal:
   email-example: (nom@exemple.com)
   wait-message: Veuillez patienter
   confirm-message:
-    print: Ils n'apparaîtront pas dans la liste que vous imprimez/exportez
+    print: Ils n'apparaîtront pas dans la liste que vous exportez/imprimez
     send-by-mail: Ils n'apparaîtront pas dans la liste que vous envoyez par email
   check-list:
     title: "Attention, un ou plusieurs éléments de votre sélection ne sont plus présents dans le catalogue"
@@ -170,6 +170,7 @@ modal:
   print:            #Modal 06 imprimer
     title: Exporter / Imprimer
     subtitle: "Ce formulaire vous permet de créer un document que vous pourrez enregistrer ou imprimer."
+    limit: Cet export est limité à %nb% références.
     field:
       choose-sr: Choisir le format de la notice
       choose: Choisir
@@ -181,7 +182,7 @@ modal:
       img: Exporter les images
     submit: Exporter
   share:            #Modal 07 fin
-    object: Référence du catalague de la Bpi
+    object: Références du catalogue de la Bpi
     title: Partager
     subtitle-1: Permalien
     url-page: URL de la page
@@ -196,6 +197,7 @@ modal:
       recipient: Destinataire
       expeditor: Expéditeur
     submit: Envoyer
+    limit: L'envoi est limité à %nb% références.
   suggestion:     #Modal 08 suggestion d'achats
     title: Suggestion d'achat
     subtitle: Coordonnées
@@ -488,7 +490,7 @@ bloc:
       order: Choix du tri des documents
       order-mutual: '%value%'
       order-aria: dropdown-tri-result
-      order-choice: Trier par
+      order-choice: 'Tri : '
       order-labels:
         DEFAULT: Pertinence
         TITRE_A_Z: Titre A-Z
@@ -587,6 +589,8 @@ bloc:
     directors: Réalisateur(s)
     conservation: Conservation
     collections-et-services: Collections
+    type-document: 'Type de document'
+    published-dates: Année
   list-related-documents:  #Bloc 19 Liste de documents + Bloc 17 Documents liés
     link-title: Actualité %current% sur %nb%, %name%
     see-more: Voir tout

@@ -15,11 +15,7 @@ class NoticeProvider extends AbstractProvider
 {
     protected $modelName = NoticeThemed::class;
 
-    /**
-     * @param string $query
-     * @return NoticeThemed
-     */
-    public function getNotice(string $query, $shortType = null): NoticeThemed
+    public function getNotice(string $query, ?string $shortType = null): NoticeThemed
     {
         if ($shortType !== null && $shortType === NoticeBuildFileService::SHORT_PRINT) {
             return $this->hydrateFromResponse(sprintf('/details/notice-short/%s', $query));

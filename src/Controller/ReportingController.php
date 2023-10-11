@@ -77,12 +77,15 @@ final class ReportingController extends AbstractController
      */
     public function sendByMailAction(Request $request): Response
     {
-        $form = $this->createForm( SendByMailType::class, new SendByMail());
+        $form = $this->createForm( SendByMailType::class, SendByMail::createFromRequest($request) );
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()){
             /** @var SendByMail $object */
             $object = $form->getData();
             $content = $this->noticeBuildFileService->buildContent($object, UserSelectionDocument::class);
+            if ($object->isDebug()) {
+                return new Response($content);
+            }
             if ($this->mailSenderService->sendEmail(
                 'common/modal/send-by-mail-content.email.twig',
                 ['data' => $object, 'content' => $content],
@@ -130,5 +133,13 @@ final class ReportingController extends AbstractController
         return $this->render('common/modal/suggestion-content.html.twig', [
                 'form' => $form->createView(),
             ]);
+    }
+
+    /**
+     * @Route("/print-export-reset", name="print_export_reset")
+     */
+    public function printExportResetAction(Request $request): Response
+    {
+        return $this->render('common/modal/print-export-content.html.twig' );
     }
 }

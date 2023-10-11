@@ -6,7 +6,7 @@
         {% else %}
             {% set imgPath = asset('images/types/type-' ~ type ~ '.png') %}
         {% endif %}
-        <img src="{{ absolute_url(imgPath) }}" alt="" class="img-fluid print__image" />
+        <img src="{{ absolute_url(imgPath) }}" alt="" class="img-fluid print__image" style="width: 140pt; object-fit: contain;" />
     {% endif %}
 {% endmacro %}
 

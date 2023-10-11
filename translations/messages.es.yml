@@ -466,7 +466,7 @@ bloc:
       order-mutual: '%value%'
       order: Choix du tri des documents
       order-aria: dropdown-tri-result
-      order-choice: Trier par
+      order-choice: 'Tri : '
       order-labels:
         DEFAULT: Pertinence
         TITRE_A_Z: Titre A-Z

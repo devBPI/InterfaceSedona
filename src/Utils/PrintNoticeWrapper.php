@@ -18,6 +18,9 @@ use App\Model\NoticeThemed;
 
 class PrintNoticeWrapper
 {
+    CONST MAX_NOTICE = 100;
+    private int $nbNotice = 0;
+
     private array $noticeOnline=[];
 
     private array $noticeAuthority=[];
@@ -25,7 +28,6 @@ class PrintNoticeWrapper
     private array $noticeOnShelves=[];
 
     private array $noticeIndice=[];
-
 
     public function getNoticeOnline(): array
     {
@@ -39,7 +41,11 @@ class PrintNoticeWrapper
 
     public function addNoticeAuthority(Authority $notice) :self
     {
+        if ($this->nbNotice >= self::MAX_NOTICE) {
+            return $this;
+        }
         $this->noticeAuthority[] = $notice;
+        $this->nbNotice++;
         return $this;
     }
 
@@ -50,9 +56,11 @@ class PrintNoticeWrapper
 
     public function addNoticeOnShelves(Notice $notice = null) :self
     {
-        if ($notice instanceof Notice) {
-            $this->noticeOnShelves[] = $notice;
+        if (!$notice instanceof Notice || ($this->nbNotice >= self::MAX_NOTICE)) {
+            return $this;
         }
+        $this->noticeOnShelves[] = $notice;
+        $this->nbNotice++;
         return $this;
     }
 
@@ -63,7 +71,11 @@ class PrintNoticeWrapper
 
     public function addNoticeIndice(IndiceCdu $notice) :self
     {
+        if ($this->nbNotice >= self::MAX_NOTICE) {
+            return $this;
+        }
         $this->noticeIndice[] = $notice;
+        $this->nbNotice++;
         return $this;
     }
 

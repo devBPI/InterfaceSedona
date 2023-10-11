@@ -66,7 +66,7 @@
 
 {% if app.request.attributes.get('_route') =='user_selection_index'  %}{% include "user/modal/check-permalink-list-content.html.twig" %}{% endif %}
 
-{% if printRoute is defined %}{% include "common/modal/print.html.twig" %}{% endif %}
+{% if printRoute is defined %}{% include "common/modal/print-export.html.twig" %}{% endif %}
 
 {% include "common/modal/send-by-mail.html.twig" %}
 

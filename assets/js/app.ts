@@ -42,14 +42,8 @@ import {DatePeriod} from './date-input-search';
 new DatePeriod(document.querySelectorAll('[name="adv-search-date"]'));
 
 // =================================
-import {Printer, CopyToClipboard} from './printer';
+import {Printer} from './printer';
 new Printer();
-
-let copiers = document.querySelectorAll('.js-copy_to_clipboard');
-copiers.forEach((linkElement: HTMLLinkElement) => {
-    new CopyToClipboard(linkElement);
-});
-
 
 // =================================
 $('[data-toggle="tooltip"]').tooltip({

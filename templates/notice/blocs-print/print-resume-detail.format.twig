@@ -1,4 +1,5 @@
 {% spaceless %}
+	{%- if attachement.isFormatEmail() -%}{{- pdf_occurence(notice, 'getTypeClear', 'bloc.autority-result-information.type-document'|trans, format)|raw -}}{%- endif -%}
 	{%- if notice.type != 'Musique' -%}
 		{{- pdf_occurence(notice, 'getExportTitle', 'bloc.autority-result-information.in'|trans, format)|raw -}}
 	{% endif %}
@@ -6,8 +7,8 @@
 	{{- pdf_occurence(notice, 'getAuthors', 'bloc.autority-result-information.by'|trans, format)|raw -}}
 	{{- pdf_occurence(notice, 'getOtherAuthors', ('bloc.autority-result-information.other-'~( notice.type == constant('MUSIC',notice) ?'musique-author':'authors'))|trans, format)|raw -}}
 	{{- pdf_occurence(notice, 'getDirectors', 'bloc.autority-result-information.by'|trans, format)|raw -}}
-	{{- pdf_occurence(notice, 'getEditors', '', format)|raw -}}
-	{{- pdf_occurence(notice, 'getPublishedDates', ''|trans, format, ' - ')|raw -}}
+	{{- pdf_occurence(notice, 'getEditors', 'modal.advanced-search.keyword.type.editors'|trans, format)|raw -}}
+	{{- pdf_occurence(notice, 'getPublishedDates', 'bloc.autority-result-information.published-dates'|trans, format, ' - ')|raw -}}
 	{{- pdf_occurence(notice, 'getMaterialDescriptions', ''|trans, format)|raw -}}
 	{{- pdf_occurence(notice, 'getConfigurationName', 'bloc.notice-simple.result-of-bdd'|trans, format)|raw -}}
 {% endspaceless %}

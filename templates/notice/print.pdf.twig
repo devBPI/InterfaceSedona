@@ -1,4 +1,4 @@
-{% extends attachement.formatType == constant('App\\Model\\Form\\ExportNotice::FORMAT_EMAIL') ? 'base.email.twig'  : 'base.pdf.twig' %}
+{% extends attachement.isFormatEmail() ? 'base.email.twig'  : 'base.pdf.twig' %}
 {% import "common/macros/print-macro.html.twig" as macros %}
 
 {% block body %}

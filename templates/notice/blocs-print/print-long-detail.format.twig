@@ -1,4 +1,5 @@
 {% spaceless %}
+	{%- if attachement.isFormatEmail() -%}{{- pdf_occurence(notice, 'getTypeClear', 'bloc.autority-result-information.type-document'|trans, format)|raw -}}{%- endif -%}
 	{{- pdf_occurence(notice, 'getTranslatedBy', 'bloc.autority-result-information.translated'|trans, format)|raw -}}
 	{%- if notice.type != 'Musique' -%}
 		{{- pdf_occurence(notice, 'getExportTitle', 'bloc.autority-result-information.in'|trans, format)|raw -}}
@@ -19,8 +20,7 @@
 	{{- pdf_occurence(notice, 'getOtherAuthors', ('bloc.autority-result-information.other-'~( notice.type == constant('MUSIC',notice) ?'musique-author':'authors'))|trans, format)|raw -}}
 	{{- pdf_occurence(notice, 'getContributeurs', 'bloc.autority-result-information.contributor'|trans, format)|raw -}}
 	{{- pdf_occurence(notice, 'getEditors', 'modal.advanced-search.keyword.type.editors'|trans, format)|raw -}}
-	{{- pdf_occurence(notice, 'getPublishedDates', ''|trans, format, ' - ')|raw -}}
-	{#  {- pdf_occurence(notice, 'getMaterialDescriptions', ''|trans, format, ' - ')|raw -}#}
+	{{- pdf_occurence(notice, 'getPublishedDates', 'bloc.autority-result-information.published-dates'|trans, format, ' - ')|raw -}}
 	{{- pdf_occurence(notice, 'getOtherDates', "bloc.autority-result-information.edition-date"|trans, format)|raw -}}
 	{{- pdf_occurence(notice, 'getPeriodicity', "bloc.autority-result-information.periodicity"|trans, format)|raw -}}
 	{{- pdf_occurence(notice, 'getUniformTitle', "bloc.autority-result-information.ouvre"|trans, format)|raw -}}
@@ -37,7 +37,7 @@
 		{% endif -%}
 		{{- pdf_occurence_data(languages, "bloc.autority-result-information.language"|trans, format, ' ')|raw -}}
 	{% endif -%}
-	{{- pdf_occurence(notice, 'getMaterialDescriptions', "modal.advanced-search.facette.materialSupport"|trans, format)|raw -}}
+	{%- if not attachement.isFormatEmail() -%}{{- pdf_occurence(notice, 'getMaterialDescriptions', "modal.advanced-search.facette.materialSupport"|trans, format)|raw -}}{%- endif -%}
 	{{- pdf_occurence(notice, 'getCollectionSeries', "bloc.results-navigation.result-information.collection-series"|trans, format)|raw -}}
 	{{- pdf_occurence(notice, 'getTogetherTitle', "bloc.autority-result-information.title-together"|trans, format)|raw -}}
 	{{- pdf_occurence(notice, 'getInRelationTitle', "bloc.autority-result-information.title-inrelation"|trans, format)|raw -}}
@@ -65,5 +65,5 @@
 
 	{{- pdf_occurence(notice, 'getPlacesEvents', "bloc.autority-result-information.manifestation-location"|trans, format)|raw -}}
 	{{- pdf_occurence(notice, 'getOrigins', "bloc.autority-result-information.origins"|trans, format)|raw -}}
-	{{- pdf_occurence(notice, 'getConfigurationName', 'bloc.notice-simple.result-of-bdd'|trans|trans, format)|raw -}}
+	{%- if not attachement.isFormatEmail() -%}{{- pdf_occurence(notice, 'getConfigurationName', 'bloc.notice-simple.result-of-bdd'|trans, format)|raw -}}{%- endif -%}
 {% endspaceless %}

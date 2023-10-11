@@ -1,6 +1,6 @@
 {% import "common/macros/print-macro.html.twig" as macros %}
 {% spaceless %}
-{% include isPrintLong ? 'notice/blocs-print/print-long-detail.format.twig' : 'notice/blocs-print/print-resume-detail.format.twig' %}
+{% include attachement.isShortFormat() ? 'notice/blocs-print/print-resume-detail.format.twig' : 'notice/blocs-print/print-long-detail.format.twig' %}
 {% set available %}{% spaceless %}
    {% for copy in notice.copies %}{%- if copy.isAvailable() -%}
       {% if attachement is defined and attachement.isFormatEmail() %}
@@ -8,12 +8,12 @@
          {%- if copy.availability is defined and copy.availability %}{% set rayon = rayon|merge([copy.availability]) %}{% endif -%}
          {%- if copy.cote is defined and copy.cote %}{% set rayon = rayon|merge(['<b>'~copy.cote~'</b>']) %}{% endif -%}
          {%- if copy.support is defined and copy.support %}{% set rayon = rayon|merge([copy.support]) %}{% endif -%}
-         {%- if isPrintLong and copy.notes is defined and copy.notes %}{% set rayon = rayon|merge(["bloc.autority-result-information.nots"|trans])|merge(copy.notes) %}{% endif -%}
+         {%- if attachement.isLongFormat() and copy.notes is defined and copy.notes %}{% set rayon = rayon|merge(["bloc.autority-result-information.nots"|trans])|merge(copy.notes) %}{% endif -%}
          {%- if copy.printLocation is defined and copy.printLocation %}{% set rayon = rayon|merge(copy.printLocation) %}{% endif -%}
          {{- pdf_occurence_data(rayon,'', format, ' - ')|raw -}}
       {% else %}
          {{- pdf_occurence(copy,'getRayonnage', '', format, ', ')|raw -}}
-         {% if isPrintLong %}{{- pdf_occurence(copy, 'getNotes', "bloc.autority-result-information.nots"|trans, format)|raw -}}{% endif %}
+         {% if attachement.isLongFormat() %}{{- pdf_occurence(copy, 'getNotes', "bloc.autority-result-information.nots"|trans, format)|raw -}}{% endif %}
          {{- pdf_occurence(copy, 'getPrintLocation','', format, '- ')|raw -}}
       {% endif %}
    {%- else -%}
@@ -29,6 +29,6 @@
   {{ available|raw }}
 {%- endif -%}
 {% for link in notice.links | sort((a, b) => a.title <=> b.title) %}
-   {% if format == 'pdf' %}{{ macros.availibility_access_to_bpi(link, notice, format) }}{% else %}{{  macros.availibility_access_to_bpi_txt(link, notice)}}{% endif %}
+   {% if attachement.isFormatPDF() %}{{ macros.availibility_access_to_bpi(link, notice, format) }}{% else %}{{  macros.availibility_access_to_bpi_txt(link, notice)}}{% endif %}
 {% endfor %}
 {% endspaceless %}

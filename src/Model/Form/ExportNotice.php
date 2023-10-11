@@ -10,7 +10,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * Class ExportNotice
  * @package App\Model\Form
  */
-class ExportNotice
+class ExportNotice implements ExportInterface
 {
     CONST PRINT_LONG = 'print-long';
     CONST FORMAT_PDF = 'pdf';
@@ -51,7 +51,7 @@ class ExportNotice
     /**
      * @var bool
      */
-    private $forceDownload = true;
+    private $debug = false;
 
     public function getNotices(): string
     {
@@ -120,6 +120,11 @@ class ExportNotice
         return $this->formatType === self::FORMAT_EMAIL;
     }
 
+    public function isFormatPDF() :bool
+    {
+        return $this->formatType === self::FORMAT_PDF;
+    }
+
     public function setFormatType(string $formatType): self
     {
         $this->formatType = $formatType;
@@ -140,6 +145,11 @@ class ExportNotice
     public function isShortFormat(): bool
     {
         return $this->shortFormat;
+    }
+
+    public function isLongFormat(): bool
+    {
+        return !$this->shortFormat;
     }
 
 
@@ -175,25 +185,25 @@ class ExportNotice
         return $this;
     }
 
-    public function isForceDownload(): bool
+    public function isDebug(): bool
     {
-        return $this->forceDownload;
+        return $this->debug;
     }
 
-    public function setForceDownload(bool $forceDownload): self
+    public function setDebug(bool $debug): self
     {
-        $this->forceDownload = $forceDownload;
+        $this->debug = $debug;
         return $this;
     }
 
 
-    static function createFromRequest(Request $request, string $format = self::FORMAT_PDF) :self
+    static function createFromRequest(Request $request, string $format = self::FORMAT_PDF) :ExportInterface
     {
-        return (new ExportNotice())
+        return (new self())
             ->setShortFormat($request->get('print-type', self::PRINT_LONG) !== self::PRINT_LONG)
             ->setImage($request->get('print-image', null) === 'print-image')
             ->setFormatType($request->get('format-type',$format))
-            ->setForceDownload($request->get('force-download', "on") !== "off");
+            ->setDebug($request->get('debug', "off") == "on");
     }
 }
 

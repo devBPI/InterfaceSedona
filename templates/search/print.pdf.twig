@@ -1,65 +1,68 @@
-{% extends attachement.formatType == constant('App\\Model\\Form\\ExportNotice::FORMAT_EMAIL') ? 'base.email.twig'  : 'base.pdf.twig' %}
+{% extends attachement.isFormatEmail() ? 'base.email.twig'  : 'base.pdf.twig' %}
+
+
+{% macro list_objects(pathName, listObjects, attachement, detailTemplate, startIndex = 0) %}
+    {% from 'common/macros/print-macro.html.twig' import image %}
+    {% set includeImage = attachement.image %}
+    {% set isPrintLong = attachement.isLongFormat() %}
+    {% if listObjects is defined and listObjects is iterable %}
+        {% for element in listObjects %}
+            <div class="print__item">
+                {% set elementLoop = loop %}
+                <h2 class="n1">
+                    <a href="{{ absolute_url(path(pathName, {"permalink": element.permalink})) }}">{{ attachement.isFormatEmail() ? element.title : ((elementLoop.index + startIndex)~") "~element.printTitle) }}</a>
+                </h2>
+                {% if element.titles is defined  %}
+                    {% for title in element.titles %}
+                        {% if loop.index > 1 %}
+                            <h2 class="n1"> {{ title }}</h2>
+                        {% endif %}
+                    {% endfor %}
+                {% endif %}
+                {% if element.titleForm is defined and element.titleForm  %}
+                    {% for title in element.titleForm %}
+                        <h2 class="n1">{{ title }}</h2>
+                    {% endfor %}
+                {% endif %}
+                <div style="display: flex; padding-bottom: .5cm;align-items: flex-start;">
+                    {{ image(element, attachement.image) }}
+                    <ul class="print__list" style="list-style: none;margin-top: 0;margin-left: .5cm;padding-left: 0;">
+                        {% include detailTemplate with {'notice': element, 'format':'pdf'} %}
+                    </ul>
+                </div>
+            </div>
+        {% endfor %}
+    {% endif %}
+{% endmacro %}
 
 {% block body %}
-    {% from "common/macros/print-macro.html.twig" import list_objects %}
+    {% if printNoticeWrapper is not empty %}
+        {% from "common/macros/print-macro.html.twig" import list_objects %}
 
-    <div class="print__bloc print__bloc--rayon">
-        {% if printNoticeWrapper is not empty and (printNoticeWrapper.noticeAuthority|length > 0 or printNoticeWrapper.noticeIndice|length > 0) %}
-            {% if not attachement.isFormatEmail() %}
-                <div class="print__header">
-                    <h2 class="n1">{{ 'bloc.print.subtitles.your-references-autority'|trans }}</h2>
-                </div>
-            {% endif %}
-
-            {{ _self.list_objects(printNoticeWrapper.noticeAuthority, attachement, "authority/blocs/print-detail.format.twig") }}
-            {{ _self.list_objects(printNoticeWrapper.noticeIndice, attachement, "indice/blocs/print-detail.format.twig", printNoticeWrapper.noticeAuthority|length) }}
-        {% endif %}
-    </div>
-
-    <div class="print__bloc print__bloc--rayon">
-        {% if printNoticeWrapper is not empty and (printNoticeWrapper.noticeOnShelves|length > 0 or printNoticeWrapper.noticeOnLine|length > 0) %}
-            {% if not attachement.isFormatEmail() %}
-                <div class="print__header">
-                    <h2 class="n1">{{ "bloc.print.subtitles.your-references-bibliographic"|trans }}</h2>
-                </div>
-            {% endif %}
-
-            {{ _self.list_objects(printNoticeWrapper.noticeOnShelves, attachement, "notice/blocs-print/print-detail.format.twig") }}
-            {{ _self.list_objects(printNoticeWrapper.noticeOnLine, attachement, "notice/blocs-print/print-detail.format.twig", printNoticeWrapper.noticeOnShelves|length) }}
-        {% endif %}
-    </div>
-
-    {% macro list_objects(listObjects, attachement, detailTemplate, startIndex = 0) %}
-        {% from 'common/macros/print-macro.html.twig' import image %}
-        {% set includeImage = attachement.image %}
-        {% set isPrintLong = not attachement.isShortFormat() %}
-        {% if listObjects is defined and listObjects is iterable %}
-            {% for element in listObjects %}
-                <div class="print__item">
-                    {% set elementLoop = loop %}
-                    <h2 class="n1">
-                        <a href="{{ absolute_url(path('record_authority', {"permalink": element.permalink})) }}">{{ attachement.isFormatEmail() ? '' : ((elementLoop.index + startIndex)~") ") }}{{ element.printTitle }}</a>
-                    </h2>
-                    {% if element.titles is defined  %}
-                        {% for title in element.titles %}
-                            {% if loop.index > 1 %}
-                                <h2 class="n1"> {{ title }}</h2>
-                            {% endif %}
-                        {% endfor %}
-                    {% endif %}
-                    {% if element.titleForm is defined and element.titleForm  %}
-                        {% for title in element.titleForm %}
-                            <h2 class="n1">{{ title }}</h2>
-                        {% endfor %}
-                    {% endif %}
-                    <div>
-                        {{ image(element, attachement.image) }}
-                        <ul class="print__list">
-                            {% include detailTemplate with {'notice': element, 'format':'pdf'} %}
-                        </ul>
+        {% if printNoticeWrapper.noticeAuthority|length > 0 or printNoticeWrapper.noticeIndice|length > 0 %}
+            <div class="print__bloc print__bloc--rayon">
+                {% if not attachement.isFormatEmail() %}
+                    <div class="print__header">
+                        <h2 class="n1">{{ 'bloc.print.subtitles.your-references-autority'|trans }}</h2>
                     </div>
-                </div>
-            {% endfor %}
+                {% endif %}
+
+                {{ _self.list_objects('record_authority', printNoticeWrapper.noticeAuthority, attachement, "authority/blocs/print-detail.format.twig") }}
+                {{ _self.list_objects('record_indice_cdu', printNoticeWrapper.noticeIndice, attachement, "indice/blocs/print-detail.format.twig", printNoticeWrapper.noticeAuthority|length) }}
+            </div>
         {% endif %}
-    {% endmacro %}
+
+        {% if printNoticeWrapper.noticeOnShelves|length > 0 or printNoticeWrapper.noticeOnLine|length > 0 %}
+            <div class="print__bloc print__bloc--rayon">
+                {% if not attachement.isFormatEmail() %}
+                    <div class="print__header">
+                        <h2 class="n1">{{ "bloc.print.subtitles.your-references-bibliographic"|trans }}</h2>
+                    </div>
+                {% endif %}
+
+                {{ _self.list_objects('record_bibliographic', printNoticeWrapper.noticeOnShelves, attachement, "notice/blocs-print/print-detail.format.twig") }}
+                {{ _self.list_objects('record_bibliographic', printNoticeWrapper.noticeOnLine, attachement, "notice/blocs-print/print-detail.format.twig", printNoticeWrapper.noticeOnShelves|length) }}
+            </div>
+        {% endif %}
+    {% endif %}
 {% endblock %}

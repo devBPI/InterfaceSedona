@@ -3,13 +3,14 @@ declare(strict_types=1);
 
 namespace App\Model\Form;
 
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Validator\Constraints as Asset;
 
 /**
  * Class SendByMail
  * @package App\Model\Form
  */
-class SendByMail extends ExportNotice
+class SendByMail extends ExportNotice  implements ExportInterface
 {
 
     /**
@@ -62,4 +63,11 @@ class SendByMail extends ExportNotice
     {
         return $this->reciever;
     }
+
+    static function createFromRequest(Request $request, string $format = self::FORMAT_PDF) :ExportInterface
+    {
+        return (new SendByMail())
+            ->setDebug($request->get('debug', "off") == "on");
+    }
+
 }
