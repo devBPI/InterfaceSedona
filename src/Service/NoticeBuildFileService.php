@@ -145,7 +145,6 @@ class NoticeBuildFileService
             'toolbar'               => ObjSearch::class,
             'attachement'           => $attachement,
             'isPrintLong'           => !$attachement->isShortFormat(),
-            'includeImage'          => $attachement->isImage(),
             'printNoticeWrapper'    => $noticeWrapper
         ]);
     }
@@ -165,7 +164,6 @@ class NoticeBuildFileService
             'toolbar'           => Notice::class,
             'attachement'       => $attachement,
             'isPrintLong'       => !$attachement->isShortFormat(),
-            'includeImage'      => $attachement->isImage(),
             'notice'            => $object->getNotice()
         ]);
     }
@@ -188,7 +186,6 @@ class NoticeBuildFileService
             'toolbar'           => Authority::class,
             'attachement'       => $attachement,
             'isPrintLong'       => !$attachement->isShortFormat(),
-            'includeImage'      => $attachement->isImage(),
             'notice'            => $object,
             'relatedDocuments'  => $relatedDocuments,
             'noticeAuthors'     => $noticeAuthors,
@@ -210,7 +207,6 @@ class NoticeBuildFileService
             'toolbar'           => Authority::class,
             'attachement'       => $attachement,
             'isPrintLong'       => !$attachement->isShortFormat(),
-            'includeImage'      => $attachement->isImage(),
             'notice'            => $object,
             'relatedDocuments'  => $relatedDocuments
         ]);

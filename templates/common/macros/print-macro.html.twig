@@ -1,17 +1,17 @@
-{% macro image(object, includeImage) %}
-    {% if includeImage %}
+{% macro image(object, attachement) %}
+    {% if attachement.isImage() %}
         {% set type = object.type|slugify %}
         {% if object.image is defined %}
             {% set imgPath = object.image is not empty ? path('binary_image', {'content':object.image, 'type': object.type | slugify}) : asset(object.defaultImage) %}
         {% else %}
             {% set imgPath = asset('images/types/type-' ~ type ~ '.png') %}
         {% endif %}
-        <img src="{{ absolute_url(imgPath) }}" alt="" class="img-fluid print__image" style="width: 140pt; object-fit: contain;" />
+        <img src="{{ absolute_url(imgPath) }}" alt="" class="img-fluid print__image" {% if attachement.isFormatEmail() %}style="width: 140pt; object-fit: contain;"{% endif %} />
     {% endif %}
 {% endmacro %}
 
 
-{% macro list_subitems(listItems, includeImage) %}
+{% macro list_subitems(listItems, attachement) %}
     {% if listItems is defined and listItems is iterable %}
         {% from 'common/macros/print-macro.html.twig' import image %}
         {% for item in listItems %}
@@ -19,7 +19,7 @@
                 <h2 class="n1">{{ loop.index ~')'}} {{ item.title }}</h2>
 
                 <div>
-                    {{ image(item, includeImage) }}
+                    {{ image(item, attachement) }}
 
                     <ul class="print__list">
                         {{ item.authors|join(', ') }}

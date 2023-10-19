@@ -1,6 +1,10 @@
 {% import "common/macros/print-macro.html.twig" as macros %}
 {% spaceless %}
 {% include attachement.isShortFormat() ? 'notice/blocs-print/print-resume-detail.format.twig' : 'notice/blocs-print/print-long-detail.format.twig' %}
+{% if format == attachement.isFormatText() %}
+   {{ "\n" }}
+   {{- pdf_occurence_data(absolute_url(path('record_bibliographic', {"permalink": notice.permalink})), "Permalien", format, ' ')|raw -}}
+{% endif %}
 {% set available %}{% spaceless %}
    {% for copy in notice.copies %}{%- if copy.isAvailable() -%}
       {% if attachement is defined and attachement.isFormatEmail() %}
@@ -20,13 +24,17 @@
       {{- pdf_occurence_data('bloc.notice-simple.document-unavailable'|trans , '', format)|raw -}}
    {%- endif -%}{% endfor %}
 {% endspaceless %}{% endset %}
-{%- if available and attachement is defined and attachement.isFormatEmail() -%}
-   <li>
-      <div><br/><b>{{ 'bloc.print.exemplaire'|trans }}</b></div>
-      <ul>{{ available|raw }}</ul>
-   </li>
-{%- elseif available -%}
-  {{ available|raw }}
+{%- if available -%}
+   {% if attachement.isFormatEmail() -%}
+      <li>
+         <div><br/><b>{{ 'bloc.print.exemplaire'|trans }}</b></div>
+         <ul>{{ available|raw }}</ul>
+      </li>
+   {%- elseif available -%}
+      {{ "\n" }}
+      {{- pdf_occurence_data("", 'bloc.print.exemplaire'|trans, format, ' ')|raw -}}
+      {{- pdf_occurence_data(available, ""|trans, format, ' ')|raw -}}
+   {%- endif -%}
 {%- endif -%}
 {% for link in notice.links | sort((a, b) => a.title <=> b.title) %}
    {% if attachement.isFormatPDF() %}{{ macros.availibility_access_to_bpi(link, notice, format) }}{% else %}{{  macros.availibility_access_to_bpi_txt(link, notice)}}{% endif %}

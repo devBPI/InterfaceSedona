@@ -6,7 +6,7 @@
         <h2 class="n1">{{ notice.cote |raw }} - {{ notice.title }}</h2>
 
         <div>
-            {{ image(notice, includeImage) }}
+            {{ image(notice, attachement) }}
 
             <ul class="print__list">
                 {% include "indice/blocs/print-detail.format.twig" with {'element': notice, 'format': 'pdf'} %}
@@ -15,6 +15,6 @@
     </div>
 
     {% if isPrintLong and relatedDocuments is not empty %}
-        {{ list_subitems(relatedDocuments.mappedNotices, includeImage) }}
+        {{ list_subitems(relatedDocuments.mappedNotices, attachement) }}
     {% endif %}
 {% endblock %}

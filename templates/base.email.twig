@@ -12,7 +12,7 @@
 				<a class="print-header__logo header__logo" href="{{absolute_url(path('home'))  }}" target="_blank" style="width: 175pt; float: left; margin-right: .5cm;">
 					{% if app.environment != 'test' %}<img src="{{ absolute_url(asset('images/bpi-logo.png')) }}" alt="{{ 'header.logo_alt'|trans }}" style="width: 175pt;" />{% endif %}
 				</a>
-				<p class="n0 print-header__title" style="font-size: 21pt;font-weight: bold;color: #000;">{{ 'bloc.print.subtitles.catalogue' | trans }}</p>
+				<p class="n0 print-header__title" style="font-size: 21pt;font-weight: bold;color: #000;">{{ 'global.print-title' | trans }}</p>
 				<p style="color: #000;"><i>{{ 'bloc.print.subtitles.send-by-robot' | trans }}</i></p>
 				<hr/>
 			</div>

@@ -3,7 +3,6 @@
 
 {% macro list_objects(pathName, listObjects, attachement, detailTemplate, startIndex = 0) %}
     {% from 'common/macros/print-macro.html.twig' import image %}
-    {% set includeImage = attachement.image %}
     {% set isPrintLong = attachement.isLongFormat() %}
     {% if listObjects is defined and listObjects is iterable %}
         {% for element in listObjects %}
@@ -24,9 +23,9 @@
                         <h2 class="n1">{{ title }}</h2>
                     {% endfor %}
                 {% endif %}
-                <div style="display: flex; padding-bottom: .5cm;align-items: flex-start;">
-                    {{ image(element, attachement.image) }}
-                    <ul class="print__list" style="list-style: none;margin-top: 0;margin-left: .5cm;padding-left: 0;">
+                <div {% if attachement.isFormatEmail() %}style="display: flex; padding-bottom: .5cm;align-items: flex-start;"{% endif %}>
+                    {{ image(element, attachement) }}
+                    <ul class="print__list" {% if attachement.isFormatEmail() %}style="list-style: none;margin-top: 0;margin-left: .5cm;padding-left: 0;"{% endif %}>
                         {% include detailTemplate with {'notice': element, 'format':'pdf'} %}
                     </ul>
                 </div>

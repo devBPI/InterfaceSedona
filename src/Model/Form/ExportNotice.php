@@ -125,6 +125,11 @@ class ExportNotice implements ExportInterface
         return $this->formatType === self::FORMAT_PDF;
     }
 
+    public function isFormatText() :bool
+    {
+        return $this->formatType === self::FORMAT_TEXT;
+    }
+
     public function setFormatType(string $formatType): self
     {
         $this->formatType = $formatType;
@@ -133,7 +138,7 @@ class ExportNotice implements ExportInterface
 
     public function isImage(): bool
     {
-        return $this->image;
+        return $this->image == true;
     }
 
     public function setImage(bool $image): self
@@ -144,12 +149,12 @@ class ExportNotice implements ExportInterface
 
     public function isShortFormat(): bool
     {
-        return $this->shortFormat;
+        return $this->shortFormat == true;
     }
 
     public function isLongFormat(): bool
     {
-        return !$this->shortFormat;
+        return !$this->isShortFormat();
     }
 
 
