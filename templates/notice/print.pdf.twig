@@ -19,7 +19,7 @@
 
 		{% if isPrintLong %}<i>{{ notice.titleForm|join(' ') }}</i>{% endif %}
 		<div>
-			{{ macros.image(notice, includeImage) }}
+			{{ macros.image(notice, attachement) }}
 			<ul class="print__list">
 				{% include 'notice/blocs-print/print-detail.format.twig' with {'notice': notice, 'format': 'pdf'} %}
 			</ul>

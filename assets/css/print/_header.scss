@@ -3,10 +3,12 @@
 // -------------------------------
 
 .header {
+	padding-bottom: .75cm;
 
 	&__logo {
-		margin-top: $spacer;
-		margin-bottom: $spacer;
+		float: left;
+		margin-right: .75cm;
+		vertical-align: middle;
 
 		img {
 			max-width: 4cm;
