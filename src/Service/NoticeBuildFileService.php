@@ -215,6 +215,7 @@ class NoticeBuildFileService
     private function getNoticeWrapper(ExportInterface $attachment):PrintNoticeWrapper
     {
         $payload = new PrintNoticeWrapper();
+        $nbNotice = 0;
 
         $shortType = $attachment->isShortFormat() ? self::SHORT_PRINT : ExportNotice::PRINT_LONG;
         $listUnavailablePermalinks = ['notices'=> [],'autorites'=> [], 'indices'=> []];
@@ -225,36 +226,54 @@ class NoticeBuildFileService
 
         if($attachment->hasNotices()) {
             foreach ($attachment->getNoticesArray() as $value) {
+                if (in_array($value, $listUnavailablePermalinks['notices'])) {
+                    continue;
+                }
                 try {
-                    if (!in_array($value, $listUnavailablePermalinks['notices'])) {
-                        $payload->addNoticeOnShelves($this->noticeProvider->getNotice($value, $shortType)->getNotice());
+                    $notice = $this->noticeProvider->getNotice($value, $shortType)->getNotice();
+                    if ($notice instanceof Notice) {
+                        $payload->addNoticeOnShelves($notice);
+                        $nbNotice++;
                     }
                 } catch (\Exception $e) {
                     // we ignore notices when we get 410
+                }
+                if ($nbNotice >= PrintNoticeWrapper::MAX_NOTICE) {
+                    return $payload;
                 }
             }
         }
 
         if($attachment->hasAuthorities()) {
             foreach ($attachment->getAuthoritiesArray() as $value) {
+                if (in_array($value, $listUnavailablePermalinks['autorites'])) {
+                    continue;
+                }
                 try {
-                    if (!in_array($value, $listUnavailablePermalinks['autorites'])) {
-                        $payload->addNoticeAuthority($this->noticeAuthority->getAuthority($value, $shortType));
-                    }
+                    $payload->addNoticeAuthority($this->noticeAuthority->getAuthority($value, $shortType));
+                    $nbNotice++;
                 } catch (NoResultException $e) {
                     // we ignore autorities when we get 410
+                }
+                if ($nbNotice >= PrintNoticeWrapper::MAX_NOTICE) {
+                    return $payload;
                 }
             }
         }
 
         if($attachment->hasIndices()) {
-            foreach ($attachment->getIndicesArray() as $value){
+            foreach ($attachment->getIndicesArray() as $value) {
+                if(!in_array($value, $listUnavailablePermalinks['indices'])) {
+                    continue;
+                }
                 try{
-                    if(!in_array($value, $listUnavailablePermalinks['indices'])) {
-                        $payload->addNoticeIndice($this->noticeAuthority->getIndiceCdu($value));
-                    }
+                    $payload->addNoticeIndice($this->noticeAuthority->getIndiceCdu($value));
+                    $nbNotice++;
                 } catch(NoResultException $exception){
                     // we ignore indices when we get 410
+                }
+                if ($nbNotice >= PrintNoticeWrapper::MAX_NOTICE) {
+                    return $payload;
                 }
             }
         }
