@@ -3,7 +3,6 @@
 {% block title %}{{ 'error.page_error'|trans }}{% endblock %}
 {% block body %}
     {% set content %}
-        <!-- <p>{{ 'error.page_broken_message'|trans|nl2br }}</p> -->
 
         {% if app.environment == 'dev' or IP_SEDONA in app.request.clientIps %}
             <fieldset>
@@ -37,16 +36,9 @@
                 <p>{{ 'error.page_broken'| trans }}</p>
                 {{ content }}
             </div>
-           <!-- {{ render(controller('App\\Controller\\ReportingController::reportErrorPageAction',{'renderPage': false})) }} -->
         </div>
     {% else %}
         <h1 class="n1">{{ 'error.page_broken'|trans }}</h1>
         {{ content }}
-        <div class="row justify-content-center">
-            <div class="col-12 col-sm-11 col-md-10">
-                <h2 class="n2">  <!-- {{ 'error.title-form'|trans }} --></h2>
-                <!-- {{ render(controller('App\\Controller\\ReportingController::reportErrorPageAction')) }} -->
-            </div>
-        </div>
     {% endif %}
 {% endblock %}

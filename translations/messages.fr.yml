@@ -657,7 +657,7 @@ bloc:
     language: "Langue : %language%"
     isbn: "ISBN : %isbn%"
     indice: "Indice : %indice%"
-    exemplaire: "Exemplaire(s) :"
+    exemplaire: "Exemplaire(s)"
     disponibility: "%dispo% - %cote% "
     titles:
       search: Résultats de recherche
