@@ -214,6 +214,38 @@ final class UserSelectionController extends AbstractController
         );
     }
 
+
+    /**
+     * @Route("/list/checktst", methods={"GET"}, name="_check_list_tst")
+     */
+    public function checkListsPermalinksGetted(Request $request): Response
+    {
+	$items['notices'] = ["ark:/34201/nptfl0000000035","ark:/34201/nptfl0000180014"];
+	/*$items['autorites'] = [];
+	$items['indices'] = [];
+
+        if($xml = $this->prepareXmlRequest($items['notices'])){
+            $items['notices'] = $this->selectionService->getPermalinks($this->searchProvider->CheckValidNoticePermalink($xml));
+        }
+        if($xml = $this->prepareXmlRequest($contents['autorities'])){
+            $items['autorites'] = $this->selectionService->getPermalinks($this->searchProvider->CheckValidAuthorityPermalink($xml));
+        }
+        if($xml = $this->prepareXmlRequest($contents['indices'])){
+            $items['indices'] = $this->selectionService->getPermalinks($this->searchProvider->CheckValidIndicePermalink($xml));
+        }
+        $listPermalinkNotice =  array_unique(array_values(array_merge($items['notices'],$items['autorites'],$items['indices'])));
+
+        $request->getSession()->set('ItemsNotAvailable', json_encode($items)); //Important de se trouver avant les returns pour le capter dans src/Service/NoticeBuildFileService.php->getNoticeWrapper
+
+        if (count($listPermalinkNotice)===0 || (count($listPermalinkNotice) === 1 && empty($listPermalinkNotice[0])) ){
+            return new Response ("", Response::HTTP_NO_CONTENT);
+        }*/
+
+        return $this->render('user/modal/check-permalink-list-success.html.twig',
+            $this->selectionService->getSelectionOfobjectByPermalinks($listPermalinkNotice)+['action'=> 'print']
+        );
+    }
+
     /**
      * @Route("/print/selection.{format}", methods={"GET","HEAD"}, name="_print", requirements={"format" = "html|pdf|txt"}, defaults={"format" = "pdf"})
      */
