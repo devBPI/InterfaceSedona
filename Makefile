@@ -97,14 +97,6 @@ endif
 	@printf "App mode: \033[32m${APP_ENV}\033[39m.\n"
 .PHONY: env-%
 
-# génération du fichier sonar a partir du fichier composer
-sonar-project.properties:
-	sed -E \
-		-e 's/sonar.projectKey=[^\n]+/sonar.projectKey=${GROUP_ID}:${ARTIFACT_ID}/g' \
-		-e 's/sonar.projectName=[^\n]+/sonar.projectName=[$(shell echo -n ''${CLIENT_NAME}'' | tr "a-z" "A-Z")] ${COMPOSER_PROJECT_DESCRIPTION}/g'\
-		-e 's/sonar.projectVersion=[^\n]+/sonar.projectVersion=${VERSION}/g'\
-		.deploy/sonar-project.dist.properties > sonar-project.properties
-
 show-mode:
 	@printf "App mode: \033[32m${APP_ENV}\033[39m.\n"
 .PHONY: show-mode
