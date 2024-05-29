@@ -105,6 +105,8 @@ footer:
     rss: Suscribirse al RSS de la Bpi
 
 modal:
+  body:
+    report-error: Le signalement a été envoyé avec succès.
   email-example: (nom@exemple.com)
   wait-message: Veuillez patienter
   confirm-message:
@@ -121,6 +123,7 @@ modal:
     submit: Valider
     submit-sr-only: la création de la liste
   list-add:             #Modal 02 ajout à ma sélection
+    text-before-btn: "Afficher votre sélection temporaire :"
     already-exist: Cette référence est déjà dans votre sélection.
     message-already-exist: L'élément existe déjà dans la liste
     title-connected: Ajouter...
@@ -155,6 +158,7 @@ modal:
     title: Paramétrer l'export
     subject: Catalogue BPI – Export de notices
     field:
+      object: Objet
       recipient: Destinataire(s)
       comments: Message
       abstract: Notices abrégées
@@ -165,12 +169,20 @@ modal:
     submit: Envoyer
   print:            #Modal 06 imprimer
     title: Paramétrer l'impression
+    subtitle: "Ce formulaire vous permet de créer un document que vous pourrez enregistrer ou imprimer."
+    limit: Cet export est limité à %nb% références.
     field:
+      choose-sr: Choisir le format de la notice
+      choose: Choisir
+      file-format: Format du fichier
+      text-format: Mettre au format texte
+      pdf-format: Mettre au format PDF
       abstract: Notices abrégées
       long: Notices complètes
       img: Exporter les images
     submit: Exporter
   share:            #Modal 07 fin
+    object: Références du catalogue de la Bpi
     title: Partager
     subtitle-1: Permalien
     url-page: URL de la page
@@ -178,16 +190,22 @@ modal:
     btn-cpoy-sr-only: l'url
     subtitle-2: Envoyer cette page à un ami
     field:
+      sender: Destinataire
       text: Message
       title: Objet
       title_value: Références du catalogue de la Bpi
       recipient: Destinataire
       expeditor: Expéditeur
     submit: Envoyer
+    limit: L'envoi est limité à %nb% références.
   suggestion:     #Modal 08 suggestion d'achats
     title: Suggestion d'achat
     subtitle: Coordonnées
+    edito: "Suggérer l'achat d'un document après avoir vérifié s'il n'était pas dans le catalogue"
     field:
+      subject: Suggestion d’achat
+      coordonate: "Coordonnées :"
+      reference: "Réferences :"
       title: Titre
       author: Auteur
       document-type: Type de document
@@ -195,14 +213,18 @@ modal:
       last-name: Nom
       first-name: Prénom
       email: Courriel
-      address: ' Coordonnées'
+      address: 'Coordonnées'
     submit: Valider
     submit-sr-only: l'envoi de la suggestion
   report:      #Modal 09 signaler une erreur
-    title: Signaler une erreur sur le catalogue
+    title: Signaler une erreur dans la notice
     sub-title: Le formulaire ci-dessous concerne uniquement les erreurs dans cette notice du catalogue de la Bpi.
+    sub-title-2: 'Pour tout autre demande sur le catalogue : <a target="_blank" title="Contactez-nous - Nouvelle fenêtre" href="https://www.bpi.fr/contactez-nous/" >contactez-nous</a>'
+    permalink-label: "Lien permanent de la notice : "
     subtitle: Coordonnées
     field:
+      permalink: "Permalien de la notice concernée :"
+      subject: Signaler une erreur
       object: Objet
       message: Message
       last-name: Nom
@@ -442,6 +464,8 @@ bloc:
       see-all: Voir tous les résultats
       see-more-sr-only: les documents en ligne
   notice-simple:          #Bloc 13 Notices simples en 2 colonnes
+    tooltip-access: Accéder au document - Nouvelle fenêtre
+    tooltip-access-source: Accéder à la source - Nouvelle fenêtre
     result: Résultat numéro
     select: sélectionner
     access: Accès
@@ -463,8 +487,8 @@ bloc:
       nb-result-aria: dropdown-number-items
       nb-result-title: Sélectionner le nombre de résultat par colonne
       nb-result-by-col: '%nb% résultats par colonne'
-      order-mutual: '%value%'
       order: Choix du tri des documents
+      order-mutual: '%value%'
       order-aria: dropdown-tri-result
       order-choice: 'Tri : '
       order-labels:
@@ -499,6 +523,7 @@ bloc:
       rights: Droits
   autority-result-information: #Bloc 16 Notice bibliographique + Bloc 18 Informations de la notice d'autorité
     fal: Sélection facile à lire
+    tooltip: Accéder à la source - Nouvelle fenêtre
     musique-author: 'Auteur(s), compositeur(s), interprète(s)'
     other-musique-author: 'Autre(s) auteur(s), compositeur(s), interprète(s)'
     autor-dicover: Découvrir l'auteur
@@ -564,6 +589,8 @@ bloc:
     directors: Réalisateur(s)
     conservation: Conservation
     collections-et-services: Collections
+    type-document: 'Type de document'
+    published-dates: Année
   list-related-documents:  #Bloc 19 Liste de documents + Bloc 17 Documents liés
     link-title: Actualité %current% sur %nb%, %name%
     see-more: Voir tout
@@ -618,14 +645,30 @@ bloc:
     select-ligne: 'Sélectionner la ligne : %title%'
     reload: Relancer la recherche %title%'
   print:
+    resume: 'Resumé : %resume%'
+    note: 'Note : %note%'
+    materialDescription: 'Description materiel : %note%'
+    serie: 'Série / Collection : %note%'
+    type-document: 'Type de document : %type%'
+    author: "Auteur : %author%"
+    editor: "Editeur : %editor%"
+    alternativeTitle: "Autre(s) forme(s) de titre : %title%"
+    year: "Année : %year%"
+    language: "Langue : %language%"
+    isbn: "ISBN : %isbn%"
+    indice: "Indice : %indice%"
+    exemplaire: "Exemplaire(s)"
+    disponibility: "%dispo% - %cote% "
     titles:
       search: Résultats de recherche
       selection: Résultats de la sélection
+      permalien: "Permalien :"
     subtitles:
       your-references-autority: Vos références d'autorités
       your-reference-autority: Votre référence d'autorité
       your-references-bibliographic: Vos références bibliographiques
       your-reference-bibliographic: Votre référence bibliographique
+      send-by-robot: Ce message est envoyé par un robot. Merci de ne pas répondre !
 error:
   page_not_available: 'Cette page est inaccessible.'
   permalink_not_available: soit le permalien que vous avez saisi ou sur lequel vous avez cliqué n'est pas encore actif, ou est erroné ou supprimé
