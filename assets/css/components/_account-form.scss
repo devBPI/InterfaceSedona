@@ -5,9 +5,12 @@
 .account-form {
 	padding: $spacer;
 	box-shadow: $dropdown-shadow;
-	border: $border-thin;
+	//border: $border-thin;
 	margin-top: $spacer*2;
 	margin-bottom: $spacer*6;
+
+font-family: 'DinWeb';
+    src: url('/build/fonts/DinWeb-Regular.otf') format('truetype');
 
 	@include media-breakpoint-up(md) {
 		padding: 25px 40px;
@@ -58,5 +61,71 @@
 
 	&__link {
 		@include font-size(16);
+	}
+
+	font-family: DinWeb,Arial,Helvetica,sans-serif;
+	font-size: .9rem;
+	line-height: 1.16;
+
+	.wysiwyg {
+		padding-bottom: 3.125rem;
+		text-align: center;
+	}
+
+	.button {
+		-webkit-appearance: none;
+		border: 0;
+		border-radius: 0;
+		cursor: pointer;
+		display: inline-block;
+		font-family: DinWeb,Arial,Helvetica,sans-serif;
+		line-height: 1.15;
+		padding: .625rem;
+		transition: background-color .3s ease;
+		vertical-align: middle;
+	}
+	.button--accent {
+		background-color: var(--red,#000);
+		color: #fff;
+		font-weight: 600;
+		padding: 1em;
+	}
+
+	.account__reset-link {
+		color: black;
+		display: block;
+		margin-top: 1rem;
+	}
+
+	a {
+		text-decoration: none;
+	}
+	a.button:active, a.button:focus, a.button:hover {
+		background-color: #000;
+	}
+	a[target]::after {
+		content: ">";
+		display: inline-block;
+		font-weight: 400;
+		transform: rotate(-45deg) translate(.125rem,.0625rem) scale(.9);
+		box-sizing: border-box;
+font-family: 'DinWeb';
+    src: url('/build/fonts/DinWeb-Regular.otf') format('truetype');
+//font-family: DinWeb, Arial, Helvetica, sans-serif;
+font-size: 13px;
+font-weight: 400;
+line-height: 15.0833px;
+text-align: center;
+transform: matrix(0.636396, -0.636396, 0.636396, 0.636396, 2.12132, -0.707107)
+	}
+
+	h2 {
+		border-top: .0625rem solid #e2e2e2;
+		font-family: DinWeb,Arial,Helvetica,sans-serif;
+		font-size: 1.1rem;
+		line-height: 1.16;
+		margin: 1.875rem auto 1.125rem;
+		max-width: 25rem;
+		padding-top: 1.875rem;
 	}
 }

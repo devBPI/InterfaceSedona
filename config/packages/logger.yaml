@@ -1,0 +1,8 @@
+services:
+    monolog.logger.translation:
+        class: Monolog\Logger
+        arguments: ["translation"]
+        calls:
+            - method: pushHandler
+              arguments:
+                  - '@monolog.handler.translation_filter'

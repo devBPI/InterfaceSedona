@@ -1,0 +1,21 @@
+# config/packages/monolog.yaml
+monolog:
+    handlers:
+        main:
+            type: stream
+            path: "%kernel.logs_dir%/%kernel.environment%.log"
+            level: debug
+            channels: ["!translation"]
+        translation_filter:
+            type: filter
+            handler: translation
+            max_level: notice
+            min_level: warning
+            #accepted_levels: ["warning"]
+            channels: ["translation"]
+
+        translation:
+            type: stream
+            path: "%kernel.logs_dir%/translation.log"
+            level: notice
+            channels: ["translation"]        

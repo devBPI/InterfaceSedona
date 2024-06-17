@@ -16,50 +16,93 @@ use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
  */
 final class UserController extends AbstractController
 {
-    const SECURITY_REFERER = '_security_referer';
+	const SECURITY_REFERER = '_security_referer';
 
-    /**
-     * @Route("/authentification", methods={"GET","POST"}, name="user_login")
-     * @param Request $request
-     * @param AuthenticationUtils $authUtils
-     * @return \Symfony\Component\HttpFoundation\Response
-     */
-    public function loginAction(Request $request, AuthenticationUtils $authUtils): Response
-    {
-        $attr = [];
-        $authenticationError = $authUtils->getLastAuthenticationError();
-        if ($authenticationError instanceof AuthenticationException) {
-            $attr = [
-                'error' => $authenticationError->getMessage(),
-                'last_login' => $authUtils->getLastUsername()
-            ];
-            if (empty($request->get("_username"))) {
-                $attr['error_username'] = "_username.empty";
-            } elseif (!preg_match('/^.+\@\S+\.\S+$/', $request->get("_username"))) {
-                // voir Symfony\Component\Validator\Constraints\EmailValidator
-                $attr['error_username'] = "email.format";
-            }
-            if (empty($request->get("_password"))) {
-                $attr['error_password'] = "_password.empty";
-            }
-        }
+	/**
+	 * @Route("/authentification_old", methods={"GET","POST"}, name="user_login_old")
+	 * @param Request $request
+	 * @param AuthenticationUtils $authUtils
+	 * @return \Symfony\Component\HttpFoundation\Response
+	 */
+	public function loginActionOld(Request $request, AuthenticationUtils $authUtils): Response
+	{
+		$attr = [];
+		$authenticationError = $authUtils->getLastAuthenticationError();
+		if ($authenticationError instanceof AuthenticationException) {
+			$attr = [
+				'error' => $authenticationError->getMessage(),
+				'last_login' => $authUtils->getLastUsername()
+			];
+			if (empty($request->get("_username"))) {
+				$attr['error_username'] = "_username.empty";
+			} elseif (!preg_match('/^.+\@\S+\.\S+$/', $request->get("_username"))) {
+				// voir Symfony\Component\Validator\Constraints\EmailValidator
+				$attr['error_username'] = "email.format";
+			}
+			if (empty($request->get("_password"))) {
+				$attr['error_password'] = "_password.empty";
+			}
+		}
 
-        if ($request->headers->get('referer') !== $request->getUri()) {
-            $request->getSession()->set(self::SECURITY_REFERER, $request->headers->get('referer'));
-        }
-        $attr['referer'] = $request->getSession()->get(self::SECURITY_REFERER);
+		if ($request->headers->get('referer') !== $request->getUri()) {
+			$request->getSession()->set(self::SECURITY_REFERER, $request->headers->get('referer'));
+		}
+		$attr['referer'] = $request->getSession()->get(self::SECURITY_REFERER);
 
-        return $this->render('user/login.html.twig', $attr);
-    }
+		return $this->render('user/login.html.twig', $attr);
+	}
 
-    /**
-     * @Route("/compte", methods={"GET","HEAD"}, name="user_personal_data")
-     * @return \Symfony\Component\HttpFoundation\Response
-     */
-    public function personalDataAction(): Response
-    {
-        return $this->render('user/personal-data.html.twig');
-    }
+	/**
+	 * @Route("/authentification", methods={"GET","POST"}, name="user_login")
+	 * @param Request $request
+	 * @param AuthenticationUtils $authUtils
+	 * @return \Symfony\Component\HttpFoundation\Response
+	 */
+	public function loginAction(Request $request, AuthenticationUtils $authUtils): Response
+	{
+		$attr = [];
+		$authenticationError = $authUtils->getLastAuthenticationError();
+		if ($authenticationError instanceof AuthenticationException) {
+			$attr = [
+				'error' => $authenticationError->getMessage(),
+				'last_login' => $authUtils->getLastUsername()
+			];
+			if (empty($request->get("_username"))) {
+				$attr['error_username'] = "_username.empty";
+			} elseif (!preg_match('/^.+\@\S+\.\S+$/', $request->get("_username"))) {
+				// voir Symfony\Component\Validator\Constraints\EmailValidator
+				$attr['error_username'] = "email.format";
+			}
+			if (empty($request->get("_password"))) {
+				$attr['error_password'] = "_password.empty";
+			}
+		}
 
+		if ($request->headers->get('referer') !== $request->getUri()) {
+			$request->getSession()->set(self::SECURITY_REFERER, $request->headers->get('referer'));
+		}
+		$attr['referer'] = $request->getSession()->get(self::SECURITY_REFERER);
 
+		return $this->render('user/login2.html.twig', $attr);
+	}
+
+	/**
+	 * @Route("/authentification2", methods={"GET","POST"}, name="user_logining")
+	 * @param Request $request
+	 * @param AuthenticationUtils $authUtils
+	 * @return \Symfony\Component\HttpFoundation\Response
+	 */
+	public function login2Action(Request $request, AuthenticationUtils $authUtils): Response
+	{
+		return $this->redirectToRoute('home');
+	}
+
+	/**
+	 * @Route("/compte", methods={"GET","HEAD"}, name="user_personal_data")
+	 * @return \Symfony\Component\HttpFoundation\Response
+	 */
+	public function personalDataAction(): Response
+	{
+		return $this->render('user/personal-data.html.twig');
+	}
 }

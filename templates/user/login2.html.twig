@@ -1,0 +1,93 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ 'page.login.title'|trans }}{% endblock %}
+
+{% block search %}{% endblock %}
+
+{% block body %}
+
+	<h1 class="n1">{{ 'page.login.title'|trans }}</h1>
+
+	<div class="account-form account-form--bloc">
+		<section class="wysiwyg">
+			<!--<a href="https://authz.bpi.fr/oauth2/authorize?response_type=code&amp;scope=email%20openid%20profile%20address%20phone%20groupes%20RNConfirmed%20pseudo&amp;client_id=ClientWordpressBpizOIDC&amp;state=56e9b2affce3a1278bc50c2fcba96b7e&amp;redirect_uri=https%3A%2F%2Fpreprod.bpi.fr%2Fwp-admin%2Fadmin-ajax.php%3Faction%3Dopenid-connect-authorize" class="button button--accent">Se connecter</a>-->
+			<a href="https://auth-test.bpi.fr/oauth2/authorize?response_type=code&amp;scope=email%20openid%20profile%20address%20phone%20groupes%20RNConfirmed%20pseudo&amp;client_id=ClientCatalogueBpiOIDC&amp;state=gfD524C44ahQKm&amp;redirect_uri=https%3A%2F%2Fcatalogue-dev.bpi.fr" class="button button--accent">Se connecter</a>
+			
+			<!--<a href="https://auth-test.bpi.fr/" class="button button--accent">Se connecter</a>-->
+			<a href="https://auth-test.bpi.fr/resetpwd" class="account__reset-link" target="_blank" aria-label="Réinitialiser votre mot de passe - nouvelle fenêtre">Réinitialiser votre mot de passe</a>
+			<h2>Vous n'avez pas de compte ?</h2>
+			<a href="https://preprod.bpi.fr/inscription/" class="button button--accent button--sm">S’inscrire</a>
+		</section>
+
+		<!--<form action="{{ path('user_login') }}" method="post" class="gtm-form-sign-in" novalidate="novalidate">
+		
+			<p class="modal-form__indication">* {{ 'global.form-mandatory-field'|trans }}</p> 
+			{% set error_class = '' %}
+			{% if error is defined and error is not empty %}
+				<div class="form-group row justify-content-md-end">
+					<div class="col-12 col-md-8">
+						<p class="invalid-feedback d-block mb-0" aria-describedby="account-mail">{{ error|trans }}</p>
+					</div>
+				</div>
+				{% set error_class = 'is-invalid' %}
+			{% endif %}
+
+			<div class="form-group row">
+				<label for="account-mail" class="col-12 col-md-4">{{ 'page.login.login'|trans }} ({{ 'page.login.login-placeholder'|trans }})</label>
+				<div class="col-12 col-md-8">
+					<input name="_username" type="email" class="form-control {{ error_class }}" id="account-mail" required="required"
+							{% if last_login is defined %}value="{{ last_login }}"{% endif %} autocomplete="email" placeholder="{{ 'page.login.login-placeholder'|trans }}"
+							{% if error_username is defined %}aria-describedby="account-mail-error"{% endif %}>
+					{% if error_username is defined %}
+						<p id="account-mail-error" class="invalid-feedback d-block" aria-describedby="account-mail">
+							<span class="d-block"><span class="form-error-icon badge badge-danger text-uppercase">{{ 'Error'|trans({}, 'validators') }}</span> <span class="form-error-message">{{ error_username|trans({}, 'validators') }}</span></span>
+						</p>
+					{% endif %}
+				</div>
+			</div>
+			<div class="form-group row">
+				<label for="account-password" class="col-12 col-md-4">{{ 'page.login.password'|trans }}</label>
+				<div class="col-12 col-md-8">
+					<input name="_password" type="password" class="form-control {{ error_class }}" required="required"
+							id="account-password" autocomplete="current-password"
+						   {% if error_password is defined %}aria-describedby="account-password-error"{% endif %}>
+					{% if error_password is defined %}
+						<p id="account-password-error" class="invalid-feedback d-block" aria-describedby="account-mail">
+							<span class="d-block"><span class="form-error-icon badge badge-danger text-uppercase">{{ 'Error'|trans({}, 'validators') }}</span> <span class="form-error-message">{{ error_password|trans({}, 'validators') }}</span></span>
+						</p>
+					{% endif %}
+				</div>
+			</div>
+			<div class="row justify-content-end">
+				<div class="col-12 col-md-8">
+					<div class="form-group form-check">
+						<input type="checkbox" class="form-check-input" id="account-keep">
+						<label class="form-check-label"
+								for="account-keep">{{ 'page.login.remember-me'|trans }}</label>
+					</div>
+				</div>
+			</div>
+			<div class="row justify-content-end">
+				<div class="col-12 col-md-8">
+					<div class="account-form__footer">
+						<div class="account-form__footer-content">
+							<a href="https://authz.bpi.fr/resetpwd?skin=bootstrap" target="_blank"
+								class="account-form__link"
+								title="{{ 'page.login.forgotten-password'|trans }} - {{ 'global.new-windows'|trans }}">
+								{{ 'page.login.forgotten-password'|trans }}</a>
+							<button type="submit"
+									class="btn btn-lg btn-primary">{{ 'page.login.submit'|trans }}</button>
+						</div>
+						<div class="account-form__footer-content">
+							<a href="https://www.bpi.fr/formulaire-inscription-bpi" target="_blank"
+								class="account-form__link"
+								title="{{ 'page.login.create-profil'|trans }} - {{ 'global.new-windows'|trans }}">
+								{{ 'page.login.create-profil'|trans }}</a>
+						</div>
+					</div>
+				</div>
+			</div>
+			<input type="hidden" name="_target_path" value="{{ referer }}" />
+		</form>-->
+	</div>
+{% endblock %}
