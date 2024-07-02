@@ -83,6 +83,29 @@ final class UserController extends AbstractController
 		}
 		$attr['referer'] = $request->getSession()->get(self::SECURITY_REFERER);
 
+
+
+
+
+
+		$client_id = "ClientCatalogueBpiOIDC";
+		$redirect_uri = "https://catalogue-dev.bpi.fr";
+		$scope = "email openid profile address phone groupes RNConfirmed pseudo";
+		$authorization_endpoint = "https://auth-test.bpi.fr/oauth2/authorize";
+
+		$params = http_build_query([
+			'client_id' => $client_id,
+			'redirect_uri' => $redirect_uri,
+			'response_type' => 'code',
+			'scope' => $scope,
+		]);
+		$authorization_url = "$authorization_endpoint?$params";
+		$attr['auth_url'] = $authorization_url;
+
+
+
+
+
 		return $this->render('user/login2.html.twig', $attr);
 	}
 

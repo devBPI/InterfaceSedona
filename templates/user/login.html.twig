@@ -9,7 +9,7 @@
     <h1 class="n1">{{ 'page.login.title'|trans }}</h1>
 
     <div class="account-form account-form--bloc">
-        <form action="{{ path('user_login') }}" method="post" class="gtm-form-sign-in" novalidate="novalidate">
+        <form action="{{ path('user_login_old') }}" method="post" class="gtm-form-sign-in" novalidate="novalidate">
         
             <p class="modal-form__indication">* {{ 'global.form-mandatory-field'|trans }}</p> 
             {% set error_class = '' %}
