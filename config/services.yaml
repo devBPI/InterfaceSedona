@@ -85,6 +85,16 @@ services:
       - ['mail', 'sn','cn', 'pseudo', 'uid', 'entryUUID']
       - mail
 
+  App\Provider\OAuthUserProvider:
+    arguments:
+      - '@Symfony\Component\Ldap\Ldap'
+      - '%env(LDAP_BASE_DN)%'
+      - '%env(LDAP_SEARCH_DN)%'
+      - '%env(LDAP_PASSWORD)%'
+      - ['ROLE_USER']
+      - ['mail', 'sn','cn', 'pseudo', 'uid', 'entryUUID']
+      - mail
+
   App\Service\MailSenderService:
     arguments:
       $sender : '%env(MAIL_SENDER)%'

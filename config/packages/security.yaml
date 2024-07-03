@@ -3,6 +3,8 @@ security:
     providers:
         bpi_ldap:
             id: App\Provider\BpiLdapUserProvider
+        oauth:
+            id: App\Provider\OAuthUserProvider
     firewalls:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
@@ -15,6 +17,10 @@ security:
                 dn_string: 'dc=bpi,dc=fr'
                 query_string: '(mail={username})'
             anonymous: true
+            provider: oauth
+            guard:
+                authenticators:
+                    - App\Security\OAuthAuthenticator
             remember_me:
                 secret:   '%kernel.secret%'
                 lifetime: 604800 # 1 week in seconds
@@ -22,9 +28,11 @@ security:
             logout:
                 path:   app_logout
                 target: home2
+            entry_point: App\Security\OAuthAuthenticator
 
     # Easy way to control access for large sections of your site
     # Note: Only the *first* access control that matches will be used
     access_control:
+        - { path: ^/, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         # - { path: ^/admin, roles: ROLE_ADMIN }
         # - { path: ^/profile, roles: ROLE_USER }

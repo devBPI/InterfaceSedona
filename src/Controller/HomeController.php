@@ -75,11 +75,21 @@ final class HomeController extends AbstractController
 
 	if(null != ($this->session->get('oauth_access_token')))
 	{
-		echo "<span>access_token : </span>";
 		$accessToken = $this->session->get('oauth_access_token');
-		$user = $client->fetchUserFromToken($accessToken);
-		var_dump($user);
-		echo "<br />";
+		try
+		{
+			//echo "<span>access_token : </span>";
+			$user = $client->fetchUserFromToken($accessToken);
+			//var_dump($user);
+			//echo "<br />email : ";
+			//echo $user->toArray()['email'];
+			//echo "<br />";
+		}
+		catch (\Exception $e)
+		{
+			//$this->session->remove('oauth_access_token');
+			//return $this->redirectToRoute('home');
+		}
 	}
 
 	if(false && isset($_SESSION['access_token']))
