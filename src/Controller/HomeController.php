@@ -5,9 +5,12 @@ namespace App\Controller;
 
 use App\Entity\Thematic;
 use App\Service\Provider\CarouselProvider;
+use KnpU\OAuth2ClientBundle\Client\ClientRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
 /**
  * Class HomeController
@@ -15,6 +18,8 @@ use Symfony\Component\Routing\Annotation\Route;
  */
 final class HomeController extends AbstractController
 {
+	private $session;
+
     /**
      * @var CarouselProvider
      */
@@ -24,16 +29,17 @@ final class HomeController extends AbstractController
      * HomeController constructor.
      * @param CarouselProvider $carouselProvider
      */
-    public function __construct(CarouselProvider $carouselProvider)
+    public function __construct(CarouselProvider $carouselProvider, SessionInterface $session)
     {
         $this->carouselProvider = $carouselProvider;
+		$this->session = $session;
     }
 
     /**
      * @Route("", methods={"GET","HEAD"}, name="home")
      * @Route("/", methods={"GET","HEAD"}, name="home2")
      */
-    public function indexAction(): Response
+    public function indexAction(Request $request, ClientRegistry $clientRegistry): Response
     {
         $carousel = $this->carouselProvider->getHomeList();
         $thematic = $this
@@ -47,10 +53,36 @@ final class HomeController extends AbstractController
         ;
 
 
+	$client = $clientRegistry->getClient('my_oauth2_client');
+	if(isset($_GET['code']) && isset($_GET['session_state']))
+	{
+		try {
+			// the exact class depends on which provider you're using
+			$redirectUri = 'https://catalogue-dev.bpi.fr';
+			$accessToken = $client->getAccessToken(['redirect_uri' => $redirectUri]);
+			$this->session->set('oauth_access_token', $accessToken);
+
+			// do something with all this new power!
+			// e.g. $name = $user->getFirstName();
+		} catch (IdentityProviderException $e) {
+			// something went wrong!
+			// probably you should return the reason to the user
+			var_dump($e->getMessage()); die;
+		}
+		return $this->redirectToRoute('home');
+	}
 
 
+	if(null != ($this->session->get('oauth_access_token')))
+	{
+		echo "<span>access_token : </span>";
+		$accessToken = $this->session->get('oauth_access_token');
+		$user = $client->fetchUserFromToken($accessToken);
+		var_dump($user);
+		echo "<br />";
+	}
 
-	if (isset($_SESSION['access_token']))
+	if(false && isset($_SESSION['access_token']))
 	{
 		echo "<span>access_token : </span>";
 		print_r($_SESSION['access_token']);
@@ -59,7 +91,7 @@ final class HomeController extends AbstractController
 
 
 
-	if(isset($_GET['code']) && isset($_GET['session_state']))
+	if(false && isset($_GET['code']) && isset($_GET['session_state']))
 	{
 
 		$client_id = "ClientCatalogueBpiOIDC";
@@ -108,11 +140,6 @@ final class HomeController extends AbstractController
 		return $this->redirectToRoute('home');
 		//header("Location: /");
 	}
-
-
-
-
-
 
 
         return $this->render('home/default.html.twig',[

@@ -40,6 +40,9 @@ services:
     arguments:
     - '@eight_points_guzzle.client.bpi_catalog'
 
+#  App\Client\BpiOAuth2Client:
+#        decorates: knpu.oauth2.client.oauth2
+
   App\Service\ImageBuilderService:
     arguments:
       - '%kernel.project_dir%/public/'

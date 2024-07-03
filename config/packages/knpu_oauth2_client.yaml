@@ -1,0 +1,29 @@
+knpu_oauth2_client:
+    clients:
+        # configure your clients as described here: https://github.com/knpuniversity/oauth2-client-bundle#configuration
+        my_oauth2_client:
+            type: generic
+#            provider_class: \League\OAuth2\Client\Provider\GenericProvider
+#            provider_class: \League\OAuth2\Client\Provider\GenericProvider
+            client_class: App\Client\BpiOAuth2Client
+            provider_class: App\Provider\BpiOAuth2Provider
+            client_id: '%env(OAUTH2_CLIENT_ID)%'
+            client_secret: '%env(OAUTH2_CLIENT_SECRET)%'
+            redirect_route: home
+#            redirect_params:
+#                redirect_uri: 'https://catalogue-dev.bpi.fr'
+#                path_authorize: 'https://auth-test.bpi.fr/oauth2/authorize'
+#                path_token: 'https://auth-test.bpi.fr/oauth2/token'
+#                resource_owner_details_url: 'https://auth-test.bpi.fr/oauth2/userinfo'
+#                scope: 'email+openid+profile+address+phone+groupes+RNConfirmed+pseudo'
+            provider_options:
+#                authorization_url: 'https://auth-test.bpi.fr/oauth2/authorize'
+#                token_url: 'https://auth-test.bpi.fr/oauth2/token'
+#                resource_owner_details_url: 'https://auth-test.bpi.fr/oauth2/userinfo'
+#                scope: ['email', 'openid', 'profile', 'address', 'phone', 'groupes', 'RNConfirmed', 'pseudo']
+                scope: 'email openid profile address phone groupes RNConfirmed pseudo'
+                urlAuthorize: 'https://auth-test.bpi.fr/oauth2/authorize'
+                urlAccessToken: 'https://auth-test.bpi.fr/oauth2/token'
+                urlResourceOwnerDetails: 'https://auth-test.bpi.fr/oauth2/userinfo'
+                client_id: '%env(OAUTH2_CLIENT_ID)%'
+                client_secret: '%env(OAUTH2_CLIENT_SECRET)%'

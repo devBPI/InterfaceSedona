@@ -9,6 +9,8 @@ framework:
     session:
         handler_id: ~
         name: BPICATALOGUESESSID
+        cookie_secure: true
+        cookie_samesite: lax
 
     #esi: true
     #fragments: true

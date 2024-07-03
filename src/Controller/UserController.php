@@ -3,12 +3,14 @@
 
 namespace App\Controller;
 
+use KnpU\OAuth2ClientBundle\Client\ClientRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Exception\AuthenticationException;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
 /**
  * Class UserController
@@ -17,6 +19,14 @@ use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 final class UserController extends AbstractController
 {
 	const SECURITY_REFERER = '_security_referer';
+
+	private $session;
+
+
+	public function __construct(SessionInterface $session)
+	{
+		$this->session = $session;
+	}
 
 	/**
 	 * @Route("/authentification_old", methods={"GET","POST"}, name="user_login_old")
@@ -107,6 +117,38 @@ final class UserController extends AbstractController
 
 
 		return $this->render('user/login2.html.twig', $attr);
+	}
+
+	/**
+	 * @Route("/connect", name="oauth_connect")
+	 */
+	public function connect(ClientRegistry $clientRegistry)
+	{
+		// Redirect to the "connect" route of the configured OAuth2 client
+		$redirectUri = 'https://catalogue-dev.bpi.fr';
+		return $clientRegistry
+			->getClient('my_oauth2_client')
+			->redirect(['email openid profile address phone groupes RNConfirmed pseudo'], ['redirect_uri' => $redirectUri]); // you can add scopes as the first argument
+	}
+
+	/**
+	 * @Route("/connect/check", name="my_oauth2_check")
+	 */
+	public function connectCheck(Request $request, ClientRegistry $clientRegistry)
+	{
+		$client = $clientRegistry->getClient('my_oauth2_client');
+		//$email = null;
+		if(null != ($this->session->get('oauth_access_token')))
+		{
+			echo "<span>access_token : </span>";
+			$accessToken = $this->session->get('oauth_access_token');
+			$user = $client->fetchUserFromToken($accessToken);
+			var_dump($user);
+			//$email = $user->getEmail();
+			echo "<br />";
+		}
+
+		return new Response();
 	}
 
 	/**
