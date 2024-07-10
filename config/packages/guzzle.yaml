@@ -1,0 +1,6 @@
+# config/packages/guzzle.yaml
+eight_points_guzzle:
+    clients:
+        default:
+            base_url: 'https://catalogue.bpi.fr' # Remplacez par votre URL de base si nécessaire
+            options: []

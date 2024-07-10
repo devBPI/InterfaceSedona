@@ -3,11 +3,13 @@
 
 namespace App\Controller;
 
+use App\Service\HttpClientService;
 use KnpU\OAuth2ClientBundle\Client\ClientRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Component\Security\Core\Exception\AuthenticationException;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
@@ -21,11 +23,12 @@ final class UserController extends AbstractController
 	const SECURITY_REFERER = '_security_referer';
 
 	private $session;
+	private $httpClientService;
 
-
-	public function __construct(SessionInterface $session)
+	public function __construct(SessionInterface $session, HttpClientService $httpClientService)
 	{
 		$this->session = $session;
+		$this->httpClientService = $httpClientService;
 	}
 
 	/**
@@ -114,8 +117,6 @@ final class UserController extends AbstractController
 
 
 
-
-
 		return $this->render('user/login2.html.twig', $attr);
 	}
 
@@ -169,5 +170,36 @@ final class UserController extends AbstractController
 	public function personalDataAction(): Response
 	{
 		return $this->render('user/personal-data.html.twig');
+	}
+
+	/**
+	 * @Route("/disconnect", name="oauth_disconnect")
+	 */
+	public function disconnect()
+	{
+		/*try
+		{
+			$data = $this->httpClientService->disconnectOAuth();
+		}
+		catch (\Exception $e)
+		{
+			return new Response('Error: ' . $e->getMessage());
+		}
+
+		return new Response('Data: ' . json_encode($data));
+
+		return $this->redirectToRoute('home');*/
+		$logoutUrl = 'https://auth-test.bpi.fr/oauth2/logout?post_logout_redirect_uri=' . urlencode($this->generateUrl('home', [], \Symfony\Component\Routing\Generator\UrlGeneratorInterface::ABSOLUTE_URL));
+		$logoutUrl = 'https://auth-test.bpi.fr/oauth2/logout?post_logout_redirect_uri=' . urlencode("https://catalogue-dev.bpi.fr");
+		//$logoutUrl = 'https://auth-test.bpi.fr/?cancel=1&skin=bootstrap&post_logout_redirect_uri=' . urlencode($this->generateUrl('home', [], \Symfony\Component\Routing\Generator\UrlGeneratorInterface::ABSOLUTE_URL));
+		echo urlencode($this->generateUrl('home', [], \Symfony\Component\Routing\Generator\UrlGeneratorInterface::ABSOLUTE_URL));
+		echo "<br />";
+		echo $logoutUrl;
+		/*$logoutUrl = 'https://auth-test.bpi.fr/oauth2/logout?post_logout_redirect_uri=' . urlencode($this->generateUrl('home', [], \Symfony\Component\Routing\Generator\UrlGeneratorInterface::ABSOLUTE_URL));
+		echo "<br />";
+		echo $logoutUrl;
+		return "";*/
+
+		return $this->redirect($logoutUrl);
 	}
 }

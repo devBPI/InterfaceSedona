@@ -27,7 +27,8 @@ security:
                 path:     /
             logout:
                 path:   app_logout
-                target: home2
+#                target: home2
+                target: oauth_disconnect
             entry_point: App\Security\OAuthAuthenticator
 
     # Easy way to control access for large sections of your site
